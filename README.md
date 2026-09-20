@@ -1,81 +1,77 @@
-# MARAAL Register — Dubai private residential desk (concept)
+# MARAAL Residences — Dubai concept site
 
-A one-page site for a fictional private brokerage in Dubai. Built as a
+A one-page site for a fictional private brokerage in Dubai, built as a
 portfolio and social-post piece for AIK Studio.
 
 ## Direction
 
-Not a luxury brochure. The page is set as an **architect's drawing sheet**:
-a title block instead of a nav bar, hairline rules, a dimension line under
-the hero, mono figures with tabular numerals, and two canvas drawings.
+Photography-led. The chrome stays quiet and the photographs carry the
+colour: a full-bleed hero, an asymmetric tile grid, generous whitespace.
 
 | Token | Value | Role |
 |---|---|---|
-| `--ink` | `#0c1416` | Deep petrol ground, green bias. Not neutral near-black |
-| `--stone` | `#e9e3d8` | Warm limestone type |
-| `--brass` | `#c19a62` | The only accent. Hairlines, ticks, the marked level |
-| `--paper` | `#e6e1d6` | The enquiry band, where the sheet flips to paper |
+| `--paper` | `#f1efe9` | Warm off-white, pulled grey so it is not the usual cream |
+| `--paper-2` | `#e8e4db` | The enquiry band |
+| `--ink` | `#17150f` | Warm near-black for type and the footer |
+| `--muted` | `#6f6b62` | Secondary text |
+| `--slot` | `#e0dbd0` | An empty photo slot |
 
-Type: **Bodoni Moda** (display) / **Archivo** (body) / **IBM Plex Mono**
-(references, areas, labels). Loaded from Google Fonts with real fallback
-stacks.
+There is no chromatic accent. Interactive states invert ink and paper.
+
+Type: **Bodoni Moda** (display) and **Archivo** (body and labels), from
+Google Fonts with real fallback stacks.
 
 ## Stack
 
-Plain HTML, CSS and JavaScript. No framework, no build step, no plugins.
-The only external resource is the Google Fonts stylesheet.
+Plain HTML, CSS and JavaScript. No framework, no build step. The only
+external resource is the Google Fonts stylesheet.
 
 ```
 index.html
 css/style.css
 js/main.js
+img/          <- photographs go here
+og.png
 ```
 
-## The two drawings
+## Photographs
 
-Both are drawn on `<canvas>` at load, sized to the device pixel ratio, and
-redrawn on resize and once webfonts settle.
+**The page ships without them.** Each slot states which file belongs there
+and at what size; drop the file into `img/` and the slot fills itself.
+`img/README.md` carries the full brief.
 
-- **Hero elevation** — a tower section with two setbacks, 46 floor lines, a
-  brass band on the marked level, a leader line out to its label, and a
-  height dimension down the left margin.
-- **Floor plan** — redrawn every time you select a line in the register.
-  Rooms, an outdoor band (terrace hatched, pool hatched), a compass with
-  north up and the unit's aspect marked in brass, and a scale bar carrying
-  the unit's real span.
+| File | Size | Shot |
+|---|---|---|
+| `hero.jpg` | 2400 × 1400 | Skyline or tower facade at dusk |
+| `living.jpg` | 1600 × 1200 | Living room through full-height glass |
+| `pool.jpg` | 1600 × 1200 | Waterfront villa, lap pool |
+| `terrace.jpg` | 1600 × 1200 | Terrace in evening light |
+| `stair.jpg` | 1200 × 1600 | Vertical: staircase or hall |
+| `detail.jpg` | 1200 × 1200 | Square: stone, oak, brass close up |
+
+Regenerate `og.png` once the photographs are in, or the link preview keeps
+showing empty slots.
 
 ## What is real and what is a placeholder
 
 | Item | Status |
 |---|---|
-| Six addresses, refs, areas, levels, plans | **Demo data** in `UNITS` in `js/main.js` |
-| Brand MARAAL | Invented for the concept |
+| Brand MARAAL, four addresses, areas, levels | Invented for the concept |
 | Phone, email | `+00 000 000 0000`, `desk@example.com` |
-| Dubai local time in the header | Real, `Intl` with `Asia/Dubai` |
-| DLD transfer 4% | Real Dubai Land Department figure |
-| Prices | "On application" — no invented number |
-| Service charge | "On file" — no invented number |
+| Prices | Not shown. No invented figure |
 
-No testimonials, client logos, awards or performance figures appear
-anywhere on the page. The footer says the concept is a demo.
+No testimonials, client logos, awards or performance figures appear on the
+page. The footer states that the concept is a demo.
 
 ## Behaviour
 
-- Register: click or keyboard. `Enter` / `Space` select, `ArrowUp` /
-  `ArrowDown` move and select. The plan panel is sticky beside the list on
-  wide screens and stacks below it on narrow ones.
-- Enquiry form validates inline. **Demo only — it sends nothing.**
-- Sticky title block with a live Dubai clock; menu collapses under 720px.
-
-## Deliberate decisions
-
-- **Nothing is parked at `opacity: 0`.** The page is fully readable the
-  moment it loads; no scroll observer gates content.
-- **The hero is not `100vh`.** It is sized to what it holds.
-- **Numbers only where order is real.** `01–04` appear in the purchase
-  sequence and nowhere else.
-- **Section transitions.** Only the edge where the colour actually changes
-  is shaded: the top of the paper band and the top of the footer.
+- Nav is transparent over the hero and turns solid past it; the current
+  section is marked with `aria-current`
+- Menu collapses under 720px, closes on link click and on Escape
+- Enquiry form validates inline. **Demo only — it sends nothing**
+- Anchor targets carry `scroll-margin-top` so headings clear the fixed nav
+- `prefers-reduced-motion` disables the transitions
+- Nothing is hidden behind a scroll observer; the page reads at load
 
 ## Wiring the form
 
