@@ -3,42 +3,46 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>MARAAL Residences</title>
-<meta name="description" content="A private residential desk in Dubai. Six addresses, walked and checked before they are shown.">
+<title>Unit A135 Langley</title>
+<meta name="description" content="Commercial strata unit at A135 – 6286 203 Street, Langley, British Columbia. Two-storey unit with grade-level loading and street exposure.">
 
-<meta name="theme-color" content="#f1efe9">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2317150f'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='18' fill='%23f1efe9' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#f4f3f1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2333363a'/%3E%3Crect x='4' y='14' width='24' height='5' fill='%23e4601f'/%3E%3C/svg%3E">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="MARAAL Residences">
-<meta property="og:description" content="A private residential desk in Dubai. Six addresses, walked and checked before they are shown.">
+<meta property="og:title" content="Unit A135 — 6286 203 Street, Langley">
+<meta property="og:description" content="Commercial strata unit with grade-level loading and street exposure on 203 Street.">
 <meta property="og:image" content="og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="MARAAL Residences">
+<meta name="twitter:title" content="Unit A135 — 6286 203 Street, Langley">
 <meta name="twitter:image" content="og.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Archivo:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100,600;100,700;112,700&family=Instrument+Sans:wght@400;500&display=swap">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <a class="skip" href="#main">Skip to content</a>
 
-<header class="nav" id="nav">
-  <div class="nav__in">
-    <a class="brand" href="#top">MARAAL</a>
+<header class="bar">
+  <div class="bar__in">
+    <a class="bar__addr" href="#top">
+      <strong>A135</strong>
+      <span>6286 203 Street, Langley</span>
+    </a>
 
-    <nav class="nav__links" id="navLinks" aria-label="Main">
-      <a href="#collection">Collection</a>
-      <a href="#about">About</a>
-      <a href="#enquiry">Enquire</a>
+    <nav class="bar__nav" id="barNav" aria-label="Main">
+      <a href="#specs">Specifications</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#location">Location</a>
+      <a href="#contact" class="bar__cta">Book a viewing</a>
     </nav>
 
-    <button class="burger" id="burger" aria-expanded="false" aria-controls="navLinks" aria-label="Open menu">
+    <button class="bar__toggle" id="menuBtn" aria-expanded="false" aria-controls="barNav" aria-label="Open menu">
       <span></span><span></span>
     </button>
   </div>
@@ -48,133 +52,168 @@
 
   <!-- ============ HERO ============ -->
   <section class="hero" id="top">
-    <figure class="shot shot--hero" data-file="img/hero.jpg" data-size="2400 × 1400">
-      <img src="img/hero.jpg" alt="Dubai skyline at dusk seen from a high residential terrace."
-           width="2400" height="1400" fetchpriority="high" decoding="async">
-    </figure>
+    <div class="hero__in">
 
-    <div class="hero__veil" aria-hidden="true"></div>
+      <div class="hero__head">
+        <p class="status" id="status">Status to be confirmed</p>
+        <h1>
+          A two-storey unit<br>
+          with its own<br>
+          <em>loading door.</em>
+        </h1>
+        <p class="hero__sub">
+          Unit A135 at 6286 203 Street sits on the street-facing run of a new
+          commercial strata development in Langley, British Columbia. Storefront
+          glazing to the road, grade-level loading at the rear, surface parking
+          at the door.
+        </p>
+        <div class="hero__acts">
+          <a class="btn btn--solid" href="#contact">Book a viewing</a>
+          <a class="btn btn--plain" href="#specs">See the numbers</a>
+        </div>
+      </div>
 
-    <div class="hero__copy">
-      <h1 class="hero__title">Six addresses<br>worth the drive</h1>
-      <p class="hero__sub">
-        A private desk for Dubai residences. We keep a short list, walk every
-        home ourselves, and tell you what is wrong with it before you ask.
+      <figure class="frame frame--hero">
+        <img src="img/aerial-wide.jpg" width="828" height="560" fetchpriority="high"
+             alt="Aerial view of the 6286 203 Street complex in Langley, with the Fraser Valley and the mountains behind.">
+        <figcaption>6286 203 Street, looking north-east</figcaption>
+      </figure>
+
+    </div>
+
+    <!-- headline figures; every value comes from the listing data in main.js -->
+    <dl class="keys">
+      <div><dt>Unit size</dt><dd data-key="size">—</dd></div>
+      <div><dt>Clear height</dt><dd data-key="height">—</dd></div>
+      <div><dt>Loading</dt><dd data-key="loading">—</dd></div>
+      <div><dt>Parking</dt><dd data-key="parking">—</dd></div>
+    </dl>
+  </section>
+
+  <!-- ============ SPECS ============ -->
+  <section class="band" id="specs">
+    <div class="band__in">
+      <header class="head">
+        <h2>Specifications</h2>
+        <p class="head__note" id="dataNote">
+          Figures marked with a dash are not filled in yet. They live in one
+          place: the <code>LISTING</code> object at the top of
+          <code>js/main.js</code>.
+        </p>
+      </header>
+
+      <div class="spec-cols">
+        <dl class="spec">
+          <div><dt>Address</dt><dd>A135 – 6286 203 Street, Langley, BC</dd></div>
+          <div><dt>Building</dt><dd>6286 A</dd></div>
+          <div><dt>Property type</dt><dd>Commercial strata unit</dd></div>
+          <div><dt>Storeys</dt><dd>Two</dd></div>
+          <div><dt>Unit size</dt><dd data-key="size">—</dd></div>
+          <div><dt>Ground floor</dt><dd data-key="ground">—</dd></div>
+          <div><dt>Mezzanine</dt><dd data-key="mezzanine">—</dd></div>
+        </dl>
+
+        <dl class="spec">
+          <div><dt>Zoning</dt><dd data-key="zoning">—</dd></div>
+          <div><dt>Clear height</dt><dd data-key="height">—</dd></div>
+          <div><dt>Loading</dt><dd data-key="loading">—</dd></div>
+          <div><dt>Power</dt><dd data-key="power">—</dd></div>
+          <div><dt>Parking</dt><dd data-key="parking">—</dd></div>
+          <div><dt>Strata fee</dt><dd data-key="strata">—</dd></div>
+          <div><dt>Available</dt><dd data-key="available">—</dd></div>
+        </dl>
+      </div>
+
+      <p class="price">
+        <span class="price__label">Asking</span>
+        <span class="price__value" data-key="price">—</span>
       </p>
-      <a class="btn btn--light" href="#collection">See the collection</a>
     </div>
   </section>
 
-  <!-- ============ STATEMENT ============ -->
-  <section class="statement">
-    <p>
-      Most desks in this city send you thirty listings by lunchtime.
-      We send three, and we have stood in all of them.
-    </p>
-  </section>
+  <!-- ============ GALLERY ============ -->
+  <section class="band band--dark" id="gallery">
+    <div class="band__in">
+      <header class="head head--light">
+        <h2>The building</h2>
+        <p class="head__note">Photographed September 2026.</p>
+      </header>
 
-  <!-- ============ COLLECTION ============ -->
-  <section class="collection" id="collection">
-    <header class="head">
-      <h2>The collection</h2>
-      <p>Four homes on the desk this quarter. Every one visited, every title checked.</p>
-    </header>
-
-    <!-- DEMO CONTENT: replace names, districts and figures with the live file -->
-    <div class="tiles">
-
-      <article class="tile tile--tall">
-        <figure class="shot" data-file="img/living.jpg" data-size="1600 × 1200">
-          <img src="img/living.jpg" loading="lazy" decoding="async" width="1600" height="1200"
-               alt="Living room of a sky penthouse with floor-to-ceiling glass over Downtown Dubai.">
+      <div class="gal">
+        <figure class="frame gal__a">
+          <img src="img/street-front.jpg" loading="lazy" width="702" height="419"
+               alt="The street-facing run of units seen from across 203 Street, with parking in the foreground.">
+          <figcaption>Frontage to 203 Street</figcaption>
         </figure>
-        <div class="tile__text">
-          <h3>Sky Duplex</h3>
-          <p class="tile__where">Burj Vista, Downtown</p>
-          <p class="tile__facts"><span>4 bed</span><span>512 m²</span><span>Level 74</span></p>
-        </div>
-      </article>
 
-      <article class="tile tile--wide">
-        <figure class="shot" data-file="img/pool.jpg" data-size="1600 × 1200">
-          <img src="img/pool.jpg" loading="lazy" decoding="async" width="1600" height="1200"
-               alt="Waterfront villa with a lap pool facing the sea on Palm Jumeirah.">
+        <figure class="frame gal__b">
+          <img src="img/loading-bays.jpg" loading="lazy" width="688" height="394"
+               alt="Rear elevation in white concrete with grade-level loading doors and marked parking bays.">
+          <figcaption>Grade-level loading at the rear</figcaption>
         </figure>
-        <div class="tile__text">
-          <h3>Frond K Villa</h3>
-          <p class="tile__where">Palm Jumeirah</p>
-          <p class="tile__facts"><span>6 bed</span><span>1 040 m²</span><span>Private beach</span></p>
-        </div>
-      </article>
 
-      <article class="tile">
-        <figure class="shot" data-file="img/terrace.jpg" data-size="1600 × 1200">
-          <img src="img/terrace.jpg" loading="lazy" decoding="async" width="1600" height="1200"
-               alt="Evening light across a wide residential terrace with planted edges.">
+        <figure class="frame gal__c">
+          <img src="img/aerial-corner.jpg" loading="lazy" width="702" height="282"
+               alt="Wide aerial of the development with the Fraser Valley behind it.">
+          <figcaption>The development from the south</figcaption>
         </figure>
-        <div class="tile__text">
-          <h3>Half-floor</h3>
-          <p class="tile__where">Bluewaters Island</p>
-          <p class="tile__facts"><span>5 bed</span><span>604 m²</span><span>Level 31</span></p>
-        </div>
-      </article>
 
-      <article class="tile tile--offset">
-        <figure class="shot shot--portrait" data-file="img/stair.jpg" data-size="1200 × 1600">
-          <img src="img/stair.jpg" loading="lazy" decoding="async" width="1200" height="1600"
-               alt="Stone staircase rising through a double-height hall in a lakeside mansion.">
+        <figure class="frame gal__d">
+          <img src="img/aerial-context.jpg" loading="lazy" width="688" height="288"
+               alt="Overhead view showing the two building rows, the service yard and the green buffer.">
+          <figcaption>Yard and service access</figcaption>
         </figure>
-        <div class="tile__text">
-          <h3>Lake Mansion</h3>
-          <p class="tile__where">Emirates Hills</p>
-          <p class="tile__facts"><span>7 bed</span><span>1 460 m²</span><span>Lake frontage</span></p>
-        </div>
-      </article>
-
+      </div>
     </div>
   </section>
 
-  <!-- ============ ABOUT ============ -->
-  <section class="about" id="about">
-    <figure class="shot shot--square" data-file="img/detail.jpg" data-size="1200 × 1200">
-      <img src="img/detail.jpg" loading="lazy" decoding="async" width="1200" height="1200"
-           alt="Close detail of travertine, oak and unlacquered brass in a residence entrance.">
-    </figure>
-
-    <div class="about__text">
-      <h2>We show fewer homes,<br>and we know each one.</h2>
-      <p>
-        The collection above is the whole inventory. Nothing is listed on a
-        portal, and nothing reaches you before someone from the desk has
-        walked it, checked the title and read the service charge.
-      </p>
-      <p>
-        That buys you slower first replies and much shorter shortlists.
-        Usually three addresses. Never thirty.
-      </p>
-
-      <dl class="facts">
-        <div><dt>Coverage</dt><dd>Palm Jumeirah, Downtown, Dubai Hills, Emirates Hills</dd></div>
-        <div><dt>Languages</dt><dd>English, Arabic, Russian</dd></div>
-        <div><dt>Viewings</dt><dd>By appointment, out of hours where the building allows</dd></div>
-      </dl>
-    </div>
-  </section>
-
-  <!-- ============ ENQUIRY ============ -->
-  <section class="enquiry" id="enquiry">
-    <div class="enquiry__in">
-
-      <div class="enquiry__text">
-        <h2>Tell us what you are looking for</h2>
+  <!-- ============ LOCATION ============ -->
+  <section class="band" id="location">
+    <div class="band__in loc">
+      <div class="loc__text">
+        <h2>Where it is</h2>
         <p>
-          Written enquiries are answered within one working day. Nothing is
-          passed to a portal or a lead broker.
+          203 Street runs through the Langley business district in the Township
+          of Langley, British Columbia. The unit faces the road directly, with
+          the service yard and loading behind it.
         </p>
-        <p class="enquiry__direct">
-          <a href="tel:+000000000000">+00 000 000 0000</a>
-          <a href="mailto:desk@example.com">desk@example.com</a>
+        <p class="loc__todo" id="locNote">
+          Drive times and nearby routes are left out on purpose. Send the ones
+          you want stated and they go in here, checked.
         </p>
+
+        <dl class="spec">
+          <div><dt>City</dt><dd>Township of Langley, British Columbia</dd></div>
+          <div><dt>Street exposure</dt><dd>Direct, to 203 Street</dd></div>
+          <div><dt>Access</dt><dd>Surface parking at the unit, rear service yard</dd></div>
+        </dl>
+      </div>
+
+      <figure class="frame">
+        <img src="img/aerial-context.jpg" loading="lazy" width="688" height="288"
+             alt="Overhead view of the site showing its position on the block.">
+        <figcaption>Site from above</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="band band--tint" id="contact">
+    <div class="band__in contact">
+
+      <div class="contact__text">
+        <h2>Book a viewing</h2>
+        <p>
+          Send a note and you will hear back the same working day. Tell us what
+          the space is for and roughly when you need it.
+        </p>
+
+        <dl class="spec">
+          <div><dt>Listed by</dt><dd data-key="agent">—</dd></div>
+          <div><dt>Brokerage</dt><dd data-key="brokerage">—</dd></div>
+          <div><dt>Direct</dt><dd data-key="phone">—</dd></div>
+          <div><dt>Email</dt><dd data-key="email">—</dd></div>
+        </dl>
       </div>
 
       <form class="form" id="enquiryForm" novalidate>
@@ -185,40 +224,41 @@
         </div>
 
         <div class="fld">
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" autocomplete="email" required>
-          <span class="err" data-err="email"></span>
+          <label for="email-in">Email</label>
+          <input id="email-in" name="email" type="email" autocomplete="email" required>
+          <span class="err" data-err="email-in"></span>
         </div>
 
         <div class="fld">
-          <label for="budget">Budget</label>
-          <select id="budget" name="budget" required>
-            <option value="">Select a band</option>
-            <option value="a">Under 5M AED</option>
-            <option value="b">5 to 15M AED</option>
-            <option value="c">15 to 40M AED</option>
-            <option value="d">Above 40M AED</option>
+          <label for="use">Intended use</label>
+          <select id="use" name="use" required>
+            <option value="">Select</option>
+            <option value="warehouse">Warehouse or storage</option>
+            <option value="showroom">Showroom or retail</option>
+            <option value="office">Office</option>
+            <option value="shop">Workshop or light industrial</option>
+            <option value="invest">Investment</option>
           </select>
-          <span class="err" data-err="budget"></span>
+          <span class="err" data-err="use"></span>
         </div>
 
         <div class="fld">
-          <label for="horizon">Horizon</label>
-          <select id="horizon" name="horizon">
+          <label for="when">Timing</label>
+          <select id="when" name="when">
             <option value="">No fixed date</option>
-            <option value="1">Within 3 months</option>
-            <option value="2">3 to 12 months</option>
-            <option value="3">Watching the market</option>
+            <option value="1">Within 1 month</option>
+            <option value="2">1 to 3 months</option>
+            <option value="3">3 months or more</option>
           </select>
         </div>
 
         <div class="fld fld--full">
-          <label for="message">What are you looking for?</label>
+          <label for="message">Anything we should know?</label>
           <textarea id="message" name="message" rows="4"></textarea>
         </div>
 
         <div class="fld fld--full form__foot">
-          <button class="btn btn--dark btn--full" type="submit">Send enquiry</button>
+          <button class="btn btn--solid btn--full" type="submit">Send request</button>
           <p class="form__note">Demo form. It validates but sends nothing.</p>
         </div>
 
@@ -234,16 +274,17 @@
 
 <footer class="foot">
   <div class="foot__in">
-    <p class="foot__brand">MARAAL</p>
+    <p class="foot__addr"><strong>A135</strong> 6286 203 Street, Langley, British Columbia</p>
     <nav class="foot__nav" aria-label="Footer">
-      <a href="#collection">Collection</a>
-      <a href="#about">About</a>
-      <a href="#enquiry">Enquire</a>
+      <a href="#specs">Specifications</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Book a viewing</a>
     </nav>
     <p class="foot__legal">
-      Concept site built for portfolio use. The brand, the addresses and the
-      figures are fictional placeholders. No client testimonials, logos or
-      performance figures appear on this page.
+      Demo listing page. Photographs are the site owner's own. Every figure
+      marked with a dash is unconfirmed and no price, area, zoning or
+      availability is stated until the listing data is supplied. Nothing on
+      this page is an offer.
     </p>
   </div>
 </footer>

@@ -1,51 +1,101 @@
 /* =========================================================
-   MARAAL — plain JS, no dependencies.
+   A135 — 6286 203 Street, Langley BC
+   Plain JS, no dependencies.
    ========================================================= */
 (function () {
   'use strict';
 
+  /* =========================================================
+     LISTING DATA — the only place to edit.
+
+     Fill a value in and it appears on the page. Leave it null
+     and the page shows a dash instead of a made-up number.
+     Nothing here is invented; every field is waiting on the
+     real listing.
+     ========================================================= */
+
+  var LISTING = {
+    status:    null,   // e.g. 'For lease'  /  'For sale'  /  'Sold'
+    price:     null,   // e.g. '$24.50 per sq ft, net'  or  '$1,295,000'
+
+    size:      null,   // e.g. '2,412 sq ft'
+    ground:    null,   // e.g. '1,540 sq ft'
+    mezzanine: null,   // e.g. '872 sq ft'
+
+    zoning:    null,   // e.g. 'M-2 General Industrial'
+    height:    null,   // e.g. '24 ft clear'
+    loading:   null,   // e.g. 'One grade-level door, 12 x 14 ft'
+    power:     null,   // e.g. '100 amp, 600 volt, 3-phase'
+    parking:   null,   // e.g. '4 stalls'
+    strata:    null,   // e.g. '$0.42 per sq ft per month'
+    available: null,   // e.g. 'Immediately'
+
+    agent:     null,   // e.g. 'Nikolai Riabov'
+    brokerage: null,   // e.g. 'ALIGN | eXp Realty'
+    phone:     null,   // e.g. '+1 604 000 0000'
+    email:     null    // e.g. 'desk@example.com'
+  };
+
   /* ---------------------------------------------------------
-     photo slots
-     A slot that has no file yet says which file belongs there.
-     Drop the file into img/ and the slot fills itself.
+     paint the data into every slot that asks for it
      --------------------------------------------------------- */
 
-  var shots = document.querySelectorAll('.shot');
+  var slots = document.querySelectorAll('[data-key]');
+  var filled = 0, total = 0;
 
-  function markSlot(shot) {
-    var img = shot.querySelector('img');
-    if (!img) return;
+  Array.prototype.forEach.call(slots, function (el) {
+    var key = el.getAttribute('data-key');
+    var value = LISTING[key];
+    total++;
 
-    if (img.complete) {
-      shot.classList.toggle('is-empty', img.naturalWidth === 0);
+    if (value === null || value === undefined || value === '') {
+      el.textContent = '—';
+      el.classList.add('is-blank');
+      el.setAttribute('title', 'Not supplied yet');
       return;
     }
-    img.addEventListener('load', function () { shot.classList.remove('is-empty'); });
-    img.addEventListener('error', function () { shot.classList.add('is-empty'); });
+
+    filled++;
+    el.classList.remove('is-blank');
+    el.removeAttribute('title');
+
+    /* phone and email become links, everything else is plain text */
+    if (key === 'phone') {
+      el.innerHTML = '';
+      el.appendChild(link('tel:' + String(value).replace(/[^\d+]/g, ''), value));
+    } else if (key === 'email') {
+      el.innerHTML = '';
+      el.appendChild(link('mailto:' + value, value));
+    } else {
+      el.textContent = value;
+    }
+  });
+
+  function link(href, text) {
+    var a = document.createElement('a');
+    a.href = href;
+    a.textContent = text;
+    a.style.borderBottom = '1px solid currentColor';
+    return a;
   }
 
-  Array.prototype.forEach.call(shots, markSlot);
-
-  /* ---------------------------------------------------------
-     nav: transparent over the hero, solid once past it
-     --------------------------------------------------------- */
-
-  var nav = document.getElementById('nav');
-  var hero = document.querySelector('.hero');
-
-  function onScroll() {
-    if (!nav) return;
-    var line = hero ? hero.offsetHeight - 90 : 80;
-    nav.classList.toggle('is-solid', window.scrollY > line);
+  /* the status pill only claims something once it is told to */
+  var statusEl = document.getElementById('status');
+  if (statusEl) {
+    statusEl.textContent = LISTING.status || 'Status to be confirmed';
   }
-  onScroll();
-  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* the note above the specs reports how much is still missing */
+  var note = document.getElementById('dataNote');
+  if (note && filled === total && total > 0) {
+    note.textContent = 'All listing figures are supplied.';
+  }
 
   /* ---------------------------------------------------------
      which section you are in
      --------------------------------------------------------- */
 
-  var navLinks = document.querySelectorAll('.nav__links a');
+  var navLinks = document.querySelectorAll('.bar__nav a');
   var sections = [];
 
   Array.prototype.forEach.call(navLinks, function (a) {
@@ -56,7 +106,7 @@
   function spy() {
     if (!sections.length) return;
 
-    var mark = 110;
+    var mark = 100;
     var active = null;
 
     sections.forEach(function (s) {
@@ -75,25 +125,23 @@
      menu
      --------------------------------------------------------- */
 
-  var burger = document.getElementById('burger');
-  var links = document.getElementById('navLinks');
+  var menuBtn = document.getElementById('menuBtn');
+  var barNav = document.getElementById('barNav');
 
   function closeMenu() {
-    if (!burger || !links) return;
-    links.classList.remove('is-open');
-    burger.setAttribute('aria-expanded', 'false');
-    burger.setAttribute('aria-label', 'Open menu');
+    if (!menuBtn || !barNav) return;
+    barNav.classList.remove('is-open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    menuBtn.setAttribute('aria-label', 'Open menu');
   }
 
-  if (burger && links) {
-    burger.addEventListener('click', function () {
-      var open = links.classList.toggle('is-open');
-      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-      burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-      if (open && nav) nav.classList.add('is-solid');
-      else onScroll();
+  if (menuBtn && barNav) {
+    menuBtn.addEventListener('click', function () {
+      var open = barNav.classList.toggle('is-open');
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     });
-    links.addEventListener('click', function (e) {
+    barNav.addEventListener('click', function (e) {
       if (e.target.tagName === 'A') closeMenu();
     });
     document.addEventListener('keydown', function (e) {
@@ -102,7 +150,7 @@
   }
 
   /* ---------------------------------------------------------
-     enquiry form
+     viewing request form
      --------------------------------------------------------- */
 
   var form = document.getElementById('enquiryForm');
@@ -120,7 +168,7 @@
     var v = input.value.trim();
 
     if (!v) {
-      fail(input, input.tagName === 'SELECT' ? 'Choose a band.' : 'Required.');
+      fail(input, input.tagName === 'SELECT' ? 'Choose one.' : 'Required.');
       return false;
     }
     if (input.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) {

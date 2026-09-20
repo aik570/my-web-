@@ -1,25 +1,22 @@
-# MARAAL Residences — Dubai concept site
+# A135 — 6286 203 Street, Langley BC
 
-A one-page site for a fictional private brokerage in Dubai, built as a
-portfolio and social-post piece for AIK Studio.
+A single-listing page for a commercial strata unit in the Township of
+Langley, British Columbia. Built as a portfolio piece for AIK Studio.
 
 ## Direction
 
-Photography-led. The chrome stays quiet and the photographs carry the
-colour: a full-bleed hero, an asymmetric tile grid, generous whitespace.
+The palette is taken off the building itself: charcoal cladding, white
+concrete, and the orange stripe that runs along the facade.
 
 | Token | Value | Role |
 |---|---|---|
-| `--paper` | `#f1efe9` | Warm off-white, pulled grey so it is not the usual cream |
-| `--paper-2` | `#e8e4db` | The enquiry band |
-| `--ink` | `#17150f` | Warm near-black for type and the footer |
-| `--muted` | `#6f6b62` | Secondary text |
-| `--slot` | `#e0dbd0` | An empty photo slot |
+| `--char` | `#33363a` | Charcoal cladding. Type and the dark band |
+| `--bone` | `#f4f3f1` | White concrete. The page ground |
+| `--orange` | `#e4601f` | The facade stripe. Status, CTA, rules. Used sparingly |
+| `--grey` | `#6b7076` | Secondary text |
 
-There is no chromatic accent. Interactive states invert ink and paper.
-
-Type: **Bodoni Moda** (display) and **Archivo** (body and labels), from
-Google Fonts with real fallback stacks.
+Type: **Archivo** at 700 with a widened axis for headings, **Instrument
+Sans** for body. Figures use tabular numerals.
 
 ## Stack
 
@@ -30,50 +27,65 @@ external resource is the Google Fonts stylesheet.
 index.html
 css/style.css
 js/main.js
-img/          <- photographs go here
+img/           five photographs
 og.png
 ```
 
+## Filling in the listing
+
+**Every figure lives in one object.** Open `js/main.js` and edit `LISTING`
+at the top. A field left as `null` renders as a dash, greyed, rather than a
+made-up number.
+
+```js
+var LISTING = {
+  status:    'For lease',
+  price:     '$24.50 per sq ft, net',
+  size:      '2,412 sq ft',
+  ...
+};
+```
+
+Nineteen slots read from it: the headline figures, both specification
+columns, the asking line, and the agent block.
+
 ## Photographs
 
-**The page ships without them.** Each slot states which file belongs there
-and at what size; drop the file into `img/` and the slot fills itself.
-`img/README.md` carries the full brief.
+Shot by the site owner. The five files in `img/` were cut out of three
+social-post composites: the baked-in title block and the brokerage
+watermark were cropped away.
 
 | File | Size | Shot |
 |---|---|---|
-| `hero.jpg` | 2400 × 1400 | Skyline or tower facade at dusk |
-| `living.jpg` | 1600 × 1200 | Living room through full-height glass |
-| `pool.jpg` | 1600 × 1200 | Waterfront villa, lap pool |
-| `terrace.jpg` | 1600 × 1200 | Terrace in evening light |
-| `stair.jpg` | 1200 × 1600 | Vertical: staircase or hall |
-| `detail.jpg` | 1200 × 1200 | Square: stone, oak, brass close up |
+| `aerial-wide.jpg` | 828 × 560 | The complex from above, valley behind |
+| `street-front.jpg` | 702 × 419 | Frontage across 203 Street |
+| `loading-bays.jpg` | 688 × 394 | Rear elevation, grade-level doors |
+| `aerial-corner.jpg` | 702 × 282 | Panorama from the south |
+| `aerial-context.jpg` | 688 × 288 | Overhead, yard and service access |
 
-Regenerate `og.png` once the photographs are in, or the link preview keeps
-showing empty slots.
+**These are low resolution.** The two panoramas are capped at 980px wide so
+nothing upscales past about 1.4×. Supply the originals from the camera and
+those caps in `css/style.css` can be removed.
 
-## What is real and what is a placeholder
+There is also a 5 MB MP4 of the site that could not be processed here:
+neither the bundled ffmpeg nor the bundled browser can decode H.264 in this
+environment. It is not in the repository.
 
-| Item | Status |
-|---|---|
-| Brand MARAAL, four addresses, areas, levels | Invented for the concept |
-| Phone, email | `+00 000 000 0000`, `desk@example.com` |
-| Prices | Not shown. No invented figure |
+## What the page does not claim
 
-No testimonials, client logos, awards or performance figures appear on the
-page. The footer states that the concept is a demo.
+No price, area, zoning, clear height, power, parking or availability is
+stated until the data is supplied. The footer says so. Nothing on the page
+is an offer.
 
 ## Behaviour
 
-- Nav is transparent over the hero and turns solid past it; the current
-  section is marked with `aria-current`
+- Sticky bar with the current section marked via `aria-current`
 - Menu collapses under 720px, closes on link click and on Escape
-- Enquiry form validates inline. **Demo only — it sends nothing**
-- Anchor targets carry `scroll-margin-top` so headings clear the fixed nav
+- Viewing request form validates inline. **Demo only — it sends nothing**
 - `prefers-reduced-motion` disables the transitions
 - Nothing is hidden behind a scroll observer; the page reads at load
 
 ## Wiring the form
 
 In `js/main.js`, replace the block marked `Demo only: nothing is sent` with
-a `fetch()` to your endpoint (Netlify Forms, Formspree, your own backend).
+a `fetch()` to your endpoint.
