@@ -61,10 +61,10 @@ all, so the block never shows an empty line.
 | Hero slideshow | Five shots crossfade every 5.2 s with a slow scale drift. Pauses on hover, on focus, and when the tab is hidden |
 | Thumbnail rail | Doubles as the control. Click to jump; the track slides to keep the active frame centred |
 | Headline | Splits into words and rises into place on load, 70 ms apart |
+| Buttons | Corners are rounded in a diagonal pair and swap on hover, an arrow slides right, and the fill sweeps up from the bottom |
 | Blocks | Rise into view as you scroll, staggered when several arrive together |
 | Gallery | Click any frame for the lightbox. Arrow keys move, Escape closes, focus returns to the frame you opened |
 | Location shot | Light parallax tied to scroll |
-| Buttons | Fill sweeps up from the bottom edge on hover |
 
 All of it is plain CSS and JavaScript. No GSAP, no Framer Motion, no
 library of any kind.
@@ -74,6 +74,38 @@ element only when scripting is on and the viewer has not asked for reduced
 motion. Every rule that hides an element sits behind that class, so with no
 script, or with reduced motion, the page simply renders at rest with
 nothing hidden.
+
+## Performance
+
+Measured in Chromium on a 375 x 812 viewport at 2x, with the CPU throttled
+4x and the network held to about 1.6 Mbps.
+
+| Metric | Before | After | |
+|---|---|---|---|
+| LCP | 2480 ms | **912 ms** | good |
+| CLS | 0.0038 | 0.0038 | good |
+| Transfer | 452 KB | **370 KB** | |
+| Images | 289 KB | **204 KB** | |
+| Requests | 11 | 14 | |
+| DOM nodes | 201 | 232 | |
+
+What moved the numbers:
+
+1. **WebP with a JPEG fallback.** About 40% smaller across the set. A
+   canvas probe picks the format, so no browser is left without an image.
+2. **Real thumbnails.** The rail used to load the full photographs to draw
+   them 240 px wide. `img/thumb/` holds 380 px copies: 57 KB instead of
+   288 KB.
+3. **Deferred slides.** Only the first hero shot is fetched up front and
+   preloaded. The other four are built after `load`, or on demand if the
+   viewer clicks ahead.
+
+Fonts are now the largest single item at 117 KB. They do not block first
+paint (`display=swap`), but dropping the width axis from the Archivo
+request would save about 21 KB at the cost of the widened headings.
+
+Touch targets were raised to 44 px on the footer links, the menu button,
+the header call to action and the address lockup.
 
 ## Photographs
 

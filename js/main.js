@@ -81,12 +81,53 @@
      ========================================================= */
 
   var SHOTS = [
-    { src: 'img/aerial-wide.jpg',    cap: 'The complex from above' },
-    { src: 'img/street-front.jpg',   cap: 'Frontage to 203 Street' },
-    { src: 'img/loading-bays.jpg',   cap: 'Grade-level loading at the rear' },
-    { src: 'img/aerial-corner.jpg',  cap: 'The development from the south' },
-    { src: 'img/aerial-context.jpg', cap: 'Yard and service access' }
+    { n: 'aerial-wide',    cap: 'The complex from above' },
+    { n: 'street-front',   cap: 'Frontage to 203 Street' },
+    { n: 'loading-bays',   cap: 'Grade-level loading at the rear' },
+    { n: 'aerial-corner',  cap: 'The development from the south' },
+    { n: 'aerial-context', cap: 'Yard and service access' }
   ];
+
+  /* WebP is about 40% smaller here. Decode one pixel to find out whether
+     this browser takes it, and fall back to the JPEG if it does not. */
+  var webpOK = (function () {
+    try {
+      var c = document.createElement('canvas');
+      return c.getContext && c.toDataURL('image/webp').indexOf('data:image/webp') === 0;
+    } catch (e) { return false; }
+  })();
+
+  function shotSrc(i) {
+    return 'img/' + SHOTS[i].n + (webpOK ? '.webp' : '.jpg');
+  }
+
+  /* The four photographs the hero does not show first are fetched once the
+     page has loaded, so they never sit on the critical path. */
+  function fillSlides() {
+    Array.prototype.forEach.call(document.querySelectorAll('.slide[data-shot]'), function (fig) {
+      var n = fig.getAttribute('data-shot');
+      if (!n || fig.querySelector('img')) return;
+
+      var pic = document.createElement('picture');
+      var src = document.createElement('source');
+      var img = document.createElement('img');
+
+      src.srcset = 'img/' + n + '.webp';
+      src.type = 'image/webp';
+      img.src = 'img/' + n + '.jpg';
+      img.alt = '';
+      img.decoding = 'async';
+      img.width = Number(fig.getAttribute('data-w')) || 800;
+      img.height = Number(fig.getAttribute('data-h')) || 500;
+
+      pic.appendChild(src);
+      pic.appendChild(img);
+      fig.appendChild(pic);
+    });
+  }
+
+  if (document.readyState === 'complete') fillSlides();
+  else window.addEventListener('load', fillSlides);
 
   /* =========================================================
      headline: split into words so they can be staggered
@@ -149,7 +190,13 @@
   }
 
   function show(i) {
-    shot = (i + SHOTS.length) % SHOTS.length;
+    var want = (i + SHOTS.length) % SHOTS.length;
+
+    /* a deferred slide that has not arrived yet is built on demand */
+    var fig = slides[want];
+    if (fig && fig.hasAttribute('data-shot') && !fig.querySelector('img')) fillSlides();
+
+    shot = want;
 
     Array.prototype.forEach.call(slides, function (s, n) {
       s.classList.toggle('is-on', n === shot);
@@ -258,7 +305,7 @@
   function paintBox() {
     var s = SHOTS[boxAt];
     if (!s || !boxImg) return;
-    boxImg.src = s.src;
+    boxImg.src = shotSrc(boxAt);
     boxImg.alt = s.cap;
     if (boxCap) boxCap.textContent = s.cap + '  ·  ' + (boxAt + 1) + ' of ' + SHOTS.length;
   }
