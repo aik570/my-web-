@@ -6,29 +6,41 @@
 <title>Unit A135 Langley</title>
 <meta name="description" content="Commercial strata unit at A135 – 6286 203 Street, Langley, British Columbia. Two-storey unit with grade-level loading and street exposure.">
 
-<meta name="theme-color" content="#f4f3f1">
+<meta name="theme-color" content="#24262a">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2333363a'/%3E%3Crect x='4' y='14' width='24' height='5' fill='%23e4601f'/%3E%3C/svg%3E">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Unit A135 — 6286 203 Street, Langley">
 <meta property="og:description" content="Commercial strata unit with grade-level loading and street exposure on 203 Street.">
-<meta property="og:image" content="og.png">
+<meta property="og:image" content="og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Unit A135 — 6286 203 Street, Langley">
-<meta name="twitter:image" content="og.png">
+<meta name="twitter:image" content="og.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100,600;100,700;112,700&family=Instrument+Sans:wght@400;500&display=swap">
 <link rel="stylesheet" href="css/style.css">
+
+<script>
+  /* Animations are opt-in: the CSS only hides things once this class is set.
+     No script, or reduced motion, and the page simply renders at rest. */
+  (function () {
+    try {
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.className += ' anim';
+      }
+    } catch (e) {}
+  })();
+</script>
 </head>
 <body>
 
 <a class="skip" href="#main">Skip to content</a>
 
-<header class="bar">
+<header class="bar" id="bar">
   <div class="bar__in">
     <a class="bar__addr" href="#top">
       <strong>A135</strong>
@@ -36,7 +48,7 @@
     </a>
 
     <nav class="bar__nav" id="barNav" aria-label="Main">
-      <a href="#specs">Specifications</a>
+      <a href="#about">The unit</a>
       <a href="#gallery">Gallery</a>
       <a href="#location">Location</a>
       <a href="#contact" class="bar__cta">Book a viewing</a>
@@ -52,117 +64,124 @@
 
   <!-- ============ HERO ============ -->
   <section class="hero" id="top">
-    <div class="hero__in">
 
-      <div class="hero__head">
-        <p class="status" id="status">Status to be confirmed</p>
-        <h1>
-          A two-storey unit<br>
-          with its own<br>
-          <em>loading door.</em>
-        </h1>
-        <p class="hero__sub">
-          Unit A135 at 6286 203 Street sits on the street-facing run of a new
-          commercial strata development in Langley, British Columbia. Storefront
-          glazing to the road, grade-level loading at the rear, surface parking
-          at the door.
-        </p>
-        <div class="hero__acts">
-          <a class="btn btn--solid" href="#contact">Book a viewing</a>
-          <a class="btn btn--plain" href="#specs">See the numbers</a>
-        </div>
-      </div>
-
-      <figure class="frame frame--hero">
-        <img src="img/aerial-wide.jpg" width="828" height="560" fetchpriority="high"
-             alt="Aerial view of the 6286 203 Street complex in Langley, with the Fraser Valley and the mountains behind.">
-        <figcaption>6286 203 Street, looking north-east</figcaption>
-      </figure>
-
+    <div class="stage" id="stage" aria-hidden="true">
+      <figure class="slide is-on"><img src="img/aerial-wide.jpg" alt="" width="828" height="560" fetchpriority="high"></figure>
+      <figure class="slide"><img src="img/street-front.jpg" alt="" width="702" height="419"></figure>
+      <figure class="slide"><img src="img/loading-bays.jpg" alt="" width="688" height="394"></figure>
+      <figure class="slide"><img src="img/aerial-corner.jpg" alt="" width="702" height="282"></figure>
+      <figure class="slide"><img src="img/aerial-context.jpg" alt="" width="688" height="288"></figure>
     </div>
 
-    <!-- headline figures; every value comes from the listing data in main.js -->
+    <div class="stage__scrim" aria-hidden="true"></div>
+
+    <div class="hero__copy">
+      <p class="status rise" id="status">Status to be confirmed</p>
+
+      <h1 class="hero__title" id="heroTitle">
+        <span class="line">A two-storey unit</span>
+        <span class="line">with its own</span>
+        <span class="line accent">loading door.</span>
+      </h1>
+
+      <p class="hero__sub rise">
+        Unit A135 at 6286 203 Street, on the street-facing run of a new
+        commercial strata development in Langley, British Columbia.
+      </p>
+
+      <div class="hero__acts rise">
+        <a class="btn btn--solid" href="#contact">Book a viewing</a>
+        <a class="btn btn--ghost" href="#gallery">See the building</a>
+      </div>
+    </div>
+
+    <!-- the strip doubles as the slide control and as a scroll indicator -->
+    <div class="rail" id="rail">
+      <div class="rail__track" id="railTrack" role="tablist" aria-label="Views of the building">
+        <button class="rail__item is-on" role="tab" aria-selected="true" data-i="0">
+          <img src="img/aerial-wide.jpg" alt="" width="828" height="560" loading="lazy">
+          <span>From above</span>
+        </button>
+        <button class="rail__item" role="tab" aria-selected="false" data-i="1">
+          <img src="img/street-front.jpg" alt="" width="702" height="419" loading="lazy">
+          <span>203 Street</span>
+        </button>
+        <button class="rail__item" role="tab" aria-selected="false" data-i="2">
+          <img src="img/loading-bays.jpg" alt="" width="688" height="394" loading="lazy">
+          <span>Loading</span>
+        </button>
+        <button class="rail__item" role="tab" aria-selected="false" data-i="3">
+          <img src="img/aerial-corner.jpg" alt="" width="702" height="282" loading="lazy">
+          <span>From the south</span>
+        </button>
+        <button class="rail__item" role="tab" aria-selected="false" data-i="4">
+          <img src="img/aerial-context.jpg" alt="" width="688" height="288" loading="lazy">
+          <span>Service yard</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOUR FIGURES ============ -->
+  <section class="keys-wrap">
     <dl class="keys">
-      <div><dt>Unit size</dt><dd data-key="size">—</dd></div>
-      <div><dt>Clear height</dt><dd data-key="height">—</dd></div>
-      <div><dt>Loading</dt><dd data-key="loading">—</dd></div>
-      <div><dt>Parking</dt><dd data-key="parking">—</dd></div>
+      <div class="rise"><dt>Unit size</dt><dd data-key="size">—</dd></div>
+      <div class="rise"><dt>Clear height</dt><dd data-key="height">—</dd></div>
+      <div class="rise"><dt>Loading</dt><dd data-key="loading">—</dd></div>
+      <div class="rise"><dt>Parking</dt><dd data-key="parking">—</dd></div>
     </dl>
   </section>
 
-  <!-- ============ SPECS ============ -->
-  <section class="band" id="specs">
-    <div class="band__in">
-      <header class="head">
-        <h2>Specifications</h2>
-        <p class="head__note" id="dataNote">
-          Figures marked with a dash are not filled in yet. They live in one
-          place: the <code>LISTING</code> object at the top of
-          <code>js/main.js</code>.
+  <!-- ============ ABOUT ============ -->
+  <section class="band" id="about">
+    <div class="band__in about">
+      <h2 class="rise">Storefront to the road.<br>Loading at the back.</h2>
+      <div class="about__body">
+        <p class="rise">
+          The unit runs the full depth of the building. Glazing faces 203
+          Street, so the front reads as a shopfront. Behind it a grade-level
+          door opens onto the service yard, which is where the work happens.
         </p>
-      </header>
-
-      <div class="spec-cols">
-        <dl class="spec">
-          <div><dt>Address</dt><dd>A135 – 6286 203 Street, Langley, BC</dd></div>
-          <div><dt>Building</dt><dd>6286 A</dd></div>
-          <div><dt>Property type</dt><dd>Commercial strata unit</dd></div>
-          <div><dt>Storeys</dt><dd>Two</dd></div>
-          <div><dt>Unit size</dt><dd data-key="size">—</dd></div>
-          <div><dt>Ground floor</dt><dd data-key="ground">—</dd></div>
-          <div><dt>Mezzanine</dt><dd data-key="mezzanine">—</dd></div>
-        </dl>
-
-        <dl class="spec">
-          <div><dt>Zoning</dt><dd data-key="zoning">—</dd></div>
-          <div><dt>Clear height</dt><dd data-key="height">—</dd></div>
-          <div><dt>Loading</dt><dd data-key="loading">—</dd></div>
-          <div><dt>Power</dt><dd data-key="power">—</dd></div>
-          <div><dt>Parking</dt><dd data-key="parking">—</dd></div>
-          <div><dt>Strata fee</dt><dd data-key="strata">—</dd></div>
-          <div><dt>Available</dt><dd data-key="available">—</dd></div>
-        </dl>
+        <p class="rise">
+          Two storeys, parking at the door, and a corner of the complex that
+          traffic actually passes.
+        </p>
       </div>
-
-      <p class="price">
-        <span class="price__label">Asking</span>
-        <span class="price__value" data-key="price">—</span>
-      </p>
     </div>
   </section>
 
   <!-- ============ GALLERY ============ -->
   <section class="band band--dark" id="gallery">
     <div class="band__in">
-      <header class="head head--light">
+      <header class="head rise">
         <h2>The building</h2>
-        <p class="head__note">Photographed September 2026.</p>
+        <p class="head__note">Click any frame to open it. Arrow keys move, Escape closes.</p>
       </header>
 
-      <div class="gal">
-        <figure class="frame gal__a">
-          <img src="img/street-front.jpg" loading="lazy" width="702" height="419"
-               alt="The street-facing run of units seen from across 203 Street, with parking in the foreground.">
-          <figcaption>Frontage to 203 Street</figcaption>
-        </figure>
+      <div class="gal" id="gal">
+        <button class="gal__item rise" data-i="1">
+          <span class="gal__media"><img src="img/street-front.jpg" loading="lazy" width="702" height="419"
+            alt="The street-facing run of units seen from across 203 Street."></span>
+          <span class="gal__cap">Frontage to 203 Street</span>
+        </button>
 
-        <figure class="frame gal__b">
-          <img src="img/loading-bays.jpg" loading="lazy" width="688" height="394"
-               alt="Rear elevation in white concrete with grade-level loading doors and marked parking bays.">
-          <figcaption>Grade-level loading at the rear</figcaption>
-        </figure>
+        <button class="gal__item rise" data-i="2">
+          <span class="gal__media"><img src="img/loading-bays.jpg" loading="lazy" width="688" height="394"
+            alt="Rear elevation in white concrete with grade-level loading doors."></span>
+          <span class="gal__cap">Grade-level loading</span>
+        </button>
 
-        <figure class="frame gal__c">
-          <img src="img/aerial-corner.jpg" loading="lazy" width="702" height="282"
-               alt="Wide aerial of the development with the Fraser Valley behind it.">
-          <figcaption>The development from the south</figcaption>
-        </figure>
+        <button class="gal__item gal__item--wide rise" data-i="3">
+          <span class="gal__media"><img src="img/aerial-corner.jpg" loading="lazy" width="702" height="282"
+            alt="Wide aerial of the development with the Fraser Valley behind it."></span>
+          <span class="gal__cap">From the south</span>
+        </button>
 
-        <figure class="frame gal__d">
-          <img src="img/aerial-context.jpg" loading="lazy" width="688" height="288"
-               alt="Overhead view showing the two building rows, the service yard and the green buffer.">
-          <figcaption>Yard and service access</figcaption>
-        </figure>
+        <button class="gal__item gal__item--wide rise" data-i="4">
+          <span class="gal__media"><img src="img/aerial-context.jpg" loading="lazy" width="688" height="288"
+            alt="Overhead view showing the two building rows and the service yard."></span>
+          <span class="gal__cap">Yard and service access</span>
+        </button>
       </div>
     </div>
   </section>
@@ -171,28 +190,18 @@
   <section class="band" id="location">
     <div class="band__in loc">
       <div class="loc__text">
-        <h2>Where it is</h2>
-        <p>
+        <h2 class="rise">Where it is</h2>
+        <p class="rise">
           203 Street runs through the Langley business district in the Township
           of Langley, British Columbia. The unit faces the road directly, with
-          the service yard and loading behind it.
+          the service yard behind it.
         </p>
-        <p class="loc__todo" id="locNote">
-          Drive times and nearby routes are left out on purpose. Send the ones
-          you want stated and they go in here, checked.
-        </p>
-
-        <dl class="spec">
-          <div><dt>City</dt><dd>Township of Langley, British Columbia</dd></div>
-          <div><dt>Street exposure</dt><dd>Direct, to 203 Street</dd></div>
-          <div><dt>Access</dt><dd>Surface parking at the unit, rear service yard</dd></div>
-        </dl>
+        <a class="btn btn--line rise" href="#contact">Arrange a walk-through</a>
       </div>
 
-      <figure class="frame">
+      <figure class="frame par rise">
         <img src="img/aerial-context.jpg" loading="lazy" width="688" height="288"
              alt="Overhead view of the site showing its position on the block.">
-        <figcaption>Site from above</figcaption>
       </figure>
     </div>
   </section>
@@ -202,21 +211,15 @@
     <div class="band__in contact">
 
       <div class="contact__text">
-        <h2>Book a viewing</h2>
-        <p>
+        <h2 class="rise">Book a viewing</h2>
+        <p class="rise">
           Send a note and you will hear back the same working day. Tell us what
           the space is for and roughly when you need it.
         </p>
-
-        <dl class="spec">
-          <div><dt>Listed by</dt><dd data-key="agent">—</dd></div>
-          <div><dt>Brokerage</dt><dd data-key="brokerage">—</dd></div>
-          <div><dt>Direct</dt><dd data-key="phone">—</dd></div>
-          <div><dt>Email</dt><dd data-key="email">—</dd></div>
-        </dl>
+        <dl class="who rise" id="who"></dl>
       </div>
 
-      <form class="form" id="enquiryForm" novalidate>
+      <form class="form rise" id="enquiryForm" novalidate>
         <div class="fld">
           <label for="name">Name</label>
           <input id="name" name="name" type="text" autocomplete="name" required>
@@ -276,18 +279,28 @@
   <div class="foot__in">
     <p class="foot__addr"><strong>A135</strong> 6286 203 Street, Langley, British Columbia</p>
     <nav class="foot__nav" aria-label="Footer">
-      <a href="#specs">Specifications</a>
+      <a href="#about">The unit</a>
       <a href="#gallery">Gallery</a>
       <a href="#contact">Book a viewing</a>
     </nav>
     <p class="foot__legal">
-      Demo listing page. Photographs are the site owner's own. Every figure
-      marked with a dash is unconfirmed and no price, area, zoning or
-      availability is stated until the listing data is supplied. Nothing on
-      this page is an offer.
+      Demo listing page. Photographs are the site owner's own. No price, area,
+      zoning or availability is stated until the listing data is supplied.
+      Nothing on this page is an offer.
     </p>
   </div>
 </footer>
+
+<!-- lightbox -->
+<div class="box" id="box" hidden>
+  <button class="box__close" id="boxClose" aria-label="Close">&times;</button>
+  <button class="box__nav box__nav--prev" id="boxPrev" aria-label="Previous">&#8249;</button>
+  <button class="box__nav box__nav--next" id="boxNext" aria-label="Next">&#8250;</button>
+  <figure class="box__fig">
+    <img id="boxImg" src="" alt="">
+    <figcaption id="boxCap"></figcaption>
+  </figure>
+</div>
 
 <script src="js/main.js"></script>
 </body>
