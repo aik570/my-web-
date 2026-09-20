@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MARAAL — Private Residences, Dubai</title>
+<meta name="description" content="MARAAL is a private brokerage for branded residences, penthouses and waterfront villas in Dubai.">
+<link rel="stylesheet" href="css/style.css">
+<noscript>
+  <style>
+    /* Without JS nothing would ever get .is-in — show everything at once. */
+    .reveal{ opacity:1; transform:none; }
+    .hero__title .line > span{ transform:none; }
+    .strip__track{ animation:none; }
+  </style>
+</noscript>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="shell nav__inner">
+    <a class="logo" href="#hero" aria-label="MARAAL, home">
+      <span class="logo__mark" aria-hidden="true"></span>
+      <span class="logo__text">MARAAL</span>
+    </a>
+
+    <nav class="nav__links" id="navLinks" aria-label="Main">
+      <a href="#collection">Collection</a>
+      <a href="#approach">Approach</a>
+      <a href="#process">Process</a>
+      <a href="#enquiry" class="nav__cta">Private enquiry</a>
+    </nav>
+
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero">
+    <div class="hero__media" aria-hidden="true">
+      <div class="hero__sky"></div>
+      <div class="hero__towers"></div>
+      <div class="hero__haze"></div>
+      <div class="hero__grain"></div>
+    </div>
+
+    <div class="shell hero__inner">
+      <p class="eyebrow reveal">Dubai &middot; Private brokerage</p>
+
+      <h1 class="hero__title">
+        <span class="line reveal"><span>Residences</span></span>
+        <span class="line reveal"><span>above the</span></span>
+        <span class="line reveal"><span class="gold">skyline</span></span>
+      </h1>
+
+      <p class="hero__lead reveal">
+        A small desk for a small number of addresses. Branded residences,
+        sky penthouses and waterfront villas — shown quietly, sold discreetly.
+      </p>
+
+      <div class="hero__actions reveal">
+        <a href="#collection" class="btn btn--gold">View the collection</a>
+        <a href="#enquiry" class="btn btn--ghost">Speak to a partner</a>
+      </div>
+    </div>
+
+    <a href="#collection" class="hero__scroll" aria-label="Scroll to collection">
+      <span class="hero__scroll-line" aria-hidden="true"></span>
+      <span class="hero__scroll-text">Scroll</span>
+    </a>
+  </section>
+
+  <!-- ============ MARQUEE ============ -->
+  <section class="strip" aria-label="Districts we cover">
+    <div class="strip__track" id="stripTrack">
+      <div class="strip__group">
+        <span>Palm Jumeirah</span><i aria-hidden="true">&#9679;</i>
+        <span>Downtown</span><i aria-hidden="true">&#9679;</i>
+        <span>Dubai Hills</span><i aria-hidden="true">&#9679;</i>
+        <span>Emirates Hills</span><i aria-hidden="true">&#9679;</i>
+        <span>Bluewaters</span><i aria-hidden="true">&#9679;</i>
+        <span>Jumeirah Bay</span><i aria-hidden="true">&#9679;</i>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COLLECTION ============ -->
+  <section class="section" id="collection">
+    <div class="shell">
+      <header class="section__head reveal">
+        <p class="eyebrow">01 &mdash; The collection</p>
+        <h2 class="section__title">Currently on the desk</h2>
+        <p class="section__lead">
+          Every address is visited before it is listed. Figures below are
+          placeholders for the live inventory.
+        </p>
+      </header>
+
+      <div class="filters reveal" role="group" aria-label="Filter residences">
+        <button class="chip is-active" data-filter="all">All</button>
+        <button class="chip" data-filter="penthouse">Penthouses</button>
+        <button class="chip" data-filter="villa">Villas</button>
+        <button class="chip" data-filter="branded">Branded</button>
+      </div>
+
+      <!-- DEMO CONTENT: replace names, districts and figures with real inventory -->
+      <div class="grid" id="grid">
+
+        <article class="card reveal" data-type="penthouse">
+          <div class="card__media card__media--a">
+            <span class="card__tag">Penthouse</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Sky Duplex, Burj Vista</h3>
+            <p class="card__meta">Downtown &middot; 4 bed &middot; 512 m&sup2;</p>
+            <p class="card__price">Price on application</p>
+          </div>
+        </article>
+
+        <article class="card reveal" data-type="villa">
+          <div class="card__media card__media--b">
+            <span class="card__tag">Villa</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Frond K Waterfront</h3>
+            <p class="card__meta">Palm Jumeirah &middot; 6 bed &middot; 1 040 m&sup2;</p>
+            <p class="card__price">Price on application</p>
+          </div>
+        </article>
+
+        <article class="card reveal" data-type="branded">
+          <div class="card__media card__media--c">
+            <span class="card__tag">Branded</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Residence 18, Jumeirah Bay</h3>
+            <p class="card__meta">Jumeirah Bay &middot; 3 bed &middot; 388 m&sup2;</p>
+            <p class="card__price">Price on application</p>
+          </div>
+        </article>
+
+        <article class="card reveal" data-type="penthouse">
+          <div class="card__media card__media--d">
+            <span class="card__tag">Penthouse</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Half-floor, Bluewaters</h3>
+            <p class="card__meta">Bluewaters &middot; 5 bed &middot; 604 m&sup2;</p>
+            <p class="card__price">Price on application</p>
+          </div>
+        </article>
+
+        <article class="card reveal" data-type="villa">
+          <div class="card__media card__media--e">
+            <span class="card__tag">Villa</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Lake Mansion, Emirates Hills</h3>
+            <p class="card__meta">Emirates Hills &middot; 7 bed &middot; 1 460 m&sup2;</p>
+            <p class="card__price">Price on application</p>
+          </div>
+        </article>
+
+        <article class="card reveal" data-type="branded">
+          <div class="card__media card__media--f">
+            <span class="card__tag">Branded</span>
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Garden Residence, Dubai Hills</h3>
+            <p class="card__meta">Dubai Hills &middot; 4 bed &middot; 430 m&sup2;</p>
+            <p class="card__price">Price on application</p>
+          </div>
+        </article>
+
+      </div>
+
+      <p class="grid__empty" id="gridEmpty" hidden>Nothing on the desk in this category right now.</p>
+    </div>
+  </section>
+
+  <!-- ============ APPROACH ============ -->
+  <section class="section section--split" id="approach">
+    <div class="shell split">
+      <div class="split__media reveal" aria-hidden="true">
+        <div class="frame frame--portrait"></div>
+      </div>
+
+      <div class="split__text">
+        <p class="eyebrow reveal">02 &mdash; Approach</p>
+        <h2 class="section__title reveal">We show fewer homes,<br>and we know each one.</h2>
+        <p class="reveal">
+          Most desks in Dubai work on volume. We work the other way: a short
+          list, walked personally, with the paperwork checked before a single
+          viewing is arranged.
+        </p>
+        <p class="reveal">
+          That means slower first replies and far shorter shortlists — usually
+          three addresses, never thirty.
+        </p>
+
+        <dl class="facts reveal">
+          <div class="fact">
+            <dt>Coverage</dt>
+            <dd>Palm, Downtown, Hills, Bay</dd>
+          </div>
+          <div class="fact">
+            <dt>Languages</dt>
+            <dd>English, Arabic, Russian</dd>
+          </div>
+          <div class="fact">
+            <dt>Viewings</dt>
+            <dd>By appointment only</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROCESS ============ -->
+  <section class="section" id="process">
+    <div class="shell">
+      <header class="section__head reveal">
+        <p class="eyebrow">03 &mdash; Process</p>
+        <h2 class="section__title">Four steps, no surprises</h2>
+      </header>
+
+      <ol class="steps">
+        <li class="step reveal">
+          <span class="step__num">01</span>
+          <h3 class="step__title">Brief</h3>
+          <p>A call to set the budget, the district and the timeline. Thirty minutes, no deck.</p>
+        </li>
+        <li class="step reveal">
+          <span class="step__num">02</span>
+          <h3 class="step__title">Shortlist</h3>
+          <p>Three addresses, each with title status, service charge and a note on what is wrong with it.</p>
+        </li>
+        <li class="step reveal">
+          <span class="step__num">03</span>
+          <h3 class="step__title">Viewing</h3>
+          <p>Private access, out of hours where the building allows it. We attend with you.</p>
+        </li>
+        <li class="step reveal">
+          <span class="step__num">04</span>
+          <h3 class="step__title">Transfer</h3>
+          <p>Offer, escrow and DLD transfer handled with your counsel. You sign, we run the file.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ WORDS (placeholder, no invented quotes) ============ -->
+  <section class="section section--words">
+    <div class="shell">
+      <blockquote class="quote reveal">
+        <p>&ldquo;Client words go here once the first sale closes.&rdquo;</p>
+        <footer><cite>Placeholder &mdash; replace with a real, attributed quote</cite></footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ============ ENQUIRY ============ -->
+  <section class="section section--light" id="enquiry">
+    <div class="shell enquiry">
+      <div class="enquiry__text">
+        <p class="eyebrow reveal">04 &mdash; Enquiry</p>
+        <h2 class="section__title reveal">Tell us what you are looking for</h2>
+        <p class="reveal">
+          Written enquiries are answered within one working day. Nothing is
+          shared with third-party portals.
+        </p>
+        <p class="enquiry__direct reveal">
+          <span>Direct</span>
+          <a href="tel:+000000000000">+00 000 000 0000</a>
+          <a href="mailto:desk@example.com">desk@example.com</a>
+        </p>
+      </div>
+
+      <form class="form reveal" id="enquiryForm" novalidate>
+        <div class="field">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" autocomplete="name" required>
+          <span class="error" data-error-for="name"></span>
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" autocomplete="email" required>
+          <span class="error" data-error-for="email"></span>
+        </div>
+
+        <div class="field">
+          <label for="budget">Budget</label>
+          <select id="budget" name="budget" required>
+            <option value="">Please select</option>
+            <option value="a">Under 5M AED</option>
+            <option value="b">5&ndash;15M AED</option>
+            <option value="c">15&ndash;40M AED</option>
+            <option value="d">Above 40M AED</option>
+          </select>
+          <span class="error" data-error-for="budget"></span>
+        </div>
+
+        <div class="field field--full">
+          <label for="message">What are you looking for?</label>
+          <textarea id="message" name="message" rows="4"></textarea>
+        </div>
+
+        <div class="field field--full form__foot">
+          <button type="submit" class="btn btn--gold btn--wide">Send enquiry</button>
+          <p class="form__note">Demo form — it does not send anything yet.</p>
+        </div>
+
+        <p class="form__success" id="formSuccess" hidden role="status">
+          Thank you. In the live build this is where the confirmation appears.
+        </p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="shell footer__inner">
+    <div class="footer__brand">
+      <span class="logo__mark" aria-hidden="true"></span>
+      <p>MARAAL</p>
+      <p class="footer__small">Private residential brokerage, Dubai.</p>
+    </div>
+
+    <nav class="footer__nav" aria-label="Footer">
+      <a href="#collection">Collection</a>
+      <a href="#approach">Approach</a>
+      <a href="#process">Process</a>
+      <a href="#enquiry">Enquiry</a>
+    </nav>
+
+    <p class="footer__legal">
+      Demo concept site. Brand, addresses and figures are fictional placeholders.
+    </p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
