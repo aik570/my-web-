@@ -1,12 +1,29 @@
-# MARAAL — Dubai luxury real estate landing (demo)
+# MARAAL Register — Dubai private residential desk (concept)
 
-Concept landing page for a private residential brokerage in Dubai.
-Built as a portfolio / social-post demo for AIK Studio.
+A one-page site for a fictional private brokerage in Dubai. Built as a
+portfolio and social-post piece for AIK Studio.
+
+## Direction
+
+Not a luxury brochure. The page is set as an **architect's drawing sheet**:
+a title block instead of a nav bar, hairline rules, a dimension line under
+the hero, mono figures with tabular numerals, and two canvas drawings.
+
+| Token | Value | Role |
+|---|---|---|
+| `--ink` | `#0c1416` | Deep petrol ground, green bias. Not neutral near-black |
+| `--stone` | `#e9e3d8` | Warm limestone type |
+| `--brass` | `#c19a62` | The only accent. Hairlines, ticks, the marked level |
+| `--paper` | `#e6e1d6` | The enquiry band, where the sheet flips to paper |
+
+Type: **Bodoni Moda** (display) / **Archivo** (body) / **IBM Plex Mono**
+(references, areas, labels). Loaded from Google Fonts with real fallback
+stacks.
 
 ## Stack
 
-Plain HTML, CSS and JavaScript. No frameworks, no build step, no external
-fonts, no libraries. Open `index.html` in a browser and it runs.
+Plain HTML, CSS and JavaScript. No framework, no build step, no plugins.
+The only external resource is the Google Fonts stylesheet.
 
 ```
 index.html
@@ -14,48 +31,53 @@ css/style.css
 js/main.js
 ```
 
+## The two drawings
+
+Both are drawn on `<canvas>` at load, sized to the device pixel ratio, and
+redrawn on resize and once webfonts settle.
+
+- **Hero elevation** — a tower section with two setbacks, 46 floor lines, a
+  brass band on the marked level, a leader line out to its label, and a
+  height dimension down the left margin.
+- **Floor plan** — redrawn every time you select a line in the register.
+  Rooms, an outdoor band (terrace hatched, pool hatched), a compass with
+  north up and the unit's aspect marked in brass, and a scale bar carrying
+  the unit's real span.
+
 ## What is real and what is a placeholder
 
-Nothing here is invented as a claim. Before showing this to a client,
-replace:
-
-| Placeholder | Where |
+| Item | Status |
 |---|---|
-| Brand name MARAAL | `index.html`, `<title>`, logo, footer |
-| Six listings (names, districts, sizes) | `#grid` — marked `DEMO CONTENT` |
-| Card photos — CSS gradients | `.card__media--a` … `--f` in `style.css` |
-| Portrait photo — CSS gradient | `.frame--portrait` in `style.css` |
-| Quote block | `.quote` — says "placeholder" on purpose |
-| Phone `+00 000 000 0000`, `desk@example.com` | `#enquiry` |
+| Six addresses, refs, areas, levels, plans | **Demo data** in `UNITS` in `js/main.js` |
+| Brand MARAAL | Invented for the concept |
+| Phone, email | `+00 000 000 0000`, `desk@example.com` |
+| Dubai local time in the header | Real, `Intl` with `Asia/Dubai` |
+| DLD transfer 4% | Real Dubai Land Department figure |
+| Prices | "On application" — no invented number |
+| Service charge | "On file" — no invented number |
 
-No testimonials, client logos, awards or performance numbers are used.
-Prices read "Price on application" rather than a made-up figure.
+No testimonials, client logos, awards or performance figures appear
+anywhere on the page. The footer says the concept is a demo.
 
 ## Behaviour
 
-- Sticky navigation that gains a background after 40px of scroll
-- Mobile menu (burger), closes on link click and on Escape
-- Hero headline reveals line by line on load
-- Scroll reveals via `IntersectionObserver`
-- District marquee — the group is cloned in JS so the loop is seamless
-- Collection filter: All / Penthouses / Villas / Branded
-- Enquiry form with inline validation; **demo only, sends nothing**
+- Register: click or keyboard. `Enter` / `Space` select, `ArrowUp` /
+  `ArrowDown` move and select. The plan panel is sticky beside the list on
+  wide screens and stacks below it on narrow ones.
+- Enquiry form validates inline. **Demo only — it sends nothing.**
+- Sticky title block with a live Dubai clock; menu collapses under 720px.
 
-## Accessibility and motion
+## Deliberate decisions
 
-- `prefers-reduced-motion: reduce` disables animation, marquee and reveals;
-  all content shows immediately
-- `<noscript>` fallback shows every reveal block when JS is off
-- Skip link, visible focus ring, labelled form fields, `aria-invalid` on errors
-
-## Section colour transitions
-
-Shading is applied only to the edge where the colour actually changes:
-the top of the light enquiry block, and the top of the dark footer.
-Nothing else is shaded.
+- **Nothing is parked at `opacity: 0`.** The page is fully readable the
+  moment it loads; no scroll observer gates content.
+- **The hero is not `100vh`.** It is sized to what it holds.
+- **Numbers only where order is real.** `01–04` appear in the purchase
+  sequence and nowhere else.
+- **Section transitions.** Only the edge where the colour actually changes
+  is shaded: the top of the paper band and the top of the footer.
 
 ## Wiring the form
 
-`js/main.js` handles validation and then shows the success message. To make
-it send, replace the block marked `Demo only: no request is sent` with a
-`fetch()` to your endpoint (Netlify Forms, Formspree, own backend).
+In `js/main.js`, replace the block marked `Demo only: nothing is sent` with
+a `fetch()` to your endpoint (Netlify Forms, Formspree, your own backend).
