@@ -439,6 +439,39 @@
   }
 
   /* =========================================================
+     which section you are in — the nav gave no indication.
+     Measured against the header line, so it is never ambiguous.
+     ========================================================= */
+
+  var navLinks = document.querySelectorAll('.sheet__nav a');
+  var sections = [];
+
+  Array.prototype.forEach.call(navLinks, function (a) {
+    var el = document.querySelector(a.getAttribute('href'));
+    if (el) sections.push({ link: a, el: el });
+  });
+
+  function spy() {
+    if (!sections.length) return;
+
+    var line = (document.querySelector('.sheet') || {}).offsetHeight || 60;
+    var mark = line + 40;
+    var active = null;
+
+    sections.forEach(function (s) {
+      var box = s.el.getBoundingClientRect();
+      if (box.top <= mark && box.bottom > mark) active = s;
+    });
+
+    sections.forEach(function (s) {
+      s.link.setAttribute('aria-current', s === active ? 'true' : 'false');
+    });
+  }
+
+  spy();
+  window.addEventListener('scroll', spy, { passive: true });
+
+  /* =========================================================
      enquiry form
      ========================================================= */
 
