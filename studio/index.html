@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AIK Studio — Webdesign</title>
+<meta name="description" content="AIK Studio baut schnelle, klare Websites für kleine Unternehmen: Cafés, Handwerk, Salons, Praxen. Festpreise ab 490 €, Pflege ab 39 € im Monat.">
+
+<meta name="theme-color" content="#17191c">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2317191c'/%3E%3Crect x='6' y='6' width='9' height='20' fill='%23c8f03c'/%3E%3C/svg%3E">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="AIK Studio — Websites, die Kunden bringen">
+<meta property="og:description" content="Schnelle, klare Websites für kleine Unternehmen. Festpreise, persönlicher Kontakt, Pflege inklusive.">
+<meta name="twitter:card" content="summary">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100,600;100,700;112,700&family=Instrument+Sans:wght@400;500&display=swap">
+<link rel="stylesheet" href="css/studio.css">
+
+<script>
+  /* Motion is opt-in, as on the A135 page: CSS only hides things once
+     this class is set, so no script or reduced motion renders at rest. */
+  (function () {
+    try {
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.className += ' anim';
+      }
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+
+<a class="skip" href="#main" data-i18n="skip">Zum Inhalt</a>
+
+<header class="bar">
+  <div class="bar__in">
+    <a class="bar__logo" href="#top"><span class="bar__mark" aria-hidden="true"></span>AIK Studio</a>
+
+    <nav class="bar__nav" id="barNav" aria-label="Main">
+      <a href="#work" data-i18n="nav.work">Arbeiten</a>
+      <a href="#prices" data-i18n="nav.prices">Preise</a>
+      <a href="#process" data-i18n="nav.process">Ablauf</a>
+      <a href="#contact" class="bar__cta" data-i18n="nav.contact">Anfrage</a>
+    </nav>
+
+    <div class="lang" role="group" aria-label="Sprache / Language">
+      <button type="button" data-lang="de" aria-pressed="true">DE</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top">
+    <div class="wrap">
+      <p class="eyebrow rise" data-i18n="hero.eyebrow">Webdesign für kleine Unternehmen</p>
+      <h1 class="hero__title rise" data-i18n="hero.title">Websites, die <em>Kunden</em> bringen.</h1>
+      <p class="hero__lead rise" data-i18n="hero.lead">Ich baue schnelle, klare Websites für Cafés, Handwerk, Salons und Praxen. Festpreis, persönlicher Kontakt, und ich bleibe auch nach dem Start erreichbar.</p>
+      <div class="hero__cta rise">
+        <a class="btn btn--solid" href="#contact" data-i18n="hero.cta1">Anfrage senden</a>
+        <a class="btn btn--ghost" href="#work" data-i18n="hero.cta2">Arbeiten ansehen</a>
+      </div>
+      <ul class="hero__facts rise">
+        <li><strong data-i18n="fact1.k">Festpreis</strong><span data-i18n="fact1.v">Kein Stundenzähler</span></li>
+        <li><strong data-i18n="fact2.k">Mobil zuerst</strong><span data-i18n="fact2.v">Gebaut für das Handy</span></li>
+        <li><strong data-i18n="fact3.k">DE · EN · RU</strong><span data-i18n="fact3.v">Beratung in drei Sprachen</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ WORK ============ -->
+  <section class="sec" id="work">
+    <div class="wrap">
+      <header class="sec__head rise">
+        <p class="eyebrow" data-i18n="work.eyebrow">Arbeiten</p>
+        <h2 data-i18n="work.title">Ausgewählte Projekte</h2>
+      </header>
+
+      <div class="work">
+        <a class="case rise" href="../index.html">
+          <picture class="case__img">
+            <source srcset="../img/aerial-wide.webp" type="image/webp">
+            <img src="../img/aerial-wide.jpg" alt="Luftaufnahme des Gewerbeobjekts A135 in Langley" width="828" height="560" loading="lazy">
+          </picture>
+          <div class="case__body">
+            <p class="case__tag" data-i18n="case1.tag">Immobilie · Landingpage</p>
+            <h3>A135 — 6286 203 Street, Langley</h3>
+            <p data-i18n="case1.text">Einzelobjekt-Seite mit Diashow, Galerie und Anfrageformular. Ladezeit auf dem Handy von 2,5 s auf 0,9 s gesenkt.</p>
+            <span class="case__link" data-i18n="case1.link">Projekt ansehen</span>
+          </div>
+        </a>
+
+        <a class="slot rise" href="#contact">
+          <span class="slot__n">02</span>
+          <strong data-i18n="slot.title">Ihr Projekt hier</strong>
+          <span data-i18n="slot.text">Ich nehme gerade neue Kunden an.</span>
+        </a>
+        <a class="slot rise" href="#contact">
+          <span class="slot__n">03</span>
+          <strong data-i18n="slot.title">Ihr Projekt hier</strong>
+          <span data-i18n="slot.text">Ich nehme gerade neue Kunden an.</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRICES ============ -->
+  <section class="sec sec--tint" id="prices">
+    <div class="wrap">
+      <header class="sec__head rise">
+        <p class="eyebrow" data-i18n="prices.eyebrow">Leistungen &amp; Preise</p>
+        <h2 data-i18n="prices.title">Klare Pakete, feste Preise</h2>
+      </header>
+
+      <div class="plans">
+        <article class="plan rise">
+          <h3>Start</h3>
+          <p class="plan__price"><span data-i18n="from">ab</span> <b data-price="start">490</b> €</p>
+          <p class="plan__desc" data-i18n="plan1.desc">Eine starke Seite, die alles Wichtige zeigt.</p>
+          <ul>
+            <li data-i18n="plan1.l1">Onepager mit bis zu 6 Abschnitten</li>
+            <li data-i18n="plan1.l2">Optimiert für Handy und Google</li>
+            <li data-i18n="plan1.l3">Kontakt, Karte, Öffnungszeiten</li>
+            <li data-i18n="plan1.l4">Online in ca. 1–2 Wochen</li>
+          </ul>
+        </article>
+
+        <article class="plan plan--main rise">
+          <p class="plan__badge" data-i18n="plan2.badge">Beliebt</p>
+          <h3>Business</h3>
+          <p class="plan__price"><span data-i18n="from">ab</span> <b data-price="business">990</b> €</p>
+          <p class="plan__desc" data-i18n="plan2.desc">Für Betriebe, die mehr zeigen wollen.</p>
+          <ul>
+            <li data-i18n="plan2.l1">Bis zu 5 Unterseiten</li>
+            <li data-i18n="plan2.l2">Anfrageformular</li>
+            <li data-i18n="plan2.l3">SEO-Grundlagen und Google-Unternehmensprofil</li>
+            <li data-i18n="plan2.l4">Zweisprachig auf Wunsch</li>
+          </ul>
+        </article>
+
+        <article class="plan rise">
+          <h3 data-i18n="plan3.name">Pflege</h3>
+          <p class="plan__price"><span data-i18n="from">ab</span> <b data-price="care">39</b> € <small data-i18n="month">/ Monat</small></p>
+          <p class="plan__desc" data-i18n="plan3.desc">Sie kümmern sich ums Geschäft, ich um die Website.</p>
+          <ul>
+            <li data-i18n="plan3.l1">Hosting und Domain</li>
+            <li data-i18n="plan3.l2">Kleine Änderungen jeden Monat</li>
+            <li data-i18n="plan3.l3">Backups und Updates</li>
+            <li data-i18n="plan3.l4">Monatlich kündbar</li>
+          </ul>
+        </article>
+      </div>
+
+      <p class="note rise" id="vatNote" data-i18n="prices.note">Alle Preise sind Endpreise. Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.</p>
+    </div>
+  </section>
+
+  <!-- ============ PROCESS ============ -->
+  <section class="sec" id="process">
+    <div class="wrap">
+      <header class="sec__head rise">
+        <p class="eyebrow" data-i18n="process.eyebrow">Ablauf</p>
+        <h2 data-i18n="process.title">In vier Schritten online</h2>
+      </header>
+
+      <ol class="steps">
+        <li class="rise"><span>01</span><h3 data-i18n="s1.t">Gespräch</h3><p data-i18n="s1.p">15 Minuten, kostenlos. Was brauchen Sie, wer sind Ihre Kunden?</p></li>
+        <li class="rise"><span>02</span><h3 data-i18n="s2.t">Entwurf</h3><p data-i18n="s2.p">Sie sehen die Seite, bevor sie fertig ist, und sagen, was sich ändern soll.</p></li>
+        <li class="rise"><span>03</span><h3 data-i18n="s3.t">Start</h3><p data-i18n="s3.p">Domain, Hosting, Google: ich richte alles ein.</p></li>
+        <li class="rise"><span>04</span><h3 data-i18n="s4.t">Betreuung</h3><p data-i18n="s4.p">Neue Preise, neue Fotos, neue Zeiten: eine Nachricht genügt.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="sec sec--dark" id="about">
+    <div class="wrap about">
+      <p class="eyebrow rise" data-i18n="about.eyebrow">Über mich</p>
+      <p class="about__text rise" data-i18n="about.text">Ich bin 22, lebe in Deutschland und baue Websites von Hand: ohne Baukasten, ohne Agentur-Overhead. Sie sprechen direkt mit der Person, die Ihre Seite baut.</p>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="sec" id="contact">
+    <div class="wrap contact">
+      <header class="sec__head rise">
+        <p class="eyebrow" data-i18n="contact.eyebrow">Kontakt</p>
+        <h2 data-i18n="contact.title">Erzählen Sie mir von Ihrem Projekt</h2>
+        <p data-i18n="contact.lead">Ich antworte innerhalb von 24 Stunden.</p>
+        <ul class="contact__rows" id="contactRows"></ul>
+      </header>
+
+      <form class="form rise" id="form" novalidate>
+        <label><span data-i18n="f.name">Name</span>
+          <input name="name" autocomplete="name" required>
+        </label>
+        <label><span data-i18n="f.biz">Betrieb</span>
+          <input name="biz" autocomplete="organization">
+        </label>
+        <label><span data-i18n="f.pkg">Paket</span>
+          <select name="pkg">
+            <option>Start</option>
+            <option selected>Business</option>
+            <option data-i18n="plan3.name">Pflege</option>
+            <option data-i18n="f.unsure">Noch unsicher</option>
+          </select>
+        </label>
+        <label><span data-i18n="f.msg">Nachricht</span>
+          <textarea name="msg" rows="4" required></textarea>
+        </label>
+        <button class="btn btn--solid btn--full" type="submit" data-i18n="f.send">Anfrage senden</button>
+        <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <span>© <span id="year">2026</span> AIK Studio</span>
+    <nav aria-label="Rechtliches">
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html" data-i18n="privacy">Datenschutz</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="js/studio.js"></script>
+</body>
+</html>
