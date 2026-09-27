@@ -147,3 +147,29 @@ is an offer.
 
 In `js/main.js`, replace the block marked `Demo only: nothing is sent` with
 a `fetch()` to your endpoint.
+
+---
+
+# AIK Studio — portfolio page (`studio/`)
+
+The studio's own page: work, fixed-price packages, process, contact. German
+by default with an EN switch. Same stack and button shape as A135, its own
+graphite and lime palette.
+
+```
+studio/index.html        the page (DE in the HTML, so it reads without script)
+studio/js/studio.js      STUDIO object + English strings
+studio/css/studio.css
+studio/impressum.html    required in Germany; fill the highlighted fields
+studio/datenschutz.html  starting point, have it checked before launch
+```
+
+**Fill in `STUDIO`** at the top of `studio/js/studio.js`: e-mail, phone,
+WhatsApp, Instagram. A value left `null` is not rendered. Prices live there
+too, and `kleinunternehmer: false` hides the § 19 UStG note.
+
+The form sends nothing itself. It opens the visitor's mail app addressed to
+`STUDIO.email`; until an e-mail is set it only shows a notice.
+
+Before going live: replace every lime-highlighted field in the Impressum and
+Datenschutz, and add real projects in place of the two "Ihr Projekt hier" slots.
