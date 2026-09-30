@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- PREVIEW BUILD: generated from index.html, do not edit. Intro replays on every load. -->
+<title>Ma'loa – Hawaiian Poké Bowl</title>
+<meta name="description" content="Ma'loa Hawaiian Poké Bowl. Jetzt neu in Eschborn.">
+<meta name="theme-color" content="#004443">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* Ma'loa tokens. Colours from maloa.com; #d8e2e2 is the live site's page ground. */
+:root{
+  --deep-teal:   #004443;
+  --mid-teal:    #628a87;
+  --light-gray:  #c8d1d3;
+  --powder-pink: #f3d2d5;
+  --bg:          #d8e2e2;
+  --bg-light:    #f4f7f5;
+  --ink:         #06302f;
+  --on-teal:     #f4f7f5;
+
+  /* Brandon Grotesque can be put in front of these once licensed */
+  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-body:    "Figtree", system-ui, sans-serif;
+  --tracking-tight: -.03em;
+
+  --gutter: 20px;
+  --hh: 72px;
+  --ease-out: cubic-bezier(.22,1,.36,1);
+}
+@media (min-width: 900px){ :root{ --gutter: 40px; --hh: 84px; } }
+</style>
+<style>
+/* Reset, type, and the minimal header the intro sits under.
+   The full header (glass, hide on scroll, menu) is Block 1. */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip}
+img,video,svg{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--powder-pink);outline-offset:3px;border-radius:6px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Header stays above the intro so ordering is possible from the first frame */
+.site-header{position:fixed;inset:0 0 auto;z-index:50;padding:env(safe-area-inset-top,0px) var(--gutter) 0;color:var(--on-teal)}
+.site-header__row{height:var(--hh);display:flex;align-items:center;justify-content:space-between}
+.site-header__logo{display:flex;align-items:center;min-width:44px;min-height:44px}
+.site-header__logo svg{width:44px;height:44px}
+.site-header__order{display:inline-flex;align-items:center;min-height:44px;padding:0 22px;border-radius:999px;background:var(--powder-pink);color:var(--ink);font-weight:700;text-decoration:none}
+
+/* Placeholder until Block 1 */
+.hero{position:relative;min-height:100svh;background:var(--deep-teal);color:var(--on-teal);display:grid;place-items:center;text-align:center;padding:var(--gutter)}
+.hero__placeholder{font-family:var(--font-display);font-weight:800;letter-spacing:var(--tracking-tight);font-size:clamp(28px,5vw,56px);opacity:.25}
+</style>
+<style>
+/* Block 0 · Intro. A full-screen layer over the top of the Hero:
+   logo traces itself, wordmark pops, six leaves bloom, sway, then fly off. */
+.intro{position:fixed;inset:0;z-index:40;background:var(--deep-teal);color:var(--on-teal);overflow:hidden;display:grid;place-items:center}
+/* No script, or already seen this session: never cover the page */
+html:not(.intro-on) .intro{display:none}
+
+.intro__mark{position:relative;z-index:2;display:grid;justify-items:center;gap:clamp(14px,2.4vw,28px);width:min(72vw,520px)}
+.intro__logo{width:clamp(96px,16vw,168px);height:auto}
+.intro__wordmark{width:100%;height:auto;transform-origin:50% 60%}
+
+/* Leaves. Each sits at a fixed spot and size; the video/poster inside is
+   feathered at the edges so its own background melts into #004443. */
+.intro__leaves{position:absolute;inset:0;z-index:1;pointer-events:none}
+.leaf{position:absolute;width:var(--size);aspect-ratio:1;will-change:transform,opacity}
+.leaf > *{width:100%;height:100%;object-fit:cover;rotate:var(--rot,0deg);-webkit-mask-image:radial-gradient(closest-side,#000 78%,transparent);mask-image:radial-gradient(closest-side,#000 78%,transparent)}
+.leaf--1{--size:clamp(150px,30vmin,340px);--rot:-24deg;left:4%; top:6%}
+.leaf--2{--size:clamp(140px,26vmin,300px);--rot:28deg; right:5%;top:4%}
+.leaf--3{--size:clamp(150px,28vmin,320px);--rot:84deg; left:-4%;top:42%}
+.leaf--4{--size:clamp(160px,30vmin,340px);--rot:-72deg;right:-4%;top:38%}
+.leaf--5{--size:clamp(140px,26vmin,300px);--rot:160deg;left:12%;bottom:2%}
+.leaf--6{--size:clamp(150px,28vmin,320px);--rot:-150deg;right:10%;bottom:3%}
+@media (max-width:599px){
+  .leaf--3,.leaf--4{top:auto;bottom:17%}
+  .leaf--1{left:-8%;top:8%}.leaf--2{right:-8%;top:10%}
+  .leaf--5{left:-6%;bottom:-5%}.leaf--6{right:-6%;bottom:-4%}
+}
+
+.intro__skip{position:absolute;z-index:3;right:var(--gutter);bottom:calc(20px + env(safe-area-inset-bottom,0px));min-height:44px;padding:0 18px;border:1.5px solid rgba(244,247,245,.35);border-radius:999px;background:transparent;color:var(--on-teal);font-size:14px;font-weight:600;cursor:pointer}
+.intro__skip:hover{border-color:var(--on-teal)}
+</style>
+<script>
+/* Decide before first paint whether the intro plays: once per session, script required */
+try { sessionStorage.removeItem('maloa-intro'); if (!sessionStorage.getItem('maloa-intro')) document.documentElement.classList.add('intro-on'); }
+catch (e) { document.documentElement.classList.add('intro-on'); }
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header__row">
+    <a class="site-header__logo" href="#hero" aria-label="Ma'loa – Startseite">
+      <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="60" cy="60" r="56" stroke-width="5"/><path d="M34 84V38l26 32 26-32v46" stroke-width="10"/>
+      </svg>
+    </a>
+    <a class="site-header__order" href="https://maloa.smoothr.de/map">Bestellen</a>
+  </div>
+</header>
+
+<!-- Block 0 · Intro (decorative; the skip button is the only control) -->
+<div class="intro" id="intro">
+  <div class="intro__leaves" aria-hidden="true">
+    <div class="leaf leaf--1"></div>
+    <div class="leaf leaf--2"></div>
+    <div class="leaf leaf--3"></div>
+    <div class="leaf leaf--4"></div>
+    <div class="leaf leaf--5"></div>
+    <div class="leaf leaf--6"></div>
+  </div>
+  <div class="intro__mark" aria-hidden="true">
+    <!-- PLACEHOLDER logo, inline so DrawSVG can reach the strokes (same as assets/logo/logo-circle.svg) -->
+    <svg class="intro__logo" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <circle class="logo-ring" cx="60" cy="60" r="56" stroke-width="3"/>
+      <path class="logo-m" d="M34 84V38l26 32 26-32v46" stroke-width="8"/>
+    </svg>
+    <!-- PLACEHOLDER wordmark (same as assets/logo/logo-wordmark.svg) -->
+    <svg class="intro__wordmark" viewBox="0 0 520 110">
+      <text x="260" y="88" text-anchor="middle" fill="currentColor" font-family="'Bricolage Grotesque', system-ui, sans-serif" font-weight="800" font-size="104" letter-spacing="-3">MA'LOA</text>
+    </svg>
+  </div>
+  <button class="intro__skip" type="button">Intro überspringen</button>
+</div>
+
+<main id="main">
+  <!-- Block 1 · Hero comes here -->
+  <section class="hero" id="hero" aria-label="Hero">
+    <p class="hero__placeholder">Block 1 · Hero</p>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/DrawSVGPlugin.min.js" defer></script>
+<script>addEventListener("DOMContentLoaded",function(){
+/* Shared flags, media addresses and plugin registration. Loaded before every block. */
+(function () {
+  var root = document.documentElement;
+  var hasGsap = !!(window.gsap && window.ScrollTrigger && window.DrawSVGPlugin);
+  if (hasGsap) gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
+
+  window.MALOA = {
+    gsap: hasGsap,
+    reduce: matchMedia('(prefers-reduced-motion: reduce)').matches,
+    touch: matchMedia('(hover: none), (pointer: coarse)').matches,
+    wide: function () { return matchMedia('(min-width: 900px)').matches; },
+    saveData: !!(navigator.connection && navigator.connection.saveData),
+
+    /* Leaf loops generated in Higgsfield, hosted on its CDN for the demo.
+       webm first, mp4 for Safari; the poster is what phones get. */
+    leaves: [
+      /* filled in once the renders are approved: { webm: '', mp4: '', poster: '' } × 6 */
+    ]
+  };
+
+  // If GSAP failed to load, never leave the intro covering the page
+  if (!hasGsap) root.classList.remove('intro-on');
+})();
+
+});</script>
+<script>addEventListener("DOMContentLoaded",function(){
+/* Block 0 · Intro
+   1. ring and M trace themselves (DrawSVG, 1.5s)
+   2. "MA'LOA" pops: scale .8 → overshoot → 1, back.out(2)
+   3. six leaves bloom, then sway on their own loops
+   4. leaves fly outward, the layer fades, the Hero is revealed
+   Never blocks ordering: the header sits above it, any scroll, key or tap
+   fast-forwards it, and it only plays once per browser session.
+   Reduced motion: the mark fades in and out, nothing else moves. */
+(function () {
+  var M = window.MALOA;
+  var root = document.documentElement;
+  var intro = document.getElementById('intro');
+  if (!intro || !root.classList.contains('intro-on')) return;
+
+  var ring = intro.querySelector('.logo-ring');
+  var mPath = intro.querySelector('.logo-m');
+  var mark = intro.querySelector('.intro__mark');
+  var wordmark = intro.querySelector('.intro__wordmark');
+  var leaves = [].slice.call(intro.querySelectorAll('.leaf'));
+  var skip = intro.querySelector('.intro__skip');
+
+  function done() {
+    try { sessionStorage.setItem('maloa-intro', '1'); } catch (e) {}
+    root.classList.remove('intro-on');
+    intro.remove();
+    document.dispatchEvent(new CustomEvent('maloa:intro-done'));
+  }
+
+  /* ---- Reduced motion: fade only ---- */
+  if (M.reduce) {
+    leaves.forEach(function (l) { l.remove(); });
+    gsap.timeline({ onComplete: done })
+      .from(mark, { opacity: 0, duration: .4 })
+      .to(intro, { opacity: 0, duration: .4 }, '+=.8');
+    return;
+  }
+
+  /* ---- Leaf media: video on wide screens, poster on phones ---- */
+  var useVideo = M.wide() && !M.saveData;
+  leaves.forEach(function (l, i) {
+    var src = M.leaves[i];
+    if (!src) { l.hidden = true; return; }
+    var el;
+    if (useVideo && (src.webm || src.mp4)) {
+      el = document.createElement('video');
+      el.muted = true; el.loop = true; el.playsInline = true; el.preload = 'auto';
+      el.setAttribute('muted', ''); el.setAttribute('playsinline', '');
+      if (src.poster) el.poster = src.poster;
+      if (src.webm) el.appendChild(Object.assign(document.createElement('source'), { src: src.webm, type: 'video/webm' }));
+      if (src.mp4)  el.appendChild(Object.assign(document.createElement('source'), { src: src.mp4,  type: 'video/mp4' }));
+    } else {
+      el = new Image(); el.decoding = 'async'; el.alt = ''; el.src = src.poster;
+    }
+    l.appendChild(el);
+  });
+  leaves = leaves.filter(function (l) { return !l.hidden; });
+  var videos = leaves.map(function (l) { return l.querySelector('video'); }).filter(Boolean);
+
+  /* Where each leaf flies: straight out from the centre of the screen */
+  function outward(l) {
+    var r = l.getBoundingClientRect();
+    var dx = r.left + r.width / 2 - innerWidth / 2, dy = r.top + r.height / 2 - innerHeight / 2;
+    var len = Math.hypot(dx, dy) || 1, reach = Math.max(innerWidth, innerHeight) * .9;
+    return { x: dx / len * reach, y: dy / len * reach };
+  }
+
+  /* Gentle sway, independent per leaf so they never move in unison */
+  var sway = [];
+  function startSway() {
+    leaves.forEach(function (l, i) {
+      sway.push(gsap.to(l, { y: '+=' + (8 + i % 3 * 4), rotation: (i % 2 ? 1 : -1) * (3 + i % 3), duration: 2.2 + i * .23, ease: 'sine.inOut', yoyo: true, repeat: -1 }));
+    });
+    videos.forEach(function (v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); });
+  }
+
+  gsap.set([ring, mPath], { drawSVG: '0%' });
+  gsap.set(wordmark, { opacity: 0, scale: .8 });
+  gsap.set(leaves, { opacity: 0, scale: .4 });
+
+  var tl = gsap.timeline({ onComplete: function () { sway.forEach(function (t) { t.kill(); }); done(); } });
+  tl.to(ring,  { drawSVG: '100%', duration: 1.5, ease: 'power2.inOut' }, 0)
+    .to(mPath, { drawSVG: '100%', duration: .9,  ease: 'power2.inOut' }, .5)
+    .to(wordmark, { opacity: 1, scale: 1, duration: .7, ease: 'back.out(2)' }, 1.35)
+    .add(startSway, 1.5)
+    .to(leaves, { opacity: 1, scale: 1, duration: 1.1, ease: 'power3.out', stagger: { each: .08, from: 'random' } }, 1.5)
+    .addLabel('out', 3.6)
+    .add(function () { sway.forEach(function (t) { t.kill(); }); }, 'out')
+    .to(leaves, {
+      x: function (i, l) { return outward(l).x; },
+      y: function (i, l) { return outward(l).y; },
+      rotation: function (i) { return (i % 2 ? 1 : -1) * 70; },
+      scale: 1.25, opacity: 0, duration: 1.1, ease: 'power3.in', stagger: .04
+    }, 'out')
+    .to(mark, { scale: .92, opacity: 0, duration: .6, ease: 'power2.in' }, 'out+=.35')
+    .to(intro, { opacity: 0, duration: .5, ease: 'power1.out' }, 'out+=.75');
+
+  /* Any intent to move on plays the rest at 5× speed */
+  function hurry() {
+    tl.timeScale(5);
+    removeEventListener('wheel', hurry); removeEventListener('touchmove', hurry); removeEventListener('keydown', hurry);
+  }
+  addEventListener('wheel', hurry, { passive: true });
+  addEventListener('touchmove', hurry, { passive: true });
+  addEventListener('keydown', hurry);
+  skip.addEventListener('click', function () { tl.progress(1); });
+})();
+
+});</script>
+</body>
+</html>
