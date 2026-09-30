@@ -1,0 +1,90 @@
+/* Block 4 · Ma'loa Favorites.
+   The ground turns from the Welcome block's light back to deep teal, the colour the bowls were cut out on.
+   Without the script: a plain editorial list, bowl and text per row.
+   With it (.is-scripted, js/favs.js): the stage is pinned; the bowls sit on a large, slowly turning wheel
+   (the next one rises into the ring, the last one leaves), each spinning a little like on a turntable,
+   and the island name, bowl type, ingredients and kcal change in step. */
+.favs{position:relative;color:var(--on-teal);background:var(--deep-teal)}
+/* the seam with the light Welcome block is a gradient, as at the top of Welcome */
+.favs::before{content:"";position:absolute;left:0;right:0;top:0;height:clamp(120px,18vh,200px);background:linear-gradient(180deg,var(--bg-light),rgb(244 247 245 / 0));pointer-events:none;z-index:1}
+
+.favs__head{position:relative;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);align-items:end;
+  padding:calc(clamp(120px,18vh,200px) + clamp(24px,4vw,64px)) var(--gutter) clamp(40px,6vw,88px)}
+.favs__label{grid-column:1 / -1;margin:0 0 18px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--light-gray)}
+.favs__title{grid-column:1 / span 8;margin:0;font-family:var(--font-display);font-weight:800;text-transform:uppercase;font-size:clamp(44px,6vw,112px);line-height:.88;letter-spacing:-.035em;color:var(--bg-light)}
+.favs__line{display:block;overflow:hidden;padding:.14em 0 .04em;margin-top:-.14em}
+.favs__line > span{display:block}
+.favs__line:nth-child(2){padding-left:clamp(0px,8vw,150px)}
+.favs__intro{grid-column:9 / -1;margin:0;font-size:16px;line-height:1.6;color:var(--light-gray);max-width:36ch;padding-top:18px;border-top:1px solid rgb(200 209 211 / .25)}
+
+/* ---------- Static list (no script, reduced motion) ---------- */
+.favs__stage{position:relative;padding:0 var(--gutter) clamp(64px,8vw,112px)}
+.favs__list{margin:0;padding:0;list-style:none;display:grid;gap:clamp(32px,5vw,72px)}
+.fav{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);align-items:center}
+.fav__bowl{grid-column:1 / span 5;margin:0;position:relative}
+.fav__bowl img{width:100%;height:auto;position:relative}
+/* a soft contact shadow under the bowl: a gradient, not a filter, so moving it stays cheap */
+.fav__bowl::before{content:"";position:absolute;inset:8% 4% -2% 8%;border-radius:50%;background:radial-gradient(closest-side,rgb(var(--night-rgb) / .55),rgb(var(--night-rgb) / 0));transform:translate(3%,5%)}
+.fav__text{grid-column:7 / span 6}
+.fav__type{margin:0 0 14px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--light-gray)}
+.fav__no{color:var(--bg-light);margin-right:10px}
+.fav__name{margin:0 0 20px;font-family:var(--font-display);font-weight:800;text-transform:uppercase;font-size:clamp(48px,6vw,112px);line-height:.9;letter-spacing:-.035em;color:var(--bg-light);overflow:hidden;padding:.1em 0 .04em;margin-top:-.1em}
+.fav__name > span{display:block}
+.fav__ing{margin:0 0 22px;font-size:16px;line-height:1.6;color:var(--light-gray);max-width:34ch}
+.fav__kcal{display:inline-flex;align-items:baseline;gap:8px;margin:0;padding-top:14px;border-top:1px solid rgb(200 209 211 / .3);font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--light-gray)}
+.fav__kcal-n{font-family:var(--font-display);font-size:32px;font-weight:700;letter-spacing:-.01em;color:var(--bg-light);font-variant-numeric:tabular-nums}
+
+.favs__foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px 32px;margin-top:clamp(40px,5vw,72px)}
+.favs__index ol{display:flex;flex-wrap:wrap;gap:4px 20px;margin:0;padding:0;list-style:none}
+.favs__index a{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:rgb(200 209 211 / .6);transition:color .35s var(--ease-out)}
+.favs__index a span{font-variant-numeric:tabular-nums}
+.favs__index a:hover,.favs__index a[aria-current="true"]{color:var(--bg-light)}
+.favs__index a[aria-current="true"]{background:linear-gradient(currentColor,currentColor) 0 calc(100% - 8px)/100% 1px no-repeat}
+
+@media (max-aspect-ratio:4/5), (max-width:699px){
+  .favs__title{grid-column:1 / -1;font-size:min(11.2vw,64px)}
+  .favs__line:nth-child(2){padding-left:0}
+  .favs__intro{grid-column:1 / -1;margin-top:22px;border-top:0;padding-top:0}
+  .fav{grid-template-columns:minmax(0,1fr)}
+  .fav__bowl{grid-column:1;width:min(78vw,420px);justify-self:center;margin-bottom:20px}
+  .fav__text{grid-column:1}
+  .fav__name{font-size:min(12vw,56px)}
+  .favs__index ol{flex-wrap:nowrap;gap:0}
+  .favs__index a{min-width:34px;justify-content:center;letter-spacing:.08em}
+  .favs__nm{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}   /* numbers only, names stay for screen readers */
+}
+
+/* ---------- Pinned stage (js/favs.js) ----------
+   --cx/--cy: where the active bowl sits (the ring), --bs: bowl size. The script moves every bowl
+   along the wheel from there with transforms only. */
+.js .favs.is-scripted .favs__stage{height:100vh;height:100svh;padding:0;overflow:hidden;
+  --bs:min(66svh,44vw);--cx:69%;--cy:52%;
+  /* the vignette fades in below the top edge, so the head's flat teal runs into the stage without a seam */
+  background:linear-gradient(180deg,var(--deep-teal) 0,rgb(0 68 67 / 0) 28%),
+    radial-gradient(60% 75% at var(--cx) var(--cy),var(--deep-teal) 0%,color-mix(in srgb,var(--deep-teal) 55%,var(--night)) 70%,var(--night) 100%)}
+.favs.is-scripted .favs__stage::before{content:"";position:absolute;left:var(--cx);top:var(--cy);width:calc(var(--bs) * 1.1);aspect-ratio:1;border-radius:50%;
+  border:1px solid rgb(200 209 211 / .16);transform:translate(-50%,-50%);pointer-events:none}   /* the ring each bowl lands in */
+.favs.is-scripted .favs__list{position:absolute;inset:0;display:block}
+.favs.is-scripted .fav{position:absolute;inset:0;display:block;pointer-events:none}
+.favs.is-scripted .fav__bowl{position:absolute;left:calc(var(--cx) - var(--bs) / 2);top:calc(var(--cy) - var(--bs) / 2);width:var(--bs);will-change:transform,opacity}
+.favs.is-scripted .fav__text{position:absolute;left:var(--gutter);top:50%;width:min(38vw,560px);transform:translateY(-50%);opacity:0}
+.favs.is-scripted .fav__text.is-on{pointer-events:auto}
+.favs.is-scripted .fav__name{font-size:var(--fit,clamp(64px,7.6vw,148px))}
+.favs.is-scripted .favs__foot{position:absolute;left:var(--gutter);right:var(--gutter);bottom:clamp(16px,3.2vh,36px);margin:0;z-index:2}
+
+@media (max-aspect-ratio:4/5), (max-width:699px){
+  .js .favs.is-scripted .favs__stage{--bs:min(84vw,42svh);--cx:50%;--cy:calc(var(--hh) + 16px + var(--bs) / 2)}
+  .favs.is-scripted .fav__text{left:var(--gutter);right:var(--gutter);width:auto;top:calc(var(--cy) + var(--bs) / 2 + 22px);transform:none}
+  .favs.is-scripted .fav__type{margin-bottom:10px}
+  .favs.is-scripted .fav__name{font-size:var(--fit,min(12vw,56px));margin-bottom:12px}
+  .favs.is-scripted .fav__ing{font-size:15px;line-height:1.5;margin-bottom:14px}
+  .favs.is-scripted .fav__kcal{padding-top:10px}
+  .favs.is-scripted .fav__kcal-n{font-size:26px}
+  .favs.is-scripted .favs__foot{flex-wrap:nowrap}
+  .favs.is-scripted .favs__cta{min-height:48px;padding:0 22px}
+}
+/* short phones: the ingredients give way to the name, type and kcal */
+@media (max-aspect-ratio:4/5) and (max-height:700px), (max-width:699px) and (max-height:700px){
+  .js .favs.is-scripted .favs__stage{--bs:min(66vw,33svh)}
+  .favs.is-scripted .fav__ing{display:none}
+}

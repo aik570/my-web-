@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="css/hero.css">
 <link rel="stylesheet" href="css/scene.css">
 <link rel="stylesheet" href="css/about.css">
+<link rel="stylesheet" href="css/favs.css">
 <script>
 document.documentElement.classList.add('js');
 /* Decide before first paint whether the intro plays: once per session, script required */
@@ -233,6 +234,75 @@ catch (e) { document.documentElement.classList.add('intro-on'); }
            alt="Ma'loa: Gäste mit Poké Bowls">
     </figure>
   </section>
+
+  <!-- Block 4 · Ma'loa Favorites (css/favs.css, js/favs.js).
+       Real bowls only: the client's photos (cut out) and the data from maloa.com's product popups
+       (original.html, PRODUCT DATA). Bowls without a photo are left out rather than illustrated.
+       Without the script (or with reduced motion) this is a plain list; with it, the bowls sit on a slowly
+       turning wheel and the list's text changes in step with it. -->
+  <section class="favs" id="favorites" aria-labelledby="favs-title">
+    <div class="favs__head">
+      <p class="favs__label">Ma'loa Favorites</p>
+      <h2 class="favs__title" id="favs-title"><span class="favs__line"><span>Auf welche Insel</span></span> <span class="favs__line"><span>geht es heute?</span></span></h2>
+      <!-- Translated from the EN home page (original.html); the German wording on maloa.com could not be fetched: confirm with the client -->
+      <p class="favs__intro">Einige der Lieblings-Bowls unseres Teams sind nach den 8 Inseln Hawaiis benannt. Wählt zwischen Seafood, Chicken oder unseren veganen Varianten.</p>
+    </div>
+    <div class="favs__stage">
+      <ol class="favs__list">
+      <li class="fav" id="fav-lanai" data-kcal="507">
+        <figure class="fav__bowl"><img src="assets/bowls/lanai-560.webp" srcset="assets/bowls/lanai-560.webp 560w, assets/bowls/lanai-900.webp 900w" sizes="(max-aspect-ratio: 4/5) 78vw, 46vw" width="900" height="900" loading="lazy" decoding="async" alt="Lanai Tuna Bowl von oben: Ahi Tuna, Rote Bete, Gurke, Edamame und Erdnüsse"></figure>
+        <div class="fav__text">
+          <p class="fav__type"><span class="fav__no">01</span> Tuna Bowl</p>
+          <h3 class="fav__name"><span>Lanai</span></h3>
+          <p class="fav__ing">Ahi Tuna, Edamame, Gurke, Rote Bete, Koriander, Crazy Lime, Avocado, Erdnüsse</p>
+          <p class="fav__kcal"><span class="fav__kcal-n">507</span> kcal</p>
+        </div>
+      </li>
+      <li class="fav" id="fav-spicy-tropical" data-kcal="352">
+        <figure class="fav__bowl"><img src="assets/bowls/spicy-tropical-560.webp" srcset="assets/bowls/spicy-tropical-560.webp 560w, assets/bowls/spicy-tropical-900.webp 900w" sizes="(max-aspect-ratio: 4/5) 78vw, 46vw" width="900" height="900" loading="lazy" decoding="async" alt="Spicy Tropical Tofu Bowl von oben: Tofu, Mango, Ananas und Korean Love Sauce"></figure>
+        <div class="fav__text">
+          <p class="fav__type"><span class="fav__no">02</span> Tofu Bowl</p>
+          <h3 class="fav__name"><span>Spicy Tropical</span></h3>
+          <p class="fav__ing">Tofu, Gurke, Ananas, Frühlingszwiebel, Korean Love, Mango, Kokoschips</p>
+          <p class="fav__kcal"><span class="fav__kcal-n">352</span> kcal</p>
+        </div>
+      </li>
+      <li class="fav" id="fav-green-cream-shrimp" data-kcal="415">
+        <figure class="fav__bowl"><img src="assets/bowls/green-cream-shrimp-560.webp" srcset="assets/bowls/green-cream-shrimp-560.webp 560w, assets/bowls/green-cream-shrimp-900.webp 900w" sizes="(max-aspect-ratio: 4/5) 78vw, 46vw" width="900" height="900" loading="lazy" decoding="async" alt="Green Cream Shrimp Bowl von oben: Garnelen, Edamame, Algensalat und Green Cream Sauce"></figure>
+        <div class="fav__text">
+          <p class="fav__type"><span class="fav__no">03</span> Shrimp Bowl</p>
+          <h3 class="fav__name"><span>Green Cream Shrimp</span></h3>
+          <p class="fav__ing">Garnele, Frühlingszwiebel, Gurke, Edamame, Green Cream Flavor, Algensalat, Wasabinüsse</p>
+          <p class="fav__kcal"><span class="fav__kcal-n">415</span> kcal</p>
+        </div>
+      </li>
+      <li class="fav" id="fav-peanutlover" data-kcal="507">
+        <figure class="fav__bowl"><img src="assets/bowls/peanutlover-560.webp" srcset="assets/bowls/peanutlover-560.webp 560w, assets/bowls/peanutlover-900.webp 900w" sizes="(max-aspect-ratio: 4/5) 78vw, 46vw" width="900" height="900" loading="lazy" decoding="async" alt="Peanutlover Chicken Bowl von oben: Chicken, Algensalat, Erdnüsse und Salat"></figure>
+        <div class="fav__text">
+          <p class="fav__type"><span class="fav__no">04</span> Chicken Bowl</p>
+          <h3 class="fav__name"><span>Peanutlover</span></h3>
+          <p class="fav__ing">Chicken, Edamame, Gurke, Frühlingszwiebel, Peanut Butter Dream, Algensalat, Erdnüsse</p>
+          <p class="fav__kcal"><span class="fav__kcal-n">507</span> kcal</p>
+        </div>
+      </li>
+      <li class="fav" id="fav-maui-tuna" data-kcal="498">
+        <figure class="fav__bowl"><img src="assets/bowls/maui-tuna-560.webp" srcset="assets/bowls/maui-tuna-560.webp 560w, assets/bowls/maui-tuna-900.webp 900w" sizes="(max-aspect-ratio: 4/5) 78vw, 46vw" width="900" height="900" loading="lazy" decoding="async" alt="Maui Tuna Bowl von oben: Ahi Tuna, Avocado, Masago und Vul'Cano Sauce"></figure>
+        <div class="fav__text">
+          <p class="fav__type"><span class="fav__no">05</span> Tuna Bowl</p>
+          <h3 class="fav__name"><span>Maui</span></h3>
+          <p class="fav__ing">Ahi Tuna, Rote Zwiebeln, Frühlingszwiebel, Edamame, Vul'Cano Flavor, Avocado, Masago</p>
+          <p class="fav__kcal"><span class="fav__kcal-n">498</span> kcal</p>
+        </div>
+      </li>
+      </ol>
+      <div class="favs__foot">
+        <nav class="favs__index" aria-label="Favorites">
+          <ol><li><a href="#fav-lanai"><span>01</span> <span class="favs__nm">Lanai</span></a></li><li><a href="#fav-spicy-tropical"><span>02</span> <span class="favs__nm">Spicy Tropical</span></a></li><li><a href="#fav-green-cream-shrimp"><span>03</span> <span class="favs__nm">Green Cream Shrimp</span></a></li><li><a href="#fav-peanutlover"><span>04</span> <span class="favs__nm">Peanutlover</span></a></li><li><a href="#fav-maui-tuna"><span>05</span> <span class="favs__nm">Maui</span></a></li></ol>
+        </nav>
+        <a class="btn btn--primary favs__cta" href="https://maloa.com/produkte/">Zum Menü</a>
+      </div>
+    </div>
+  </section>
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" defer></script>
@@ -243,5 +313,6 @@ catch (e) { document.documentElement.classList.add('intro-on'); }
 <script src="js/hero.js" defer></script>
 <script src="js/scene.js" defer></script>
 <script src="js/about.js" defer></script>
+<script src="js/favs.js" defer></script>
 </body>
 </html>

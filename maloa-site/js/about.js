@@ -38,7 +38,14 @@
       var hh = document.querySelector('.site-header__row').offsetHeight;
       return 'top+=' + Math.round(band * 0.7) + ' ' + hh + 'px';
     },
-    end: 'bottom top',
+    // ...and back to the dark version once the next block's (Favorites) light band has mostly passed
+    endTrigger: document.getElementById('favorites') || about,
+    end: function () {
+      var next = document.getElementById('favorites');
+      if (!next) return 'bottom top';
+      var band = parseFloat(getComputedStyle(next, '::before').height) || 0;
+      return 'top+=' + Math.round(band * 0.7) + ' ' + document.querySelector('.site-header__row').offsetHeight + 'px';
+    },
     toggleClass: { targets: '.site-header', className: 'is-light' }
   });
 
