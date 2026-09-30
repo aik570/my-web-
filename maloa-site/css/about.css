@@ -8,21 +8,22 @@
   padding:calc(340px + 24px) var(--gutter) clamp(72px,10vw,140px);
   display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);
   grid-template-areas:
-    "head head head head head head head head head head . ."
+    "head head head head head head head head head head head ."
     "body body body photo photo photo photo photo photo photo photo photo"}
-.js .about.is-scripted{background:var(--night);padding-top:clamp(140px,20vh,220px)}
+.js .about.is-scripted{background:var(--night);padding-top:clamp(120px,17vh,190px);padding-bottom:clamp(64px,8vw,112px)}
 /* a soft night band at the top: the seam with the dark scene is a gradient, never an edge */
 .js .about.is-scripted::before{content:"";position:absolute;left:0;right:0;top:0;height:clamp(120px,18vh,200px);background:linear-gradient(180deg,var(--night),rgb(var(--night-rgb) / 0));pointer-events:none}
 
-.about__head{grid-area:head;margin-bottom:clamp(28px,4vw,56px)}
+.about__head{grid-area:head;margin-bottom:clamp(20px,2.4vw,36px)}
 .about__label{margin:0 0 18px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--deep-teal)}
 .about__title{margin:0;font-family:var(--font-display);font-weight:800;text-transform:uppercase;font-size:clamp(52px,7.4vw,136px);line-height:.88;letter-spacing:-.035em}
 .about__line{display:block;overflow:hidden;padding-bottom:.04em}
 .about__line > span{display:block}
 .about__line:nth-child(2){padding-left:clamp(0px,12vw,220px)}   /* offset second line: editorial rhythm */
 
-/* copy sits in the narrow column, aligned with the lower edge of the photo */
-.about__body{grid-area:body;align-self:end;padding-bottom:clamp(8px,2vw,24px)}
+/* copy hangs from the top edge of the photo under a hairline; the air below it is the column's,
+   answered by the photo running off the right edge */
+.about__body{grid-area:body;align-self:start;margin-top:clamp(24px,3vw,48px);padding-top:20px;border-top:1px solid rgb(0 68 67 / .25)}
 .about__text{margin:0 0 28px;font-size:17px;line-height:1.6;max-width:34ch}
 .about__cta{display:inline-flex;align-items:center;gap:12px;min-height:44px;font-size:12.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;color:var(--deep-teal);
   background:linear-gradient(currentColor,currentColor) 0 100%/100% 1px no-repeat;transition:background-size .5s var(--ease-out)}
@@ -31,7 +32,7 @@
 .about__cta:hover svg{transform:translateX(4px)}
 
 /* the photo keeps its own proportions, so nothing in it is cut away at rest */
-.about__photo{grid-area:photo;margin:0;position:relative;overflow:hidden;border-radius:24px;aspect-ratio:1124/800;max-width:1124px;background:var(--light-gray)}
+.about__photo{grid-area:photo;margin:0 calc(-1 * var(--gutter)) 0 0;position:relative;overflow:hidden;border-radius:28px 0 0 28px;aspect-ratio:1124/800;background:var(--light-gray)}
 .about__photo img{width:100%;height:100%;object-fit:cover;display:block}
 
 /* Phones and upright tablets: headline, text, then the photo edge to edge, link last */
@@ -42,8 +43,8 @@
   .about__label{margin-bottom:12px}
   .about__title{font-size:min(11.2vw,64px)}
   .about__line:nth-child(2){padding-left:0}
-  .about__body{display:contents}
+  .about__body{display:contents;margin:0;padding:0;border:0}
   .about__text{grid-area:body;margin:0 0 22px;font-size:16px;line-height:1.55;max-width:none}
-  .about__photo{margin:0 calc(-1 * var(--gutter));border-radius:0;max-width:none}
+  .about__photo{margin:0 calc(-1 * var(--gutter));border-radius:0}
   .about__cta{grid-area:cta;justify-self:start;margin-top:20px}
 }

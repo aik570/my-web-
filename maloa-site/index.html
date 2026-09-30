@@ -187,9 +187,9 @@ catch (e) { document.documentElement.classList.add('intro-on'); }
     <!-- Dims the film as the camera pulls back -->
     <div class="scene__dim" aria-hidden="true"></div>
 
-    <!-- Block 2 · Welcome. Opens between the leaves; its bowl is the Hero's Maui Tuna bowl.
-         Copy from the live site's Welcome block (German wording as in the approved demo). -->
-    <section class="welcome" id="welcome" aria-labelledby="welcome-title">
+    <!-- Block 2 · the bowl the leaves open onto (the Hero's Maui Tuna bowl). Visual only:
+         the Welcome headline and text appear once, in the About block that follows. -->
+    <div class="welcome" id="welcome">
       <div class="welcome__inner">
         <figure class="welcome__visual">
           <img class="welcome__bowl" src="assets/bowls/maui-tuna-900.webp"
@@ -197,14 +197,8 @@ catch (e) { document.documentElement.classList.add('intro-on'); }
                sizes="(max-aspect-ratio: 4/5) 72vw, 42vw" width="900" height="900" decoding="async"
                alt="Maui Tuna Bowl von Ma'loa mit Ahi Tuna, Avocado, Masago, Edamame und Vul'Cano Flavor">
         </figure>
-        <div class="welcome__copy">
-          <p class="welcome__label">Welcome to Ma'loa</p>
-          <h2 class="welcome__title" id="welcome-title"><span>Ein Stück Hawaii</span> <span>in Eurer Stadt.</span></h2>
-          <p class="welcome__text">Poké Bowl ist das traditionelle hawaiianische Nationalgericht. Sandstrände, Blumenketten, Hula und Wellen: Wir servieren ein Stück davon in Eurer Stadt.</p>
-          <a class="btn btn--primary welcome__cta" href="https://maloa.com/what-is-poke/">About Poké</a>
-        </div>
       </div>
-    </section>
+    </div>
 
     <!-- Foreground leaves, three depths (data-depth scales how far they travel).
          Keyed out of the project's Higgsfield leaf frames; the blur and darkness of each depth is baked in.

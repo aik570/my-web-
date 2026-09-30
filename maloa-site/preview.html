@@ -259,36 +259,22 @@ html.intro-on .site-nav{visibility:hidden}
 .scene{position:relative}
 .leaves,.scene__dim{display:none}
 
-/* ---- Welcome (block 2) ---- */
-.welcome{position:relative;min-height:100svh;display:grid;align-items:center;overflow:hidden;background:var(--night);color:var(--on-teal)}
-/* the same night ground as the film, with the brand teal glowing where the bowl sits */
-.welcome::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 55% 60% at 68% 52%,rgb(0 68 67 / .75),rgb(0 68 67 / 0) 70%);pointer-events:none}
-.welcome__inner{position:relative;width:100%;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);grid-template-areas:"copy visual";align-items:center;column-gap:clamp(24px,5vw,96px);
-  padding:calc(var(--hh) + 24px) var(--gutter) 56px}
-.welcome__visual{grid-area:visual;position:relative;margin:0;justify-self:center;width:min(42vw,640px)}
+/* ---- Block 2: the bowl the leaves open onto (visual only) ---- */
+.welcome{position:relative;min-height:100svh;display:grid;place-items:center;overflow:hidden;background:var(--night)}
+/* the same night ground as the film, with the brand teal glowing behind the bowl */
+.welcome::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 50% 58% at 50% 52%,rgb(0 68 67 / .75),rgb(0 68 67 / 0) 70%);pointer-events:none}
+.welcome__inner{position:relative;display:grid;place-items:center;padding:calc(var(--hh) + 16px) var(--gutter) 32px}
+.welcome__visual{position:relative;margin:0;width:min(44vw,68svh,660px)}
 /* contact shadow under the bowl: a soft ellipse, cheaper than a filter on a moving image */
 .welcome__visual::after{content:"";position:absolute;left:12%;right:12%;bottom:-4%;height:14%;z-index:-1;border-radius:50%;background:radial-gradient(closest-side,rgb(0 0 0 / .6),rgb(0 0 0 / 0));filter:blur(6px)}
 .welcome__bowl{width:100%;height:auto}
-.welcome__copy{grid-area:copy;max-width:560px}
-.welcome__label{margin:0 0 20px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--light-gray)}
-.welcome__title{margin:0;font-family:var(--font-display);font-weight:800;text-transform:uppercase;font-size:clamp(40px,5vw,96px);line-height:.9;letter-spacing:-.03em}
-.welcome__title span{display:block}
-.welcome__text{margin:24px 0 34px;max-width:42ch;font-size:17px;line-height:1.6;color:var(--light-gray)}
-
-@media (max-aspect-ratio:4/5){
-  /* the whole block has to fit one phone screen inside the pinned scene, 375×667 included */
-  .welcome__inner{grid-template-columns:minmax(0,1fr);grid-template-areas:"visual" "copy";row-gap:20px;padding:calc(var(--hh) + 4px) var(--gutter) 16px}
-  .welcome__visual{width:min(64vw,34svh,440px)}
-  .welcome__label{margin-bottom:12px}
-  .welcome__title{font-size:min(8.2vw,64px);line-height:.95}
-  .welcome__text{margin:14px 0 22px;font-size:15px;line-height:1.5}
-}
+@media (max-aspect-ratio:4/5){ .welcome__visual{width:min(80vw,52svh,460px)} }
 
 /* ---- Cinematic scene ---- */
 .scene--cinematic{height:100svh;overflow:hidden}
 .scene--cinematic .hero{z-index:1}
 .scene--cinematic .scene__dim{display:block;position:absolute;inset:0;z-index:1;background:var(--night);opacity:0;pointer-events:none}
-.scene--cinematic .welcome{position:absolute;inset:0;z-index:2;min-height:0;clip-path:circle(0% at 66% 52%)}
+.scene--cinematic .welcome{position:absolute;inset:0;z-index:2;min-height:0;clip-path:circle(0% at 50% 50%)}
 .scene--cinematic .leaves{display:block;position:absolute;inset:0;z-index:3;overflow:hidden;pointer-events:none}
 
 .leaf{position:absolute;height:auto;max-width:none;will-change:transform;-webkit-user-select:none;user-select:none}
@@ -304,7 +290,6 @@ html.intro-on .site-nav{visibility:hidden}
 
 /* Phones and upright tablets: fewer, smaller leaves, kept to the edges so the copy stays clear */
 @media (max-aspect-ratio:4/5){
-  .scene--cinematic .welcome{clip-path:circle(0% at 50% 30%)}
   .leaf--xl{display:none}
   .leaf--f1{width:30vw;left:52%;top:-8%}
   .leaf--m1{width:52vw;left:-18%;top:-10%}
@@ -323,21 +308,22 @@ html.intro-on .site-nav{visibility:hidden}
   padding:calc(340px + 24px) var(--gutter) clamp(72px,10vw,140px);
   display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);
   grid-template-areas:
-    "head head head head head head head head head head . ."
+    "head head head head head head head head head head head ."
     "body body body photo photo photo photo photo photo photo photo photo"}
-.js .about.is-scripted{background:var(--night);padding-top:clamp(140px,20vh,220px)}
+.js .about.is-scripted{background:var(--night);padding-top:clamp(120px,17vh,190px);padding-bottom:clamp(64px,8vw,112px)}
 /* a soft night band at the top: the seam with the dark scene is a gradient, never an edge */
 .js .about.is-scripted::before{content:"";position:absolute;left:0;right:0;top:0;height:clamp(120px,18vh,200px);background:linear-gradient(180deg,var(--night),rgb(var(--night-rgb) / 0));pointer-events:none}
 
-.about__head{grid-area:head;margin-bottom:clamp(28px,4vw,56px)}
+.about__head{grid-area:head;margin-bottom:clamp(20px,2.4vw,36px)}
 .about__label{margin:0 0 18px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--deep-teal)}
 .about__title{margin:0;font-family:var(--font-display);font-weight:800;text-transform:uppercase;font-size:clamp(52px,7.4vw,136px);line-height:.88;letter-spacing:-.035em}
 .about__line{display:block;overflow:hidden;padding-bottom:.04em}
 .about__line > span{display:block}
 .about__line:nth-child(2){padding-left:clamp(0px,12vw,220px)}   /* offset second line: editorial rhythm */
 
-/* copy sits in the narrow column, aligned with the lower edge of the photo */
-.about__body{grid-area:body;align-self:end;padding-bottom:clamp(8px,2vw,24px)}
+/* copy hangs from the top edge of the photo under a hairline; the air below it is the column's,
+   answered by the photo running off the right edge */
+.about__body{grid-area:body;align-self:start;margin-top:clamp(24px,3vw,48px);padding-top:20px;border-top:1px solid rgb(0 68 67 / .25)}
 .about__text{margin:0 0 28px;font-size:17px;line-height:1.6;max-width:34ch}
 .about__cta{display:inline-flex;align-items:center;gap:12px;min-height:44px;font-size:12.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;color:var(--deep-teal);
   background:linear-gradient(currentColor,currentColor) 0 100%/100% 1px no-repeat;transition:background-size .5s var(--ease-out)}
@@ -346,7 +332,7 @@ html.intro-on .site-nav{visibility:hidden}
 .about__cta:hover svg{transform:translateX(4px)}
 
 /* the photo keeps its own proportions, so nothing in it is cut away at rest */
-.about__photo{grid-area:photo;margin:0;position:relative;overflow:hidden;border-radius:24px;aspect-ratio:1124/800;max-width:1124px;background:var(--light-gray)}
+.about__photo{grid-area:photo;margin:0 calc(-1 * var(--gutter)) 0 0;position:relative;overflow:hidden;border-radius:28px 0 0 28px;aspect-ratio:1124/800;background:var(--light-gray)}
 .about__photo img{width:100%;height:100%;object-fit:cover;display:block}
 
 /* Phones and upright tablets: headline, text, then the photo edge to edge, link last */
@@ -357,9 +343,9 @@ html.intro-on .site-nav{visibility:hidden}
   .about__label{margin-bottom:12px}
   .about__title{font-size:min(11.2vw,64px)}
   .about__line:nth-child(2){padding-left:0}
-  .about__body{display:contents}
+  .about__body{display:contents;margin:0;padding:0;border:0}
   .about__text{grid-area:body;margin:0 0 22px;font-size:16px;line-height:1.55;max-width:none}
-  .about__photo{margin:0 calc(-1 * var(--gutter));border-radius:0;max-width:none}
+  .about__photo{margin:0 calc(-1 * var(--gutter));border-radius:0}
   .about__cta{grid-area:cta;justify-self:start;margin-top:20px}
 }
 </style>
@@ -532,9 +518,9 @@ document.documentElement.classList.add('intro-on');
     <!-- Dims the film as the camera pulls back -->
     <div class="scene__dim" aria-hidden="true"></div>
 
-    <!-- Block 2 · Welcome. Opens between the leaves; its bowl is the Hero's Maui Tuna bowl.
-         Copy from the live site's Welcome block (German wording as in the approved demo). -->
-    <section class="welcome" id="welcome" aria-labelledby="welcome-title">
+    <!-- Block 2 · the bowl the leaves open onto (the Hero's Maui Tuna bowl). Visual only:
+         the Welcome headline and text appear once, in the About block that follows. -->
+    <div class="welcome" id="welcome">
       <div class="welcome__inner">
         <figure class="welcome__visual">
           <img class="welcome__bowl" src="assets/bowls/maui-tuna-900.webp"
@@ -542,14 +528,8 @@ document.documentElement.classList.add('intro-on');
                sizes="(max-aspect-ratio: 4/5) 72vw, 42vw" width="900" height="900" decoding="async"
                alt="Maui Tuna Bowl von Ma'loa mit Ahi Tuna, Avocado, Masago, Edamame und Vul'Cano Flavor">
         </figure>
-        <div class="welcome__copy">
-          <p class="welcome__label">Welcome to Ma'loa</p>
-          <h2 class="welcome__title" id="welcome-title"><span>Ein Stück Hawaii</span> <span>in Eurer Stadt.</span></h2>
-          <p class="welcome__text">Poké Bowl ist das traditionelle hawaiianische Nationalgericht. Sandstrände, Blumenketten, Hula und Wellen: Wir servieren ein Stück davon in Eurer Stadt.</p>
-          <a class="btn btn--primary welcome__cta" href="https://maloa.com/what-is-poke/">About Poké</a>
-        </div>
       </div>
-    </section>
+    </div>
 
     <!-- Foreground leaves, three depths (data-depth scales how far they travel).
          Keyed out of the project's Higgsfield leaf frames; the blur and darkness of each depth is baked in.
@@ -821,7 +801,7 @@ addEventListener("DOMContentLoaded",function(){
    0.34–0.56  the leaves close in a little, the nearest grow as if coming towards the camera
    0.52–0.96  the leaves part like a curtain and leave the frame; the Welcome opens between them
               as a widening circle, settling from a slight zoom; its bowl turns into place
-   0.78–1.00  the Welcome copy rises in
+              (no copy here: the Welcome headline appears once, in the About block)
    Phones: three leaves, shorter travel, no 3D turn, shorter pin.
    Reduced motion or no GSAP: nothing here runs; the Welcome block simply follows the Hero. */
 (function () {
@@ -837,7 +817,6 @@ addEventListener("DOMContentLoaded",function(){
   var welcome = scene.querySelector('.welcome');
   var inner = welcome.querySelector('.welcome__inner');
   var visual = welcome.querySelector('.welcome__visual');
-  var lines = welcome.querySelectorAll('.welcome__label, .welcome__title span, .welcome__text, .welcome__cta');
   var leaves = [].slice.call(scene.querySelectorAll('.leaf'));
 
   scene.classList.add('scene--cinematic');
@@ -867,7 +846,7 @@ addEventListener("DOMContentLoaded",function(){
     var vw = function () { return innerWidth / 100; };
     var vh = function () { return innerHeight / 100; };
     // the Welcome opens as a circle centred on its bowl
-    var at = phone ? '50% 30%' : '66% 52%';
+    var at = '50% 50%';
     var active = leaves.filter(function (l) { return getComputedStyle(l).display !== 'none'; });
 
     var tl = gsap.timeline({
@@ -901,8 +880,7 @@ addEventListener("DOMContentLoaded",function(){
       .to(dim, { opacity: 0.55, ease: 'sine.inOut', duration: 0.5 }, 0.08)
       .fromTo(welcome, { clipPath: 'circle(0% at ' + at + ')' }, { clipPath: 'circle(100% at ' + at + ')', ease: 'power2.inOut', duration: 0.44 }, 0.52)
       .fromTo(inner, { scale: 1.1 }, { scale: 1, ease: 'power2.out', duration: 0.48 }, 0.52)
-      .fromTo(visual, { rotation: -12, y: function () { return 6 * vh(); } }, { rotation: 0, y: 0, ease: 'power2.out', duration: 0.46 }, 0.54)
-      .fromTo(lines, { autoAlpha: 0, y: 28 }, { autoAlpha: 1, y: 0, stagger: 0.03, ease: 'power2.out', duration: 0.18 }, 0.78);
+      .fromTo(visual, { rotation: -12, y: function () { return 6 * vh(); } }, { rotation: 0, y: 0, ease: 'power2.out', duration: 0.46 }, 0.54);
 
     return function () { syncVideo(0); };
   });
@@ -918,8 +896,9 @@ addEventListener("DOMContentLoaded",function(){
    - Ground: night → light while the block rises into view (scrubbed), so the dark scene hands over softly.
    - Copy: label fades up, the two headline lines rise out of their own masks one after the other,
      text and link follow; played once, not scrubbed, so reading never waits for the scroll.
-   - Photo, the one strong move: it opens from a soft pill shape to its full frame while the picture
-     inside settles from a slight zoom, scrubbed, like walking into the photograph.
+   - Photo, the one strong move: it opens from an off-centre pill to its full frame while the picture
+     inside settles from a closer crop, scrubbed, like walking into the photograph; afterwards it keeps
+     a slow push-in and drift inside the mask.
    - Afterwards a gentle parallax: the picture drifts inside its frame, the copy drifts the other way
      at a different speed (wide screens only).
    Reduced motion or no GSAP: nothing here runs; the CSS gradient and the static layout remain. */
@@ -954,15 +933,24 @@ addEventListener("DOMContentLoaded",function(){
   var mm = gsap.matchMedia();
   mm.add({ phone: '(max-aspect-ratio: 4/5), (max-width: 699px)', wide: '(min-aspect-ratio: 4/5) and (min-width: 700px)' }, function (ctx) {
     var phone = ctx.conditions.phone;
-    gsap.timeline({ scrollTrigger: { trigger: photo, start: phone ? 'top 92%' : 'top 88%', end: phone ? 'top 30%' : 'center 55%', scrub: 0.8 } })
-      .fromTo(photo, { clipPath: phone ? 'inset(8% 10% 8% 10% round 120px)' : 'inset(14% 20% 14% 20% round 400px)' },
-                     { clipPath: 'inset(0% 0% 0% 0% round ' + (phone ? '0px' : '24px') + ')', ease: 'power2.inOut' }, 0)
-      .fromTo(img, { scale: phone ? 1.12 : 1.22 }, { scale: phone ? 1.02 : 1.06, ease: 'power2.out' }, 0);
+    // Reveal: an off-centre pill (so it reads organic, not geometric) opens to the full frame while the
+    // picture settles from a closer crop and drifts back to centre. Scale stays at or under 1.3 → 1.06
+    // so faces and bowls near the edges are only ever trimmed by a few percent.
+    gsap.timeline({ scrollTrigger: { trigger: photo, start: phone ? 'top 95%' : 'top 92%', end: phone ? 'top 25%' : 'center 50%', scrub: 0.8 } })
+      .fromTo(photo,
+        { clipPath: phone ? 'inset(12% 16% 14% 12% round 160px 160px 160px 160px)' : 'inset(26% 30% 18% 34% round 999px 999px 999px 999px)' },
+        { clipPath: phone ? 'inset(0% 0% 0% 0% round 0px 0px 0px 0px)' : 'inset(0% 0% 0% 0% round 28px 0px 0px 28px)', ease: 'power3.inOut' }, 0)
+      .fromTo(img, { scale: phone ? 1.2 : 1.3, xPercent: phone ? 0 : 4 }, { scale: phone ? 1.03 : 1.06, xPercent: 0, ease: 'power2.out' }, 0);
+
+    // After the reveal the picture keeps living inside its mask: a slow push-in and drift,
+    // the frame itself moves a little, the copy moves the other way at a different speed.
+    gsap.timeline({ scrollTrigger: { trigger: photo, start: phone ? 'top 25%' : 'center 50%', end: 'bottom top', scrub: true } })
+      .fromTo(img, { yPercent: -3 }, { yPercent: 3, scale: phone ? 1.07 : 1.12, ease: 'none' }, 0);
 
     if (!phone) {
-      gsap.fromTo(img, { yPercent: -3 }, { yPercent: 3, ease: 'none',
-        scrollTrigger: { trigger: photo, start: 'center 55%', end: 'bottom top', scrub: true } });
-      gsap.fromTo(body, { y: 40 }, { y: -40, ease: 'none',
+      gsap.fromTo(photo, { y: 50 }, { y: -50, ease: 'none',
+        scrollTrigger: { trigger: about, start: 'top 60%', end: 'bottom top', scrub: true } });
+      gsap.fromTo(body, { y: 70 }, { y: -30, ease: 'none',
         scrollTrigger: { trigger: about, start: 'top 20%', end: 'bottom top', scrub: true } });
     }
   });

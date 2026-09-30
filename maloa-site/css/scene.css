@@ -5,36 +5,22 @@
 .scene{position:relative}
 .leaves,.scene__dim{display:none}
 
-/* ---- Welcome (block 2) ---- */
-.welcome{position:relative;min-height:100svh;display:grid;align-items:center;overflow:hidden;background:var(--night);color:var(--on-teal)}
-/* the same night ground as the film, with the brand teal glowing where the bowl sits */
-.welcome::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 55% 60% at 68% 52%,rgb(0 68 67 / .75),rgb(0 68 67 / 0) 70%);pointer-events:none}
-.welcome__inner{position:relative;width:100%;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);grid-template-areas:"copy visual";align-items:center;column-gap:clamp(24px,5vw,96px);
-  padding:calc(var(--hh) + 24px) var(--gutter) 56px}
-.welcome__visual{grid-area:visual;position:relative;margin:0;justify-self:center;width:min(42vw,640px)}
+/* ---- Block 2: the bowl the leaves open onto (visual only) ---- */
+.welcome{position:relative;min-height:100svh;display:grid;place-items:center;overflow:hidden;background:var(--night)}
+/* the same night ground as the film, with the brand teal glowing behind the bowl */
+.welcome::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 50% 58% at 50% 52%,rgb(0 68 67 / .75),rgb(0 68 67 / 0) 70%);pointer-events:none}
+.welcome__inner{position:relative;display:grid;place-items:center;padding:calc(var(--hh) + 16px) var(--gutter) 32px}
+.welcome__visual{position:relative;margin:0;width:min(44vw,68svh,660px)}
 /* contact shadow under the bowl: a soft ellipse, cheaper than a filter on a moving image */
 .welcome__visual::after{content:"";position:absolute;left:12%;right:12%;bottom:-4%;height:14%;z-index:-1;border-radius:50%;background:radial-gradient(closest-side,rgb(0 0 0 / .6),rgb(0 0 0 / 0));filter:blur(6px)}
 .welcome__bowl{width:100%;height:auto}
-.welcome__copy{grid-area:copy;max-width:560px}
-.welcome__label{margin:0 0 20px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--light-gray)}
-.welcome__title{margin:0;font-family:var(--font-display);font-weight:800;text-transform:uppercase;font-size:clamp(40px,5vw,96px);line-height:.9;letter-spacing:-.03em}
-.welcome__title span{display:block}
-.welcome__text{margin:24px 0 34px;max-width:42ch;font-size:17px;line-height:1.6;color:var(--light-gray)}
-
-@media (max-aspect-ratio:4/5){
-  /* the whole block has to fit one phone screen inside the pinned scene, 375×667 included */
-  .welcome__inner{grid-template-columns:minmax(0,1fr);grid-template-areas:"visual" "copy";row-gap:20px;padding:calc(var(--hh) + 4px) var(--gutter) 16px}
-  .welcome__visual{width:min(64vw,34svh,440px)}
-  .welcome__label{margin-bottom:12px}
-  .welcome__title{font-size:min(8.2vw,64px);line-height:.95}
-  .welcome__text{margin:14px 0 22px;font-size:15px;line-height:1.5}
-}
+@media (max-aspect-ratio:4/5){ .welcome__visual{width:min(80vw,52svh,460px)} }
 
 /* ---- Cinematic scene ---- */
 .scene--cinematic{height:100svh;overflow:hidden}
 .scene--cinematic .hero{z-index:1}
 .scene--cinematic .scene__dim{display:block;position:absolute;inset:0;z-index:1;background:var(--night);opacity:0;pointer-events:none}
-.scene--cinematic .welcome{position:absolute;inset:0;z-index:2;min-height:0;clip-path:circle(0% at 66% 52%)}
+.scene--cinematic .welcome{position:absolute;inset:0;z-index:2;min-height:0;clip-path:circle(0% at 50% 50%)}
 .scene--cinematic .leaves{display:block;position:absolute;inset:0;z-index:3;overflow:hidden;pointer-events:none}
 
 .leaf{position:absolute;height:auto;max-width:none;will-change:transform;-webkit-user-select:none;user-select:none}
@@ -50,7 +36,6 @@
 
 /* Phones and upright tablets: fewer, smaller leaves, kept to the edges so the copy stays clear */
 @media (max-aspect-ratio:4/5){
-  .scene--cinematic .welcome{clip-path:circle(0% at 50% 30%)}
   .leaf--xl{display:none}
   .leaf--f1{width:30vw;left:52%;top:-8%}
   .leaf--m1{width:52vw;left:-18%;top:-10%}

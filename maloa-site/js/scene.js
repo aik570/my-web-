@@ -5,7 +5,7 @@
    0.34–0.56  the leaves close in a little, the nearest grow as if coming towards the camera
    0.52–0.96  the leaves part like a curtain and leave the frame; the Welcome opens between them
               as a widening circle, settling from a slight zoom; its bowl turns into place
-   0.78–1.00  the Welcome copy rises in
+              (no copy here: the Welcome headline appears once, in the About block)
    Phones: three leaves, shorter travel, no 3D turn, shorter pin.
    Reduced motion or no GSAP: nothing here runs; the Welcome block simply follows the Hero. */
 (function () {
@@ -21,7 +21,6 @@
   var welcome = scene.querySelector('.welcome');
   var inner = welcome.querySelector('.welcome__inner');
   var visual = welcome.querySelector('.welcome__visual');
-  var lines = welcome.querySelectorAll('.welcome__label, .welcome__title span, .welcome__text, .welcome__cta');
   var leaves = [].slice.call(scene.querySelectorAll('.leaf'));
 
   scene.classList.add('scene--cinematic');
@@ -51,7 +50,7 @@
     var vw = function () { return innerWidth / 100; };
     var vh = function () { return innerHeight / 100; };
     // the Welcome opens as a circle centred on its bowl
-    var at = phone ? '50% 30%' : '66% 52%';
+    var at = '50% 50%';
     var active = leaves.filter(function (l) { return getComputedStyle(l).display !== 'none'; });
 
     var tl = gsap.timeline({
@@ -85,8 +84,7 @@
       .to(dim, { opacity: 0.55, ease: 'sine.inOut', duration: 0.5 }, 0.08)
       .fromTo(welcome, { clipPath: 'circle(0% at ' + at + ')' }, { clipPath: 'circle(100% at ' + at + ')', ease: 'power2.inOut', duration: 0.44 }, 0.52)
       .fromTo(inner, { scale: 1.1 }, { scale: 1, ease: 'power2.out', duration: 0.48 }, 0.52)
-      .fromTo(visual, { rotation: -12, y: function () { return 6 * vh(); } }, { rotation: 0, y: 0, ease: 'power2.out', duration: 0.46 }, 0.54)
-      .fromTo(lines, { autoAlpha: 0, y: 28 }, { autoAlpha: 1, y: 0, stagger: 0.03, ease: 'power2.out', duration: 0.18 }, 0.78);
+      .fromTo(visual, { rotation: -12, y: function () { return 6 * vh(); } }, { rotation: 0, y: 0, ease: 'power2.out', duration: 0.46 }, 0.54);
 
     return function () { syncVideo(0); };
   });
