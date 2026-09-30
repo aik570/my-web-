@@ -17,7 +17,8 @@
 .about__head{grid-area:head;margin-bottom:clamp(20px,2.4vw,36px)}
 .about__label{margin:0 0 18px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--deep-teal)}
 .about__title{margin:0;font-family:var(--font-display);font-weight:800;text-transform:uppercase;font-size:clamp(52px,7.4vw,136px);line-height:.88;letter-spacing:-.035em}
-.about__line{display:block;overflow:hidden;padding-bottom:.04em}
+/* the mask gets headroom (.14em, taken back by the negative margin) so umlauts are never cut at rest */
+.about__line{display:block;overflow:hidden;padding:.14em 0 .04em;margin-top:-.14em}
 .about__line > span{display:block}
 .about__line:nth-child(2){padding-left:clamp(0px,12vw,220px)}   /* offset second line: editorial rhythm */
 

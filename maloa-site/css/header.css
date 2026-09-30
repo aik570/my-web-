@@ -39,7 +39,7 @@
 /* Over light sections (set by the section's script): teal on light, same shapes */
 .site-header{transition:color .4s var(--ease-out)}
 .site-header.is-light{color:var(--deep-teal)}
-.site-header.is-light .site-nav__link{border-color:rgb(0 68 67 / .22);background:rgb(244 247 245 / .6)}
+.site-header.is-light .site-nav__link{border-color:rgb(0 68 67 / .22);background:rgb(244 247 245 / .82)}
 .site-header.is-light .site-nav__link:hover{border-color:rgb(0 68 67 / .6)}
 .site-header.is-light .site-header__logo svg g{fill:var(--bg-light) !important}
 .site-header.is-light .site-header__logo svg circle{fill:var(--deep-teal)}
