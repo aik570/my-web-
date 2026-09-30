@@ -1,393 +1,398 @@
-# Ma'loa — редизайн главной. Файл для передачи в новый чат
+# MA'LOA — редизайн главной. HANDOFF (единый источник правды)
 
-Состояние на 30.09.2026, вечер. **Дедлайн: 01.10.2026, 10:00** — показываем шефу **Intro + Hero + Franchise**.
-В конце файла лежит исходный HTML главной maloa.com (`original.html`): редизайн делаем поверх него.
+Обновлено: 01.10.2026, ~01:30. Состояние проверено по репозиторию (git, файлы, код), а не по памяти.
+Язык общения с заказчиком и командой — русский. Сайт — немецкий (`lang="de"`).
+
+---
+
+## 0. CURRENT STATUS (коротко)
+
+- **Ветка:** `claude/new-session-jb2kjo` (репозиторий `aik570/my-web-`). На ней открыт PR https://github.com/aik570/my-web-/pull/2 — описание PR не трогать; коммиты в ветку уходят в этот PR.
+- **Реализовано:** Intro (временный, см. §7.0) → HERO → переход Hero → листья → раскрытие боула → блок WELCOME / ABOUT POKÉ.
+- **Последний коммит с дизайном:** `813d40d` «Welcome polish…». В нём **уже применены** три правки Welcome, которые Коля запланировал перед Favorites (см. §10). Они **ждут визуального просмотра** — повторно не делать.
+- **Следующее действие новой сессии:** не писать код. Показать Коле текущий Welcome после трёх правок (desktop + mobile) и дождаться подтверждения. Только потом — Favorites (§17).
 
 ---
 
 ## 1. Проект
 
-- **Клиент:** Ma'loa, сеть поке-боулов, офис в Берлине, есть франшиза. Сайт: https://maloa.com (WordPress).
-- **Контакт у клиента:** Даша (WhatsApp, по-русски).
-- **Команда:** я + Коля (пишет ТЗ, проверяет).
-- **Цель:** главная уровня Awwwards 2026 — премиально, «Гавайи», 3D-ощущение, анимации кнопок.
-- **Репозиторий:** `aik570/my-web-`, ветка `claude/new-session-jb2kjo`, PR https://github.com/aik570/my-web-/pull/2
-  - `maloa-site/` — текущая работа (Intro готов), `maloa-site/original.html` — исходник главной.
-  - `maloa/` — старое демо v2 на фото, бриф `maloa/brief.md`, оригиналы фото `maloa/src/`.
+- **Клиент:** MA'LOA, сеть Hawaiian poké bowl, офис в Берлине, есть франшиза. Сайт: https://maloa.com (WordPress).
+- **Контакт у клиента:** Даша (WhatsApp, по-русски). **Команда:** пользователь + Коля (ТЗ, проверка).
+- **Цель:** превратить устаревший сайт MA'LOA в премиальный cinematic/editorial сайт с дорогими взаимодействиями и анимациями, **сохранив** настоящий бренд, контент и айдентику MA'LOA.
+- **Направление:** уровень Awwwards, но **ничего не копировать** с чужих сайтов.
+- **Ощущение:** premium, cinematic, editorial, tropical/botanical, modern, restrained (сдержанно), product-focused, highly polished.
+- **Избегать:** шаблонного ресторанного сайта, туристических гавайских клише (гибискус, сёрф, закаты), «AI-сайта», набора случайных эффектов. Одно сильное взаимодействие лучше десяти средних.
 
-## 2. Подтверждённые решения
+## 2. Требования заказчика
 
-1. **Стек:** чистый HTML + CSS + JS + GSAP 3.15 (ScrollTrigger, DrawSVGPlugin) с jsDelivr. Без React/Next.js — потом переносим в WordPress.
-2. **Структура:** как на сайте, но без лишнего. Порядок maloa.com: шапка → Hero (вместо слайдера) → Welcome → Favorites → Poké your style → Gift card → Franchise → Newsletter/футер. Что убрать или объединить — решить в новом чате.
-3. **Бренд:**
-   - цвета: основной `#004443`, фон `#d8e2e2`, светлый `#f4f7f5`, розовый `#f3d2d5`, текст `#06302f`;
-   - шрифт: Bricolage Grotesque (заголовки) + Figtree (текст), Google Fonts; Brandon Grotesque — если клиент купит лицензию (на сайте он подключён как `brandonweb-medium` / `brandonweb-black`);
-   - волна: мягкая анимированная волна по краям блоков (на сайте — `welle.png` под заголовками);
-   - логотип: пока заглушка (круг с «M» + надпись «MA'LOA» Bricolage 800), настоящий SVG ждём от клиента.
-4. **Intro (Блок 0):** готов в `maloa-site/`, но **переделать под эскиз Коли** (раздел 4):
-   - фон «джунгли» генерируем в Higgsfield;
-   - лого подпрыгивает;
-   - появляется надпись MA'LOA;
-   - переход волной в Hero.
+- Редизайн устаревшего сайта.
+- Лучше мобильная версия; убрать лишние пустоты; нормальная адаптивность.
+- Дорогие анимации; 3D / глубина там, где уместно.
+- **Показать сайт на телефоне на встрече.**
+- Демо-локация сейчас — **Eschborn**. Открытие в **Bochum — 6 октября** (по данным Даши, WhatsApp 29.09).
+- **Страница / блок Franchise особенно важны.**
+- Меню в будущем может получить подсчёт калорий.
+- Сохранить узнаваемую айдентику MA'LOA.
+- Использовать настоящие материалы и контент MA'LOA везде, где возможно.
 
-   Правила, которые оставляем: шапка с «Bestellen» поверх и кликабельна, скролл/клавиша/свайп ускоряют ×5, кнопка «Intro überspringen», раз за сессию (sessionStorage), reduced motion — только fade.
-5. **Hero (Блок 1):**
-   - **видео на весь экран** (без рамки), генерируем новое 16:9 в Higgsfield;
-   - листья свисают в углах: **прозрачные WebP**, покачивание и появление через GSAP;
-   - сверху — полупрозрачные обведённые **магнитные** кнопки меню, на телефоне — гамбургер;
-   - заголовок **«Aloha, Eschborn.»** с 3D-появлением слов, подзаголовок, 2 кнопки («Jetzt bestellen», «Zum Menü»), индикатор скролла;
-   - текст и фото появляются плавно.
-6. **Franchise:** брать информацию с сайта (тексты и данные maloa.com — раздел Franchise в `original.html` и страница `/franchise/`). Ничего не выдумывать: цифр на главной нет, если их нет и на `/franchise/`, ставим `[—]`. «Bochum, 6.10.» — по данным клиента (Даша, WhatsApp 29.09).
-7. **Данные меню:**
-   - 15 боулов:
-     - FISH: Big Island Tuna, Maui Tuna, Lāna'i Tuna, Molokai Salmon, Kaua'i Salmon, O'ahu Salmon, Green Cream Shrimps, Moana Tempura;
-     - CHICKEN: Vul'Cano, Peanutlover, Truffle'Loa, Korean Chicken;
-     - VEGAN: Crazy Beet-Root, Sesam Me Tofu, Spicy Tropical Tofu.
-   - Favorites — 8 карточек: 6 островов + Moana + Green Cream.
-   - Poké your style — 6 шагов: Base (5) → Protein (10) → Mix-ins (9) → Homemade Flavors (9) → Toppings (8) → Premium Toppings (7).
-   - Фото клиента в `maloa/src/`: `spicy-salmon-tobiko.jpg` = **Maui Tuna**, `shrimp-wasabi.jpg` = **Green Cream Shrimp**, `lanai.jpg` = Lanai, `peanutlover.jpg` = Peanutlover, `spicy-tropical.jpg` = Spicy Tropical, `salmon-cashew.jpg` = Kauai или Molokai (не подтверждено), `beet-falafel.jpg` = вероятно Crazy Beet-Root. Логотип: `logo-white-bg.jpg`, `monogram.jpg`.
-8. **Правила:**
-   - на телефоне вместо видео постеры;
-   - «Bestellen» всегда на виду, ничего не блокирует заказ;
-   - reduced motion — только fade;
-   - анимируем только `transform` / `opacity` (+ `clip-path` как исключение);
-   - фокус с клавиатуры, кнопка паузы у зацикленного видео (WCAG);
-   - коммит после каждого шага;
-   - работа по шагам: HTML → подтверждение → CSS → GSAP → телефон.
+**Структура оригинального сайта** (исходник главной — `maloa-site/original.html`):
+1. Hero (на сайте — слайдер) 2. Welcome to Ma'loa 3. About Poké 4. Ma'loa Favorites 5. Poké your style 6. Gift card 7. Become a Franchise Partner 8. Newsletter / Social / Footer.
+Возможный плавающий анонс открытия: Aloha / Now Open / Eschborn / адрес / информация об открытии (не сделан).
 
-## 3. Приёмы из референсов (код изучен)
+## 3. CI клиента (подтверждено, менять нельзя)
 
-**Zentry** (github.com/MohammedJawwad/Zentry, React → переносим на чистый JS):
-- Появление слов в 3D. Стартовое состояние слова: `transform: translate3d(10px,51px,-60px) rotateY(60deg) rotateX(-40deg); transform-origin: 50% 50% -150px; opacity:0`. Анимация: `to {opacity:1, transform:'translate3d(0,0,0) rotateY(0) rotateX(0)', ease:'power2.inOut', stagger:.02}`.
-- Шапка: при скролле вниз `y:-100, opacity:0`, вверх — возвращается плашкой (`floating-nav`), наверху страницы — прозрачная.
-- Видео-кадр Hero при скролле обрезается: `clipPath: polygon(14% 0, 72% 0, 88% 90%, 0 95%)`, `borderRadius: 0 0 40% 10%`, scrub.
-- Подчёркивание ссылок меню: `scaleX(0 → 1)`, `transform-origin` справа → слева.
-
-**Anibel GTAVI** (github.com/anibeladjei/Anibel_GTAVI):
-- Показ через маску-логотип: `mask-image:url(logo.svg)`. Старт `mask-size: 3500%`, скролл (pin, `+=200%`, scrub 2.5) → `mask-size: 20%`.
-- Видео по скроллу: секция закреплена, `tl.to(video, {currentTime: video.duration})` после `loadedmetadata`.
-
-Не открылись (домены закрыты): dev.to (Rasa Kenangan), rocket.new, awwwards.com, fritesatelier.com, memamu.co.il.
-**Референсы заказчика fritesatelier.com и memamu.co.il — прислать скриншоты или записи экрана в новый чат.**
-
-## 4. Эскиз Коли (расшифровка записей)
-
-**Загрузка:** круглое лого на фоне джунглей → лого подпрыгивает → появляется надпись MA'LOA (фон джунгли).
-
-**Кадры эскиза:**
-1. Лого на фоне джунглей.
-2. MA'LOA.
-3. Анимированные волны (переход).
-4. Шапка: лого слева, кнопки меню сверху, листья в углах.
-5. Видео на фоне (изначально «видео с сайта», решено генерировать новое).
-
-**HERO:** «Референс ___ / MA'LOA на главном экране, сзади фон джунглей. Затем при скролле всплывает экран и листья свисают с анимацией → на заднем фоне видео улучшенного качества. Затем все блоки Hero, но с анимациями и улучшенным качеством, сами объекты лучше.»
-- Кнопки сверху обведены, магнитные, полупрозрачные.
-- Нужно передать стиль Гавайев.
-
-**Дальше:** по краям блоков мягкая волна (анимированная). Блок 2: плавное появление текста и фото. Ещё внедрить фото BOWL-___. Franchise seit (страница франшизы).
-
-## Hero (база, 30.09 вечер)
-
-- Разметка: `index.html`, секция `<section class="hero" id="hero">` (блок «Block 1 · Hero»); шапка — `<header class="site-header">` над ней.
-- Стили: `css/hero.css` (Hero), `css/header.css` (шапка). Скрипт: `js/hero.js` (пауза, автоплей, вход текста).
-- Видео: Kling, вариант 3 (job `3c6c0a7e-dfa8-43da-a614-8805e446805c`), стартовый кадр `0a940516-6374-4f11-b5f5-874dbc511393`.
-  Сжато и лежит на CDN Higgsfield: 1080p `ddc9eb47-501e-4cee-af2d-dbbc51047227.mp4` (3,5 МБ), 720p `ec8320e3-dc35-404f-82dc-3b6648f7a9a6.mp4` (1,5 МБ),
-  постеры `f0917650-8606-4f26-9dd2-63d7050473ed.webp` (1600) и `5b5a077e-c005-4a8d-a4e3-824b74938ddf.webp` (800). Для продакшена перенести к себе.
-- Боул в кадре: центр около 62% / 45%, еда занимает x 42–83%, y 17–75%. Отсюда `object-position` и зоны затемнения.
-
-## Переход Hero → листья → Welcome (30.09 ночь)
-
-- Разметка: `index.html`, обёртка `<div class="scene" id="scene">` (Hero, `.scene__dim`, секция `#welcome`, `.leaves`).
-- Стили: `css/scene.css`. Скрипт: `js/scene.js` (GSAP + ScrollTrigger, pin + scrub, `gsap.matchMedia` для телефона).
-- Листья: вырезаны из кадров Higgsfield (фон #004443 убран по цвету, размытие и затемнение глубины «запечены»), лежат на CDN Higgsfield:
-  ближние `658ce916-1759-451e-ae5b-e7e14dff0731` (монстера), `90823238-0bef-4f67-8ed1-63815cdcb3f9` (пальма), `cf9faaaa-cdf0-48e0-9913-3009e9c29aeb` (банан);
-  средние `a9721976-0d00-41a9-bb6f-04f242bfa250` (филодендрон), `3003086a-d480-4295-8092-8ec59e35f77b` (калатея), `1e985fa3-98a9-4f00-942b-62fc5bcdedaa` (монстера);
-  дальние `73343198-6048-4b4e-9fc4-b7a4d4a0e6d0` (пальма), `b1312f09-f80c-41a2-94c8-db2de06f700b` (калатея). Все .webp. Для продакшена перенести к себе.
-- Боул в Welcome: `assets/bowls/maui-tuna-900.webp` / `-560.webp` (вырез из `maloa/img/bowl-spicy-salmon-*`, фото клиента Maui Tuna).
-- CI: `css/tokens.css` — только 5 цветов клиента; шрифт Brandon Grotesque первым в стеке, Bricolage Grotesque — загружаемый запасной, Figtree убран.
-
-## Блок Welcome / About Poké (после сцены)
-
-- Разметка: `index.html`, `<section class="about" id="about">`. Стили `css/about.css`, скрипт `js/about.js`; светлая версия шапки — класс `.site-header.is-light` в `css/header.css`.
-- Фото: `https://maloa.com/wp-content/uploads/2020/01/Um_Maloa.jpg` (1124×800, фото блока Welcome с их сайта), пока ссылкой на maloa.com; также импортировано в Higgsfield (`57488613-d725-420b-803a-4595d8efde5c`). Что на фото, автоматически проверить не удалось — посмотреть глазами.
-- Текст: первый абзац немецкого Welcome с maloa.com, кнопка «About Poké» → /what-is-poke/.
-
-## 5. Открытые вопросы
-
-- Какие блоки убрать или объединить («как на сайте, но без лишнего»).
-- «Референс вилки» (на странице Hero) — что это за референс?
-- Строка «Ещё внедрить фото BOWL-…» — второе слово не разобрано.
-- Настоящий логотип в SVG/AI/EPS — запросить у Даши.
-- Лицензия Brandon Grotesque — спросить у клиента.
-- Цифры франшизы — есть ли на странице `/franchise/`; иначе запросить у Даши.
-- Скриншоты или записи экрана fritesatelier.com и memamu.co.il.
-
-## 6. Что уже есть (файлы и медиа)
-
-**`maloa-site/` (Блок 0 Intro, работает, проверен):**
-- `index.html`, `preview.html` (всё в одном файле, Intro играет всегда);
-- `css/tokens.css`, `css/base.css`, `css/intro.css`;
-- `js/core.js` (флаги, адреса медиа, регистрация плагинов), `js/intro.js` (таймлайн);
-- `assets/logo/logo-circle.svg`, `logo-wordmark.svg` (заглушки).
-
-**Медиа на CDN Higgsfield** (`https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/<id>`):
-
-| Что | Файлы (webm / mp4 / постер webp), 480 px |
+| Цвет | Роль |
 |---|---|
-| Лист 1 monstera | `30f84563-242f-4fc9-bde8-9e82df2991eb.mp4` / `fad5d329-8d93-42b3-817c-f40e3bfbb5a4.mp4` / `34566854-68de-4309-a002-0253021a23b1.webp` |
-| Лист 2 palm frond | `7be90413-4925-4586-bb08-f4323ac8d685.mp4` / `e7fa7e12-06ac-4648-9015-4a6f11f749d5.mp4` / `0c179bad-29bb-49ab-95e0-a6032d006055.webp` |
-| Лист 3 calathea | `8ebb9853-a885-4ea1-ad7e-91f6ded93ec9.mp4` / `ac8d3080-b601-4b2c-8562-5bb35df6e164.mp4` / `a6920dcb-73d8-4c0a-895d-82bca308a291.webp` |
-| Лист 4 banana | `d0b18307-8900-4540-9a3c-3d8e09cef830.mp4` / `3f27cae8-0d15-4d07-8585-6ee8a9269508.mp4` / `4ff23060-3e3a-493c-88f5-7c1e8fbd62b6.webp` |
-| Лист 5 pineapple crown | `d34a5e9c-66f9-4b98-b266-274a6efe6231.mp4` / `2632655a-db0e-4fdb-ab2d-398cf032aef1.mp4` / `6e61e95a-504f-4a3d-b871-b796f64f480e.webp` |
-| Лист 6 philodendron | `2bf96699-9ec9-4d15-ab79-798de984d4cb.mp4` / `beae11e1-894c-45a7-963c-daee4d036ef0.mp4` / `00e73827-a29a-41f9-ad58-d7878a72ebb5.webp` |
-| Поворот боула (квадрат, 960 px, для перемотки скроллом) | `0d327f70-3a4c-47b1-9cf9-aecae694508b.mp4`, постеры `6f229b86-e5a1-4e01-94d1-d55576ca850b.webp` (960) и `b4603b20-1c76-4671-a81e-6d28254c036a.webp` (600) |
+| `#004443` | основной тёмный бирюзовый; текст на светлом |
+| `#628a87` | вторичный бирюзовый |
+| `#c8d1d3` | светлый текст на тёмном |
+| `#f3d2d5` | blush / розовый акцент — только действия (кнопки) |
+| `#f4f7f5` | светлый фон; основной текст на тёмном |
 
-Первоисходники в Higgsfield (job id, для повторного использования как референс):
-- кадры листьев (gpt_image_2_5, фон `#004443`): `5647120a-…4d15`, `42943c0e-…b4f4`, `1363c66c-…5383f6c`, `3c394859-…d33ed5`, `10cde025-…ff0e`, `d8aac44d-…1359`;
-- боул Maui Tuna на бирюзовом фоне под 45°: `17c790f9-37f9-401f-9b71-a41a5c9b5b88`;
-- видео «разобранный вид»: `4bf54f7b-1bc0-49a5-8d18-86bceb2802e4`;
-- загруженные фото клиента: Maui Tuna `b0226fbb-a3b3-49b0-9e57-be6295bbfb86`, Lanai `7a3630bd-83d9-4e55-a5ab-c52e75743c10`.
+- Всё остальное **смешивается из этих цветов**, новых оттенков нет. В `css/tokens.css`:
+  - `--night: color-mix(in srgb, #004443 22%, #000)` — «ночь» видео и тёмных сцен;
+  - `--night-rgb: 0 15 15` — для полупрозрачных теней;
+  - `--pink-hover` — смесь розового со светлым.
+- **Шрифт.** Основной — **Brandon Grotesque**: стоит первым в `--font-display` / `--font-body` и включится, как только появятся лицензионные файлы. Заказчик считает, что лицензия есть, но это **не подтверждено**.
+- **Запасной** (реально загружается сейчас) — **Bricolage Grotesque** с Google Fonts, веса 400/600/700/800. Figtree удалён.
+- Другие шрифты не добавлять.
+- **Лого:** настоящие SVG, обведены из JPG клиента.
+  - `assets/logo/logo-mark.svg` — круг + «m»; буква взята из надписи, т. к. исходник знака был мелким;
+  - `assets/logo/logo-wordmark.svg` — надпись «ma'loa» по буквам + подпись;
+  - в `index.html` «m» лежит в спрайте `#maloa-m`.
 
-Потрачено около 100 кредитов Higgsfield из 810.
+## 4. Стек и правила
 
-**Для новых листьев на прозрачном фоне:** взять те же 6 кадров и убрать фон (`remove_background` в Higgsfield).
+- Чистый HTML + CSS + JS. **GSAP 3.15** (ScrollTrigger, DrawSVGPlugin) с jsDelivr. Без React/Next — позже перенос в WordPress.
+- Анимировать только `transform` / `opacity` (+ `clip-path` как исключение).
+- На каждое движение — вариант для `prefers-reduced-motion`. Фокус с клавиатуры. Кнопка паузы у зацикленного видео (WCAG 2.2.2). «Bestellen» всегда на виду.
+- Нет горизонтального скролла ни на одной ширине.
+- **Работа по шагам:** один блок → показать → подтверждение → следующий. Коммит после каждого шага.
+- **Higgsfield:** ничего не генерировать и не тратить кредиты без явного «да» Коли. Сначала назвать модель и цену. Баланс после этой сессии около 536 кредитов из плана Pro.
 
-## 7. Особенности окружения (важно для нового чата)
+## 5. Архитектура страницы
 
-- **Закрыты сетью:** maloa.com, awwwards.com, dev.to, contra.com, rocket.new, dribbble, fritesatelier.com, memamu.co.il, cdnjs и **CDN Higgsfield** (результаты генераций не скачать в контейнер). GitHub, npm и jsDelivr работают.
-- **Работа с медиа** идёт в песочнице Higgsfield (`sandbox_exec`: ffmpeg, Pillow, Playwright). Загрузка: `media_upload` → `curl PUT` с заголовком `If-None-Match: *` → `media_confirm`. Проверка страниц с реальными медиа — там же: `git clone` ветки, Playwright.
-- **Загрузка фото в Higgsfield:** через `media_import_url` с raw.githubusercontent.com (репозиторий публичный).
-- **Видео Higgsfield глазами** может посмотреть только пользователь (виджет Higgsfield). Я проверяю цифрами: шов повтора, фон, движение.
-- **CDN Higgsfield отдаёт WebM с типом MP4.** Chrome это прощает, проверено. Для продакшена файлы надо перенести к себе.
+| № | Блок | Статус |
+|---|---|---|
+| 00 | Intro (монета) | реализован, **временный**, не утверждён (§7.0) |
+| 01 | HERO | реализован, **УТВЕРЖДЁН** |
+| 02 | HERO → LEAVES → раскрытие боула | реализован, **УТВЕРЖДЁН** (концепт + анимация листьев) |
+| 03 | WELCOME / ABOUT POKÉ | реализован; направление утверждено; **3 правки сделаны, ждут просмотра** |
+| 04 | MA'LOA FAVORITES | не начат |
+| 05 | POKÉ STYLE | не начат |
+| 06 | GIFT CARD | не начат |
+| 07 | FRANCHISE | не начат |
+| 08 | SOCIAL / FOOTER | не начат |
 
-## 8. Проблемы текущего сайта (записка клиенту)
-
-- **Попапы:**
-  - в тестовом режиме (`Boxzilla testMode`): скидка и франшиза показываются при каждом визите;
-  - на английской версии они пустые («only available in German»).
-- **Тема сломана:** ошибка `lessphp @body_font`, её прячет скрипт, который переписывает `body.innerHTML`.
-- **Устаревшие плагины:**
-  - WordPress 6.4, WooCommerce 5.5.5 (2021), Slider Revolution 5.4.8 (2018), qTranslate-X (заброшен);
-  - остатки магазина;
-  - Font Awesome подключён ×3, Bootstrap ×2, около 40 запросов.
-- **SEO и текст:**
-  - нет H1;
-  - текст слайдов вшит в картинки;
-  - health claims в таблицах питательности (Verordnung (EG) 1924/2006);
-  - «© 2023», `/franchise-2/`;
-  - смешение языков на английской версии («Seid Be one…», немецкая форма рассылки, «Mehr Ma'Loa»).
-- **Прочее:** кнопка «наверх» перекрывает значок reCAPTCHA; «Vouchers» и «Coupons» в разных меню.
+Это текущее направление. Блоки 04–08 не утверждены и не реализованы.
 
 ---
 
-## Приложение: original.html (главная maloa.com, английская версия)
+## 6. DO NOT TOUCH / DO NOT BREAK
 
-```html
-<!doctype html>
-<!--
-  maloa.com home page, English version (?lang=en), as supplied by the user on 30.09.2026.
-  REFERENCE ONLY, not part of the new site.
+- **Утверждённый HERO:** разметка, видео, заголовок, подписи, кнопки, затемнение (`css/hero.css`, `js/hero.js`, секция `#hero`).
+- **Выбранное видео Kling №3** и его сжатые версии (§7.1). Не заменять, не пережимать тяжелее.
+- **Навигация Hero:** реальные пункты немецкого сайта, парящие «таблетки», без гамбургера (`css/header.css`).
+- **Существующий переход с листьями** (`css/scene.css`, `js/scene.js`, 8 листьев).
+- **CI** (`css/tokens.css`) — только 5 цветов клиента, Brandon → Bricolage.
+- **Настоящие материалы MA'LOA:** фото боулов, лого, фото Welcome `Um_Maloa.jpg`. Не заменять AI-картинками.
+- **Адаптивность** (телефонные раскладки по `max-aspect-ratio: 4/5`) и **reduced motion**.
 
-  Kept: every piece of content and structure (header menu with dropdowns, slider slides,
-  the four sections, the footer, newsletter fields, and the product data from the popups).
-  Dropped: the WordPress/plugin plumbing that carries no content: ~40 stylesheet and
-  script tags (WooCommerce, YITH, Revolution Slider runtime, Bootstrap x2, Font Awesome x3,
-  emoji loader, UsersWP helpers), the Borlabs cookie-box template, WPBakery row wrappers
-  and inline style noise. Notable findings from those are listed at the bottom.
--->
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
-<title>MA’LOA® Hawaiian Poké Bowl</title>
-<!-- Theme: "belly" (RoadThemes) + child theme, WPBakery 5.6, Slider Revolution 5.4.8.1,
-     qTranslate-X 3.4.6.8 (DE/EN/FR), WooCommerce 5.5.5, WordPress 6.4.12.
-     Brand CSS in the theme: page ground #d8e2e2, primary #004443, pink popup #f2d1d5,
-     body text #1a483e, fonts "brandonweb-medium" / "brandonweb-black" (Brandon Grotesque
-     via the Use Any Font plugin). Wave divider: /wp-content/uploads/2020/05/welle.png (477x6)
-     and the CSS class .wavedownGreen (radial-gradient scallops, #004443 → #d9e2e2). -->
-</head>
-<body class="home page-id-948 theme-belly">
+Кроме того:
+- Не пересобирать утверждённые блоки с нуля.
+- Не выдумывать информацию о клиенте: цены, ингредиенты, отзывы, цифры, факты, утверждения о здоровье.
+- Тексты брать с maloa.com (немецкая версия) или из `original.html` / `maloa/brief.md`.
+- **Не генерировать новые картинки,** если есть подходящий настоящий материал MA'LOA.
 
-<!-- ============ HEADER (desktop; a sticky copy and a mobile copy repeat it) ============ -->
-<header class="header-container">
-  <div class="logo"><a href="https://maloa.com/"><img width="79" src="https://maloa.com/wp-content/uploads/2018/11/static1.squarespace.png" alt="MA’LOA® Hawaiian Poké Bowl"></a></div>
-  <nav class="mega_main_menu" aria-label="Menu">
-    <ul>
-      <li><a href="https://maloa.com/what-is-poke/?lang=en">About Ma’loa</a>
-        <ul>
-          <li><a href="https://maloa.com/what-is-poke/?lang=en">WHAT IS POKÉ</a></li>
-          <li><a href="https://maloa.com/what-is-poke/?lang=en#ourstory">OUR STORY</a></li>
-          <li><a href="https://maloa.com/what-is-poke/?lang=en#our_promise">OUR PROMISE</a></li>
-          <li><a href="https://maloa.com/faq/?lang=en">FAQ</a></li>
-        </ul>
-      </li>
-      <li><a href="#">Menu</a> <!-- desktop: dead link "#"; mobile: /produkte -->
-        <ul>
-          <li><a href="https://maloa.com/produkte/?lang=en">PRODUCTS</a></li>
-          <li><a href="https://maloa.com/naehrwerte/?lang=en">NUTRITION</a></li>
-        </ul>
-      </li>
-      <li><a href="https://maloa.smoothr.de/map">Stores</a></li>
-      <li><a href="https://maloa.com/catering/?lang=en">Catering</a></li>
-      <li><a href="https://maloa.com/jobs/?lang=en">Join Us</a></li>
-      <li><a href="https://maloa.com/franchise/?lang=en">Franchise</a></li>
-      <li><a href="https://www.paynoweatlater.de/at/maloa/?crt=maloa">Vouchers</a></li> <!-- mobile menu calls it "Coupons" -->
-      <li class="order-now"><a href="https://maloa.smoothr.de/map">Order Now</a></li>
-      <li><a href="#"><img src="https://maloa.com/wp-content/plugins/qtranslate-x/flags/gb.png" alt="English"></a>
-        <ul>
-          <li><a href="https://maloa.com/?lang=de">Deutsch</a></li>
-          <li><a href="https://maloa.com/?lang=en">English</a></li>
-          <li><a href="https://maloa.com/?lang=fr">Français</a></li>
-        </ul>
-      </li>
-    </ul>
-  </nav>
-</header>
+---
 
-<main>
-<!-- hidden page title left in the markup: <h2>Homepage</h2> + breadcrumbs "Home / Homepage". No H1 anywhere. -->
+## 7. Что реализовано (подробно)
 
-<!-- ============ SLIDER (Revolution Slider, fade, 9 s per slide, arrows + bullets) ============
-     Text is baked into the images; no text layers. -->
-<section class="rev_slider">
-  <img src="https://maloa.com/wp-content/uploads/2026/08/2026-09-01_Opening-Eschborn_Website-Open-Now.jpg" width="1920" height="1080" alt="">
-  <img src="https://maloa.com/wp-content/uploads/2023/09/SLIDER_Korean-Chicken-Bowl.jpg" width="1920" height="1080" alt="">
-  <img src="https://maloa.com/wp-content/uploads/2025/04/MALOAWEB_Slider_Whatsapp-1.jpg" width="1920" height="1080" alt="">
-  <!-- slide 4: bg-maloa-dunkel.png with a muted YouTube background video, id IdVSUdoMoR4 -->
-  <img src="https://maloa.com/wp-content/uploads/2020/05/bg-maloa-dunkel.png" width="1296" height="660" alt="">
-  <img src="https://maloa.com/wp-content/uploads/2020/05/DSC02247_2.png" width="1240" height="827" alt="">
-</section>
+### 7.0 Intro (Block 0) — временный
+- **Файлы:** разметка `#intro` в `index.html`, `css/intro.css`, `js/intro.js`. Фон — `assets/intro/jungle-portrait.webp` (кадр джунглей Коли, обрезан).
+- **Сценарий:** светлый каменный диск со знаком «m» на джунглях → по лёгкому скроллу, свайпу, клавише, тапу или через 7 с он прыгает и переворачивается как монета → тёмный диск с бирюзовым кольцом (DrawSVG), буквы «ma'loa» выезжают из «m» → камера пролетает сквозь диск в Hero.
+- **Включение:** раз за сессию (`sessionStorage 'maloa-intro'`, класс `html.intro-on` ставится до первой отрисовки). Кнопка «Intro überspringen». При reduced motion — только появление и исчезновение.
+- **Статус:** Коля сделал **своё вступление в Higgsfield**, файл в проект не передан. Когда передаст — заменить этот Intro его видео. Сейчас Intro не утверждён.
+- При тестах Intro пропускают так: `sessionStorage.setItem('maloa-intro','1')`.
 
-<!-- ============ WELCOME ============ -->
-<section id="aboutpoke_home" class="welcome-text">
-  <div>
-    <h3>WELCOME TO MA’LOA</h3>
-    <img src="https://maloa.com/wp-content/uploads/2020/05/welle.png" width="477" height="6" alt="">
-    <p><strong>MA'LOA focuses on something that Hawaiians would say is essential. We're talking about Poké Bowl, the traditional Hawaiian national dish. With Poké, we're giving you the opportunity to enter the island vibe of Hawaii.<br>
-    What do you see? Sandy beaches, chains of flowers, coconuts and friendly, happy islanders. Hula dancing, Polynesian fire shows, waves. That's right, it's all Hawaii. We're here to bring a piece of Hawaii to your city: the best Poké Bowls you can get.</strong></p>
-    <a class="button1" href="https://maloa.com/what-is-poke/">ABOUT POKÉ</a>
-  </div>
-  <figure><img src="https://maloa.com/wp-content/uploads/2020/01/Um_Maloa-1024x729.jpg" width="1024" height="729" alt=""></figure>
-</section>
+### 7.1 HERO (УТВЕРЖДЁН)
+- **Файлы:** `index.html` → `<section class="hero" id="hero">`; `css/hero.css`; `js/hero.js`.
+- **Видео:** Kling 3.0 Pro, **3-я генерация**. Job `3c6c0a7e-dfa8-43da-a614-8805e446805c`.
+  - Стартовый и конечный кадр — картинка `0a940516-6374-4f11-b5f5-874dbc511393` (GPT Image 2.5, high). Она сделана по фото Maui Tuna клиента `b0226fbb-a3b3-49b0-9e57-be6295bbfb86`.
+  - Содержание: боул Maui Tuna, медленно льётся оранжевый соус Vul'Cano, тёмная ботаника в бирюзе, тёплый боковой свет, лёгкая дымка.
+  - 10 с, 24 кадра/с, исходник 1912×1080, без звука. Первый и последний кадр совпадают, повтор без шва.
+- **Сжатые файлы.** Все на CDN Higgsfield, база `https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/`:
+  - 1080p H.264, 3,5 МБ — `ddc9eb47-501e-4cee-af2d-dbbc51047227.mp4` (`<source media="(min-width: 900px)">`);
+  - 720p H.264, 1,5 МБ — `ec8320e3-dc35-404f-82dc-3b6648f7a9a6.mp4` (всё, что уже 900 px);
+  - постер 1600 px — `f0917650-8606-4f26-9dd2-63d7050473ed.webp` (атрибут `poster`);
+  - постер 800 px — `5b5a077e-c005-4a8d-a4e3-824b74938ddf.webp`: загружен, **в коде пока не используется**.
+- **`<video>`:** `autoplay muted loop playsinline disablepictureinpicture preload="auto"`, без контролов, `object-fit: cover`.
+- **Кадрирование:** центр боула в кадре ≈ 62% / 45%. Еда занимает x 42–83%, y 17–75%. Поэтому `object-position: 62% 45%`, на телефоне `63% 46%`.
+- **Затемнение** (`.hero__shade`) — только сверху (под меню), слева и снизу (под текст). Боул не затемнён.
+- **Текст:** подписи `HAWAIIAN POKÉ BOWL` — линия — `NEU IN ESCHBORN`; H1 `ALOHA, / ESCHBORN.` (Bricolage 800, верхний регистр, `clamp(56px,8.4vw,160px)`); кнопки `JETZT BESTELLEN` (розовая, → maloa.smoothr.de/map) и `ZUM MENÜ` (обводка, → maloa.com/produkte/); индикатор «Scroll»; кнопка паузы.
+- **`js/hero.js`:**
+  - пауза и воспроизведение, состояние отдаётся в `hero.dataset.userPaused`;
+  - если автоплей запрещён (Low Power Mode на iOS), кнопка переключается в «Play»;
+  - видео на паузе, пока Hero вне экрана (IntersectionObserver);
+  - reduced motion или Save-Data — остаётся постер;
+  - появление текста (класс `.is-in`) после события `maloa:intro-done` или сразу, если Intro нет.
+- **Телефон и вертикальный планшет** (`@media (max-aspect-ratio:4/5)`):
+  - видео не на весь экран: полный экран отрезал бы боул по бокам;
+  - видео сверху высотой `min(62svh,124vw)`, текст и кнопки снизу на ночном фоне;
+  - на экранах ниже 700 px индикатор скролла скрыт.
+- **Навигация** (`<header class="site-header">`, `css/header.css`). Пункты — реальное меню немецкого сайта:
+  `Über Ma'loa` (/what-is-poke/), `Menü` (/produkte/), `Standorte` (maloa.smoothr.de/map), `Catering` (/catering/), `Jobs` (/jobs/), `Franchise` (/franchise/), `Gutscheine` (paynoweatlater.de), и розовая `Bestellen` (maloa.smoothr.de/map).
+  - Видимость по ширине: меньше 900 px — Über Ma'loa, Menü, Bestellen; от 900 px — плюс Standorte, Catering, Franchise; от 1240 px — все.
+  - Гамбургера нет: если не помещается, полоса скроллится вбок.
+  - Над светлыми блоками шапка получает класс `.is-light` (бирюзовый на светлом) — его ставит `js/about.js`.
+  - Скрытые на телефоне пункты должны появиться в футере.
 
-<!-- ============ FAVORITES (full-width, dark leaf background bg-maloa-dunkel.png) ============ -->
-<section class="fullbanner">
-  <figure id="picOffset-start"><img src="https://maloa.com/wp-content/uploads/2020/05/bg-maloa-favs.png" width="869" height="866" alt=""></figure>
-  <div>
-    <h3>MA’LOA FAVORITES</h3>
-    <img src="https://maloa.com/wp-content/uploads/2020/05/welle.png" width="477" height="6" alt="">
-    <p style="text-align:center;color:#fff"><strong>Some of the MA'LOA team's exceptionally created favorite bowls are named after the 8 islands of Hawaii. Choose between seafood, chicken or our vegan varieties. Which island are you headed for today?</strong></p>
-    <a class="button2" href="https://maloa.com/produkte/">MENU</a>
-  </div>
-</section>
+### 7.2 HERO → LEAVES → раскрытие боула (УТВЕРЖДЁН)
+- **Файлы:** `index.html` → `<div class="scene" id="scene">`. Внутри: `#hero`, `.scene__dim`, `.welcome#welcome` (боул), `.leaves` (8 `<img class="leaf">`). Стили `css/scene.css`, скрипт `js/scene.js`.
+- **Без скрипта** (нет GSAP или reduced motion): Hero, потом экран с боулом, листья скрыты. Скрипт добавляет класс `.scene--cinematic`: сцена становится одним экраном (`100svh`, overflow hidden), затемнение, боул и листья — абсолютные слои.
+- **Закрепление:** ScrollTrigger `pin`, `start: 'top top'`.
+  - Компьютер: `end: '+=220%'`, `scrub: 0.9`.
+  - Телефон (`max-aspect-ratio: 4/5`): `end: '+=150%'`, `scrub: 0.5`.
+  - Везде: `ScrollTrigger.config({ ignoreMobileResize: true })`, варианты через `gsap.matchMedia()`.
+- **Таймлайн** (доли общего прогресса 0…1):
+  - 0–0,34 — листья входят из-за краёв (`power2.out`). Путь = направление `data-dir` × `T.enter` × глубина `data-depth`.
+  - 0–0,18 — текст, скролл и пауза Hero уходят вверх (`autoAlpha 0, y -40`).
+  - 0–0,56 — `.hero__media` уменьшается до 0,88 (телефон 0,94); `.scene__dim` → opacity 0,55.
+  - 0,34–0,56 — листья чуть смыкаются, ближние растут (`scale 1 + 0.1*depth`).
+  - 0,56–0,98 — листья расходятся занавесом и уходят за край (`power2.in`).
+  - 0,52–0,96 — боул раскрывается кругом `clip-path: circle(0% → 100% at 50% 50%)`; `.welcome__inner` из `scale 1.1` в 1; `.welcome__visual` доворачивается с `rotation -12` в 0.
+  - Параметры пути `T`: компьютер `{enter:58, close:15, exit:96, turn:9}`, телефон `{enter:44, close:7, exit:78, turn:0}` (vw/vh на единицу глубины; `turn` — 3D-поворот листа по Y).
+- **Видео:** когда прогресс больше 0,97, видео Hero ставится на паузу (`syncVideo`); при скролле назад продолжает играть, если посетитель сам не ставил паузу.
+- **8 листьев.** Вырезаны из существующих кадров листьев Higgsfield (однотонный фон `#004443` убран по цвету). Размытие и затемнение каждой глубины «запечены» в сам файл. Исходники кадров — 480 px постеры старых видео листьев.
 
-<!-- ============ POKÉ YOUR STYLE ============ -->
-<section class="welcome-text">
-  <div>
-    <h3>POKÉ YOUR STYLE</h3>
-    <img src="https://maloa.com/wp-content/uploads/2020/05/welle.png" width="477" height="6" alt="">
-    <p style="color:#004443"><strong>Create your own Poké Bowl: The varied mix of fresh seafood, valuable greens or rice, crunchy vegetables and exotic flavours awakens the Hawaiian joy of life. Are you in the mood for low fat, high protein or maybe vegan? Be inventive and discover the variety!</strong></p>
-    <a class="button1" href="https://maloa.com/produkte/">MENU</a>
-  </div>
-  <figure><img src="https://maloa.com/wp-content/uploads/2020/02/image-asset.gif" width="750" height="750" alt=""></figure>
-</section>
+  | Класс | Глубина | Лист | CDN id (.webp) | Размер | На телефоне |
+  |---|---|---|---|---|---|
+  | `leaf--n1` | near (1) | монстера | `658ce916-1759-451e-ae5b-e7e14dff0731` | 953×1100 | да |
+  | `leaf--n2` | near | пальма | `90823238-0bef-4f67-8ed1-63815cdcb3f9` | 759×1200 | да |
+  | `leaf--n3` | near | банан | `cf9faaaa-cdf0-48e0-9913-3009e9c29aeb` | 474×1100 | нет (`leaf--xl`) |
+  | `leaf--m1` | mid (.6) | филодендрон | `a9721976-0d00-41a9-bb6f-04f242bfa250` | 625×720 | да |
+  | `leaf--m2` | mid | калатея | `3003086a-d480-4295-8092-8ec59e35f77b` | 378×720 | нет |
+  | `leaf--m3` | mid | монстера | `1e985fa3-98a9-4f00-942b-62fc5bcdedaa` | 624×720 | нет |
+  | `leaf--f1` | far (.35) | пальма | `73343198-6048-4b4e-9fc4-b7a4d4a0e6d0` | 354×560 | да |
+  | `leaf--f2` | far | калатея | `b1312f09-f80c-41a2-94c8-db2de06f700b` | 273×520 | нет |
 
-<!-- ============ GIFT CARD (full-width divider image trenner-1.png) ============ -->
-<section class="fullbanner" style="background-image:url(https://maloa.com/wp-content/uploads/2023/09/trenner-1.png)">
-  <a class="button3" href="https://www.paynoweatlater.de/at/maloa/?crt=maloa">GET YOUR GIFT CARD HERE</a>
-</section>
+  Исходные кадры (CDN, 480 px): монстера `34566854-…`, пальма `0c179bad-…`, калатея `a6920dcb-…`, банан `4ff23060-…`, филодендрон `00e73827-…`; полные id — в `js/core.js` (массив `leaves`, в текущем коде не используется). Рабочие позиции листьев — в `css/scene.css` (`.leaf--*`), направление, глубина и поворот — в атрибутах `data-dir`, `data-depth`, `data-rot`.
+- **Боул раскрытия:** `assets/bowls/maui-tuna-900.webp` / `-560.webp` — вырез фото клиента Maui Tuna (из `maloa/img/bowl-spicy-salmon-*`).
+- **Повтор заголовка убран.** В раскрытии больше нет текста «Welcome to Ma'loa / Ein Stück Hawaii…» (коммит `813d40d`); блок `.welcome` теперь только визуальный (`<div>`, не `<section>`). Путь такой: HERO → LEAVES → раскрытие боула → светлый переход → WELCOME.
 
-<!-- ============ FRANCHISE ============ -->
-<section>
-  <a id="franchiseBtn" class="button4" href="https://maloa.com/franchise-2/">FRANCHISE</a> <!-- note: /franchise-2/, the menu uses /franchise/ -->
-  <div>
-    <h3>BECOME A FRANCHISE PARTNER</h3>
-    <img src="https://maloa.com/wp-content/uploads/2020/05/welle.png" width="477" height="6" alt="">
-    <p style="text-align:center;color:#004443"><strong>Seid Be one of the first to see MA'LOA bring a piece of Hawaii to your city. We make healthy fast food for the 21st century. South Sea island meets international cuisine. Learn more about our franchise model and open your own MA'LOA store. Ride the healthy wave with us!</strong></p>
-  </div>
-</section>
-</main>
+### 7.3 WELCOME / ABOUT POKÉ (направление утверждено; 3 правки ждут просмотра)
+- **Файлы:** `index.html` → `<section class="about" id="about">` сразу после `#scene`; `css/about.css`; `js/about.js`; светлый вариант шапки в `css/header.css` (`.site-header.is-light`).
+- **Структура:**
+  ```
+  section.about
+    .about__head   p.about__label "Welcome to Ma'loa"
+                   h2.about__title → .about__line "Ein Stück Hawaii" / .about__line "in Eurer Stadt" (вторая строка со сдвигом вправо)
+    .about__body   p.about__text — 1-й абзац немецкого Welcome с maloa.com (дословно)
+                   a.about__cta "About Poké" → https://maloa.com/what-is-poke/
+    figure.about__photo > img
+  ```
+  Текст с maloa.com: «Ma’Loa legt den Fokus auf etwas, von dem Hawaiianer sagen würden, dass es ohne nicht geht. Die Rede ist von Poké Bowl, dem traditionellen hawaiianischen Nationalgericht. Wir geben Euch die Gelegenheit mit Poké, in den Insel-Vibe Hawaiis zu gelangen.» Второй абзац сайта (пляжи, гирлянды из цветов, хула) сознательно не взят: это туристическое клише.
+- **Фото:** `https://maloa.com/wp-content/uploads/2020/01/Um_Maloa.jpg`, 1124×800 — фото блока Welcome с официального сайта, используется как есть.
+  - Сейчас подключено прямой ссылкой на maloa.com; для продакшена положить на свой сервер. Копия импортирована в Higgsfield: `57488613-d725-420b-803a-4595d8efde5c`.
+  - По словам Коли, на фото настоящие люди, которые едят боулы MA'LOA. **Claude фото не видел:** maloa.com из контейнера закрыт, автоматический поиск лиц не сработал.
+  - **Не заменять AI-картинкой.**
+- **Раскладка на компьютере** (12 колонок):
+  - заголовок на 11 колонок;
+  - фото на 9 колонок и уходит за правый край (скруглены только левые углы 28 px, `aspect-ratio 1124/800`);
+  - текст и ссылка в 3 левых колонках, начинаются от верхнего края фото под тонкой линией (`border-top` 1px, `rgb(0 68 67 / .25)`);
+  - заголовок `clamp(52px,7.4vw,136px)`.
+- **Анимация (`js/about.js`):**
+  1. Фон `#about` переходит из `--night` в `#f4f7f5` (scrub, `top 70%` → `top 15%`). Стык со сценой — ночная полоса-градиент `.about.is-scripted::before`.
+  2. Шапка получает `.is-light`, пока блок под ней (`top 12%` → `bottom top`).
+  3. Текст проигрывается один раз, не привязан к скроллу (`start: 'top 30%'`): подпись, строки заголовка выезжают из масок (`yPercent 105 → 0`, `power4.out`, шаг 0,12), затем текст и ссылка.
+  4. Фото, scrub 0,8:
+     - компьютер: `clip-path` из смещённой «капсулы» `inset(26% 30% 18% 34% round 999px…)` в `inset(0 … round 28px 0 0 28px)`; картинка `scale 1.3 → 1.06`, `xPercent 4 → 0`;
+     - телефон: `inset(12% 16% 14% 12% round 160px)` → 0, `scale 1.2 → 1.03`.
+  5. После раскрытия картинка внутри маски медленно приближается и смещается: `yPercent -3 → 3`, `scale → 1.12` (телефон 1.07).
+  6. Только компьютер: кадр фото `y 50 → -50`, колонка текста `y 70 → -30` — разные скорости.
+- **Телефон** (`max-aspect-ratio:4/5` или `max-width:699px`):
+  - порядок: подпись, заголовок, текст, фото от края до края в своих пропорциях (не обрезано), ссылка;
+  - 390×844: весь блок помещается на экран;
+  - 375×667: ссылка видна, когда до неё долистываешь.
+- **Без скрипта или с reduced motion:** статичная раскладка, переход цвета — градиентом в CSS.
 
-<!-- ============ FOOTER ============ -->
-<footer class="footer">
-  <!-- Mailchimp for WP, form 306. Headline and placeholders are German even on /?lang=en -->
-  <form class="mc4wp-form" method="post">
-    <p>Erhalte hier deine 25% für unseren Webshop! Gewinnspiele, wichtige Facts und mehr - MA’LOA NEWSLETTER!</p>
-    <input type="text" name="FNAME" placeholder="Vorname*" required>
-    <input type="text" name="LNAME" placeholder="Nachname*" required>
-    <input type="text" name="BIRTHDAY" placeholder="Geburtstag*" required>
-    <input type="text" name="LANG" placeholder="Sprache">
-    <input type="email" name="EMAIL" placeholder="E-Mail Adresse*" required>
-    <button type="submit">ABONNIEREN!</button>
-  </form>
+---
 
-  <div>
-    <p>Contact Us</p>
-    <ul>
-      <li>OFFICE ADDRESS: <a href="https://maps.app.goo.gl/HaQTVUUgpdPhea5T7">Fuggerstraße 26, 10777 Berlin</a></li>
-      <li>OFFICE PHONE: <a href="tel:00493022013811">(030) 220 138 11</a></li>
-      <li>WHATSAPP CHAT: <a href="https://wa.me/+4917624722381">0176 247 223 81</a></li>
-      <li>OFFICE E-MAIL: <a href="mailto:info@maloa.com">info@maloa.com</a></li>
-    </ul>
-  </div>
-  <div>
-    <p>Mehr Ma’Loa</p> <!-- German heading on the English page; links below drop ?lang=en -->
-    <ul>
-      <li><a href="https://maloa.com/what-is-poke/">About Ma’Loa</a></li>
-      <li><a href="https://maloa.com/produkte/">Products</a></li>
-      <li><a href="https://maloa.smoothr.de/map">Stores</a></li>
-      <li><a href="https://maloa.com/catering/">Catering</a></li>
-      <li><a href="https://maloa.com/jobs/">Join us</a></li>
-      <li><a href="https://maloa.com/franchise/">Franchise</a></li>
-      <li><a href="https://www.paynoweatlater.de/at/maloa/?crt=maloa">Vouchers</a></li>
-      <li><a href="https://maloa.smoothr.de/map">Order now</a></li>
-      <li><a href="https://maloa.com/faq/">FAQ</a></li>
-    </ul>
-  </div>
-  <div>
-    <p>Legal Disclaimer</p>
-    <ul>
-      <li><a href="https://maloa.com/impressum/">Imprint</a></li>
-      <li><a href="https://maloa.com/privacy/">Privacy</a></li>
-      <li><a href="#" class="borlabs-cookie-preference">Cookie settings</a></li>
-    </ul>
-    <p>Social Media</p>
-    <a href="https://www.facebook.com/maloapoke/">Facebook</a>
-    <a href="https://www.instagram.com/maloapoke_de/">Instagram</a>
-    <a href="https://www.tiktok.com/@maloapoke">TikTok</a>
-  </div>
-  <p>COPYRIGHT © 2023 <a href="https://www.maloa.com/">MALOA</a>. ALL RIGHTS RESERVED.</p>
-</footer>
+## 8. Прочие файлы и материалы (карта кода)
 
-<!-- ============ PRODUCT DATA from the Boxzilla popups (hidden on the page) ============
-Bowls (kcal / protein / carbs / fat, per bowl):
-  Kauai Salmon Bowl      Base + Lachs, Edamame, Gurke, Ananas, Korean Love Flavor, Kimchi, Cashewkerne   485.4 / 28.08 / 43.94 / 23.05
-  Molokai Salmon Bowl    Base + salmon, green soybeans, cucumber, beetroot, Sesam Me Flavor, algae salad, peanuts   545.8 / 32.05 / 38.04 / 29.93
-  Lanai Tuna Bowl        Base + Ahi Tuna, Edamame, Gurke, Rote Bete, Koriander, Crazy Lime Flavor, Avocado, Erdnüsse   506.85 / 33.76 / 39.10 / 25.06
-  Maui Tuna Bowl         Base + Ahi Tuna, Rote Zwiebeln, Frühlingszwiebel, Edamame, Vul'Cano Flavor, Avocado, Masago (description duplicated on the site)   497.75 / 30.59 / 27.25 / 31.25
-  Big Island Tuna Bowl   Base + Ahi Tuna, Edamame, Rote Zwiebeln, Frühlingszwiebel, Gurke, Ma'Loa Flavor, Avocado, Erdnüsse   573.8 / 33.55 / 28.36 / 39.13
-  Vul'cano Chicken Bowl  Base + chicken, scallion, green soybeans, cucumber, Vul'Cano Flavor, avocado, cashew nuts   547.75 / 30.59 / 24.25 / 38.25
-  Peanutlover Chicken    Base + chicken, green soybeans, cucumber, scallions, Peanut Butter Dream Flavor, algae salad, peanuts   507 / 33.68 / 32.33 / 27.22
-  Spicy Tropical Tofu    Base + Tofu, Gurke, Ananas, Frühlingszwiebel, Korean Love, Mango, Kokosschips   352.4 / 10.08 / 45.94 / 15.05
-  Sesam Me Tofu Bowl     Base + Tofu, Edamame, Gurke, rote Zwiebel, Sesam Me, Mango, Erdnüsse   423.8 / 21.05 / 40.04 / 21.93
-  Green Cream Shrimp     Base + Garnele, Frühlingszwiebel, Gurke, Edamame, Green Cream Flavor, Algensalat, Wasabinüsse   415.2 / 19.44 / 26.12 / 26.46
-Other popups (per 100 g): Acai Bowl 103 kcal; Coconut-Cashew-Bowl 208.4 kcal; Mochi-Eis Mango 200 kcal,
-  Salted Caramel 248 kcal, Vanille 228 kcal, Coconut 252 kcal; Carrot and Cocos Ginger Soup 103 kcal.
-Every bowl table also has a "Vorteile/Benefits" column with health claims
-("helps with diabetes", "reduces risk of cancer", "Kalorien und Fettarm" …) — legal risk, see brief.
-"Order Now" popup: Pickup → /stores/, Lieferando → /stores/, Catering → /catering/.
+| Путь | Что |
+|---|---|
+| `maloa-site/index.html` | вся страница: спрайт лого, шапка, Intro, сцена (Hero + боул + листья), блок About, подключение CSS/JS |
+| `maloa-site/preview.html` | сборка в один файл (CSS и JS встроены, Intro играет всегда). **Не править руками**: `python3 tools/build-preview.py` из `maloa-site/` |
+| `css/tokens.css` | CI: цвета, шрифты, `--gutter`, `--hh` (высота шапки 72/84), `--ease-out` |
+| `css/base.css` | сброс, базовая типографика, `:focus-visible` |
+| `css/header.css` | шапка, навигация, светлый вариант `.is-light` |
+| `css/intro.css`, `js/intro.js` | Intro (временный) |
+| `css/hero.css`, `js/hero.js` | Hero |
+| `css/scene.css`, `js/scene.js` | сцена с листьями и раскрытием боула |
+| `css/about.css`, `js/about.js` | Welcome / About Poké |
+| `js/core.js` | общие флаги `window.MALOA` (`gsap`, `reduce`, `touch`, `wide()`, `saveData`), регистрация плагинов GSAP, старый массив `leaves` (не используется) |
+| `assets/logo/` | SVG лого (настоящие) |
+| `assets/bowls/` | вырез Maui Tuna 900/560 |
+| `assets/intro/jungle-portrait.webp` | фон Intro |
+| `assets/src/bowls/` | 7 фото боулов клиента (2000×1333): peanutlover, spicy-tropical-tofu, salmon (Kauai или Molokai — не подтверждено), lanai-tuna, maui-tuna, green-cream-shrimp, crazy-beet-root |
+| `assets/src/logo/` | исходники лого JPG |
+| `assets/src/intro-concept/` | концепт-кадры вступления от Коли |
+| `assets/src/references/` | визуальные референсы (ref-01…09): **только настроение, не копировать и не использовать на сайте** |
+| `original.html` | исходник главной maloa.com (EN) с данными меню из попапов |
+| `tools/build-preview.py` | сборка `preview.html` |
+| `../maloa/` | прошлое демо v2, `brief.md` (контент, меню, ккал), вырезы боулов `img/bowl-*` и «мисочки» `img/disc-*` (RGBA) |
 
-============ FINDINGS FROM THE DROPPED PLUMBING ============
-- Boxzilla popups run with testMode "1": the 25% popup (time on page 0, top-left, #f2d1d5)
-  and the franchise popup (30% scroll, top-right, #004444) show on every visit.
-  On /?lang=en both render "Sorry, this entry is only available in German".
-- A script at the end rewrites document.body.innerHTML to hide
-  "lessphp fatal error: failed to parse passed in variable @body_font" (broken theme compile).
-- Font Awesome loaded three times (4.7 ×2, 7.3.1), Bootstrap twice, jQuery + migrate,
-  ~40 CSS/JS requests; reCAPTCHA v3 badge sits under the back-to-top button.
-- Borlabs cookie box configured in German on the English page.
--->
-</body>
-</html>
-```
+**Внешние ссылки на странице:**
+- Google Fonts (Bricolage Grotesque);
+- jsDelivr (gsap, ScrollTrigger, DrawSVGPlugin 3.15.0);
+- CDN Higgsfield `d2ol7oe51mr4n9.cloudfront.net` (видео, постер, 8 листьев);
+- maloa.com (фото Welcome и ссылки меню);
+- maloa.smoothr.de (заказ);
+- paynoweatlater.de (Gutscheine).
+
+**Продакшен:** все файлы с CDN Higgsfield и maloa.com перенести на свой хостинг. Отдельный пункт §16.
+
+**Меню и данные:** 15 боулов, данные о составе и ккал — в `original.html` (комментарий PRODUCT DATA) и `maloa/brief.md`. Favorites на сайте — боулы, названные по островам Гавайев. Health claims из таблиц питательности **не использовать** (юридический риск, Verordnung (EG) 1924/2006).
+
+---
+
+## 9. Что утверждено
+
+- ✅ Концепт Hero; выбранное видео Kling №3; визуальное направление Hero; навигация Hero.
+- ✅ Концепт перехода Hero → листья; анимация листьев по глубинам.
+- ✅ Сторителлинг перехода от тёмного к светлому.
+- ✅ Концепт Welcome; настоящее фото MA'LOA с людьми (со слов Коли).
+- ✅ CI в целом; направление журнальной (editorial) типографики; подход mobile-first.
+
+## 10. Что НЕ утверждено
+
+- ⏳ Итоговый Welcome после трёх правок. Правки **сделаны** в `813d40d`, ждут просмотра:
+  1. убран повтор заголовка из перехода;
+  2. фото стало выразительнее: крупнее, раскрытие сильнее, движение внутри маски, масштаб не выше 1,3 / 1,12, чтобы сохранить лица и боулы, новых картинок нет;
+  3. компоновка на компьютере плотнее: заголовок на 11 колонок, фото уходит за правый край, текст висит от верха фото под тонкой линией.
+- ⏳ Intro: временный, ждём вступление Коли из Higgsfield.
+- ⛔ Favorites, Poké Style, Gift Card, Franchise, Social/Footer.
+- ⛔ Финальная полировка, оптимизация скорости, хостинг материалов для продакшена.
+
+---
+
+## 11. Тестирование
+
+**TESTED** (Playwright + Chromium в контейнере Claude):
+- **Размеры:** 1440×900, 1280×720, 1920×1080, 1024×768, 1180×800, 768×1024, 390×844, 375×667, телефон горизонтально 844×390 (Hero); сцена и About — 1440×900, 1280×720, 390×844, 375×667.
+- Ошибок в консоли нет (сцена, About).
+- Горизонтального скролла нет ни на одном из размеров.
+- **Reduced motion** (`reducedMotion: 'reduce'`): сцена без закрепления, листья скрыты, About статичен.
+- Раскладка Hero, шапки, текста; навигация не переполняется на 375 и 390.
+- Файлы видео проверены через ffprobe: H.264 High, yuv420p, faststart. Шов повтора около 0,5 из 255.
+- **Запись реальной сцены** (песочница Higgsfield, настоящие листья, видео подменено на WebM, т. к. в Chromium песочницы нет H.264):
+  - компьютер: https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/ed475ab7-ff37-43ee-86f6-b6a86fff96b0.mp4
+  - телефон: https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/f6b28fd4-8bec-45a0-bcd3-c6e8c1ea6b59.mp4
+  - записано **до** трёх правок Welcome, сам блок About в записи не показан.
+
+**NOT YET VERIFIED VISUALLY:**
+- Claude **не видел** глазами ни видео Hero, ни 8 листьев, ни фото `Um_Maloa.jpg`: CDN Higgsfield и maloa.com из контейнера закрыты. В тестах они заменялись заглушками.
+- Как выглядят края вырезанных листьев (исходники 480 px, на больших экранах средние листья могут быть мягкими).
+- Плавность и автоплей на реальном **iPhone Safari**, Low Power Mode, поведение закрепления при сворачивании адресной строки.
+- Работа с Brandon Grotesque (лицензии и файлов нет).
+- Правки Welcome (`813d40d`) на реальных устройствах.
+
+## 12. Среда (важно для новой сессии)
+
+- **Из контейнера Claude закрыты:** CDN Higgsfield, maloa.com, jsDelivr, cdnjs, fritesatelier.com, memamu.co.il, awwwards.com и др. GitHub и npm работают.
+- **Как тестировать локально:**
+  - GSAP из npm: `npm pack gsap@3.15.0`, в Playwright `page.route(/gsap@3\.15\.0\/dist\/…/)` → локальный файл;
+  - запросы к CDN и maloa.com подменять заглушками;
+  - сервер: `python3 -m http.server 8765` из корня репозитория, страница `/maloa-site/index.html`;
+  - Chromium: `ignoreHTTPSErrors: true`.
+- **Песочница Higgsfield** (`sandbox_exec`) видит интернет: ffmpeg, Pillow, Playwright; H.264 в её Chromium нет.
+  - Загрузка файла: `media_upload` → PUT с заголовком `If-None-Match: *` → `media_confirm`.
+  - Файлы в песочнице живут секунды между вызовами: обработку и загрузку делать **в одном вызове**, проверять `[ -s file ]`, иначе уйдёт пустой файл.
+  - Передавать файлы между песочницей и контейнером через base64 **запрещено** правилами инструмента.
+- **Картинки и видео Higgsfield видит только пользователь** (в окне Higgsfield). Claude проверяет цифрами.
+
+## 13. Открытые вопросы
+
+- Подтвердить, что на `Um_Maloa.jpg` люди. Найти фото в большем разрешении (сейчас 1124 px).
+- Лицензия и файлы Brandon Grotesque.
+- Вступление Коли из Higgsfield (файл).
+- Цифры франшизы (есть ли на `/franchise/`, иначе у Даши).
+- Фото для боулов без фото: Big Island, O'ahu, Moana, Vul'Cano, Truffle'Loa, Korean Chicken, Sesam Me.
+- Какой лосось на `bowl-03`: Kauai или Molokai.
+- Анонс открытия (Eschborn, Bochum 6.10): где и как показывать.
+
+## 14. Проблемы текущего сайта maloa.com (записка клиенту)
+
+- **Попапы Boxzilla** в тестовом режиме показываются при каждом визите; на EN пустые.
+- **Тема сломана:** ошибку `lessphp @body_font` прячет скрипт, переписывающий `body.innerHTML`.
+- **Устаревшие плагины:** WordPress 6.4, WooCommerce 5.5.5, Slider Revolution 5.4.8, qTranslate-X; Font Awesome ×3, Bootstrap ×2, около 40 запросов.
+- **SEO и текст:** нет H1; текст слайдов вшит в картинки; health claims; «© 2023»; `/franchise-2/`; смешение языков на EN.
+- **Прочее:** кнопка «наверх» перекрывает reCAPTCHA; «Vouchers» и «Coupons» в разных меню.
+
+---
+
+## 15. Порядок работы дальше
+
+1. Apply the 3 small Welcome corrections. **Уже сделано** в `813d40d` → сразу п. 2.
+2. Visual review (Коля смотрит Welcome на компьютере и телефоне).
+3. Build MA'LOA FAVORITES.
+4. Visual review.
+5. Build POKÉ STYLE.
+6. Visual review.
+7. Build GIFT CARD.
+8. Visual review.
+9. Build FRANCHISE.
+10. Visual review.
+11. Build SOCIAL / FOOTER.
+12. Final responsive polish.
+13. Performance optimization.
+14. Production asset cleanup (перенос с CDN Higgsfield и maloa.com, неиспользуемые `leaves` в `core.js`, постер 800).
+15. Final QA.
+
+**Никогда не пропускать визуальный просмотр между крупными блоками.**
+
+## 16. Продакшен (записать, не делать сейчас)
+
+- Видео, постеры, листья, фото Welcome — на свой хостинг.
+- GSAP — локально, а не с jsDelivr.
+- Шрифт Brandon — файлы по лицензии.
+- Перенос в WordPress.
+
+## 17. FAVORITES — направление (НЕ СТРОИТЬ до подтверждения Welcome)
+
+- **Не** обычная сетка из 3 колонок с карточками.
+- Настоящие боулы MA'LOA; продукт — главный герой.
+- Кинематографичная журнальная подача, глубина при скролле.
+- Один боул переходит в другой; синхронная типографика (название острова, тип, ккал — только из реальных данных).
+- Лёгкий масштаб и параллакс; сильные фото еды; кнопка в меню (`https://maloa.com/produkte/`).
+- **Материалы:**
+  - вырезы боулов `maloa/img/bowl-*-900.webp` (RGBA);
+  - фото `assets/src/bowls/*`;
+  - «мисочки» с ингредиентами `maloa/img/disc-*`;
+  - в прошлом демо (`maloa/index.html`) есть рабочая логика «закреплённое фото + листающийся список» — можно взять за основу механики, но не за внешний вид.
+- Данные: `original.html` (PRODUCT DATA), `maloa/brief.md`. Боулов без фото не выдумывать: писать «Symbolfoto» или запросить фото у Даши.
+
+---
+
+NEW CLAUDE SESSION:
+
+Read HANDOFF.md completely before modifying anything.
+
+Inspect the actual repository and current implementation.
+
+Do not recreate completed work.
+
+Do not change approved sections unless explicitly instructed.
+
+Do not generate new assets when an appropriate real MA'LOA asset already exists.
+
+Use the client's CI exactly.
+
+Continue from CURRENT STATUS.
+
+Before implementing the next major section, inspect existing assets and code.
+
+After each major section, stop and wait for visual review.
+
+The objective is not to add as many effects as possible. The objective is to create a coherent premium cinematic MA'LOA experience.
