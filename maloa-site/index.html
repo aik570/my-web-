@@ -20,6 +20,7 @@ catch (e) { document.documentElement.classList.add('intro-on'); }
 </head>
 <body>
 
+<!-- Header: transparent, floating pill items, no bar. Phones keep About, Menu and Bestellen; no hamburger. -->
 <header class="site-header">
   <div class="site-header__row">
     <a class="site-header__logo" href="#hero" aria-label="Ma'loa – Startseite">
@@ -27,6 +28,15 @@ catch (e) { document.documentElement.classList.add('intro-on'); }
         <circle cx="60" cy="60" r="56" stroke-width="5"/><path d="M34 84V38l26 32 26-32v46" stroke-width="10"/>
       </svg>
     </a>
+    <nav class="site-nav" aria-label="Hauptmenü">
+      <ul class="site-nav__list">
+        <li><a class="site-nav__pill" href="https://maloa.com/what-is-poke/"><span>About</span></a></li>
+        <li><a class="site-nav__pill" href="https://maloa.com/produkte/"><span>Menü</span></a></li>
+        <li class="site-nav__wide"><a class="site-nav__pill" href="https://maloa.smoothr.de/map"><span>Stores</span></a></li>
+        <li class="site-nav__wide"><a class="site-nav__pill" href="https://maloa.com/catering/"><span>Catering</span></a></li>
+        <li class="site-nav__wide"><a class="site-nav__pill" href="https://maloa.com/franchise/"><span>Franchise</span></a></li>
+      </ul>
+    </nav>
     <a class="site-header__order" href="https://maloa.smoothr.de/map">Bestellen</a>
   </div>
 </header>
@@ -56,10 +66,70 @@ catch (e) { document.documentElement.classList.add('intro-on'); }
 </div>
 
 <main id="main">
-  <!-- Block 1 · Hero comes here -->
-  <section class="hero" id="hero" aria-label="Hero">
-    <p class="hero__placeholder">Block 1 · Hero</p>
+  <!-- Block 1 · Hero
+       Scroll story (pinned on desktop):
+       1. MA'LOA wordmark over the jungle, as the intro left it.
+       2. The film grows out of the round logo mask (GTAVI) until it fills the screen.
+       3. Leaves drop in from the corners, the headline builds word by word (Zentry).
+       On leaving, the film's lower edge folds into the brand wave (Zentry clip-path). -->
+  <section class="hero" id="hero" aria-labelledby="hero-title">
+    <div class="hero__stage">
+
+      <!-- Layer 1: jungle ground and the big wordmark (decorative, the H1 carries the text) -->
+      <div class="hero__jungle" aria-hidden="true">
+        <img class="hero__jungle-img" src="assets/hero/jungle.webp" alt="" width="1920" height="1080" decoding="async">
+        <p class="hero__wordmark">MA'LOA</p>
+      </div>
+
+      <!-- Layer 2: the film, revealed through the logo mask. Phones get the poster only. -->
+      <div class="hero__media">
+        <video class="hero__video" muted loop playsinline preload="none"
+               poster="assets/hero/hero-poster.webp" aria-hidden="true">
+          <!-- sources are attached by the hero script (GSAP step) on wide screens, so phones never download the film -->
+        </video>
+        <div class="hero__shade" aria-hidden="true"></div>
+      </div>
+
+      <!-- Layer 3: hanging leaves, three depths (data-depth drives parallax strength) -->
+      <div class="hero__leaves" aria-hidden="true">
+        <img class="hero__leaf hero__leaf--tl" data-depth="3" src="assets/leaves/monstera.webp"   alt="" width="640" height="800" decoding="async">
+        <img class="hero__leaf hero__leaf--tr" data-depth="2" src="assets/leaves/palm.webp"       alt="" width="640" height="800" decoding="async">
+        <img class="hero__leaf hero__leaf--bl" data-depth="1" src="assets/leaves/banana.webp"     alt="" width="640" height="800" decoding="async">
+        <img class="hero__leaf hero__leaf--br" data-depth="2" src="assets/leaves/philodendron.webp" alt="" width="640" height="800" decoding="async">
+      </div>
+
+      <!-- Layer 4: copy on top of the film, no boxes or frames -->
+      <div class="hero__content">
+        <p class="hero__eyebrow">Hawaiian Poké Bowl · Neu in Eschborn</p>
+        <h1 class="hero__title" id="hero-title">
+          <span class="hero__word"><span>Aloha,</span></span>
+          <span class="hero__word"><span>Eschborn.</span></span>
+        </h1>
+        <p class="hero__lead">Wir bringen ein Stück Hawaii in deine Stadt: die besten Poké Bowls, die du bekommen kannst.</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="https://maloa.smoothr.de/map"><span>Jetzt bestellen</span></a>
+          <a class="btn btn--ghost" href="https://maloa.com/produkte/"><span>Zum Menü</span></a>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <button class="hero__pause" type="button" aria-pressed="false" aria-label="Video pausieren" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-pause" d="M8 5v14M16 5v14"/><path class="i-play" d="M7 5l12 7-12 7z"/></svg>
+      </button>
+      <a class="hero__scroll" href="#welcome">
+        <span class="hero__scroll-label">Scroll</span>
+        <span class="hero__scroll-line" aria-hidden="true"></span>
+      </a>
+
+      <!-- Brand wave: the film's lower edge folds into it when the hero leaves -->
+      <svg class="hero__wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 60 C 180 10, 360 110, 540 60 S 900 10, 1080 60 S 1350 110, 1440 60 V120 H0 Z"/>
+      </svg>
+    </div>
   </section>
+
+  <!-- Block 2 · Welcome comes here (anchor target for the scroll hint) -->
+  <section class="welcome" id="welcome" aria-label="Welcome"></section>
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" defer></script>
