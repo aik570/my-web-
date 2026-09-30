@@ -19,7 +19,7 @@
   display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"labels ." "title actions";align-items:end;column-gap:40px;row-gap:clamp(14px,2.2vh,24px)}
 
 .hero__labels{grid-area:labels;display:flex;align-items:center;gap:16px;max-width:min(640px,46vw)}
-.hero__label{margin:0;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;white-space:nowrap;color:rgba(244,247,245,.82)}
+.hero__label{margin:0;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;white-space:nowrap;color:var(--light-gray)}
 .hero__rule{flex:1;min-width:32px;height:1px;background:rgba(244,247,245,.32)}
 
 .hero__title{grid-area:title;margin:0;font-family:var(--font-display);font-weight:800;text-transform:uppercase;
@@ -32,13 +32,13 @@
   transition:background-color .35s var(--ease-out),border-color .35s var(--ease-out),transform .5s var(--ease-out)}
 .btn:hover{transform:translateY(-2px)}
 .btn--primary{background:var(--powder-pink);color:var(--ink)}
-.btn--primary:hover{background:#f9e4e6}
+.btn--primary:hover{background:var(--pink-hover)}
 .btn--ghost{border:1px solid rgba(244,247,245,.5);color:var(--on-teal);background:rgb(var(--night-rgb) / .2);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
 .btn--ghost:hover{border-color:var(--on-teal);background:rgb(var(--night-rgb) / .35)}
 
 /* ---- Scroll hint and pause ---- */
 .hero__scroll{position:absolute;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:grid;justify-items:center;gap:10px;
-  padding:6px 10px;font-size:10.5px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;text-decoration:none;color:rgba(244,247,245,.72)}
+  padding:6px 10px;font-size:10.5px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;text-decoration:none;color:var(--light-gray)}
 .hero__scroll-line{width:1px;height:36px;background:linear-gradient(rgba(244,247,245,.85),rgba(244,247,245,0));transform-origin:top;animation:hero-scroll 2.2s var(--ease-out) infinite}
 @keyframes hero-scroll{0%{transform:scaleY(0)}55%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
 

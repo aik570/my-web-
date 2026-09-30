@@ -10,25 +10,29 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://d2ol7oe51mr4n9.cloudfront.net">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet">
 <style>
-/* Ma'loa tokens. Colours from maloa.com; #d8e2e2 is the live site's page ground. */
+/* Ma'loa tokens. Client CI (confirmed 30.09): these five colours are the whole palette.
+   Anything darker or lighter is mixed from them, never a new hue. */
 :root{
-  --deep-teal:   #004443;
-  --mid-teal:    #628a87;
-  --light-gray:  #c8d1d3;
-  --powder-pink: #f3d2d5;
-  --bg:          #d8e2e2;
-  --bg-light:    #f4f7f5;
-  --ink:         #06302f;
-  --on-teal:     #f4f7f5;
-  /* Night version of the brand teal: the dark of the hero film, used for shades and the hero ground */
-  --night:       #041716;
-  --night-rgb:   2 26 26;
+  --deep-teal:   #004443;   /* primary dark turquoise, also the text colour on light grounds */
+  --mid-teal:    #628a87;   /* secondary turquoise */
+  --light-gray:  #c8d1d3;   /* light text on dark */
+  --powder-pink: #f3d2d5;   /* blush accent: actions only */
+  --bg-light:    #f4f7f5;   /* light ground, primary text on dark */
 
-  /* Brandon Grotesque can be put in front of these once licensed */
-  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
-  --font-body:    "Figtree", system-ui, sans-serif;
+  --bg:      var(--bg-light);
+  --ink:     var(--deep-teal);
+  --on-teal: var(--bg-light);
+  /* Night: the brand teal pushed towards black, the dark of the hero film */
+  --night:     color-mix(in srgb, #004443 22%, #000);
+  --night-rgb: 0 15 15;
+  --pink-hover: color-mix(in srgb, #f3d2d5 60%, #f4f7f5);
+
+  /* Brandon Grotesque is the brand face: it is used as soon as the licensed files are installed.
+     Bricolage Grotesque (Google Fonts) is the loaded fallback. No other faces. */
+  --font-display: "Brandon Grotesque", "brandon-grotesque", "Bricolage Grotesque", system-ui, sans-serif;
+  --font-body:    "Brandon Grotesque", "brandon-grotesque", "Bricolage Grotesque", system-ui, sans-serif;
   --tracking-tight: -.03em;
 
   --gutter: 20px;
@@ -135,7 +139,7 @@ html.intro-on .site-nav{visibility:hidden}
 .site-nav__link{border:1px solid rgba(244,247,245,.18);background:rgba(var(--night-rgb) / .22);-webkit-backdrop-filter:blur(10px) saturate(1.2);backdrop-filter:blur(10px) saturate(1.2)}
 .site-nav__link:hover{border-color:rgba(244,247,245,.55);background:rgba(var(--night-rgb) / .38)}
 .site-header__order{flex:none;padding:0 20px;background:var(--powder-pink);color:var(--ink);font-weight:700}
-.site-header__order:hover{background:#f9e4e6}
+.site-header__order:hover{background:var(--pink-hover)}
 
 @media (min-width:900px){
   .site-nav__md{display:list-item}
@@ -173,7 +177,7 @@ html.intro-on .site-nav{visibility:hidden}
   display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"labels ." "title actions";align-items:end;column-gap:40px;row-gap:clamp(14px,2.2vh,24px)}
 
 .hero__labels{grid-area:labels;display:flex;align-items:center;gap:16px;max-width:min(640px,46vw)}
-.hero__label{margin:0;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;white-space:nowrap;color:rgba(244,247,245,.82)}
+.hero__label{margin:0;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;white-space:nowrap;color:var(--light-gray)}
 .hero__rule{flex:1;min-width:32px;height:1px;background:rgba(244,247,245,.32)}
 
 .hero__title{grid-area:title;margin:0;font-family:var(--font-display);font-weight:800;text-transform:uppercase;
@@ -186,13 +190,13 @@ html.intro-on .site-nav{visibility:hidden}
   transition:background-color .35s var(--ease-out),border-color .35s var(--ease-out),transform .5s var(--ease-out)}
 .btn:hover{transform:translateY(-2px)}
 .btn--primary{background:var(--powder-pink);color:var(--ink)}
-.btn--primary:hover{background:#f9e4e6}
+.btn--primary:hover{background:var(--pink-hover)}
 .btn--ghost{border:1px solid rgba(244,247,245,.5);color:var(--on-teal);background:rgb(var(--night-rgb) / .2);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
 .btn--ghost:hover{border-color:var(--on-teal);background:rgb(var(--night-rgb) / .35)}
 
 /* ---- Scroll hint and pause ---- */
 .hero__scroll{position:absolute;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:grid;justify-items:center;gap:10px;
-  padding:6px 10px;font-size:10.5px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;text-decoration:none;color:rgba(244,247,245,.72)}
+  padding:6px 10px;font-size:10.5px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;text-decoration:none;color:var(--light-gray)}
 .hero__scroll-line{width:1px;height:36px;background:linear-gradient(rgba(244,247,245,.85),rgba(244,247,245,0));transform-origin:top;animation:hero-scroll 2.2s var(--ease-out) infinite}
 @keyframes hero-scroll{0%{transform:scaleY(0)}55%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
 
@@ -237,6 +241,67 @@ html.intro-on .site-nav{visibility:hidden}
   .hero__actions .btn{flex:1;padding:0 18px}
   /* Short phones: the next section is already in reach, the hint would crowd the buttons */
   @media (max-height:700px){ .hero__scroll{display:none} }
+}
+</style>
+<style>
+/* Hero → leaves → Welcome.
+   Base (no script, no GSAP, reduced motion): the Welcome block simply follows the Hero, no leaves.
+   .scene--cinematic (added by js/scene.js): one pinned screen. Leaves come in from the edges on three
+   depths, the film pulls back, the leaves part like a curtain and the Welcome opens between them. */
+.scene{position:relative}
+.leaves,.scene__dim{display:none}
+
+/* ---- Welcome (block 2) ---- */
+.welcome{position:relative;min-height:100svh;display:grid;align-items:center;overflow:hidden;background:var(--night);color:var(--on-teal)}
+/* the same night ground as the film, with the brand teal glowing where the bowl sits */
+.welcome::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 55% 60% at 68% 52%,rgb(0 68 67 / .75),rgb(0 68 67 / 0) 70%);pointer-events:none}
+.welcome__inner{position:relative;width:100%;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);grid-template-areas:"copy visual";align-items:center;column-gap:clamp(24px,5vw,96px);
+  padding:calc(var(--hh) + 24px) var(--gutter) 56px}
+.welcome__visual{grid-area:visual;position:relative;margin:0;justify-self:center;width:min(42vw,640px)}
+/* contact shadow under the bowl: a soft ellipse, cheaper than a filter on a moving image */
+.welcome__visual::after{content:"";position:absolute;left:12%;right:12%;bottom:-4%;height:14%;z-index:-1;border-radius:50%;background:radial-gradient(closest-side,rgb(0 0 0 / .6),rgb(0 0 0 / 0));filter:blur(6px)}
+.welcome__bowl{width:100%;height:auto}
+.welcome__copy{grid-area:copy;max-width:560px}
+.welcome__label{margin:0 0 20px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--light-gray)}
+.welcome__title{margin:0;font-family:var(--font-display);font-weight:800;text-transform:uppercase;font-size:clamp(40px,5vw,96px);line-height:.9;letter-spacing:-.03em}
+.welcome__title span{display:block}
+.welcome__text{margin:24px 0 34px;max-width:42ch;font-size:17px;line-height:1.6;color:var(--light-gray)}
+
+@media (max-aspect-ratio:4/5){
+  /* the whole block has to fit one phone screen inside the pinned scene, 375×667 included */
+  .welcome__inner{grid-template-columns:minmax(0,1fr);grid-template-areas:"visual" "copy";row-gap:20px;padding:calc(var(--hh) + 4px) var(--gutter) 16px}
+  .welcome__visual{width:min(64vw,34svh,440px)}
+  .welcome__label{margin-bottom:12px}
+  .welcome__title{font-size:min(8.2vw,64px);line-height:.95}
+  .welcome__text{margin:14px 0 22px;font-size:15px;line-height:1.5}
+}
+
+/* ---- Cinematic scene ---- */
+.scene--cinematic{height:100svh;overflow:hidden}
+.scene--cinematic .hero{z-index:1}
+.scene--cinematic .scene__dim{display:block;position:absolute;inset:0;z-index:1;background:var(--night);opacity:0;pointer-events:none}
+.scene--cinematic .welcome{position:absolute;inset:0;z-index:2;min-height:0;clip-path:circle(0% at 66% 52%)}
+.scene--cinematic .leaves{display:block;position:absolute;inset:0;z-index:3;overflow:hidden;pointer-events:none}
+
+.leaf{position:absolute;height:auto;max-width:none;will-change:transform;-webkit-user-select:none;user-select:none}
+/* resting spots once they have come in (the "in" pose); the script moves them from/to the edges */
+.leaf--f1{width:13vw;left:56%;top:-10%}
+.leaf--f2{width:9vw;left:9%;bottom:2%}
+.leaf--m1{width:25vw;left:-6%;top:-14%}
+.leaf--m2{width:12vw;right:6%;bottom:-12%}
+.leaf--m3{width:25vw;right:-8%;top:28%}
+.leaf--n1{width:48vw;left:-20%;bottom:-34%}
+.leaf--n2{width:38vw;right:-14%;top:-40%}
+.leaf--n3{width:21vw;left:40%;bottom:-58%}
+
+/* Phones and upright tablets: fewer, smaller leaves, kept to the edges so the copy stays clear */
+@media (max-aspect-ratio:4/5){
+  .scene--cinematic .welcome{clip-path:circle(0% at 50% 30%)}
+  .leaf--xl{display:none}
+  .leaf--f1{width:30vw;left:52%;top:-8%}
+  .leaf--m1{width:52vw;left:-18%;top:-10%}
+  .leaf--n1{width:92vw;left:-42%;bottom:-26%}
+  .leaf--n2{width:72vw;right:-34%;top:-24%}
 }
 </style>
 <script>
@@ -358,6 +423,10 @@ document.documentElement.classList.add('intro-on');
 </div>
 
 <main id="main">
+  <!-- Hero → leaves → Welcome, one pinned scene (css/scene.css, js/scene.js).
+       Without the scene script (no GSAP, reduced motion) this is just the Hero followed by the Welcome block. -->
+  <div class="scene" id="scene">
+
   <!-- Block 1 · Hero (css/hero.css, js/hero.js)
        Base version: the Kling film of the real Maui Tuna bowl fills the screen, the copy sits on the
        dark left and bottom of the frame. Next steps add the scroll story and the hanging leaves. -->
@@ -401,8 +470,42 @@ document.documentElement.classList.add('intro-on');
     </button>
   </section>
 
-  <!-- Block 2 · Welcome comes here (anchor target for the scroll hint) -->
-  <section class="welcome" id="welcome" aria-label="Welcome"></section>
+    <!-- Dims the film as the camera pulls back -->
+    <div class="scene__dim" aria-hidden="true"></div>
+
+    <!-- Block 2 · Welcome. Opens between the leaves; its bowl is the Hero's Maui Tuna bowl.
+         Copy from the live site's Welcome block (German wording as in the approved demo). -->
+    <section class="welcome" id="welcome" aria-labelledby="welcome-title">
+      <div class="welcome__inner">
+        <figure class="welcome__visual">
+          <img class="welcome__bowl" src="assets/bowls/maui-tuna-900.webp"
+               srcset="assets/bowls/maui-tuna-560.webp 560w, assets/bowls/maui-tuna-900.webp 900w"
+               sizes="(max-aspect-ratio: 4/5) 72vw, 42vw" width="900" height="900" decoding="async"
+               alt="Maui Tuna Bowl von Ma'loa mit Ahi Tuna, Avocado, Masago, Edamame und Vul'Cano Flavor">
+        </figure>
+        <div class="welcome__copy">
+          <p class="welcome__label">Welcome to Ma'loa</p>
+          <h2 class="welcome__title" id="welcome-title"><span>Ein Stück Hawaii</span> <span>in Eurer Stadt.</span></h2>
+          <p class="welcome__text">Poké Bowl ist das traditionelle hawaiianische Nationalgericht. Sandstrände, Blumenketten, Hula und Wellen: Wir servieren ein Stück davon in Eurer Stadt.</p>
+          <a class="btn btn--primary welcome__cta" href="https://maloa.com/what-is-poke/">About Poké</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Foreground leaves, three depths (data-depth scales how far they travel).
+         Keyed out of the project's Higgsfield leaf frames; the blur and darkness of each depth is baked in.
+         leaf--xl ones are left out on phones. -->
+    <div class="leaves" aria-hidden="true">
+      <img class="leaf leaf--far leaf--f1" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/73343198-6048-4b4e-9fc4-b7a4d4a0e6d0.webp" width="354" height="560" alt="" decoding="async" data-dir="0.2,-1" data-depth=".35" data-rot="-160">
+      <img class="leaf leaf--far leaf--f2 leaf--xl" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/b1312f09-f80c-41a2-94c8-db2de06f700b.webp" width="273" height="520" alt="" decoding="async" data-dir="-0.8,0.6" data-depth=".35" data-rot="18">
+      <img class="leaf leaf--mid leaf--m1" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/a9721976-0d00-41a9-bb6f-04f242bfa250.webp" width="625" height="720" alt="" decoding="async" data-dir="-0.8,-0.8" data-depth=".6" data-rot="150">
+      <img class="leaf leaf--mid leaf--m2 leaf--xl" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/3003086a-d480-4295-8092-8ec59e35f77b.webp" width="378" height="720" alt="" decoding="async" data-dir="0.6,0.9" data-depth=".6" data-rot="-24">
+      <img class="leaf leaf--mid leaf--m3 leaf--xl" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/1e985fa3-98a9-4f00-942b-62fc5bcdedaa.webp" width="624" height="720" alt="" decoding="async" data-dir="1,0.1" data-depth=".6" data-rot="-96">
+      <img class="leaf leaf--near leaf--n1" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/658ce916-1759-451e-ae5b-e7e14dff0731.webp" width="953" height="1100" alt="" decoding="async" data-dir="-1,0.6" data-depth="1" data-rot="32">
+      <img class="leaf leaf--near leaf--n2" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/90823238-0bef-4f67-8ed1-63815cdcb3f9.webp" width="759" height="1200" alt="" decoding="async" data-dir="1,-0.8" data-depth="1" data-rot="196">
+      <img class="leaf leaf--near leaf--n3 leaf--xl" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/cf9faaaa-cdf0-48e0-9913-3009e9c29aeb.webp" width="474" height="1100" alt="" decoding="async" data-dir="0.1,1" data-depth="1" data-rot="6">
+    </div>
+  </div>
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" defer></script>
@@ -592,6 +695,7 @@ addEventListener("DOMContentLoaded",function(){
   var userPaused = false;
 
   function setPaused(paused) {
+    hero.dataset.userPaused = userPaused ? 'true' : 'false'; // read by the scene script
     btn.setAttribute('aria-pressed', paused ? 'true' : 'false');
     btn.setAttribute('aria-label', paused ? 'Video abspielen' : 'Video pausieren');
   }
@@ -627,6 +731,106 @@ addEventListener("DOMContentLoaded",function(){
     document.addEventListener('maloa:intro-done', reveal, { once: true });
     setTimeout(reveal, 12000); // never leave the copy hidden if the intro fails
   } else reveal();
+})();
+});
+</script>
+<script>
+addEventListener("DOMContentLoaded",function(){
+/* Hero → leaves → Welcome, one pinned, scrubbed scene (GSAP + ScrollTrigger).
+   Progress 0 → 1 over the pin:
+   0.00–0.34  leaves come in from the edges (near ones travel most), the copy lifts away,
+              the film pulls back and dims
+   0.34–0.56  the leaves close in a little, the nearest grow as if coming towards the camera
+   0.52–0.96  the leaves part like a curtain and leave the frame; the Welcome opens between them
+              as a widening circle, settling from a slight zoom; its bowl turns into place
+   0.78–1.00  the Welcome copy rises in
+   Phones: three leaves, shorter travel, no 3D turn, shorter pin.
+   Reduced motion or no GSAP: nothing here runs; the Welcome block simply follows the Hero. */
+(function () {
+  var M = window.MALOA || {};
+  var scene = document.getElementById('scene');
+  if (!scene || !M.gsap || M.reduce) return;
+
+  var hero = scene.querySelector('.hero');
+  var video = hero.querySelector('.hero__video');
+  var media = hero.querySelector('.hero__media');
+  var copy = hero.querySelectorAll('.hero__content, .hero__scroll, .hero__pause');
+  var dim = scene.querySelector('.scene__dim');
+  var welcome = scene.querySelector('.welcome');
+  var inner = welcome.querySelector('.welcome__inner');
+  var visual = welcome.querySelector('.welcome__visual');
+  var lines = welcome.querySelectorAll('.welcome__label, .welcome__title span, .welcome__text, .welcome__cta');
+  var leaves = [].slice.call(scene.querySelectorAll('.leaf'));
+
+  scene.classList.add('scene--cinematic');
+  ScrollTrigger.config({ ignoreMobileResize: true }); // iOS address bar must not re-lay out the pin
+
+  leaves.forEach(function (l) {
+    var d = l.getAttribute('data-dir').split(',');
+    l._dx = +d[0]; l._dy = +d[1]; l._depth = +l.getAttribute('data-depth');
+  });
+
+  // The film is hidden once the Welcome covers it: stop decoding it, resume on the way back
+  var autoPaused = false;
+  function syncVideo(progress) {
+    if (progress > 0.97) {
+      if (!video.paused) { video.pause(); autoPaused = true; }
+    } else if (autoPaused && hero.dataset.userPaused !== 'true') {
+      autoPaused = false;
+      var p = video.play(); if (p && p.catch) p.catch(function () {});
+    }
+  }
+
+  var mm = gsap.matchMedia();
+  mm.add({ phone: '(max-aspect-ratio: 4/5)', wide: '(min-aspect-ratio: 4/5)' }, function (ctx) {
+    var phone = ctx.conditions.phone;
+    // travel in vw / vh per depth unit, 3D turn in degrees
+    var T = phone ? { enter: 44, close: 7, exit: 78, turn: 0 } : { enter: 58, close: 15, exit: 96, turn: 9 };
+    var vw = function () { return innerWidth / 100; };
+    var vh = function () { return innerHeight / 100; };
+    // the Welcome opens as a circle centred on its bowl
+    var at = phone ? '50% 30%' : '66% 52%';
+    var active = leaves.filter(function (l) { return getComputedStyle(l).display !== 'none'; });
+
+    var tl = gsap.timeline({
+      defaults: { ease: 'none' },
+      scrollTrigger: {
+        trigger: scene,
+        start: 'top top',
+        end: phone ? '+=150%' : '+=220%',
+        pin: true,
+        scrub: phone ? 0.5 : 0.9,        // a little lag reads as weight, not as delay
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        onUpdate: function (self) { syncVideo(self.progress); }
+      }
+    });
+
+    active.forEach(function (l) {
+      var k = l._depth, dx = l._dx, dy = l._dy, rot = +l.getAttribute('data-rot') || 0;
+      gsap.set(l, { rotation: rot, transformPerspective: 1200, force3D: true });
+      tl.fromTo(l,
+        { x: function () { return dx * T.enter * k * vw(); }, y: function () { return dy * T.enter * k * vh(); }, rotationY: dx * T.turn * 1.6, scale: 1 },
+        { x: 0, y: 0, rotationY: dx * T.turn * 0.4, ease: 'power2.out', duration: 0.34 }, 0)
+        .to(l, { x: function () { return -dx * T.close * k * vw(); }, y: function () { return -dy * T.close * k * vh(); },
+          rotationY: 0, rotation: rot + dx * 3 * k, scale: 1 + 0.1 * k, ease: 'sine.inOut', duration: 0.22 }, 0.34)
+        .to(l, { x: function () { return dx * T.exit * k * vw(); }, y: function () { return dy * T.exit * k * vh(); },
+          rotationY: -dx * T.turn, rotation: rot + dx * 6 * k, scale: 1 + 0.25 * k, ease: 'power2.in', duration: 0.42 }, 0.56);
+    });
+
+    tl.to(copy, { autoAlpha: 0, y: -40, ease: 'power2.in', duration: 0.18 }, 0)
+      .to(media, { scale: phone ? 0.94 : 0.88, ease: 'sine.inOut', duration: 0.56 }, 0)
+      .to(dim, { opacity: 0.55, ease: 'sine.inOut', duration: 0.5 }, 0.08)
+      .fromTo(welcome, { clipPath: 'circle(0% at ' + at + ')' }, { clipPath: 'circle(100% at ' + at + ')', ease: 'power2.inOut', duration: 0.44 }, 0.52)
+      .fromTo(inner, { scale: 1.1 }, { scale: 1, ease: 'power2.out', duration: 0.48 }, 0.52)
+      .fromTo(visual, { rotation: -12, y: function () { return 6 * vh(); } }, { rotation: 0, y: 0, ease: 'power2.out', duration: 0.46 }, 0.54)
+      .fromTo(lines, { autoAlpha: 0, y: 28 }, { autoAlpha: 1, y: 0, stagger: 0.03, ease: 'power2.out', duration: 0.18 }, 0.78);
+
+    return function () { syncVideo(0); };
+  });
+
+  // The intro locks scrolling; measure again once it has gone
+  document.addEventListener('maloa:intro-done', function () { ScrollTrigger.refresh(); });
 })();
 });
 </script>

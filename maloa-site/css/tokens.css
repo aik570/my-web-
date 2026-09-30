@@ -1,20 +1,24 @@
-/* Ma'loa tokens. Colours from maloa.com; #d8e2e2 is the live site's page ground. */
+/* Ma'loa tokens. Client CI (confirmed 30.09): these five colours are the whole palette.
+   Anything darker or lighter is mixed from them, never a new hue. */
 :root{
-  --deep-teal:   #004443;
-  --mid-teal:    #628a87;
-  --light-gray:  #c8d1d3;
-  --powder-pink: #f3d2d5;
-  --bg:          #d8e2e2;
-  --bg-light:    #f4f7f5;
-  --ink:         #06302f;
-  --on-teal:     #f4f7f5;
-  /* Night version of the brand teal: the dark of the hero film, used for shades and the hero ground */
-  --night:       #041716;
-  --night-rgb:   2 26 26;
+  --deep-teal:   #004443;   /* primary dark turquoise, also the text colour on light grounds */
+  --mid-teal:    #628a87;   /* secondary turquoise */
+  --light-gray:  #c8d1d3;   /* light text on dark */
+  --powder-pink: #f3d2d5;   /* blush accent: actions only */
+  --bg-light:    #f4f7f5;   /* light ground, primary text on dark */
 
-  /* Brandon Grotesque can be put in front of these once licensed */
-  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
-  --font-body:    "Figtree", system-ui, sans-serif;
+  --bg:      var(--bg-light);
+  --ink:     var(--deep-teal);
+  --on-teal: var(--bg-light);
+  /* Night: the brand teal pushed towards black, the dark of the hero film */
+  --night:     color-mix(in srgb, #004443 22%, #000);
+  --night-rgb: 0 15 15;
+  --pink-hover: color-mix(in srgb, #f3d2d5 60%, #f4f7f5);
+
+  /* Brandon Grotesque is the brand face: it is used as soon as the licensed files are installed.
+     Bricolage Grotesque (Google Fonts) is the loaded fallback. No other faces. */
+  --font-display: "Brandon Grotesque", "brandon-grotesque", "Bricolage Grotesque", system-ui, sans-serif;
+  --font-body:    "Brandon Grotesque", "brandon-grotesque", "Bricolage Grotesque", system-ui, sans-serif;
   --tracking-tight: -.03em;
 
   --gutter: 20px;

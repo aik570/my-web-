@@ -9,12 +9,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://d2ol7oe51mr4n9.cloudfront.net">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/intro.css">
 <link rel="stylesheet" href="css/header.css">
 <link rel="stylesheet" href="css/hero.css">
+<link rel="stylesheet" href="css/scene.css">
 <script>
 document.documentElement.classList.add('js');
 /* Decide before first paint whether the intro plays: once per session, script required */
@@ -135,6 +136,10 @@ catch (e) { document.documentElement.classList.add('intro-on'); }
 </div>
 
 <main id="main">
+  <!-- Hero → leaves → Welcome, one pinned scene (css/scene.css, js/scene.js).
+       Without the scene script (no GSAP, reduced motion) this is just the Hero followed by the Welcome block. -->
+  <div class="scene" id="scene">
+
   <!-- Block 1 · Hero (css/hero.css, js/hero.js)
        Base version: the Kling film of the real Maui Tuna bowl fills the screen, the copy sits on the
        dark left and bottom of the frame. Next steps add the scroll story and the hanging leaves. -->
@@ -178,8 +183,42 @@ catch (e) { document.documentElement.classList.add('intro-on'); }
     </button>
   </section>
 
-  <!-- Block 2 · Welcome comes here (anchor target for the scroll hint) -->
-  <section class="welcome" id="welcome" aria-label="Welcome"></section>
+    <!-- Dims the film as the camera pulls back -->
+    <div class="scene__dim" aria-hidden="true"></div>
+
+    <!-- Block 2 · Welcome. Opens between the leaves; its bowl is the Hero's Maui Tuna bowl.
+         Copy from the live site's Welcome block (German wording as in the approved demo). -->
+    <section class="welcome" id="welcome" aria-labelledby="welcome-title">
+      <div class="welcome__inner">
+        <figure class="welcome__visual">
+          <img class="welcome__bowl" src="assets/bowls/maui-tuna-900.webp"
+               srcset="assets/bowls/maui-tuna-560.webp 560w, assets/bowls/maui-tuna-900.webp 900w"
+               sizes="(max-aspect-ratio: 4/5) 72vw, 42vw" width="900" height="900" decoding="async"
+               alt="Maui Tuna Bowl von Ma'loa mit Ahi Tuna, Avocado, Masago, Edamame und Vul'Cano Flavor">
+        </figure>
+        <div class="welcome__copy">
+          <p class="welcome__label">Welcome to Ma'loa</p>
+          <h2 class="welcome__title" id="welcome-title"><span>Ein Stück Hawaii</span> <span>in Eurer Stadt.</span></h2>
+          <p class="welcome__text">Poké Bowl ist das traditionelle hawaiianische Nationalgericht. Sandstrände, Blumenketten, Hula und Wellen: Wir servieren ein Stück davon in Eurer Stadt.</p>
+          <a class="btn btn--primary welcome__cta" href="https://maloa.com/what-is-poke/">About Poké</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Foreground leaves, three depths (data-depth scales how far they travel).
+         Keyed out of the project's Higgsfield leaf frames; the blur and darkness of each depth is baked in.
+         leaf--xl ones are left out on phones. -->
+    <div class="leaves" aria-hidden="true">
+      <img class="leaf leaf--far leaf--f1" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/73343198-6048-4b4e-9fc4-b7a4d4a0e6d0.webp" width="354" height="560" alt="" decoding="async" data-dir="0.2,-1" data-depth=".35" data-rot="-160">
+      <img class="leaf leaf--far leaf--f2 leaf--xl" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/b1312f09-f80c-41a2-94c8-db2de06f700b.webp" width="273" height="520" alt="" decoding="async" data-dir="-0.8,0.6" data-depth=".35" data-rot="18">
+      <img class="leaf leaf--mid leaf--m1" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/a9721976-0d00-41a9-bb6f-04f242bfa250.webp" width="625" height="720" alt="" decoding="async" data-dir="-0.8,-0.8" data-depth=".6" data-rot="150">
+      <img class="leaf leaf--mid leaf--m2 leaf--xl" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/3003086a-d480-4295-8092-8ec59e35f77b.webp" width="378" height="720" alt="" decoding="async" data-dir="0.6,0.9" data-depth=".6" data-rot="-24">
+      <img class="leaf leaf--mid leaf--m3 leaf--xl" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/1e985fa3-98a9-4f00-942b-62fc5bcdedaa.webp" width="624" height="720" alt="" decoding="async" data-dir="1,0.1" data-depth=".6" data-rot="-96">
+      <img class="leaf leaf--near leaf--n1" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/658ce916-1759-451e-ae5b-e7e14dff0731.webp" width="953" height="1100" alt="" decoding="async" data-dir="-1,0.6" data-depth="1" data-rot="32">
+      <img class="leaf leaf--near leaf--n2" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/90823238-0bef-4f67-8ed1-63815cdcb3f9.webp" width="759" height="1200" alt="" decoding="async" data-dir="1,-0.8" data-depth="1" data-rot="196">
+      <img class="leaf leaf--near leaf--n3 leaf--xl" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/cf9faaaa-cdf0-48e0-9913-3009e9c29aeb.webp" width="474" height="1100" alt="" decoding="async" data-dir="0.1,1" data-depth="1" data-rot="6">
+    </div>
+  </div>
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" defer></script>
@@ -188,5 +227,6 @@ catch (e) { document.documentElement.classList.add('intro-on'); }
 <script src="js/core.js" defer></script>
 <script src="js/intro.js" defer></script>
 <script src="js/hero.js" defer></script>
+<script src="js/scene.js" defer></script>
 </body>
 </html>

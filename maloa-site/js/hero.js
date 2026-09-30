@@ -14,6 +14,7 @@
   var userPaused = false;
 
   function setPaused(paused) {
+    hero.dataset.userPaused = userPaused ? 'true' : 'false'; // read by the scene script
     btn.setAttribute('aria-pressed', paused ? 'true' : 'false');
     btn.setAttribute('aria-label', paused ? 'Video abspielen' : 'Video pausieren');
   }
