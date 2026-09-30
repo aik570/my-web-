@@ -1,5 +1,4 @@
-/* Reset, type, and the minimal header the intro sits under.
-   The full header (glass, hide on scroll, menu) is Block 1. */
+/* Reset and type. Header: css/header.css, Hero: css/hero.css. */
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip}
@@ -8,14 +7,3 @@ a{color:inherit}
 button{font:inherit;color:inherit}
 :focus-visible{outline:3px solid var(--powder-pink);outline-offset:3px;border-radius:6px}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-
-/* Header stays above the intro so ordering is possible from the first frame */
-.site-header{position:fixed;inset:0 0 auto;z-index:50;padding:env(safe-area-inset-top,0px) var(--gutter) 0;color:var(--on-teal)}
-.site-header__row{height:var(--hh);display:flex;align-items:center;justify-content:space-between}
-.site-header__logo{display:flex;align-items:center;min-width:44px;min-height:44px}
-.site-header__logo svg{width:44px;height:44px}
-.site-header__order{display:inline-flex;align-items:center;min-height:44px;padding:0 22px;border-radius:999px;background:var(--powder-pink);color:var(--ink);font-weight:700;text-decoration:none}
-
-/* Placeholder until Block 1 */
-.hero{position:relative;min-height:100svh;background:var(--deep-teal);color:var(--on-teal);display:grid;place-items:center;text-align:center;padding:var(--gutter)}
-.hero__placeholder{font-family:var(--font-display);font-weight:800;letter-spacing:var(--tracking-tight);font-size:clamp(28px,5vw,56px);opacity:.25}

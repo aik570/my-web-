@@ -1,0 +1,37 @@
+/* Header. Transparent over the Hero: logo, floating menu items, "Bestellen" always visible.
+   The menu is the live site's German menu. Items marked --md / --lg appear from 900px / 1240px;
+   below that the strip scrolls sideways instead of collapsing into a hamburger. */
+.site-header{position:fixed;inset:0 0 auto;z-index:50;padding:env(safe-area-inset-top,0px) var(--gutter) 0;color:var(--on-teal);pointer-events:none}
+.site-header__row{height:var(--hh);display:flex;align-items:center;gap:12px}
+.site-header__row > *{pointer-events:auto}
+
+.site-header__logo{flex:none;display:flex;align-items:center;min-width:44px;min-height:44px;border-radius:50%}
+.site-header__logo svg{width:40px;height:40px}
+
+.site-nav{flex:1;min-width:0;display:flex;justify-content:center;overflow-x:auto;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12px,#000 calc(100% - 12px),transparent);mask-image:linear-gradient(90deg,transparent,#000 12px,#000 calc(100% - 12px),transparent)}
+.site-nav::-webkit-scrollbar{display:none}
+.site-nav__list{display:flex;gap:6px;margin:0;padding:0 12px;list-style:none}
+.site-nav__md,.site-nav__lg{display:none}
+
+/* Items float on their own: hairline outline, a little glass, no bar behind them */
+.site-nav__link,.site-header__order{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:999px;
+  font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;white-space:nowrap;
+  transition:background-color .35s var(--ease-out),border-color .35s var(--ease-out),color .35s var(--ease-out)}
+.site-nav__link{border:1px solid rgba(244,247,245,.18);background:rgba(var(--night-rgb) / .22);-webkit-backdrop-filter:blur(10px) saturate(1.2);backdrop-filter:blur(10px) saturate(1.2)}
+.site-nav__link:hover{border-color:rgba(244,247,245,.55);background:rgba(var(--night-rgb) / .38)}
+.site-header__order{flex:none;padding:0 20px;background:var(--powder-pink);color:var(--ink);font-weight:700}
+.site-header__order:hover{background:#f9e4e6}
+
+@media (min-width:900px){
+  .site-nav__md{display:list-item}
+  .site-nav__link,.site-header__order{min-height:40px;font-size:12px}
+  .site-header__order{min-height:44px;padding:0 24px}
+}
+@media (min-width:1240px){ .site-nav__lg{display:list-item} }
+@media (max-width:599px){
+  .site-header__row{gap:8px}
+  .site-nav{-webkit-mask-image:none;mask-image:none}
+  .site-nav__list{padding:0;gap:4px}
+  .site-nav__link{padding:0 10px;font-size:11px;letter-spacing:.08em}
+  .site-header__order{padding:0 15px;font-size:11px;letter-spacing:.08em}
+}

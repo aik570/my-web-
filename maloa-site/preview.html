@@ -9,6 +9,7 @@
 <meta name="theme-color" content="#004443">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://d2ol7oe51mr4n9.cloudfront.net">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 /* Ma'loa tokens. Colours from maloa.com; #d8e2e2 is the live site's page ground. */
@@ -21,6 +22,9 @@
   --bg-light:    #f4f7f5;
   --ink:         #06302f;
   --on-teal:     #f4f7f5;
+  /* Night version of the brand teal: the dark of the hero film, used for shades and the hero ground */
+  --night:       #041716;
+  --night-rgb:   2 26 26;
 
   /* Brandon Grotesque can be put in front of these once licensed */
   --font-display: "Bricolage Grotesque", system-ui, sans-serif;
@@ -34,8 +38,7 @@
 @media (min-width: 900px){ :root{ --gutter: 40px; --hh: 84px; } }
 </style>
 <style>
-/* Reset, type, and the minimal header the intro sits under.
-   The full header (glass, hide on scroll, menu) is Block 1. */
+/* Reset and type. Header: css/header.css, Hero: css/hero.css. */
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip}
@@ -44,17 +47,6 @@ a{color:inherit}
 button{font:inherit;color:inherit}
 :focus-visible{outline:3px solid var(--powder-pink);outline-offset:3px;border-radius:6px}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-
-/* Header stays above the intro so ordering is possible from the first frame */
-.site-header{position:fixed;inset:0 0 auto;z-index:50;padding:env(safe-area-inset-top,0px) var(--gutter) 0;color:var(--on-teal)}
-.site-header__row{height:var(--hh);display:flex;align-items:center;justify-content:space-between}
-.site-header__logo{display:flex;align-items:center;min-width:44px;min-height:44px}
-.site-header__logo svg{width:44px;height:44px}
-.site-header__order{display:inline-flex;align-items:center;min-height:44px;padding:0 22px;border-radius:999px;background:var(--powder-pink);color:var(--ink);font-weight:700;text-decoration:none}
-
-/* Placeholder until Block 1 */
-.hero{position:relative;min-height:100svh;background:var(--deep-teal);color:var(--on-teal);display:grid;place-items:center;text-align:center;padding:var(--gutter)}
-.hero__placeholder{font-family:var(--font-display);font-weight:800;letter-spacing:var(--tracking-tight);font-size:clamp(28px,5vw,56px);opacity:.25}
 </style>
 <style>
 /* Block 0 · Intro. A full-screen layer over the top of the Hero:
@@ -120,7 +112,135 @@ html.intro-on .site-nav{visibility:hidden}
 .intro__skip:hover{border-color:var(--on-teal)}
 @media (max-width:599px){ .intro__hint{bottom:calc(84px + env(safe-area-inset-bottom,0px))} }
 </style>
+<style>
+/* Header. Transparent over the Hero: logo, floating menu items, "Bestellen" always visible.
+   The menu is the live site's German menu. Items marked --md / --lg appear from 900px / 1240px;
+   below that the strip scrolls sideways instead of collapsing into a hamburger. */
+.site-header{position:fixed;inset:0 0 auto;z-index:50;padding:env(safe-area-inset-top,0px) var(--gutter) 0;color:var(--on-teal);pointer-events:none}
+.site-header__row{height:var(--hh);display:flex;align-items:center;gap:12px}
+.site-header__row > *{pointer-events:auto}
+
+.site-header__logo{flex:none;display:flex;align-items:center;min-width:44px;min-height:44px;border-radius:50%}
+.site-header__logo svg{width:40px;height:40px}
+
+.site-nav{flex:1;min-width:0;display:flex;justify-content:center;overflow-x:auto;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12px,#000 calc(100% - 12px),transparent);mask-image:linear-gradient(90deg,transparent,#000 12px,#000 calc(100% - 12px),transparent)}
+.site-nav::-webkit-scrollbar{display:none}
+.site-nav__list{display:flex;gap:6px;margin:0;padding:0 12px;list-style:none}
+.site-nav__md,.site-nav__lg{display:none}
+
+/* Items float on their own: hairline outline, a little glass, no bar behind them */
+.site-nav__link,.site-header__order{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:999px;
+  font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;white-space:nowrap;
+  transition:background-color .35s var(--ease-out),border-color .35s var(--ease-out),color .35s var(--ease-out)}
+.site-nav__link{border:1px solid rgba(244,247,245,.18);background:rgba(var(--night-rgb) / .22);-webkit-backdrop-filter:blur(10px) saturate(1.2);backdrop-filter:blur(10px) saturate(1.2)}
+.site-nav__link:hover{border-color:rgba(244,247,245,.55);background:rgba(var(--night-rgb) / .38)}
+.site-header__order{flex:none;padding:0 20px;background:var(--powder-pink);color:var(--ink);font-weight:700}
+.site-header__order:hover{background:#f9e4e6}
+
+@media (min-width:900px){
+  .site-nav__md{display:list-item}
+  .site-nav__link,.site-header__order{min-height:40px;font-size:12px}
+  .site-header__order{min-height:44px;padding:0 24px}
+}
+@media (min-width:1240px){ .site-nav__lg{display:list-item} }
+@media (max-width:599px){
+  .site-header__row{gap:8px}
+  .site-nav{-webkit-mask-image:none;mask-image:none}
+  .site-nav__list{padding:0;gap:4px}
+  .site-nav__link{padding:0 10px;font-size:11px;letter-spacing:.08em}
+  .site-header__order{padding:0 15px;font-size:11px;letter-spacing:.08em}
+}
+</style>
+<style>
+/* Block 1 · Hero (base version).
+   The film of the real Maui Tuna bowl fills the screen. The bowl sits right of centre and
+   stays clear; the copy lives on the dark left and bottom of the frame, where a light
+   night-teal shade keeps it readable. Portrait screens stack film over copy so the bowl
+   is never cropped. */
+.hero{position:relative;height:100svh;min-height:400px;overflow:hidden;isolation:isolate;background:var(--night);color:var(--on-teal)}
+
+/* ---- Film ---- */
+.hero__media{position:absolute;inset:0;z-index:-1}
+/* Bowl centre in the frame is about 62% / 45%: keep that point fixed however the screen crops */
+.hero__video{width:100%;height:100%;object-fit:cover;object-position:62% 45%;background:var(--night)}
+.hero__shade{position:absolute;inset:0;pointer-events:none;background:
+  linear-gradient(180deg,rgb(var(--night-rgb) / .55) 0,rgb(var(--night-rgb) / 0) 20%),
+  linear-gradient(90deg,rgb(var(--night-rgb) / .62) 0,rgb(var(--night-rgb) / .3) 26%,rgb(var(--night-rgb) / 0) 42%),
+  linear-gradient(0deg,rgb(var(--night-rgb) / .8) 0,rgb(var(--night-rgb) / .35) 20%,rgb(var(--night-rgb) / 0) 38%)}
+
+/* ---- Copy ---- */
+.hero__content{position:absolute;left:var(--gutter);right:var(--gutter);bottom:calc(clamp(76px,11vh,112px) + env(safe-area-inset-bottom,0px));
+  display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"labels ." "title actions";align-items:end;column-gap:40px;row-gap:clamp(14px,2.2vh,24px)}
+
+.hero__labels{grid-area:labels;display:flex;align-items:center;gap:16px;max-width:min(640px,46vw)}
+.hero__label{margin:0;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;white-space:nowrap;color:rgba(244,247,245,.82)}
+.hero__rule{flex:1;min-width:32px;height:1px;background:rgba(244,247,245,.32)}
+
+.hero__title{grid-area:title;margin:0;font-family:var(--font-display);font-weight:800;text-transform:uppercase;
+  font-size:clamp(56px,8.4vw,160px);line-height:.86;letter-spacing:-.035em;font-variation-settings:"opsz" 96;text-wrap:balance}
+.hero__line{display:block}
+
+.hero__actions{grid-area:actions;display:flex;gap:12px;padding-bottom:.35em}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;border-radius:999px;
+  font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;white-space:nowrap;
+  transition:background-color .35s var(--ease-out),border-color .35s var(--ease-out),transform .5s var(--ease-out)}
+.btn:hover{transform:translateY(-2px)}
+.btn--primary{background:var(--powder-pink);color:var(--ink)}
+.btn--primary:hover{background:#f9e4e6}
+.btn--ghost{border:1px solid rgba(244,247,245,.5);color:var(--on-teal);background:rgb(var(--night-rgb) / .2);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.btn--ghost:hover{border-color:var(--on-teal);background:rgb(var(--night-rgb) / .35)}
+
+/* ---- Scroll hint and pause ---- */
+.hero__scroll{position:absolute;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:grid;justify-items:center;gap:10px;
+  padding:6px 10px;font-size:10.5px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;text-decoration:none;color:rgba(244,247,245,.72)}
+.hero__scroll-line{width:1px;height:36px;background:linear-gradient(rgba(244,247,245,.85),rgba(244,247,245,0));transform-origin:top;animation:hero-scroll 2.2s var(--ease-out) infinite}
+@keyframes hero-scroll{0%{transform:scaleY(0)}55%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+
+.hero__pause{position:absolute;right:var(--gutter);bottom:calc(20px + env(safe-area-inset-bottom,0px));width:44px;height:44px;display:grid;place-items:center;padding:0;
+  border:1px solid rgba(244,247,245,.3);border-radius:50%;background:rgb(var(--night-rgb) / .25);color:var(--on-teal);cursor:pointer;
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:border-color .3s var(--ease-out)}
+.hero__pause:hover{border-color:rgba(244,247,245,.7)}
+.hero__pause svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hero__pause .i-play{display:none;fill:currentColor;stroke:none}
+.hero__pause[aria-pressed="true"] .i-pause{display:none}
+.hero__pause[aria-pressed="true"] .i-play{display:block}
+
+/* ---- Entrance: copy rises in after the intro (JS adds .is-in; without JS it is simply there) ---- */
+.js .hero__labels,.js .hero__line,.js .hero__actions,.js .hero__scroll-label{opacity:0;transform:translateY(28px)}
+.js .hero.is-in .hero__labels,.js .hero.is-in .hero__line,.js .hero.is-in .hero__actions,.js .hero.is-in .hero__scroll-label{opacity:1;transform:none;
+  transition:opacity .9s var(--ease-out),transform 1.2s var(--ease-out)}
+.js .hero.is-in .hero__line:nth-child(1){transition-delay:.12s}
+.js .hero.is-in .hero__line:nth-child(2){transition-delay:.22s}
+.js .hero.is-in .hero__actions{transition-delay:.38s}
+.js .hero.is-in .hero__scroll-label{transition-delay:.6s}
+
+@media (prefers-reduced-motion:reduce){
+  .js .hero__labels,.js .hero__line,.js .hero__actions,.js .hero__scroll-label{transform:none}
+  .hero__scroll-line{animation:none}
+  .btn:hover{transform:none}
+}
+
+/* ---- Portrait screens (phones, tablets upright): film on top, copy below on the night ground ---- */
+@media (max-aspect-ratio:4/5){
+  .hero{height:auto;min-height:100svh;display:flex;flex-direction:column}
+  .hero__media{position:relative;inset:auto;flex:none;height:min(62svh,124vw)}
+  .hero__video{object-position:63% 46%}
+  .hero__shade{background:
+    linear-gradient(180deg,rgb(var(--night-rgb) / .55) 0,rgb(var(--night-rgb) / 0) 24%),
+    linear-gradient(0deg,var(--night) 0,rgb(var(--night-rgb) / .6) 16%,rgb(var(--night-rgb) / 0) 36%)}
+  .hero__content{position:relative;left:auto;right:auto;bottom:auto;flex:1;margin-top:-9svh;padding:0 var(--gutter) calc(84px + env(safe-area-inset-bottom,0px));
+    grid-template-columns:minmax(0,1fr);grid-template-areas:"labels" "title" "actions";align-content:end;row-gap:18px}
+  .hero__labels{max-width:none}
+  .hero__label{font-size:10.5px;letter-spacing:.2em}
+  .hero__title{font-size:min(14.5vw,96px)}
+  .hero__actions{padding:8px 0 0}
+  .hero__actions .btn{flex:1;padding:0 18px}
+  /* Short phones: the next section is already in reach, the hint would crowd the buttons */
+  @media (max-height:700px){ .hero__scroll{display:none} }
+}
+</style>
 <script>
+document.documentElement.classList.add('js');
 /* Decide before first paint whether the intro plays: once per session, script required */
 document.documentElement.classList.add('intro-on');
 </script>
@@ -134,7 +254,9 @@ document.documentElement.classList.add('intro-on');
 </svg>
 
 
-<!-- Header: transparent, floating pill items, no bar. Phones keep About, Menu and Bestellen; no hamburger. -->
+<!-- Header: transparent, floating over the Hero. Items are the live site's German menu (maloa.com).
+     Wide screens show all of them; narrower screens keep the most used ones (the rest move to the footer).
+     No hamburger. "Bestellen" is always visible. -->
 <header class="site-header">
   <div class="site-header__row">
     <a class="site-header__logo" href="#hero" aria-label="Ma'loa – Startseite">
@@ -145,11 +267,13 @@ document.documentElement.classList.add('intro-on');
     </a>
     <nav class="site-nav" aria-label="Hauptmenü">
       <ul class="site-nav__list">
-        <li><a class="site-nav__pill" href="https://maloa.com/what-is-poke/"><span>About</span></a></li>
-        <li><a class="site-nav__pill" href="https://maloa.com/produkte/"><span>Menü</span></a></li>
-        <li class="site-nav__wide"><a class="site-nav__pill" href="https://maloa.smoothr.de/map"><span>Stores</span></a></li>
-        <li class="site-nav__wide"><a class="site-nav__pill" href="https://maloa.com/catering/"><span>Catering</span></a></li>
-        <li class="site-nav__wide"><a class="site-nav__pill" href="https://maloa.com/franchise/"><span>Franchise</span></a></li>
+        <li><a class="site-nav__link" href="https://maloa.com/what-is-poke/">Über Ma'loa</a></li>
+        <li><a class="site-nav__link" href="https://maloa.com/produkte/">Menü</a></li>
+        <li class="site-nav__md"><a class="site-nav__link" href="https://maloa.smoothr.de/map">Standorte</a></li>
+        <li class="site-nav__md"><a class="site-nav__link" href="https://maloa.com/catering/">Catering</a></li>
+        <li class="site-nav__lg"><a class="site-nav__link" href="https://maloa.com/jobs/">Jobs</a></li>
+        <li class="site-nav__md"><a class="site-nav__link" href="https://maloa.com/franchise/">Franchise</a></li>
+        <li class="site-nav__lg"><a class="site-nav__link" href="https://www.paynoweatlater.de/at/maloa/?crt=maloa">Gutscheine</a></li>
       </ul>
     </nav>
     <a class="site-header__order" href="https://maloa.smoothr.de/map">Bestellen</a>
@@ -234,66 +358,47 @@ document.documentElement.classList.add('intro-on');
 </div>
 
 <main id="main">
-  <!-- Block 1 · Hero
-       Scroll story (pinned on desktop):
-       1. MA'LOA wordmark over the jungle, as the intro left it.
-       2. The film grows out of the round logo mask (GTAVI) until it fills the screen.
-       3. Leaves drop in from the corners, the headline builds word by word (Zentry).
-       On leaving, the film's lower edge folds into the brand wave (Zentry clip-path). -->
+  <!-- Block 1 · Hero (css/hero.css, js/hero.js)
+       Base version: the Kling film of the real Maui Tuna bowl fills the screen, the copy sits on the
+       dark left and bottom of the frame. Next steps add the scroll story and the hanging leaves. -->
   <section class="hero" id="hero" aria-labelledby="hero-title">
-    <div class="hero__stage">
 
-      <!-- Layer 1: jungle ground and the big wordmark (decorative, the H1 carries the text) -->
-      <div class="hero__jungle" aria-hidden="true">
-        <img class="hero__jungle-img" src="assets/hero/jungle.webp" alt="" width="1920" height="1080" decoding="async">
-        <p class="hero__wordmark">MA'LOA</p>
-      </div>
-
-      <!-- Layer 2: the film, revealed through the logo mask. Phones get the poster only. -->
-      <div class="hero__media">
-        <video class="hero__video" muted loop playsinline preload="none"
-               poster="assets/hero/hero-poster.webp" aria-hidden="true">
-          <!-- sources are attached by the hero script (GSAP step) on wide screens, so phones never download the film -->
-        </video>
-        <div class="hero__shade" aria-hidden="true"></div>
-      </div>
-
-      <!-- Layer 3: hanging leaves, three depths (data-depth drives parallax strength) -->
-      <div class="hero__leaves" aria-hidden="true">
-        <img class="hero__leaf hero__leaf--tl" data-depth="3" src="assets/leaves/monstera.webp"   alt="" width="640" height="800" decoding="async">
-        <img class="hero__leaf hero__leaf--tr" data-depth="2" src="assets/leaves/palm.webp"       alt="" width="640" height="800" decoding="async">
-        <img class="hero__leaf hero__leaf--bl" data-depth="1" src="assets/leaves/banana.webp"     alt="" width="640" height="800" decoding="async">
-        <img class="hero__leaf hero__leaf--br" data-depth="2" src="assets/leaves/philodendron.webp" alt="" width="640" height="800" decoding="async">
-      </div>
-
-      <!-- Layer 4: copy on top of the film, no boxes or frames -->
-      <div class="hero__content">
-        <p class="hero__eyebrow">Hawaiian Poké Bowl · Neu in Eschborn</p>
-        <h1 class="hero__title" id="hero-title">
-          <span class="hero__word"><span>Aloha,</span></span>
-          <span class="hero__word"><span>Eschborn.</span></span>
-        </h1>
-        <p class="hero__lead">Wir bringen ein Stück Hawaii in deine Stadt: die besten Poké Bowls, die du bekommen kannst.</p>
-        <div class="hero__actions">
-          <a class="btn btn--primary" href="https://maloa.smoothr.de/map"><span>Jetzt bestellen</span></a>
-          <a class="btn btn--ghost" href="https://maloa.com/produkte/"><span>Zum Menü</span></a>
-        </div>
-      </div>
-
-      <!-- Controls -->
-      <button class="hero__pause" type="button" aria-pressed="false" aria-label="Video pausieren" hidden>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-pause" d="M8 5v14M16 5v14"/><path class="i-play" d="M7 5l12 7-12 7z"/></svg>
-      </button>
-      <a class="hero__scroll" href="#welcome">
-        <span class="hero__scroll-label">Scroll</span>
-        <span class="hero__scroll-line" aria-hidden="true"></span>
-      </a>
-
-      <!-- Brand wave: the film's lower edge folds into it when the hero leaves -->
-      <svg class="hero__wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0 60 C 180 10, 360 110, 540 60 S 900 10, 1080 60 S 1350 110, 1440 60 V120 H0 Z"/>
-      </svg>
+    <!-- Film. Wide screens get 1080p, phones 720p; the poster shows until the first frame is ready.
+         Hosted on the Higgsfield CDN for the demo; move to our own server for production. -->
+    <div class="hero__media">
+      <video class="hero__video" autoplay muted loop playsinline disablepictureinpicture preload="auto"
+             poster="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/f0917650-8606-4f26-9dd2-63d7050473ed.webp" aria-hidden="true">
+        <source src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/ddc9eb47-501e-4cee-af2d-dbbc51047227.mp4" type="video/mp4" media="(min-width: 900px)">
+        <source src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/ec8320e3-dc35-404f-82dc-3b6648f7a9a6.mp4" type="video/mp4">
+      </video>
+      <!-- Shade only where the copy sits: top for the menu, left and bottom for the text. The bowl stays clear. -->
+      <div class="hero__shade" aria-hidden="true"></div>
     </div>
+
+    <div class="hero__content">
+      <div class="hero__labels">
+        <p class="hero__label">Hawaiian Poké Bowl</p>
+        <span class="hero__rule" aria-hidden="true"></span>
+        <p class="hero__label">Neu in Eschborn</p>
+      </div>
+      <h1 class="hero__title" id="hero-title">
+        <span class="hero__line">Aloha,</span>
+        <span class="hero__line">Eschborn.</span>
+      </h1>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="https://maloa.smoothr.de/map">Jetzt bestellen</a>
+        <a class="btn btn--ghost" href="https://maloa.com/produkte/">Zum Menü</a>
+      </div>
+    </div>
+
+    <a class="hero__scroll" href="#welcome">
+      <span class="hero__scroll-label">Scroll</span>
+      <span class="hero__scroll-line" aria-hidden="true"></span>
+    </a>
+    <!-- WCAG 2.2.2: a looping film needs a pause control -->
+    <button class="hero__pause" type="button" aria-pressed="false" aria-label="Video pausieren">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-pause" d="M9 6v12M15 6v12"/><path class="i-play" d="M8 5.5l11 6.5-11 6.5z"/></svg>
+    </button>
   </section>
 
   <!-- Block 2 · Welcome comes here (anchor target for the scroll hint) -->
@@ -466,6 +571,62 @@ addEventListener("DOMContentLoaded",function(){
     }, 400);
   });
   auto = setTimeout(start, 7000);
+})();
+});
+</script>
+<script>
+addEventListener("DOMContentLoaded",function(){
+/* Block 1 · Hero (base version)
+   - The film autoplays muted and loops (attributes in the HTML, so iOS Safari starts it without script).
+   - Pause button for the loop (WCAG 2.2.2). If the browser refuses autoplay (e.g. iOS Low Power Mode),
+     the button switches to "play" so the poster is not mistaken for a frozen video.
+   - The film pauses while off screen and resumes when it comes back, unless the visitor paused it.
+   - Reduced motion or Save-Data: the poster stays, nothing plays until the visitor asks.
+   - The copy rises in once the intro has finished (or straight away when there is no intro). */
+(function () {
+  var M = window.MALOA || {};
+  var hero = document.getElementById('hero');
+  if (!hero) return;
+  var video = hero.querySelector('.hero__video');
+  var btn = hero.querySelector('.hero__pause');
+  var userPaused = false;
+
+  function setPaused(paused) {
+    btn.setAttribute('aria-pressed', paused ? 'true' : 'false');
+    btn.setAttribute('aria-label', paused ? 'Video abspielen' : 'Video pausieren');
+  }
+  function play() {
+    var p = video.play();
+    if (p && p.catch) p.catch(function () { setPaused(true); });
+  }
+
+  if (M.reduce || M.saveData) {
+    video.removeAttribute('autoplay');
+    video.pause();
+    userPaused = true;
+    setPaused(true);
+  }
+
+  video.addEventListener('playing', function () { setPaused(false); });
+  btn.addEventListener('click', function () {
+    if (video.paused) { userPaused = false; play(); }
+    else { userPaused = true; video.pause(); setPaused(true); }
+  });
+
+  // Save battery and decoding time while the Hero is out of view
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) { if (!userPaused && video.paused) play(); }
+      else if (!video.paused) video.pause();
+    }, { threshold: 0.05 }).observe(hero);
+  }
+
+  // Entrance
+  function reveal() { requestAnimationFrame(function () { hero.classList.add('is-in'); }); }
+  if (document.documentElement.classList.contains('intro-on')) {
+    document.addEventListener('maloa:intro-done', reveal, { once: true });
+    setTimeout(reveal, 12000); // never leave the copy hidden if the intro fails
+  } else reveal();
 })();
 });
 </script>

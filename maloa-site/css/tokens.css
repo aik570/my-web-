@@ -8,6 +8,9 @@
   --bg-light:    #f4f7f5;
   --ink:         #06302f;
   --on-teal:     #f4f7f5;
+  /* Night version of the brand teal: the dark of the hero film, used for shades and the hero ground */
+  --night:       #041716;
+  --night-rgb:   2 26 26;
 
   /* Brandon Grotesque can be put in front of these once licensed */
   --font-display: "Bricolage Grotesque", system-ui, sans-serif;

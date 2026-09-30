@@ -8,11 +8,15 @@
 <meta name="theme-color" content="#004443">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://d2ol7oe51mr4n9.cloudfront.net">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/intro.css">
+<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/hero.css">
 <script>
+document.documentElement.classList.add('js');
 /* Decide before first paint whether the intro plays: once per session, script required */
 try { if (!sessionStorage.getItem('maloa-intro')) document.documentElement.classList.add('intro-on'); }
 catch (e) { document.documentElement.classList.add('intro-on'); }
@@ -27,7 +31,9 @@ catch (e) { document.documentElement.classList.add('intro-on'); }
 </svg>
 
 
-<!-- Header: transparent, floating pill items, no bar. Phones keep About, Menu and Bestellen; no hamburger. -->
+<!-- Header: transparent, floating over the Hero. Items are the live site's German menu (maloa.com).
+     Wide screens show all of them; narrower screens keep the most used ones (the rest move to the footer).
+     No hamburger. "Bestellen" is always visible. -->
 <header class="site-header">
   <div class="site-header__row">
     <a class="site-header__logo" href="#hero" aria-label="Ma'loa – Startseite">
@@ -38,11 +44,13 @@ catch (e) { document.documentElement.classList.add('intro-on'); }
     </a>
     <nav class="site-nav" aria-label="Hauptmenü">
       <ul class="site-nav__list">
-        <li><a class="site-nav__pill" href="https://maloa.com/what-is-poke/"><span>About</span></a></li>
-        <li><a class="site-nav__pill" href="https://maloa.com/produkte/"><span>Menü</span></a></li>
-        <li class="site-nav__wide"><a class="site-nav__pill" href="https://maloa.smoothr.de/map"><span>Stores</span></a></li>
-        <li class="site-nav__wide"><a class="site-nav__pill" href="https://maloa.com/catering/"><span>Catering</span></a></li>
-        <li class="site-nav__wide"><a class="site-nav__pill" href="https://maloa.com/franchise/"><span>Franchise</span></a></li>
+        <li><a class="site-nav__link" href="https://maloa.com/what-is-poke/">Über Ma'loa</a></li>
+        <li><a class="site-nav__link" href="https://maloa.com/produkte/">Menü</a></li>
+        <li class="site-nav__md"><a class="site-nav__link" href="https://maloa.smoothr.de/map">Standorte</a></li>
+        <li class="site-nav__md"><a class="site-nav__link" href="https://maloa.com/catering/">Catering</a></li>
+        <li class="site-nav__lg"><a class="site-nav__link" href="https://maloa.com/jobs/">Jobs</a></li>
+        <li class="site-nav__md"><a class="site-nav__link" href="https://maloa.com/franchise/">Franchise</a></li>
+        <li class="site-nav__lg"><a class="site-nav__link" href="https://www.paynoweatlater.de/at/maloa/?crt=maloa">Gutscheine</a></li>
       </ul>
     </nav>
     <a class="site-header__order" href="https://maloa.smoothr.de/map">Bestellen</a>
@@ -127,66 +135,47 @@ catch (e) { document.documentElement.classList.add('intro-on'); }
 </div>
 
 <main id="main">
-  <!-- Block 1 · Hero
-       Scroll story (pinned on desktop):
-       1. MA'LOA wordmark over the jungle, as the intro left it.
-       2. The film grows out of the round logo mask (GTAVI) until it fills the screen.
-       3. Leaves drop in from the corners, the headline builds word by word (Zentry).
-       On leaving, the film's lower edge folds into the brand wave (Zentry clip-path). -->
+  <!-- Block 1 · Hero (css/hero.css, js/hero.js)
+       Base version: the Kling film of the real Maui Tuna bowl fills the screen, the copy sits on the
+       dark left and bottom of the frame. Next steps add the scroll story and the hanging leaves. -->
   <section class="hero" id="hero" aria-labelledby="hero-title">
-    <div class="hero__stage">
 
-      <!-- Layer 1: jungle ground and the big wordmark (decorative, the H1 carries the text) -->
-      <div class="hero__jungle" aria-hidden="true">
-        <img class="hero__jungle-img" src="assets/hero/jungle.webp" alt="" width="1920" height="1080" decoding="async">
-        <p class="hero__wordmark">MA'LOA</p>
-      </div>
-
-      <!-- Layer 2: the film, revealed through the logo mask. Phones get the poster only. -->
-      <div class="hero__media">
-        <video class="hero__video" muted loop playsinline preload="none"
-               poster="assets/hero/hero-poster.webp" aria-hidden="true">
-          <!-- sources are attached by the hero script (GSAP step) on wide screens, so phones never download the film -->
-        </video>
-        <div class="hero__shade" aria-hidden="true"></div>
-      </div>
-
-      <!-- Layer 3: hanging leaves, three depths (data-depth drives parallax strength) -->
-      <div class="hero__leaves" aria-hidden="true">
-        <img class="hero__leaf hero__leaf--tl" data-depth="3" src="assets/leaves/monstera.webp"   alt="" width="640" height="800" decoding="async">
-        <img class="hero__leaf hero__leaf--tr" data-depth="2" src="assets/leaves/palm.webp"       alt="" width="640" height="800" decoding="async">
-        <img class="hero__leaf hero__leaf--bl" data-depth="1" src="assets/leaves/banana.webp"     alt="" width="640" height="800" decoding="async">
-        <img class="hero__leaf hero__leaf--br" data-depth="2" src="assets/leaves/philodendron.webp" alt="" width="640" height="800" decoding="async">
-      </div>
-
-      <!-- Layer 4: copy on top of the film, no boxes or frames -->
-      <div class="hero__content">
-        <p class="hero__eyebrow">Hawaiian Poké Bowl · Neu in Eschborn</p>
-        <h1 class="hero__title" id="hero-title">
-          <span class="hero__word"><span>Aloha,</span></span>
-          <span class="hero__word"><span>Eschborn.</span></span>
-        </h1>
-        <p class="hero__lead">Wir bringen ein Stück Hawaii in deine Stadt: die besten Poké Bowls, die du bekommen kannst.</p>
-        <div class="hero__actions">
-          <a class="btn btn--primary" href="https://maloa.smoothr.de/map"><span>Jetzt bestellen</span></a>
-          <a class="btn btn--ghost" href="https://maloa.com/produkte/"><span>Zum Menü</span></a>
-        </div>
-      </div>
-
-      <!-- Controls -->
-      <button class="hero__pause" type="button" aria-pressed="false" aria-label="Video pausieren" hidden>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-pause" d="M8 5v14M16 5v14"/><path class="i-play" d="M7 5l12 7-12 7z"/></svg>
-      </button>
-      <a class="hero__scroll" href="#welcome">
-        <span class="hero__scroll-label">Scroll</span>
-        <span class="hero__scroll-line" aria-hidden="true"></span>
-      </a>
-
-      <!-- Brand wave: the film's lower edge folds into it when the hero leaves -->
-      <svg class="hero__wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0 60 C 180 10, 360 110, 540 60 S 900 10, 1080 60 S 1350 110, 1440 60 V120 H0 Z"/>
-      </svg>
+    <!-- Film. Wide screens get 1080p, phones 720p; the poster shows until the first frame is ready.
+         Hosted on the Higgsfield CDN for the demo; move to our own server for production. -->
+    <div class="hero__media">
+      <video class="hero__video" autoplay muted loop playsinline disablepictureinpicture preload="auto"
+             poster="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/f0917650-8606-4f26-9dd2-63d7050473ed.webp" aria-hidden="true">
+        <source src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/ddc9eb47-501e-4cee-af2d-dbbc51047227.mp4" type="video/mp4" media="(min-width: 900px)">
+        <source src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/ec8320e3-dc35-404f-82dc-3b6648f7a9a6.mp4" type="video/mp4">
+      </video>
+      <!-- Shade only where the copy sits: top for the menu, left and bottom for the text. The bowl stays clear. -->
+      <div class="hero__shade" aria-hidden="true"></div>
     </div>
+
+    <div class="hero__content">
+      <div class="hero__labels">
+        <p class="hero__label">Hawaiian Poké Bowl</p>
+        <span class="hero__rule" aria-hidden="true"></span>
+        <p class="hero__label">Neu in Eschborn</p>
+      </div>
+      <h1 class="hero__title" id="hero-title">
+        <span class="hero__line">Aloha,</span>
+        <span class="hero__line">Eschborn.</span>
+      </h1>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="https://maloa.smoothr.de/map">Jetzt bestellen</a>
+        <a class="btn btn--ghost" href="https://maloa.com/produkte/">Zum Menü</a>
+      </div>
+    </div>
+
+    <a class="hero__scroll" href="#welcome">
+      <span class="hero__scroll-label">Scroll</span>
+      <span class="hero__scroll-line" aria-hidden="true"></span>
+    </a>
+    <!-- WCAG 2.2.2: a looping film needs a pause control -->
+    <button class="hero__pause" type="button" aria-pressed="false" aria-label="Video pausieren">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-pause" d="M9 6v12M15 6v12"/><path class="i-play" d="M8 5.5l11 6.5-11 6.5z"/></svg>
+    </button>
   </section>
 
   <!-- Block 2 · Welcome comes here (anchor target for the scroll hint) -->
@@ -198,5 +187,6 @@ catch (e) { document.documentElement.classList.add('intro-on'); }
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/DrawSVGPlugin.min.js" defer></script>
 <script src="js/core.js" defer></script>
 <script src="js/intro.js" defer></script>
+<script src="js/hero.js" defer></script>
 </body>
 </html>
