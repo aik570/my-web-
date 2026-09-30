@@ -1,0 +1,21 @@
+/* Ma'loa tokens. Colours from maloa.com; #d8e2e2 is the live site's page ground. */
+:root{
+  --deep-teal:   #004443;
+  --mid-teal:    #628a87;
+  --light-gray:  #c8d1d3;
+  --powder-pink: #f3d2d5;
+  --bg:          #d8e2e2;
+  --bg-light:    #f4f7f5;
+  --ink:         #06302f;
+  --on-teal:     #f4f7f5;
+
+  /* Brandon Grotesque can be put in front of these once licensed */
+  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-body:    "Figtree", system-ui, sans-serif;
+  --tracking-tight: -.03em;
+
+  --gutter: 20px;
+  --hh: 72px;
+  --ease-out: cubic-bezier(.22,1,.36,1);
+}
+@media (min-width: 900px){ :root{ --gutter: 40px; --hh: 84px; } }

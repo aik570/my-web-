@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ma'loa – Hawaiian Poké Bowl</title>
+<meta name="description" content="Ma'loa Hawaiian Poké Bowl. Jetzt neu in Eschborn.">
+<meta name="theme-color" content="#004443">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/intro.css">
+<script>
+/* Decide before first paint whether the intro plays: once per session, script required */
+try { if (!sessionStorage.getItem('maloa-intro')) document.documentElement.classList.add('intro-on'); }
+catch (e) { document.documentElement.classList.add('intro-on'); }
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header__row">
+    <a class="site-header__logo" href="#hero" aria-label="Ma'loa – Startseite">
+      <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="60" cy="60" r="56" stroke-width="5"/><path d="M34 84V38l26 32 26-32v46" stroke-width="10"/>
+      </svg>
+    </a>
+    <a class="site-header__order" href="https://maloa.smoothr.de/map">Bestellen</a>
+  </div>
+</header>
+
+<!-- Block 0 · Intro (decorative; the skip button is the only control) -->
+<div class="intro" id="intro">
+  <div class="intro__leaves" aria-hidden="true">
+    <div class="leaf leaf--1"></div>
+    <div class="leaf leaf--2"></div>
+    <div class="leaf leaf--3"></div>
+    <div class="leaf leaf--4"></div>
+    <div class="leaf leaf--5"></div>
+    <div class="leaf leaf--6"></div>
+  </div>
+  <div class="intro__mark" aria-hidden="true">
+    <!-- PLACEHOLDER logo, inline so DrawSVG can reach the strokes (same as assets/logo/logo-circle.svg) -->
+    <svg class="intro__logo" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <circle class="logo-ring" cx="60" cy="60" r="56" stroke-width="3"/>
+      <path class="logo-m" d="M34 84V38l26 32 26-32v46" stroke-width="8"/>
+    </svg>
+    <!-- PLACEHOLDER wordmark (same as assets/logo/logo-wordmark.svg) -->
+    <svg class="intro__wordmark" viewBox="0 0 520 110">
+      <text x="260" y="88" text-anchor="middle" fill="currentColor" font-family="'Bricolage Grotesque', system-ui, sans-serif" font-weight="800" font-size="104" letter-spacing="-3">MA'LOA</text>
+    </svg>
+  </div>
+  <button class="intro__skip" type="button">Intro überspringen</button>
+</div>
+
+<main id="main">
+  <!-- Block 1 · Hero comes here -->
+  <section class="hero" id="hero" aria-label="Hero">
+    <p class="hero__placeholder">Block 1 · Hero</p>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/DrawSVGPlugin.min.js" defer></script>
+<script src="js/core.js" defer></script>
+<script src="js/intro.js" defer></script>
+</body>
+</html>

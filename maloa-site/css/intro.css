@@ -1,0 +1,29 @@
+/* Block 0 · Intro. A full-screen layer over the top of the Hero:
+   logo traces itself, wordmark pops, six leaves bloom, sway, then fly off. */
+.intro{position:fixed;inset:0;z-index:40;background:var(--deep-teal);color:var(--on-teal);overflow:hidden;display:grid;place-items:center}
+/* No script, or already seen this session: never cover the page */
+html:not(.intro-on) .intro{display:none}
+
+.intro__mark{position:relative;z-index:2;display:grid;justify-items:center;gap:clamp(14px,2.4vw,28px);width:min(72vw,520px)}
+.intro__logo{width:clamp(96px,16vw,168px);height:auto}
+.intro__wordmark{width:100%;height:auto;transform-origin:50% 60%}
+
+/* Leaves. Each sits at a fixed spot and size; the video/poster inside is
+   feathered at the edges so its own background melts into #004443. */
+.intro__leaves{position:absolute;inset:0;z-index:1;pointer-events:none}
+.leaf{position:absolute;width:var(--size);aspect-ratio:1;will-change:transform,opacity}
+.leaf > *{width:100%;height:100%;object-fit:cover;rotate:var(--rot,0deg);-webkit-mask-image:radial-gradient(closest-side,#000 78%,transparent);mask-image:radial-gradient(closest-side,#000 78%,transparent)}
+.leaf--1{--size:clamp(150px,30vmin,340px);--rot:-24deg;left:4%; top:6%}
+.leaf--2{--size:clamp(140px,26vmin,300px);--rot:28deg; right:5%;top:4%}
+.leaf--3{--size:clamp(150px,28vmin,320px);--rot:84deg; left:-4%;top:42%}
+.leaf--4{--size:clamp(160px,30vmin,340px);--rot:-72deg;right:-4%;top:38%}
+.leaf--5{--size:clamp(140px,26vmin,300px);--rot:160deg;left:12%;bottom:2%}
+.leaf--6{--size:clamp(150px,28vmin,320px);--rot:-150deg;right:10%;bottom:3%}
+@media (max-width:599px){
+  .leaf--3,.leaf--4{top:auto;bottom:17%}
+  .leaf--1{left:-8%;top:8%}.leaf--2{right:-8%;top:10%}
+  .leaf--5{left:-6%;bottom:-5%}.leaf--6{right:-6%;bottom:-4%}
+}
+
+.intro__skip{position:absolute;z-index:3;right:var(--gutter);bottom:calc(20px + env(safe-area-inset-bottom,0px));min-height:44px;padding:0 18px;border:1.5px solid rgba(244,247,245,.35);border-radius:999px;background:transparent;color:var(--on-teal);font-size:14px;font-weight:600;cursor:pointer}
+.intro__skip:hover{border-color:var(--on-teal)}

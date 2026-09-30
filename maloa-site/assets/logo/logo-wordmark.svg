@@ -1,0 +1,8 @@
+<!-- PLACEHOLDER. Replace with the client's wordmark once supplied.
+     Live text in Bricolage Grotesque 800; it renders in that face only where the
+     page has loaded the font (inline use in index.html). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 110">
+  <text x="260" y="88" text-anchor="middle" fill="currentColor"
+        font-family="'Bricolage Grotesque', system-ui, sans-serif" font-weight="800"
+        font-size="104" letter-spacing="-3">MA'LOA</text>
+</svg>
