@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="css/header.css">
 <link rel="stylesheet" href="css/hero.css">
 <link rel="stylesheet" href="css/scene.css">
+<link rel="stylesheet" href="css/about.css">
 <script>
 document.documentElement.classList.add('js');
 /* Decide before first paint whether the intro plays: once per session, script required */
@@ -219,6 +220,25 @@ catch (e) { document.documentElement.classList.add('intro-on'); }
       <img class="leaf leaf--near leaf--n3 leaf--xl" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/cf9faaaa-cdf0-48e0-9913-3009e9c29aeb.webp" width="474" height="1100" alt="" decoding="async" data-dir="0.1,1" data-depth="1" data-rot="6">
     </div>
   </div>
+
+  <!-- Block 3 · Welcome / About Poké (css/about.css, js/about.js).
+       Real content from maloa.com: the German Welcome text and the Welcome photo (Um_Maloa.jpg, 1124×800),
+       used as is (crop, mask and motion only). The ground turns from the scene's night to the light ground. -->
+  <section class="about" id="about" aria-labelledby="about-title">
+    <div class="about__head">
+      <p class="about__label">Welcome to Ma'loa</p>
+      <h2 class="about__title" id="about-title"><span class="about__line"><span>Ein Stück Hawaii</span></span> <span class="about__line"><span>in Eurer Stadt</span></span></h2>
+    </div>
+    <div class="about__body">
+      <p class="about__text">Ma’Loa legt den Fokus auf etwas, von dem Hawaiianer sagen würden, dass es ohne nicht geht. Die Rede ist von Poké Bowl, dem traditionellen hawaiianischen Nationalgericht. Wir geben Euch die Gelegenheit mit Poké, in den Insel-Vibe Hawaiis zu gelangen.</p>
+      <a class="about__cta" href="https://maloa.com/what-is-poke/"><span>About Poké</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <figure class="about__photo">
+      <!-- The client's own Welcome photo, hot-linked from maloa.com for the demo; ships with the site in production -->
+      <img src="https://maloa.com/wp-content/uploads/2020/01/Um_Maloa.jpg" width="1124" height="800" loading="lazy" decoding="async"
+           alt="Ma'loa: Gäste mit Poké Bowls">
+    </figure>
+  </section>
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" defer></script>
@@ -228,5 +248,6 @@ catch (e) { document.documentElement.classList.add('intro-on'); }
 <script src="js/intro.js" defer></script>
 <script src="js/hero.js" defer></script>
 <script src="js/scene.js" defer></script>
+<script src="js/about.js" defer></script>
 </body>
 </html>

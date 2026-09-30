@@ -107,6 +107,12 @@
 - Боул в Welcome: `assets/bowls/maui-tuna-900.webp` / `-560.webp` (вырез из `maloa/img/bowl-spicy-salmon-*`, фото клиента Maui Tuna).
 - CI: `css/tokens.css` — только 5 цветов клиента; шрифт Brandon Grotesque первым в стеке, Bricolage Grotesque — загружаемый запасной, Figtree убран.
 
+## Блок Welcome / About Poké (после сцены)
+
+- Разметка: `index.html`, `<section class="about" id="about">`. Стили `css/about.css`, скрипт `js/about.js`; светлая версия шапки — класс `.site-header.is-light` в `css/header.css`.
+- Фото: `https://maloa.com/wp-content/uploads/2020/01/Um_Maloa.jpg` (1124×800, фото блока Welcome с их сайта), пока ссылкой на maloa.com; также импортировано в Higgsfield (`57488613-d725-420b-803a-4595d8efde5c`). Что на фото, автоматически проверить не удалось — посмотреть глазами.
+- Текст: первый абзац немецкого Welcome с maloa.com, кнопка «About Poké» → /what-is-poke/.
+
 ## 5. Открытые вопросы
 
 - Какие блоки убрать или объединить («как на сайте, но без лишнего»).

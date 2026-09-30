@@ -154,6 +154,14 @@ html.intro-on .site-nav{visibility:hidden}
   .site-nav__link{padding:0 10px;font-size:11px;letter-spacing:.08em}
   .site-header__order{padding:0 15px;font-size:11px;letter-spacing:.08em}
 }
+
+/* Over light sections (set by the section's script): teal on light, same shapes */
+.site-header{transition:color .4s var(--ease-out)}
+.site-header.is-light{color:var(--deep-teal)}
+.site-header.is-light .site-nav__link{border-color:rgb(0 68 67 / .22);background:rgb(244 247 245 / .6)}
+.site-header.is-light .site-nav__link:hover{border-color:rgb(0 68 67 / .6)}
+.site-header.is-light .site-header__logo svg g{fill:var(--bg-light) !important}
+.site-header.is-light .site-header__logo svg circle{fill:var(--deep-teal)}
 </style>
 <style>
 /* Block 1 · Hero (base version).
@@ -302,6 +310,57 @@ html.intro-on .site-nav{visibility:hidden}
   .leaf--m1{width:52vw;left:-18%;top:-10%}
   .leaf--n1{width:92vw;left:-42%;bottom:-26%}
   .leaf--n2{width:72vw;right:-34%;top:-24%}
+}
+</style>
+<style>
+/* Block 3 · Welcome / About Poké.
+   Editorial, not "text left, picture right": a large headline across the top, the real Welcome photo
+   as the centre of the block, the short site text and the About Poké link tucked beside its lower edge.
+   The ground starts as the scene's night and turns to the light ground as the block comes in
+   (js/about.js); without the script a gradient does the same job. */
+.about{position:relative;color:var(--deep-teal);
+  background:linear-gradient(180deg,var(--night) 0,var(--deep-teal) 90px,var(--mid-teal) 180px,var(--light-gray) 260px,var(--bg-light) 340px);
+  padding:calc(340px + 24px) var(--gutter) clamp(72px,10vw,140px);
+  display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);
+  grid-template-areas:
+    "head head head head head head head head head head . ."
+    "body body body photo photo photo photo photo photo photo photo photo"}
+.js .about.is-scripted{background:var(--night);padding-top:clamp(140px,20vh,220px)}
+/* a soft night band at the top: the seam with the dark scene is a gradient, never an edge */
+.js .about.is-scripted::before{content:"";position:absolute;left:0;right:0;top:0;height:clamp(120px,18vh,200px);background:linear-gradient(180deg,var(--night),rgb(var(--night-rgb) / 0));pointer-events:none}
+
+.about__head{grid-area:head;margin-bottom:clamp(28px,4vw,56px)}
+.about__label{margin:0 0 18px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--deep-teal)}
+.about__title{margin:0;font-family:var(--font-display);font-weight:800;text-transform:uppercase;font-size:clamp(52px,7.4vw,136px);line-height:.88;letter-spacing:-.035em}
+.about__line{display:block;overflow:hidden;padding-bottom:.04em}
+.about__line > span{display:block}
+.about__line:nth-child(2){padding-left:clamp(0px,12vw,220px)}   /* offset second line: editorial rhythm */
+
+/* copy sits in the narrow column, aligned with the lower edge of the photo */
+.about__body{grid-area:body;align-self:end;padding-bottom:clamp(8px,2vw,24px)}
+.about__text{margin:0 0 28px;font-size:17px;line-height:1.6;max-width:34ch}
+.about__cta{display:inline-flex;align-items:center;gap:12px;min-height:44px;font-size:12.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;color:var(--deep-teal);
+  background:linear-gradient(currentColor,currentColor) 0 100%/100% 1px no-repeat;transition:background-size .5s var(--ease-out)}
+.about__cta:hover{background-size:0 1px;background-position:100% 100%}
+.about__cta svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .5s var(--ease-out)}
+.about__cta:hover svg{transform:translateX(4px)}
+
+/* the photo keeps its own proportions, so nothing in it is cut away at rest */
+.about__photo{grid-area:photo;margin:0;position:relative;overflow:hidden;border-radius:24px;aspect-ratio:1124/800;max-width:1124px;background:var(--light-gray)}
+.about__photo img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* Phones and upright tablets: headline, text, then the photo edge to edge, link last */
+@media (max-aspect-ratio:4/5), (max-width:699px){
+  .about{grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "body" "photo" "cta";row-gap:0;padding-bottom:40px}
+  .js .about.is-scripted{padding-top:120px}
+  .about__head{margin-bottom:18px}
+  .about__label{margin-bottom:12px}
+  .about__title{font-size:min(11.2vw,64px)}
+  .about__line:nth-child(2){padding-left:0}
+  .about__body{display:contents}
+  .about__text{grid-area:body;margin:0 0 22px;font-size:16px;line-height:1.55;max-width:none}
+  .about__photo{margin:0 calc(-1 * var(--gutter));border-radius:0;max-width:none}
+  .about__cta{grid-area:cta;justify-self:start;margin-top:20px}
 }
 </style>
 <script>
@@ -506,6 +565,25 @@ document.documentElement.classList.add('intro-on');
       <img class="leaf leaf--near leaf--n3 leaf--xl" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/cf9faaaa-cdf0-48e0-9913-3009e9c29aeb.webp" width="474" height="1100" alt="" decoding="async" data-dir="0.1,1" data-depth="1" data-rot="6">
     </div>
   </div>
+
+  <!-- Block 3 · Welcome / About Poké (css/about.css, js/about.js).
+       Real content from maloa.com: the German Welcome text and the Welcome photo (Um_Maloa.jpg, 1124×800),
+       used as is (crop, mask and motion only). The ground turns from the scene's night to the light ground. -->
+  <section class="about" id="about" aria-labelledby="about-title">
+    <div class="about__head">
+      <p class="about__label">Welcome to Ma'loa</p>
+      <h2 class="about__title" id="about-title"><span class="about__line"><span>Ein Stück Hawaii</span></span> <span class="about__line"><span>in Eurer Stadt</span></span></h2>
+    </div>
+    <div class="about__body">
+      <p class="about__text">Ma’Loa legt den Fokus auf etwas, von dem Hawaiianer sagen würden, dass es ohne nicht geht. Die Rede ist von Poké Bowl, dem traditionellen hawaiianischen Nationalgericht. Wir geben Euch die Gelegenheit mit Poké, in den Insel-Vibe Hawaiis zu gelangen.</p>
+      <a class="about__cta" href="https://maloa.com/what-is-poke/"><span>About Poké</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <figure class="about__photo">
+      <!-- The client's own Welcome photo, hot-linked from maloa.com for the demo; ships with the site in production -->
+      <img src="https://maloa.com/wp-content/uploads/2020/01/Um_Maloa.jpg" width="1124" height="800" loading="lazy" decoding="async"
+           alt="Ma'loa: Gäste mit Poké Bowls">
+    </figure>
+  </section>
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" defer></script>
@@ -831,6 +909,63 @@ addEventListener("DOMContentLoaded",function(){
 
   // The intro locks scrolling; measure again once it has gone
   document.addEventListener('maloa:intro-done', function () { ScrollTrigger.refresh(); });
+})();
+});
+</script>
+<script>
+addEventListener("DOMContentLoaded",function(){
+/* Block 3 · Welcome / About Poké
+   - Ground: night → light while the block rises into view (scrubbed), so the dark scene hands over softly.
+   - Copy: label fades up, the two headline lines rise out of their own masks one after the other,
+     text and link follow; played once, not scrubbed, so reading never waits for the scroll.
+   - Photo, the one strong move: it opens from a soft pill shape to its full frame while the picture
+     inside settles from a slight zoom, scrubbed, like walking into the photograph.
+   - Afterwards a gentle parallax: the picture drifts inside its frame, the copy drifts the other way
+     at a different speed (wide screens only).
+   Reduced motion or no GSAP: nothing here runs; the CSS gradient and the static layout remain. */
+(function () {
+  var M = window.MALOA || {};
+  var about = document.getElementById('about');
+  if (!about || !M.gsap || M.reduce) return;
+
+  var photo = about.querySelector('.about__photo');
+  var img = photo.querySelector('img');
+  var label = about.querySelector('.about__label');
+  var lines = about.querySelectorAll('.about__line > span');
+  var follow = about.querySelectorAll('.about__text, .about__cta');
+  var body = about.querySelector('.about__body');
+  var night = getComputedStyle(document.documentElement).getPropertyValue('--night').trim() || '#000f0f';
+
+  about.classList.add('is-scripted');
+
+  gsap.fromTo(about, { backgroundColor: night }, {
+    backgroundColor: '#f4f7f5', ease: 'none',
+    scrollTrigger: { trigger: about, start: 'top 70%', end: 'top 15%', scrub: true }
+  });
+
+  // The fixed header switches to its light-ground version while this block is under it
+  ScrollTrigger.create({ trigger: about, start: 'top 12%', end: 'bottom top', toggleClass: { targets: '.site-header', className: 'is-light' } });
+
+  gsap.timeline({ scrollTrigger: { trigger: about, start: 'top 30%', once: true } })
+    .from(label, { autoAlpha: 0, y: 16, duration: 0.8, ease: 'power2.out' })
+    .from(lines, { yPercent: 105, duration: 1.2, ease: 'power4.out', stagger: 0.12 }, 0.1)
+    .from(follow, { autoAlpha: 0, y: 24, duration: 0.9, ease: 'power3.out', stagger: 0.1 }, 0.45);
+
+  var mm = gsap.matchMedia();
+  mm.add({ phone: '(max-aspect-ratio: 4/5), (max-width: 699px)', wide: '(min-aspect-ratio: 4/5) and (min-width: 700px)' }, function (ctx) {
+    var phone = ctx.conditions.phone;
+    gsap.timeline({ scrollTrigger: { trigger: photo, start: phone ? 'top 92%' : 'top 88%', end: phone ? 'top 30%' : 'center 55%', scrub: 0.8 } })
+      .fromTo(photo, { clipPath: phone ? 'inset(8% 10% 8% 10% round 120px)' : 'inset(14% 20% 14% 20% round 400px)' },
+                     { clipPath: 'inset(0% 0% 0% 0% round ' + (phone ? '0px' : '24px') + ')', ease: 'power2.inOut' }, 0)
+      .fromTo(img, { scale: phone ? 1.12 : 1.22 }, { scale: phone ? 1.02 : 1.06, ease: 'power2.out' }, 0);
+
+    if (!phone) {
+      gsap.fromTo(img, { yPercent: -3 }, { yPercent: 3, ease: 'none',
+        scrollTrigger: { trigger: photo, start: 'center 55%', end: 'bottom top', scrub: true } });
+      gsap.fromTo(body, { y: 40 }, { y: -40, ease: 'none',
+        scrollTrigger: { trigger: about, start: 'top 20%', end: 'bottom top', scrub: true } });
+    }
+  });
 })();
 });
 </script>
