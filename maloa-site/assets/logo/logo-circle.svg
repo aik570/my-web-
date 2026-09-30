@@ -1,6 +1,0 @@
-<!-- PLACEHOLDER. Replace with the client's monogram (SVG/AI/EPS) once supplied.
-     Drawn as strokes so DrawSVG can trace it: .logo-ring and .logo-m. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-  <circle class="logo-ring" cx="60" cy="60" r="56" stroke-width="3"/>
-  <path class="logo-m" d="M34 84V38l26 32 26-32v46" stroke-width="8"/>
-</svg>

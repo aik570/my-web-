@@ -1,23 +1,28 @@
 /* Block 0 · Intro
-   1. ring and M trace themselves (DrawSVG, 1.5s)
-   2. "MA'LOA" pops: scale .8 → overshoot → 1, back.out(2)
-   3. six leaves bloom, then sway on their own loops
-   4. leaves fly outward, the layer fades, the Hero is revealed
-   Never blocks ordering: the header sits above it, any scroll, key or tap
-   fast-forwards it, and it only plays once per browser session.
-   Reduced motion: the mark fades in and out, nothing else moves. */
+   idle   stone disc breathes in the jungle, light glances over it, rays drift
+   start  on a small scroll / swipe / key / tap (or after 7 s):
+          1. press: the disc sinks into the leaves (anticipation)
+          2. jump: it lifts toward the camera and flips like a coin
+          3. land: bounces onto the dark side; ring draws, letters slide out of the "m",
+             tagline opens from the centre
+          4. fly-through: the camera passes through the disc into the Hero
+   Never blocks ordering: the header sits above it, the skip button ends it at once,
+   further scrolling plays it faster, and it runs once per browser session.
+   Reduced motion: the dark disc fades in and out, nothing moves. */
 (function () {
   var M = window.MALOA;
   var root = document.documentElement;
   var intro = document.getElementById('intro');
   if (!intro || !root.classList.contains('intro-on')) return;
 
-  var ring = intro.querySelector('.logo-ring');
-  var mPath = intro.querySelector('.logo-m');
-  var mark = intro.querySelector('.intro__mark');
-  var wordmark = intro.querySelector('.intro__wordmark');
-  var leaves = [].slice.call(intro.querySelectorAll('.leaf'));
-  var skip = intro.querySelector('.intro__skip');
+  var q = function (s) { return intro.querySelector(s); };
+  var bg = q('.intro__bg'), rays = q('.intro__rays'), coin = q('.coin'), body = q('.coin__body'),
+      shadow = q('.coin__shadow'), front = q('.coin__face--front'), back = q('.coin__face--back'),
+      ringLine = q('.coin__ring-line'), ringEdge = q('.coin__ring-edge'),
+      letters = [].slice.call(intro.querySelectorAll('.glyph')), tag = q('.coin__tag'),
+      hint = q('.intro__hint'), skip = q('.intro__skip'),
+      shines = [].slice.call(intro.querySelectorAll('.coin__shine'));
+  var others = letters.filter(function (g) { return !g.classList.contains('glyph--m'); });
 
   function done() {
     try { sessionStorage.setItem('maloa-intro', '1'); } catch (e) {}
@@ -26,81 +31,96 @@
     document.dispatchEvent(new CustomEvent('maloa:intro-done'));
   }
 
-  /* ---- Reduced motion: fade only ---- */
+  function onIntent(fn) {
+    var sy = null, fired = false;
+    function go() { if (fired) return; fired = true; off(); fn(); }
+    function wheel(e) { if (e.deltaY > 2) go(); }
+    function tstart(e) { sy = e.touches[0].clientY; }
+    function tmove(e) { if (sy !== null && sy - e.touches[0].clientY > 8) go(); }
+    function key(e) { if (/^(ArrowDown|PageDown| |Spacebar|Enter)$/.test(e.key)) go(); }
+    function off() {
+      removeEventListener('wheel', wheel); removeEventListener('touchstart', tstart);
+      removeEventListener('touchmove', tmove); removeEventListener('keydown', key);
+      coin.removeEventListener('click', go);
+    }
+    addEventListener('wheel', wheel, { passive: true });
+    addEventListener('touchstart', tstart, { passive: true });
+    addEventListener('touchmove', tmove, { passive: true });
+    addEventListener('keydown', key);
+    coin.addEventListener('click', go);
+    return go;
+  }
+
+  skip.addEventListener('click', function () { clearTimeout(auto); done(); });
+  var auto;
+
+  /* ---- Reduced motion: show the finished dark disc, fade it away ---- */
   if (M.reduce) {
-    leaves.forEach(function (l) { l.remove(); });
-    gsap.timeline({ onComplete: done })
-      .from(mark, { opacity: 0, duration: .4 })
-      .to(intro, { opacity: 0, duration: .4 }, '+=.8');
+    gsap.set(body, { rotationY: 180 });
+    gsap.set([hint, rays], { autoAlpha: 0 });
+    gsap.from(coin, { opacity: 0, duration: .4 });
+    var leave = function () { gsap.to(intro, { opacity: 0, duration: .4, onComplete: done }); };
+    onIntent(leave);
+    setTimeout(leave, 2500);
     return;
   }
 
-  /* ---- Leaf media: video on wide screens, poster on phones ---- */
-  var useVideo = M.wide() && !M.saveData;
-  leaves.forEach(function (l, i) {
-    var src = M.leaves[i];
-    if (!src) { l.hidden = true; return; }
-    var el;
-    if (useVideo && (src.webm || src.mp4)) {
-      el = document.createElement('video');
-      el.muted = true; el.loop = true; el.playsInline = true; el.preload = 'auto';
-      el.setAttribute('muted', ''); el.setAttribute('playsinline', '');
-      if (src.poster) el.poster = src.poster;
-      if (src.webm) el.appendChild(Object.assign(document.createElement('source'), { src: src.webm, type: 'video/webm' }));
-      if (src.mp4)  el.appendChild(Object.assign(document.createElement('source'), { src: src.mp4,  type: 'video/mp4' }));
-    } else {
-      el = new Image(); el.decoding = 'async'; el.alt = ''; el.src = src.poster;
-    }
-    l.appendChild(el);
+  /* ---- Idle ---- */
+  gsap.set(ringLine, { drawSVG: '0%' });
+  gsap.set(ringEdge, { opacity: 0 });
+  gsap.set(others, { opacity: 0, x: -120 });
+  gsap.set(tag, { clipPath: 'inset(0 50% 0 50%)' });
+  gsap.set(back.querySelector('.glyph--m'), { opacity: 1 });
+
+  var idle = gsap.timeline();
+  idle.from(bg, { scale: 1.12, duration: 2.4, ease: 'power2.out' }, 0)
+      .from(coin, { opacity: 0, scale: .9, duration: 1.2, ease: 'power3.out' }, .3)
+      .from(hint, { opacity: 0, y: 10, duration: .8, ease: 'power2.out' }, 1.2);
+  var loops = [
+    gsap.to(coin, { scale: 1.015, duration: 2.6, ease: 'sine.inOut', yoyo: true, repeat: -1 }),
+    gsap.to(rays, { xPercent: 6, duration: 9, ease: 'sine.inOut', yoyo: true, repeat: -1 }),
+    gsap.to(shines[0], { xPercent: 160, duration: 2.2, ease: 'power2.inOut', repeat: -1, repeatDelay: 2.4, delay: 1.4 }),
+    gsap.fromTo(hint.querySelector('i'), { scaleY: 0 }, { scaleY: 1, duration: 1.2, ease: 'power2.inOut', repeat: -1, repeatDelay: .3 })
+  ];
+
+  /* ---- The jump ---- */
+  var tl = gsap.timeline({ paused: true, onComplete: done });
+  tl.add(function () { loops.forEach(function (t) { t.kill(); }); gsap.to(coin, { scale: 1, duration: .2 }); }, 0)
+    .to(hint, { autoAlpha: 0, y: 10, duration: .3 }, 0)
+    // 1. press into the leaves
+    .to(body, { scale: .93, duration: .22, ease: 'power2.in' }, 0)
+    .to(shadow, { scale: .96, y: 8, opacity: .9, duration: .22, ease: 'power2.in' }, 0)
+    // 2. lift toward the camera, flip in the air
+    .addLabel('jump', .22)
+    .to(body, { y: '-7vh', scale: 1.14, duration: .5, ease: 'power3.out' }, 'jump')
+    .to(body, { rotationY: 180, duration: 1, ease: 'power2.inOut' }, 'jump')
+    .to(shadow, { y: 70, scale: .82, opacity: .35, duration: .5, ease: 'power3.out' }, 'jump')
+    // 3. land on the dark side and settle
+    .to(body, { y: 0, scale: 1, duration: .7, ease: 'bounce.out' }, 'jump+=.5')
+    .to(shadow, { y: 16, scale: 1, opacity: .75, duration: .7, ease: 'bounce.out' }, 'jump+=.5')
+    .addLabel('land', 'jump+=1.05')
+    .to(ringLine, { drawSVG: '100%', duration: 1, ease: 'power2.inOut' }, 'land-=.25')
+    .to(ringEdge, { opacity: .7, duration: .8 }, 'land')
+    .to(others, { opacity: 1, x: 0, duration: .8, ease: 'power3.out', stagger: .07 }, 'land-=.1')
+    .to(tag, { clipPath: 'inset(0 0% 0 0%)', duration: .9, ease: 'power2.inOut' }, 'land+=.35')
+    .fromTo(shines[1], { xPercent: -10 }, { xPercent: 160, duration: 1.4, ease: 'power2.inOut' }, 'land+=.4')
+    // 4. hold, then fly through the disc
+    .addLabel('fly', 'land+=2.1')
+    .to(coin, { scale: 16, duration: 1.1, ease: 'power3.in' }, 'fly')
+    .to(bg, { scale: 1.35, duration: 1.1, ease: 'power3.in' }, 'fly')
+    .to(rays, { opacity: 0, duration: .5 }, 'fly')
+    .to(intro, { opacity: 0, duration: .45, ease: 'power1.out' }, 'fly+=.75');
+
+  var start = onIntent(function () {
+    clearTimeout(auto);
+    idle.progress(1);
+    tl.play();
+    // Scrolling again while it plays: move along faster
+    setTimeout(function () {
+      function hurry() { tl.timeScale(2.5); removeEventListener('wheel', hurry); removeEventListener('touchmove', hurry); }
+      addEventListener('wheel', hurry, { passive: true });
+      addEventListener('touchmove', hurry, { passive: true });
+    }, 400);
   });
-  leaves = leaves.filter(function (l) { return !l.hidden; });
-  var videos = leaves.map(function (l) { return l.querySelector('video'); }).filter(Boolean);
-
-  /* Where each leaf flies: straight out from the centre of the screen */
-  function outward(l) {
-    var r = l.getBoundingClientRect();
-    var dx = r.left + r.width / 2 - innerWidth / 2, dy = r.top + r.height / 2 - innerHeight / 2;
-    var len = Math.hypot(dx, dy) || 1, reach = Math.max(innerWidth, innerHeight) * .9;
-    return { x: dx / len * reach, y: dy / len * reach };
-  }
-
-  /* Gentle sway, independent per leaf so they never move in unison */
-  var sway = [];
-  function startSway() {
-    leaves.forEach(function (l, i) {
-      sway.push(gsap.to(l, { y: '+=' + (8 + i % 3 * 4), rotation: (i % 2 ? 1 : -1) * (3 + i % 3), duration: 2.2 + i * .23, ease: 'sine.inOut', yoyo: true, repeat: -1 }));
-    });
-    videos.forEach(function (v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); });
-  }
-
-  gsap.set([ring, mPath], { drawSVG: '0%' });
-  gsap.set(wordmark, { opacity: 0, scale: .8 });
-  gsap.set(leaves, { opacity: 0, scale: .4 });
-
-  var tl = gsap.timeline({ onComplete: function () { sway.forEach(function (t) { t.kill(); }); done(); } });
-  tl.to(ring,  { drawSVG: '100%', duration: 1.5, ease: 'power2.inOut' }, 0)
-    .to(mPath, { drawSVG: '100%', duration: .9,  ease: 'power2.inOut' }, .5)
-    .to(wordmark, { opacity: 1, scale: 1, duration: .7, ease: 'back.out(2)' }, 1.35)
-    .add(startSway, 1.5)
-    .to(leaves, { opacity: 1, scale: 1, duration: 1.1, ease: 'power3.out', stagger: { each: .08, from: 'random' } }, 1.5)
-    .addLabel('out', 3.6)
-    .add(function () { sway.forEach(function (t) { t.kill(); }); }, 'out')
-    .to(leaves, {
-      x: function (i, l) { return outward(l).x; },
-      y: function (i, l) { return outward(l).y; },
-      rotation: function (i) { return (i % 2 ? 1 : -1) * 70; },
-      scale: 1.25, opacity: 0, duration: 1.1, ease: 'power3.in', stagger: .04
-    }, 'out')
-    .to(mark, { scale: .92, opacity: 0, duration: .6, ease: 'power2.in' }, 'out+=.35')
-    .to(intro, { opacity: 0, duration: .5, ease: 'power1.out' }, 'out+=.75');
-
-  /* Any intent to move on plays the rest at 5× speed */
-  function hurry() {
-    tl.timeScale(5);
-    removeEventListener('wheel', hurry); removeEventListener('touchmove', hurry); removeEventListener('keydown', hurry);
-  }
-  addEventListener('wheel', hurry, { passive: true });
-  addEventListener('touchmove', hurry, { passive: true });
-  addEventListener('keydown', hurry);
-  skip.addEventListener('click', function () { tl.progress(1); });
+  auto = setTimeout(start, 7000);
 })();
