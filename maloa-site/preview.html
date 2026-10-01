@@ -548,6 +548,53 @@ html.intro-on .site-nav{visibility:hidden}
   .poke.is-scripted .poke__title{font-size:min(8vw,64px)}
 }
 </style>
+<style>
+/* Block 6 · Gift Card.
+   Picks up from the night at the end of Poké your style and opens into the light ground: copy on the left,
+   two cards on the right (a blush card behind, the deep teal MA'LOA card in front), drawn in CSS from the
+   traced logo. js/gift.js lets the cards rise in and drift a little apart with the scroll. */
+.gift{position:relative;overflow-x:clip;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);align-items:center;
+  padding:clamp(120px,15vw,210px) var(--gutter) clamp(110px,13vw,180px);color:var(--deep-teal);
+  background:linear-gradient(180deg,color-mix(in srgb,var(--deep-teal) 40%,var(--night)) 0,color-mix(in srgb,var(--deep-teal) 60%,var(--night)) clamp(60px,8vw,120px),var(--mid-teal) clamp(140px,16vw,240px),var(--light-gray) clamp(200px,22vw,320px),var(--bg-light) clamp(260px,28vw,400px))}
+.gift__copy{grid-column:1 / span 6;position:relative;z-index:1}
+.gift__label{margin:0 0 18px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase}
+.gift__title{margin:0;font-family:var(--font-display);font-weight:800;text-transform:uppercase;font-size:clamp(44px,5vw,96px);line-height:.88;letter-spacing:-.035em}
+.gift__line{display:block;overflow:hidden;padding:.14em 0 .04em;margin-top:-.14em}
+.gift__line > span{display:block}
+.gift__line:nth-child(2){padding-left:clamp(0px,5vw,90px)}
+.gift__text{margin:28px 0 0;font-size:17px;line-height:1.6;max-width:36ch;padding-top:20px;border-top:1px solid rgb(0 68 67 / .25)}
+.gift__actions{margin:32px 0 0}
+
+/* the cards: credit-card proportions (85.6 × 54 mm) */
+.gift__stage{grid-column:7 / -1;position:relative;aspect-ratio:1.18;max-width:640px;width:100%;justify-self:center}
+.gift__card{position:absolute;width:82%;aspect-ratio:85.6/54;border-radius:clamp(14px,1.6vw,22px);overflow:hidden;will-change:transform}
+.gift__card--back{right:0;top:4%;background:linear-gradient(135deg,var(--powder-pink),var(--pink-hover));transform:rotate(9deg);
+  box-shadow:0 30px 60px -20px rgb(0 68 67 / .35)}
+.gift__mark{position:absolute;right:-12%;bottom:-30%;width:70%;aspect-ratio:1;border-radius:50%;border:1px solid rgb(0 68 67 / .18)}
+.gift__card--front{left:0;bottom:6%;color:var(--bg-light);transform:rotate(-6deg);
+  background:radial-gradient(120% 140% at 85% 0%,color-mix(in srgb,var(--deep-teal) 70%,var(--mid-teal)) 0%,var(--deep-teal) 45%,var(--night) 100%);
+  box-shadow:0 40px 70px -24px rgb(var(--night-rgb) / .65),inset 0 0 0 1px rgb(244 247 245 / .1)}
+/* a faint sheen across the card */
+.gift__card--front::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgb(244 247 245 / 0) 35%,rgb(244 247 245 / .08) 50%,rgb(244 247 245 / 0) 65%);pointer-events:none}
+.gift__waves{position:absolute;inset:0;width:100%;height:100%;fill:none;stroke:rgb(200 209 211 / .16);stroke-width:1}
+.gift__logo{position:absolute;left:7%;top:11%;width:12%;height:auto;color:var(--bg-light)}
+.gift__kind{position:absolute;right:7%;top:12%;font-size:clamp(9px,.9vw,12px);font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--light-gray)}
+/* the traced wordmark, coloured through a mask so it follows the card's palette */
+.gift__wordmark{position:absolute;left:7%;bottom:15%;width:46%;aspect-ratio:1295/520;background:var(--bg-light);
+  -webkit-mask:url(../assets/logo/logo-wordmark.svg) left bottom/contain no-repeat;mask:url(../assets/logo/logo-wordmark.svg) left bottom/contain no-repeat}
+.gift__foot{position:absolute;right:7%;bottom:13%;font-size:clamp(8px,.8vw,11px);font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--powder-pink)}
+
+@media (max-aspect-ratio:4/5), (max-width:699px){
+  .gift{grid-template-columns:minmax(0,1fr);row-gap:56px;padding:120px var(--gutter) 96px}
+  .gift__copy{grid-column:1}
+  .gift__title{font-size:min(12vw,64px)}
+  .gift__line:nth-child(2){padding-left:0}
+  .gift__text{font-size:16px}
+  .gift__actions .btn{width:100%}
+  .gift__stage{grid-column:1;grid-row:2;max-width:480px;margin:0 auto}
+  .gift__copy{grid-row:1}
+}
+</style>
 <script>
 document.documentElement.classList.add('js');
 /* Decide before first paint whether the intro plays: once per session, script required */
@@ -905,6 +952,33 @@ document.documentElement.classList.add('intro-on');
         </li>
       </ol>
       <div class="poke__progress" aria-hidden="true"><span>01</span><span>02</span><span>03</span><span>04</span><span>05</span><span>06</span></div>
+    </div>
+  </section>
+
+  <!-- Block 6 · Gift Card (css/gift.css, js/gift.js).
+       The destination is the client's real voucher shop (paynoweatlater.de, the same link as "Gutscheine" in the
+       header and "GET YOUR GIFT CARD HERE" on maloa.com). No values or prices are shown: none are published.
+       The card is drawn from the traced logo (assets/logo), no image is generated. -->
+  <section class="gift" id="gutschein" aria-labelledby="gift-title">
+    <div class="gift__copy">
+      <p class="gift__label">Gift Card</p>
+      <h2 class="gift__title" id="gift-title"><span class="gift__line"><span>Verschenkt ein</span></span> <span class="gift__line"><span>Stück Aloha</span></span></h2>
+      <p class="gift__text">Der MA'LOA Gutschein: für Geburtstage, besondere Anlässe oder einfach so. Ein Geschenk, das nach Hawaii schmeckt.</p>
+      <p class="gift__actions"><a class="btn btn--primary" href="https://www.paynoweatlater.de/at/maloa/?crt=maloa">Gift Card kaufen</a></p>
+    </div>
+    <div class="gift__stage" aria-hidden="true">
+      <div class="gift__card gift__card--back"><span class="gift__mark"></span></div>
+      <div class="gift__card gift__card--front">
+        <svg class="gift__waves" viewBox="0 0 400 250" preserveAspectRatio="none">
+          <path d="M-10 170 C 60 140, 120 200, 200 168 S 330 130, 410 160"/>
+          <path d="M-10 190 C 60 160, 120 220, 200 188 S 330 150, 410 180"/>
+          <path d="M-10 210 C 60 180, 120 240, 200 208 S 330 170, 410 200"/>
+        </svg>
+        <svg class="gift__logo" viewBox="0 0 726 726"><circle cx="363" cy="363" r="363" fill="currentColor"/><g transform="translate(114.76 -100.00) scale(1.5568)" style="fill:var(--deep-teal)"><use href="#maloa-m"/></g></svg>
+        <span class="gift__kind">Gift Card</span>
+        <span class="gift__wordmark"></span>
+        <span class="gift__foot">Gutschein</span>
+      </div>
     </div>
   </section>
 </main>
@@ -1554,6 +1628,48 @@ addEventListener("DOMContentLoaded",function(){
     show(stepOf[Math.min(7, Math.ceil(tl.time() - 0.001))] || i);
   });
   show(0);
+})();
+});
+</script>
+<script>
+addEventListener("DOMContentLoaded",function(){
+/* Block 6 · Gift Card
+   - Copy: label, the two headline lines out of their masks, text and button (once).
+   - Cards: rise in once, the front card a beat after the back one; then, scrubbed, they drift a little apart
+     and turn a touch, as if lifted off the table.
+   Reduced motion or no GSAP: the cards rest in place. */
+(function () {
+  var M = window.MALOA || {};
+  var gift = document.getElementById('gutschein');
+  if (!gift || !M.gsap || M.reduce) return;
+
+  var back = gift.querySelector('.gift__card--back');
+  var front = gift.querySelector('.gift__card--front');
+
+  // The header takes its light version once the light ground is under it (as over Welcome): the
+  // gradient at the top of this block is light after ~70% of its band (CSS: up to clamp(260px,28vw,400px))
+  ScrollTrigger.create({
+    trigger: gift, end: 'bottom top', toggleClass: { targets: '.site-header', className: 'is-light' },
+    start: function () {
+      var band = Math.min(400, Math.max(260, innerWidth * 0.28));
+      return 'top+=' + Math.round(band * 0.7) + ' ' + document.querySelector('.site-header__row').offsetHeight + 'px';
+    }
+  });
+
+  gsap.timeline({ scrollTrigger: { trigger: gift, start: 'top 55%', once: true } })
+    .from(gift.querySelector('.gift__label'), { autoAlpha: 0, y: 16, duration: 0.8, ease: 'power2.out' })
+    .from(gift.querySelectorAll('.gift__line > span'), { yPercent: 150, duration: 1.2, ease: 'power4.out', stagger: 0.12 }, 0.1)
+    .from(gift.querySelectorAll('.gift__text, .gift__actions'), { autoAlpha: 0, y: 24, duration: 0.9, ease: 'power3.out', stagger: 0.1 }, 0.45);
+
+  gsap.timeline({ scrollTrigger: { trigger: gift.querySelector('.gift__stage'), start: 'top 85%', once: true } })
+    .from(back, { autoAlpha: 0, y: 80, rotation: 2, duration: 1.2, ease: 'power3.out' })
+    .from(front, { autoAlpha: 0, y: 110, rotation: 2, duration: 1.3, ease: 'power3.out' }, 0.15);
+
+  // after landing: a gentle drift apart with the scroll (y only, the resting angles stay in CSS)
+  gsap.fromTo(back, { yPercent: 6 }, { yPercent: -8, ease: 'none',
+    scrollTrigger: { trigger: gift, start: 'top bottom', end: 'bottom top', scrub: true } });
+  gsap.fromTo(front, { yPercent: 10 }, { yPercent: -6, ease: 'none',
+    scrollTrigger: { trigger: gift, start: 'top bottom', end: 'bottom top', scrub: true } });
 })();
 });
 </script>

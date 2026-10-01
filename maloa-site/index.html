@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="css/about.css">
 <link rel="stylesheet" href="css/favs.css">
 <link rel="stylesheet" href="css/poke.css">
+<link rel="stylesheet" href="css/gift.css">
 <script>
 document.documentElement.classList.add('js');
 /* Decide before first paint whether the intro plays: once per session, script required */
@@ -379,6 +380,33 @@ catch (e) { document.documentElement.classList.add('intro-on'); }
       <div class="poke__progress" aria-hidden="true"><span>01</span><span>02</span><span>03</span><span>04</span><span>05</span><span>06</span></div>
     </div>
   </section>
+
+  <!-- Block 6 · Gift Card (css/gift.css, js/gift.js).
+       The destination is the client's real voucher shop (paynoweatlater.de, the same link as "Gutscheine" in the
+       header and "GET YOUR GIFT CARD HERE" on maloa.com). No values or prices are shown: none are published.
+       The card is drawn from the traced logo (assets/logo), no image is generated. -->
+  <section class="gift" id="gutschein" aria-labelledby="gift-title">
+    <div class="gift__copy">
+      <p class="gift__label">Gift Card</p>
+      <h2 class="gift__title" id="gift-title"><span class="gift__line"><span>Verschenkt ein</span></span> <span class="gift__line"><span>Stück Aloha</span></span></h2>
+      <p class="gift__text">Der MA'LOA Gutschein: für Geburtstage, besondere Anlässe oder einfach so. Ein Geschenk, das nach Hawaii schmeckt.</p>
+      <p class="gift__actions"><a class="btn btn--primary" href="https://www.paynoweatlater.de/at/maloa/?crt=maloa">Gift Card kaufen</a></p>
+    </div>
+    <div class="gift__stage" aria-hidden="true">
+      <div class="gift__card gift__card--back"><span class="gift__mark"></span></div>
+      <div class="gift__card gift__card--front">
+        <svg class="gift__waves" viewBox="0 0 400 250" preserveAspectRatio="none">
+          <path d="M-10 170 C 60 140, 120 200, 200 168 S 330 130, 410 160"/>
+          <path d="M-10 190 C 60 160, 120 220, 200 188 S 330 150, 410 180"/>
+          <path d="M-10 210 C 60 180, 120 240, 200 208 S 330 170, 410 200"/>
+        </svg>
+        <svg class="gift__logo" viewBox="0 0 726 726"><circle cx="363" cy="363" r="363" fill="currentColor"/><g transform="translate(114.76 -100.00) scale(1.5568)" style="fill:var(--deep-teal)"><use href="#maloa-m"/></g></svg>
+        <span class="gift__kind">Gift Card</span>
+        <span class="gift__wordmark"></span>
+        <span class="gift__foot">Gutschein</span>
+      </div>
+    </div>
+  </section>
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" defer></script>
@@ -391,5 +419,6 @@ catch (e) { document.documentElement.classList.add('intro-on'); }
 <script src="js/about.js" defer></script>
 <script src="js/favs.js" defer></script>
 <script src="js/poke.js" defer></script>
+<script src="js/gift.js" defer></script>
 </body>
 </html>
