@@ -247,6 +247,12 @@
 - **Фото риса от клиента (вариант 1, запрошено):** если придёт — заменить сгенерированный рис настоящим тем же `rice.py`.
 - **Известное:** на промежуточных этапах местами видны мягкие участки на месте убранного кунжута (у тофу); часть семян осталась «запечённой». Финал — исходное фото.
 
+### 7.6a ПЕРЕСБОРКА FRANCHISE (01.10, по ТЗ Коли: «как настоящая страница maloa.com/franchise/»)
+- **Структура по оригиналу:** 01 Hero (фильм MA'LOA с главной, «Ride the healthy wave!», листья) → 02 Intro «Poké ist DAS hawaiianische Nationalgericht» + баннер-цитата (Banner_Daniel_Quote_DE) → 03 полноэкранное фото стора (maloa1_Nora_Tabel) «Auf gesundem Wachstumskurs» → 04 история роста (текст дословно, franchise-bottom.png, листья) → 05 Store-Konzept (3 модуля с фото сторов: Hausvogteiplatz, IMG_0414_1, Modulares_System) → 06 «Partner sagen mehr als tausend Worte»: 6 настоящих видео YouTube (Köln BQuuXFe5PWU, Mannheim V568bgef01o, Erfurt TnFkmiB_UTI, Paris 3_Ujl0j-pc4, Hannover gy5LsVH4z7o, Nürnberg 0yweFCG35u8), плеер грузится по клику (youtube-nocookie) → 07 Checklist «Work with us» (дословно) + брошюра с обложкой → 08 «Der Weg» 3 шага из реальных каналов (порядок — data-todo; «Eröffnung» убран до подтверждения) → 09 CTA «Bist du bereit durchzustarten?» + 3 пути (Selbstauskunft, Telefon nur Franchise, franchise@maloa.com) → 10 «Für unsere bestehenden Partner» (баннер test.png, franchise.maloa.com) → 11 футер как на maloa.com (Kontakt, Mehr Ma'Loa, Social, Rechtliches) + wordmark + листья.
+- **Картинки и видео** — с maloa.com / YouTube по ссылкам (хотлинк проверен с чужого referer: 200). Для продакшена — на свой хостинг.
+- **E-mail заявки:** franchise@maloa.com (так на оригинале). Во втором сообщении Коли — info@; оставлен franchise@ как источник; заменить в двух местах (`MAIL` в разметке), если нужно.
+- **Eckdaten** — скрыты (`hidden`, data-todo); на оригинале не опубликованы.
+
 ### 7.6 СТРАНИЦА FRANCHISE (`franchise.html`, ждёт просмотра)
 - **Файлы:** `franchise.html`, `css/franchise.css`, `js/franchise.js`; фото `assets/photos/{spicy-tropical,lanai,green-cream-shrimp}-{800,1400}.webp` (настоящие фото клиента из `maloa/img/scene-*`), вырезы `assets/bowls/lanai-*`, `maui-tuna-*`. Шапка, токены, шрифт, кнопки `.btn` — те же файлы, что на главной (`header.css`, `hero.css`). Ничего не сгенерировано.
 - **Роутинг:** в шапке главной «Franchise» → `franchise.html` (единственная правка `index.html`); на странице «Franchise» помечен `aria-current`, лого → `index.html`, футер → `index.html#poke` и др. Poké Style не тронут.
