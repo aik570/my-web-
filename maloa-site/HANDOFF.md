@@ -11,7 +11,7 @@
 - **Источник правды — эта ветка** (`claude/new-session-jb2kjo`). В `claude/sharp-cori-7h3j4h` ничего не сливать без указания.
 - **Реализовано:** Intro (временный, см. §7.0) → HERO → переход Hero → листья → раскрытие боула → WELCOME / ABOUT POKÉ (утверждён, отполирован) → MA'LOA FAVORITES → **POKÉ YOUR STYLE (новый, ждёт просмотра, §7.5)**.
 - **Объём работ (01.10):** сначала вся главная в порядке 01 Intro/Hero → 02 Welcome → 03 Favorites → 04 Poké Style → 05 Gift Card → 06 Franchise-тизер → 07 Social/Footer. Franchise на главной — только тизер/вход. **Отдельная страница Franchise** (свой редизайн, много медиа) — после главной, не начинать раньше.
-- **Следующее действие:** показать Gift Card (§7.7). Дальше без команды не идти (07 Social / Footer).
+- **Следующее действие:** главная собрана целиком (Hero → Welcome → Favorites → Poké Style → Gift Card → закрытие) + страница Franchise. Показать клиенту; дальше — только по команде.
 
 ---
 
@@ -83,7 +83,7 @@
 | 05 | POKÉ STYLE | реализован, **ждёт просмотра** (§7.5) |
 | 06 | GIFT CARD | реализован, **ждёт просмотра** (§7.7) |
 | 07 | FRANCHISE-тизер (на главной) | не начат; отдельная страница Franchise — после главной |
-| 08 | SOCIAL / FOOTER | не начат |
+| 08 | SOCIAL / FOOTER (закрытие) | реализован, **ждёт просмотра** (§7.8) |
 
 Это текущее направление. Блоки 04–08 не утверждены и не реализованы.
 
@@ -264,6 +264,13 @@
 - **Тексты:** «Gift Card» / «Verschenkt ein Stück Aloha» (форма Ihr, как на всём сайте) / «Der MA'LOA Gutschein: für Geburtstage, besondere Anlässe oder einfach so. Ein Geschenk, das nach Hawaii schmeckt.»
 - **Движение:** строки из масок, карты поднимаются по очереди, потом слегка расходятся со скроллом; шапка светлая над светлой частью (свой ScrollTrigger в `gift.js`). Reduced motion — статично.
 - **Проверено:** 1440×900, 1280×800, 1024×768, 768×1024, 390×844, 375×667, reduced motion; Favorites и Poké Style без изменений.
+
+### 7.8 ЗАКРЫТИЕ: VISIT / CONTACT / SOCIAL / FOOTER (ждёт просмотра)
+- **Файлы:** `index.html` → `<section class="closing" id="kontakt">` (последний блок, футер внутри); `css/closing.css`; `js/closing.js`.
+- **Содержание (только реальные данные из футера maloa.com):** заголовок «See you at MA'LOA» (англ., как «Build your own Poké»; «Dein nächster Bowl» нарушил бы форму Ihr), «Bestellen» → smoothr, «Instagram» → instagram.com/maloapoke_de; колонки: Besucht uns (Alle Standorte → карта, «Neu in Eschborn»), Kontakt (телефон, WhatsApp, e-mail, офис), Folgt uns (@maloapoke_de, Facebook, TikTok); большой настоящий wordmark (только слово, без подписи); футер: лого (наверх), все пункты меню (включая скрытые на телефоне в шапке, Franchise → franchise.html, FAQ), Impressum, Datenschutz, © 2026 MA'LOA.
+- **data-todo (скрыты, не видны):** адрес Eschborn; часы работы по ресторанам — не найдены, не выдуманы.
+- **Движение:** строки из масок, колонки fade-up, wordmark поднимается в кадр со скроллом. Reduced motion — статично.
+- **Проверено:** 6 размеров, вся главная сверху вниз (Welcome, Favorites, Poké Style, Gift Card), навигация на Franchise и обратно, reduced motion.
 
 ---
 

@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="css/favs.css">
 <link rel="stylesheet" href="css/poke.css">
 <link rel="stylesheet" href="css/gift.css">
+<link rel="stylesheet" href="css/closing.css">
 <script>
 document.documentElement.classList.add('js');
 /* Decide before first paint whether the intro plays: once per session, script required */
@@ -407,6 +408,62 @@ catch (e) { document.documentElement.classList.add('intro-on'); }
       </div>
     </div>
   </section>
+
+  <!-- Block 7 · Closing: visit, contact, social (css/closing.css, js/closing.js).
+       Facts only from maloa.com (original.html footer): store map, office contacts, social accounts, legal pages.
+       The Eschborn street address and opening hours are not known here: marked data-todo, not invented. -->
+  <section class="closing" id="kontakt" aria-labelledby="closing-title">
+    <div class="closing__top">
+      <h2 class="closing__title" id="closing-title"><span class="closing__line"><span>See you</span></span> <span class="closing__line"><span>at MA'LOA</span></span></h2>
+      <div class="closing__cta">
+        <p class="closing__lead">Kommt vorbei, bestellt online oder holt Euch die Insel nach Hause.</p>
+        <p class="closing__actions">
+          <a class="btn btn--primary" href="https://maloa.smoothr.de/map">Bestellen</a>
+          <a class="btn btn--ghost" href="https://www.instagram.com/maloapoke_de/">Instagram</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="closing__info">
+      <div class="closing__col">
+        <p class="closing__head">Besucht uns</p>
+        <a class="closing__big" href="https://maloa.smoothr.de/map">Alle Standorte</a>
+        <p class="closing__note">Neu in Eschborn<span class="closing__todo" hidden data-todo="Adresse Eschborn vom Kunden"></span></p>
+        <p class="closing__todo" hidden data-todo="Öffnungszeiten je Standort vom Kunden (nicht auf maloa.com gefunden)"></p>
+      </div>
+      <div class="closing__col">
+        <p class="closing__head">Kontakt</p>
+        <ul class="closing__list">
+          <li><a href="tel:00493022013811">(030) 220 138 11</a></li>
+          <li><a href="https://wa.me/+4917624722381">WhatsApp 0176 247 223 81</a></li>
+          <li><a href="mailto:info@maloa.com">info@maloa.com</a></li>
+          <li><a href="https://maps.app.goo.gl/HaQTVUUgpdPhea5T7">Fuggerstraße 26, 10777 Berlin</a></li>
+        </ul>
+      </div>
+      <div class="closing__col">
+        <p class="closing__head">Folgt uns</p>
+        <a class="closing__big closing__insta" href="https://www.instagram.com/maloapoke_de/">@maloapoke_de</a>
+        <p class="closing__social"><a href="https://www.facebook.com/maloapoke/">Facebook</a> <a href="https://www.tiktok.com/@maloapoke">TikTok</a></p>
+      </div>
+    </div>
+
+    <div class="closing__word" aria-hidden="true"><span></span></div>
+
+    <footer class="site-footer">
+      <a class="site-footer__logo" href="#hero" aria-label="Ma'loa – nach oben"><svg viewBox="0 0 726 726" aria-hidden="true"><circle cx="363" cy="363" r="363" fill="currentColor"/><g transform="translate(114.76 -100.00) scale(1.5568)" style="fill:var(--deep-teal)"><use href="#maloa-m"/></g></svg></a>
+      <nav class="site-footer__nav" aria-label="Footer">
+        <a href="https://maloa.com/what-is-poke/">Über Ma'loa</a>
+        <a href="https://maloa.com/produkte/">Menü</a>
+        <a href="https://maloa.smoothr.de/map">Standorte</a>
+        <a href="https://maloa.com/catering/">Catering</a>
+        <a href="https://maloa.com/jobs/">Jobs</a>
+        <a href="franchise.html">Franchise</a>
+        <a href="https://www.paynoweatlater.de/at/maloa/?crt=maloa">Gutscheine</a>
+        <a href="https://maloa.com/faq/">FAQ</a>
+      </nav>
+      <p class="site-footer__legal"><a href="https://maloa.com/impressum/">Impressum</a> <a href="https://maloa.com/privacy/">Datenschutz</a> <span>© 2026 MA'LOA</span></p>
+    </footer>
+  </section>
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" defer></script>
@@ -420,5 +477,6 @@ catch (e) { document.documentElement.classList.add('intro-on'); }
 <script src="js/favs.js" defer></script>
 <script src="js/poke.js" defer></script>
 <script src="js/gift.js" defer></script>
+<script src="js/closing.js" defer></script>
 </body>
 </html>

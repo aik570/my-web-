@@ -595,6 +595,76 @@ html.intro-on .site-nav{visibility:hidden}
   .gift__copy{grid-row:1}
 }
 </style>
+<style>
+/* Block 7 · Closing: the landing of the page.
+   The light ground of Gift Card sinks back into night; a large headline with the two final actions, three quiet
+   columns (visit, contact, follow), the traced wordmark across the full width as the last image, then the footer.
+   Same type, colours and buttons as everything above. */
+.closing{position:relative;overflow-x:clip;color:var(--on-teal);
+  background:linear-gradient(180deg,var(--bg-light) 0,var(--light-gray) clamp(50px,6vw,90px),var(--mid-teal) clamp(110px,12vw,180px),var(--deep-teal) clamp(170px,18vw,260px),color-mix(in srgb,var(--deep-teal) 45%,var(--night)) 60%,var(--night) 100%);
+  padding:clamp(220px,24vw,340px) var(--gutter) 0}
+
+.closing__top{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);align-items:end}
+.closing__title{grid-column:1 / span 8;margin:0;font-family:var(--font-display);font-weight:800;text-transform:uppercase;font-size:clamp(56px,8vw,156px);line-height:.86;letter-spacing:-.04em;color:var(--bg-light)}
+.closing__line{display:block;overflow:hidden;padding:.14em 0 .04em;margin-top:-.14em}
+.closing__line > span{display:block}
+.closing__line:nth-child(2){padding-left:clamp(0px,8vw,150px)}
+.closing__cta{grid-column:9 / -1;padding-bottom:.6em}
+.closing__lead{margin:0;font-size:17px;line-height:1.6;color:var(--light-gray);max-width:30ch}
+.closing__actions{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0 0}
+
+.closing__info{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,32px);margin-top:clamp(80px,10vw,150px)}
+.closing__col{padding-top:22px;border-top:1px solid rgb(200 209 211 / .25)}
+.closing__head{margin:0 0 20px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--light-gray)}
+.closing__big{display:inline-flex;align-items:center;min-height:44px;font-family:var(--font-display);font-size:clamp(26px,2.4vw,40px);font-weight:700;letter-spacing:-.01em;line-height:1.05;
+  color:var(--bg-light);text-decoration:none;background:linear-gradient(var(--powder-pink),var(--powder-pink)) 0 100%/0 2px no-repeat;transition:background-size .5s var(--ease-out),color .3s var(--ease-out)}
+.closing__big:hover{background-size:100% 2px;color:var(--powder-pink)}
+.closing__note{margin:12px 0 0;font-size:15px;color:var(--light-gray)}
+.closing__list{margin:0;padding:0;list-style:none}
+.closing__list a,.closing__social a{display:inline-flex;align-items:center;min-height:40px;font-size:16px;color:var(--bg-light);text-decoration:none;
+  background:linear-gradient(currentColor,currentColor) 0 calc(100% - 8px)/0 1px no-repeat;transition:background-size .4s var(--ease-out)}
+.closing__list a:hover,.closing__social a:hover{background-size:100% 1px}
+.closing__social{display:flex;gap:24px;margin:10px 0 0}
+.closing__social a{font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--light-gray)}
+
+/* the last image: the traced wordmark across the whole width (the word only: SVG y 12–410 of 520,
+   the tagline below it stays out of the frame), resting on the footer line */
+.closing__word{margin:clamp(72px,9vw,140px) 0 0;overflow:hidden}
+.closing__word span{display:block;width:100%;aspect-ratio:1295/420;background:var(--deep-teal);
+  -webkit-mask:url(../assets/logo/logo-wordmark.svg) center top/100% auto no-repeat;mask:url(../assets/logo/logo-wordmark.svg) center top/100% auto no-repeat}
+
+.site-footer{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px 40px;margin:0 calc(-1 * var(--gutter));
+  padding:28px var(--gutter) calc(28px + env(safe-area-inset-bottom,0px));border-top:1px solid rgb(200 209 211 / .14);background:var(--night)}
+.site-footer__logo{display:flex;width:44px;height:44px;color:var(--bg-light);transition:color .3s var(--ease-out)}
+.site-footer__logo:hover{color:var(--powder-pink)}
+.site-footer__logo svg{width:44px;height:44px}
+.site-footer__nav{display:flex;flex-wrap:wrap;gap:0 24px}
+.site-footer a{color:var(--light-gray);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;min-height:44px;display:inline-flex;align-items:center;transition:color .3s var(--ease-out)}
+.site-footer__nav a:hover,.site-footer__legal a:hover{color:var(--bg-light)}
+.site-footer__legal{margin:0;display:flex;flex-wrap:wrap;align-items:center;gap:0 22px}
+.site-footer__legal span{font-size:12px;color:rgb(200 209 211 / .6)}
+
+@media (max-width:1100px) and (min-aspect-ratio:4/5){
+  .closing__title{grid-column:1 / -1}
+  .closing__cta{grid-column:1 / span 8;margin-top:36px;padding:0}
+  .site-footer{grid-template-columns:auto 1fr}
+  .site-footer__legal{grid-column:1 / -1}
+}
+@media (max-aspect-ratio:4/5), (max-width:699px){
+  .closing{padding-top:200px}
+  .closing__top{grid-template-columns:minmax(0,1fr)}
+  .closing__title{grid-column:1;font-size:min(15vw,96px)}
+  .closing__line:nth-child(2){padding-left:0}
+  .closing__cta{grid-column:1;margin-top:28px;padding:0}
+  .closing__lead{font-size:16px}
+  .closing__actions .btn{flex:1 1 140px;padding:0 20px}
+  .closing__info{grid-template-columns:minmax(0,1fr);gap:0;margin-top:64px}
+  .closing__col{padding:20px 0 28px}
+  .closing__word{margin-top:48px}
+  .site-footer{grid-template-columns:minmax(0,1fr);gap:12px}
+  .site-footer__nav{gap:0 20px}
+}
+</style>
 <script>
 document.documentElement.classList.add('js');
 /* Decide before first paint whether the intro plays: once per session, script required */
@@ -980,6 +1050,62 @@ document.documentElement.classList.add('intro-on');
         <span class="gift__foot">Gutschein</span>
       </div>
     </div>
+  </section>
+
+  <!-- Block 7 · Closing: visit, contact, social (css/closing.css, js/closing.js).
+       Facts only from maloa.com (original.html footer): store map, office contacts, social accounts, legal pages.
+       The Eschborn street address and opening hours are not known here: marked data-todo, not invented. -->
+  <section class="closing" id="kontakt" aria-labelledby="closing-title">
+    <div class="closing__top">
+      <h2 class="closing__title" id="closing-title"><span class="closing__line"><span>See you</span></span> <span class="closing__line"><span>at MA'LOA</span></span></h2>
+      <div class="closing__cta">
+        <p class="closing__lead">Kommt vorbei, bestellt online oder holt Euch die Insel nach Hause.</p>
+        <p class="closing__actions">
+          <a class="btn btn--primary" href="https://maloa.smoothr.de/map">Bestellen</a>
+          <a class="btn btn--ghost" href="https://www.instagram.com/maloapoke_de/">Instagram</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="closing__info">
+      <div class="closing__col">
+        <p class="closing__head">Besucht uns</p>
+        <a class="closing__big" href="https://maloa.smoothr.de/map">Alle Standorte</a>
+        <p class="closing__note">Neu in Eschborn<span class="closing__todo" hidden data-todo="Adresse Eschborn vom Kunden"></span></p>
+        <p class="closing__todo" hidden data-todo="Öffnungszeiten je Standort vom Kunden (nicht auf maloa.com gefunden)"></p>
+      </div>
+      <div class="closing__col">
+        <p class="closing__head">Kontakt</p>
+        <ul class="closing__list">
+          <li><a href="tel:00493022013811">(030) 220 138 11</a></li>
+          <li><a href="https://wa.me/+4917624722381">WhatsApp 0176 247 223 81</a></li>
+          <li><a href="mailto:info@maloa.com">info@maloa.com</a></li>
+          <li><a href="https://maps.app.goo.gl/HaQTVUUgpdPhea5T7">Fuggerstraße 26, 10777 Berlin</a></li>
+        </ul>
+      </div>
+      <div class="closing__col">
+        <p class="closing__head">Folgt uns</p>
+        <a class="closing__big closing__insta" href="https://www.instagram.com/maloapoke_de/">@maloapoke_de</a>
+        <p class="closing__social"><a href="https://www.facebook.com/maloapoke/">Facebook</a> <a href="https://www.tiktok.com/@maloapoke">TikTok</a></p>
+      </div>
+    </div>
+
+    <div class="closing__word" aria-hidden="true"><span></span></div>
+
+    <footer class="site-footer">
+      <a class="site-footer__logo" href="#hero" aria-label="Ma'loa – nach oben"><svg viewBox="0 0 726 726" aria-hidden="true"><circle cx="363" cy="363" r="363" fill="currentColor"/><g transform="translate(114.76 -100.00) scale(1.5568)" style="fill:var(--deep-teal)"><use href="#maloa-m"/></g></svg></a>
+      <nav class="site-footer__nav" aria-label="Footer">
+        <a href="https://maloa.com/what-is-poke/">Über Ma'loa</a>
+        <a href="https://maloa.com/produkte/">Menü</a>
+        <a href="https://maloa.smoothr.de/map">Standorte</a>
+        <a href="https://maloa.com/catering/">Catering</a>
+        <a href="https://maloa.com/jobs/">Jobs</a>
+        <a href="franchise.html">Franchise</a>
+        <a href="https://www.paynoweatlater.de/at/maloa/?crt=maloa">Gutscheine</a>
+        <a href="https://maloa.com/faq/">FAQ</a>
+      </nav>
+      <p class="site-footer__legal"><a href="https://maloa.com/impressum/">Impressum</a> <a href="https://maloa.com/privacy/">Datenschutz</a> <span>© 2026 MA'LOA</span></p>
+    </footer>
   </section>
 </main>
 
@@ -1670,6 +1796,30 @@ addEventListener("DOMContentLoaded",function(){
     scrollTrigger: { trigger: gift, start: 'top bottom', end: 'bottom top', scrub: true } });
   gsap.fromTo(front, { yPercent: 10 }, { yPercent: -6, ease: 'none',
     scrollTrigger: { trigger: gift, start: 'top bottom', end: 'bottom top', scrub: true } });
+})();
+});
+</script>
+<script>
+addEventListener("DOMContentLoaded",function(){
+/* Block 7 · Closing
+   - Headline lines rise out of their masks, then the lead and the two actions (once).
+   - The three columns fade up one after another (once).
+   - The wordmark rises into its frame with the scroll, as if the page settles on it.
+   Reduced motion or no GSAP: everything stands. */
+(function () {
+  var M = window.MALOA || {};
+  var el = document.getElementById('kontakt');
+  if (!el || !M.gsap || M.reduce) return;
+
+  gsap.timeline({ scrollTrigger: { trigger: el.querySelector('.closing__top'), start: 'top 80%', once: true } })
+    .from(el.querySelectorAll('.closing__line > span'), { yPercent: 150, duration: 1.2, ease: 'power4.out', stagger: 0.12 })
+    .from(el.querySelectorAll('.closing__lead, .closing__actions'), { autoAlpha: 0, y: 24, duration: 0.9, ease: 'power3.out', stagger: 0.1 }, 0.35);
+
+  gsap.from(el.querySelectorAll('.closing__col'), { autoAlpha: 0, y: 30, duration: 0.9, ease: 'power3.out', stagger: 0.1,
+    scrollTrigger: { trigger: el.querySelector('.closing__info'), start: 'top 88%', once: true } });
+
+  gsap.fromTo(el.querySelector('.closing__word span'), { yPercent: 45 }, { yPercent: 0, ease: 'none',
+    scrollTrigger: { trigger: el.querySelector('.closing__word'), start: 'top bottom', end: 'bottom bottom', scrub: true } });
 })();
 });
 </script>
