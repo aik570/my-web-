@@ -20,7 +20,9 @@
 <body class="fr-page">
 <!-- Franchise page (css/franchise.css, js/franchise.js). Same header, tokens, type and buttons as the home page.
      Content: only what is known from the client's site (original.html: the franchise teaser, contacts, ordering
-     channels) and the brief. Facts the client still has to supply are marked data-todo (search for it). -->
+     channels) and the brief. Facts the client still has to supply are marked data-todo (search for it).
+     Replacing them is a content edit: lists take any number of items (the grids adapt), the key-figures
+     block (.fr-figures) is styled and only waits for real values (remove its hidden attribute). -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
     <path id="maloa-m" transform="translate(10 0) scale(0.25) translate(0.000000,1640.000000) scale(0.100000,-0.100000)" d="M5439 9000 c-1101 -126 -1965 -831 -2429 -1982 -23 -55 -49 -117 -60 -138 -11 -21 -42 -95 -70 -165 -28 -70 -62 -149 -76 -177 -14 -27 -38 -84 -53 -126 -16 -42 -48 -117 -71 -167 -23 -49 -55 -124 -72 -165 -16 -41 -51 -124 -78 -185 -67 -152 -250 -583 -250 -589 0 -3 -16 -38 -35 -78 -19 -40 -59 -131 -88 -203 -75 -178 -136 -322 -216 -505 -38 -85 -76 -176 -86 -202 -20 -53 -41 -76 -55 -62 -6 6 -11 840 -12 2221 -3 1799 -5 2214 -16 2225 -25 25 -1600 18 -1618 -6 -26 -36 -21 -8547 5 -8570 22 -20 1651 -27 1688 -8 16 9 66 117 199 427 26 61 76 178 111 260 36 83 99 231 140 330 41 99 79 185 84 191 5 6 32 68 59 137 27 69 59 145 71 169 12 24 48 106 79 183 32 77 74 176 93 220 86 196 220 510 301 705 31 74 74 173 96 220 22 47 65 146 96 220 118 285 187 446 209 490 12 25 35 79 49 120 15 41 49 122 76 180 27 58 74 166 105 240 127 303 262 619 439 1025 35 83 87 204 115 270 88 212 168 399 215 502 25 55 46 103 46 107 0 49 241 551 326 681 510 770 1641 752 1946 -30 117 -301 119 -296 -230 -405 -680 -211 -1228 -627 -1667 -1266 -103 -150 -295 -524 -367 -714 -22 -58 -55 -143 -73 -190 -170 -428 -285 -1082 -271 -1545 38 -1352 699 -2326 1761 -2596 44 -11 90 -27 102 -35 34 -21 779 -21 803 1 9 8 52 22 96 31 714 144 1256 729 1450 1564 134 573 141 676 149 2185 7 1270 -6 1141 114 1131 173 -16 513 -111 660 -185 573 -290 890 -754 1016 -1486 13 -78 15 -285 15 -1596 0 -1420 1 -1508 18 -1528 25 -31 1606 -36 1629 -5 16 22 19 2719 3 3004 -21 362 -56 559 -165 920 -44 143 -53 168 -135 365 -423 1021 -1315 1804 -2350 2064 -195 49 -644 121 -756 121 -49 0 -61 23 -84 165 -57 353 -204 744 -389 1034 -335 526 -758 860 -1366 1078 -282 101 -886 162 -1226 123z m1351 -4346 c26 -68 5 -2020 -25 -2289 -72 -652 -321 -897 -656 -646 -483 361 -476 1489 15 2346 194 338 619 714 666 589z"/>
@@ -99,13 +101,19 @@
       <h2 class="fr-h2" id="fr-why-title"><span class="fr-line"><span>Ein Konzept,</span></span> <span class="fr-line"><span>das trägt</span></span></h2>
     </div>
     <!-- Only what MA'LOA demonstrably is and does today (menu, channels, brand). No promises on numbers or support. -->
-    <ol class="fr-reasons">
+    <ol class="fr-reasons" data-todo="Partner-Vorteile und Unterstützung vom Kunden (Franchise-Seite/Broschüre). Die 4 Punkte beschreiben nur das bestehende Konzept, keine Partner-Leistungen. Beliebig viele <li> möglich.">
       <li class="fr-reason" data-reveal><span class="fr-reason__no">01</span><h3>Ein klares Produkt</h3><p>Poké Bowls im Mittelpunkt: Signature Bowls und die eigene Bowl nach dem Prinzip Poké your style.</p></li>
       <li class="fr-reason" data-reveal><span class="fr-reason__no">02</span><h3>Gesund und schnell</h3><p>Healthy Fast Food für das 21. Jahrhundert: frisches Seafood, Grünes oder Reis, knackiges Gemüse und exotische Flavors.</p></li>
       <li class="fr-reason" data-reveal><span class="fr-reason__no">03</span><h3>Viele Wege zum Gast</h3><p>Vor Ort, zum Abholen, per Lieferung, über den Webshop und als Catering.</p></li>
       <li class="fr-reason" data-reveal><span class="fr-reason__no">04</span><h3>Eine Marke mit Wiedererkennung</h3><p>Eine eigene Bildsprache und Bowls, die nach den Inseln Hawaiis benannt sind: sofort als MA'LOA erkennbar.</p></li>
     </ol>
-    <p class="fr-why__note" data-reveal data-todo="Eckdaten vom Kunden: Investition, Fläche, Unterstützung, Anzahl Stores">Die Eckdaten zu Investition, Fläche und Begleitung besprechen wir persönlich mit Euch.</p>
+    <!-- Key figures: ready, hidden until the client supplies real values. Fill and remove "hidden". Never estimate. -->
+    <dl class="fr-figures" hidden data-todo="Eckdaten vom Kunden: Investition, Fläche, Anzahl Stores (nur echte Werte)">
+      <div><dt>Investition</dt><dd data-todo="Investition">–</dd></div>
+      <div><dt>Fläche</dt><dd data-todo="Fläche">–</dd></div>
+      <div><dt>Stores</dt><dd data-todo="Anzahl Stores">–</dd></div>
+    </dl>
+    <p class="fr-why__note" data-reveal data-todo="Platzhalter, solange keine Eckdaten vorliegen: entfernen, sobald .fr-figures gefüllt ist">Die Eckdaten zu Investition, Fläche und Begleitung besprechen wir persönlich mit Euch.</p>
   </section>
 
   <!-- Full-bleed image band between the dark and the light part -->
@@ -117,11 +125,11 @@
       <p class="fr-label" data-reveal>Der Weg</p>
       <h2 class="fr-h2" id="fr-steps-title"><span class="fr-line"><span>So werdet Ihr</span></span> <span class="fr-line"><span>Partner</span></span></h2>
     </div>
-    <ol class="fr-steplist" data-todo="Ablauf vom Kunden bestätigen lassen (Schritte 02–04 sind ein neutraler Vorschlag)">
+    <ol class="fr-steplist" data-todo="Ablauf vom Kunden bestätigen lassen. 01 ist belegt (Kontaktwege), 02–04 sind ein vorläufiger, neutraler Vorschlag. Beliebig viele <li> möglich.">
       <li class="fr-step" data-reveal><span class="fr-step__no">01</span><h3>Anfrage</h3><p>Schreibt uns oder ruft an: wer Ihr seid und wo Ihr MA'LOA eröffnen möchtet.</p></li>
-      <li class="fr-step" data-reveal><span class="fr-step__no">02</span><h3>Kennenlernen</h3><p>Wir lernen uns kennen und sprechen über Konzept, Standort und Eckdaten.</p></li>
-      <li class="fr-step" data-reveal><span class="fr-step__no">03</span><h3>Standort</h3><p>Gemeinsam schauen wir auf Euren Standort und planen den Store.</p></li>
-      <li class="fr-step" data-reveal><span class="fr-step__no">04</span><h3>Eröffnung</h3><p>Euer MA'LOA Store öffnet: ein Stück Hawaii in Eurer Stadt.</p></li>
+      <li class="fr-step" data-reveal data-provisional data-todo="Schritt 02 vorläufig: vom Kunden bestätigen oder ersetzen"><span class="fr-step__no">02</span><h3>Kennenlernen</h3><p>Wir lernen uns kennen und sprechen über Konzept, Standort und Eckdaten.</p></li>
+      <li class="fr-step" data-reveal data-provisional data-todo="Schritt 03 vorläufig: vom Kunden bestätigen oder ersetzen"><span class="fr-step__no">03</span><h3>Standort</h3><p>Gemeinsam schauen wir auf Euren Standort und planen den Store.</p></li>
+      <li class="fr-step" data-reveal data-provisional data-todo="Schritt 04 vorläufig: vom Kunden bestätigen oder ersetzen"><span class="fr-step__no">04</span><h3>Eröffnung</h3><p>Euer MA'LOA Store öffnet: ein Stück Hawaii in Eurer Stadt.</p></li>
     </ol>
     <div class="fr-steps__rail" aria-hidden="true"><span></span></div>
   </section>
@@ -134,7 +142,7 @@
       <h2 class="fr-h2" id="fr-cta-title"><span class="fr-line"><span>Eröffnet Euren</span></span> <span class="fr-line"><span>MA'LOA Store</span></span></h2>
       <p class="fr-text" data-reveal>Erzählt uns, wer Ihr seid und wo Ihr MA'LOA eröffnen möchtet. Wir freuen uns auf Eure Anfrage.</p>
       <p class="fr-cta__actions" data-reveal>
-        <a class="btn btn--primary" href="mailto:info@maloa.com?subject=Franchise-Anfrage" data-todo="Franchise-Adresse bestätigen (jetzt: info@maloa.com)">Franchise anfragen</a>
+        <a class="btn btn--primary" href="mailto:info@maloa.com?subject=Franchise-Anfrage" data-todo="Ziel der Franchise-Anfrage bestätigen: eigene Adresse oder Formular? Prototyp-Fallback: info@maloa.com, Betreff Franchise-Anfrage">Franchise anfragen</a>
         <a class="btn btn--ghost" href="https://wa.me/+4917624722381">WhatsApp</a>
       </p>
       <!-- Contacts from the footer of maloa.com (original.html) -->
