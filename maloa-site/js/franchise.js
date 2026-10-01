@@ -68,6 +68,13 @@
   gsap.fromTo('.fr-cta__bowl', { rotation: 20 }, { rotation: -16, ease: 'none',
     scrollTrigger: { trigger: '.fr-cta', start: 'top bottom', end: 'bottom top', scrub: true } });
 
+  // leaves drift at their own depth (data-speed: + up, - down), y only, the resting angle stays in CSS
+  gsap.utils.toArray('.fr-leaf').forEach(function (leaf) {
+    var k = parseFloat(leaf.dataset.speed) || 0.3;
+    gsap.fromTo(leaf, { yPercent: 12 * k }, { yPercent: -12 * k, ease: 'none',
+      scrollTrigger: { trigger: leaf.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } });
+  });
+
   if (rail) {
     gsap.fromTo(rail, { '--fill': 0 }, { '--fill': 1, ease: 'none',
       scrollTrigger: { trigger: steps, start: 'top 60%', end: 'bottom 75%', scrub: 0.6 } });

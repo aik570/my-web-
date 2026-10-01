@@ -169,3 +169,64 @@
 @media (max-width:699px) and (max-height:700px){
   .fr-facts{display:none}
 }
+
+/* ---------- Additions 01.10: real checklist, extra CTAs, leaves, the ending ---------- */
+/* outline button for light grounds, same shape as .btn--ghost */
+.btn--line{border:1px solid rgb(0 68 67 / .45);color:var(--deep-teal);background:transparent}
+.btn--line:hover{border-color:var(--deep-teal);background:rgb(0 68 67 / .06)}
+.fr-inline-cta{margin:30px 0 0}
+
+/* Work with us: the two lists from maloa.com/franchise/ */
+.fr-why{position:relative;overflow-x:clip}
+.fr-checklist{position:relative;z-index:1;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);row-gap:48px}
+.fr-checklist__col{grid-column:span 4;padding-top:22px;border-top:1px solid rgb(200 209 211 / .3)}
+.fr-checklist__col--offer{grid-column:1 / span 7}
+.fr-checklist__col:not(.fr-checklist__col--offer){grid-column:9 / -1}
+.fr-checklist__head{margin:0 0 22px;font-family:var(--font-display);font-size:clamp(24px,2vw,32px);font-weight:700;letter-spacing:-.01em;color:var(--bg-light)}
+.fr-checklist__list{margin:0;padding:0;list-style:none;columns:2;column-gap:clamp(16px,2vw,32px)}
+.fr-checklist__col:not(.fr-checklist__col--offer) .fr-checklist__list{columns:1}
+.fr-checklist__list li{break-inside:avoid;position:relative;padding:9px 0 9px 22px;font-size:15.5px;line-height:1.45;color:var(--light-gray);border-bottom:1px solid rgb(200 209 211 / .1)}
+.fr-checklist__list li::before{content:"";position:absolute;left:0;top:17px;width:8px;height:8px;border-radius:50%;background:var(--powder-pink)}
+.fr-checklist__cta{display:flex;flex-wrap:wrap;gap:12px;margin:32px 0 0}
+
+/* steps: real destinations under the first two */
+.fr-step__link{display:inline-flex;align-items:center;min-height:44px;margin-top:10px;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--deep-teal);text-decoration:none;background:linear-gradient(currentColor,currentColor) 0 calc(100% - 10px)/100% 1px no-repeat;transition:background-size .4s var(--ease-out)}
+.fr-step__link:hover{background-size:0 1px;background-position:100% calc(100% - 10px)}
+
+/* leaves: the home page's cut-outs (blur and shade per depth are baked in), only on the dark grounds */
+.fr-leaf{position:absolute;height:auto;pointer-events:none;user-select:none;z-index:0;will-change:transform}
+.fr-leaf--why-a{left:clamp(-140px,-7vw,-50px);bottom:-6%;width:clamp(220px,22vw,380px);transform:rotate(18deg)}
+.fr-leaf--why-b{right:clamp(-60px,-3vw,-20px);top:6%;width:clamp(120px,10vw,180px);transform:rotate(-22deg);opacity:.85}
+.fr-cta{isolation:isolate}
+.fr-cta__copy{z-index:2}
+.fr-cta__bowl{z-index:1}
+.fr-leaf--cta-a{right:clamp(-120px,-5vw,-40px);top:-14%;width:clamp(220px,22vw,380px);transform:rotate(-28deg)}
+.fr-leaf--cta-b{left:38%;bottom:-18%;width:clamp(180px,16vw,280px);transform:rotate(14deg);opacity:.9}
+
+/* the ending: leaves and the oversized wordmark resting on the footer line */
+.fr-end{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--night),color-mix(in srgb,var(--deep-teal) 35%,var(--night)));padding:clamp(48px,7vw,110px) var(--gutter) 0}
+.fr-end__word{position:relative;z-index:1}
+.fr-end__word span{display:block;width:100%;aspect-ratio:1295/420;background:var(--deep-teal);
+  -webkit-mask:url(../assets/logo/logo-wordmark.svg) center top/100% auto no-repeat;mask:url(../assets/logo/logo-wordmark.svg) center top/100% auto no-repeat}
+.fr-leaf--end-a{right:clamp(-160px,-8vw,-60px);top:-6%;width:clamp(260px,26vw,440px);transform:rotate(-16deg);z-index:2}
+.fr-leaf--end-b{left:clamp(-60px,-3vw,-20px);top:-18%;width:clamp(120px,11vw,190px);transform:rotate(24deg);z-index:0}
+.fr-leaf--end-c{left:44%;top:-4%;width:clamp(80px,7vw,120px);transform:rotate(-40deg);z-index:0;opacity:.8}
+.fr-footer{position:relative;z-index:3}
+
+@media (max-width:1100px) and (min-aspect-ratio:4/5){
+  .fr-checklist__col--offer,.fr-checklist__col:not(.fr-checklist__col--offer){grid-column:1 / -1}
+}
+@media (max-aspect-ratio:4/5), (max-width:699px){
+  .fr-checklist{grid-template-columns:minmax(0,1fr)}
+  .fr-checklist__col--offer,.fr-checklist__col:not(.fr-checklist__col--offer){grid-column:1}
+  .fr-checklist__list{columns:1}
+  .fr-checklist__cta .btn,.fr-inline-cta .btn{flex:1 1 auto;padding:0 20px}
+  .fr-inline-cta .btn{width:100%}
+  .fr-leaf--wide{display:none}
+  .fr-leaf--why-a{width:46vw;left:-18vw;bottom:-3%}
+  .fr-leaf--cta-a{width:44vw;right:-16vw;top:-6%}
+  .fr-leaf--end-a{width:52vw;right:-16vw;top:-14%}
+  .fr-leaf--end-c{left:auto;right:58%;width:18vw}
+  .fr-end{padding-top:56px}
+}
