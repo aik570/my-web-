@@ -61,6 +61,7 @@
   --bs:min(66svh,44vw);--cx:69%;--cy:52%;
   /* the vignette fades in below the top edge, so the head's flat teal runs into the stage without a seam */
   background:linear-gradient(180deg,var(--deep-teal) 0,rgb(0 68 67 / 0) 28%),
+    linear-gradient(0deg,var(--night) 0,rgb(var(--night-rgb) / 0) 24%),   /* ends in night, where Poké your style begins */
     radial-gradient(60% 75% at var(--cx) var(--cy),var(--deep-teal) 0%,color-mix(in srgb,var(--deep-teal) 55%,var(--night)) 70%,var(--night) 100%)}
 .favs.is-scripted .favs__stage::before{content:"";position:absolute;left:var(--cx);top:var(--cy);width:calc(var(--bs) * 1.1);aspect-ratio:1;border-radius:50%;
   border:1px solid rgb(200 209 211 / .16);transform:translate(-50%,-50%);pointer-events:none}   /* the ring each bowl lands in */

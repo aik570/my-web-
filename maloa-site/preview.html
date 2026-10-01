@@ -414,6 +414,7 @@ html.intro-on .site-nav{visibility:hidden}
   --bs:min(66svh,44vw);--cx:69%;--cy:52%;
   /* the vignette fades in below the top edge, so the head's flat teal runs into the stage without a seam */
   background:linear-gradient(180deg,var(--deep-teal) 0,rgb(0 68 67 / 0) 28%),
+    linear-gradient(0deg,var(--night) 0,rgb(var(--night-rgb) / 0) 24%),   /* ends in night, where Poké your style begins */
     radial-gradient(60% 75% at var(--cx) var(--cy),var(--deep-teal) 0%,color-mix(in srgb,var(--deep-teal) 55%,var(--night)) 70%,var(--night) 100%)}
 .favs.is-scripted .favs__stage::before{content:"";position:absolute;left:var(--cx);top:var(--cy);width:calc(var(--bs) * 1.1);aspect-ratio:1;border-radius:50%;
   border:1px solid rgb(200 209 211 / .16);transform:translate(-50%,-50%);pointer-events:none}   /* the ring each bowl lands in */
@@ -440,6 +441,111 @@ html.intro-on .site-nav{visibility:hidden}
 @media (max-aspect-ratio:4/5) and (max-height:700px), (max-width:699px) and (max-height:700px){
   .js .favs.is-scripted .favs__stage{--bs:min(66vw,33svh)}
   .favs.is-scripted .fav__ing{display:none}
+}
+</style>
+<style>
+/* Block 5 · Poké your style.
+   One real bowl (Spicy Tropical) taken apart into its own ingredients, all cut from the same photograph
+   (tools/poke-layers). Without the script: the finished bowl beside the steps as a list.
+   With it (.is-scripted, js/poke.js): the stage is pinned and the bowl is built ingredient by ingredient
+   while the copy on the left follows the steps. */
+.poke{position:relative;color:var(--on-teal);background:var(--deep-teal)}
+.poke:not(.is-scripted){overflow-x:clip}   /* the light behind the bowl may not widen the page */
+
+/* ---------- Static layout (no script, reduced motion) ---------- */
+.poke__stage{position:relative;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);
+  grid-template-areas:"copy copy copy copy copy . bowl bowl bowl bowl bowl bowl" "steps steps steps steps steps steps steps steps steps steps steps steps";
+  padding:clamp(72px,10vw,140px) var(--gutter)}
+.poke__copy{grid-area:copy;align-self:center}
+.poke__label{margin:0 0 18px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--light-gray)}
+.poke__title{margin:0 0 24px;font-family:var(--font-display);font-weight:800;text-transform:uppercase;font-size:clamp(48px,6.2vw,116px);line-height:.88;letter-spacing:-.035em;color:var(--bg-light)}
+.poke__line{display:block;overflow:hidden;padding:.14em 0 .04em;margin-top:-.14em}
+.poke__line > span{display:block}
+.poke__line:nth-child(2){padding-left:clamp(0px,6vw,110px)}
+.poke__intro{margin:0;font-size:16px;line-height:1.6;color:var(--light-gray);max-width:36ch}
+
+.poke__bowl{grid-area:bowl;margin:0;position:relative}
+/* soft light under the bowl and a contact shadow, gradients only */
+.poke__bowl::before{content:"";position:absolute;inset:-14%;border-radius:50%;background:radial-gradient(closest-side,rgb(98 138 135 / .26),rgb(98 138 135 / 0));pointer-events:none}
+.poke__plate{position:relative;aspect-ratio:1}
+.poke__plate::before{content:"";position:absolute;inset:4% 2% -4% 6%;border-radius:50%;background:radial-gradient(closest-side,rgb(var(--night-rgb) / .6),rgb(var(--night-rgb) / 0))}
+.poke__layer{position:absolute;inset:0;width:100%;height:100%;display:none}
+.poke__layer--final{display:block}
+
+.poke__steps{grid-area:steps;margin:clamp(40px,6vw,80px) 0 0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px clamp(16px,2vw,32px)}
+.poke__no{margin:0 0 10px;font-size:12px;font-weight:600;letter-spacing:.24em;color:var(--bg-light)}
+.poke__step-title{margin:0 0 10px;font-family:var(--font-display);font-weight:800;text-transform:uppercase;font-size:clamp(24px,2.2vw,34px);line-height:.95;letter-spacing:-.02em;color:var(--bg-light)}
+.poke__step-title > span{display:inline-block}
+.poke__step-text{margin:0 0 12px;font-size:15px;line-height:1.55;color:var(--light-gray);max-width:36ch}
+.poke__in{margin:0;padding-top:10px;border-top:1px solid rgb(200 209 211 / .25);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--light-gray);display:inline-block}
+.poke__in b{color:var(--bg-light);font-weight:700}
+.poke__actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;margin:18px 0 0}
+.poke__link{display:inline-flex;align-items:center;min-height:44px;font-size:12.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;color:var(--bg-light);
+  background:linear-gradient(currentColor,currentColor) 0 calc(100% - 10px)/100% 1px no-repeat}
+.poke__progress{display:none}
+
+@media (max-aspect-ratio:4/5), (max-width:699px){
+  .poke__stage{grid-template-columns:minmax(0,1fr);grid-template-areas:"copy" "bowl" "steps"}
+  .poke__title{font-size:min(12vw,64px)}
+  .poke__line:nth-child(2){padding-left:0}
+  .poke__bowl{width:min(86vw,520px);justify-self:center;margin-top:28px}
+  .poke__steps{grid-template-columns:minmax(0,1fr)}
+}
+
+/* ---------- Pinned build (js/poke.js) ----------
+   --bs: bowl size, --cx/--cy: bowl centre. Layers move with transforms only. */
+.js .poke.is-scripted .poke__stage{display:block;height:100vh;height:100svh;padding:0;overflow:hidden;
+  --bs:min(74svh,46vw);--cx:70%;--cy:53%}
+/* the ground: deep teal, a lighter teal light behind the bowl that recedes as the bowl fills (opacity, scrubbed) */
+.poke.is-scripted .poke__stage::before,.poke.is-scripted .poke__stage::after{content:"";position:absolute;inset:0;pointer-events:none}
+/* starts in night, where the Favorites stage ends, so the two stages meet without a seam */
+.poke.is-scripted .poke__stage::before{background:linear-gradient(180deg,var(--night) 0,rgb(var(--night-rgb) / 0) 26%),radial-gradient(70% 85% at var(--cx) var(--cy),var(--deep-teal) 0%,color-mix(in srgb,var(--deep-teal) 55%,var(--night)) 72%,var(--night) 100%)}
+.poke.is-scripted .poke__stage::after{background:radial-gradient(42% 55% at var(--cx) var(--cy),color-mix(in srgb,var(--deep-teal) 60%,var(--mid-teal)) 0%,rgb(0 68 67 / 0) 100%);opacity:var(--glow,1)}
+.poke.is-scripted .poke__copy{position:absolute;left:var(--gutter);top:calc(var(--hh) + clamp(28px,7vh,80px));width:min(40vw,580px);z-index:2}
+.poke.is-scripted .poke__title{font-size:clamp(48px,5.6vw,108px)}
+.poke.is-scripted .poke__bowl{position:absolute;left:calc(var(--cx) - var(--bs) / 2);top:calc(var(--cy) - var(--bs) / 2);width:var(--bs);z-index:1}
+.poke.is-scripted .poke__layer{display:block;transform-origin:var(--o);opacity:0;will-change:transform,opacity}
+.poke.is-scripted .poke__layer--bowl{opacity:1}
+.poke.is-scripted .poke__steps{position:absolute;left:var(--gutter);bottom:calc(clamp(16px,3.2vh,36px) + 72px);width:min(36vw,520px);height:clamp(150px,22vh,200px);margin:0;display:block;z-index:2}
+.poke.is-scripted .poke__step{position:absolute;left:0;right:0;bottom:0;opacity:0}
+.poke.is-scripted .poke__step.is-on{pointer-events:auto}
+.poke.is-scripted .poke__step:not(.is-on){pointer-events:none}
+.poke.is-scripted .poke__step-title{font-size:clamp(28px,2.6vw,44px)}
+.poke.is-scripted .poke__step--final .poke__step-title{font-size:clamp(36px,3.6vw,64px)}
+.poke.is-scripted .poke__step--final .poke__step-title > span{display:block}
+.poke.is-scripted .poke__progress{position:absolute;left:var(--gutter);bottom:clamp(16px,3.2vh,36px);display:flex;gap:4px 20px;z-index:2}
+.poke__progress span{display:inline-flex;align-items:center;min-height:44px;font-size:12px;font-weight:600;letter-spacing:.16em;font-variant-numeric:tabular-nums;color:rgb(200 209 211 / .5);
+  background:linear-gradient(currentColor,currentColor) 0 calc(100% - 8px)/0 1px no-repeat;transition:color .4s var(--ease-out),background-size .5s var(--ease-out)}
+.poke__progress span.is-done{color:rgb(200 209 211 / .8)}
+.poke__progress span.is-on{color:var(--bg-light);background-size:100% 1px}
+
+@media (max-aspect-ratio:4/5), (max-width:699px){
+  .js .poke.is-scripted .poke__stage{--bs:min(84vw,40svh);--cx:50%;--cy:calc(var(--hh) + 132px + var(--bs) / 2)}
+  .poke.is-scripted .poke__copy{top:calc(var(--hh) + 18px);width:auto;right:var(--gutter)}
+  .poke.is-scripted .poke__label{margin-bottom:10px}
+  .poke.is-scripted .poke__title{font-size:min(10.4vw,48px);margin:0}
+  .poke.is-scripted .poke__intro{display:none}
+  .poke.is-scripted .poke__steps{top:calc(var(--cy) + var(--bs) / 2 + 22px);bottom:auto;width:auto;right:var(--gutter);height:auto}
+  .poke.is-scripted .poke__step{top:0;bottom:auto}
+  .poke.is-scripted .poke__step-title{font-size:min(8vw,34px)}
+  .poke.is-scripted .poke__step--final .poke__step-title{font-size:min(9.6vw,44px)}
+  .poke.is-scripted .poke__step--final .poke__step-title > span{display:inline}
+  .poke.is-scripted .poke__step-text{font-size:14.5px;margin-bottom:10px}
+  .poke.is-scripted .poke__progress{gap:0}
+  .poke.is-scripted .poke__progress span{min-width:38px;justify-content:center;letter-spacing:.08em}
+  /* the last step needs the room for its two actions: the 01–06 line has done its job */
+  .poke.is-scripted .poke__progress{transition:opacity .4s var(--ease-out)}
+  .poke.is-scripted.is-final .poke__progress{opacity:0}
+}
+/* short phones: the long step text gives way, the ingredients of this bowl stay */
+@media (max-aspect-ratio:4/5) and (max-height:740px), (max-width:699px) and (max-height:740px){
+  .js .poke.is-scripted .poke__stage{--bs:min(72vw,34svh);--cy:calc(var(--hh) + 112px + var(--bs) / 2)}
+  .poke.is-scripted .poke__step-text{display:none}
+}
+/* tall upright screens (tablets): a larger bowl, the room is there */
+@media (max-aspect-ratio:4/5) and (min-height:960px) and (min-width:600px){
+  .js .poke.is-scripted .poke__stage{--bs:min(78vw,50svh);--cy:calc(var(--hh) + 150px + var(--bs) / 2)}
+  .poke.is-scripted .poke__title{font-size:min(8vw,64px)}
 }
 </style>
 <script>
@@ -724,6 +830,79 @@ document.documentElement.classList.add('intro-on');
         </nav>
         <a class="btn btn--primary favs__cta" href="https://maloa.com/produkte/">Zum Menü</a>
       </div>
+    </div>
+  </section>
+
+  <!-- Block 5 · Poké your style (css/poke.css, js/poke.js).
+       The bowl is the client's Spicy Tropical photo (assets/src/bowls/bowl-02-spicy-tropical-tofu.jpg) taken apart
+       into its own ingredients (tools/poke-layers): every layer is cut from that one photograph, so light and
+       perspective match, and the finished stack is the photo itself (the last layer). Nothing is generated.
+       Without the script (or with reduced motion): the finished bowl and the steps as a list. -->
+  <section class="poke" id="poke" aria-labelledby="poke-title">
+    <div class="poke__stage">
+      <div class="poke__copy">
+        <p class="poke__label">Poké your style</p>
+        <h2 class="poke__title" id="poke-title"><span class="poke__line"><span>Build your</span></span> <span class="poke__line"><span>own Poké</span></span></h2>
+        <!-- Translated from the EN home page (original.html); confirm the German wording with the client -->
+        <p class="poke__intro">Stellt Euch Eure eigene Poké Bowl zusammen: frisches Seafood, Grünes oder Reis, knackiges Gemüse und exotische Flavors. Seid kreativ und entdeckt die Vielfalt!</p>
+      </div>
+      <figure class="poke__bowl">
+        <div class="poke__plate">
+          <img class="poke__layer poke__layer--bowl" style="--o:50% 50%" src="assets/poke/spicy-tropical-bowl-600.webp" srcset="assets/poke/spicy-tropical-bowl-600.webp 600w, assets/poke/spicy-tropical-bowl-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--greens" style="--o:27.6% 31.6%" src="assets/poke/spicy-tropical-greens-600.webp" srcset="assets/poke/spicy-tropical-greens-600.webp 600w, assets/poke/spicy-tropical-greens-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--tofu" style="--o:70.4% 42.7%" src="assets/poke/spicy-tropical-tofu-600.webp" srcset="assets/poke/spicy-tropical-tofu-600.webp 600w, assets/poke/spicy-tropical-tofu-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--veg1" style="--o:77.4% 49.2%" src="assets/poke/spicy-tropical-veg1-600.webp" srcset="assets/poke/spicy-tropical-veg1-600.webp 600w, assets/poke/spicy-tropical-veg1-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--veg2" style="--o:73.8% 29.9%" src="assets/poke/spicy-tropical-veg2-600.webp" srcset="assets/poke/spicy-tropical-veg2-600.webp 600w, assets/poke/spicy-tropical-veg2-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--veg3" style="--o:67.8% 45.7%" src="assets/poke/spicy-tropical-veg3-600.webp" srcset="assets/poke/spicy-tropical-veg3-600.webp 600w, assets/poke/spicy-tropical-veg3-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--mango" style="--o:40% 79.7%" src="assets/poke/spicy-tropical-mango-600.webp" srcset="assets/poke/spicy-tropical-mango-600.webp 600w, assets/poke/spicy-tropical-mango-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--pineapple" style="--o:76.2% 35.4%" src="assets/poke/spicy-tropical-pineapple-600.webp" srcset="assets/poke/spicy-tropical-pineapple-600.webp 600w, assets/poke/spicy-tropical-pineapple-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--sauce" style="--o:30.8% 59.1%" src="assets/poke/spicy-tropical-sauce-600.webp" srcset="assets/poke/spicy-tropical-sauce-600.webp 600w, assets/poke/spicy-tropical-sauce-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--coconut" style="--o:32.3% 56.9%" src="assets/poke/spicy-tropical-coconut-600.webp" srcset="assets/poke/spicy-tropical-coconut-600.webp 600w, assets/poke/spicy-tropical-coconut-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--sesame1" style="--o:53.9% 44.5%" src="assets/poke/spicy-tropical-sesame1-600.webp" srcset="assets/poke/spicy-tropical-sesame1-600.webp 600w, assets/poke/spicy-tropical-sesame1-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--sesame2" style="--o:56.1% 43.9%" src="assets/poke/spicy-tropical-sesame2-600.webp" srcset="assets/poke/spicy-tropical-sesame2-600.webp 600w, assets/poke/spicy-tropical-sesame2-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--sesame3" style="--o:53.6% 45.9%" src="assets/poke/spicy-tropical-sesame3-600.webp" srcset="assets/poke/spicy-tropical-sesame3-600.webp 600w, assets/poke/spicy-tropical-sesame3-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--final" style="--o:50% 50%" src="assets/poke/spicy-tropical-final-600.webp" srcset="assets/poke/spicy-tropical-final-600.webp 600w, assets/poke/spicy-tropical-final-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="Spicy Tropical Bowl von oben: Salat, Tofu, Gurke, Frühlingszwiebel, Mango, Ananas, Kokoschips, Korean Love und Sesam">
+        </div>
+      </figure>
+      <ol class="poke__steps">
+        <li class="poke__step">
+          <p class="poke__no">01</p>
+          <h3 class="poke__step-title">Wählt Eure Base</h3>
+          <p class="poke__step-text">Startet mit Reis, Salat oder beidem.</p>
+          <p class="poke__in">In dieser Bowl: <b>Salat</b></p>
+        </li>
+        <li class="poke__step">
+          <p class="poke__no">02</p>
+          <h3 class="poke__step-title">Euer Protein</h3>
+          <p class="poke__step-text">Frisches Seafood, Chicken oder pflanzlich: Lachs, Ahi Tuna, Garnele, Chicken oder Tofu.</p>
+          <p class="poke__in">In dieser Bowl: <b>Tofu</b></p>
+        </li>
+        <li class="poke__step">
+          <p class="poke__no">03</p>
+          <h3 class="poke__step-title">Frisch und knackig</h3>
+          <p class="poke__step-text">Frisches Gemüse und Texturen: Gurke, Frühlingszwiebel, Edamame, Algensalat.</p>
+          <p class="poke__in">In dieser Bowl: <b>Gurke, Frühlingszwiebel</b></p>
+        </li>
+        <li class="poke__step">
+          <p class="poke__no">04</p>
+          <h3 class="poke__step-title">Bringt den Flavor</h3>
+          <p class="poke__step-text">Süß, scharf und tropisch: Mango, Ananas, Avocado.</p>
+          <p class="poke__in">In dieser Bowl: <b>Mango, Ananas</b></p>
+        </li>
+        <li class="poke__step">
+          <p class="poke__no">05</p>
+          <h3 class="poke__step-title">Das Finish</h3>
+          <p class="poke__step-text">Sauce, Sesam und Crunch: Korean Love, Kokoschips, Erdnüsse.</p>
+          <p class="poke__in">In dieser Bowl: <b>Korean Love, Kokoschips, Sesam</b></p>
+        </li>
+        <li class="poke__step poke__step--final">
+          <p class="poke__no">06</p>
+          <h3 class="poke__step-title"><span>Your Poké.</span> <span>Your style.</span></h3>
+          <p class="poke__step-text">Spicy Tropical: Tofu, Gurke, Ananas, Frühlingszwiebel, Korean Love, Mango, Kokoschips. 352 kcal.</p>
+          <p class="poke__actions"><a class="btn btn--primary" href="https://maloa.smoothr.de/map">Jetzt bestellen</a> <a class="poke__link" href="https://maloa.com/produkte/">Zum Menü</a></p>
+        </li>
+      </ol>
+      <div class="poke__progress" aria-hidden="true"><span>01</span><span>02</span><span>03</span><span>04</span><span>05</span><span>06</span></div>
     </div>
   </section>
 </main>
@@ -1272,6 +1451,105 @@ addEventListener("DOMContentLoaded",function(){
 
   measure();
   render();
+})();
+});
+</script>
+<script>
+addEventListener("DOMContentLoaded",function(){
+/* Block 5 · Poké your style
+   - Copy: label, the two headline lines out of their masks, the intro (once).
+   - Build, the one strong move: the stage is pinned and one scrubbed timeline fills the empty bowl,
+     snapping to each stage: base → protein → vegetables (three groups a beat apart) → mango and pineapple
+     → the sauce spreads from where it is poured → coconut chips → sesame in three small showers →
+     the complete photograph settles in. Every ingredient drops in from slightly above, a little turned
+     and smaller, overshoots a touch and settles (back.out); everything stays once it has landed.
+   - The step copy changes in step, not scrubbed (opacity and a small rise); the 01–06 line follows.
+   - The light behind the bowl recedes as the bowl fills (a CSS variable, scrubbed).
+   Reduced motion or no GSAP: nothing here runs; the finished bowl and the list of steps remain. */
+(function () {
+  var M = window.MALOA || {};
+  var poke = document.getElementById('poke');
+  if (!poke || !M.gsap || M.reduce) return;
+
+  var stage = poke.querySelector('.poke__stage');
+  var plate = poke.querySelector('.poke__plate');
+  var steps = gsap.utils.toArray(poke.querySelectorAll('.poke__step'));
+  var dots = gsap.utils.toArray(poke.querySelectorAll('.poke__progress span'));
+  var L = function (n) { return poke.querySelector('.poke__layer--' + n); };
+  var phoneQuery = matchMedia('(max-aspect-ratio: 4/5), (max-width: 699px)');
+
+  poke.classList.add('is-scripted');
+
+  gsap.timeline({ scrollTrigger: { trigger: stage, start: 'top 75%', once: true } })
+    .from('.poke__label', { autoAlpha: 0, y: 16, duration: 0.8, ease: 'power2.out' })
+    .from('.poke__line > span', { yPercent: 150, duration: 1.2, ease: 'power4.out', stagger: 0.12 }, 0.1)
+    .from('.poke__intro', { autoAlpha: 0, y: 24, duration: 0.9, ease: 'power3.out' }, 0.45);
+
+  // An ingredient lands: from a little above (and aside), turned and smaller, to rest with a small overshoot
+  function drop(tl, el, at, from) {
+    tl.fromTo(el, { xPercent: from.x || 0, yPercent: from.y, rotation: from.r || 0, scale: from.s || 0.94 },
+      { xPercent: 0, yPercent: 0, rotation: 0, scale: 1, duration: 0.7, ease: 'back.out(1.7)' }, at)
+      .fromTo(el, { opacity: 0 }, { opacity: 1, duration: 0.28, ease: 'power1.out' }, at);
+  }
+
+  // Stage k plays in (k-1, k]; the snap points are the labels s0…s7
+  var tl = gsap.timeline({ defaults: { immediateRender: true } });
+  tl.addLabel('s0', 0);
+  drop(tl, L('greens'), 0.15, { x: -6, y: -16, r: -8 });                       tl.addLabel('s1', 1);
+  drop(tl, L('tofu'), 1.15, { x: 7, y: -14, r: 7 });                          tl.addLabel('s2', 2);
+  drop(tl, L('veg2'), 2.12, { y: -9, r: 14, s: 0.9 });
+  drop(tl, L('veg1'), 2.24, { y: -8, r: -12, s: 0.9 });
+  drop(tl, L('veg3'), 2.36, { y: -10, r: 10, s: 0.9 });                       tl.addLabel('s3', 3);
+  drop(tl, L('mango'), 3.12, { x: -4, y: -14, r: -6 });
+  drop(tl, L('pineapple'), 3.3, { y: -9, r: 12, s: 0.9 });                    tl.addLabel('s4', 4);
+  // The sauce is poured, not dropped: it spreads out from the top left of the bowl
+  tl.fromTo(L('sauce'), { clipPath: 'circle(0% at 26% 36%)', scale: 1.03, opacity: 0.2 },
+    { clipPath: 'circle(85% at 26% 36%)', scale: 1, opacity: 1, duration: 0.8, ease: 'power2.inOut' }, 4.12);
+                                                                              tl.addLabel('s5', 5);
+  drop(tl, L('coconut'), 5.1, { x: -9, y: -16, r: -9 });
+  ['sesame1', 'sesame2', 'sesame3'].forEach(function (n, i) {
+    tl.fromTo(L(n), { yPercent: -5, scale: 1.03, opacity: 0 },
+      { yPercent: 0, scale: 1, opacity: 1, duration: 0.45, ease: 'power2.out' }, 5.45 + i * 0.13);
+  });                                                                         tl.addLabel('s6', 6);
+  // The complete photograph settles in over the stack: same picture, every edge back where it was
+  tl.fromTo(L('final'), { opacity: 0 }, { opacity: 1, duration: 0.55, ease: 'power1.inOut' }, 6.15)
+    .fromTo(plate, { scale: 1 }, { scale: 1.025, duration: 0.4, ease: 'power2.out', yoyo: true, repeat: 1 }, 6.1);
+  tl.addLabel('s7', 7);
+  tl.fromTo(stage, { '--glow': 1 }, { '--glow': 0.35, duration: 7, ease: 'none' }, 0);
+
+  // Stage → step copy: base, protein, vegetables, fruit, (sauce, toppings) finish, your poké
+  var stepOf = [0, 0, 1, 2, 3, 4, 4, 5];
+  var active = -1;
+  function show(i) {
+    if (i === active) return;
+    var dir = active < 0 || i > active ? 1 : -1;
+    if (active >= 0) {
+      steps[active].classList.remove('is-on');
+      gsap.to(steps[active], { opacity: 0, y: -14 * dir, duration: 0.24, ease: 'power2.in', overwrite: true });
+    }
+    steps[i].classList.add('is-on');
+    gsap.fromTo(steps[i], { opacity: 0, y: 18 * dir }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out', delay: active < 0 ? 0 : 0.22, overwrite: true });   // the new copy rises once the old one has mostly gone
+    dots.forEach(function (d, k) { d.classList.toggle('is-on', k === i); d.classList.toggle('is-done', k < i); });
+    poke.classList.toggle('is-final', i === steps.length - 1);
+    active = i;
+  }
+  function sync() { show(stepOf[Math.min(7, Math.ceil(tl.time() - 0.001))] || 0); }
+
+  ScrollTrigger.create({
+    animation: tl, trigger: stage, start: 'top top', pin: true, scrub: 0.6, invalidateOnRefresh: true,
+    end: function () { return '+=' + Math.round(innerHeight * 7 * (phoneQuery.matches ? 0.62 : 0.72)); },
+    snap: { snapTo: 'labels', duration: { min: 0.25, max: 0.8 }, delay: 0.08, ease: 'power2.inOut', inertia: false },
+    onUpdate: sync
+  });
+
+  // Inline styles set during a refresh are reverted with it: re-apply the copy state afterwards
+  ScrollTrigger.addEventListener('refresh', function () {
+    var i = active < 0 ? 0 : active;
+    steps.forEach(function (s, k) { if (k !== i) { s.classList.remove('is-on'); gsap.set(s, { opacity: 0 }); } });
+    active = -1;
+    show(stepOf[Math.min(7, Math.ceil(tl.time() - 0.001))] || i);
+  });
+  show(0);
 })();
 });
 </script>

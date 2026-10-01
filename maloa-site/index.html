@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="css/scene.css">
 <link rel="stylesheet" href="css/about.css">
 <link rel="stylesheet" href="css/favs.css">
+<link rel="stylesheet" href="css/poke.css">
 <script>
 document.documentElement.classList.add('js');
 /* Decide before first paint whether the intro plays: once per session, script required */
@@ -303,6 +304,79 @@ catch (e) { document.documentElement.classList.add('intro-on'); }
       </div>
     </div>
   </section>
+
+  <!-- Block 5 · Poké your style (css/poke.css, js/poke.js).
+       The bowl is the client's Spicy Tropical photo (assets/src/bowls/bowl-02-spicy-tropical-tofu.jpg) taken apart
+       into its own ingredients (tools/poke-layers): every layer is cut from that one photograph, so light and
+       perspective match, and the finished stack is the photo itself (the last layer). Nothing is generated.
+       Without the script (or with reduced motion): the finished bowl and the steps as a list. -->
+  <section class="poke" id="poke" aria-labelledby="poke-title">
+    <div class="poke__stage">
+      <div class="poke__copy">
+        <p class="poke__label">Poké your style</p>
+        <h2 class="poke__title" id="poke-title"><span class="poke__line"><span>Build your</span></span> <span class="poke__line"><span>own Poké</span></span></h2>
+        <!-- Translated from the EN home page (original.html); confirm the German wording with the client -->
+        <p class="poke__intro">Stellt Euch Eure eigene Poké Bowl zusammen: frisches Seafood, Grünes oder Reis, knackiges Gemüse und exotische Flavors. Seid kreativ und entdeckt die Vielfalt!</p>
+      </div>
+      <figure class="poke__bowl">
+        <div class="poke__plate">
+          <img class="poke__layer poke__layer--bowl" style="--o:50% 50%" src="assets/poke/spicy-tropical-bowl-600.webp" srcset="assets/poke/spicy-tropical-bowl-600.webp 600w, assets/poke/spicy-tropical-bowl-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--greens" style="--o:27.6% 31.6%" src="assets/poke/spicy-tropical-greens-600.webp" srcset="assets/poke/spicy-tropical-greens-600.webp 600w, assets/poke/spicy-tropical-greens-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--tofu" style="--o:70.4% 42.7%" src="assets/poke/spicy-tropical-tofu-600.webp" srcset="assets/poke/spicy-tropical-tofu-600.webp 600w, assets/poke/spicy-tropical-tofu-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--veg1" style="--o:77.4% 49.2%" src="assets/poke/spicy-tropical-veg1-600.webp" srcset="assets/poke/spicy-tropical-veg1-600.webp 600w, assets/poke/spicy-tropical-veg1-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--veg2" style="--o:73.8% 29.9%" src="assets/poke/spicy-tropical-veg2-600.webp" srcset="assets/poke/spicy-tropical-veg2-600.webp 600w, assets/poke/spicy-tropical-veg2-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--veg3" style="--o:67.8% 45.7%" src="assets/poke/spicy-tropical-veg3-600.webp" srcset="assets/poke/spicy-tropical-veg3-600.webp 600w, assets/poke/spicy-tropical-veg3-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--mango" style="--o:40% 79.7%" src="assets/poke/spicy-tropical-mango-600.webp" srcset="assets/poke/spicy-tropical-mango-600.webp 600w, assets/poke/spicy-tropical-mango-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--pineapple" style="--o:76.2% 35.4%" src="assets/poke/spicy-tropical-pineapple-600.webp" srcset="assets/poke/spicy-tropical-pineapple-600.webp 600w, assets/poke/spicy-tropical-pineapple-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--sauce" style="--o:30.8% 59.1%" src="assets/poke/spicy-tropical-sauce-600.webp" srcset="assets/poke/spicy-tropical-sauce-600.webp 600w, assets/poke/spicy-tropical-sauce-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--coconut" style="--o:32.3% 56.9%" src="assets/poke/spicy-tropical-coconut-600.webp" srcset="assets/poke/spicy-tropical-coconut-600.webp 600w, assets/poke/spicy-tropical-coconut-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--sesame1" style="--o:53.9% 44.5%" src="assets/poke/spicy-tropical-sesame1-600.webp" srcset="assets/poke/spicy-tropical-sesame1-600.webp 600w, assets/poke/spicy-tropical-sesame1-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--sesame2" style="--o:56.1% 43.9%" src="assets/poke/spicy-tropical-sesame2-600.webp" srcset="assets/poke/spicy-tropical-sesame2-600.webp 600w, assets/poke/spicy-tropical-sesame2-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--sesame3" style="--o:53.6% 45.9%" src="assets/poke/spicy-tropical-sesame3-600.webp" srcset="assets/poke/spicy-tropical-sesame3-600.webp 600w, assets/poke/spicy-tropical-sesame3-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--final" style="--o:50% 50%" src="assets/poke/spicy-tropical-final-600.webp" srcset="assets/poke/spicy-tropical-final-600.webp 600w, assets/poke/spicy-tropical-final-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="Spicy Tropical Bowl von oben: Salat, Tofu, Gurke, Frühlingszwiebel, Mango, Ananas, Kokoschips, Korean Love und Sesam">
+        </div>
+      </figure>
+      <ol class="poke__steps">
+        <li class="poke__step">
+          <p class="poke__no">01</p>
+          <h3 class="poke__step-title">Wählt Eure Base</h3>
+          <p class="poke__step-text">Startet mit Reis, Salat oder beidem.</p>
+          <p class="poke__in">In dieser Bowl: <b>Salat</b></p>
+        </li>
+        <li class="poke__step">
+          <p class="poke__no">02</p>
+          <h3 class="poke__step-title">Euer Protein</h3>
+          <p class="poke__step-text">Frisches Seafood, Chicken oder pflanzlich: Lachs, Ahi Tuna, Garnele, Chicken oder Tofu.</p>
+          <p class="poke__in">In dieser Bowl: <b>Tofu</b></p>
+        </li>
+        <li class="poke__step">
+          <p class="poke__no">03</p>
+          <h3 class="poke__step-title">Frisch und knackig</h3>
+          <p class="poke__step-text">Frisches Gemüse und Texturen: Gurke, Frühlingszwiebel, Edamame, Algensalat.</p>
+          <p class="poke__in">In dieser Bowl: <b>Gurke, Frühlingszwiebel</b></p>
+        </li>
+        <li class="poke__step">
+          <p class="poke__no">04</p>
+          <h3 class="poke__step-title">Bringt den Flavor</h3>
+          <p class="poke__step-text">Süß, scharf und tropisch: Mango, Ananas, Avocado.</p>
+          <p class="poke__in">In dieser Bowl: <b>Mango, Ananas</b></p>
+        </li>
+        <li class="poke__step">
+          <p class="poke__no">05</p>
+          <h3 class="poke__step-title">Das Finish</h3>
+          <p class="poke__step-text">Sauce, Sesam und Crunch: Korean Love, Kokoschips, Erdnüsse.</p>
+          <p class="poke__in">In dieser Bowl: <b>Korean Love, Kokoschips, Sesam</b></p>
+        </li>
+        <li class="poke__step poke__step--final">
+          <p class="poke__no">06</p>
+          <h3 class="poke__step-title"><span>Your Poké.</span> <span>Your style.</span></h3>
+          <p class="poke__step-text">Spicy Tropical: Tofu, Gurke, Ananas, Frühlingszwiebel, Korean Love, Mango, Kokoschips. 352 kcal.</p>
+          <p class="poke__actions"><a class="btn btn--primary" href="https://maloa.smoothr.de/map">Jetzt bestellen</a> <a class="poke__link" href="https://maloa.com/produkte/">Zum Menü</a></p>
+        </li>
+      </ol>
+      <div class="poke__progress" aria-hidden="true"><span>01</span><span>02</span><span>03</span><span>04</span><span>05</span><span>06</span></div>
+    </div>
+  </section>
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" defer></script>
@@ -314,5 +388,6 @@ catch (e) { document.documentElement.classList.add('intro-on'); }
 <script src="js/scene.js" defer></script>
 <script src="js/about.js" defer></script>
 <script src="js/favs.js" defer></script>
+<script src="js/poke.js" defer></script>
 </body>
 </html>
