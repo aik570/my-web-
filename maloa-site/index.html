@@ -308,7 +308,8 @@ catch (e) { document.documentElement.classList.add('intro-on'); }
   <!-- Block 5 · Poké your style (css/poke.css, js/poke.js).
        The bowl is the client's Spicy Tropical photo (assets/src/bowls/bowl-02-spicy-tropical-tofu.jpg) taken apart
        into its own ingredients (tools/poke-layers): every layer is cut from that one photograph, so light and
-       perspective match, and the finished stack is the photo itself (the last layer). Nothing is generated.
+       perspective match, and the finished stack is the photo itself (the last layer). The one exception is the rice
+       base (no client photo shows rice): generated once against the real empty bowl and fitted to it (tools/poke-layers/rice.py).
        Without the script (or with reduced motion): the finished bowl and the steps as a list. -->
   <section class="poke" id="poke" aria-labelledby="poke-title">
     <div class="poke__stage">
@@ -321,6 +322,7 @@ catch (e) { document.documentElement.classList.add('intro-on'); }
       <figure class="poke__bowl">
         <div class="poke__plate">
           <img class="poke__layer poke__layer--bowl" style="--o:50% 50%" src="assets/poke/spicy-tropical-bowl-600.webp" srcset="assets/poke/spicy-tropical-bowl-600.webp 600w, assets/poke/spicy-tropical-bowl-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--rice" style="--o:50% 50%" src="assets/poke/spicy-tropical-rice-600.webp" srcset="assets/poke/spicy-tropical-rice-600.webp 600w, assets/poke/spicy-tropical-rice-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
           <img class="poke__layer poke__layer--greens" style="--o:27.6% 31.6%" src="assets/poke/spicy-tropical-greens-600.webp" srcset="assets/poke/spicy-tropical-greens-600.webp 600w, assets/poke/spicy-tropical-greens-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
           <img class="poke__layer poke__layer--tofu" style="--o:70.4% 42.7%" src="assets/poke/spicy-tropical-tofu-600.webp" srcset="assets/poke/spicy-tropical-tofu-600.webp 600w, assets/poke/spicy-tropical-tofu-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
           <img class="poke__layer poke__layer--veg1" style="--o:77.4% 49.2%" src="assets/poke/spicy-tropical-veg1-600.webp" srcset="assets/poke/spicy-tropical-veg1-600.webp 600w, assets/poke/spicy-tropical-veg1-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
@@ -341,7 +343,7 @@ catch (e) { document.documentElement.classList.add('intro-on'); }
           <p class="poke__no">01</p>
           <h3 class="poke__step-title">Wählt Eure Base</h3>
           <p class="poke__step-text">Startet mit Reis, Salat oder beidem.</p>
-          <p class="poke__in">In dieser Bowl: <b>Salat</b></p>
+          <p class="poke__in">In dieser Bowl: <b>Reis, Salat</b></p>
         </li>
         <li class="poke__step">
           <p class="poke__no">02</p>

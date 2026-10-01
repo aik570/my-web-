@@ -1,7 +1,7 @@
 /* Block 5 · Poké your style
    - Copy: label, the two headline lines out of their masks, the intro (once).
    - Build, the one strong move: the stage is pinned and one scrubbed timeline fills the empty bowl,
-     snapping to each stage: base → protein → vegetables (three groups a beat apart) → mango and pineapple
+     snapping to each stage: base (rice, then salad on top) → protein → vegetables (three groups a beat apart) → mango and pineapple
      → the sauce spreads from where it is poured → coconut chips → sesame in three small showers →
      the complete photograph settles in. Every ingredient drops in from slightly above, a little turned
      and smaller, overshoots a touch and settles (back.out); everything stays once it has landed.
@@ -37,7 +37,9 @@
   // Stage k plays in (k-1, k]; the snap points are the labels s0…s7
   var tl = gsap.timeline({ defaults: { immediateRender: true } });
   tl.addLabel('s0', 0);
-  drop(tl, L('greens'), 0.15, { x: -6, y: -16, r: -8 });                       tl.addLabel('s1', 1);
+  // Stage 01, the base: the rice lands first and stays under everything, the salad follows on top
+  drop(tl, L('rice'), 0.1, { y: -10, r: -4, s: 0.96 });
+  drop(tl, L('greens'), 0.32, { x: -6, y: -16, r: -8 });                       tl.addLabel('s1', 1);
   drop(tl, L('tofu'), 1.15, { x: 7, y: -14, r: 7 });                          tl.addLabel('s2', 2);
   drop(tl, L('veg2'), 2.12, { y: -9, r: 14, s: 0.9 });
   drop(tl, L('veg1'), 2.24, { y: -8, r: -12, s: 0.9 });
