@@ -503,13 +503,13 @@ footer{border-top:1px solid var(--line-soft);padding-block:42px;background:var(-
     <div class="price-hero">
       <div class="ph">
         <p class="who">Herren</p>
-        <p class="what">Haarschnitt</p>
+        <p class="what" data-price-name="angebot.herren"></p>
         <p class="amount" data-price="angebot.herren"></p>
         <p class="note">Waschen &amp; Styling inklusive</p>
       </div>
       <div class="ph">
         <p class="who">Damen</p>
-        <p class="what">Haarschnitt</p>
+        <p class="what" data-price-name="angebot.damen"></p>
         <p class="amount" data-price="angebot.damen"></p>
         <p class="note">Waschen &amp; Föhnen inklusive</p>
       </div>
@@ -710,10 +710,18 @@ footer{border-top:1px solid var(--line-soft);padding-block:42px;background:var(-
      ================================================================ -->
 <script>
 var salonPrices = {
-  /* die zwei großen Karten oben ("Exklusives Angebot"): price = große Zahl, name = nur für Suchmaschinen */
+  // VORLÄUFIG — vom Kunden bestätigen
+  // Exklusives Angebot 15 € / 30 €
+  // (die zwei großen Karten oben: name = Zeile über der Zahl, price = große Zahl)
   angebot: {
-    herren: { name: "Herren Haarschnitt", price: "15 €" },
-    damen:  { name: "Damen Haarschnitt",  price: "30 €" }
+    herren: {
+      name: "Haarschnitt",
+      price: "15 €"
+    },
+    damen: {
+      name: "Haarschnitt",
+      price: "30 €"
+    }
   },
   damen: {
     kurzeHaare:  { name: "Kurze Haare",         price: "35 €" },
@@ -758,7 +766,11 @@ var salonPrices = {
     });
   });
 
-  /* big cards: number keeps the existing count-up */
+  /* big cards: name line + number (the number keeps the existing count-up) */
+  document.querySelectorAll('[data-price-name]').forEach(function(p){
+    var path = p.getAttribute('data-price-name').split('.'), s = P[path[0]] && P[path[0]][path[1]];
+    if (s) p.textContent = s.name;
+  });
   document.querySelectorAll('[data-price]').forEach(function(p){
     var path = p.getAttribute('data-price').split('.'), s = P[path[0]] && P[path[0]][path[1]];
     if (!s) return;
@@ -770,10 +782,11 @@ var salonPrices = {
     p.appendChild(document.createTextNode(' €'));
   });
 
-  /* structured data for search engines, from the same prices (0 € and "auf Anfrage" left out) */
+  /* structured data for search engines, from the same prices
+     (0 €, "auf Anfrage" and the provisional angebot are left out until confirmed) */
   var offers = [];
-  ['angebot', 'damen', 'herren'].forEach(function(g){
-    var prefix = g === 'damen' ? 'Damen ' : g === 'herren' ? 'Herren ' : '';
+  ['damen', 'herren'].forEach(function(g){
+    var prefix = g === 'damen' ? 'Damen ' : 'Herren ';
     Object.keys(P[g] || {}).forEach(function(k){
       var s = P[g][k], n = num(s.price);
       if (n) offers.push({"@type":"Offer","itemOffered":{"@type":"Service","name":prefix + s.name},"price":String(n),"priceCurrency":"EUR"});
