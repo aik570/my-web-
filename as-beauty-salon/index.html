@@ -337,8 +337,9 @@ footer{border-top:1px solid var(--hair);padding-block:44px}
 .fab{
   position:fixed;right:18px;bottom:18px;z-index:70;width:50px;height:50px;display:grid;place-items:center;
   border-radius:50%;background:rgba(16,16,19,.92);border:1px solid var(--hair-gold);text-decoration:none;
-  box-shadow:0 10px 30px -14px rgba(0,0,0,.8);transition:background .3s,border-color .3s
+  box-shadow:0 10px 30px -14px rgba(0,0,0,.8);transition:background .3s,border-color .3s,opacity .25s
 }
+.fab.away{opacity:0;pointer-events:none}
 .fab:hover{background:var(--gold);border-color:var(--gold)}
 .fab svg{width:20px;height:20px;fill:var(--gold-pale);transition:fill .3s}
 .fab:hover svg{fill:#0A0A0C}
@@ -853,6 +854,26 @@ var salonPrices = {
     f.referrerPolicy = 'no-referrer-when-downgrade'; f.src = mb.getAttribute('data-map');
     var frame = mb.closest('.map-frame'); frame.innerHTML = ''; frame.appendChild(f);
   });
+
+  /* WhatsApp button steps aside while prices, the booking CTA or contact details pass underneath it,
+     so it never covers a price, an opening hour or a link (those areas have their own WhatsApp links) */
+  var fab = document.querySelector('.fab');
+  var fabWatch = document.querySelectorAll('.offer, .price-list, .termin-cta, .contact, .map-bar');
+  if (fab && hasIO && fabWatch.length){
+    var busy = new Set(), fio = null;
+    function watch(){
+      if (fio) fio.disconnect();
+      busy.clear(); fab.classList.remove('away');
+      var band = Math.max(0, window.innerHeight - 96);          /* only the strip the button occupies */
+      fio = new IntersectionObserver(function(es){
+        es.forEach(function(e){ e.isIntersecting ? busy.add(e.target) : busy.delete(e.target); });
+        fab.classList.toggle('away', busy.size > 0);
+      }, {rootMargin: '-' + band + 'px 0px 0px 0px'});
+      fabWatch.forEach(function(el){ fio.observe(el); });
+    }
+    watch();
+    var rt; window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(watch, 200); });
+  }
 
   /* reveals: text rises, images settle */
   if (reduce || !hasIO) return;
