@@ -138,12 +138,20 @@ figure{margin:0}
 .nav-cta svg{display:none}
 a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 
-/* motion: text rises 20px, images settle from 1.03 — only when JS + motion are available */
-.js-motion [data-rv]{opacity:0;transform:translateY(20px);transition:opacity 1s ease,transform 1.1s cubic-bezier(.2,.7,.3,1);transition-delay:var(--d,0s)}
+/* motion — varied on purpose:
+   headlines rise slowly, labels only fade, lists barely move;
+   large photographs open through a soft mask and settle, small details simply fade */
+.js-motion [data-rv]{opacity:0;transform:translateY(14px);transition:opacity 1.1s ease,transform 1.3s cubic-bezier(.2,.7,.3,1);transition-delay:var(--d,0s)}
+.js-motion .title[data-rv],.js-motion .claim[data-rv]{transform:translateY(22px);transition-duration:1.4s,1.7s}
+.js-motion .label[data-rv],.js-motion .dh-word[data-rv],.js-motion .offer[data-rv],.js-motion .menu>[data-rv],
+.js-motion .why-list>[data-rv],.js-motion .contact [data-rv],.js-motion .map[data-rv]{transform:none;transition-duration:1.2s}
 .js-motion [data-rv].in{opacity:1;transform:none}
-.js-motion [data-rv-img]{opacity:0;transition:opacity 1.2s ease;transition-delay:var(--d,0s)}
-.js-motion [data-rv-img] img,.js-motion [data-rv-img] video{transform:translate3d(0,var(--py,0px),0) scale(1.03);transition:transform 1.6s cubic-bezier(.2,.7,.3,1)}
+.js-motion [data-rv-img]{opacity:0;transition:opacity 1.3s ease;transition-delay:var(--d,0s)}
+.js-motion [data-rv-img] img,.js-motion [data-rv-img] video{transform:translate3d(0,var(--py,0px),0) scale(1.03);transition:transform 1.8s cubic-bezier(.2,.7,.3,1)}
+.js-motion [data-rv-img="open"]{opacity:1;clip-path:inset(0 0 18% 0);transition:clip-path 1.9s cubic-bezier(.22,.61,.36,1);transition-delay:var(--d,0s)}
+.js-motion [data-rv-img="open"] img,.js-motion [data-rv-img="open"] video{transform:translate3d(0,var(--py,0px),0) scale(1.06);transition:transform 2.6s cubic-bezier(.2,.7,.3,1)}
 .js-motion [data-rv-img].in{opacity:1}
+.js-motion [data-rv-img="open"].in{clip-path:inset(0)}
 .js-motion [data-rv-img].in img,.js-motion [data-rv-img].in video{transform:translate3d(0,var(--py,0px),0) scale(1)}
 @media (hover:hover){
   .js-motion [data-rv-img].in:hover img{transform:translate3d(0,var(--py,0px),0) scale(1.025)}
@@ -219,7 +227,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
 .s-film{padding-block:clamp(90px,12vw,170px)}
 .film{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;align-items:center}
 .film-text{grid-column:1/5;position:relative;z-index:1}
-.film-text .quote{margin-top:26px}
+.film-text .quote{margin-top:30px;padding-right:clamp(0px,2vw,32px)}
 .film-media{grid-column:5/13;aspect-ratio:540/464;
   margin-right:calc(-1 * max(clamp(20px,4vw,48px), (100vw - 1240px) / 2 + clamp(20px,4vw,48px)));
   -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 16%);
@@ -236,7 +244,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
 .offer-item .who{grid-column:1/3;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
 .offer-item .amount{grid-row:2/4;font-family:var(--serif);font-weight:300;font-size:clamp(52px,5.4vw,80px);line-height:.9;color:var(--gold-pale);font-variant-numeric:tabular-nums}
 .offer-item .what{font-family:var(--serif);font-size:24px;line-height:1.1}
-.offer-item .note{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.offer-item .note{font-size:13.5px;letter-spacing:.02em;color:var(--muted);margin-top:8px}
 .menu{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(48px,7vw,110px);margin-top:clamp(64px,8vw,110px)}
 .menu h3{font-family:var(--serif);font-weight:300;font-size:clamp(36px,3.4vw,52px);line-height:1;color:var(--text)}
 .menu .sub{color:var(--muted);font-size:14.5px;margin-top:14px;max-width:38ch}
@@ -269,10 +277,10 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
 .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 48px;margin-top:clamp(56px,7vw,96px);border-top:1px solid var(--hair)}
 .step{padding-top:28px}
 .step .num{font-family:var(--serif);font-size:15px;letter-spacing:.08em;line-height:1;color:var(--gold);font-variant-numeric:tabular-nums}
-.step h3{font-family:var(--sans);font-size:12px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;margin-top:22px;color:var(--text)}
+.step h3{font-family:var(--serif);font-size:24px;font-weight:400;line-height:1.15;margin-top:18px;color:var(--text)}
 .step p{color:var(--muted);font-size:15px;margin-top:10px;max-width:32ch}
 .termin-cta{margin-top:56px;display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px}
-.termin-cta .note{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--muted)}
+.termin-cta .note{font-size:14px;letter-spacing:.04em;color:var(--muted)}
 
 /* ======================================================================
    BRAND ENDING
@@ -297,7 +305,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
 .hours{list-style:none;margin:22px 0 0;padding:0}
 .hours li{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid var(--hair);font-size:15px}
 .hours li:first-child{border-top:1px solid var(--hair)}
-.hours .d{color:var(--muted);letter-spacing:.1em;text-transform:uppercase;font-size:12px}
+.hours .d{color:var(--muted);letter-spacing:.02em;font-size:14.5px}
 .hours .h{font-variant-numeric:tabular-nums}
 .contact-list{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-direction:column;gap:16px}
 .contact-list li{font-size:16px}
@@ -445,7 +453,7 @@ footer{border-top:1px solid var(--hair);padding-block:44px}
 <!-- ============ 01 ANKOMMEN ============ -->
 <section class="s-arrive">
   <div class="wrap arrive">
-    <figure class="arrive-img ph-img" data-rv-img data-par="1">
+    <figure class="arrive-img ph-img" data-rv-img="open" data-par="1">
       <img src="media/ankommen.webp" alt="Eingang des AS Beauty Salon in der Charlottenstraße 94: offene Tür mit Blick in den Salon" width="900" height="1124" loading="lazy" decoding="async">
     </figure>
     <div class="arrive-text">
@@ -467,13 +475,13 @@ footer{border-top:1px solid var(--hair);padding-block:44px}
     <div class="dh">
       <div class="dh-damen">
         <p class="dh-word" data-rv>Damen</p>
-        <figure class="ph-img" data-rv-img data-par="1">
+        <figure class="ph-img" data-rv-img="open" data-par="1">
           <img src="media/damen.webp" alt="Damenplätze im AS Beauty Salon: Lederstühle vor beleuchteten Spiegeln" width="760" height="1300" loading="lazy" decoding="async">
         </figure>
       </div>
       <div class="dh-herren">
         <p class="dh-word dark" data-rv>Herren</p>
-        <figure class="ph-img main" data-rv-img data-par="-1">
+        <figure class="ph-img main" data-rv-img="open" data-par="-1" style="--d:.15s">
           <img src="media/herren.webp" alt="Herrenbereich: schwarze Fliesen, Holzregale und Hängelampe" width="740" height="450" loading="lazy" decoding="async">
         </figure>
       </div>
@@ -488,7 +496,7 @@ footer{border-top:1px solid var(--hair);padding-block:44px}
       <p class="label" data-rv><i>03</i></p>
       <h2 class="title" data-rv style="--d:.08s">Atmosphäre</h2>
     </div>
-    <figure class="atmo-main ph-img" data-rv-img data-par="1">
+    <figure class="atmo-main ph-img" data-rv-img="open" data-par="1">
       <img src="media/atmosphaere.webp" alt="Wartebereich: Wandbild in Gold und schwarze Lederbank" width="1050" height="1400" loading="lazy" decoding="async">
     </figure>
     <figure class="atmo-a ph-img" data-rv-img data-par="-1" style="--d:.1s">
@@ -507,7 +515,7 @@ footer{border-top:1px solid var(--hair);padding-block:44px}
       <p class="label" data-rv><i>04</i>Im Salon</p>
       <p class="quote" data-rv style="--d:.08s">Sie setzen sich, wir übernehmen.</p>
     </div>
-    <figure class="film-media ph-img" data-rv-img aria-hidden="true">
+    <figure class="film-media ph-img" data-rv-img="open" aria-hidden="true">
       <video class="salon-video" data-src="media/im-salon.mp4" data-src-webm="media/im-salon.webm" poster="media/im-salon-poster.jpg" width="540" height="464" muted loop playsinline preload="none" disablepictureinpicture></video>
     </figure>
   </div>
@@ -583,7 +591,7 @@ footer{border-top:1px solid var(--hair);padding-block:44px}
 <!-- ============ BRAND ENDING ============ -->
 <section class="s-brand">
   <div class="wrap brand">
-    <figure class="brand-img ph-img" data-rv-img data-par="1">
+    <figure class="brand-img ph-img" data-rv-img="open" data-par="1">
       <img src="media/marke.webp" alt="Beleuchtetes AS-Logo im Schaufenster des Salons" width="800" height="660" loading="lazy" decoding="async">
     </figure>
     <div class="brand-text">
