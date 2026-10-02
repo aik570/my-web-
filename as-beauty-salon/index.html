@@ -880,8 +880,15 @@ var salonPrices = {
   var v = document.querySelector('.hero-video');
   if (v && !reduce && !saveData){
     v.addEventListener('playing', function(){ v.classList.add('on'); }, {once:true});
-    v.src = v.getAttribute(v.canPlayType('video/webm; codecs="vp9"') === 'probably' ? 'data-src-webm' : 'data-src');
     var go = function(){ var p = v.play(); if (p && p.catch) p.catch(function(){}); };
+    /* WebM (VP9) where the browser is sure it plays it, MP4 (H.264) for Safari/iPhone and as fallback;
+       if one fails, the next is tried. If none plays, the still image underneath simply stays. */
+    var srcs = [];
+    if (v.canPlayType('video/webm; codecs="vp9"') === 'probably') srcs.push(v.getAttribute('data-src-webm'));
+    srcs.push(v.getAttribute('data-src'));
+    var n = 0;
+    v.addEventListener('error', function(){ if (++n < srcs.length){ v.src = srcs[n]; go(); } });
+    v.src = srcs[0];
     go();
     if ('IntersectionObserver' in window){
       new IntersectionObserver(function(es){ es[0].isIntersecting ? go() : v.pause(); }).observe(v.parentNode);
