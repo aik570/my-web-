@@ -6,8 +6,7 @@
    0.52–0.96  the leaves part like a curtain and leave the frame; the Welcome opens between them
               as a widening circle with a soft, feathered edge (a mask, never a hard cut), settling from
               a slight zoom; its bowl turns into place
-   0.80–0.98  the bowl's small caption (name, ingredients, kcal: the same facts as in Favorites) rises in
-              (no headline here: the Welcome headline appears once, in the About block)
+              (no copy here: the bowl is the picture; the Welcome headline appears once, in the About block)
    Phones: three leaves, shorter travel, no 3D turn, shorter pin.
    Reduced motion or no GSAP: nothing here runs; the Welcome block simply follows the Hero. */
 (function () {
@@ -23,7 +22,6 @@
   var welcome = scene.querySelector('.welcome');
   var inner = welcome.querySelector('.welcome__inner');
   var visual = welcome.querySelector('.welcome__visual');
-  var note = welcome.querySelector('.welcome__note');
   var leaves = [].slice.call(scene.querySelectorAll('.leaf'));
 
   scene.classList.add('scene--cinematic');
@@ -98,7 +96,6 @@
       .fromTo(open, { r: 0 }, { r: 1, ease: 'power2.inOut', duration: 0.44, onUpdate: openMask }, 0.52)
       .fromTo(inner, { scale: 1.1 }, { scale: 1, ease: 'power2.out', duration: 0.48 }, 0.52)
       .fromTo(visual, { rotation: -12, y: function () { return 6 * vh(); } }, { rotation: 0, y: 0, ease: 'power2.out', duration: 0.46 }, 0.54);
-    if (note) tl.fromTo(note, { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, ease: 'power2.out', duration: 0.18 }, 0.8);
 
     return function () { syncVideo(0); welcome.style.webkitMaskImage = welcome.style.maskImage = ''; };
   });

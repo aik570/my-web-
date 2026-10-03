@@ -67,6 +67,12 @@
 .poke.is-scripted .poke__step-title{font-size:clamp(28px,2.6vw,44px)}
 .poke.is-scripted .poke__step--final .poke__step-title{font-size:clamp(36px,3.6vw,64px)}
 .poke.is-scripted .poke__step--final .poke__step-title > span{display:block}
+/* The final state shows only "Your Poké. Your style." and its two actions: its number and the bowl line stay
+   in the static list, and the intro steps back while the final message is on, so on shorter screens the taller
+   final step can never run into it (!important: the intro's entrance leaves inline opacity/visibility behind) */
+.poke.is-scripted .poke__step--final .poke__no,.poke.is-scripted .poke__step--final .poke__step-text{display:none}
+.poke.is-scripted .poke__intro{transition:opacity .4s var(--ease-out),visibility 0s}
+.poke.is-scripted.is-final .poke__intro{opacity:0 !important;visibility:hidden !important;transition:opacity .3s var(--ease-out),visibility 0s .3s}
 .poke.is-scripted .poke__progress{position:absolute;left:var(--gutter);bottom:clamp(16px,3.2vh,36px);display:flex;gap:4px 20px;z-index:2}
 .poke__progress span{display:inline-flex;align-items:center;min-height:44px;font-size:12px;font-weight:600;letter-spacing:.16em;font-variant-numeric:tabular-nums;color:rgb(200 209 211 / .5);
   background:linear-gradient(currentColor,currentColor) 0 calc(100% - 8px)/0 1px no-repeat;transition:color .4s var(--ease-out),background-size .5s var(--ease-out)}
