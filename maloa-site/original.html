@@ -1,0 +1,206 @@
+<!doctype html>
+<!--
+  maloa.com home page, English version (?lang=en), as supplied by the user on 30.09.2026.
+  REFERENCE ONLY, not part of the new site.
+
+  Kept: every piece of content and structure (header menu with dropdowns, slider slides,
+  the four sections, the footer, newsletter fields, and the product data from the popups).
+  Dropped: the WordPress/plugin plumbing that carries no content: ~40 stylesheet and
+  script tags (WooCommerce, YITH, Revolution Slider runtime, Bootstrap x2, Font Awesome x3,
+  emoji loader, UsersWP helpers), the Borlabs cookie-box template, WPBakery row wrappers
+  and inline style noise. Notable findings from those are listed at the bottom.
+-->
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<title>MA’LOA® Hawaiian Poké Bowl</title>
+<!-- Theme: "belly" (RoadThemes) + child theme, WPBakery 5.6, Slider Revolution 5.4.8.1,
+     qTranslate-X 3.4.6.8 (DE/EN/FR), WooCommerce 5.5.5, WordPress 6.4.12.
+     Brand CSS in the theme: page ground #d8e2e2, primary #004443, pink popup #f2d1d5,
+     body text #1a483e, fonts "brandonweb-medium" / "brandonweb-black" (Brandon Grotesque
+     via the Use Any Font plugin). Wave divider: /wp-content/uploads/2020/05/welle.png (477x6)
+     and the CSS class .wavedownGreen (radial-gradient scallops, #004443 → #d9e2e2). -->
+</head>
+<body class="home page-id-948 theme-belly">
+
+<!-- ============ HEADER (desktop; a sticky copy and a mobile copy repeat it) ============ -->
+<header class="header-container">
+  <div class="logo"><a href="https://maloa.com/"><img width="79" src="https://maloa.com/wp-content/uploads/2018/11/static1.squarespace.png" alt="MA’LOA® Hawaiian Poké Bowl"></a></div>
+  <nav class="mega_main_menu" aria-label="Menu">
+    <ul>
+      <li><a href="https://maloa.com/what-is-poke/?lang=en">About Ma’loa</a>
+        <ul>
+          <li><a href="https://maloa.com/what-is-poke/?lang=en">WHAT IS POKÉ</a></li>
+          <li><a href="https://maloa.com/what-is-poke/?lang=en#ourstory">OUR STORY</a></li>
+          <li><a href="https://maloa.com/what-is-poke/?lang=en#our_promise">OUR PROMISE</a></li>
+          <li><a href="https://maloa.com/faq/?lang=en">FAQ</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Menu</a> <!-- desktop: dead link "#"; mobile: /produkte -->
+        <ul>
+          <li><a href="https://maloa.com/produkte/?lang=en">PRODUCTS</a></li>
+          <li><a href="https://maloa.com/naehrwerte/?lang=en">NUTRITION</a></li>
+        </ul>
+      </li>
+      <li><a href="https://maloa.smoothr.de/map">Stores</a></li>
+      <li><a href="https://maloa.com/catering/?lang=en">Catering</a></li>
+      <li><a href="https://maloa.com/jobs/?lang=en">Join Us</a></li>
+      <li><a href="https://maloa.com/franchise/?lang=en">Franchise</a></li>
+      <li><a href="https://www.paynoweatlater.de/at/maloa/?crt=maloa">Vouchers</a></li> <!-- mobile menu calls it "Coupons" -->
+      <li class="order-now"><a href="https://maloa.smoothr.de/map">Order Now</a></li>
+      <li><a href="#"><img src="https://maloa.com/wp-content/plugins/qtranslate-x/flags/gb.png" alt="English"></a>
+        <ul>
+          <li><a href="https://maloa.com/?lang=de">Deutsch</a></li>
+          <li><a href="https://maloa.com/?lang=en">English</a></li>
+          <li><a href="https://maloa.com/?lang=fr">Français</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+<!-- hidden page title left in the markup: <h2>Homepage</h2> + breadcrumbs "Home / Homepage". No H1 anywhere. -->
+
+<!-- ============ SLIDER (Revolution Slider, fade, 9 s per slide, arrows + bullets) ============
+     Text is baked into the images; no text layers. -->
+<section class="rev_slider">
+  <img src="https://maloa.com/wp-content/uploads/2026/08/2026-09-01_Opening-Eschborn_Website-Open-Now.jpg" width="1920" height="1080" alt="">
+  <img src="https://maloa.com/wp-content/uploads/2023/09/SLIDER_Korean-Chicken-Bowl.jpg" width="1920" height="1080" alt="">
+  <img src="https://maloa.com/wp-content/uploads/2025/04/MALOAWEB_Slider_Whatsapp-1.jpg" width="1920" height="1080" alt="">
+  <!-- slide 4: bg-maloa-dunkel.png with a muted YouTube background video, id IdVSUdoMoR4 -->
+  <img src="https://maloa.com/wp-content/uploads/2020/05/bg-maloa-dunkel.png" width="1296" height="660" alt="">
+  <img src="https://maloa.com/wp-content/uploads/2020/05/DSC02247_2.png" width="1240" height="827" alt="">
+</section>
+
+<!-- ============ WELCOME ============ -->
+<section id="aboutpoke_home" class="welcome-text">
+  <div>
+    <h3>WELCOME TO MA’LOA</h3>
+    <img src="https://maloa.com/wp-content/uploads/2020/05/welle.png" width="477" height="6" alt="">
+    <p><strong>MA'LOA focuses on something that Hawaiians would say is essential. We're talking about Poké Bowl, the traditional Hawaiian national dish. With Poké, we're giving you the opportunity to enter the island vibe of Hawaii.<br>
+    What do you see? Sandy beaches, chains of flowers, coconuts and friendly, happy islanders. Hula dancing, Polynesian fire shows, waves. That's right, it's all Hawaii. We're here to bring a piece of Hawaii to your city: the best Poké Bowls you can get.</strong></p>
+    <a class="button1" href="https://maloa.com/what-is-poke/">ABOUT POKÉ</a>
+  </div>
+  <figure><img src="https://maloa.com/wp-content/uploads/2020/01/Um_Maloa-1024x729.jpg" width="1024" height="729" alt=""></figure>
+</section>
+
+<!-- ============ FAVORITES (full-width, dark leaf background bg-maloa-dunkel.png) ============ -->
+<section class="fullbanner">
+  <figure id="picOffset-start"><img src="https://maloa.com/wp-content/uploads/2020/05/bg-maloa-favs.png" width="869" height="866" alt=""></figure>
+  <div>
+    <h3>MA’LOA FAVORITES</h3>
+    <img src="https://maloa.com/wp-content/uploads/2020/05/welle.png" width="477" height="6" alt="">
+    <p style="text-align:center;color:#fff"><strong>Some of the MA'LOA team's exceptionally created favorite bowls are named after the 8 islands of Hawaii. Choose between seafood, chicken or our vegan varieties. Which island are you headed for today?</strong></p>
+    <a class="button2" href="https://maloa.com/produkte/">MENU</a>
+  </div>
+</section>
+
+<!-- ============ POKÉ YOUR STYLE ============ -->
+<section class="welcome-text">
+  <div>
+    <h3>POKÉ YOUR STYLE</h3>
+    <img src="https://maloa.com/wp-content/uploads/2020/05/welle.png" width="477" height="6" alt="">
+    <p style="color:#004443"><strong>Create your own Poké Bowl: The varied mix of fresh seafood, valuable greens or rice, crunchy vegetables and exotic flavours awakens the Hawaiian joy of life. Are you in the mood for low fat, high protein or maybe vegan? Be inventive and discover the variety!</strong></p>
+    <a class="button1" href="https://maloa.com/produkte/">MENU</a>
+  </div>
+  <figure><img src="https://maloa.com/wp-content/uploads/2020/02/image-asset.gif" width="750" height="750" alt=""></figure>
+</section>
+
+<!-- ============ GIFT CARD (full-width divider image trenner-1.png) ============ -->
+<section class="fullbanner" style="background-image:url(https://maloa.com/wp-content/uploads/2023/09/trenner-1.png)">
+  <a class="button3" href="https://www.paynoweatlater.de/at/maloa/?crt=maloa">GET YOUR GIFT CARD HERE</a>
+</section>
+
+<!-- ============ FRANCHISE ============ -->
+<section>
+  <a id="franchiseBtn" class="button4" href="https://maloa.com/franchise-2/">FRANCHISE</a> <!-- note: /franchise-2/, the menu uses /franchise/ -->
+  <div>
+    <h3>BECOME A FRANCHISE PARTNER</h3>
+    <img src="https://maloa.com/wp-content/uploads/2020/05/welle.png" width="477" height="6" alt="">
+    <p style="text-align:center;color:#004443"><strong>Seid Be one of the first to see MA'LOA bring a piece of Hawaii to your city. We make healthy fast food for the 21st century. South Sea island meets international cuisine. Learn more about our franchise model and open your own MA'LOA store. Ride the healthy wave with us!</strong></p>
+  </div>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <!-- Mailchimp for WP, form 306. Headline and placeholders are German even on /?lang=en -->
+  <form class="mc4wp-form" method="post">
+    <p>Erhalte hier deine 25% für unseren Webshop! Gewinnspiele, wichtige Facts und mehr - MA’LOA NEWSLETTER!</p>
+    <input type="text" name="FNAME" placeholder="Vorname*" required>
+    <input type="text" name="LNAME" placeholder="Nachname*" required>
+    <input type="text" name="BIRTHDAY" placeholder="Geburtstag*" required>
+    <input type="text" name="LANG" placeholder="Sprache">
+    <input type="email" name="EMAIL" placeholder="E-Mail Adresse*" required>
+    <button type="submit">ABONNIEREN!</button>
+  </form>
+
+  <div>
+    <p>Contact Us</p>
+    <ul>
+      <li>OFFICE ADDRESS: <a href="https://maps.app.goo.gl/HaQTVUUgpdPhea5T7">Fuggerstraße 26, 10777 Berlin</a></li>
+      <li>OFFICE PHONE: <a href="tel:00493022013811">(030) 220 138 11</a></li>
+      <li>WHATSAPP CHAT: <a href="https://wa.me/+4917624722381">0176 247 223 81</a></li>
+      <li>OFFICE E-MAIL: <a href="mailto:info@maloa.com">info@maloa.com</a></li>
+    </ul>
+  </div>
+  <div>
+    <p>Mehr Ma’Loa</p> <!-- German heading on the English page; links below drop ?lang=en -->
+    <ul>
+      <li><a href="https://maloa.com/what-is-poke/">About Ma’Loa</a></li>
+      <li><a href="https://maloa.com/produkte/">Products</a></li>
+      <li><a href="https://maloa.smoothr.de/map">Stores</a></li>
+      <li><a href="https://maloa.com/catering/">Catering</a></li>
+      <li><a href="https://maloa.com/jobs/">Join us</a></li>
+      <li><a href="https://maloa.com/franchise/">Franchise</a></li>
+      <li><a href="https://www.paynoweatlater.de/at/maloa/?crt=maloa">Vouchers</a></li>
+      <li><a href="https://maloa.smoothr.de/map">Order now</a></li>
+      <li><a href="https://maloa.com/faq/">FAQ</a></li>
+    </ul>
+  </div>
+  <div>
+    <p>Legal Disclaimer</p>
+    <ul>
+      <li><a href="https://maloa.com/impressum/">Imprint</a></li>
+      <li><a href="https://maloa.com/privacy/">Privacy</a></li>
+      <li><a href="#" class="borlabs-cookie-preference">Cookie settings</a></li>
+    </ul>
+    <p>Social Media</p>
+    <a href="https://www.facebook.com/maloapoke/">Facebook</a>
+    <a href="https://www.instagram.com/maloapoke_de/">Instagram</a>
+    <a href="https://www.tiktok.com/@maloapoke">TikTok</a>
+  </div>
+  <p>COPYRIGHT © 2023 <a href="https://www.maloa.com/">MALOA</a>. ALL RIGHTS RESERVED.</p>
+</footer>
+
+<!-- ============ PRODUCT DATA from the Boxzilla popups (hidden on the page) ============
+Bowls (kcal / protein / carbs / fat, per bowl):
+  Kauai Salmon Bowl      Base + Lachs, Edamame, Gurke, Ananas, Korean Love Flavor, Kimchi, Cashewkerne   485.4 / 28.08 / 43.94 / 23.05
+  Molokai Salmon Bowl    Base + salmon, green soybeans, cucumber, beetroot, Sesam Me Flavor, algae salad, peanuts   545.8 / 32.05 / 38.04 / 29.93
+  Lanai Tuna Bowl        Base + Ahi Tuna, Edamame, Gurke, Rote Bete, Koriander, Crazy Lime Flavor, Avocado, Erdnüsse   506.85 / 33.76 / 39.10 / 25.06
+  Maui Tuna Bowl         Base + Ahi Tuna, Rote Zwiebeln, Frühlingszwiebel, Edamame, Vul'Cano Flavor, Avocado, Masago (description duplicated on the site)   497.75 / 30.59 / 27.25 / 31.25
+  Big Island Tuna Bowl   Base + Ahi Tuna, Edamame, Rote Zwiebeln, Frühlingszwiebel, Gurke, Ma'Loa Flavor, Avocado, Erdnüsse   573.8 / 33.55 / 28.36 / 39.13
+  Vul'cano Chicken Bowl  Base + chicken, scallion, green soybeans, cucumber, Vul'Cano Flavor, avocado, cashew nuts   547.75 / 30.59 / 24.25 / 38.25
+  Peanutlover Chicken    Base + chicken, green soybeans, cucumber, scallions, Peanut Butter Dream Flavor, algae salad, peanuts   507 / 33.68 / 32.33 / 27.22
+  Spicy Tropical Tofu    Base + Tofu, Gurke, Ananas, Frühlingszwiebel, Korean Love, Mango, Kokosschips   352.4 / 10.08 / 45.94 / 15.05
+  Sesam Me Tofu Bowl     Base + Tofu, Edamame, Gurke, rote Zwiebel, Sesam Me, Mango, Erdnüsse   423.8 / 21.05 / 40.04 / 21.93
+  Green Cream Shrimp     Base + Garnele, Frühlingszwiebel, Gurke, Edamame, Green Cream Flavor, Algensalat, Wasabinüsse   415.2 / 19.44 / 26.12 / 26.46
+Other popups (per 100 g): Acai Bowl 103 kcal; Coconut-Cashew-Bowl 208.4 kcal; Mochi-Eis Mango 200 kcal,
+  Salted Caramel 248 kcal, Vanille 228 kcal, Coconut 252 kcal; Carrot and Cocos Ginger Soup 103 kcal.
+Every bowl table also has a "Vorteile/Benefits" column with health claims
+("helps with diabetes", "reduces risk of cancer", "Kalorien und Fettarm" …) — legal risk, see brief.
+"Order Now" popup: Pickup → /stores/, Lieferando → /stores/, Catering → /catering/.
+
+============ FINDINGS FROM THE DROPPED PLUMBING ============
+- Boxzilla popups run with testMode "1": the 25% popup (time on page 0, top-left, #f2d1d5)
+  and the franchise popup (30% scroll, top-right, #004444) show on every visit.
+  On /?lang=en both render "Sorry, this entry is only available in German".
+- A script at the end rewrites document.body.innerHTML to hide
+  "lessphp fatal error: failed to parse passed in variable @body_font" (broken theme compile).
+- Font Awesome loaded three times (4.7 ×2, 7.3.1), Bootstrap twice, jQuery + migrate,
+  ~40 CSS/JS requests; reCAPTCHA v3 badge sits under the back-to-top button.
+- Borlabs cookie box configured in German on the English page.
+-->
+</body>
+</html>

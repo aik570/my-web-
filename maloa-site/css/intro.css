@@ -1,0 +1,62 @@
+/* Block 0 · Intro. A full-screen layer over the top of the Hero:
+   a stone disc in the jungle jumps, flips like a coin into the dark wordmark
+   disc, and the camera flies through it into the Hero. */
+.intro{position:fixed;inset:0;z-index:40;background:#040807;color:var(--on-teal);overflow:hidden;display:grid;place-items:center}
+/* No script, or already seen this session: never cover the page */
+html:not(.intro-on) .intro{display:none}
+/* Nothing scrolls under the intro; the first scroll is what starts it */
+html.intro-on{overflow:hidden}
+html.intro-on .site-nav{visibility:hidden}
+
+/* Jungle: a touch soft so the disc reads as the sharp subject (depth of field) */
+.intro__bg{position:absolute;inset:-4%;will-change:transform}
+.intro__bg img{width:100%;height:100%;object-fit:cover;filter:blur(1.5px) saturate(1.05) brightness(.82)}
+.intro__bg::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 48%,transparent 30%,rgba(2,6,5,.55) 72%,rgba(2,6,5,.9))}
+
+/* Soft light shafts drifting through the leaves */
+.intro__rays{position:absolute;inset:-30%;pointer-events:none;mix-blend-mode:screen;opacity:.22;
+  background:repeating-linear-gradient(112deg,transparent 0 7%,rgba(214,236,222,.35) 9%,transparent 12% 19%,rgba(214,236,222,.18) 21%,transparent 24% 31%);
+  -webkit-mask-image:radial-gradient(ellipse 55% 60% at 45% 30%,#000,transparent 75%);mask-image:radial-gradient(ellipse 55% 60% at 45% 30%,#000,transparent 75%);
+  will-change:transform}
+
+/* ---- The coin ---- */
+.intro__stage{position:relative;z-index:2;display:grid;place-items:center;perspective:1400px}
+.coin{--d:clamp(230px,36vmin,400px);position:relative;width:var(--d);height:var(--d);transform-style:preserve-3d;will-change:transform;cursor:pointer}
+.coin__body{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform}
+.coin__shadow{position:absolute;inset:4%;border-radius:50%;background:#000;opacity:.75;filter:blur(18px);transform:translate3d(0,16px,-1px);will-change:transform,opacity}
+.coin__face{position:absolute;inset:0;border-radius:50%;overflow:hidden;-webkit-backface-visibility:hidden;backface-visibility:hidden}
+
+/* Front: pale paper-stone with grain and a raking light from the top left */
+.coin__face--front{
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    radial-gradient(circle at 30% 24%,#fbfaf5 0%,#ebe7dd 38%,#cdc7ba 78%,#b3ad9f 100%);
+  background-blend-mode:multiply,normal;
+  box-shadow:inset 0 10px 22px rgba(255,255,255,.55),inset 0 -14px 30px rgba(40,32,20,.35)}
+.coin__mark{position:absolute;inset:0;width:100%;height:100%}
+.coin__mark g{fill:#1b1f1d}
+
+/* Back: dark disc, teal ring with a warm metal edge, raised teal letters */
+.coin__face--back{transform:rotateY(180deg);
+  background:radial-gradient(circle at 38% 30%,#1c2a28 0%,#0f1817 55%,#070c0b 100%);
+  box-shadow:inset 0 8px 24px rgba(255,255,255,.06),inset 0 -18px 36px rgba(0,0,0,.6)}
+.coin__ring{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.coin__ring circle{fill:none}
+.coin__ring-edge{stroke:#b9ad95;stroke-width:.5;opacity:.7}
+.coin__ring-line{stroke:#1f6b63;stroke-width:3.2}
+.coin__word{position:absolute;left:9%;top:30%;width:82%;height:auto;overflow:visible}
+.coin__letters{fill:#2a7c73}
+.coin__tag{fill:#cdc3ad}
+
+/* Light glancing across whichever face is up */
+.coin__shine{position:absolute;inset:-20%;pointer-events:none;mix-blend-mode:soft-light;
+  background:linear-gradient(115deg,transparent 38%,rgba(255,255,255,.9) 50%,transparent 62%);
+  transform:translateX(-80%);will-change:transform}
+
+/* ---- Hint and skip ---- */
+.intro__hint{position:absolute;z-index:3;left:50%;bottom:calc(28px + env(safe-area-inset-bottom,0px));margin:0;transform:translateX(-50%);
+  display:grid;justify-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:rgba(244,247,245,.75)}
+.intro__hint i{display:block;width:1px;height:42px;background:linear-gradient(rgba(244,247,245,.8),transparent);transform-origin:top}
+.intro__skip{position:absolute;z-index:3;right:var(--gutter);bottom:calc(20px + env(safe-area-inset-bottom,0px));min-height:44px;padding:0 18px;border:1.5px solid rgba(244,247,245,.35);border-radius:999px;background:rgba(4,8,7,.25);color:var(--on-teal);font-size:14px;font-weight:600;cursor:pointer;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.intro__skip:hover{border-color:var(--on-teal)}
+@media (max-width:599px){ .intro__hint{bottom:calc(84px + env(safe-area-inset-bottom,0px))} }

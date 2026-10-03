@@ -1,0 +1,45 @@
+/* Block 6 · Gift Card.
+   Picks up from the night at the end of Poké your style and opens into the light ground: copy on the left,
+   two cards on the right (a blush card behind, the deep teal MA'LOA card in front), drawn in CSS from the
+   traced logo. js/gift.js lets the cards rise in and drift a little apart with the scroll. */
+.gift{position:relative;overflow-x:clip;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);align-items:center;
+  padding:clamp(120px,15vw,210px) var(--gutter) clamp(110px,13vw,180px);color:var(--deep-teal);
+  background:linear-gradient(180deg,color-mix(in srgb,var(--deep-teal) 40%,var(--night)) 0,color-mix(in srgb,var(--deep-teal) 60%,var(--night)) clamp(60px,8vw,120px),var(--mid-teal) clamp(140px,16vw,240px),var(--light-gray) clamp(200px,22vw,320px),var(--bg-light) clamp(260px,28vw,400px))}
+.gift__copy{grid-column:1 / span 6;position:relative;z-index:1}
+.gift__label{margin:0 0 18px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase}
+.gift__title{margin:0;font-family:var(--font-display);font-weight:800;text-transform:uppercase;font-size:clamp(44px,5vw,96px);line-height:.88;letter-spacing:-.035em}
+.gift__line{display:block;overflow:hidden;padding:.14em 0 .04em;margin-top:-.14em}
+.gift__line > span{display:block}
+.gift__line:nth-child(2){padding-left:clamp(0px,5vw,90px)}
+.gift__text{margin:28px 0 0;font-size:17px;line-height:1.6;max-width:36ch;padding-top:20px;border-top:1px solid rgb(0 68 67 / .25)}
+.gift__actions{margin:32px 0 0}
+
+/* the cards: credit-card proportions (85.6 × 54 mm) */
+.gift__stage{grid-column:7 / -1;position:relative;aspect-ratio:1.18;max-width:640px;width:100%;justify-self:center}
+.gift__card{position:absolute;width:82%;aspect-ratio:85.6/54;border-radius:clamp(14px,1.6vw,22px);overflow:hidden;will-change:transform}
+.gift__card--back{right:0;top:4%;background:linear-gradient(135deg,var(--powder-pink),var(--pink-hover));transform:rotate(9deg);
+  box-shadow:0 30px 60px -20px rgb(0 68 67 / .35)}
+.gift__mark{position:absolute;right:-12%;bottom:-30%;width:70%;aspect-ratio:1;border-radius:50%;border:1px solid rgb(0 68 67 / .18)}
+.gift__card--front{left:0;bottom:6%;color:var(--bg-light);transform:rotate(-6deg);
+  background:radial-gradient(120% 140% at 85% 0%,color-mix(in srgb,var(--deep-teal) 70%,var(--mid-teal)) 0%,var(--deep-teal) 45%,var(--night) 100%);
+  box-shadow:0 40px 70px -24px rgb(var(--night-rgb) / .65),inset 0 0 0 1px rgb(244 247 245 / .1)}
+/* a faint sheen across the card */
+.gift__card--front::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgb(244 247 245 / 0) 35%,rgb(244 247 245 / .08) 50%,rgb(244 247 245 / 0) 65%);pointer-events:none}
+.gift__waves{position:absolute;inset:0;width:100%;height:100%;fill:none;stroke:rgb(200 209 211 / .16);stroke-width:1}
+.gift__logo{position:absolute;left:7%;top:11%;width:12%;height:auto;color:var(--bg-light)}
+.gift__kind{position:absolute;right:7%;top:12%;font-size:clamp(9px,.9vw,12px);font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--light-gray)}
+/* the traced wordmark, coloured through a mask so it follows the card's palette */
+.gift__wordmark{position:absolute;left:7%;bottom:15%;width:46%;aspect-ratio:1295/520;background:var(--bg-light);
+  -webkit-mask:url(../assets/logo/logo-wordmark.svg) left bottom/contain no-repeat;mask:url(../assets/logo/logo-wordmark.svg) left bottom/contain no-repeat}
+.gift__foot{position:absolute;right:7%;bottom:13%;font-size:clamp(8px,.8vw,11px);font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--powder-pink)}
+
+@media (max-aspect-ratio:4/5), (max-width:699px){
+  .gift{grid-template-columns:minmax(0,1fr);row-gap:56px;padding:120px var(--gutter) 96px}
+  .gift__copy{grid-column:1}
+  .gift__title{font-size:min(12vw,64px)}
+  .gift__line:nth-child(2){padding-left:0}
+  .gift__text{font-size:16px}
+  .gift__actions .btn{width:100%}
+  .gift__stage{grid-column:1;grid-row:2;max-width:480px;margin:0 auto}
+  .gift__copy{grid-row:1}
+}

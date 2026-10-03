@@ -1,0 +1,1041 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<!-- STANDALONE BUILD of franchise.html (tools/build-standalone.py), do not edit. -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Franchise – Ma'loa Hawaiian Poké Bowl</title>
+<meta name="description" content="Ride the healthy wave: werdet MA'LOA Franchise-Partner und bringt ein Stück Hawaii in Eure Stadt.">
+<meta name="theme-color" content="#004443">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://d2ol7oe51mr4n9.cloudfront.net">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet">
+<style>
+/* Ma'loa tokens. Client CI (confirmed 30.09): these five colours are the whole palette.
+   Anything darker or lighter is mixed from them, never a new hue. */
+:root{
+  --deep-teal:   #004443;   /* primary dark turquoise, also the text colour on light grounds */
+  --mid-teal:    #628a87;   /* secondary turquoise */
+  --light-gray:  #c8d1d3;   /* light text on dark */
+  --powder-pink: #f3d2d5;   /* blush accent: actions only */
+  --bg-light:    #f4f7f5;   /* light ground, primary text on dark */
+
+  --bg:      var(--bg-light);
+  --ink:     var(--deep-teal);
+  --on-teal: var(--bg-light);
+  /* Night: the brand teal pushed towards black, the dark of the hero film */
+  --night:     color-mix(in srgb, #004443 22%, #000);
+  --night-rgb: 0 15 15;
+  --pink-hover: color-mix(in srgb, #f3d2d5 60%, #f4f7f5);
+
+  /* Brandon Grotesque is the brand face: it is used as soon as the licensed files are installed.
+     Bricolage Grotesque (Google Fonts) is the loaded fallback. No other faces. */
+  --font-display: "Brandon Grotesque", "brandon-grotesque", "Bricolage Grotesque", system-ui, sans-serif;
+  --font-body:    "Brandon Grotesque", "brandon-grotesque", "Bricolage Grotesque", system-ui, sans-serif;
+  --tracking-tight: -.03em;
+
+  --gutter: 20px;
+  --hh: 72px;
+  --ease-out: cubic-bezier(.22,1,.36,1);
+}
+@media (min-width: 900px){ :root{ --gutter: 40px; --hh: 84px; } }
+</style>
+<style>
+/* Reset and type. Header: css/header.css, Hero: css/hero.css. */
+*,*::before,*::after{box-sizing:border-box}
+/* overflow-anchor: the pinned sections change the height above the reader while they pin and unpin;
+   the browser's scroll anchoring would answer that with a correction of its own (a visible jump) */
+html{-webkit-text-size-adjust:100%;overflow-anchor:none}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip}
+img,video,svg{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--powder-pink);outline-offset:3px;border-radius:6px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
+<style>
+/* Header. Transparent over the Hero: logo, floating menu items, "Bestellen" always visible.
+   The menu is the live site's German menu. Items marked --md / --lg appear from 900px / 1240px;
+   below that the strip scrolls sideways instead of collapsing into a hamburger. */
+.site-header{position:fixed;inset:0 0 auto;z-index:50;padding:env(safe-area-inset-top,0px) var(--gutter) 0;color:var(--on-teal);pointer-events:none}
+.site-header__row{height:var(--hh);display:flex;align-items:center;gap:12px}
+.site-header__row > *{pointer-events:auto}
+
+.site-header__logo{flex:none;display:flex;align-items:center;min-width:44px;min-height:44px;border-radius:50%}
+.site-header__logo svg{width:40px;height:40px}
+
+.site-nav{flex:1;min-width:0;display:flex;justify-content:center;overflow-x:auto;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12px,#000 calc(100% - 12px),transparent);mask-image:linear-gradient(90deg,transparent,#000 12px,#000 calc(100% - 12px),transparent)}
+.site-nav::-webkit-scrollbar{display:none}
+.site-nav__list{display:flex;gap:6px;margin:0;padding:0 12px;list-style:none}
+.site-nav__md,.site-nav__lg{display:none}
+
+/* Items float on their own: hairline outline, a little glass, no bar behind them */
+.site-nav__link,.site-header__order{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:999px;
+  font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;white-space:nowrap;
+  transition:background-color .35s var(--ease-out),border-color .35s var(--ease-out),color .35s var(--ease-out)}
+.site-nav__link{border:1px solid rgba(244,247,245,.18);background:rgba(var(--night-rgb) / .22);-webkit-backdrop-filter:blur(10px) saturate(1.2);backdrop-filter:blur(10px) saturate(1.2)}
+/* touch devices: a denser fill instead of a live blur over the playing film (see hero.css) */
+@media (hover:none){ .site-nav__link{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(var(--night-rgb) / .4)} }
+.site-nav__link:hover{border-color:rgba(244,247,245,.55);background:rgba(var(--night-rgb) / .38)}
+.site-header__order{flex:none;padding:0 20px;background:var(--powder-pink);color:var(--ink);font-weight:700}
+.site-header__order:hover{background:var(--pink-hover)}
+
+@media (min-width:900px){
+  .site-nav__md{display:list-item}
+  .site-nav__link,.site-header__order{min-height:40px;font-size:12px}
+  .site-header__order{min-height:44px;padding:0 24px}
+}
+@media (min-width:1240px){ .site-nav__lg{display:list-item} }
+@media (max-width:599px){
+  .site-header__row{gap:8px}
+  .site-nav{-webkit-mask-image:none;mask-image:none}
+  .site-nav__list{padding:0;gap:4px}
+  .site-nav__link{padding:0 10px;font-size:11px;letter-spacing:.08em}
+  .site-header__order{padding:0 15px;font-size:11px;letter-spacing:.08em}
+}
+
+/* Over light sections (set by the section's script): teal on light, same shapes */
+.site-header{transition:color .4s var(--ease-out)}
+.site-header.is-light{color:var(--deep-teal)}
+.site-header.is-light .site-nav__link{border-color:rgb(0 68 67 / .22);background:rgb(244 247 245 / .82)}
+.site-header.is-light .site-nav__link:hover{border-color:rgb(0 68 67 / .6)}
+.site-header.is-light .site-header__logo svg g{fill:var(--bg-light) !important}
+.site-header.is-light .site-header__logo svg circle{fill:var(--deep-teal)}
+</style>
+<style>
+/* Block 1 · Hero (base version).
+   The film of the real Maui Tuna bowl fills the screen. The bowl sits right of centre and
+   stays clear; the copy lives on the dark left and bottom of the frame, where a light
+   night-teal shade keeps it readable. Portrait screens stack film over copy so the bowl
+   is never cropped. */
+.hero{position:relative;height:100svh;min-height:400px;overflow:hidden;isolation:isolate;background:var(--night);color:var(--on-teal)}
+
+/* ---- Film ----
+   The poster (the film's own first frame, which is also its last) lies under the video as a background.
+   With the script the video stays transparent until it is really playing with enough buffered, then fades
+   in over the identical still: no frozen first frame, no pop from poster to film, no stall at the start. */
+.hero__media{position:absolute;inset:0;z-index:-1;background:var(--night) url("https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/f0917650-8606-4f26-9dd2-63d7050473ed.webp") 62% 45%/cover no-repeat}
+/* Bowl centre in the frame is about 62% / 45%: keep that point fixed however the screen crops */
+.hero__video{width:100%;height:100%;object-fit:cover;object-position:62% 45%}
+.js .hero__video{opacity:0;transition:opacity 1.1s var(--ease-out)}
+.js .hero__video.is-ready{opacity:1}
+.hero__shade{position:absolute;inset:0;pointer-events:none;background:
+  linear-gradient(180deg,rgb(var(--night-rgb) / .55) 0,rgb(var(--night-rgb) / 0) 20%),
+  linear-gradient(90deg,rgb(var(--night-rgb) / .62) 0,rgb(var(--night-rgb) / .3) 26%,rgb(var(--night-rgb) / 0) 42%),
+  linear-gradient(0deg,rgb(var(--night-rgb) / .8) 0,rgb(var(--night-rgb) / .35) 20%,rgb(var(--night-rgb) / 0) 38%)}
+
+/* ---- Copy ---- */
+.hero__content{position:absolute;left:var(--gutter);right:var(--gutter);bottom:calc(clamp(76px,11vh,112px) + env(safe-area-inset-bottom,0px));
+  display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"labels ." "title actions";align-items:end;column-gap:40px;row-gap:clamp(14px,2.2vh,24px)}
+
+.hero__labels{grid-area:labels;display:flex;align-items:center;gap:16px;max-width:min(640px,46vw)}
+.hero__label{margin:0;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;white-space:nowrap;color:var(--light-gray)}
+.hero__rule{flex:1;min-width:32px;height:1px;background:rgba(244,247,245,.32)}
+
+.hero__title{grid-area:title;margin:0;font-family:var(--font-display);font-weight:800;text-transform:uppercase;
+  font-size:clamp(56px,8.4vw,160px);line-height:.86;letter-spacing:-.035em;font-variation-settings:"opsz" 96;text-wrap:balance}
+.hero__line{display:block}
+
+.hero__actions{grid-area:actions;display:flex;gap:12px;padding-bottom:.35em}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;border-radius:999px;
+  font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;white-space:nowrap;
+  transition:background-color .35s var(--ease-out),border-color .35s var(--ease-out),transform .5s var(--ease-out)}
+.btn:hover{transform:translateY(-2px)}
+.btn--primary{background:var(--powder-pink);color:var(--ink)}
+.btn--primary:hover{background:var(--pink-hover)}
+.btn--ghost{border:1px solid rgba(244,247,245,.5);color:var(--on-teal);background:rgb(var(--night-rgb) / .2);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.btn--ghost:hover{border-color:var(--on-teal);background:rgb(var(--night-rgb) / .35)}
+
+/* ---- Scroll hint and pause ---- */
+.hero__scroll{position:absolute;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:grid;justify-items:center;gap:10px;
+  padding:6px 10px;font-size:10.5px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;text-decoration:none;color:var(--light-gray)}
+.hero__scroll-line{width:1px;height:36px;background:linear-gradient(rgba(244,247,245,.85),rgba(244,247,245,0));transform-origin:top;animation:hero-scroll 2.2s var(--ease-out) infinite}
+@keyframes hero-scroll{0%{transform:scaleY(0)}55%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+
+.hero__pause{position:absolute;right:var(--gutter);bottom:calc(20px + env(safe-area-inset-bottom,0px));width:44px;height:44px;display:grid;place-items:center;padding:0;
+  border:1px solid rgba(244,247,245,.3);border-radius:50%;background:rgb(var(--night-rgb) / .25);color:var(--on-teal);cursor:pointer;
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:border-color .3s var(--ease-out)}
+.hero__pause:hover{border-color:rgba(244,247,245,.7)}
+.hero__pause svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hero__pause .i-play{display:none;fill:currentColor;stroke:none}
+.hero__pause[aria-pressed="true"] .i-pause{display:none}
+.hero__pause[aria-pressed="true"] .i-play{display:block}
+
+/* ---- Entrance: copy rises in after the intro (JS adds .is-in; without JS it is simply there) ---- */
+.js .hero__labels,.js .hero__line,.js .hero__actions,.js .hero__scroll-label{opacity:0;transform:translateY(28px)}
+.js .hero.is-in .hero__labels,.js .hero.is-in .hero__line,.js .hero.is-in .hero__actions,.js .hero.is-in .hero__scroll-label{opacity:1;transform:none;
+  transition:opacity .9s var(--ease-out),transform 1.2s var(--ease-out)}
+.js .hero.is-in .hero__line:nth-child(1){transition-delay:.12s}
+.js .hero.is-in .hero__line:nth-child(2){transition-delay:.22s}
+.js .hero.is-in .hero__actions{transition-delay:.38s}
+.js .hero.is-in .hero__scroll-label{transition-delay:.6s}
+
+/* Touch devices: the glass buttons over the film get a denser fill instead of a live blur. A backdrop blur is
+   recomputed for every frame of the video behind it, which phones pay for with dropped frames in the film. */
+@media (hover:none){
+  .btn--ghost{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgb(var(--night-rgb) / .42)}
+  .hero__pause{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgb(var(--night-rgb) / .45)}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .js .hero__labels,.js .hero__line,.js .hero__actions,.js .hero__scroll-label{transform:none}
+  .hero__scroll-line{animation:none}
+  .btn:hover{transform:none}
+}
+
+/* ---- Portrait screens (phones, tablets upright): film on top, copy below on the night ground ---- */
+@media (max-aspect-ratio:4/5){
+  .hero{height:auto;min-height:100svh;display:flex;flex-direction:column}
+  .hero__media{position:relative;inset:auto;flex:none;height:min(62svh,124vw)}
+  .hero__media{background-position:63% 46%}
+  .hero__video{object-position:63% 46%}
+  .hero__shade{background:
+    linear-gradient(180deg,rgb(var(--night-rgb) / .55) 0,rgb(var(--night-rgb) / 0) 24%),
+    linear-gradient(0deg,var(--night) 0,rgb(var(--night-rgb) / .6) 16%,rgb(var(--night-rgb) / 0) 36%)}
+  .hero__content{position:relative;left:auto;right:auto;bottom:auto;flex:1;margin-top:-9svh;padding:0 var(--gutter) calc(84px + env(safe-area-inset-bottom,0px));
+    grid-template-columns:minmax(0,1fr);grid-template-areas:"labels" "title" "actions";align-content:end;row-gap:18px}
+  .hero__labels{max-width:none}
+  .hero__label{font-size:10.5px;letter-spacing:.2em}
+  .hero__title{font-size:min(14.5vw,96px)}
+  .hero__actions{padding:8px 0 0}
+  .hero__actions .btn{flex:1;padding:0 18px}
+  /* Short phones: the next section is already in reach, the hint would crowd the buttons */
+  @media (max-height:700px){ .hero__scroll{display:none} }
+}
+</style>
+<style>
+/* Franchise page: MA'LOA's franchise presentation, after the structure of maloa.com/franchise/.
+   Same tokens, type and buttons as the home page (tokens.css, header.css, hero.css .btn) and the same leaf cut-outs.
+   Rhythm, each section composed on its own:
+   film hero → light statement + quote → full-bleed store photo → dark growth story with leaf art
+   → light store concept (staggered image modules) → night partner videos (featured + grid)
+   → deep teal checklist with the brochure → light steps → night CTA with three ways → partner band → footer.
+   Motion (js/franchise.js): reveals, gentle parallax, leaves at their own depth. Reduced motion: all at rest. */
+.fr-page{background:var(--night);color:var(--on-teal)}
+.fr-page main{overflow-x:clip}
+
+/* ---------- shared type: the voice of the home page ---------- */
+.fr-label{margin:0 0 18px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--light-gray)}
+.fr-title,.fr-h2,.fr-cta__title{margin:0;font-family:var(--font-display);font-weight:800;text-transform:uppercase;line-height:.88;letter-spacing:-.035em;color:var(--bg-light);text-wrap:balance}
+.fr-title{font-size:clamp(60px,9vw,176px)}
+.fr-h2{font-size:clamp(44px,5.6vw,108px)}
+.fr-line{display:block;overflow:hidden;padding:.14em 0 .04em;margin-top:-.14em}
+.fr-line > span{display:block}
+.fr-line:nth-child(2){padding-left:clamp(0px,7vw,130px)}
+.fr-line:nth-child(3){padding-left:clamp(0px,3vw,56px)}
+.fr-text{margin:0;font-size:17px;line-height:1.6;color:var(--light-gray);max-width:42ch}
+.fr-lead{margin:0 0 20px;font-family:var(--font-display);font-size:clamp(22px,2vw,32px);font-weight:700;line-height:1.2;letter-spacing:-.01em;max-width:28ch}
+.fr-big{margin:0;font-family:var(--font-display);font-size:clamp(28px,3vw,52px);font-weight:700;line-height:1.08;letter-spacing:-.02em;color:var(--bg-light);max-width:20ch}
+.fr-actions{display:flex;flex-wrap:wrap;gap:12px;margin:34px 0 0}
+.btn--big{min-height:60px;padding:0 36px;font-size:13.5px}
+.fr-light{background:var(--bg-light);color:var(--deep-teal)}
+.fr-light .fr-label,.fr-light .fr-text,.fr-light .fr-lead{color:var(--deep-teal)}
+.fr-light .fr-h2{color:var(--deep-teal)}
+
+/* leaves: the home page's cut-outs (blur and shade per depth are baked in). Only over dark grounds. */
+.fr-leaf{position:absolute;height:auto;pointer-events:none;user-select:none;z-index:1;will-change:transform}
+
+/* ---------- 01 · Hero: the film, the headline, leaves in front ---------- */
+.fr-hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;
+  padding:calc(var(--hh) + 40px) var(--gutter) clamp(56px,9vh,110px);background:var(--night)}
+.fr-hero__media{position:absolute;inset:0}
+.fr-hero__video{width:100%;height:100%;object-fit:cover;object-position:62% 45%;display:block}
+.fr-hero__shade{position:absolute;inset:0;background:
+  linear-gradient(90deg,rgb(var(--night-rgb) / .86) 0%,rgb(var(--night-rgb) / .55) 38%,rgb(var(--night-rgb) / 0) 66%),
+  linear-gradient(0deg,rgb(var(--night-rgb) / .8) 0%,rgb(var(--night-rgb) / 0) 42%),
+  linear-gradient(180deg,rgb(var(--night-rgb) / .55) 0%,rgb(var(--night-rgb) / 0) 22%)}
+.fr-hero__copy{position:relative;z-index:2;max-width:min(760px,62vw)}
+.fr-hero__text{margin:28px 0 0;font-size:clamp(17px,1.3vw,20px);line-height:1.55;color:var(--bg-light);max-width:38ch}
+.fr-leaf--hero-a{left:clamp(-150px,-8vw,-60px);bottom:-14%;width:clamp(260px,24vw,440px);transform:rotate(24deg);z-index:1;opacity:.95}
+.fr-leaf--hero-b{right:clamp(-120px,-6vw,-40px);top:-10%;width:clamp(200px,18vw,330px);transform:rotate(-150deg);z-index:1}
+
+/* ---------- 02 · Introduction: the statement left, the quote banner right ---------- */
+.fr-intro{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);
+  grid-template-areas:"head head head head head head head quote quote quote quote quote" "body body body body body . . quote quote quote quote quote";
+  padding:clamp(96px,12vw,170px) var(--gutter) clamp(88px,10vw,150px)}
+.fr-intro__head{grid-area:head;margin-bottom:clamp(32px,4vw,56px)}
+.fr-intro__body{grid-area:body;padding-top:20px;border-top:1px solid rgb(0 68 67 / .25)}
+.fr-intro__body .fr-text + .fr-text{margin-top:14px}
+.fr-intro__quote{grid-area:quote;align-self:center;margin:0}
+.fr-intro__quote img{width:100%;height:auto;display:block}
+
+/* ---------- 03 · Large media: full-bleed store photo, headline set into it ---------- */
+/* light ground behind the picture: while it opens (js/franchise.js), the band above its rising top edge is the
+   light of the section before, not a dark frame */
+.fr-wide{position:relative;margin:0;height:clamp(420px,88vh,900px);overflow:hidden;background:var(--bg-light)}
+.fr-wide__img{position:absolute;inset:-8% 0;}
+.fr-wide__img img{width:100%;height:100%;object-fit:cover;display:block}
+.fr-wide::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgb(var(--night-rgb) / .78) 0%,rgb(var(--night-rgb) / 0) 52%)}
+.fr-wide__cap{position:absolute;left:var(--gutter);right:var(--gutter);bottom:clamp(32px,5vw,72px);z-index:1}
+.fr-wide__title{display:block;font-family:var(--font-display);font-weight:800;text-transform:uppercase;font-size:clamp(48px,8vw,152px);line-height:.86;letter-spacing:-.04em;color:var(--bg-light);max-width:15ch;text-wrap:balance}
+
+/* ---------- 04 · Growth story: big sentence, three paragraphs, the original leaf art ---------- */
+.fr-grow{position:relative;overflow:hidden;padding:clamp(96px,11vw,160px) var(--gutter) clamp(120px,14vw,220px);background:var(--deep-teal)}
+.fr-grow__cols{position:relative;z-index:2;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);row-gap:40px}
+.fr-big{grid-column:1 / span 6}
+.fr-grow__text{grid-column:8 / -1;display:grid;gap:18px;padding-top:20px;border-top:1px solid rgb(200 209 211 / .25)}
+/* The illustration sits in a small layered scene instead of lying flat on the ground: two far leaves grow from
+   behind its top edges, a mid-depth leaf crosses in front of its lower corner, a soft shadow seats it, and its own
+   lower edge fades into the teal instead of being cut by the section's edge. Positions are in % of the scene,
+   so the composition scales as one piece. */
+.fr-grow__scene{position:absolute;left:clamp(16px,6vw,110px);bottom:-6%;width:clamp(240px,30vw,500px);aspect-ratio:615/431;z-index:1;pointer-events:none}
+.fr-grow__scene::before{content:"";position:absolute;left:4%;right:-2%;bottom:6%;height:34%;border-radius:50%;
+  background:radial-gradient(closest-side,rgb(var(--night-rgb) / .5),rgb(var(--night-rgb) / 0));z-index:0}
+.fr-grow__art{position:relative;z-index:1;display:block;width:100%;height:auto;opacity:.92;
+  -webkit-mask-image:linear-gradient(0deg,transparent 0%,#000 26%);mask-image:linear-gradient(0deg,transparent 0%,#000 26%)}
+.fr-grow__leaf{position:absolute;height:auto;max-width:none;user-select:none}
+.fr-grow__leaf--back-a{left:-12%;top:-46%;width:30%;transform:rotate(-26deg);z-index:0;opacity:.85}
+.fr-grow__leaf--back-b{right:2%;top:-34%;width:19%;transform:rotate(34deg);z-index:0;opacity:.75}
+.fr-grow__leaf--front{left:-19%;bottom:-30%;width:40%;transform:rotate(34deg);z-index:2}
+.fr-leaf--grow-a{right:clamp(-120px,-6vw,-40px);bottom:-12%;width:clamp(220px,20vw,360px);transform:rotate(-24deg)}
+
+/* ---------- 05 · Store concept: staggered tall modules ---------- */
+.fr-store{padding:clamp(96px,12vw,170px) var(--gutter) clamp(96px,11vw,160px)}
+.fr-store__head{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);align-items:end;margin-bottom:clamp(48px,6vw,96px)}
+.fr-store__head .fr-label,.fr-store__head .fr-h2{grid-column:1 / span 8}
+.fr-store__head .fr-text{grid-column:9 / -1;grid-row:2;padding-top:18px;border-top:1px solid rgb(0 68 67 / .25)}
+.fr-modules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.4vw,40px);margin:0;padding:0;list-style:none}
+.fr-module:nth-child(2){margin-top:clamp(40px,7vw,120px)}
+.fr-module:nth-child(3){margin-top:clamp(80px,14vw,240px)}
+.fr-module__img{margin:0 0 22px;overflow:hidden;border-radius:22px;aspect-ratio:4/5;background:var(--light-gray)}
+.fr-module__img img{width:100%;height:110%;object-fit:cover;display:block;transition:transform 1.2s var(--ease-out)}
+.fr-module:hover .fr-module__img img{transform:scale(1.04)}
+.fr-module__no{display:block;margin-bottom:10px;font-size:12px;font-weight:600;letter-spacing:.24em}
+.fr-module__title{margin:0 0 12px;font-family:var(--font-display);font-size:clamp(28px,2.6vw,44px);font-weight:800;text-transform:uppercase;letter-spacing:-.02em;line-height:.95}
+.fr-module p{margin:0;font-size:15.5px;line-height:1.6;max-width:38ch}
+
+/* ---------- 06 · Partner videos: one featured, five beside it ---------- */
+.fr-videos{position:relative;overflow:hidden;padding:clamp(96px,12vw,170px) var(--gutter) clamp(72px,8vw,120px);
+  background:radial-gradient(70% 60% at 50% 40%,var(--deep-teal),var(--night))}
+.fr-videos__head{position:relative;z-index:2;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);align-items:end;margin-bottom:clamp(40px,5vw,72px)}
+.fr-videos__head .fr-label,.fr-videos__head .fr-h2{grid-column:1 / span 8}
+.fr-videos__head .fr-text{grid-column:9 / -1;grid-row:2}
+.fr-videogrid{position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,24px);margin:0;padding:0;list-style:none}
+.fr-video--big{grid-column:span 2;grid-row:span 2}
+.fr-video__btn{position:relative;display:block;width:100%;aspect-ratio:16/9;padding:0;border:0;border-radius:18px;overflow:hidden;background:var(--night);cursor:pointer}
+.fr-video__btn img,.fr-video__btn iframe{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0;display:block}
+.fr-video__btn img{transform:scale(1.02);transition:transform .8s var(--ease-out),filter .5s var(--ease-out);filter:saturate(.95) brightness(.88)}
+.fr-video__btn:hover img{transform:scale(1.06);filter:none}
+.fr-video__play{position:absolute;left:50%;top:50%;width:clamp(52px,5vw,76px);aspect-ratio:1;margin:calc(clamp(52px,5vw,76px) / -2) 0 0 calc(clamp(52px,5vw,76px) / -2);border-radius:50%;
+  display:grid;place-items:center;background:var(--powder-pink);color:var(--deep-teal);transition:transform .4s var(--ease-out)}
+.fr-video__btn:hover .fr-video__play{transform:scale(1.08)}
+.fr-video__play svg{width:42%;height:42%;fill:currentColor;margin-left:6%}
+.fr-video--big .fr-video__btn{aspect-ratio:auto;height:calc(100% - 44px);min-height:100%}
+.fr-video--big{display:flex;flex-direction:column}
+.fr-video--big .fr-video__btn{flex:1}
+.fr-video__cap{margin:12px 0 0;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--bg-light)}
+.fr-video__cap span{color:var(--light-gray);font-weight:600}
+.fr-videos__note{position:relative;z-index:2;margin:28px 0 0;font-size:13px;color:rgb(200 209 211 / .7)}
+.fr-videos__note a{color:inherit}
+.fr-leaf--vid-a{left:clamp(-90px,-4vw,-30px);top:-8%;width:clamp(140px,12vw,220px);transform:rotate(30deg)}
+.fr-leaf--vid-b{right:clamp(-110px,-5vw,-40px);top:18%;width:clamp(200px,18vw,320px);transform:rotate(-34deg);z-index:0}
+
+/* ---------- 07 · Checklist: two lists and the brochure ---------- */
+.fr-check{position:relative;overflow:hidden;padding:clamp(96px,12vw,170px) var(--gutter) clamp(96px,11vw,160px);background:var(--deep-teal)}
+.fr-check__palm{position:absolute;right:clamp(-80px,-4vw,-20px);top:-4%;width:clamp(240px,30vw,520px);height:auto;transform:scaleY(-1);opacity:.85;pointer-events:none;z-index:0}
+.fr-check__head{position:relative;z-index:1;max-width:760px;margin-bottom:clamp(48px,6vw,88px)}
+.fr-check__head .fr-text{margin-top:22px}
+.fr-check__cols{position:relative;z-index:1;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);row-gap:48px}
+.fr-check__col{padding-top:22px;border-top:1px solid rgb(200 209 211 / .3)}
+.fr-check__col--offer{grid-column:1 / span 7}
+.fr-check__col:not(.fr-check__col--offer){grid-column:9 / -1}
+.fr-check__title{margin:0 0 22px;font-family:var(--font-display);font-size:clamp(24px,2vw,32px);font-weight:700;letter-spacing:-.01em;color:var(--bg-light)}
+.fr-check__list{margin:0;padding:0;list-style:none;columns:2;column-gap:clamp(16px,2vw,32px)}
+.fr-check__col:not(.fr-check__col--offer) .fr-check__list{columns:1}
+.fr-check__list li{break-inside:avoid;position:relative;padding:9px 0 9px 22px;font-size:15.5px;line-height:1.45;color:var(--light-gray);border-bottom:1px solid rgb(200 209 211 / .1)}
+.fr-check__list li::before{content:"";position:absolute;left:0;top:17px;width:8px;height:8px;border-radius:50%;background:var(--powder-pink)}
+.fr-figures[hidden]{display:none}
+.fr-brochure{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr);gap:clamp(20px,3vw,48px);align-items:center;
+  margin-top:clamp(56px,7vw,100px);padding:clamp(20px,2.4vw,32px);border-radius:28px;background:rgb(var(--night-rgb) / .35);border:1px solid rgb(200 209 211 / .16);
+  text-decoration:none;color:var(--bg-light);max-width:900px;transition:background-color .4s var(--ease-out)}
+.fr-brochure:hover{background:rgb(var(--night-rgb) / .55)}
+.fr-brochure img{width:100%;height:auto;border-radius:14px;display:block;box-shadow:0 24px 50px -20px rgb(var(--night-rgb) / .8);transform:rotate(-3deg)}
+.fr-brochure__copy{display:grid;gap:14px;justify-items:start}
+.fr-brochure__copy .fr-label{margin:0}
+.fr-brochure__title{font-family:var(--font-display);font-size:clamp(22px,2.2vw,34px);font-weight:700;line-height:1.15;letter-spacing:-.01em;max-width:22ch}
+
+/* ---------- 08 · Steps ---------- */
+.fr-steps{position:relative;padding:clamp(96px,12vw,170px) var(--gutter) clamp(96px,11vw,160px)}
+.fr-steps__head{margin-bottom:clamp(48px,6vw,88px)}
+.fr-steplist{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:clamp(16px,2vw,32px);margin:0;padding:0;list-style:none;position:relative;z-index:1}
+.fr-step{padding-top:30px}
+.fr-step__no{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;margin-bottom:28px;border-radius:50%;
+  background:var(--bg-light);border:1px solid rgb(0 68 67 / .35);font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--deep-teal)}
+.fr-step h3{margin:0 0 10px;font-family:var(--font-display);font-size:clamp(22px,1.8vw,30px);font-weight:700;line-height:1.1;letter-spacing:-.01em}
+.fr-step p{margin:0;font-size:15.5px;line-height:1.6;max-width:32ch}
+.fr-step__link{display:inline-flex;align-items:center;min-height:44px;margin-top:10px;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--deep-teal);text-decoration:none;background:linear-gradient(currentColor,currentColor) 0 calc(100% - 10px)/100% 1px no-repeat;transition:background-size .4s var(--ease-out)}
+.fr-step__link:hover{background-size:0 1px;background-position:100% calc(100% - 10px)}
+.fr-steps__rail{display:none}
+.js .fr-steps__rail{display:block;position:absolute;left:var(--gutter);right:var(--gutter);height:1px;background:rgb(0 68 67 / .18);top:var(--rail-top,0)}
+.fr-steps__rail span{position:absolute;inset:0;background:var(--deep-teal);transform-origin:0 50%;transform:scaleX(var(--fill,1))}
+
+/* ---------- 09 · The CTA: the big question, one action, three ways ---------- */
+.fr-cta{position:relative;overflow:hidden;padding:clamp(120px,14vw,220px) var(--gutter) clamp(96px,11vw,160px);
+  background:radial-gradient(80% 70% at 50% 30%,var(--deep-teal) 0%,var(--night) 100%);text-align:center}
+.fr-cta__head{position:relative;z-index:2;display:grid;justify-items:center}
+.fr-cta__title{font-size:clamp(52px,8.4vw,164px)}
+.fr-cta .fr-line:nth-child(2){padding-left:0}
+.fr-cta .fr-actions{justify-content:center;margin-top:42px}
+.fr-ways{position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,32px);margin:clamp(72px,9vw,130px) auto 0;max-width:1200px;text-align:left}
+.fr-way{display:grid;align-content:start;justify-items:start;gap:14px;padding-top:22px;border-top:1px solid rgb(200 209 211 / .28)}
+.fr-way__title{margin:0;font-family:var(--font-display);font-size:clamp(24px,2vw,32px);font-weight:700;letter-spacing:-.01em;color:var(--bg-light)}
+.fr-way p{margin:0;font-size:15.5px;line-height:1.6;color:var(--light-gray)}
+.fr-way__big{display:inline-flex;align-items:center;min-height:44px;font-family:var(--font-display);font-size:clamp(20px,1.7vw,26px);font-weight:700;color:var(--bg-light);text-decoration:none;
+  background:linear-gradient(var(--powder-pink),var(--powder-pink)) 0 100%/0 2px no-repeat;transition:background-size .5s var(--ease-out),color .3s var(--ease-out)}
+.fr-way__big:hover{background-size:100% 2px;color:var(--powder-pink)}
+.fr-way .fr-way__small{font-size:12.5px;color:rgb(200 209 211 / .7)}
+.fr-leaf--cta-a{left:clamp(-170px,-9vw,-60px);top:-10%;width:clamp(280px,26vw,460px);transform:rotate(36deg)}
+.fr-leaf--cta-b{right:clamp(-60px,-3vw,-20px);top:6%;width:clamp(140px,12vw,220px);transform:rotate(-28deg)}
+.fr-leaf--cta-c{right:clamp(10px,10vw,200px);bottom:-6%;width:clamp(110px,9vw,170px);transform:rotate(-140deg);opacity:.85}
+
+/* ---------- 10 · Existing partners ---------- */
+.fr-partners{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);align-items:center;
+  padding:clamp(56px,7vw,100px) var(--gutter);background:var(--night);border-top:1px solid rgb(200 209 211 / .12)}
+.fr-partners__img{grid-column:1 / span 7;margin:0;overflow:hidden;border-radius:18px}
+.fr-partners__img img{width:100%;height:auto;display:block}
+.fr-partners__copy{grid-column:9 / -1;display:grid;gap:16px;justify-items:start}
+.fr-partners__title{margin:0;font-family:var(--font-display);font-size:clamp(24px,2.2vw,34px);font-weight:700;letter-spacing:-.01em;color:var(--bg-light)}
+.fr-partners__copy p{margin:0;font-size:15.5px;line-height:1.6;color:var(--light-gray)}
+
+/* ---------- 11 · Footer ---------- */
+.fr-footer{position:relative;background:var(--night);color:var(--light-gray)}
+.fr-footer__art{position:relative;overflow:hidden;padding:clamp(56px,7vw,110px) var(--gutter) 0;background:linear-gradient(180deg,var(--night),color-mix(in srgb,var(--deep-teal) 35%,var(--night)))}
+.fr-footer__word{position:relative;z-index:1}
+.fr-footer__word span{display:block;width:100%;aspect-ratio:1295/420;background:var(--deep-teal);
+  -webkit-mask:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjk1IDUyMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJNYSdsb2Eg4oCTIEhhd2FpaWFuIFBva8OpIEJvd2wiPgogIDwhLS0gVHJhY2VkIGZyb20gdGhlIGNsaWVudCdzIGxvZ28tMDIuanBnLiBPbmUgcGF0aCBwZXIgZ2x5cGggKG0sIGEsICcsIGwsIG8sIGEpIHBsdXMgdGhlIHRhZ2xpbmUsIHNvIGVhY2ggY2FuIGFuaW1hdGUuIC0tPgogIDxnIGNsYXNzPSJ3b3JkbWFyay13b3JkIiBmaWxsPSJjdXJyZW50Q29sb3IiPgogICAgPHBhdGggY2xhc3M9ImdseXBoIGdseXBoLS1tIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMCAwKSBzY2FsZSgwLjI1KSB0cmFuc2xhdGUoMC4wMDAwMDAsMTY0MC4wMDAwMDApIHNjYWxlKDAuMTAwMDAwLC0wLjEwMDAwMCkiIGQ9Ik01NDM5IDkwMDAgYy0xMTAxIC0xMjYgLTE5NjUgLTgzMSAtMjQyOSAtMTk4MiAtMjMgLTU1IC00OSAtMTE3IC02MCAtMTM4IC0xMSAtMjEgLTQyIC05NSAtNzAgLTE2NSAtMjggLTcwIC02MiAtMTQ5IC03NiAtMTc3IC0xNCAtMjcgLTM4IC04NCAtNTMgLTEyNiAtMTYgLTQyIC00OCAtMTE3IC03MSAtMTY3IC0yMyAtNDkgLTU1IC0xMjQgLTcyIC0xNjUgLTE2IC00MSAtNTEgLTEyNCAtNzggLTE4NSAtNjcgLTE1MiAtMjUwIC01ODMgLTI1MCAtNTg5IDAgLTMgLTE2IC0zOCAtMzUgLTc4IC0xOSAtNDAgLTU5IC0xMzEgLTg4IC0yMDMgLTc1IC0xNzggLTEzNiAtMzIyIC0yMTYgLTUwNSAtMzggLTg1IC03NiAtMTc2IC04NiAtMjAyIC0yMCAtNTMgLTQxIC03NiAtNTUgLTYyIC02IDYgLTExIDg0MCAtMTIgMjIyMSAtMyAxNzk5IC01IDIyMTQgLTE2IDIyMjUgLTI1IDI1IC0xNjAwIDE4IC0xNjE4IC02IC0yNiAtMzYgLTIxIC04NTQ3IDUgLTg1NzAgMjIgLTIwIDE2NTEgLTI3IDE2ODggLTggMTYgOSA2NiAxMTcgMTk5IDQyNyAyNiA2MSA3NiAxNzggMTExIDI2MCAzNiA4MyA5OSAyMzEgMTQwIDMzMCA0MSA5OSA3OSAxODUgODQgMTkxIDUgNiAzMiA2OCA1OSAxMzcgMjcgNjkgNTkgMTQ1IDcxIDE2OSAxMiAyNCA0OCAxMDYgNzkgMTgzIDMyIDc3IDc0IDE3NiA5MyAyMjAgODYgMTk2IDIyMCA1MTAgMzAxIDcwNSAzMSA3NCA3NCAxNzMgOTYgMjIwIDIyIDQ3IDY1IDE0NiA5NiAyMjAgMTE4IDI4NSAxODcgNDQ2IDIwOSA0OTAgMTIgMjUgMzUgNzkgNDkgMTIwIDE1IDQxIDQ5IDEyMiA3NiAxODAgMjcgNTggNzQgMTY2IDEwNSAyNDAgMTI3IDMwMyAyNjIgNjE5IDQzOSAxMDI1IDM1IDgzIDg3IDIwNCAxMTUgMjcwIDg4IDIxMiAxNjggMzk5IDIxNSA1MDIgMjUgNTUgNDYgMTAzIDQ2IDEwNyAwIDQ5IDI0MSA1NTEgMzI2IDY4MSA1MTAgNzcwIDE2NDEgNzUyIDE5NDYgLTMwIDExNyAtMzAxIDExOSAtMjk2IC0yMzAgLTQwNSAtNjgwIC0yMTEgLTEyMjggLTYyNyAtMTY2NyAtMTI2NiAtMTAzIC0xNTAgLTI5NSAtNTI0IC0zNjcgLTcxNCAtMjIgLTU4IC01NSAtMTQzIC03MyAtMTkwIC0xNzAgLTQyOCAtMjg1IC0xMDgyIC0yNzEgLTE1NDUgMzggLTEzNTIgNjk5IC0yMzI2IDE3NjEgLTI1OTYgNDQgLTExIDkwIC0yNyAxMDIgLTM1IDM0IC0yMSA3NzkgLTIxIDgwMyAxIDkgOCA1MiAyMiA5NiAzMSA3MTQgMTQ0IDEyNTYgNzI5IDE0NTAgMTU2NCAxMzQgNTczIDE0MSA2NzYgMTQ5IDIxODUgNyAxMjcwIC02IDExNDEgMTE0IDExMzEgMTczIC0xNiA1MTMgLTExMSA2NjAgLTE4NSA1NzMgLTI5MCA4OTAgLTc1NCAxMDE2IC0xNDg2IDEzIC03OCAxNSAtMjg1IDE1IC0xNTk2IDAgLTE0MjAgMSAtMTUwOCAxOCAtMTUyOCAyNSAtMzEgMTYwNiAtMzYgMTYyOSAtNSAxNiAyMiAxOSAyNzE5IDMgMzAwNCAtMjEgMzYyIC01NiA1NTkgLTE2NSA5MjAgLTQ0IDE0MyAtNTMgMTY4IC0xMzUgMzY1IC00MjMgMTAyMSAtMTMxNSAxODA0IC0yMzUwIDIwNjQgLTE5NSA0OSAtNjQ0IDEyMSAtNzU2IDEyMSAtNDkgMCAtNjEgMjMgLTg0IDE2NSAtNTcgMzUzIC0yMDQgNzQ0IC0zODkgMTAzNCAtMzM1IDUyNiAtNzU4IDg2MCAtMTM2NiAxMDc4IC0yODIgMTAxIC04ODYgMTYyIC0xMjI2IDEyM3ogbTEzNTEgLTQzNDYgYzI2IC02OCA1IC0yMDIwIC0yNSAtMjI4OSAtNzIgLTY1MiAtMzIxIC04OTcgLTY1NiAtNjQ2IC00ODMgMzYxIC00NzYgMTQ4OSAxNSAyMzQ2IDE5NCAzMzggNjE5IDcxNCA2NjYgNTg5eiIvPgogICAgPHBhdGggY2xhc3M9ImdseXBoIGdseXBoLS1hIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzMjggMCkgc2NhbGUoMC4yNSkgdHJhbnNsYXRlKDAuMDAwMDAwLDE2NDAuMDAwMDAwKSBzY2FsZSgwLjEwMDAwMCwtMC4xMDAwMDApIiBkPSJNNDIxNSA4OTk1IGMtMjg0IC0zMCAtNjQwIC05NyAtODE4IC0xNTQgLTUxIC0xNyAtMTQ4IC00OCAtMjE3IC03MCAtOTEzIC0yOTAgLTE4MDIgLTk5NiAtMjM0MSAtMTg2MSAtNzg2IC0xMjYwIC04OTkgLTI4NzggLTI5OCAtNDI1MyA2MzEgLTE0NDUgMTk5MSAtMjQ0NyAzNTUyIC0yNjE3IDU0IC01IDExMSAtMTcgMTI3IC0yNSA0MyAtMjIgNzgwIC0yMiA4MzMgMCAyMCA4IDc3IDE5IDEyOSAyNSA1NDAgNjAgMTAyNiAyMDcgMTUzNiA0NjQgMjE5IDExMSAxOTggMTA2IDI3MSA2MiAxMzIgLTc5IDM3NyAtMTk0IDYxNSAtMjg4IDIzNyAtOTMgNjkxIC0xOTcgMTAyNSAtMjM0IDc0IC04IDE0OCAtMjEgMTY1IC0yOSAyMiAtMTEgNjkgLTE1IDE5NyAtMTUgbDE2OSAwIDIgNzAyIGM0IDkyOCAxOSA4MzcgLTEzOSA4NTAgLTIwMSAxNiAtNTg1IDk4IC03MjAgMTU1IC05MiAzOCAtOTEgNDAgMzAgMjIxIDMwNiA0NTggNTE4IDkzMCA2NDYgMTQzNyA0MTIgMTY0NCAtMTMxIDMwMjAgLTEzMzYgMzM4NSAtMTQyIDQzIC0xNjcgOCAzMTkgNDQ4IDE5MyAxNzUgMTkwIDE1MCA0MiAzMTcgLTQzMiA0ODkgLTk5OCA4OTYgLTE1ODkgMTE0MiAtMTkwIDc5IC0yNDYgMTAwIC0zNTkgMTM0IC01NSAxNyAtMTQ1IDQ0IC0xOTkgNjAgLTE1NyA0NyAtMjYwIDY3IC02MjIgMTI0IC0yMzcgMzcgLTc2MiA0NyAtMTAyMCAyMHogbTc1NSAtMTU2NCBjMzYxIC01MyA1MDggLTkwIDc1NyAtMTg2IDI5NiAtMTE2IDc1MSAtNDAzIDc0MSAtNDY4IC0zIC0yNCAtMSAtMjMgLTE5MiAtMTA5IC01MzkgLTI0MiAtOTU2IC03NTUgLTExMzkgLTE0MDMgLTk5IC0zNDggLTExNiAtNDU3IC0xMjQgLTc5MCAtMjIgLTkyMyAyNTIgLTIwMDkgNjU4IC0yNjA2IDY0IC05NSA1MyAtMTE0IC0xMDIgLTE2NCAtMzI4IC0xMDYgLTgyMiAtMTU2IC0xMTc5IC0xMjAgLTQ1MiA0NSAtNzA5IDExNSAtMTA1NSAyODUgLTQzMyAyMTMgLTgyOCA1NzMgLTEwNTQgOTYwIC0yNSA0MSAtNTcgOTYgLTczIDEyMSAtMTk4IDMyMCAtMzQzIDg1NSAtMzcwIDEzNjMgLTk4IDE4MzkgMTExNyAzMTY2IDI4NjcgMzEzMSAxMTAgLTMgMjI5IC05IDI2NSAtMTR6IG0yMTcyIC0yMjUxIGMzMjggLTEyMiA0MjkgLTkwMyAyMTMgLTE2MzkgLTk3IC0zMzAgLTI5MSAtNzMxIC0zNTQgLTczMSAtMzggMCAtMTQ1IDIxMSAtMjMzIDQ2MCAtMzMzIDk0NiAtMTA5IDIwOTEgMzc0IDE5MTB6Ii8+CiAgICA8cGF0aCBjbGFzcz0iZ2x5cGggZ2x5cGgtLWFwb3MiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDU3OSAwKSBzY2FsZSgwLjI1KSB0cmFuc2xhdGUoMC4wMDAwMDAsMTY0MC4wMDAwMDApIHNjYWxlKDAuMTAwMDAwLC0wLjEwMDAwMCkiIGQ9Ik0xNzIgMTA5NDggYy0yMSAtMjEgLTE3IC00MTcyIDQgLTQxOTIgMjcgLTI4IDE1OTYgLTI0IDE2MjQgNCAzMCAzMCAzMiA0MTU2IDIgNDE4MyAtMjQgMjIgLTE2MDkgMjYgLTE2MzAgNXoiLz4KICAgIDxwYXRoIGNsYXNzPSJnbHlwaCBnbHlwaC0tbCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNjcxIDApIHNjYWxlKDAuMjUpIHRyYW5zbGF0ZSgwLjAwMDAwMCwxNjQwLjAwMDAwMCkgc2NhbGUoMC4xMDAwMDAsLTAuMTAwMDAwKSIgZD0iTTIzMjUgMTU5MTkgYy0xMjU1IC0xMjEgLTIwNTkgLTExODkgLTIxNDUgLTI4NTQgLTE0IC0yNjIgLTEzIC0xMDA2NiAwIC0xMDE5NCAyNCAtMjI2IDEwMiAtNTc0IDE3MCAtNzU3IDQxNiAtMTEyNyAxMzk0IC0xOTE5IDI1NTkgLTIwNzQgNDcgLTYgOTcgLTE4IDExMiAtMjYgMjEgLTEwIDY3IC0xNCAxNzQgLTE0IGwxNDUgMCAwIDc5OCBjMCA5MzMgMTkgODI1IC0xNDcgODQxIC03NDAgNjkgLTEzNjMgNzU1IC0xMzYzIDE1MDEgMCAxMDQgMTIgMTI0IDc3IDEzNSAxMTYzIDE5MyAyMTQyIDEwODMgMjY2MCAyNDIwIDk5IDI1NiAxMTMgMjk5IDE3NyA1MjUgMTA3IDM3NSAxNTQgNjMxIDE3NiA5NDUgNSA3NyAxNiAyMjEgMjQgMzIwIDM4IDQ2MyAzOCA0ODIgMzQgMzExNSAtNSAyNzYwIC0zIDI2NjIgLTU4IDMwMDAgLTE3NiAxMDcyIC01MzMgMTY5MyAtMTE3NSAyMDQ1IC0zOCAyMSAtODEgNDYgLTk1IDU1IC03NyA1NCAtMzkyIDE2OSAtNTUwIDIwMSAtMTIxIDI1IC01ODkgMzUgLTc3NSAxOHogbTQ3MiAtMTY2NCBjMjEyIC02OCAzMDYgLTE3NyAzOTkgLTQ2NSAxMTcgLTM1OSAxMDggLTg0IDExMiAtMzE4MCAyIC0xODQzIDAgLTI3MjMgLTcgLTI4MzAgLTYgLTg1IC0xNiAtMjQwIC0yMSAtMzQ1IC01NSAtMTAzNSAtNTk0IC0yMDU2IC0xMjYwIC0yMzg2IC0xNDIgLTcxIC0xNDcgLTcyIC0xNzAgLTQ5IC0zNCAzNCAtMjYgNzk3NyA4IDgyNDUgODQgNjYzIDI2NyA5NDkgNjU3IDEwMjkgNzAgMTQgMjA4IDUgMjgyIC0xOXoiLz4KICAgIDxwYXRoIGNsYXNzPSJnbHlwaCBnbHlwaC0tbyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoODAzIDApIHNjYWxlKDAuMjUpIHRyYW5zbGF0ZSgwLjAwMDAwMCwxNjQwLjAwMDAwMCkgc2NhbGUoMC4xMDAwMDAsLTAuMTAwMDAwKSIgZD0iTTY2ODggOTAwMyBjLTEyIC0xNCAtMTcgLTU2IC0yMyAtMTczIC0xNCAtMjg5IC0xNSAtMjkxIC0xMjIgLTI0MyAtMTE5IDU1IC00MzYgMTgxIC00OTMgMTk2IC0zMCA4IC0xMTEgMzEgLTE4MCA1MiAtMjE0IDY0IC0zMDEgODIgLTY5NSAxNDAgLTEwNTEgMTU3IC0yMTQ5IC0xOTkgLTI2NzIgLTg2NyAtMTMzIC0xNjkgLTI3OSAtNDcxIC0zMTQgLTY0OCAtMjggLTE0NSAtMyAtMTU5IC00NTcgMjQ3IC0xMjggMTE1IC0xMTkgMTE2IC0yODEgLTQ5IC02MzEgLTY0OCAtMTA0MSAtMTQzNCAtMTIwMSAtMjMwMyAtMTcgLTkzIC0zMyAtMTcyIC0zNSAtMTc1IC0zOCAtNjIgLTU0IC05MTAgLTIyIC0xMTc1IDI0IC0xOTMgODUgLTUxNyAxMzMgLTcwNSA4OCAtMzQxIDMxNyAtODgwIDQ4MCAtMTEzMiAyNCAtMzcgNTEgLTgyIDYwIC0xMDAgMTggLTM2IDEyNCAtMTg4IDIxMiAtMzA2IDUzOSAtNzE2IDEzNjIgLTEyOTggMjE4NyAtMTU0NSAzNTEgLTEwNSA0OTYgLTEzNyA3ODAgLTE3MiA3MSAtOSAxNDMgLTIyIDE1OSAtMzAgNDMgLTIyIDkxOCAtMjIgOTYyIC0xIDE2IDggNjcgMjAgMTE0IDI2IDI1NiAzMyA0NDkgNjkgNjAyIDExNCAyNzIgNzkgMzUxIDEwNSA1MTMgMTcxIDExMzQgNDU4IDIwNDcgMTM2OSAyNDcxIDI0NjUgMjUgNjMgNTggMTQ5IDc0IDE5MSAyMzMgNjA1IDMxNSAxNTA0IDIwNSAyMjQ5IC00MiAyODMgLTE1NyA2NzggLTI5NSAxMDE1IC0xMzUgMzMwIC00MjcgODEwIC02NTMgMTA3MyAtNjQgNzYgLTY0IDc3IC04IDMwMCA5NiAzNzkgMTc2IDEzNDQgMTE2IDEzODkgLTMyIDIzIC0xNTk3IDE5IC0xNjE3IC00eiBtLTE2OTggLTE0OTggYzI1OSAtNDEgNTQzIC0xMzYgODE1IC0yNzIgMjQ5IC0xMjQgMjQ3IC0xMjAgMTE3IC0yNDQgLTM5MiAtMzc2IC04ODcgLTUyNSAtMTQ3NiAtNDQ0IC00NjIgNjQgLTcwMiAyMzEgLTcwMSA0OTAgMiAyNjMgMjc3IDQ0MiA3NTUgNDg5IDg1IDggMzk1IC00IDQ5MCAtMTl6IG0tMjY1NSAtMTQ2NiBjMjIwIC00MjUgNzA3IC04MTEgMTI0NSAtOTg3IDI4MiAtOTEgMzc5IC0xMTIgNzM1IC0xNTcgMjQzIC0zMSA3MzkgLTIzIDk4NSAxNSA2NjggMTA0IDEyODIgNDEzIDE3ODIgODk4IDExNSAxMTEgMTI5IDExNCAxNzAgMzcgNzUgLTE0MiAyMDAgLTU1NCAyMjMgLTczNSA0IC0zMCAxMSAtNzEgMTYgLTkxIDExMyAtNDQyIDYgLTEyODggLTIzMiAtMTgzMCAtNjAwIC0xMzcyIC0yMjM2IC0xOTc4IC0zNzQ0IC0xMzg3IC0xNDc2IDU3OCAtMjEyNCAyNTExIC0xMzY3IDQwNzggMTAxIDIxMSAxNDMgMjQ2IDE4NyAxNTl6Ii8+CiAgICA8cGF0aCBjbGFzcz0iZ2x5cGggZ2x5cGgtLWEyIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMDUyIDApIHNjYWxlKDAuMjUpIHRyYW5zbGF0ZSgwLjAwMDAwMCwxNjQwLjAwMDAwMCkgc2NhbGUoMC4xMDAwMDAsLTAuMTAwMDAwKSIgZD0iTTQ0MTUgOTAxNCBjLTI2OSAtMjEgLTMyNSAtMjYgLTM2NCAtMzUgLTI1IC01IC03OSAtMTQgLTEyMSAtMTkgLTEwNSAtMTQgLTQyMCAtNzcgLTQ3MiAtOTYgLTI0IC04IC0xMTUgLTM3IC0yMDMgLTY0IC04OCAtMjcgLTE5NCAtNjMgLTIzNSAtODAgLTQxIC0xOCAtMTI0IC01MSAtMTgzIC03NiAtMjUxIC0xMDIgLTYyNCAtMzIxIC04OTIgLTUyMiAtMTQ1MyAtMTA5NCAtMjA5OSAtMjk2NCAtMTY0NSAtNDc1NyAzMjIgLTEyNzAgMTE1MyAtMjMwNyAyMzE1IC0yODg3IDgzIC00MiAyMDQgLTk3IDI3MCAtMTIyIDY2IC0yNiAxNDUgLTU4IDE3NSAtNzEgMjE0IC05MyA3MDIgLTIwNSAxMDY1IC0yNDUgNTUgLTcgMTEzIC0xOCAxMjkgLTI2IDQzIC0yMSA3MDkgLTIxIDc1MiAwIDE2IDggNzYgMjAgMTM0IDI2IDIyNCAyMyA0ODIgNjcgNjI1IDEwNyAxNzEgNDggNDQ4IDEzNCA0NzYgMTQ4IDE1IDggNzkgMzUgMTQyIDU5IDYzIDI0IDIwNSA5MCAzMTUgMTQ1IDIxMSAxMDcgMjI4IDExMiAyNzAgODMgNjIgLTQzIDMzMyAtMTc3IDQ3MCAtMjMzIDQxNCAtMTcwIDc3MyAtMjU3IDEyNjEgLTMwOSA1NyAtNiAxMjAgLTE4IDE0MCAtMjYgMjggLTExIDcyIC0xNCAxNzcgLTEyIGwxMzkgMyAzIDc1NiBjMyA4ODUgMjIgNzgyIC0xNTMgNzk3IC0xOTYgMTcgLTU4MCA5OSAtNzA1IDE1MCAtODAgMzMgLTg5IDYwIC00MiAxMjAgMzAwIDM4NCA1NTIgOTMyIDczOCAxNjA0IDczIDI2NSAxMzYgOTI2IDExNCAxMTkzIC05MyAxMTI5IC02MDQgMTg2NyAtMTQ3MiAyMTMwIC0xMjYgMzggLTEyNCA0MSA1OSAyMDcgNDczIDQyOSA0NDQgMzg4IDM1MiA1MDMgLTM5NSA0OTcgLTEwNzQgOTc1IC0xNzk0IDEyNjIgLTQyNCAxNjkgLTEwMTQgMjc5IC0xNTMwIDI4NyAtMTQzIDIgLTI4MiAyIC0zMTAgMHogbTU5MCAtMTU4MyBjMjggLTUgMTE1IC0yMSAxOTUgLTM1IDI5MSAtNTEgNTU0IC0xNDIgODEzIC0yODIgMjI0IC0xMjEgNDU3IC0yOTIgNDU3IC0zMzUgMCAtMjEgMCAtMjEgLTIwNSAtMTEwIC02NTMgLTI4NiAtMTEzMiAtMTAyNSAtMTIzNiAtMTkwNyAtNDEgLTM0OCAtNiAtMTAxMSA3MiAtMTM3NyA0NCAtMjA4IDEzMiAtNTUyIDE1OSAtNjI0IDE1IC00MiA0NyAtMTI4IDcwIC0xOTEgNzkgLTIxNSAyMzIgLTUyNyAzNTggLTczMCA0MiAtNjcgMjggLTgzIC0xMTQgLTEyOSAtMzE0IC0xMDMgLTgyMyAtMTU4IC0xMTQ5IC0xMjYgLTk4OSA5NyAtMTY1NyA0ODUgLTIxNDUgMTI0NCAtNjEwIDk1MSAtNTk5IDI0NTggMjYgMzQwNyA0NjMgNzAzIDExMjAgMTA5MCAyMDQ0IDEyMDMgOTIgMTIgNTg2IDYgNjU1IC04eiBtMjE5MSAtMjI3NyBjNDAwIC0yNzUgMzUwIC0xNDU5IC05NCAtMjIxNCAtMTA4IC0xODUgLTExMSAtMTg0IC0yMjYgNjcgLTI5OSA2NTMgLTM1NyAxNDg5IC0xMzYgMTk0OSAxMDcgMjIzIDMwMCAzMDYgNDU2IDE5OHoiLz4KICA8L2c+CiAgPGcgY2xhc3M9IndvcmRtYXJrLXRhZyIgZmlsbD0iY3VycmVudENvbG9yIj48cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwIDQxMCkgc2NhbGUoMC4yNSkgdHJhbnNsYXRlKDAuMDAwMDAwLDQ0MC4wMDAwMDApIHNjYWxlKDAuMTAwMDAwLC0wLjEwMDAwMCkiIGQ9Ik0zMjEwMyAyNDIyIGMtMTYgLTkgLTY3IC0zOCAtMTE0IC02NCAtMjMzIC0xMzAgLTI3MCAtMTc5IC0xOTYgLTI1MyA0OCAtNDggMjIgLTU2IDM5NSAxMTUgNzAgMzMgNzQgNjQgMTcgMTUyIC0zOCA2MCAtNjMgNzIgLTEwMiA1MHogTTEzMjU0IDE5NDggYy0yNSAtMTIgLTU1IC02NCAtMTEyIC0xOTQgLTIyIC01MCAtNjEgLTEzMyAtODUgLTE4NSAtOTcgLTIwMiAtMjA2IC00MzggLTIzNiAtNTA5IC0xOCAtNDEgLTM4IC04NCAtNDUgLTk1IC03IC0xMSAtNDMgLTg3IC04MCAtMTY5IC0zNyAtODIgLTc0IC0xNTkgLTgxIC0xNzAgLTY3IC0xMDggLTQzIC0xMzQgMTI3IC0xMzggMTUwIC0zIDE1NyAxIDIxMyAxMTcgNDYgOTcgMzkgOTUgMzI4IDk1IDI4NCAwIDI3MCA0IDMyMyAtMTA2IDQ4IC0xMDIgNTYgLTEwNSAyMDkgLTEwNSAxNzYgMCAxODMgOSAxMTUgMTQ5IC0yMSA0NSAtNTQgMTE1IC03MSAxNTQgLTE3IDQwIC01NCAxMjAgLTgyIDE3OCAtMjcgNTggLTc5IDE2OCAtMTE1IDI0NSAtMzUgNzcgLTkyIDIwMSAtMTI3IDI3NSAtMzQgNzQgLTkxIDE5OCAtMTI2IDI3NCAtNTggMTI3IC0xMDMgMTk3IC0xMjYgMTk1IC00IDAgLTE4IC01IC0yOSAtMTF6IG00NSAtNjkyIGMxOCAtMjEgMTExIC0yMTQgMTExIC0yMjkgMCAtMjcgLTMwIC00MCAtOTggLTQ0IC0xNzYgLTkgLTE5MiA5IC0xMjcgMTQ1IDcwIDE0NyA4NSAxNjMgMTE0IDEyOHogTTE1MjMyIDE5MzcgYy0yMiAtMjMgLTUzIC04NyAtMTI3IC0yNjIgLTIxMSAtNDk1IC0yMTAgLTQ5NSAtMjc1IC0yMDAgLTEyIDU1IC0zNSAxNDEgLTUwIDE5MCAtMTUgNTAgLTM1IDEyMyAtNDUgMTYzIC0yNSAxMDQgLTM3IDExMiAtMTgwIDExMiAtMTg2IDAgLTE4NCAxMSAtNTkgLTQxMSAyNCAtODAgNjEgLTIxMCA4MiAtMjkwIDIyIC03OSA2MCAtMjE2IDg1IC0zMDQgMjUgLTg4IDYwIC0yMTIgNzcgLTI3NSA1MCAtMTg1IDY2IC0yMDcgMTI5IC0xODAgMzUgMTQgMzcgMTggMTc2IDMzNSAyNDMgNTU1IDIyNyA1MzkgMzI1IDMxNyAyOSAtNjQgNzQgLTE2NCAxMDAgLTIyMiAyNyAtNTggNzcgLTE3MCAxMTEgLTI1MCAxMjEgLTI3OCAxNjUgLTI2OCAyNTMgNTUgNjcgMjQ2IDE1MyA1NTAgMjExIDc1MCA0OCAxNjEgMTE1IDQxMCAxMTUgNDI2IDAgMzcgLTM5IDQ5IC0xNjAgNDkgLTEzNyAwIC0xNTEgLTYgLTE3MCAtODIgLTYgLTI0IC0yNyAtMTAxIC00NyAtMTczIC0xOSAtNzEgLTUwIC0xOTAgLTY4IC0yNjMgLTU0IC0yMjIgLTU0IC0yMjIgLTIxMCAxMzMgLTMyIDcyIC04MCAxODIgLTEwNyAyNDUgLTY1IDE1NCAtMTEzIDE5NCAtMTY2IDEzN3ogTTIxNDA4IDE5NDEgYy0xMyAtMTEgLTQ5IC03MyAtODAgLTEzOCAtMTA4IC0yMjkgLTIwNyAtNDQwIC0yNjggLTU3MyAtNjcgLTE0NSAtMTc3IC0zODIgLTI2NyAtNTczIC04MiAtMTc0IC04NCAtMTcxIDE2MSAtMTY3IDEwMiAyIDExMSA3IDE1MSA5MyA1MyAxMTcgMzYgMTEyIDMyOSAxMTUgMjk0IDMgMjcxIDExIDMzOSAtMTEzIDU1IC0xMDAgNjcgLTEwNSAyMjIgLTk4IDE3MiA5IDE3MSA1IDQyIDI3NSAtMzAgNjIgLTgyIDE3MiAtMTE1IDI0MyAtMjAyIDQzMiAtMjkxIDYyMyAtMzM4IDcyNiAtMTA0IDIzMSAtMTIyIDI1MiAtMTc2IDIxMHogbTU0IC02ODUgYzMxIC0zMSAxMTIgLTIyNyAxMDEgLTI0NCAtMTMgLTIyIC03OSAtMzEgLTE3MyAtMjMgLTk3IDggLTk5IDE4IC0zNCAxNTUgNjQgMTM2IDczIDE0NSAxMDYgMTEyeiBNMjI3OTUgMTkzNiBjLTMwIC0zMCAtMjggLTEzNzYgMSAtMTQyMyAxNCAtMjIgMjAgLTIzIDE0NCAtMjMgMTg2IDAgMTcwIC0zNiAxNzAgMzczIDAgNDY3IC0yMCA0NTMgMjU1IDE3NiA1OTggLTYwNCA1NjcgLTU3NSA2MTUgLTU2NCA1MSAxMSA1MCAxIDUwIDczNCAwIDgxMyAxOSA3MzEgLTE2NSA3MzEgLTE3MyAwIC0xNTkgMzMgLTE2NSAtMzc3IC02IC00MzAgMTggLTQxNyAtMjY2IC0xNDEgLTExNSAxMTIgLTI1MiAyNDMgLTMwNCAyOTIgLTUyIDQ5IC0xMTEgMTA2IC0xMzAgMTI3IC0xMDMgMTExIC0xNjIgMTM4IC0yMDUgOTV6IE0yODA1NSAxOTQ5IGMtNTAwIC04NCAtNzYwIC02MjYgLTUyMyAtMTA5MSAyMjggLTQ0OCA4ODkgLTUyOSAxMjE3IC0xNDkgNDY5IDU0NSAxMyAxMzU5IC02OTQgMTI0MHogbTI4MiAtMzUxIGMyNzkgLTEwNCAzNDkgLTQ4MyAxMjggLTY4NyAtMTUwIC0xMzggLTM0OCAtMTQ5IC01MTUgLTI4IC0zODMgMjc5IC01NyA4ODEgMzg3IDcxNXogTTM2NDM0IDE5NTEgYy02MjAgLTk5IC04MzQgLTkyNyAtMzQyIC0xMzIwIDQyOSAtMzQyIDEwODIgLTEyNSAxMTk5IDM5OSAxMjEgNTQ0IC0zMTEgMTAwOCAtODU3IDkyMXogbTIyNiAtMzM3IGMyNzYgLTY1IDQwNyAtMzkyIDI1MCAtNjI0IC0xODUgLTI3MiAtNTYwIC0yNDQgLTcxNSA1MiAtMTU1IDI5NCAxMzQgNjUwIDQ2NSA1NzJ6IE0zODcxNyAxOTQ4IGMtMTcgLTE0IC03MCAtMTIzIC0xNzIgLTM1OCAtMTc3IC00MDcgLTE3MiAtNDA2IC0yNTUgLTYwIC0xMDYgNDQ2IC04MiA0MTAgLTI2MSA0MTAgLTE3MSAwIC0xNzcgLTExIC0xMTAgLTIyMCAyMiAtNjcgNDMgLTEzNyA0NyAtMTU0IDEyIC02MCA3NiAtMjkyIDk5IC0zNjEgMTMgLTM4IDQyIC0xNDIgNjUgLTIzMCA5MSAtMzU0IDEzOSAtNDkyIDE3MyAtNTAwIDYyIC0xNiA4MiAxNyAyMzIgMzcxIDI0IDU2IDcwIDE1OSAxMDIgMjMwIDMzIDcxIDY4IDE0OCA3OCAxNzIgNDEgOTcgNDEgOTcgMjY3IC00MTggMTQxIC0zMjQgMTcwIC0zNjkgMjI0IC0zNTYgMzUgOSA0OSAzOCA4MyAxNzEgMTYgNjYgNDAgMTQ3IDUxIDE4MCAxMiAzMyA0OCAxNjEgODEgMjg1IDMzIDEyMyA2OSAyNDkgNzkgMjgwIDEwIDMwIDM1IDExOCA1NSAxOTUgMjAgNzcgNDcgMTc1IDYxIDIxOCA0MSAxMzQgMzggMTM3IC0xMzUgMTM3IC0xNjYgMCAtMTU4IDkgLTIxMSAtMjIwIC03NyAtMzI1IC0xMjIgLTQ2MiAtMTQ5IC00NDYgLTE2IDEwIC03MyAxMjUgLTE0MiAyODYgLTE3NCA0MDkgLTE5NCA0MzkgLTI2MiAzODh6IE0xNzIyNyAxOTEzIGMtMTIgLTIxIC00MCAtNzYgLTYxIC0xMjMgLTIyIC00NyAtNjggLTE0NCAtMTAzIC0yMTcgLTM1IC03MyAtNzAgLTE0OSAtNzcgLTE3MCAtOCAtMjEgLTQxIC05NCAtNzQgLTE2MyAtMTA5IC0yMjkgLTIwMiAtNDI3IC0yMDIgLTQzMyAwIC00IC0yNyAtNjIgLTYwIC0xMzAgLTkwIC0xODYgLTg5IC0xODcgOTUgLTE4NyAxNTcgMCAxNjEgMiAyMTQgMTA4IDUxIDEwNSA0MiAxMDIgMzIzIDEwMiAyODEgMCAyNzQgMiAzMjQgLTk0IDYyIC0xMTkgNTYgLTExNiAyMTAgLTExNiAxOTEgMCAxOTQgNSAxMDggMTgxIC0zMSA2MyAtNjQgMTM0IC03NCAxNTkgLTEwIDI1IC00NyAxMDYgLTgzIDE4MCAtMTE5IDI0OSAtMjA1IDQzNSAtMjI2IDQ4OCAtMTIgMzAgLTM5IDg2IC02MCAxMjUgLTIxIDQwIC01OCAxMTggLTgxIDE3NSAtNjggMTYwIC0xMjIgMTk3IC0xNzMgMTE1eiBtNzkgLTY2MCBjMjcgLTI3IDEwNCAtMTk0IDEwNCAtMjI1IDAgLTM5IC0yOSAtNDggLTE0MCAtNDQgLTEzOSA1IC0xNDEgMTEgLTcwIDE1NyA2NyAxMzggNzMgMTQ0IDEwNiAxMTJ6IE0xMDcxMCAxOTIwIGMtMjAgLTIwIC0yMCAtMzMgLTIwIC03MDggMCAtODE0IC0yMCAtNzIzIDE2MCAtNzI0IDE3MCAtMSAxNTcgLTI0IDE2MyAyOTEgNSAzMjUgLTI5IDI5MSAzMDEgMjkxIDEzOCAwIDI1NiAtNCAyNjMgLTggMjcgLTE3IDMzIC03MCAzMyAtMzAyIDAgLTI5NSAtMTUgLTI3MiAxNjggLTI2OCAxMzQgMyAxMzcgMyAxNDkgMjggMTAgMjAgMTIgMTcwIDEwIDcwMyAtMiA4MDMgMTcgNzE3IC0xNjYgNzE3IC0xNzEgMCAtMTU4IDIzIC0xNjMgLTI4MSAtNSAtMzEzIDMyIC0yNzkgLTI5OCAtMjc5IC0zMjUgMCAtMjk0IC0yNCAtMjk3IDIzNCAtMiAyOTcgLTEgMjg0IC0yMyAzMDYgLTE4IDE4IC0zMyAyMCAtMTQwIDIwIC0xMDcgMCAtMTIyIC0yIC0xNDAgLTIweiBNMTg2NDkgMTkyMSBjLTQwIC0zMiAtNDMgLTEzNzYgLTMgLTE0MTYgMjMgLTIzIDI3NiAtMjIgMjk1IDIgMjkgMzQgMTkgMTM5MCAtMTAgMTQxNCAtMzUgMjggLTI0NyAyOCAtMjgyIDB6IE0xOTgxMCAxOTMzIGMtNDAgLTE0IC00MCAtMTIgLTQwIC03MTggMCAtNjAwIDIgLTY4MyAxNiAtNzAzIDIxIC0zMSAyNzAgLTM0IDI5NyAtNCAyOSAzMiAyNSAxMzg0IC0zIDE0MTIgLTIwIDIwIC0yMjQgMzAgLTI3MCAxM3ogTTI1ODU5IDE5MjEgYy0yNyAtMjIgLTQ0IC0xMjk2IC0xOSAtMTM4MyAxMyAtNDYgMzIgLTUzIDE1NSAtNTIgMTY3IDAgMTU5IC0xNCAxNjIgMjY4IDMgMjcyIC0xMSAyNTEgMTcxIDI1OSAyMjYgMTAgMzMzIDYxIDQzMiAyMDcgMTgwIDI2NSAzMiA2NDQgLTI3OCA3MDkgLTEwMSAyMSAtNTk1IDE1IC02MjMgLTh6IG01NjkgLTMwOSBjMTI3IC01OCAxMTIgLTIyOSAtMjUgLTI3OCAtNjAgLTIxIC0xOTUgLTE4IC0yMjQgNSAtMjQgMTkgLTM0IDE4MSAtMTYgMjUzIDEyIDQ3IDE3OSA2MCAyNjUgMjB6IE0yOTY4OSAxOTIxIGMtMjcgLTIyIC00NCAtMTI5NiAtMTkgLTEzODIgMTMgLTQ3IDE5IC00OSAxNjcgLTUwIDE4MCAtMSAxNjcgLTI2IDE3MyAzMTQgNiAzMTcgMTEgMzMwIDg2IDIyNSAyMSAtMjkgNzQgLTEwMiAxMTkgLTE2MyA0NSAtNjAgMTIxIC0xNjMgMTY4IC0yMjcgMTEzIC0xNTMgMTA1IC0xNDkgMjY5IC0xNTEgMjY3IC00IDI2NyAtNSAtMTMgMzU3IC0zMDAgMzg5IC0zMDQgMzk1IC0yOTQgNDI3IDQgMTAgMTEwIDE0OCAyMzYgMzA1IDI4OSAzNjEgMjg5IDM2NCA2MyAzNjQgLTE1NiAwIC0xNzAgLTYgLTI0MCAtOTMgLTMyIC00MCAtNzQgLTkyIC05NCAtMTE3IC0yMCAtMjUgLTgwIC05OSAtMTMyIC0xNjUgLTEzMCAtMTYzIC0xNjcgLTE5MCAtMTY5IC0xMjMgMCAxMyAwIDEwOSAwIDIxMyAwIDIwMSAtOCAyNTggLTM5IDI3NSAtMzYgMjAgLTI1NSAxMyAtMjgxIC05eiBNMzE1NDAgMTkyMCBjLTI4IC0yOCAtMzIgLTEzNjkgLTQgLTE0MDggMTUgLTIyIDE1IC0yMiA0NDggLTIyIDUyMCAwIDQ3MSAtMTUgNDcxIDE0NSAwIDE2NiAyMSAxNTUgLTMxMSAxNTUgLTMyNyAwIC0zMDcgLTkgLTMwMiAxNDUgNCAxMzkgLTE1IDEyOSAyNTkgMTM1IDI3NyA2IDI1OSAtNCAyNTkgMTQ2IDAgMTcxIDEyIDE2NCAtMjcyIDE2NCAtMjU5IDAgLTI1MiAtNCAtMjQ2IDEzMSA1IDEzMSAtMTMgMTI0IDI5NiAxMjUgMzM2IDEgMzIyIC02IDMyMiAxNjAgMCAxNTUgMzcgMTQ0IC00NzUgMTQ0IC00MTIgMCAtNDI2IC0xIC00NDUgLTIweiBNMzQyMDAgMTkyMCBjLTI5IC0yOSAtMzIgLTEzNzMgLTIgLTE0MDkgMjYgLTMzIDYwMiAtMzMgNzAxIDAgMzExIDEwMSAzOTAgNDY1IDE0MSA2NDYgLTk5IDcyIC05OSA2NSAtMTAgMTUzIDIyMyAyMTggMTIzIDUzMiAtMTk1IDYxNSAtMTAwIDI2IC02MDggMjIgLTYzNSAtNXogbTU0NCAtMzA0IGM4OCAtNTcgODQgLTE3MiAtNyAtMjQwIC00MiAtMzEgLTE3NyAtMzYgLTIwNiAtNyAtMzIgMzIgLTMyIDIyMCAwIDI1MiAyNyAyNyAxNjkgMjQgMjEzIC01eiBtMTMgLTU2MyBjMTA1IC01NSAxMDggLTE4NiA0IC0yNDcgLTUzIC0zMCAtMjA2IC0yOSAtMjMyIDMgLTMwIDM2IC0yOCAyMjIgMiAyNTIgMjggMjggMTY2IDIzIDIyNiAtOHogTTQwMzMwIDE5MjAgYy0zMCAtMzAgLTMyIC0xMzczIC0yIC0xNDEwIDE4IC0yMiAxOCAtMjIgNDE3IC0yMiA0NzUgMSA0MzAgLTE0IDQzMCAxNDYgMCAxNjYgMTcgMTU2IC0yNjQgMTU2IC0xMjQgMCAtMjMxIDQgLTIzOCA4IC0zMCAxOSAtMzMgNzAgLTMzIDU4NiAwIDQ5NCAtMSA1MjQgLTE4IDUzOSAtMzAgMjcgLTI2NCAyNSAtMjkyIC0zeiIvPjwvZz4KPC9zdmc+Cg==") center top/100% auto no-repeat;mask:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjk1IDUyMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJNYSdsb2Eg4oCTIEhhd2FpaWFuIFBva8OpIEJvd2wiPgogIDwhLS0gVHJhY2VkIGZyb20gdGhlIGNsaWVudCdzIGxvZ28tMDIuanBnLiBPbmUgcGF0aCBwZXIgZ2x5cGggKG0sIGEsICcsIGwsIG8sIGEpIHBsdXMgdGhlIHRhZ2xpbmUsIHNvIGVhY2ggY2FuIGFuaW1hdGUuIC0tPgogIDxnIGNsYXNzPSJ3b3JkbWFyay13b3JkIiBmaWxsPSJjdXJyZW50Q29sb3IiPgogICAgPHBhdGggY2xhc3M9ImdseXBoIGdseXBoLS1tIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMCAwKSBzY2FsZSgwLjI1KSB0cmFuc2xhdGUoMC4wMDAwMDAsMTY0MC4wMDAwMDApIHNjYWxlKDAuMTAwMDAwLC0wLjEwMDAwMCkiIGQ9Ik01NDM5IDkwMDAgYy0xMTAxIC0xMjYgLTE5NjUgLTgzMSAtMjQyOSAtMTk4MiAtMjMgLTU1IC00OSAtMTE3IC02MCAtMTM4IC0xMSAtMjEgLTQyIC05NSAtNzAgLTE2NSAtMjggLTcwIC02MiAtMTQ5IC03NiAtMTc3IC0xNCAtMjcgLTM4IC04NCAtNTMgLTEyNiAtMTYgLTQyIC00OCAtMTE3IC03MSAtMTY3IC0yMyAtNDkgLTU1IC0xMjQgLTcyIC0xNjUgLTE2IC00MSAtNTEgLTEyNCAtNzggLTE4NSAtNjcgLTE1MiAtMjUwIC01ODMgLTI1MCAtNTg5IDAgLTMgLTE2IC0zOCAtMzUgLTc4IC0xOSAtNDAgLTU5IC0xMzEgLTg4IC0yMDMgLTc1IC0xNzggLTEzNiAtMzIyIC0yMTYgLTUwNSAtMzggLTg1IC03NiAtMTc2IC04NiAtMjAyIC0yMCAtNTMgLTQxIC03NiAtNTUgLTYyIC02IDYgLTExIDg0MCAtMTIgMjIyMSAtMyAxNzk5IC01IDIyMTQgLTE2IDIyMjUgLTI1IDI1IC0xNjAwIDE4IC0xNjE4IC02IC0yNiAtMzYgLTIxIC04NTQ3IDUgLTg1NzAgMjIgLTIwIDE2NTEgLTI3IDE2ODggLTggMTYgOSA2NiAxMTcgMTk5IDQyNyAyNiA2MSA3NiAxNzggMTExIDI2MCAzNiA4MyA5OSAyMzEgMTQwIDMzMCA0MSA5OSA3OSAxODUgODQgMTkxIDUgNiAzMiA2OCA1OSAxMzcgMjcgNjkgNTkgMTQ1IDcxIDE2OSAxMiAyNCA0OCAxMDYgNzkgMTgzIDMyIDc3IDc0IDE3NiA5MyAyMjAgODYgMTk2IDIyMCA1MTAgMzAxIDcwNSAzMSA3NCA3NCAxNzMgOTYgMjIwIDIyIDQ3IDY1IDE0NiA5NiAyMjAgMTE4IDI4NSAxODcgNDQ2IDIwOSA0OTAgMTIgMjUgMzUgNzkgNDkgMTIwIDE1IDQxIDQ5IDEyMiA3NiAxODAgMjcgNTggNzQgMTY2IDEwNSAyNDAgMTI3IDMwMyAyNjIgNjE5IDQzOSAxMDI1IDM1IDgzIDg3IDIwNCAxMTUgMjcwIDg4IDIxMiAxNjggMzk5IDIxNSA1MDIgMjUgNTUgNDYgMTAzIDQ2IDEwNyAwIDQ5IDI0MSA1NTEgMzI2IDY4MSA1MTAgNzcwIDE2NDEgNzUyIDE5NDYgLTMwIDExNyAtMzAxIDExOSAtMjk2IC0yMzAgLTQwNSAtNjgwIC0yMTEgLTEyMjggLTYyNyAtMTY2NyAtMTI2NiAtMTAzIC0xNTAgLTI5NSAtNTI0IC0zNjcgLTcxNCAtMjIgLTU4IC01NSAtMTQzIC03MyAtMTkwIC0xNzAgLTQyOCAtMjg1IC0xMDgyIC0yNzEgLTE1NDUgMzggLTEzNTIgNjk5IC0yMzI2IDE3NjEgLTI1OTYgNDQgLTExIDkwIC0yNyAxMDIgLTM1IDM0IC0yMSA3NzkgLTIxIDgwMyAxIDkgOCA1MiAyMiA5NiAzMSA3MTQgMTQ0IDEyNTYgNzI5IDE0NTAgMTU2NCAxMzQgNTczIDE0MSA2NzYgMTQ5IDIxODUgNyAxMjcwIC02IDExNDEgMTE0IDExMzEgMTczIC0xNiA1MTMgLTExMSA2NjAgLTE4NSA1NzMgLTI5MCA4OTAgLTc1NCAxMDE2IC0xNDg2IDEzIC03OCAxNSAtMjg1IDE1IC0xNTk2IDAgLTE0MjAgMSAtMTUwOCAxOCAtMTUyOCAyNSAtMzEgMTYwNiAtMzYgMTYyOSAtNSAxNiAyMiAxOSAyNzE5IDMgMzAwNCAtMjEgMzYyIC01NiA1NTkgLTE2NSA5MjAgLTQ0IDE0MyAtNTMgMTY4IC0xMzUgMzY1IC00MjMgMTAyMSAtMTMxNSAxODA0IC0yMzUwIDIwNjQgLTE5NSA0OSAtNjQ0IDEyMSAtNzU2IDEyMSAtNDkgMCAtNjEgMjMgLTg0IDE2NSAtNTcgMzUzIC0yMDQgNzQ0IC0zODkgMTAzNCAtMzM1IDUyNiAtNzU4IDg2MCAtMTM2NiAxMDc4IC0yODIgMTAxIC04ODYgMTYyIC0xMjI2IDEyM3ogbTEzNTEgLTQzNDYgYzI2IC02OCA1IC0yMDIwIC0yNSAtMjI4OSAtNzIgLTY1MiAtMzIxIC04OTcgLTY1NiAtNjQ2IC00ODMgMzYxIC00NzYgMTQ4OSAxNSAyMzQ2IDE5NCAzMzggNjE5IDcxNCA2NjYgNTg5eiIvPgogICAgPHBhdGggY2xhc3M9ImdseXBoIGdseXBoLS1hIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzMjggMCkgc2NhbGUoMC4yNSkgdHJhbnNsYXRlKDAuMDAwMDAwLDE2NDAuMDAwMDAwKSBzY2FsZSgwLjEwMDAwMCwtMC4xMDAwMDApIiBkPSJNNDIxNSA4OTk1IGMtMjg0IC0zMCAtNjQwIC05NyAtODE4IC0xNTQgLTUxIC0xNyAtMTQ4IC00OCAtMjE3IC03MCAtOTEzIC0yOTAgLTE4MDIgLTk5NiAtMjM0MSAtMTg2MSAtNzg2IC0xMjYwIC04OTkgLTI4NzggLTI5OCAtNDI1MyA2MzEgLTE0NDUgMTk5MSAtMjQ0NyAzNTUyIC0yNjE3IDU0IC01IDExMSAtMTcgMTI3IC0yNSA0MyAtMjIgNzgwIC0yMiA4MzMgMCAyMCA4IDc3IDE5IDEyOSAyNSA1NDAgNjAgMTAyNiAyMDcgMTUzNiA0NjQgMjE5IDExMSAxOTggMTA2IDI3MSA2MiAxMzIgLTc5IDM3NyAtMTk0IDYxNSAtMjg4IDIzNyAtOTMgNjkxIC0xOTcgMTAyNSAtMjM0IDc0IC04IDE0OCAtMjEgMTY1IC0yOSAyMiAtMTEgNjkgLTE1IDE5NyAtMTUgbDE2OSAwIDIgNzAyIGM0IDkyOCAxOSA4MzcgLTEzOSA4NTAgLTIwMSAxNiAtNTg1IDk4IC03MjAgMTU1IC05MiAzOCAtOTEgNDAgMzAgMjIxIDMwNiA0NTggNTE4IDkzMCA2NDYgMTQzNyA0MTIgMTY0NCAtMTMxIDMwMjAgLTEzMzYgMzM4NSAtMTQyIDQzIC0xNjcgOCAzMTkgNDQ4IDE5MyAxNzUgMTkwIDE1MCA0MiAzMTcgLTQzMiA0ODkgLTk5OCA4OTYgLTE1ODkgMTE0MiAtMTkwIDc5IC0yNDYgMTAwIC0zNTkgMTM0IC01NSAxNyAtMTQ1IDQ0IC0xOTkgNjAgLTE1NyA0NyAtMjYwIDY3IC02MjIgMTI0IC0yMzcgMzcgLTc2MiA0NyAtMTAyMCAyMHogbTc1NSAtMTU2NCBjMzYxIC01MyA1MDggLTkwIDc1NyAtMTg2IDI5NiAtMTE2IDc1MSAtNDAzIDc0MSAtNDY4IC0zIC0yNCAtMSAtMjMgLTE5MiAtMTA5IC01MzkgLTI0MiAtOTU2IC03NTUgLTExMzkgLTE0MDMgLTk5IC0zNDggLTExNiAtNDU3IC0xMjQgLTc5MCAtMjIgLTkyMyAyNTIgLTIwMDkgNjU4IC0yNjA2IDY0IC05NSA1MyAtMTE0IC0xMDIgLTE2NCAtMzI4IC0xMDYgLTgyMiAtMTU2IC0xMTc5IC0xMjAgLTQ1MiA0NSAtNzA5IDExNSAtMTA1NSAyODUgLTQzMyAyMTMgLTgyOCA1NzMgLTEwNTQgOTYwIC0yNSA0MSAtNTcgOTYgLTczIDEyMSAtMTk4IDMyMCAtMzQzIDg1NSAtMzcwIDEzNjMgLTk4IDE4MzkgMTExNyAzMTY2IDI4NjcgMzEzMSAxMTAgLTMgMjI5IC05IDI2NSAtMTR6IG0yMTcyIC0yMjUxIGMzMjggLTEyMiA0MjkgLTkwMyAyMTMgLTE2MzkgLTk3IC0zMzAgLTI5MSAtNzMxIC0zNTQgLTczMSAtMzggMCAtMTQ1IDIxMSAtMjMzIDQ2MCAtMzMzIDk0NiAtMTA5IDIwOTEgMzc0IDE5MTB6Ii8+CiAgICA8cGF0aCBjbGFzcz0iZ2x5cGggZ2x5cGgtLWFwb3MiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDU3OSAwKSBzY2FsZSgwLjI1KSB0cmFuc2xhdGUoMC4wMDAwMDAsMTY0MC4wMDAwMDApIHNjYWxlKDAuMTAwMDAwLC0wLjEwMDAwMCkiIGQ9Ik0xNzIgMTA5NDggYy0yMSAtMjEgLTE3IC00MTcyIDQgLTQxOTIgMjcgLTI4IDE1OTYgLTI0IDE2MjQgNCAzMCAzMCAzMiA0MTU2IDIgNDE4MyAtMjQgMjIgLTE2MDkgMjYgLTE2MzAgNXoiLz4KICAgIDxwYXRoIGNsYXNzPSJnbHlwaCBnbHlwaC0tbCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNjcxIDApIHNjYWxlKDAuMjUpIHRyYW5zbGF0ZSgwLjAwMDAwMCwxNjQwLjAwMDAwMCkgc2NhbGUoMC4xMDAwMDAsLTAuMTAwMDAwKSIgZD0iTTIzMjUgMTU5MTkgYy0xMjU1IC0xMjEgLTIwNTkgLTExODkgLTIxNDUgLTI4NTQgLTE0IC0yNjIgLTEzIC0xMDA2NiAwIC0xMDE5NCAyNCAtMjI2IDEwMiAtNTc0IDE3MCAtNzU3IDQxNiAtMTEyNyAxMzk0IC0xOTE5IDI1NTkgLTIwNzQgNDcgLTYgOTcgLTE4IDExMiAtMjYgMjEgLTEwIDY3IC0xNCAxNzQgLTE0IGwxNDUgMCAwIDc5OCBjMCA5MzMgMTkgODI1IC0xNDcgODQxIC03NDAgNjkgLTEzNjMgNzU1IC0xMzYzIDE1MDEgMCAxMDQgMTIgMTI0IDc3IDEzNSAxMTYzIDE5MyAyMTQyIDEwODMgMjY2MCAyNDIwIDk5IDI1NiAxMTMgMjk5IDE3NyA1MjUgMTA3IDM3NSAxNTQgNjMxIDE3NiA5NDUgNSA3NyAxNiAyMjEgMjQgMzIwIDM4IDQ2MyAzOCA0ODIgMzQgMzExNSAtNSAyNzYwIC0zIDI2NjIgLTU4IDMwMDAgLTE3NiAxMDcyIC01MzMgMTY5MyAtMTE3NSAyMDQ1IC0zOCAyMSAtODEgNDYgLTk1IDU1IC03NyA1NCAtMzkyIDE2OSAtNTUwIDIwMSAtMTIxIDI1IC01ODkgMzUgLTc3NSAxOHogbTQ3MiAtMTY2NCBjMjEyIC02OCAzMDYgLTE3NyAzOTkgLTQ2NSAxMTcgLTM1OSAxMDggLTg0IDExMiAtMzE4MCAyIC0xODQzIDAgLTI3MjMgLTcgLTI4MzAgLTYgLTg1IC0xNiAtMjQwIC0yMSAtMzQ1IC01NSAtMTAzNSAtNTk0IC0yMDU2IC0xMjYwIC0yMzg2IC0xNDIgLTcxIC0xNDcgLTcyIC0xNzAgLTQ5IC0zNCAzNCAtMjYgNzk3NyA4IDgyNDUgODQgNjYzIDI2NyA5NDkgNjU3IDEwMjkgNzAgMTQgMjA4IDUgMjgyIC0xOXoiLz4KICAgIDxwYXRoIGNsYXNzPSJnbHlwaCBnbHlwaC0tbyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoODAzIDApIHNjYWxlKDAuMjUpIHRyYW5zbGF0ZSgwLjAwMDAwMCwxNjQwLjAwMDAwMCkgc2NhbGUoMC4xMDAwMDAsLTAuMTAwMDAwKSIgZD0iTTY2ODggOTAwMyBjLTEyIC0xNCAtMTcgLTU2IC0yMyAtMTczIC0xNCAtMjg5IC0xNSAtMjkxIC0xMjIgLTI0MyAtMTE5IDU1IC00MzYgMTgxIC00OTMgMTk2IC0zMCA4IC0xMTEgMzEgLTE4MCA1MiAtMjE0IDY0IC0zMDEgODIgLTY5NSAxNDAgLTEwNTEgMTU3IC0yMTQ5IC0xOTkgLTI2NzIgLTg2NyAtMTMzIC0xNjkgLTI3OSAtNDcxIC0zMTQgLTY0OCAtMjggLTE0NSAtMyAtMTU5IC00NTcgMjQ3IC0xMjggMTE1IC0xMTkgMTE2IC0yODEgLTQ5IC02MzEgLTY0OCAtMTA0MSAtMTQzNCAtMTIwMSAtMjMwMyAtMTcgLTkzIC0zMyAtMTcyIC0zNSAtMTc1IC0zOCAtNjIgLTU0IC05MTAgLTIyIC0xMTc1IDI0IC0xOTMgODUgLTUxNyAxMzMgLTcwNSA4OCAtMzQxIDMxNyAtODgwIDQ4MCAtMTEzMiAyNCAtMzcgNTEgLTgyIDYwIC0xMDAgMTggLTM2IDEyNCAtMTg4IDIxMiAtMzA2IDUzOSAtNzE2IDEzNjIgLTEyOTggMjE4NyAtMTU0NSAzNTEgLTEwNSA0OTYgLTEzNyA3ODAgLTE3MiA3MSAtOSAxNDMgLTIyIDE1OSAtMzAgNDMgLTIyIDkxOCAtMjIgOTYyIC0xIDE2IDggNjcgMjAgMTE0IDI2IDI1NiAzMyA0NDkgNjkgNjAyIDExNCAyNzIgNzkgMzUxIDEwNSA1MTMgMTcxIDExMzQgNDU4IDIwNDcgMTM2OSAyNDcxIDI0NjUgMjUgNjMgNTggMTQ5IDc0IDE5MSAyMzMgNjA1IDMxNSAxNTA0IDIwNSAyMjQ5IC00MiAyODMgLTE1NyA2NzggLTI5NSAxMDE1IC0xMzUgMzMwIC00MjcgODEwIC02NTMgMTA3MyAtNjQgNzYgLTY0IDc3IC04IDMwMCA5NiAzNzkgMTc2IDEzNDQgMTE2IDEzODkgLTMyIDIzIC0xNTk3IDE5IC0xNjE3IC00eiBtLTE2OTggLTE0OTggYzI1OSAtNDEgNTQzIC0xMzYgODE1IC0yNzIgMjQ5IC0xMjQgMjQ3IC0xMjAgMTE3IC0yNDQgLTM5MiAtMzc2IC04ODcgLTUyNSAtMTQ3NiAtNDQ0IC00NjIgNjQgLTcwMiAyMzEgLTcwMSA0OTAgMiAyNjMgMjc3IDQ0MiA3NTUgNDg5IDg1IDggMzk1IC00IDQ5MCAtMTl6IG0tMjY1NSAtMTQ2NiBjMjIwIC00MjUgNzA3IC04MTEgMTI0NSAtOTg3IDI4MiAtOTEgMzc5IC0xMTIgNzM1IC0xNTcgMjQzIC0zMSA3MzkgLTIzIDk4NSAxNSA2NjggMTA0IDEyODIgNDEzIDE3ODIgODk4IDExNSAxMTEgMTI5IDExNCAxNzAgMzcgNzUgLTE0MiAyMDAgLTU1NCAyMjMgLTczNSA0IC0zMCAxMSAtNzEgMTYgLTkxIDExMyAtNDQyIDYgLTEyODggLTIzMiAtMTgzMCAtNjAwIC0xMzcyIC0yMjM2IC0xOTc4IC0zNzQ0IC0xMzg3IC0xNDc2IDU3OCAtMjEyNCAyNTExIC0xMzY3IDQwNzggMTAxIDIxMSAxNDMgMjQ2IDE4NyAxNTl6Ii8+CiAgICA8cGF0aCBjbGFzcz0iZ2x5cGggZ2x5cGgtLWEyIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMDUyIDApIHNjYWxlKDAuMjUpIHRyYW5zbGF0ZSgwLjAwMDAwMCwxNjQwLjAwMDAwMCkgc2NhbGUoMC4xMDAwMDAsLTAuMTAwMDAwKSIgZD0iTTQ0MTUgOTAxNCBjLTI2OSAtMjEgLTMyNSAtMjYgLTM2NCAtMzUgLTI1IC01IC03OSAtMTQgLTEyMSAtMTkgLTEwNSAtMTQgLTQyMCAtNzcgLTQ3MiAtOTYgLTI0IC04IC0xMTUgLTM3IC0yMDMgLTY0IC04OCAtMjcgLTE5NCAtNjMgLTIzNSAtODAgLTQxIC0xOCAtMTI0IC01MSAtMTgzIC03NiAtMjUxIC0xMDIgLTYyNCAtMzIxIC04OTIgLTUyMiAtMTQ1MyAtMTA5NCAtMjA5OSAtMjk2NCAtMTY0NSAtNDc1NyAzMjIgLTEyNzAgMTE1MyAtMjMwNyAyMzE1IC0yODg3IDgzIC00MiAyMDQgLTk3IDI3MCAtMTIyIDY2IC0yNiAxNDUgLTU4IDE3NSAtNzEgMjE0IC05MyA3MDIgLTIwNSAxMDY1IC0yNDUgNTUgLTcgMTEzIC0xOCAxMjkgLTI2IDQzIC0yMSA3MDkgLTIxIDc1MiAwIDE2IDggNzYgMjAgMTM0IDI2IDIyNCAyMyA0ODIgNjcgNjI1IDEwNyAxNzEgNDggNDQ4IDEzNCA0NzYgMTQ4IDE1IDggNzkgMzUgMTQyIDU5IDYzIDI0IDIwNSA5MCAzMTUgMTQ1IDIxMSAxMDcgMjI4IDExMiAyNzAgODMgNjIgLTQzIDMzMyAtMTc3IDQ3MCAtMjMzIDQxNCAtMTcwIDc3MyAtMjU3IDEyNjEgLTMwOSA1NyAtNiAxMjAgLTE4IDE0MCAtMjYgMjggLTExIDcyIC0xNCAxNzcgLTEyIGwxMzkgMyAzIDc1NiBjMyA4ODUgMjIgNzgyIC0xNTMgNzk3IC0xOTYgMTcgLTU4MCA5OSAtNzA1IDE1MCAtODAgMzMgLTg5IDYwIC00MiAxMjAgMzAwIDM4NCA1NTIgOTMyIDczOCAxNjA0IDczIDI2NSAxMzYgOTI2IDExNCAxMTkzIC05MyAxMTI5IC02MDQgMTg2NyAtMTQ3MiAyMTMwIC0xMjYgMzggLTEyNCA0MSA1OSAyMDcgNDczIDQyOSA0NDQgMzg4IDM1MiA1MDMgLTM5NSA0OTcgLTEwNzQgOTc1IC0xNzk0IDEyNjIgLTQyNCAxNjkgLTEwMTQgMjc5IC0xNTMwIDI4NyAtMTQzIDIgLTI4MiAyIC0zMTAgMHogbTU5MCAtMTU4MyBjMjggLTUgMTE1IC0yMSAxOTUgLTM1IDI5MSAtNTEgNTU0IC0xNDIgODEzIC0yODIgMjI0IC0xMjEgNDU3IC0yOTIgNDU3IC0zMzUgMCAtMjEgMCAtMjEgLTIwNSAtMTEwIC02NTMgLTI4NiAtMTEzMiAtMTAyNSAtMTIzNiAtMTkwNyAtNDEgLTM0OCAtNiAtMTAxMSA3MiAtMTM3NyA0NCAtMjA4IDEzMiAtNTUyIDE1OSAtNjI0IDE1IC00MiA0NyAtMTI4IDcwIC0xOTEgNzkgLTIxNSAyMzIgLTUyNyAzNTggLTczMCA0MiAtNjcgMjggLTgzIC0xMTQgLTEyOSAtMzE0IC0xMDMgLTgyMyAtMTU4IC0xMTQ5IC0xMjYgLTk4OSA5NyAtMTY1NyA0ODUgLTIxNDUgMTI0NCAtNjEwIDk1MSAtNTk5IDI0NTggMjYgMzQwNyA0NjMgNzAzIDExMjAgMTA5MCAyMDQ0IDEyMDMgOTIgMTIgNTg2IDYgNjU1IC04eiBtMjE5MSAtMjI3NyBjNDAwIC0yNzUgMzUwIC0xNDU5IC05NCAtMjIxNCAtMTA4IC0xODUgLTExMSAtMTg0IC0yMjYgNjcgLTI5OSA2NTMgLTM1NyAxNDg5IC0xMzYgMTk0OSAxMDcgMjIzIDMwMCAzMDYgNDU2IDE5OHoiLz4KICA8L2c+CiAgPGcgY2xhc3M9IndvcmRtYXJrLXRhZyIgZmlsbD0iY3VycmVudENvbG9yIj48cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwIDQxMCkgc2NhbGUoMC4yNSkgdHJhbnNsYXRlKDAuMDAwMDAwLDQ0MC4wMDAwMDApIHNjYWxlKDAuMTAwMDAwLC0wLjEwMDAwMCkiIGQ9Ik0zMjEwMyAyNDIyIGMtMTYgLTkgLTY3IC0zOCAtMTE0IC02NCAtMjMzIC0xMzAgLTI3MCAtMTc5IC0xOTYgLTI1MyA0OCAtNDggMjIgLTU2IDM5NSAxMTUgNzAgMzMgNzQgNjQgMTcgMTUyIC0zOCA2MCAtNjMgNzIgLTEwMiA1MHogTTEzMjU0IDE5NDggYy0yNSAtMTIgLTU1IC02NCAtMTEyIC0xOTQgLTIyIC01MCAtNjEgLTEzMyAtODUgLTE4NSAtOTcgLTIwMiAtMjA2IC00MzggLTIzNiAtNTA5IC0xOCAtNDEgLTM4IC04NCAtNDUgLTk1IC03IC0xMSAtNDMgLTg3IC04MCAtMTY5IC0zNyAtODIgLTc0IC0xNTkgLTgxIC0xNzAgLTY3IC0xMDggLTQzIC0xMzQgMTI3IC0xMzggMTUwIC0zIDE1NyAxIDIxMyAxMTcgNDYgOTcgMzkgOTUgMzI4IDk1IDI4NCAwIDI3MCA0IDMyMyAtMTA2IDQ4IC0xMDIgNTYgLTEwNSAyMDkgLTEwNSAxNzYgMCAxODMgOSAxMTUgMTQ5IC0yMSA0NSAtNTQgMTE1IC03MSAxNTQgLTE3IDQwIC01NCAxMjAgLTgyIDE3OCAtMjcgNTggLTc5IDE2OCAtMTE1IDI0NSAtMzUgNzcgLTkyIDIwMSAtMTI3IDI3NSAtMzQgNzQgLTkxIDE5OCAtMTI2IDI3NCAtNTggMTI3IC0xMDMgMTk3IC0xMjYgMTk1IC00IDAgLTE4IC01IC0yOSAtMTF6IG00NSAtNjkyIGMxOCAtMjEgMTExIC0yMTQgMTExIC0yMjkgMCAtMjcgLTMwIC00MCAtOTggLTQ0IC0xNzYgLTkgLTE5MiA5IC0xMjcgMTQ1IDcwIDE0NyA4NSAxNjMgMTE0IDEyOHogTTE1MjMyIDE5MzcgYy0yMiAtMjMgLTUzIC04NyAtMTI3IC0yNjIgLTIxMSAtNDk1IC0yMTAgLTQ5NSAtMjc1IC0yMDAgLTEyIDU1IC0zNSAxNDEgLTUwIDE5MCAtMTUgNTAgLTM1IDEyMyAtNDUgMTYzIC0yNSAxMDQgLTM3IDExMiAtMTgwIDExMiAtMTg2IDAgLTE4NCAxMSAtNTkgLTQxMSAyNCAtODAgNjEgLTIxMCA4MiAtMjkwIDIyIC03OSA2MCAtMjE2IDg1IC0zMDQgMjUgLTg4IDYwIC0yMTIgNzcgLTI3NSA1MCAtMTg1IDY2IC0yMDcgMTI5IC0xODAgMzUgMTQgMzcgMTggMTc2IDMzNSAyNDMgNTU1IDIyNyA1MzkgMzI1IDMxNyAyOSAtNjQgNzQgLTE2NCAxMDAgLTIyMiAyNyAtNTggNzcgLTE3MCAxMTEgLTI1MCAxMjEgLTI3OCAxNjUgLTI2OCAyNTMgNTUgNjcgMjQ2IDE1MyA1NTAgMjExIDc1MCA0OCAxNjEgMTE1IDQxMCAxMTUgNDI2IDAgMzcgLTM5IDQ5IC0xNjAgNDkgLTEzNyAwIC0xNTEgLTYgLTE3MCAtODIgLTYgLTI0IC0yNyAtMTAxIC00NyAtMTczIC0xOSAtNzEgLTUwIC0xOTAgLTY4IC0yNjMgLTU0IC0yMjIgLTU0IC0yMjIgLTIxMCAxMzMgLTMyIDcyIC04MCAxODIgLTEwNyAyNDUgLTY1IDE1NCAtMTEzIDE5NCAtMTY2IDEzN3ogTTIxNDA4IDE5NDEgYy0xMyAtMTEgLTQ5IC03MyAtODAgLTEzOCAtMTA4IC0yMjkgLTIwNyAtNDQwIC0yNjggLTU3MyAtNjcgLTE0NSAtMTc3IC0zODIgLTI2NyAtNTczIC04MiAtMTc0IC04NCAtMTcxIDE2MSAtMTY3IDEwMiAyIDExMSA3IDE1MSA5MyA1MyAxMTcgMzYgMTEyIDMyOSAxMTUgMjk0IDMgMjcxIDExIDMzOSAtMTEzIDU1IC0xMDAgNjcgLTEwNSAyMjIgLTk4IDE3MiA5IDE3MSA1IDQyIDI3NSAtMzAgNjIgLTgyIDE3MiAtMTE1IDI0MyAtMjAyIDQzMiAtMjkxIDYyMyAtMzM4IDcyNiAtMTA0IDIzMSAtMTIyIDI1MiAtMTc2IDIxMHogbTU0IC02ODUgYzMxIC0zMSAxMTIgLTIyNyAxMDEgLTI0NCAtMTMgLTIyIC03OSAtMzEgLTE3MyAtMjMgLTk3IDggLTk5IDE4IC0zNCAxNTUgNjQgMTM2IDczIDE0NSAxMDYgMTEyeiBNMjI3OTUgMTkzNiBjLTMwIC0zMCAtMjggLTEzNzYgMSAtMTQyMyAxNCAtMjIgMjAgLTIzIDE0NCAtMjMgMTg2IDAgMTcwIC0zNiAxNzAgMzczIDAgNDY3IC0yMCA0NTMgMjU1IDE3NiA1OTggLTYwNCA1NjcgLTU3NSA2MTUgLTU2NCA1MSAxMSA1MCAxIDUwIDczNCAwIDgxMyAxOSA3MzEgLTE2NSA3MzEgLTE3MyAwIC0xNTkgMzMgLTE2NSAtMzc3IC02IC00MzAgMTggLTQxNyAtMjY2IC0xNDEgLTExNSAxMTIgLTI1MiAyNDMgLTMwNCAyOTIgLTUyIDQ5IC0xMTEgMTA2IC0xMzAgMTI3IC0xMDMgMTExIC0xNjIgMTM4IC0yMDUgOTV6IE0yODA1NSAxOTQ5IGMtNTAwIC04NCAtNzYwIC02MjYgLTUyMyAtMTA5MSAyMjggLTQ0OCA4ODkgLTUyOSAxMjE3IC0xNDkgNDY5IDU0NSAxMyAxMzU5IC02OTQgMTI0MHogbTI4MiAtMzUxIGMyNzkgLTEwNCAzNDkgLTQ4MyAxMjggLTY4NyAtMTUwIC0xMzggLTM0OCAtMTQ5IC01MTUgLTI4IC0zODMgMjc5IC01NyA4ODEgMzg3IDcxNXogTTM2NDM0IDE5NTEgYy02MjAgLTk5IC04MzQgLTkyNyAtMzQyIC0xMzIwIDQyOSAtMzQyIDEwODIgLTEyNSAxMTk5IDM5OSAxMjEgNTQ0IC0zMTEgMTAwOCAtODU3IDkyMXogbTIyNiAtMzM3IGMyNzYgLTY1IDQwNyAtMzkyIDI1MCAtNjI0IC0xODUgLTI3MiAtNTYwIC0yNDQgLTcxNSA1MiAtMTU1IDI5NCAxMzQgNjUwIDQ2NSA1NzJ6IE0zODcxNyAxOTQ4IGMtMTcgLTE0IC03MCAtMTIzIC0xNzIgLTM1OCAtMTc3IC00MDcgLTE3MiAtNDA2IC0yNTUgLTYwIC0xMDYgNDQ2IC04MiA0MTAgLTI2MSA0MTAgLTE3MSAwIC0xNzcgLTExIC0xMTAgLTIyMCAyMiAtNjcgNDMgLTEzNyA0NyAtMTU0IDEyIC02MCA3NiAtMjkyIDk5IC0zNjEgMTMgLTM4IDQyIC0xNDIgNjUgLTIzMCA5MSAtMzU0IDEzOSAtNDkyIDE3MyAtNTAwIDYyIC0xNiA4MiAxNyAyMzIgMzcxIDI0IDU2IDcwIDE1OSAxMDIgMjMwIDMzIDcxIDY4IDE0OCA3OCAxNzIgNDEgOTcgNDEgOTcgMjY3IC00MTggMTQxIC0zMjQgMTcwIC0zNjkgMjI0IC0zNTYgMzUgOSA0OSAzOCA4MyAxNzEgMTYgNjYgNDAgMTQ3IDUxIDE4MCAxMiAzMyA0OCAxNjEgODEgMjg1IDMzIDEyMyA2OSAyNDkgNzkgMjgwIDEwIDMwIDM1IDExOCA1NSAxOTUgMjAgNzcgNDcgMTc1IDYxIDIxOCA0MSAxMzQgMzggMTM3IC0xMzUgMTM3IC0xNjYgMCAtMTU4IDkgLTIxMSAtMjIwIC03NyAtMzI1IC0xMjIgLTQ2MiAtMTQ5IC00NDYgLTE2IDEwIC03MyAxMjUgLTE0MiAyODYgLTE3NCA0MDkgLTE5NCA0MzkgLTI2MiAzODh6IE0xNzIyNyAxOTEzIGMtMTIgLTIxIC00MCAtNzYgLTYxIC0xMjMgLTIyIC00NyAtNjggLTE0NCAtMTAzIC0yMTcgLTM1IC03MyAtNzAgLTE0OSAtNzcgLTE3MCAtOCAtMjEgLTQxIC05NCAtNzQgLTE2MyAtMTA5IC0yMjkgLTIwMiAtNDI3IC0yMDIgLTQzMyAwIC00IC0yNyAtNjIgLTYwIC0xMzAgLTkwIC0xODYgLTg5IC0xODcgOTUgLTE4NyAxNTcgMCAxNjEgMiAyMTQgMTA4IDUxIDEwNSA0MiAxMDIgMzIzIDEwMiAyODEgMCAyNzQgMiAzMjQgLTk0IDYyIC0xMTkgNTYgLTExNiAyMTAgLTExNiAxOTEgMCAxOTQgNSAxMDggMTgxIC0zMSA2MyAtNjQgMTM0IC03NCAxNTkgLTEwIDI1IC00NyAxMDYgLTgzIDE4MCAtMTE5IDI0OSAtMjA1IDQzNSAtMjI2IDQ4OCAtMTIgMzAgLTM5IDg2IC02MCAxMjUgLTIxIDQwIC01OCAxMTggLTgxIDE3NSAtNjggMTYwIC0xMjIgMTk3IC0xNzMgMTE1eiBtNzkgLTY2MCBjMjcgLTI3IDEwNCAtMTk0IDEwNCAtMjI1IDAgLTM5IC0yOSAtNDggLTE0MCAtNDQgLTEzOSA1IC0xNDEgMTEgLTcwIDE1NyA2NyAxMzggNzMgMTQ0IDEwNiAxMTJ6IE0xMDcxMCAxOTIwIGMtMjAgLTIwIC0yMCAtMzMgLTIwIC03MDggMCAtODE0IC0yMCAtNzIzIDE2MCAtNzI0IDE3MCAtMSAxNTcgLTI0IDE2MyAyOTEgNSAzMjUgLTI5IDI5MSAzMDEgMjkxIDEzOCAwIDI1NiAtNCAyNjMgLTggMjcgLTE3IDMzIC03MCAzMyAtMzAyIDAgLTI5NSAtMTUgLTI3MiAxNjggLTI2OCAxMzQgMyAxMzcgMyAxNDkgMjggMTAgMjAgMTIgMTcwIDEwIDcwMyAtMiA4MDMgMTcgNzE3IC0xNjYgNzE3IC0xNzEgMCAtMTU4IDIzIC0xNjMgLTI4MSAtNSAtMzEzIDMyIC0yNzkgLTI5OCAtMjc5IC0zMjUgMCAtMjk0IC0yNCAtMjk3IDIzNCAtMiAyOTcgLTEgMjg0IC0yMyAzMDYgLTE4IDE4IC0zMyAyMCAtMTQwIDIwIC0xMDcgMCAtMTIyIC0yIC0xNDAgLTIweiBNMTg2NDkgMTkyMSBjLTQwIC0zMiAtNDMgLTEzNzYgLTMgLTE0MTYgMjMgLTIzIDI3NiAtMjIgMjk1IDIgMjkgMzQgMTkgMTM5MCAtMTAgMTQxNCAtMzUgMjggLTI0NyAyOCAtMjgyIDB6IE0xOTgxMCAxOTMzIGMtNDAgLTE0IC00MCAtMTIgLTQwIC03MTggMCAtNjAwIDIgLTY4MyAxNiAtNzAzIDIxIC0zMSAyNzAgLTM0IDI5NyAtNCAyOSAzMiAyNSAxMzg0IC0zIDE0MTIgLTIwIDIwIC0yMjQgMzAgLTI3MCAxM3ogTTI1ODU5IDE5MjEgYy0yNyAtMjIgLTQ0IC0xMjk2IC0xOSAtMTM4MyAxMyAtNDYgMzIgLTUzIDE1NSAtNTIgMTY3IDAgMTU5IC0xNCAxNjIgMjY4IDMgMjcyIC0xMSAyNTEgMTcxIDI1OSAyMjYgMTAgMzMzIDYxIDQzMiAyMDcgMTgwIDI2NSAzMiA2NDQgLTI3OCA3MDkgLTEwMSAyMSAtNTk1IDE1IC02MjMgLTh6IG01NjkgLTMwOSBjMTI3IC01OCAxMTIgLTIyOSAtMjUgLTI3OCAtNjAgLTIxIC0xOTUgLTE4IC0yMjQgNSAtMjQgMTkgLTM0IDE4MSAtMTYgMjUzIDEyIDQ3IDE3OSA2MCAyNjUgMjB6IE0yOTY4OSAxOTIxIGMtMjcgLTIyIC00NCAtMTI5NiAtMTkgLTEzODIgMTMgLTQ3IDE5IC00OSAxNjcgLTUwIDE4MCAtMSAxNjcgLTI2IDE3MyAzMTQgNiAzMTcgMTEgMzMwIDg2IDIyNSAyMSAtMjkgNzQgLTEwMiAxMTkgLTE2MyA0NSAtNjAgMTIxIC0xNjMgMTY4IC0yMjcgMTEzIC0xNTMgMTA1IC0xNDkgMjY5IC0xNTEgMjY3IC00IDI2NyAtNSAtMTMgMzU3IC0zMDAgMzg5IC0zMDQgMzk1IC0yOTQgNDI3IDQgMTAgMTEwIDE0OCAyMzYgMzA1IDI4OSAzNjEgMjg5IDM2NCA2MyAzNjQgLTE1NiAwIC0xNzAgLTYgLTI0MCAtOTMgLTMyIC00MCAtNzQgLTkyIC05NCAtMTE3IC0yMCAtMjUgLTgwIC05OSAtMTMyIC0xNjUgLTEzMCAtMTYzIC0xNjcgLTE5MCAtMTY5IC0xMjMgMCAxMyAwIDEwOSAwIDIxMyAwIDIwMSAtOCAyNTggLTM5IDI3NSAtMzYgMjAgLTI1NSAxMyAtMjgxIC05eiBNMzE1NDAgMTkyMCBjLTI4IC0yOCAtMzIgLTEzNjkgLTQgLTE0MDggMTUgLTIyIDE1IC0yMiA0NDggLTIyIDUyMCAwIDQ3MSAtMTUgNDcxIDE0NSAwIDE2NiAyMSAxNTUgLTMxMSAxNTUgLTMyNyAwIC0zMDcgLTkgLTMwMiAxNDUgNCAxMzkgLTE1IDEyOSAyNTkgMTM1IDI3NyA2IDI1OSAtNCAyNTkgMTQ2IDAgMTcxIDEyIDE2NCAtMjcyIDE2NCAtMjU5IDAgLTI1MiAtNCAtMjQ2IDEzMSA1IDEzMSAtMTMgMTI0IDI5NiAxMjUgMzM2IDEgMzIyIC02IDMyMiAxNjAgMCAxNTUgMzcgMTQ0IC00NzUgMTQ0IC00MTIgMCAtNDI2IC0xIC00NDUgLTIweiBNMzQyMDAgMTkyMCBjLTI5IC0yOSAtMzIgLTEzNzMgLTIgLTE0MDkgMjYgLTMzIDYwMiAtMzMgNzAxIDAgMzExIDEwMSAzOTAgNDY1IDE0MSA2NDYgLTk5IDcyIC05OSA2NSAtMTAgMTUzIDIyMyAyMTggMTIzIDUzMiAtMTk1IDYxNSAtMTAwIDI2IC02MDggMjIgLTYzNSAtNXogbTU0NCAtMzA0IGM4OCAtNTcgODQgLTE3MiAtNyAtMjQwIC00MiAtMzEgLTE3NyAtMzYgLTIwNiAtNyAtMzIgMzIgLTMyIDIyMCAwIDI1MiAyNyAyNyAxNjkgMjQgMjEzIC01eiBtMTMgLTU2MyBjMTA1IC01NSAxMDggLTE4NiA0IC0yNDcgLTUzIC0zMCAtMjA2IC0yOSAtMjMyIDMgLTMwIDM2IC0yOCAyMjIgMiAyNTIgMjggMjggMTY2IDIzIDIyNiAtOHogTTQwMzMwIDE5MjAgYy0zMCAtMzAgLTMyIC0xMzczIC0yIC0xNDEwIDE4IC0yMiAxOCAtMjIgNDE3IC0yMiA0NzUgMSA0MzAgLTE0IDQzMCAxNDYgMCAxNjYgMTcgMTU2IC0yNjQgMTU2IC0xMjQgMCAtMjMxIDQgLTIzOCA4IC0zMCAxOSAtMzMgNzAgLTMzIDU4NiAwIDQ5NCAtMSA1MjQgLTE4IDUzOSAtMzAgMjcgLTI2NCAyNSAtMjkyIC0zeiIvPjwvZz4KPC9zdmc+Cg==") center top/100% auto no-repeat}
+.fr-leaf--end-a{right:clamp(-120px,-6vw,-40px);top:-10%;width:clamp(220px,20vw,360px);transform:rotate(-20deg);z-index:2}
+.fr-leaf--end-b{left:clamp(-40px,-2vw,-10px);top:-14%;width:clamp(100px,9vw,160px);transform:rotate(28deg);z-index:0}
+.fr-footer__cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,3vw,48px);padding:clamp(48px,6vw,80px) var(--gutter) 40px;border-top:1px solid rgb(200 209 211 / .14)}
+.fr-footer__head{margin:0 0 14px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--bg-light)}
+.fr-footer__head--gap{margin-top:28px}
+.fr-footer ul{margin:0;padding:0;list-style:none}
+.fr-footer__two{columns:2;column-gap:24px}
+.fr-footer__cols a{display:inline-flex;align-items:center;min-height:40px;font-size:15px;color:var(--light-gray);text-decoration:none;transition:color .3s var(--ease-out)}
+.fr-footer__cols a:hover{color:var(--bg-light)}
+.fr-footer__base{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px var(--gutter) calc(24px + env(safe-area-inset-bottom,0px));border-top:1px solid rgb(200 209 211 / .14)}
+.fr-footer__base p{margin:0;font-size:12px;color:rgb(200 209 211 / .6)}
+.fr-footer__logo{display:flex;width:44px;height:44px;color:var(--bg-light);transition:color .3s var(--ease-out)}
+.fr-footer__logo:hover{color:var(--powder-pink)}
+.fr-footer__logo svg{width:44px;height:44px}
+
+/* ---------- Tablet landscape / small laptops ---------- */
+@media (max-width:1100px) and (min-aspect-ratio:4/5){
+  .fr-intro{grid-template-areas:"head head head head head head head head head head head head" "body body body body body body quote quote quote quote quote quote"}
+  .fr-videogrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fr-video--big{grid-column:1 / -1;grid-row:auto}
+  .fr-video--big .fr-video__btn{aspect-ratio:16/9;height:auto;min-height:0}
+  .fr-check__col--offer,.fr-check__col:not(.fr-check__col--offer){grid-column:1 / -1}
+  .fr-grow__text{grid-column:7 / -1}
+  .fr-big{grid-column:1 / span 6}
+}
+
+/* ---------- Phones and upright tablets: composed for the column ---------- */
+@media (max-aspect-ratio:4/5), (max-width:699px){
+  .fr-title{font-size:min(16vw,104px)}
+  .fr-h2{font-size:min(11.4vw,72px)}
+  .fr-cta__title{font-size:min(12.4vw,80px)}
+  .fr-line:nth-child(2),.fr-line:nth-child(3){padding-left:0}
+  .fr-text{font-size:16px}
+
+  .fr-hero{min-height:0;height:auto;flex-direction:column;align-items:stretch;padding:0 0 48px}
+  .fr-hero__media{position:relative;inset:auto;height:min(64svh,128vw)}
+  .fr-hero__shade{background:linear-gradient(0deg,var(--night) 0%,rgb(var(--night-rgb) / 0) 36%),linear-gradient(180deg,rgb(var(--night-rgb) / .6) 0%,rgb(var(--night-rgb) / 0) 26%)}
+  .fr-hero__video{object-position:63% 46%}
+  .fr-hero__copy{max-width:none;margin-top:-72px;padding:0 var(--gutter)}
+  .fr-hero__text{font-size:16px;margin-top:20px}
+  .fr-actions .btn{flex:1 1 140px;padding:0 20px}
+  .fr-leaf--hero-a{width:46vw;left:-16vw;top:calc(min(64svh,128vw) - 30vw);bottom:auto}
+
+  .fr-intro{grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "body" "quote";padding:88px var(--gutter) 72px;row-gap:0}
+  .fr-intro__quote{margin-top:40px}
+  .fr-wide{height:min(70svh,130vw)}
+  .fr-wide__title{font-size:min(13vw,72px)}
+
+  .fr-grow{padding:80px var(--gutter) 260px}
+  .fr-grow__cols{grid-template-columns:minmax(0,1fr)}
+  .fr-big,.fr-grow__text{grid-column:1}
+  .fr-big{font-size:min(7.6vw,40px)}
+  .fr-grow__scene{width:72vw;left:var(--gutter);bottom:-2%}
+  .fr-leaf--grow-a{width:42vw;right:-14vw;bottom:-4%}
+
+  .fr-store{padding:88px var(--gutter) 80px}
+  .fr-store__head{grid-template-columns:minmax(0,1fr)}
+  .fr-store__head .fr-label,.fr-store__head .fr-h2,.fr-store__head .fr-text{grid-column:1;grid-row:auto}
+  .fr-store__head .fr-text{margin-top:22px}
+  .fr-modules{grid-template-columns:minmax(0,1fr);gap:56px}
+  .fr-module:nth-child(n){margin-top:0}
+  .fr-module__img{aspect-ratio:4/3.4;margin-left:calc(-1 * var(--gutter));margin-right:calc(-1 * var(--gutter));border-radius:0}
+
+  .fr-videos{padding:88px var(--gutter) 64px}
+  .fr-videos__head{grid-template-columns:minmax(0,1fr)}
+  .fr-videos__head .fr-label,.fr-videos__head .fr-h2,.fr-videos__head .fr-text{grid-column:1;grid-row:auto}
+  .fr-videos__head .fr-text{margin-top:20px}
+  .fr-videogrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 12px}
+  .fr-video--big{grid-column:1 / -1;grid-row:auto}
+  .fr-video--big .fr-video__btn{aspect-ratio:16/9;height:auto;min-height:0}
+  .fr-video__cap{font-size:11px;letter-spacing:.12em}
+
+  .fr-check{padding:88px var(--gutter) 80px}
+  .fr-check__palm{width:70vw;right:-20vw}
+  .fr-check__cols{grid-template-columns:minmax(0,1fr)}
+  .fr-check__col--offer,.fr-check__col:not(.fr-check__col--offer){grid-column:1}
+  .fr-check__list{columns:1}
+  .fr-brochure{grid-template-columns:minmax(0,1fr);justify-items:start}
+  .fr-brochure img{width:62%;max-width:260px}
+  .fr-brochure__copy .btn{width:100%}
+
+  .fr-steps{padding:88px var(--gutter) 80px}
+  .js .fr-steps__rail{display:none}
+  .fr-steplist{grid-auto-flow:row;grid-template-columns:minmax(0,1fr);border-left:1px solid rgb(0 68 67 / .2);margin-left:22px}
+  .fr-step{position:relative;padding:0 0 34px 34px}
+  .fr-step__no{position:absolute;left:-22px;top:-4px;margin:0}
+  .fr-step h3{padding-top:6px}
+
+  .fr-cta{padding:96px var(--gutter) 80px}
+  .fr-cta .fr-actions .btn{width:100%}
+  .fr-ways{grid-template-columns:minmax(0,1fr);gap:0;margin-top:64px}
+  .fr-way{padding:22px 0 30px}
+  .fr-way .btn{width:100%}
+  .fr-leaf--cta-a{width:52vw;left:-22vw;top:-4%}
+  .fr-leaf--cta-c{width:26vw;right:-6vw;bottom:auto;top:30%}
+
+  .fr-partners{grid-template-columns:minmax(0,1fr);row-gap:28px}
+  .fr-partners__img,.fr-partners__copy{grid-column:1}
+  .fr-partners__copy .btn{width:100%}
+
+  .fr-footer__cols{grid-template-columns:minmax(0,1fr);gap:8px}
+  .fr-footer__col{padding-bottom:16px}
+  .fr-leaf--wide{display:none}
+  .fr-leaf--end-a{width:46vw;right:-14vw;top:-18%}
+}
+/* short phones: the hero film a little lower so the headline and actions start in the first screen */
+@media (max-width:699px) and (max-height:700px){
+  .fr-hero__media{height:min(52svh,110vw)}
+  .fr-leaf--hero-a{top:calc(min(52svh,110vw) - 30vw)}
+}
+
+/* long German words ("Nationalgericht", "Wachstumskurs", "durchzustarten?") decide these sizes, so no line is cut */
+.fr-intro .fr-h2{font-size:clamp(40px,5vw,96px)}
+@media (max-aspect-ratio:4/5), (max-width:699px){
+  .fr-intro .fr-h2{font-size:min(8.6vw,64px)}
+  .fr-wide__title{font-size:min(9.8vw,72px)}
+  .fr-cta__title{font-size:min(8.8vw,72px)}
+}
+</style>
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body class="fr-page">
+<!-- Franchise page (css/franchise.css, js/franchise.js). Same header, tokens, type, buttons and leaf cut-outs as the home page.
+     SOURCE OF TRUTH: maloa.com/franchise/ (read 01.10.2026): section order, copy (verbatim, with its own Du/Ihr), the six partner
+     videos (YouTube), store photos, brochure, self-disclosure, franchise phone and e-mail, partner area. Photos and videos are the
+     client's own, loaded from maloa.com / YouTube; the leaves and the hero film come from the project's CDN (self-host in production).
+     Nothing invented: facts the client still has to supply are marked data-todo (search for it) and are never shown. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <path id="maloa-m" transform="translate(10 0) scale(0.25) translate(0.000000,1640.000000) scale(0.100000,-0.100000)" d="M5439 9000 c-1101 -126 -1965 -831 -2429 -1982 -23 -55 -49 -117 -60 -138 -11 -21 -42 -95 -70 -165 -28 -70 -62 -149 -76 -177 -14 -27 -38 -84 -53 -126 -16 -42 -48 -117 -71 -167 -23 -49 -55 -124 -72 -165 -16 -41 -51 -124 -78 -185 -67 -152 -250 -583 -250 -589 0 -3 -16 -38 -35 -78 -19 -40 -59 -131 -88 -203 -75 -178 -136 -322 -216 -505 -38 -85 -76 -176 -86 -202 -20 -53 -41 -76 -55 -62 -6 6 -11 840 -12 2221 -3 1799 -5 2214 -16 2225 -25 25 -1600 18 -1618 -6 -26 -36 -21 -8547 5 -8570 22 -20 1651 -27 1688 -8 16 9 66 117 199 427 26 61 76 178 111 260 36 83 99 231 140 330 41 99 79 185 84 191 5 6 32 68 59 137 27 69 59 145 71 169 12 24 48 106 79 183 32 77 74 176 93 220 86 196 220 510 301 705 31 74 74 173 96 220 22 47 65 146 96 220 118 285 187 446 209 490 12 25 35 79 49 120 15 41 49 122 76 180 27 58 74 166 105 240 127 303 262 619 439 1025 35 83 87 204 115 270 88 212 168 399 215 502 25 55 46 103 46 107 0 49 241 551 326 681 510 770 1641 752 1946 -30 117 -301 119 -296 -230 -405 -680 -211 -1228 -627 -1667 -1266 -103 -150 -295 -524 -367 -714 -22 -58 -55 -143 -73 -190 -170 -428 -285 -1082 -271 -1545 38 -1352 699 -2326 1761 -2596 44 -11 90 -27 102 -35 34 -21 779 -21 803 1 9 8 52 22 96 31 714 144 1256 729 1450 1564 134 573 141 676 149 2185 7 1270 -6 1141 114 1131 173 -16 513 -111 660 -185 573 -290 890 -754 1016 -1486 13 -78 15 -285 15 -1596 0 -1420 1 -1508 18 -1528 25 -31 1606 -36 1629 -5 16 22 19 2719 3 3004 -21 362 -56 559 -165 920 -44 143 -53 168 -135 365 -423 1021 -1315 1804 -2350 2064 -195 49 -644 121 -756 121 -49 0 -61 23 -84 165 -57 353 -204 744 -389 1034 -335 526 -758 860 -1366 1078 -282 101 -886 162 -1226 123z m1351 -4346 c26 -68 5 -2020 -25 -2289 -72 -652 -321 -897 -656 -646 -483 361 -476 1489 15 2346 194 338 619 714 666 589z"/>
+  </defs>
+</svg>
+
+<header class="site-header">
+  <div class="site-header__row">
+    <a class="site-header__logo" href="https://aik570.github.io/my-web-/maloa-site/index.html" aria-label="Ma'loa – Startseite">
+      <svg viewBox="0 0 726 726" aria-hidden="true">
+        <circle cx="363" cy="363" r="363" fill="currentColor"/>
+        <g transform="translate(114.76 -100.00) scale(1.5568)" style="fill:var(--deep-teal)"><use href="#maloa-m"/></g>
+      </svg>
+    </a>
+    <nav class="site-nav" aria-label="Hauptmenü">
+      <ul class="site-nav__list">
+        <li><a class="site-nav__link" href="https://maloa.com/what-is-poke/">Über Ma'loa</a></li>
+        <li><a class="site-nav__link" href="https://maloa.com/produkte/">Menü</a></li>
+        <li class="site-nav__md"><a class="site-nav__link" href="https://maloa.smoothr.de/map">Standorte</a></li>
+        <li class="site-nav__md"><a class="site-nav__link" href="https://maloa.com/catering/">Catering</a></li>
+        <li class="site-nav__lg"><a class="site-nav__link" href="https://maloa.com/jobs/">Jobs</a></li>
+        <li class="site-nav__md"><a class="site-nav__link" href="franchise.html" aria-current="page">Franchise</a></li>
+        <li class="site-nav__lg"><a class="site-nav__link" href="https://www.paynoweatlater.de/at/maloa/?crt=maloa">Gutscheine</a></li>
+      </ul>
+    </nav>
+    <a class="site-header__order" href="https://maloa.smoothr.de/map">Bestellen</a>
+  </div>
+</header>
+
+<main>
+  <!-- 01 · Hero: the MA'LOA film behind "Ride the healthy wave!", leaves in front -->
+  <section class="fr-hero" aria-labelledby="fr-title">
+    <div class="fr-hero__media" aria-hidden="true">
+      <video class="fr-hero__video" autoplay muted loop playsinline disablepictureinpicture preload="metadata"
+             poster="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/f0917650-8606-4f26-9dd2-63d7050473ed.webp">
+        <source src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/ddc9eb47-501e-4cee-af2d-dbbc51047227.mp4" type="video/mp4" media="(min-width: 900px)">
+        <source src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/ec8320e3-dc35-404f-82dc-3b6648f7a9a6.mp4" type="video/mp4">
+      </video>
+      <div class="fr-hero__shade"></div>
+    </div>
+    <img class="fr-leaf fr-leaf--hero-a" data-speed="0.5" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/658ce916-1759-451e-ae5b-e7e14dff0731.webp" width="953" height="1100" alt="" decoding="async">
+    <img class="fr-leaf fr-leaf--hero-b fr-leaf--wide" data-speed="-0.4" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/90823238-0bef-4f67-8ed1-63815cdcb3f9.webp" width="759" height="1200" alt="" decoding="async">
+    <div class="fr-hero__copy">
+      <p class="fr-label" data-reveal>Franchise</p>
+      <h1 class="fr-title" id="fr-title"><span class="fr-line"><span>Ride the</span></span> <span class="fr-line"><span>healthy wave!</span></span></h1>
+      <p class="fr-hero__text" data-reveal>Wir bieten Euch ein Franchise-Modell an, mit welchem Ihr ein Stück Hawaii und gesundes Essen in Eure Stadt bringen könnt!</p>
+      <p class="fr-actions" data-reveal>
+        <a class="btn btn--primary" href="#kontakt">Franchise anfragen</a>
+        <a class="btn btn--ghost" href="https://maloa.com/wp-content/uploads/2026/02/Maloa-Franchise_2026-01_DE_Digital.pdf">Broschüre</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- 02 · Introduction (light): the statement and the quote banner from maloa.com/franchise/ -->
+  <section class="fr-intro fr-light" id="konzept" aria-labelledby="fr-intro-title">
+    <div class="fr-intro__head">
+      <p class="fr-label" data-reveal>Ma’Loa – Hawaiian Poké Bowl</p>
+      <h2 class="fr-h2" id="fr-intro-title"><span class="fr-line"><span>Poké ist DAS</span></span> <span class="fr-line"><span>hawaiianische</span></span> <span class="fr-line"><span>Nationalgericht</span></span></h2>
+    </div>
+    <div class="fr-intro__body">
+      <p class="fr-lead" data-reveal>… welches wir mit Ma’Loa – Hawaiian Poké Bowl nach Deutschland gebracht haben.</p>
+      <p class="fr-text" data-reveal>Gesund, lecker und schnell zubereitet ist Poké das perfekte nachhaltige Gericht, welches wir bereits in Berlin etabliert haben.</p>
+      <p class="fr-text" data-reveal>Mit fairen Konditionen und einer tollen Marke könnt Ihr Teil von Ma’Loa werden.</p>
+    </div>
+    <figure class="fr-intro__quote" data-reveal><img src="https://maloa.com/wp-content/uploads/2020/06/Banner_Daniel_Quote_DE.png" sizes="(max-aspect-ratio: 4/5) 100vw, 46vw" width="953" height="530" alt="Zitat aus dem Ma’Loa Team zur Franchise" loading="lazy" decoding="async"></figure>
+  </section>
+
+  <!-- 03 · Large media: a store, full bleed, with the growth headline -->
+  <figure class="fr-wide">
+    <div class="fr-wide__img"><img src="https://maloa.com/wp-content/uploads/2024/02/maloa1_Nora_Tabel-0414.jpg" sizes="100vw" width="2000" height="1333" alt="Ein Ma’Loa Store" loading="lazy" decoding="async"></div>
+    <figcaption class="fr-wide__cap"><span class="fr-label">Unsere Geschichte</span><span class="fr-wide__title">Auf gesundem Wachstumskurs</span></figcaption>
+  </figure>
+
+  <!-- 04 · Growth story (dark), framed by the original page's leaf illustration -->
+  <section class="fr-grow" aria-label="Auf gesundem Wachstumskurs">
+    <img class="fr-leaf fr-leaf--grow-a" data-speed="-0.5" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/1e985fa3-98a9-4f00-942b-62fc5bcdedaa.webp" width="624" height="720" alt="" loading="lazy" decoding="async">
+    <!-- The original page's illustration in a small layered scene: two leaves (the page's own cut-outs, far depth)
+         grow from behind it, one (mid depth) crosses in front of its lower corner; a soft shadow seats it -->
+    <div class="fr-grow__scene" aria-hidden="true">
+      <img class="fr-grow__leaf fr-grow__leaf--back-a" data-depth="0.25" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/73343198-6048-4b4e-9fc4-b7a4d4a0e6d0.webp" width="354" height="560" alt="" loading="lazy" decoding="async">
+      <img class="fr-grow__leaf fr-grow__leaf--back-b" data-depth="0.35" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/b1312f09-f80c-41a2-94c8-db2de06f700b.webp" width="273" height="520" alt="" loading="lazy" decoding="async">
+      <img class="fr-grow__art" src="https://maloa.com/wp-content/uploads/2020/05/franchise-bottom.png" width="615" height="431" alt="" loading="lazy" decoding="async">
+      <img class="fr-grow__leaf fr-grow__leaf--front" data-depth="1" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/a9721976-0d00-41a9-bb6f-04f242bfa250.webp" width="625" height="720" alt="" loading="lazy" decoding="async">
+    </div>
+    <div class="fr-grow__cols">
+      <p class="fr-big" data-reveal>Ma’Loa wächst und das nicht erst seit gestern. Inzwischen sind wir in mehreren Ländern Europas für Euch vertreten.</p>
+      <div class="fr-grow__text">
+        <p class="fr-text" data-reveal>Mit Sicherheit werden es noch mehr. Wie das kommt? Uns geht es nicht um spektakuläre Aufstiege, wie manche sie auf Hawaiis höchste Vulkane wagen. Wir vergrößern uns langsam. Denn nur so kann alles, was wir bereits bieten, noch besser werden.</p>
+        <p class="fr-text" data-reveal>Unser Team kennt keine klassischen Hierarchien. Wir sind jung, aufgeschlossen, voller Ehrgeiz und lieben einfach gutes Essen. Poké Bowl kommt in Deutschland und Europa gerade erst an. Das ist unsere Chance, gemeinsam mit Euch!</p>
+        <p class="fr-text" data-reveal>Wir sind in den Markt getreten mit der festen Überzeugung, ein völlig neues gastronomisches Ladenkonzept zu verbreiten: Grün wie die schönste Pazifikinsel und gut gelaunt wie die Inselbewohner auf Hawaii. Unsere ersten Restaurants in Berlin und Köln legten den Grundstein für etwas Großes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 · Store concept: three image-led modules with the store photos from maloa.com/franchise/ -->
+  <section class="fr-store fr-light" aria-labelledby="fr-store-title">
+    <div class="fr-store__head">
+      <p class="fr-label" data-reveal>Unser Store-Konzept</p>
+      <h2 class="fr-h2" id="fr-store-title"><span class="fr-line"><span>Ein Store,</span></span> <span class="fr-line"><span>wie ein Baukasten</span></span></h2>
+      <p class="fr-text" data-reveal>Mit unseren bewährten Store-Modulen kannst auch du deinen Store ganz einfach an deine standortspezifischen Bedürfnisse und Anforderungen anpassen!</p>
+    </div>
+    <ol class="fr-modules">
+      <li class="fr-module" data-reveal>
+        <figure class="fr-module__img"><img src="https://maloa.com/wp-content/uploads/2020/05/MALOA_Hausvogteiplatz-5_bearbeitet-1024.png" sizes="(max-aspect-ratio: 4/5) 100vw, 34vw" width="1024" height="683" alt="Die Poké Bar im Ma’Loa Store am Hausvogteiplatz" loading="lazy" decoding="async"></figure>
+        <span class="fr-module__no">01</span>
+        <h3 class="fr-module__title">Poké Bar</h3>
+        <p>Das Herzstück jedes Ma’Loa Stores ist der Ort, an dem unsere Gäste ein Lächeln bekommen und ihre individuellen Poké Bowls nach Lust und Laune zusammenstellen.</p>
+      </li>
+      <li class="fr-module" data-reveal>
+        <figure class="fr-module__img"><img src="https://maloa.com/wp-content/uploads/2020/05/IMG_0414_1.jpg" sizes="(max-aspect-ratio: 4/5) 100vw, 34vw" width="1200" height="800" alt="Ein Ma’Loa Store von innen" loading="lazy" decoding="async"></figure>
+        <span class="fr-module__no">02</span>
+        <h3 class="fr-module__title">Modulares Prinzip</h3>
+        <p>Das Ma’Loa Store-Konzept ist höchst flexibel und individuell integrierbar. Das System selbst ist modular aufgebaut und damit, wie ein Baukasten, mit allem Interior an alle Ladengrößen individualisierbar.</p>
+      </li>
+      <li class="fr-module" data-reveal>
+        <figure class="fr-module__img"><img src="https://maloa.com/wp-content/uploads/2020/01/Modulares_System.jpg" sizes="(max-aspect-ratio: 4/5) 100vw, 34vw" width="984" height="656" alt="Green Store Design in einem Ma’Loa Store" loading="lazy" decoding="async"></figure>
+        <span class="fr-module__no">03</span>
+        <h3 class="fr-module__title">Green Store Design</h3>
+        <p>Das hawaiianische Urlaubsgefühl vermitteln wir konsequent in jedem Laden. Neben der tropischen Pflanzendecke gibt es bei uns Schaukeln in den Schaufenstern, Surfbretter als Menüboards und einzigartige hawaiianische Collagen.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- 06 · Partner videos: the six videos of maloa.com/franchise/; YouTube loads only on click (privacy, speed) -->
+  <section class="fr-videos" aria-labelledby="fr-videos-title">
+    <img class="fr-leaf fr-leaf--vid-a fr-leaf--wide" data-speed="0.4" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/cf9faaaa-cdf0-48e0-9913-3009e9c29aeb.webp" width="474" height="1100" alt="" loading="lazy" decoding="async">
+    <img class="fr-leaf fr-leaf--vid-b" data-speed="-0.4" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/a9721976-0d00-41a9-bb6f-04f242bfa250.webp" width="625" height="720" alt="" loading="lazy" decoding="async">
+    <div class="fr-videos__head">
+      <p class="fr-label" data-reveal>Unsere Partner</p>
+      <h2 class="fr-h2" id="fr-videos-title"><span class="fr-line"><span>Partner sagen mehr</span></span> <span class="fr-line"><span>als tausend Worte</span></span></h2>
+      <p class="fr-text" data-reveal>Wir lassen unsere erfolgreichen Franchise-Partner selbst zu Wort kommen, um ihre Story mit dir zu teilen.</p>
+    </div>
+    <ul class="fr-videogrid">
+      <li class="fr-video fr-video--big" data-reveal>
+        <button class="fr-video__btn" type="button" data-yt="BQuuXFe5PWU" data-title="MA’LOA in Köln: Franchisepartner-Video mit Umut Kekilli" aria-label="Video abspielen: MA’LOA in Köln: Franchisepartner-Video mit Umut Kekilli">
+          <img src="https://i.ytimg.com/vi/BQuuXFe5PWU/hqdefault.jpg" width="480" height="360" alt="" loading="lazy" decoding="async">
+          <span class="fr-video__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+        </button>
+        <p class="fr-video__cap"><span>Ma’Loa Store</span> Köln</p>
+      </li>
+      <li class="fr-video" data-reveal>
+        <button class="fr-video__btn" type="button" data-yt="V568bgef01o" data-title="Aloha Mannheim" aria-label="Video abspielen: Aloha Mannheim">
+          <img src="https://i.ytimg.com/vi/V568bgef01o/hqdefault.jpg" width="480" height="360" alt="" loading="lazy" decoding="async">
+          <span class="fr-video__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+        </button>
+        <p class="fr-video__cap"><span>Ma’Loa Store</span> Mannheim</p>
+      </li>
+      <li class="fr-video" data-reveal>
+        <button class="fr-video__btn" type="button" data-yt="TnFkmiB_UTI" data-title="Aloha Erfurt" aria-label="Video abspielen: Aloha Erfurt">
+          <img src="https://i.ytimg.com/vi/TnFkmiB_UTI/hqdefault.jpg" width="480" height="360" alt="" loading="lazy" decoding="async">
+          <span class="fr-video__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+        </button>
+        <p class="fr-video__cap"><span>Ma’Loa Store</span> Erfurt</p>
+      </li>
+      <li class="fr-video" data-reveal>
+        <button class="fr-video__btn" type="button" data-yt="3_Ujl0j-pc4" data-title="Aloha Paris" aria-label="Video abspielen: Aloha Paris">
+          <img src="https://i.ytimg.com/vi/3_Ujl0j-pc4/hqdefault.jpg" width="480" height="360" alt="" loading="lazy" decoding="async">
+          <span class="fr-video__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+        </button>
+        <p class="fr-video__cap"><span>Ma’Loa Store</span> Paris</p>
+      </li>
+      <li class="fr-video" data-reveal>
+        <button class="fr-video__btn" type="button" data-yt="gy5LsVH4z7o" data-title="Aloha Hannover" aria-label="Video abspielen: Aloha Hannover">
+          <img src="https://i.ytimg.com/vi/gy5LsVH4z7o/hqdefault.jpg" width="480" height="360" alt="" loading="lazy" decoding="async">
+          <span class="fr-video__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+        </button>
+        <p class="fr-video__cap"><span>Ma’Loa Store</span> Hannover</p>
+      </li>
+      <li class="fr-video" data-reveal>
+        <button class="fr-video__btn" type="button" data-yt="0yweFCG35u8" data-title="MA’LOA in Nürnberg: Franchisepartner-Video" aria-label="Video abspielen: MA’LOA in Nürnberg: Franchisepartner-Video">
+          <img src="https://i.ytimg.com/vi/0yweFCG35u8/hqdefault.jpg" width="480" height="360" alt="" loading="lazy" decoding="async">
+          <span class="fr-video__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+        </button>
+        <p class="fr-video__cap"><span>Ma’Loa Store</span> Nürnberg</p>
+      </li>
+    </ul>
+    <p class="fr-videos__note">Beim Abspielen werden Daten an YouTube übertragen (<a href="https://policies.google.com/privacy">Datenschutz</a>).</p>
+  </section>
+
+  <!-- 07 · Checklist: word for word from maloa.com/franchise/, with the brochure -->
+  <section class="fr-check" aria-labelledby="fr-check-title">
+    <img class="fr-check__palm" src="https://maloa.com/wp-content/uploads/2020/06/palm-tree.png" width="700" height="612" alt="" loading="lazy" decoding="async">
+    <div class="fr-check__head">
+      <p class="fr-label" data-reveal>Checklist</p>
+      <h2 class="fr-h2" id="fr-check-title"><span class="fr-line"><span>Work with us</span></span></h2>
+      <p class="fr-text" data-reveal>Du möchtest als Franchisenehmer die Ma’Loa-Idee mit uns verbreiten und einen Store in Deiner Stadt aufbauen? Großartig. Bewirb Dich bei uns!</p>
+    </div>
+    <div class="fr-check__cols">
+      <div class="fr-check__col fr-check__col--offer" data-reveal>
+        <h3 class="fr-check__title">Was wir Dir bieten</h3>
+        <ul class="fr-check__list"><li>Erprobte und einsatzbereite Systemgastronomie</li><li>Fertige Rezepte für den Soforteinsatz</li><li>Stetige Entwicklung neuer Bowls</li><li>Vorlagen für den Ladenbau</li><li>Begleitendes Marketing</li><li>Standortanalyse</li><li>Kostencontrolling</li><li>Zentraler Einkauf</li><li>Möglichkeiten zur Kostenreduzierung</li><li>Zahlreiche Rabatte</li><li>Intensive Betreuung mit persönlichem Ansprechpartner</li><li>Komplettes Know-how zum Transfer</li><li>Einzigartiger USP (Unique Selling Point)</li><li>Automatisierte und erfolgserprobte Prozesse</li><li>Finanzierung</li><li>Businessplan</li><li>HR-Beratung</li><li>Intranet</li><li>Schlüsselfertiger Ladenbau</li></ul>
+      </div>
+      <div class="fr-check__col" data-reveal>
+        <h3 class="fr-check__title">Was wir uns von Dir wünschen</h3>
+        <ul class="fr-check__list"><li>Begeisterung für die hawaiianische Küche</li><li>Große Freude am Kundenkontakt</li><li>Grundkenntnisse für wirtschaftliches Know-how</li><li>Viel Verantwortungsbewusstsein</li><li>Einsatzbereitschaft</li><li>Soziale Kompetenz</li><li>Identifikation mit unserer Marke</li><li>Führungsqualitäten</li></ul>
+      </div>
+    </div>
+    <!-- Key figures are not published on maloa.com/franchise/: prepared, hidden, never estimated -->
+    <dl class="fr-figures" hidden data-todo="Eckdaten vom Kunden: Investition, Fläche, Anzahl Stores (nur echte Werte, dann hidden entfernen)">
+      <div><dt>Investition</dt><dd data-todo="Investition">–</dd></div>
+      <div><dt>Fläche</dt><dd data-todo="Fläche">–</dd></div>
+      <div><dt>Stores</dt><dd data-todo="Anzahl Stores">–</dd></div>
+    </dl>
+    <a class="fr-brochure" href="https://maloa.com/wp-content/uploads/2026/02/Maloa-Franchise_2026-01_DE_Digital.pdf" data-reveal>
+      <img src="https://maloa.com/wp-content/uploads/2026/02/Maloa-Mappe_2026-01_square_DE-600x600.png" width="600" height="600" alt="Titel der Ma’Loa Franchise-Broschüre 2026" loading="lazy" decoding="async">
+      <span class="fr-brochure__copy"><span class="fr-label">Informationsbroschüre 2026</span><span class="fr-brochure__title">Lade dir unsere Informationsbroschüre für Franchisenehmer runter!</span><span class="btn btn--primary">Broschüre jetzt herunterladen</span></span>
+    </a>
+  </section>
+
+  <!-- 08 · The way in: three real channels from maloa.com/franchise/; the order is a suggestion -->
+  <section class="fr-steps fr-light" aria-labelledby="fr-steps-title">
+    <div class="fr-steps__head">
+      <p class="fr-label" data-reveal>Der Weg</p>
+      <h2 class="fr-h2" id="fr-steps-title"><span class="fr-line"><span>So startest du</span></span> <span class="fr-line"><span>mit Ma’Loa</span></span></h2>
+    </div>
+    <ol class="fr-steplist" data-todo="Reihenfolge vom Kunden bestätigen lassen; alle drei Wege stehen so auf maloa.com/franchise/. Weitere Schritte (z. B. Eröffnung) erst nach Bestätigung ergänzen.">
+      <li class="fr-step" data-reveal><span class="fr-step__no">01</span><h3>Broschüre lesen</h3><p>Alles zum Franchise-Modell in unserer Informationsbroschüre für Franchisenehmer.</p><a class="fr-step__link" href="https://maloa.com/wp-content/uploads/2026/02/Maloa-Franchise_2026-01_DE_Digital.pdf">Broschüre herunterladen</a></li>
+      <li class="fr-step" data-reveal><span class="fr-step__no">02</span><h3>Direkt bewerben</h3><p>Toll, dass du dich für Ma’Loa entschieden hast. Mit deiner Selbstauskunft können wir direkt in die nächste Phase starten.</p><a class="fr-step__link" href="https://maloa.com/self-disclosure/">Zur Selbstauskunft</a></li>
+      <li class="fr-step" data-reveal data-provisional data-todo="Platz in der Reihenfolge vom Kunden bestätigen"><span class="fr-step__no">03</span><h3>Ins Gespräch kommen</h3><p>Ein Gespräch hilft oft in der Entscheidungsfindung. Unser Team ist gerne für dich da.</p><a class="fr-step__link" href="#kontakt">Kontakt</a></li>
+    </ol>
+    <div class="fr-steps__rail" aria-hidden="true"><span></span></div>
+  </section>
+
+  <!-- 09 · The strong CTA and the three ways to reach the franchise team (maloa.com/franchise/) -->
+  <section class="fr-cta" id="kontakt" aria-labelledby="fr-cta-title">
+    <img class="fr-leaf fr-leaf--cta-a" data-speed="0.4" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/658ce916-1759-451e-ae5b-e7e14dff0731.webp" width="953" height="1100" alt="" loading="lazy" decoding="async">
+    <img class="fr-leaf fr-leaf--cta-b fr-leaf--wide" data-speed="-0.3" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/3003086a-d480-4295-8092-8ec59e35f77b.webp" width="378" height="720" alt="" loading="lazy" decoding="async">
+    <img class="fr-leaf fr-leaf--cta-c" data-speed="0.6" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/73343198-6048-4b4e-9fc4-b7a4d4a0e6d0.webp" width="354" height="560" alt="" loading="lazy" decoding="async">
+    <div class="fr-cta__head">
+      <p class="fr-label" data-reveal>Kontaktiere uns</p>
+      <h2 class="fr-cta__title" id="fr-cta-title"><span class="fr-line"><span>Bist du bereit</span></span> <span class="fr-line"><span>durchzustarten?</span></span></h2>
+      <p class="fr-actions" data-reveal><a class="btn btn--primary btn--big" href="mailto:franchise@maloa.com?subject=Franchise-Anfrage">Franchise anfragen</a></p>
+    </div>
+    <div class="fr-ways">
+      <div class="fr-way" data-reveal>
+        <h3 class="fr-way__title">Direkt bewerben</h3>
+        <p>Mit deiner Selbstauskunft können wir direkt in die nächste Phase starten.</p>
+        <a class="btn btn--ghost" href="https://maloa.com/self-disclosure/">Zur Selbstauskunft</a>
+      </div>
+      <div class="fr-way" data-reveal>
+        <h3 class="fr-way__title">Ruf uns an</h3>
+        <p>Ein Gespräch hilft oft in der Entscheidungsfindung. Unser Team ist gerne für dich da.</p>
+        <a class="fr-way__big" href="tel:00493022013811">+49 30 220 138 11</a>
+        <p class="fr-way__small">Telefonnummer nur für Franchise-Anfragen, keine Tischreservierung</p>
+      </div>
+      <div class="fr-way" data-reveal>
+        <h3 class="fr-way__title">Schreibe uns</h3>
+        <p>Gerne beantwortet unser spezialisiertes Franchise-Team alle Fragen rund um dein zukünftiges Franchise.</p>
+        <a class="fr-way__big" href="mailto:franchise@maloa.com?subject=Franchise-Anfrage">franchise@maloa.com</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 · Existing partners: the partner-area banner from maloa.com/franchise/ -->
+  <section class="fr-partners" aria-labelledby="fr-partners-title">
+    <figure class="fr-partners__img"><img src="https://maloa.com/wp-content/uploads/2024/02/test.png" sizes="(max-aspect-ratio: 4/5) 100vw, 56vw" width="1294" height="357" alt="Ma’Loa Franchisebereich" loading="lazy" decoding="async"></figure>
+    <div class="fr-partners__copy">
+      <h2 class="fr-partners__title" id="fr-partners-title">Für unsere bestehenden Partner</h2>
+      <p>In unserem Franchisebereich findest du alle notwendigen Formulare, Arbeitsanweisungen, Tutorials und mehr, um deinen Ma’Loa Store erfolgreich zu führen.</p>
+      <a class="btn btn--ghost" href="https://franchise.maloa.com">Zum Franchisebereich</a>
+    </div>
+  </section>
+</main>
+
+<!-- 11 · Footer: the structure of maloa.com's footer (contact, more Ma'Loa, social, legal) with the wordmark and leaves -->
+<footer class="fr-footer">
+  <div class="fr-footer__art" aria-hidden="true">
+    <img class="fr-leaf fr-leaf--end-a" data-speed="0.3" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/1e985fa3-98a9-4f00-942b-62fc5bcdedaa.webp" width="624" height="720" alt="" loading="lazy" decoding="async">
+    <img class="fr-leaf fr-leaf--end-b fr-leaf--wide" data-speed="-0.3" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/b1312f09-f80c-41a2-94c8-db2de06f700b.webp" width="273" height="520" alt="" loading="lazy" decoding="async">
+    <div class="fr-footer__word"><span></span></div>
+  </div>
+  <div class="fr-footer__cols">
+    <div class="fr-footer__col">
+      <p class="fr-footer__head">Kontakt</p>
+      <ul>
+        <li><a href="https://maps.app.goo.gl/HaQTVUUgpdPhea5T7">Fuggerstraße 26, 10777 Berlin</a></li>
+        <li><a href="tel:00493022013811">(030) 220 138 11</a></li>
+        <li><a href="https://wa.me/+4917624722381">WhatsApp 0176 247 223 81</a></li>
+        <li><a href="mailto:info@maloa.com">info@maloa.com</a></li>
+      </ul>
+    </div>
+    <div class="fr-footer__col">
+      <p class="fr-footer__head">Mehr Ma’Loa</p>
+      <ul class="fr-footer__two">
+        <li><a href="https://aik570.github.io/my-web-/maloa-site/index.html">Startseite</a></li>
+        <li><a href="https://maloa.com/what-is-poke/">Über Ma’loa</a></li>
+        <li><a href="https://maloa.com/produkte/">Menü</a></li>
+        <li><a href="https://maloa.smoothr.de/map">Standorte</a></li>
+        <li><a href="https://maloa.com/catering/">Catering</a></li>
+        <li><a href="https://maloa.com/jobs/">Jobs</a></li>
+        <li><a href="https://www.paynoweatlater.de/at/maloa/?crt=maloa">Gutscheine</a></li>
+        <li><a href="https://maloa.com/faq/">FAQ</a></li>
+        <li><a href="https://maloa.smoothr.de/map">Bestellen</a></li>
+      </ul>
+    </div>
+    <div class="fr-footer__col">
+      <p class="fr-footer__head">Social Media</p>
+      <ul>
+        <li><a href="https://www.instagram.com/maloapoke_de/">Instagram</a></li>
+        <li><a href="https://www.facebook.com/maloapoke/">Facebook</a></li>
+        <li><a href="https://www.tiktok.com/@maloapoke">TikTok</a></li>
+      </ul>
+      <p class="fr-footer__head fr-footer__head--gap">Rechtliches</p>
+      <ul>
+        <li><a href="https://maloa.com/impressum/">Impressum</a></li>
+        <li><a href="https://maloa.com/privacy/">Datenschutz</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fr-footer__base">
+    <a class="fr-footer__logo" href="https://aik570.github.io/my-web-/maloa-site/index.html" aria-label="Ma'loa – Startseite"><svg viewBox="0 0 726 726" aria-hidden="true"><circle cx="363" cy="363" r="363" fill="currentColor"/><g transform="translate(114.76 -100.00) scale(1.5568)" style="fill:var(--deep-teal)"><use href="#maloa-m"/></g></svg></a>
+    <p>© 2026 MA’LOA</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/DrawSVGPlugin.min.js" defer></script>
+<script>
+addEventListener("DOMContentLoaded",function(){
+/* Shared flags, media addresses and plugin registration. Loaded before every block. */
+(function () {
+  var root = document.documentElement;
+  var hasGsap = !!(window.gsap && window.ScrollTrigger && window.DrawSVGPlugin);
+  if (hasGsap) gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
+
+  /* Demo hosting. The webm files are served with a video/mp4 type by this CDN;
+     browsers sniff the container, but self-host them with video/webm in production. */
+  var CDN = 'https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/';
+
+  window.MALOA = {
+    gsap: hasGsap,
+    reduce: matchMedia('(prefers-reduced-motion: reduce)').matches,
+    touch: matchMedia('(hover: none), (pointer: coarse)').matches,
+    wide: function () { return matchMedia('(min-width: 900px)').matches; },
+    saveData: !!(navigator.connection && navigator.connection.saveData),
+
+    /* Leaf loops generated in Higgsfield, hosted on its CDN for the demo.
+       webm first, mp4 for Safari; the poster is what phones get. */
+    leaves: [
+      { webm: CDN + '30f84563-242f-4fc9-bde8-9e82df2991eb.mp4', mp4: CDN + 'fad5d329-8d93-42b3-817c-f40e3bfbb5a4.mp4', poster: CDN + '34566854-68de-4309-a002-0253021a23b1.webp' }, // monstera
+      { webm: CDN + '7be90413-4925-4586-bb08-f4323ac8d685.mp4', mp4: CDN + 'e7fa7e12-06ac-4648-9015-4a6f11f749d5.mp4', poster: CDN + '0c179bad-29bb-49ab-95e0-a6032d006055.webp' }, // palm frond
+      { webm: CDN + '8ebb9853-a885-4ea1-ad7e-91f6ded93ec9.mp4', mp4: CDN + 'ac8d3080-b601-4b2c-8562-5bb35df6e164.mp4', poster: CDN + 'a6920dcb-73d8-4c0a-895d-82bca308a291.webp' }, // calathea
+      { webm: CDN + 'd0b18307-8900-4540-9a3c-3d8e09cef830.mp4', mp4: CDN + '3f27cae8-0d15-4d07-8585-6ee8a9269508.mp4', poster: CDN + '4ff23060-3e3a-493c-88f5-7c1e8fbd62b6.webp' }, // banana leaf
+      { webm: CDN + 'd34a5e9c-66f9-4b98-b266-274a6efe6231.mp4', mp4: CDN + '2632655a-db0e-4fdb-ab2d-398cf032aef1.mp4', poster: CDN + '6e61e95a-504f-4a3d-b871-b796f64f480e.webp' }, // pineapple crown
+      { webm: CDN + '2bf96699-9ec9-4d15-ab79-798de984d4cb.mp4', mp4: CDN + 'beae11e1-894c-45a7-963c-daee4d036ef0.mp4', poster: CDN + '00e73827-a29a-41f9-ad58-d7878a72ebb5.webp' }  // philodendron
+    ]
+  };
+
+  /* Scroll → state, with rests. x runs 0…n over a pinned section (one unit per state). Around every whole
+     number the result holds still (h of each unit on either side), in between it moves on: the section
+     "settles" on each state like a snap would, but only ever from the scroll position itself. Nothing
+     moves the page; stopping anywhere leaves everything where it is, and going back retraces the same path.
+     ease: 'smooth' for an ease-in-out between rests (a wheel turning), otherwise linear (a timeline
+     whose tweens carry their own eases). */
+  window.MALOA.rest = function (x, n, h, ease) {
+    x = Math.max(0, Math.min(n, x));
+    var i = Math.floor(x), f = x - i;
+    if (i >= n) return n;
+    var t = Math.max(0, Math.min(1, (f - h) / (1 - 2 * h)));
+    if (ease === 'smooth') t = t * t * (3 - 2 * t);
+    return i + t;
+  };
+
+  if (hasGsap) {
+    // Measured layout is only right once the web font is in (it changes line heights above the pins):
+    // measure again then, once, instead of each block doing it on its own
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { ScrollTrigger.refresh(); });
+  }
+
+  // If GSAP failed to load, never leave the intro covering the page
+  if (!hasGsap) root.classList.remove('intro-on');
+})();
+});
+</script>
+<script>
+addEventListener("DOMContentLoaded",function(){
+/* Franchise page
+   - Hero film: a decorative background, no player controls; paused while off screen (saves decoding),
+     poster only with reduced motion or Save-Data.
+   - Partner videos: a click swaps the thumbnail for the YouTube player (youtube-nocookie), so nothing loads from
+     YouTube before the visitor asks for it. Works without GSAP and with reduced motion.
+   - Header: light version over the light sections (IntersectionObserver, also without GSAP).
+   - Steps rail aligned with the step numbers (wide screens).
+   - With GSAP and motion allowed: headline lines rise out of their masks, [data-reveal] items fade up, gentle
+     parallax on the store photos, leaves drift at their own depth, the hero film eases in.
+   - The large photo ("Auf gesundem Wachstumskurs") opens from its top edge (rounded corners flattening) to full bleed
+     while the picture settles from a touch closer. Nothing in it moves up or down with the scroll, so it cannot
+     shake; the reveal is smoothed (scrub 0.6) so wheel steps arrive as one movement.
+   - Growth story: the illustration's scene rises into place as it comes into view, its far leaves drift a
+     little less than it, the near leaf a little more (very small amounts, smoothed): depth, not a 3D effect.
+   Reduced motion or no GSAP: everything stands as laid out. */
+(function () {
+  var M = window.MALOA || {};
+  var header = document.querySelector('.site-header');
+  var row = document.querySelector('.site-header__row');
+
+  // ---- hero film ----
+  var video = document.querySelector('.fr-hero__video');
+  if (video) {
+    if (M.reduce || M.saveData) {
+      video.removeAttribute('autoplay'); video.pause();
+    } else {
+      var p = video.play && video.play();
+      if (p && p.catch) p.catch(function () {});   // autoplay refused (e.g. Low Power Mode): the poster stays
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (es) {
+          es.forEach(function (e) { if (e.isIntersecting) video.play().catch(function () {}); else video.pause(); });
+        }).observe(video);
+      }
+    }
+  }
+
+  // ---- partner videos: load the player on request ----
+  document.querySelectorAll('.fr-video__btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      if (btn.querySelector('iframe')) return;
+      var f = document.createElement('iframe');
+      f.src = 'https://www.youtube-nocookie.com/embed/' + btn.dataset.yt + '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+      f.title = btn.dataset.title || 'Video';
+      f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      f.allowFullscreen = true;
+      btn.appendChild(f);
+      var play = btn.querySelector('.fr-video__play'); if (play) play.remove();
+      btn.style.cursor = 'default';
+    });
+  });
+
+  // ---- header over light sections ----
+  var lights = document.querySelectorAll('.fr-light');
+  if (header && 'IntersectionObserver' in window && lights.length) {
+    var on = new Set(), io;
+    var setup = function () {
+      var hh = row ? row.offsetHeight : 72;
+      io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) on.add(e.target); else on.delete(e.target); });
+        header.classList.toggle('is-light', on.size > 0);
+      }, { rootMargin: '0px 0px ' + (-(innerHeight - hh / 2)) + 'px 0px' });
+      lights.forEach(function (s) { io.observe(s); });
+    };
+    setup();
+    addEventListener('resize', function () { io.disconnect(); on.clear(); setup(); });
+  }
+
+  // ---- steps rail ----
+  var steps = document.querySelector('.fr-steps');
+  var rail = steps && steps.querySelector('.fr-steps__rail');
+  function placeRail() {
+    if (!rail) return;
+    var no = steps.querySelector('.fr-step__no');
+    rail.style.setProperty('--rail-top', (no.getBoundingClientRect().top - steps.getBoundingClientRect().top + no.offsetHeight / 2) + 'px');
+  }
+  placeRail();
+  addEventListener('resize', placeRail);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(placeRail);
+
+  if (!M.gsap || M.reduce) return;
+
+  gsap.utils.toArray('.fr-title, .fr-h2, .fr-cta__title').forEach(function (h) {
+    gsap.from(h.querySelectorAll('.fr-line > span'), { yPercent: 150, duration: 1.2, ease: 'power4.out', stagger: 0.12,
+      scrollTrigger: { trigger: h, start: 'top 88%', once: true } });
+  });
+  // Each item has its own trigger (a tween, so a refresh never undoes it); siblings follow a beat apart
+  gsap.utils.toArray('[data-reveal]').forEach(function (el) {
+    var sib = Array.prototype.indexOf.call(el.parentNode.querySelectorAll(':scope > [data-reveal]'), el);
+    gsap.from(el, { autoAlpha: 0, y: 26, duration: 0.9, ease: 'power3.out', delay: Math.max(0, sib) * 0.08,
+      scrollTrigger: { trigger: el, start: 'top 92%', once: true } });
+  });
+
+  gsap.from('.fr-hero__media', { scale: 1.08, duration: 2.2, ease: 'power3.out' });
+  gsap.to('.fr-hero__video', { yPercent: 10, ease: 'none', scrollTrigger: { trigger: '.fr-hero', start: 'top top', end: 'bottom top', scrub: true } });
+  // The large photo: a masked reveal instead of the old up/down parallax (which shook with uneven scroll steps)
+  var wide = document.querySelector('.fr-wide');
+  if (wide) {
+    gsap.timeline({ scrollTrigger: { trigger: wide, start: 'top bottom', end: 'top 20%', scrub: 0.6 } })
+      // the picture layer is 116% of the frame (inset -8% 0): 13% of it is the top 7% of the frame plus its overscan
+      .fromTo(wide.querySelector('.fr-wide__img'), { clipPath: 'inset(13% 0% 0% 0% round 28px 28px 0px 0px)' }, { clipPath: 'inset(0% 0% 0% 0% round 0px 0px 0px 0px)', ease: 'sine.inOut' }, 0)
+      .fromTo(wide.querySelector('.fr-wide__img img'), { scale: 1.06 }, { scale: 1, ease: 'sine.out' }, 0);
+  }
+
+  // Growth story: the scene rises into place once, with the scroll; its layers keep a very small depth drift
+  var scene = document.querySelector('.fr-grow__scene');
+  if (scene) {
+    gsap.fromTo(scene, { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, ease: 'power2.out',
+      scrollTrigger: { trigger: scene, start: 'top bottom', end: 'top 70%', scrub: 0.6 } });
+    scene.querySelectorAll('[data-depth]').forEach(function (el) {
+      var k = parseFloat(el.dataset.depth) || 0.3;
+      gsap.fromTo(el, { yPercent: 6 * k }, { yPercent: -6 * k, ease: 'none',
+        scrollTrigger: { trigger: '.fr-grow', start: 'top bottom', end: 'bottom top', scrub: 0.6 } });
+    });
+  }
+  gsap.utils.toArray('.fr-module__img img').forEach(function (img) {
+    gsap.fromTo(img, { yPercent: -8 }, { yPercent: 0, ease: 'none', scrollTrigger: { trigger: img.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } });
+  });
+  gsap.utils.toArray('.fr-leaf, .fr-check__palm').forEach(function (leaf) {
+    var k = parseFloat(leaf.dataset.speed) || 0.3;
+    gsap.fromTo(leaf, { yPercent: 12 * k }, { yPercent: -12 * k, ease: 'none',
+      scrollTrigger: { trigger: leaf.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } });
+  });
+  if (rail) {
+    gsap.fromTo(rail, { '--fill': 0 }, { '--fill': 1, ease: 'none', scrollTrigger: { trigger: steps, start: 'top 60%', end: 'bottom 75%', scrub: 0.6 } });
+  }
+})();
+});
+</script>
+</body>
+</html>

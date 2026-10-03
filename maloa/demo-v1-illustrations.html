@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ma'loa – Redesign Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f7f5; --surface:#ffffff; --ink:#06302f; --muted:#3f5f5c; --line:#cfdcd8;
+  --teal:#004443; --teal-2:#0b5a57; --blush:#f3d2d5; --salmon:#ef7058;
+  --display:"Bricolage Grotesque","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --body:"Figtree","Helvetica Neue","Segoe UI",system-ui,sans-serif;
+  --hh:64px;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#04201f;--surface:#082e2d;--ink:#e6efed;--muted:#a3bdb9;--line:#1f4a47}}
+:root[data-theme="dark"]{--bg:#04201f;--surface:#082e2d;--ink:#e6efed;--muted:#a3bdb9;--line:#1f4a47}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + var(--hh))}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;overflow-x:clip;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--salmon);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1200px,100% - 32px);margin-inline:auto}
+h1,h2,h3{font-family:var(--display);margin:0;letter-spacing:-.02em;line-height:1.02;font-weight:800}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 24px;border-radius:999px;font-weight:700;font-size:16px;text-decoration:none;border:2px solid transparent;cursor:pointer;font-family:var(--body)}
+.btn-blush{background:var(--blush);color:#06302f}.btn-blush:hover{background:#fff}
+.btn-teal{background:var(--teal);color:#f4f7f5}.btn-teal:hover{background:var(--teal-2)}
+.btn-line{border-color:currentColor;color:inherit;background:transparent}
+
+/* Header – same menu as today */
+.hdr{position:fixed;top:0;left:0;right:0;z-index:60;padding-top:env(safe-area-inset-top,0px);background:rgba(0,68,67,.95);color:#f4f7f5;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.hdr .wrap{height:var(--hh);display:flex;align-items:center;gap:24px}
+.logo{font-family:var(--display);font-weight:800;font-size:22px;text-decoration:none}
+.nav{display:flex;gap:18px;margin-left:auto;font-size:14px;font-weight:500}
+.nav a{text-decoration:none;opacity:.88}.nav a:hover{opacity:1;text-decoration:underline;text-underline-offset:5px}
+.hdr .btn{min-height:40px;padding:0 18px;font-size:14px}
+@media (max-width:980px){.nav{display:none}.hdr .btn{margin-left:auto}}
+
+/* Hero with 3D bowl (replaces the slider) */
+.hero{background:var(--teal);color:#f4f7f5;padding-top:calc(var(--hh) + 40px);position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:24px;min-height:min(78vh,760px)}
+.hero h1{font-size:clamp(46px,7vw,100px);perspective:600px}
+.hero h1 .w{display:inline-block}
+.hero p{font-size:clamp(17px,1.5vw,20px);color:#d5e4e1;max-width:36ch;margin:22px 0 28px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.news{display:flex;gap:8px;flex-wrap:wrap;margin-top:28px;padding:0;list-style:none}
+.news a{display:inline-flex;min-height:36px;align-items:center;padding:0 14px;border-radius:999px;border:1.5px solid rgba(244,247,245,.35);font-size:14px;font-weight:600;text-decoration:none}
+.news a:hover{border-color:#f4f7f5}
+.stage{position:relative;height:min(60vh,560px);touch-action:pan-y}
+.stage canvas{display:block;width:100%;height:100%}
+.hint{position:absolute;bottom:6px;left:0;right:0;text-align:center;font-size:13px;color:#a9c9c4}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr;min-height:0}.stage{height:44vh;order:-1}}
+
+/* Layered waves */
+.waves{position:relative;height:110px;margin-top:-1px;background:var(--teal);overflow:hidden}
+.waves svg{position:absolute;left:0;bottom:-1px;width:200%;height:100%}
+.waves .l1{animation:drift 22s linear infinite;opacity:.35}
+.waves .l2{animation:drift 15s linear infinite reverse;opacity:.6}
+.waves .l3{animation:drift 10s linear infinite}
+.waves path{fill:var(--bg)}
+@keyframes drift{to{transform:translateX(-50%)}}
+
+/* Stacked cards */
+.stack{padding:40px 0 20px}
+.scard{position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--hh) + 16px);min-height:min(78vh,680px);border-radius:32px;padding:clamp(28px,5vw,64px);margin-bottom:40px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;transform-origin:50% 0;will-change:transform}
+.scard h2{font-size:clamp(40px,6vw,80px)}
+.scard p{font-size:18px;max-width:44ch;margin:18px 0 26px}
+.c-surface{background:var(--surface);border:1.5px solid var(--line)}
+.c-teal{background:var(--teal);color:#f4f7f5}.c-teal p{color:#d5e4e1}
+.c-blush{background:var(--blush);color:#06302f}
+.c-salmon{background:#f9c6b8;color:#06302f}
+.photo{aspect-ratio:4/3;border-radius:24px;background:repeating-linear-gradient(135deg,rgba(0,68,67,.08) 0 14px,transparent 14px 28px);border:2px dashed rgba(0,68,67,.3);display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;font-weight:600;color:var(--muted)}
+.c-teal .photo{border-color:rgba(244,247,245,.35);color:#a9c9c4;background:repeating-linear-gradient(135deg,rgba(244,247,245,.07) 0 14px,transparent 14px 28px)}
+.nl{display:flex;gap:10px;flex-wrap:wrap;max-width:460px}
+.nl label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.nl input{flex:1 1 220px;min-height:52px;border-radius:999px;border:2px solid #06302f;padding:0 20px;font:500 16px var(--body);background:#fff;color:#06302f}
+.nl-msg{font-size:15px;margin-top:10px;min-height:1.5em}
+@media (max-width:860px){.scard{grid-template-columns:1fr;gap:20px;min-height:0}}
+
+/* Favorites – sticky product detail */
+.favs{padding:60px 0 40px}
+.sec-head{max-width:640px;margin-bottom:24px}
+.sec-head h2{font-size:clamp(38px,5vw,64px)}
+.sec-head p{color:var(--muted);font-size:18px;margin:14px 0 0}
+.fav-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.fav-sticky{position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--hh) + 24px);height:min(70vh,560px);border-radius:32px;background:var(--teal);color:#f4f7f5;padding:32px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
+.plate{position:relative;width:min(300px,70%);aspect-ratio:1;border-radius:50%;background:#0b6b67;margin:0 auto;box-shadow:inset 0 -18px 0 #085a56;transition:transform .6s cubic-bezier(.34,1.56,.64,1)}
+.plate i{position:absolute;border-radius:14px;transition:background .5s,transform .6s cubic-bezier(.34,1.56,.64,1)}
+.plate i:nth-child(1){width:34%;height:34%;top:14%;left:14%}
+.plate i:nth-child(2){width:28%;height:28%;top:18%;right:16%;border-radius:50%}
+.plate i:nth-child(3){width:30%;height:30%;bottom:14%;left:24%;border-radius:50%}
+.plate i:nth-child(4){width:22%;height:22%;bottom:20%;right:18%;border-radius:8px}
+.fav-name{font-family:var(--display);font-weight:800;font-size:clamp(40px,5vw,64px);line-height:1}
+.fav-meta{display:flex;justify-content:space-between;align-items:end;gap:12px}
+.fav-kcal{font-weight:700;font-size:18px;color:var(--blush)}
+.fav-list{display:flex;flex-direction:column}
+.fav-item{min-height:52vh;display:flex;flex-direction:column;justify-content:center;gap:10px;border-top:1.5px solid var(--line);opacity:.35;transition:opacity .4s}
+.fav-item.on{opacity:1}
+.fav-item h3{font-size:clamp(34px,4vw,52px)}
+.fav-item .type{font-weight:600;color:var(--muted)}
+.fav-item p{margin:0;color:var(--muted);max-width:40ch}
+.fav-item a{align-self:flex-start;font-weight:700;min-height:44px;display:inline-flex;align-items:center}
+@media (max-width:860px){
+  .fav-grid{grid-template-columns:1fr;gap:0}
+  .fav-sticky{height:auto;z-index:2;padding:18px;flex-direction:row;align-items:center;gap:16px}
+  .plate{width:96px;margin:0;flex:none;box-shadow:inset 0 -8px 0 #085a56}
+  .plate i{border-radius:6px}
+  .fav-name{font-size:28px}.fav-meta{display:block}
+  .fav-item{min-height:44vh}
+}
+
+/* Poké your style – exploded 3D */
+.explode{background:var(--teal);color:#f4f7f5;position:relative}
+.ex-pin{height:100vh;display:grid;grid-template-columns:.9fr 1.1fr;align-items:center;gap:24px;padding-top:var(--hh)}
+.ex-copy h2{font-size:clamp(40px,6vw,84px)}
+.ex-copy p{color:#d5e4e1;font-size:18px;max-width:38ch;margin:16px 0 22px}
+.ex-stage{position:relative;height:min(80vh,720px)}
+.ex-stage canvas{display:block;width:100%;height:100%}
+.layers{list-style:none;margin:0;padding:0;position:absolute;right:0;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:14px;text-align:right;pointer-events:none}
+.layers li{opacity:0;transform:translateX(16px);transition:opacity .4s,transform .4s}
+.layers li.on{opacity:1;transform:none}
+.layers b{display:block;font-family:var(--display);font-size:22px;color:var(--blush)}
+.layers span{font-size:13px;color:#cfe0dd;display:block;max-width:22ch;margin-left:auto}
+@media (max-width:860px){
+  .ex-pin{grid-template-columns:1fr;align-content:start;gap:0;padding-top:calc(var(--hh) + 16px)}
+  .ex-copy h2{font-size:38px}.ex-copy p{font-size:15px;margin:8px 0 10px}
+  .ex-copy .btn{display:none}
+  .ex-stage{height:60vh}
+  .layers{gap:8px}.layers b{font-size:16px}.layers span{display:none}
+}
+
+/* Footer – contact as today */
+footer{background:var(--teal);color:#f4f7f5;padding:0 0 48px}
+.marquee{overflow:hidden;padding:20px 0;border-bottom:1.5px solid rgba(244,247,245,.2);margin-bottom:44px}
+.mq{display:flex;width:max-content;animation:drift 30s linear infinite}
+.mq span{font-family:var(--display);font-weight:800;font-size:clamp(32px,5vw,60px);padding-right:44px;white-space:nowrap}
+.mq b{color:var(--blush)}
+.fgrid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:28px;font-size:15px}
+.fgrid h3{font-family:var(--body);font-size:14px;font-weight:700;color:var(--blush);margin-bottom:12px;letter-spacing:0}
+.fgrid ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.fgrid a{text-decoration:none;opacity:.88}.fgrid a:hover{opacity:1;text-decoration:underline}
+.copy{font-size:13px;opacity:.7;margin-top:36px}
+@media (max-width:760px){.fgrid{grid-template-columns:1fr}}
+
+@media (prefers-reduced-motion:reduce){.waves svg,.mq{animation:none}.plate,.plate i{transition:none}}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="wrap">
+    <a class="logo" href="#top">MA'LOA®</a>
+    <nav class="nav" aria-label="Hauptmenü">
+      <a href="#welcome">Über Ma'loa</a>
+      <a href="#favorites">Menu</a>
+      <a href="https://maloa.smoothr.de/map">Standorte</a>
+      <a href="https://maloa.com/catering/">Catering</a>
+      <a href="https://maloa.com/jobs/">Jobs</a>
+      <a href="#franchise">Franchise</a>
+      <a href="#gutschein">Gutscheine</a>
+    </nav>
+    <a class="btn btn-blush" href="https://maloa.smoothr.de/map">Bestellen</a>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1><span class="w">Ein</span> <span class="w">Stück</span> <span class="w">Hawaii</span> <span class="w">in</span> <span class="w">Eurer</span> <span class="w">Stadt.</span></h1>
+      <p>Die besten Poké Bowls, die Ihr bekommen könnt. Fertig von uns oder nach Eurem Geschmack.</p>
+      <div class="hero-actions">
+        <a class="btn btn-blush" href="https://maloa.smoothr.de/map">Jetzt bestellen</a>
+        <a class="btn btn-line" href="#favorites">Zum Menu</a>
+      </div>
+      <ul class="news" aria-label="Neuigkeiten">
+        <li><a href="https://maloa.smoothr.de/map">Neu eröffnet: Eschborn</a></li>
+        <li><a href="https://maloa.com/produkte/">Neu: Korean Chicken Bowl</a></li>
+        <li><a href="https://wa.me/+4917624722381">Bestellen per WhatsApp</a></li>
+      </ul>
+    </div>
+    <div class="stage" id="heroStage">
+      <canvas id="heroCanvas" aria-label="3D Poké Bowl, dreht sich"></canvas>
+      <div class="hint">Zum Drehen ziehen</div>
+    </div>
+  </div>
+  <div class="waves" aria-hidden="true">
+    <svg class="l1" viewBox="0 0 2880 110" preserveAspectRatio="none"><path d="M0 50Q180 10 360 50T720 50T1080 50T1440 50T1800 50T2160 50T2520 50T2880 50V110H0Z"/></svg>
+    <svg class="l2" viewBox="0 0 2880 110" preserveAspectRatio="none"><path d="M0 66Q240 30 480 66T960 66T1440 66T1920 66T2400 66T2880 66V110H0Z"/></svg>
+    <svg class="l3" viewBox="0 0 2880 110" preserveAspectRatio="none"><path d="M0 84Q180 60 360 84T720 84T1080 84T1440 84T1800 84T2160 84T2520 84T2880 84V110H0Z"/></svg>
+  </div>
+</section>
+
+<div class="wrap stack" id="welcome">
+  <article class="scard c-surface">
+    <div>
+      <h2>Welcome to Ma'loa</h2>
+      <p>Poké Bowl ist das traditionelle hawaiianische Nationalgericht. Sandstrände, Blumenketten, Hula und Wellen: Wir servieren ein Stück davon in Eurer Stadt.</p>
+      <a class="btn btn-teal" href="https://maloa.com/what-is-poke/">About Poké</a>
+    </div>
+    <div class="photo">[Foto: Store oder Team]</div>
+  </article>
+  <article class="scard c-teal">
+    <div>
+      <h2>Ma'loa Favorites</h2>
+      <p>Die Lieblings-Bowls unseres Teams sind nach den Inseln Hawaiis benannt. Seafood, Chicken oder vegan: Auf welche Insel treibt es Euch heute?</p>
+      <a class="btn btn-blush" href="#favorites">Favorites ansehen</a>
+    </div>
+    <div class="photo">[Foto: Favorites-Bowls von oben]</div>
+  </article>
+</div>
+
+<section class="favs" id="favorites">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Wählt Eure Insel.</h2>
+      <p>Alle Bowls mit Base. Scrollt durch die Favorites.</p>
+    </div>
+    <div class="fav-grid">
+      <div class="fav-sticky" aria-live="polite">
+        <div class="plate" id="plate"><i></i><i></i><i></i><i></i></div>
+        <div class="fav-meta">
+          <div class="fav-name" id="favName">Kauai</div>
+          <div class="fav-kcal" id="favKcal">485 kcal</div>
+        </div>
+      </div>
+      <div class="fav-list">
+        <article class="fav-item" data-name="Kauai" data-kcal="485" data-c="#f28a6b,#ffc24b,#86bd5b,#d6a15f"><h3>Kauai</h3><div class="type">Salmon Bowl</div><p>Lachs, Edamame, Gurke, Ananas, Korean Love, Kimchi, Cashewkerne</p><a href="https://maloa.smoothr.de/map">Bestellen</a></article>
+        <article class="fav-item" data-name="Molokai" data-kcal="546" data-c="#f28a6b,#b0305a,#86bd5b,#2f6b3a"><h3>Molokai</h3><div class="type">Salmon Bowl</div><p>Lachs, Edamame, Gurke, Rote Bete, Sesam Me, Algensalat, Erdnüsse</p><a href="https://maloa.smoothr.de/map">Bestellen</a></article>
+        <article class="fav-item" data-name="Lanai" data-kcal="507" data-c="#c43d52,#b9d96a,#b0305a,#86bd5b"><h3>Lanai</h3><div class="type">Tuna Bowl</div><p>Ahi Tuna, Edamame, Gurke, Rote Bete, Koriander, Crazy Lime, Avocado, Erdnüsse</p><a href="https://maloa.smoothr.de/map">Bestellen</a></article>
+        <article class="fav-item" data-name="Big Island" data-kcal="574" data-c="#c43d52,#b9d96a,#7a3a6b,#d6a15f"><h3>Big Island</h3><div class="type">Tuna Bowl</div><p>Ahi Tuna, Edamame, Rote Zwiebeln, Frühlingszwiebel, Gurke, Ma'loa Flavor, Avocado, Erdnüsse</p><a href="https://maloa.smoothr.de/map">Bestellen</a></article>
+        <article class="fav-item" data-name="Vul'cano" data-kcal="548" data-c="#e9b77a,#b9d96a,#ef7058,#86bd5b"><h3>Vul'cano</h3><div class="type">Chicken Bowl</div><p>Chicken, Frühlingszwiebel, Edamame, Gurke, Vul'cano Flavor, Avocado, Cashewkerne</p><a href="https://maloa.smoothr.de/map">Bestellen</a></article>
+        <article class="fav-item" data-name="Peanutlover" data-kcal="507" data-c="#e9b77a,#d6a15f,#86bd5b,#2f6b3a"><h3>Peanutlover</h3><div class="type">Chicken Bowl</div><p>Chicken, Edamame, Gurke, Frühlingszwiebel, Peanut Butter Dream, Algensalat, Erdnüsse</p><a href="https://maloa.smoothr.de/map">Bestellen</a></article>
+        <article class="fav-item" data-name="Spicy Tropical" data-kcal="352" data-c="#f4ecd8,#ffc24b,#ef7058,#fff6e0"><h3>Spicy Tropical</h3><div class="type">Tofu Bowl</div><p>Tofu, Gurke, Ananas, Frühlingszwiebel, Korean Love, Mango, Kokoschips</p><a href="https://maloa.smoothr.de/map">Bestellen</a></article>
+        <article class="fav-item" data-name="Sesam Me" data-kcal="424" data-c="#f4ecd8,#ffc24b,#86bd5b,#7a3a6b"><h3>Sesam Me</h3><div class="type">Tofu Bowl</div><p>Tofu, Edamame, Gurke, Rote Zwiebel, Sesam Me, Mango, Erdnüsse</p><a href="https://maloa.smoothr.de/map">Bestellen</a></article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="explode" id="style">
+  <div class="wrap ex-pin">
+    <div class="ex-copy">
+      <h2>Poké your style.</h2>
+      <p>Ihr stellt Euch Eure Bowl nach Herzenslust zusammen. Scrollt, und wir zeigen Euch, was drin ist.</p>
+      <a class="btn btn-blush" href="https://maloa.smoothr.de/map">Eigene Bowl bestellen</a>
+    </div>
+    <div class="ex-stage">
+      <canvas id="exCanvas" aria-label="3D Bowl, die sich beim Scrollen in ihre Zutaten zerlegt"></canvas>
+      <ol class="layers" id="layers" reversed>
+        <li><b>Crunch</b><span>Erdnüsse, Cashewkerne, Wasabinüsse, Kokoschips</span></li>
+        <li><b>Flavor</b><span>Ma'loa, Vul'cano, Korean Love, Crazy Lime, Sesam Me</span></li>
+        <li><b>Toppings</b><span>Edamame, Gurke, Mango, Ananas, Avocado, Algensalat</span></li>
+        <li><b>Protein</b><span>Lachs, Ahi Tuna, Garnele, Chicken, Tofu</span></li>
+        <li><b>Base</b><span>[Base-Optionen]</span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<div class="wrap stack">
+  <article class="scard c-blush" id="gutschein">
+    <div>
+      <h2>Geschenkgutschein</h2>
+      <p>Verschenkt ein Stück Hawaii. Der Gutschein gilt in allen Stores und online.</p>
+      <a class="btn btn-teal" href="https://www.paynoweatlater.de/at/maloa/?crt=maloa">Gutschein kaufen</a>
+    </div>
+    <div class="photo">[Grafik: Gutschein]</div>
+  </article>
+  <article class="scard c-teal" id="franchise">
+    <div>
+      <h2>Franchise Partner werden</h2>
+      <p>Gesundes Fast Food für das 21. Jahrhundert. Erfahrt mehr über unser Franchise-Modell und eröffnet Euren eigenen Ma'loa Store. Ride the healthy wave with us!</p>
+      <a class="btn btn-blush" href="https://maloa.com/franchise/">Mehr zum Franchise</a>
+    </div>
+    <div class="photo">[Foto: Store-Eröffnung]</div>
+  </article>
+  <article class="scard c-salmon">
+    <div>
+      <h2>25% für den Webshop</h2>
+      <p>Abonniert den Ma'loa Newsletter: Gewinnspiele, wichtige Facts und Euer Rabattcode.</p>
+      <form class="nl" id="nl" novalidate>
+        <label for="nlMail">E-Mail-Adresse</label>
+        <input id="nlMail" type="email" placeholder="name@beispiel.de" autocomplete="email">
+        <button class="btn btn-teal" type="submit">Abonnieren</button>
+      </form>
+      <div class="nl-msg" id="nlMsg" role="status"></div>
+    </div>
+    <div class="photo">[Grafik: 25% Rabatt]</div>
+  </article>
+</div>
+
+</main>
+
+<footer>
+  <div class="waves" aria-hidden="true" style="background:var(--bg);transform:scaleY(-1)">
+    <svg class="l2" viewBox="0 0 2880 110" preserveAspectRatio="none"><path d="M0 66Q240 30 480 66T960 66T1440 66T1920 66T2400 66T2880 66V110H0Z" style="fill:var(--teal)"/></svg>
+  </div>
+  <div class="marquee" aria-hidden="true">
+    <div class="mq"><span>Ride the healthy wave <b>~</b></span><span>Ein Stück Hawaii <b>~</b></span><span>Ride the healthy wave <b>~</b></span><span>Ein Stück Hawaii <b>~</b></span><span>Ride the healthy wave <b>~</b></span><span>Ein Stück Hawaii <b>~</b></span><span>Ride the healthy wave <b>~</b></span><span>Ein Stück Hawaii <b>~</b></span></div>
+  </div>
+  <div class="wrap fgrid">
+    <div><h3>Kontakt</h3><ul>
+      <li><a href="https://maps.app.goo.gl/HaQTVUUgpdPhea5T7">Fuggerstraße 26, 10777 Berlin</a></li>
+      <li><a href="tel:+493022013811">(030) 220 138 11</a></li>
+      <li><a href="https://wa.me/+4917624722381">WhatsApp: 0176 247 223 81</a></li>
+      <li><a href="mailto:info@maloa.com">info@maloa.com</a></li></ul></div>
+    <div><h3>Mehr Ma'loa</h3><ul>
+      <li><a href="https://maloa.com/what-is-poke/">Über Ma'loa</a></li>
+      <li><a href="https://maloa.com/produkte/">Produkte</a></li>
+      <li><a href="https://maloa.com/catering/">Catering</a></li>
+      <li><a href="https://maloa.com/jobs/">Jobs</a></li>
+      <li><a href="https://maloa.com/faq/">FAQ</a></li></ul></div>
+    <div><h3>Rechtliches</h3><ul>
+      <li><a href="https://maloa.com/impressum/">Impressum</a></li>
+      <li><a href="https://maloa.com/privacy/">Datenschutzerklärung</a></li>
+      <li><a href="https://www.instagram.com/maloapoke_de/">Instagram</a></li>
+      <li><a href="https://www.tiktok.com/@maloapoke">TikTok</a></li></ul></div>
+  </div>
+  <p class="wrap copy">© 2026 Ma'loa. Redesign-Demo.</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+var hasG = !!(window.gsap && window.ScrollTrigger);
+var has3 = !!window.THREE;
+if (hasG) gsap.registerPlugin(ScrollTrigger);
+
+/* ---------- 3D bowl builder ---------- */
+function rng(seed){ return function(){ seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }; }
+function mat(c, r){ return new THREE.MeshStandardMaterial({ color: c, roughness: r == null ? .55 : r, metalness: 0 }); }
+
+function makeBowl(){
+  var R = rng(7), root = new THREE.Group(), L = {};
+  // bowl
+  L.bowl = new THREE.Group();
+  var prof = [];
+  for (var i = 0; i <= 24; i++){ var a = i / 24 * Math.PI / 2; prof.push(new THREE.Vector2(Math.sin(a) * 1.6 + .001, -Math.cos(a) * .95)); }
+  L.bowl.add(new THREE.Mesh(new THREE.LatheGeometry(prof, 64), new THREE.MeshStandardMaterial({ color: 0x0b6b67, roughness: .35, side: THREE.DoubleSide })));
+  var rim = new THREE.Mesh(new THREE.TorusGeometry(1.6, .06, 16, 96), mat(0x23958e, .3)); rim.rotation.x = Math.PI / 2; L.bowl.add(rim);
+  var band = new THREE.Mesh(new THREE.TorusGeometry(1.5, .035, 12, 96), mat(0xf3d2d5, .5)); band.rotation.x = Math.PI / 2; band.position.y = -.28; band.scale.set(.97, .97, 1); L.bowl.add(band);
+  root.add(L.bowl);
+  // base (rice)
+  L.base = new THREE.Group();
+  var rice = new THREE.Mesh(new THREE.SphereGeometry(1.48, 48, 24, 0, Math.PI * 2, 0, Math.PI / 2), mat(0xf6f1e7, .9));
+  rice.scale.y = .22; rice.position.y = -.12; L.base.add(rice);
+  root.add(L.base);
+  // protein
+  L.protein = new THREE.Group();
+  for (i = 0; i < 9; i++){
+    var tuna = i >= 6, ang = tuna ? Math.PI * 1.05 + (i - 6) * .32 : -.9 + i * .3, rad = .75 + R() * .35;
+    var cube = new THREE.Mesh(new THREE.BoxGeometry(.34, .26, .3), mat(tuna ? 0xc43d52 : 0xf28a6b, .45));
+    cube.position.set(Math.cos(ang) * rad, .14 + R() * .06, Math.sin(ang) * rad);
+    cube.rotation.set(R() * .4, R() * 3, R() * .4); L.protein.add(cube);
+  }
+  root.add(L.protein);
+  // toppings
+  L.veg = new THREE.Group();
+  for (i = 0; i < 12; i++){
+    var e = new THREE.Mesh(new THREE.SphereGeometry(.085, 16, 12), mat(0x86bd5b, .5));
+    var ea = Math.PI * .45 + R() * .5, er = .25 + R() * .7; e.scale.set(1.5, 1, 1);
+    e.position.set(Math.cos(ea) * er, .12, Math.sin(ea) * er); e.rotation.y = R() * 3; L.veg.add(e);
+  }
+  for (i = 0; i < 4; i++){
+    var av = new THREE.Mesh(new THREE.CylinderGeometry(.34, .34, .07, 24, 1, false, 0, Math.PI), mat(0xb9d96a, .5));
+    av.position.set(-.35 - i * .14, .16, -.75 - i * .05); av.rotation.set(Math.PI / 2 - .3, 0, .6 + i * .12); L.veg.add(av);
+  }
+  for (i = 0; i < 5; i++){
+    var cu = new THREE.Mesh(new THREE.CylinderGeometry(.15, .15, .06, 24), mat(0xd7efc2, .5));
+    var ca = Math.PI * 1.55 + i * .16; cu.position.set(Math.cos(ca) * 1.05, .1, Math.sin(ca) * 1.05); cu.rotation.set(.5, 0, .3); L.veg.add(cu);
+  }
+  for (i = 0; i < 6; i++){
+    var mg = new THREE.Mesh(new THREE.BoxGeometry(.18, .18, .18), mat(0xffc24b, .45));
+    var ma = .1 + R() * .5, mr = .15 + R() * .4; mg.position.set(Math.cos(ma) * mr, .16, Math.sin(ma) * mr); mg.rotation.set(R(), R(), R()); L.veg.add(mg);
+  }
+  root.add(L.veg);
+  // flavor (sauce drizzle)
+  L.sauce = new THREE.Group();
+  var sp = [];
+  for (i = 0; i <= 40; i++){ var t = i / 40; sp.push(new THREE.Vector3(-1.1 + t * 2.2, .34 + Math.sin(t * 20) * .01, Math.sin(t * Math.PI * 5) * .45)); }
+  L.sauce.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(sp), 200, .035, 8, false), mat(0xef7058, .3)));
+  root.add(L.sauce);
+  // crunch
+  L.crunch = new THREE.Group();
+  for (i = 0; i < 36; i++){
+    var white = i % 3 === 0, c = new THREE.Mesh(new THREE.SphereGeometry(white ? .025 : .05, 8, 6), mat(white ? 0xffffff : 0xd6a15f, .7));
+    var q = R() * Math.PI * 2, qr = Math.sqrt(R()) * 1.25; c.position.set(Math.cos(q) * qr, .32 + R() * .05, Math.sin(q) * qr); L.crunch.add(c);
+  }
+  root.add(L.crunch);
+  return { root: root, layers: [L.bowl, L.base, L.protein, L.veg, L.sauce, L.crunch] };
+}
+
+function makeScene(canvas, camPos){
+  var renderer;
+  try { renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true }); } catch (err) { return null; }
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  var scene = new THREE.Scene(), cam = new THREE.PerspectiveCamera(35, 1, .1, 100);
+  cam.position.set(camPos[0], camPos[1], camPos[2]); cam.lookAt(0, 0, 0);
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x0b3f3e, .9));
+  var d = new THREE.DirectionalLight(0xffffff, .9); d.position.set(3, 5, 4); scene.add(d);
+  var b = makeBowl(); scene.add(b.root);
+  function size(){ var w = canvas.clientWidth, h = canvas.clientHeight; if (!w || !h) return; renderer.setSize(w, h, false); cam.aspect = w / h; cam.updateProjectionMatrix(); }
+  size(); if (window.ResizeObserver) new ResizeObserver(size).observe(canvas); else addEventListener('resize', size);
+  var visible = false;
+  new IntersectionObserver(function(en){ visible = en[0].isIntersecting; }).observe(canvas);
+  return { scene: scene, cam: cam, renderer: renderer, bowl: b, isVisible: function(){ return visible; }, render: function(){ renderer.render(scene, cam); } };
+}
+
+/* ---------- Hero ---------- */
+if (hasG && !reduce){
+  gsap.from('.hero h1 .w', { yPercent: 110, rotateX: -80, opacity: 0, duration: .8, stagger: .07, ease: 'power3.out' });
+  gsap.from('.hero p, .hero-actions, .news', { y: 18, opacity: 0, duration: .6, stagger: .1, delay: .45, ease: 'power3.out' });
+}
+var hero = has3 && makeScene(document.getElementById('heroCanvas'), [0, 2.6, 5.2]);
+if (hero){
+  var hr = hero.bowl.root, drag = null, vel = .004, tiltX = 0;
+  hr.rotation.x = .1;
+  if (hasG && !reduce){
+    hero.bowl.layers.forEach(function(l, i){ if (i === 0) return; gsap.from(l.position, { y: 3.2, duration: .8, delay: .3 + i * .16, ease: 'back.out(1.5)' }); });
+  }
+  var st = document.getElementById('heroStage');
+  st.addEventListener('pointerdown', function(e){ drag = { x: e.clientX, y: e.clientY, r: hr.rotation.y }; st.setPointerCapture(e.pointerId); });
+  st.addEventListener('pointermove', function(e){
+    if (drag){ hr.rotation.y = drag.r + (e.clientX - drag.x) * .01; tiltX = Math.max(-.3, Math.min(.5, (e.clientY - drag.y) * .004)); }
+  });
+  st.addEventListener('pointerup', function(){ drag = null; tiltX = 0; });
+  st.addEventListener('pointercancel', function(){ drag = null; tiltX = 0; });
+  (function loop(){
+    requestAnimationFrame(loop);
+    if (!hero.isVisible()) return;
+    if (!drag && !reduce) hr.rotation.y += vel;
+    hr.rotation.x += ((.1 + tiltX) - hr.rotation.x) * .08;
+    hero.render();
+  })();
+}
+
+/* ---------- Favorites sticky detail ---------- */
+var items = [].slice.call(document.querySelectorAll('.fav-item'));
+var plate = document.getElementById('plate'), pis = plate.querySelectorAll('i');
+var fn = document.getElementById('favName'), fk = document.getElementById('favKcal');
+function setFav(el){
+  items.forEach(function(x){ x.classList.toggle('on', x === el); });
+  fn.textContent = el.dataset.name; fk.textContent = el.dataset.kcal + ' kcal';
+  el.dataset.c.split(',').forEach(function(c, i){ pis[i].style.background = c; pis[i].style.transform = 'rotate(' + (i * 17 + el.dataset.kcal % 40) + 'deg)'; });
+  plate.style.transform = 'rotate(' + (items.indexOf(el) * 45) + 'deg)';
+}
+setFav(items[0]);
+var io = new IntersectionObserver(function(en){ en.forEach(function(e){ if (e.isIntersecting) setFav(e.target); }); }, { rootMargin: '-45% 0px -45% 0px' });
+items.forEach(function(el){ io.observe(el); });
+
+/* ---------- Poké your style: exploded view ---------- */
+var ex = has3 && makeScene(document.getElementById('exCanvas'), [0, 1.4, 7.4]);
+var lis = [].slice.call(document.querySelectorAll('#layers li')).reverse(); // Base..Crunch
+function explode(p){
+  if (ex){
+    ex.bowl.layers.forEach(function(l, i){ l.position.y = i === 0 ? -p * .6 : -p * .6 + i * p * .72; });
+    ex.cam.position.y = 1.4 + p * 1.2; ex.cam.lookAt(0, p * 1.2, 0);
+  }
+  lis.forEach(function(li, i){ li.classList.toggle('on', p > .12 + i * .16); });
+}
+if (ex){
+  ex.bowl.root.rotation.x = .15;
+  (function loop(){ requestAnimationFrame(loop); if (!ex.isVisible()) return; if (!reduce) ex.bowl.root.rotation.y += .003; ex.render(); })();
+}
+if (hasG && !reduce){
+  ScrollTrigger.create({ trigger: '.ex-pin', pin: true, start: 'top top', end: '+=180%', scrub: .6,
+    onUpdate: function(s){ explode(Math.min(1, s.progress * 1.15)); } });
+} else { explode(1); }
+
+/* ---------- Stacked cards: the card below slides over, the one behind shrinks ---------- */
+if (hasG && !reduce){
+  document.querySelectorAll('.stack').forEach(function(stack){
+    var cards = stack.querySelectorAll('.scard');
+    cards.forEach(function(card, i){
+      var next = cards[i + 1]; if (!next) return;
+      gsap.to(card, { scale: .92, filter: 'brightness(.82)', ease: 'none',
+        scrollTrigger: { trigger: next, start: 'top bottom', end: 'top 20%', scrub: true } });
+    });
+  });
+}
+
+/* ---------- Newsletter (demo only) ---------- */
+var nl = document.getElementById('nl'), mail = document.getElementById('nlMail'), msg = document.getElementById('nlMsg');
+nl.addEventListener('submit', function(e){
+  e.preventDefault();
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail.value.trim())){ msg.textContent = 'Gebt eine gültige E-Mail-Adresse ein, z. B. name@beispiel.de.'; mail.focus(); return; }
+  msg.textContent = 'Abonniert. In der Demo wird nichts gesendet.';
+});
+mail.addEventListener('input', function(){ msg.textContent = ''; });
+})();
+</script>
+</body>
+</html>
