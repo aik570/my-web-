@@ -42,12 +42,6 @@
 .fr-hero__text{margin:28px 0 0;font-size:clamp(17px,1.3vw,20px);line-height:1.55;color:var(--bg-light);max-width:38ch}
 .fr-leaf--hero-a{left:clamp(-150px,-8vw,-60px);bottom:-14%;width:clamp(260px,24vw,440px);transform:rotate(24deg);z-index:1;opacity:.95}
 .fr-leaf--hero-b{right:clamp(-120px,-6vw,-40px);top:-10%;width:clamp(200px,18vw,330px);transform:rotate(-150deg);z-index:1}
-.fr-hero__pause{position:absolute;right:var(--gutter);bottom:clamp(24px,4vh,40px);z-index:3;width:44px;height:44px;border-radius:50%;
-  display:grid;place-items:center;border:1px solid rgba(244,247,245,.4);background:rgb(var(--night-rgb) / .3);color:var(--bg-light);cursor:pointer}
-.fr-hero__pause svg{width:16px;height:16px;fill:currentColor}
-.fr-hero__pause .i-play{display:none}
-.fr-hero__pause[aria-pressed="true"] .i-play{display:block}
-.fr-hero__pause[aria-pressed="true"] .i-pause{display:none}
 
 /* ---------- 02 · Introduction: the statement left, the quote banner right ---------- */
 .fr-intro{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);
@@ -60,7 +54,9 @@
 .fr-intro__quote img{width:100%;height:auto;display:block}
 
 /* ---------- 03 · Large media: full-bleed store photo, headline set into it ---------- */
-.fr-wide{position:relative;margin:0;height:clamp(420px,88vh,900px);overflow:hidden;background:var(--deep-teal)}
+/* light ground behind the picture: while it opens (js/franchise.js), the band above its rising top edge is the
+   light of the section before, not a dark frame */
+.fr-wide{position:relative;margin:0;height:clamp(420px,88vh,900px);overflow:hidden;background:var(--bg-light)}
 .fr-wide__img{position:absolute;inset:-8% 0;}
 .fr-wide__img img{width:100%;height:100%;object-fit:cover;display:block}
 .fr-wide::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgb(var(--night-rgb) / .78) 0%,rgb(var(--night-rgb) / 0) 52%)}
@@ -72,7 +68,19 @@
 .fr-grow__cols{position:relative;z-index:2;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);row-gap:40px}
 .fr-big{grid-column:1 / span 6}
 .fr-grow__text{grid-column:8 / -1;display:grid;gap:18px;padding-top:20px;border-top:1px solid rgb(200 209 211 / .25)}
-.fr-grow__art{position:absolute;left:clamp(16px,6vw,110px);bottom:-6%;width:clamp(240px,30vw,500px);height:auto;z-index:1;opacity:.9;pointer-events:none}
+/* The illustration sits in a small layered scene instead of lying flat on the ground: two far leaves grow from
+   behind its top edges, a mid-depth leaf crosses in front of its lower corner, a soft shadow seats it, and its own
+   lower edge fades into the teal instead of being cut by the section's edge. Positions are in % of the scene,
+   so the composition scales as one piece. */
+.fr-grow__scene{position:absolute;left:clamp(16px,6vw,110px);bottom:-6%;width:clamp(240px,30vw,500px);aspect-ratio:615/431;z-index:1;pointer-events:none}
+.fr-grow__scene::before{content:"";position:absolute;left:4%;right:-2%;bottom:6%;height:34%;border-radius:50%;
+  background:radial-gradient(closest-side,rgb(var(--night-rgb) / .5),rgb(var(--night-rgb) / 0));z-index:0}
+.fr-grow__art{position:relative;z-index:1;display:block;width:100%;height:auto;opacity:.92;
+  -webkit-mask-image:linear-gradient(0deg,transparent 0%,#000 26%);mask-image:linear-gradient(0deg,transparent 0%,#000 26%)}
+.fr-grow__leaf{position:absolute;height:auto;max-width:none;user-select:none}
+.fr-grow__leaf--back-a{left:-12%;top:-46%;width:30%;transform:rotate(-26deg);z-index:0;opacity:.85}
+.fr-grow__leaf--back-b{right:2%;top:-34%;width:19%;transform:rotate(34deg);z-index:0;opacity:.75}
+.fr-grow__leaf--front{left:-19%;bottom:-30%;width:40%;transform:rotate(34deg);z-index:2}
 .fr-leaf--grow-a{right:clamp(-120px,-6vw,-40px);bottom:-12%;width:clamp(220px,20vw,360px);transform:rotate(-24deg)}
 
 /* ---------- 05 · Store concept: staggered tall modules ---------- */
@@ -232,7 +240,6 @@
   .fr-hero__text{font-size:16px;margin-top:20px}
   .fr-actions .btn{flex:1 1 140px;padding:0 20px}
   .fr-leaf--hero-a{width:46vw;left:-16vw;top:calc(min(64svh,128vw) - 30vw);bottom:auto}
-  .fr-hero__pause{top:calc(var(--hh) + 12px);bottom:auto}
 
   .fr-intro{grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "body" "quote";padding:88px var(--gutter) 72px;row-gap:0}
   .fr-intro__quote{margin-top:40px}
@@ -243,7 +250,7 @@
   .fr-grow__cols{grid-template-columns:minmax(0,1fr)}
   .fr-big,.fr-grow__text{grid-column:1}
   .fr-big{font-size:min(7.6vw,40px)}
-  .fr-grow__art{width:72vw;left:var(--gutter);bottom:-2%}
+  .fr-grow__scene{width:72vw;left:var(--gutter);bottom:-2%}
   .fr-leaf--grow-a{width:42vw;right:-14vw;bottom:-4%}
 
   .fr-store{padding:88px var(--gutter) 80px}

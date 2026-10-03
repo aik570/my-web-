@@ -74,7 +74,6 @@
         <a class="btn btn--ghost" href="https://maloa.com/wp-content/uploads/2026/02/Maloa-Franchise_2026-01_DE_Digital.pdf">Broschüre</a>
       </p>
     </div>
-    <button class="fr-hero__pause" type="button" aria-label="Video pausieren" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-pause" d="M7 5h3v14H7zM14 5h3v14h-3z"/><path class="i-play" d="M8 5.5v13l11-6.5z"/></svg></button>
   </section>
 
   <!-- 02 · Introduction (light): the statement and the quote banner from maloa.com/franchise/ -->
@@ -100,7 +99,14 @@
   <!-- 04 · Growth story (dark), framed by the original page's leaf illustration -->
   <section class="fr-grow" aria-label="Auf gesundem Wachstumskurs">
     <img class="fr-leaf fr-leaf--grow-a" data-speed="-0.5" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/1e985fa3-98a9-4f00-942b-62fc5bcdedaa.webp" width="624" height="720" alt="" loading="lazy" decoding="async">
-    <img class="fr-grow__art" src="https://maloa.com/wp-content/uploads/2020/05/franchise-bottom.png" width="615" height="431" alt="" loading="lazy" decoding="async">
+    <!-- The original page's illustration in a small layered scene: two leaves (the page's own cut-outs, far depth)
+         grow from behind it, one (mid depth) crosses in front of its lower corner; a soft shadow seats it -->
+    <div class="fr-grow__scene" aria-hidden="true">
+      <img class="fr-grow__leaf fr-grow__leaf--back-a" data-depth="0.25" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/73343198-6048-4b4e-9fc4-b7a4d4a0e6d0.webp" width="354" height="560" alt="" loading="lazy" decoding="async">
+      <img class="fr-grow__leaf fr-grow__leaf--back-b" data-depth="0.35" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/b1312f09-f80c-41a2-94c8-db2de06f700b.webp" width="273" height="520" alt="" loading="lazy" decoding="async">
+      <img class="fr-grow__art" src="https://maloa.com/wp-content/uploads/2020/05/franchise-bottom.png" width="615" height="431" alt="" loading="lazy" decoding="async">
+      <img class="fr-grow__leaf fr-grow__leaf--front" data-depth="1" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/a9721976-0d00-41a9-bb6f-04f242bfa250.webp" width="625" height="720" alt="" loading="lazy" decoding="async">
+    </div>
     <div class="fr-grow__cols">
       <p class="fr-big" data-reveal>Ma’Loa wächst und das nicht erst seit gestern. Inzwischen sind wir in mehreren Ländern Europas für Euch vertreten.</p>
       <div class="fr-grow__text">
