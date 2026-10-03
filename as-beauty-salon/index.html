@@ -294,8 +294,8 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
 .offer{display:grid;grid-template-columns:1fr 1fr;margin-top:clamp(48px,6vw,80px);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
 .offer-item{display:grid;grid-template-columns:auto 1fr;column-gap:28px;align-items:end;padding:30px 0}
 .offer-item + .offer-item{padding-left:40px;border-left:1px solid var(--hair)}
-.offer-item .who{grid-column:1/3;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
-.offer-item .amount{grid-row:2/4;font-family:var(--serif);font-weight:300;font-size:clamp(52px,5.4vw,80px);line-height:.9;color:var(--gold-pale);font-variant-numeric:tabular-nums}
+.offer-item .who{grid-column:1/3;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.offer-item .amount{grid-row:2/4;font-family:var(--serif);font-weight:300;font-size:clamp(52px,5.4vw,80px);line-height:.9;color:var(--gold-pale);font-variant-numeric:lining-nums tabular-nums;font-feature-settings:"lnum" 1,"tnum" 1}
 .offer-item .what{font-family:var(--serif);font-size:24px;line-height:1.1}
 .offer-item .note{font-size:15px;letter-spacing:.02em;color:var(--muted);margin-top:8px}
 .menu{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(48px,7vw,110px);margin-top:clamp(64px,8vw,110px)}
@@ -308,7 +308,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
 .price-list .name{flex:0 1 auto}
 .price-list li+li{border-top:1px solid rgba(238,234,226,.06)}
 .price-list .leader{flex:1;min-width:20px;border-bottom:1px dotted rgba(238,234,226,.2);transform:translateY(-5px)}
-.price-list .val{font-family:var(--serif);font-size:25px;font-weight:400;letter-spacing:.01em;color:var(--text);white-space:nowrap;font-variant-numeric:tabular-nums}
+.price-list .val{font-family:var(--serif);font-size:25px;font-feature-settings:"lnum" 1,"tnum" 1;font-weight:400;letter-spacing:.01em;color:var(--text);white-space:nowrap;font-variant-numeric:tabular-nums}
 .tbd{border-bottom:1px dotted rgba(238,234,226,.26);font-size:13px;letter-spacing:.05em;color:var(--muted);font-family:var(--sans)}
 
 /* ======================================================================
@@ -355,14 +355,14 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
    ====================================================================== */
 .s-contact{padding-block:clamp(84px,10vw,140px) clamp(84px,10vw,130px)}
 .contact{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;margin-top:clamp(48px,6vw,80px)}
-.contact h3{font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+.contact h3{font-family:var(--sans);font-size:12px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
 .c-hours{grid-column:1/6}
 .c-reach{grid-column:7/13}
 .hours{list-style:none;margin:22px 0 0;padding:0}
 .hours li{display:flex;justify-content:space-between;gap:16px;padding:15px 0;border-bottom:1px solid var(--hair);font-size:16px}
 .hours li:first-child{border-top:1px solid var(--hair)}
 .hours .d{color:var(--soft);letter-spacing:.02em;font-size:15.5px}
-.hours .h{font-variant-numeric:tabular-nums}
+.hours .h{font-variant-numeric:lining-nums tabular-nums;font-size:14px}
 .contact-list{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-direction:column;gap:16px}
 .contact-list li{font-size:17px}
 .contact-list a{color:var(--text);text-decoration:none;border-bottom:1px solid var(--hair);transition:border-color .25s,color .25s}
