@@ -10,9 +10,17 @@
   grid-template-areas:
     "head head head head head head head head head head head ."
     "body body body photo photo photo photo photo photo photo photo photo"}
-.js .about.is-scripted{background:var(--night);padding-top:clamp(120px,17vh,190px);padding-bottom:clamp(64px,8vw,112px)}
-/* a soft night band at the top: the seam with the dark scene is a gradient, never an edge */
-.js .about.is-scripted::before{content:"";position:absolute;left:0;right:0;top:0;height:clamp(120px,18vh,200px);background:linear-gradient(180deg,var(--night),rgb(var(--night-rgb) / 0));pointer-events:none}
+/* With the script the seam with the dark scene is one long band of the brand's own colours (night → deep teal
+   → mid teal → light gray → light), fixed to the top of the block and simply scrolled through: the light
+   arrives with the reader's own scroll, so it cannot lag, flash or be seen being painted across. The stops
+   are eased (closer together at both ends) so no edge or stripe shows. The headline starts once the band
+   is light gray. The band's height is read by js/about.js for the header switch. */
+.js .about.is-scripted{--band:clamp(280px,46svh,480px);background:var(--bg-light);padding-top:calc(var(--band) * .8);padding-bottom:clamp(64px,8vw,112px)}
+.js .about.is-scripted::before{content:"";position:absolute;left:0;right:0;top:0;height:var(--band);pointer-events:none;
+  background:linear-gradient(180deg,var(--night) 0%,color-mix(in srgb,var(--night) 80%,var(--deep-teal)) 8%,color-mix(in srgb,var(--night) 40%,var(--deep-teal)) 20%,
+    var(--deep-teal) 32%,color-mix(in srgb,var(--deep-teal) 50%,var(--mid-teal)) 45%,var(--mid-teal) 57%,color-mix(in srgb,var(--mid-teal) 45%,var(--light-gray)) 69%,
+    var(--light-gray) 81%,color-mix(in srgb,var(--light-gray) 45%,var(--bg-light)) 91%,var(--bg-light) 100%)}
+.js .about.is-scripted > *{position:relative;z-index:1}
 
 .about__head{grid-area:head;margin-bottom:clamp(20px,2.4vw,36px)}
 .about__label{margin:0 0 18px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--deep-teal)}
@@ -39,7 +47,7 @@
 /* Phones and upright tablets: headline, text, then the photo edge to edge, link last */
 @media (max-aspect-ratio:4/5), (max-width:699px){
   .about{grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "body" "photo" "cta";row-gap:0;padding-bottom:40px}
-  .js .about.is-scripted{padding-top:120px}
+  .js .about.is-scripted{--band:clamp(240px,40svh,380px)}
   .about__head{margin-bottom:18px}
   .about__label{margin-bottom:12px}
   .about__title{font-size:min(11.2vw,64px)}

@@ -5,11 +5,18 @@
    (the next one rises into the ring, the last one leaves), each spinning a little like on a turntable,
    and the island name, bowl type, ingredients and kcal change in step. */
 .favs{position:relative;color:var(--on-teal);background:var(--deep-teal)}
-/* the seam with the light Welcome block is a gradient, as at the top of Welcome */
-.favs::before{content:"";position:absolute;left:0;right:0;top:0;height:clamp(120px,18vh,200px);background:linear-gradient(180deg,var(--bg-light),rgb(244 247 245 / 0));pointer-events:none;z-index:1}
+/* The seam with the light Welcome block: one long band of the brand colours back into deep teal (the same
+   eased stops as the top of Welcome, the other way round), scrolled through, never animated. The headline
+   starts while the band is still finishing, on teal dark enough for light type, so the section is already
+   there as soon as the light gives way. The band's height is read by js/about.js for the header switch. */
+.favs{--band:clamp(220px,36svh,380px)}
+.favs::before{content:"";position:absolute;left:0;right:0;top:0;height:var(--band);pointer-events:none;
+  background:linear-gradient(180deg,var(--bg-light) 0%,color-mix(in srgb,var(--bg-light) 55%,var(--light-gray)) 9%,var(--light-gray) 20%,
+    color-mix(in srgb,var(--light-gray) 50%,var(--mid-teal)) 33%,var(--mid-teal) 46%,color-mix(in srgb,var(--mid-teal) 50%,var(--deep-teal)) 62%,
+    color-mix(in srgb,var(--mid-teal) 18%,var(--deep-teal)) 80%,var(--deep-teal) 100%)}
 
-.favs__head{position:relative;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);align-items:end;
-  padding:calc(clamp(120px,18vh,200px) + clamp(24px,4vw,64px)) var(--gutter) clamp(40px,6vw,88px)}
+.favs__head{position:relative;z-index:1;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);align-items:end;
+  padding:calc(var(--band) * .74) var(--gutter) clamp(40px,6vw,88px)}
 .favs__label{grid-column:1 / -1;margin:0 0 18px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--light-gray)}
 .favs__title{grid-column:1 / span 8;margin:0;font-family:var(--font-display);font-weight:800;text-transform:uppercase;font-size:clamp(44px,6vw,112px);line-height:.88;letter-spacing:-.035em;color:var(--bg-light)}
 .favs__line{display:block;overflow:hidden;padding:.14em 0 .04em;margin-top:-.14em}

@@ -44,7 +44,9 @@
 <style>
 /* Reset and type. Header: css/header.css, Hero: css/hero.css. */
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
+/* overflow-anchor: the pinned sections change the height above the reader while they pin and unpin;
+   the browser's scroll anchoring would answer that with a correction of its own (a visible jump) */
+html{-webkit-text-size-adjust:100%;overflow-anchor:none}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip}
 img,video,svg{display:block;max-width:100%}
 a{color:inherit}
@@ -137,6 +139,8 @@ html.intro-on .site-nav{visibility:hidden}
   font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;white-space:nowrap;
   transition:background-color .35s var(--ease-out),border-color .35s var(--ease-out),color .35s var(--ease-out)}
 .site-nav__link{border:1px solid rgba(244,247,245,.18);background:rgba(var(--night-rgb) / .22);-webkit-backdrop-filter:blur(10px) saturate(1.2);backdrop-filter:blur(10px) saturate(1.2)}
+/* touch devices: a denser fill instead of a live blur over the playing film (see hero.css) */
+@media (hover:none){ .site-nav__link{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(var(--night-rgb) / .4)} }
 .site-nav__link:hover{border-color:rgba(244,247,245,.55);background:rgba(var(--night-rgb) / .38)}
 .site-header__order{flex:none;padding:0 20px;background:var(--powder-pink);color:var(--ink);font-weight:700}
 .site-header__order:hover{background:var(--pink-hover)}
@@ -171,10 +175,15 @@ html.intro-on .site-nav{visibility:hidden}
    is never cropped. */
 .hero{position:relative;height:100svh;min-height:400px;overflow:hidden;isolation:isolate;background:var(--night);color:var(--on-teal)}
 
-/* ---- Film ---- */
-.hero__media{position:absolute;inset:0;z-index:-1}
+/* ---- Film ----
+   The poster (the film's own first frame, which is also its last) lies under the video as a background.
+   With the script the video stays transparent until it is really playing with enough buffered, then fades
+   in over the identical still: no frozen first frame, no pop from poster to film, no stall at the start. */
+.hero__media{position:absolute;inset:0;z-index:-1;background:var(--night) url("https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/f0917650-8606-4f26-9dd2-63d7050473ed.webp") 62% 45%/cover no-repeat}
 /* Bowl centre in the frame is about 62% / 45%: keep that point fixed however the screen crops */
-.hero__video{width:100%;height:100%;object-fit:cover;object-position:62% 45%;background:var(--night)}
+.hero__video{width:100%;height:100%;object-fit:cover;object-position:62% 45%}
+.js .hero__video{opacity:0;transition:opacity 1.1s var(--ease-out)}
+.js .hero__video.is-ready{opacity:1}
 .hero__shade{position:absolute;inset:0;pointer-events:none;background:
   linear-gradient(180deg,rgb(var(--night-rgb) / .55) 0,rgb(var(--night-rgb) / 0) 20%),
   linear-gradient(90deg,rgb(var(--night-rgb) / .62) 0,rgb(var(--night-rgb) / .3) 26%,rgb(var(--night-rgb) / 0) 42%),
@@ -226,6 +235,13 @@ html.intro-on .site-nav{visibility:hidden}
 .js .hero.is-in .hero__actions{transition-delay:.38s}
 .js .hero.is-in .hero__scroll-label{transition-delay:.6s}
 
+/* Touch devices: the glass buttons over the film get a denser fill instead of a live blur. A backdrop blur is
+   recomputed for every frame of the video behind it, which phones pay for with dropped frames in the film. */
+@media (hover:none){
+  .btn--ghost{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgb(var(--night-rgb) / .42)}
+  .hero__pause{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgb(var(--night-rgb) / .45)}
+}
+
 @media (prefers-reduced-motion:reduce){
   .js .hero__labels,.js .hero__line,.js .hero__actions,.js .hero__scroll-label{transform:none}
   .hero__scroll-line{animation:none}
@@ -236,6 +252,7 @@ html.intro-on .site-nav{visibility:hidden}
 @media (max-aspect-ratio:4/5){
   .hero{height:auto;min-height:100svh;display:flex;flex-direction:column}
   .hero__media{position:relative;inset:auto;flex:none;height:min(62svh,124vw)}
+  .hero__media{background-position:63% 46%}
   .hero__video{object-position:63% 46%}
   .hero__shade{background:
     linear-gradient(180deg,rgb(var(--night-rgb) / .55) 0,rgb(var(--night-rgb) / 0) 24%),
@@ -268,13 +285,32 @@ html.intro-on .site-nav{visibility:hidden}
 /* contact shadow under the bowl: a soft ellipse, cheaper than a filter on a moving image */
 .welcome__visual::after{content:"";position:absolute;left:12%;right:12%;bottom:-4%;height:14%;z-index:-1;border-radius:50%;background:radial-gradient(closest-side,rgb(0 0 0 / .6),rgb(0 0 0 / 0));filter:blur(6px)}
 .welcome__bowl{width:100%;height:auto}
-@media (max-aspect-ratio:4/5){ .welcome__visual{width:min(80vw,52svh,460px)} }
+
+/* The bowl's caption: the same real facts Favorites shows for this bowl, small, at the edge of the frame,
+   so the visual is never an unexplained picture. The bowl stays the picture. */
+.welcome__note{position:absolute;left:var(--gutter);bottom:clamp(40px,12vh,120px);z-index:1;width:min(300px,26vw);margin:0;padding-top:16px;border-top:1px solid rgb(200 209 211 / .25);color:var(--light-gray)}
+.welcome__type{margin:0 0 8px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase}
+.welcome__name{margin:0 0 12px;font-family:var(--font-display);font-weight:800;text-transform:uppercase;font-size:clamp(32px,3vw,48px);line-height:.9;letter-spacing:-.03em;color:var(--bg-light)}
+.welcome__ing{margin:0 0 12px;font-size:14px;line-height:1.55}
+.welcome__kcal{margin:0;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+.welcome__kcal b{font-family:var(--font-display);font-size:22px;font-weight:700;letter-spacing:-.01em;color:var(--bg-light);margin-right:6px}
+
+@media (max-aspect-ratio:4/5){
+  .welcome__visual{width:min(80vw,52svh,460px)}
+  /* phones: under the bowl, centred, one line of facts */
+  .welcome__inner{padding-bottom:calc(32px + 92px)}
+  .welcome__note{left:var(--gutter);right:var(--gutter);bottom:clamp(24px,5svh,48px);width:auto;padding-top:12px;text-align:center}
+  .welcome__type{margin-bottom:6px}
+  .welcome__name{font-size:min(8vw,34px);margin-bottom:8px}
+  .welcome__ing{display:none}
+}
 
 /* ---- Cinematic scene ---- */
 .scene--cinematic{height:100svh;overflow:hidden}
 .scene--cinematic .hero{z-index:1}
 .scene--cinematic .scene__dim{display:block;position:absolute;inset:0;z-index:1;background:var(--night);opacity:0;pointer-events:none}
-.scene--cinematic .welcome{position:absolute;inset:0;z-index:2;min-height:0;clip-path:circle(0% at 50% 50%)}
+.scene--cinematic .welcome{position:absolute;inset:0;z-index:2;min-height:0;
+  -webkit-mask-image:radial-gradient(circle,#000 0,transparent 0);mask-image:radial-gradient(circle,#000 0,transparent 0)}   /* closed until js/scene.js opens it */
 .scene--cinematic .leaves{display:block;position:absolute;inset:0;z-index:3;overflow:hidden;pointer-events:none}
 
 .leaf{position:absolute;height:auto;max-width:none;will-change:transform;-webkit-user-select:none;user-select:none}
@@ -310,9 +346,17 @@ html.intro-on .site-nav{visibility:hidden}
   grid-template-areas:
     "head head head head head head head head head head head ."
     "body body body photo photo photo photo photo photo photo photo photo"}
-.js .about.is-scripted{background:var(--night);padding-top:clamp(120px,17vh,190px);padding-bottom:clamp(64px,8vw,112px)}
-/* a soft night band at the top: the seam with the dark scene is a gradient, never an edge */
-.js .about.is-scripted::before{content:"";position:absolute;left:0;right:0;top:0;height:clamp(120px,18vh,200px);background:linear-gradient(180deg,var(--night),rgb(var(--night-rgb) / 0));pointer-events:none}
+/* With the script the seam with the dark scene is one long band of the brand's own colours (night → deep teal
+   → mid teal → light gray → light), fixed to the top of the block and simply scrolled through: the light
+   arrives with the reader's own scroll, so it cannot lag, flash or be seen being painted across. The stops
+   are eased (closer together at both ends) so no edge or stripe shows. The headline starts once the band
+   is light gray. The band's height is read by js/about.js for the header switch. */
+.js .about.is-scripted{--band:clamp(280px,46svh,480px);background:var(--bg-light);padding-top:calc(var(--band) * .8);padding-bottom:clamp(64px,8vw,112px)}
+.js .about.is-scripted::before{content:"";position:absolute;left:0;right:0;top:0;height:var(--band);pointer-events:none;
+  background:linear-gradient(180deg,var(--night) 0%,color-mix(in srgb,var(--night) 80%,var(--deep-teal)) 8%,color-mix(in srgb,var(--night) 40%,var(--deep-teal)) 20%,
+    var(--deep-teal) 32%,color-mix(in srgb,var(--deep-teal) 50%,var(--mid-teal)) 45%,var(--mid-teal) 57%,color-mix(in srgb,var(--mid-teal) 45%,var(--light-gray)) 69%,
+    var(--light-gray) 81%,color-mix(in srgb,var(--light-gray) 45%,var(--bg-light)) 91%,var(--bg-light) 100%)}
+.js .about.is-scripted > *{position:relative;z-index:1}
 
 .about__head{grid-area:head;margin-bottom:clamp(20px,2.4vw,36px)}
 .about__label{margin:0 0 18px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--deep-teal)}
@@ -339,7 +383,7 @@ html.intro-on .site-nav{visibility:hidden}
 /* Phones and upright tablets: headline, text, then the photo edge to edge, link last */
 @media (max-aspect-ratio:4/5), (max-width:699px){
   .about{grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "body" "photo" "cta";row-gap:0;padding-bottom:40px}
-  .js .about.is-scripted{padding-top:120px}
+  .js .about.is-scripted{--band:clamp(240px,40svh,380px)}
   .about__head{margin-bottom:18px}
   .about__label{margin-bottom:12px}
   .about__title{font-size:min(11.2vw,64px)}
@@ -358,11 +402,18 @@ html.intro-on .site-nav{visibility:hidden}
    (the next one rises into the ring, the last one leaves), each spinning a little like on a turntable,
    and the island name, bowl type, ingredients and kcal change in step. */
 .favs{position:relative;color:var(--on-teal);background:var(--deep-teal)}
-/* the seam with the light Welcome block is a gradient, as at the top of Welcome */
-.favs::before{content:"";position:absolute;left:0;right:0;top:0;height:clamp(120px,18vh,200px);background:linear-gradient(180deg,var(--bg-light),rgb(244 247 245 / 0));pointer-events:none;z-index:1}
+/* The seam with the light Welcome block: one long band of the brand colours back into deep teal (the same
+   eased stops as the top of Welcome, the other way round), scrolled through, never animated. The headline
+   starts while the band is still finishing, on teal dark enough for light type, so the section is already
+   there as soon as the light gives way. The band's height is read by js/about.js for the header switch. */
+.favs{--band:clamp(220px,36svh,380px)}
+.favs::before{content:"";position:absolute;left:0;right:0;top:0;height:var(--band);pointer-events:none;
+  background:linear-gradient(180deg,var(--bg-light) 0%,color-mix(in srgb,var(--bg-light) 55%,var(--light-gray)) 9%,var(--light-gray) 20%,
+    color-mix(in srgb,var(--light-gray) 50%,var(--mid-teal)) 33%,var(--mid-teal) 46%,color-mix(in srgb,var(--mid-teal) 50%,var(--deep-teal)) 62%,
+    color-mix(in srgb,var(--mid-teal) 18%,var(--deep-teal)) 80%,var(--deep-teal) 100%)}
 
-.favs__head{position:relative;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);align-items:end;
-  padding:calc(clamp(120px,18vh,200px) + clamp(24px,4vw,64px)) var(--gutter) clamp(40px,6vw,88px)}
+.favs__head{position:relative;z-index:1;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);align-items:end;
+  padding:calc(var(--band) * .74) var(--gutter) clamp(40px,6vw,88px)}
 .favs__label{grid-column:1 / -1;margin:0 0 18px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--light-gray)}
 .favs__title{grid-column:1 / span 8;margin:0;font-family:var(--font-display);font-weight:800;text-transform:uppercase;font-size:clamp(44px,6vw,112px);line-height:.88;letter-spacing:-.035em;color:var(--bg-light)}
 .favs__line{display:block;overflow:hidden;padding:.14em 0 .04em;margin-top:-.14em}
@@ -845,6 +896,13 @@ document.documentElement.classList.add('intro-on');
                alt="Maui Tuna Bowl von Ma'loa mit Ahi Tuna, Avocado, Masago, Edamame und Vul'Cano Flavor">
         </figure>
       </div>
+      <!-- The bowl's caption: the same facts as the Maui entry in Favorites (maloa.com product data) -->
+      <div class="welcome__note">
+        <p class="welcome__type">Tuna Bowl</p>
+        <p class="welcome__name">Maui</p>
+        <p class="welcome__ing">Ahi Tuna, Rote Zwiebeln, Frühlingszwiebel, Edamame, Vul'Cano Flavor, Avocado, Masago</p>
+        <p class="welcome__kcal"><b>498</b> kcal</p>
+      </div>
     </div>
 
     <!-- Foreground leaves, three depths (data-depth scales how far they travel).
@@ -1143,6 +1201,27 @@ addEventListener("DOMContentLoaded",function(){
     ]
   };
 
+  /* Scroll → state, with rests. x runs 0…n over a pinned section (one unit per state). Around every whole
+     number the result holds still (h of each unit on either side), in between it moves on: the section
+     "settles" on each state like a snap would, but only ever from the scroll position itself. Nothing
+     moves the page; stopping anywhere leaves everything where it is, and going back retraces the same path.
+     ease: 'smooth' for an ease-in-out between rests (a wheel turning), otherwise linear (a timeline
+     whose tweens carry their own eases). */
+  window.MALOA.rest = function (x, n, h, ease) {
+    x = Math.max(0, Math.min(n, x));
+    var i = Math.floor(x), f = x - i;
+    if (i >= n) return n;
+    var t = Math.max(0, Math.min(1, (f - h) / (1 - 2 * h)));
+    if (ease === 'smooth') t = t * t * (3 - 2 * t);
+    return i + t;
+  };
+
+  if (hasGsap) {
+    // Measured layout is only right once the web font is in (it changes line heights above the pins):
+    // measure again then, once, instead of each block doing it on its own
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { ScrollTrigger.refresh(); });
+  }
+
   // If GSAP failed to load, never leave the intro covering the page
   if (!hasGsap) root.classList.remove('intro-on');
 })();
@@ -1286,6 +1365,8 @@ addEventListener("DOMContentLoaded",function(){
      the button switches to "play" so the poster is not mistaken for a frozen video.
    - The film pauses while off screen and resumes when it comes back, unless the visitor paused it.
    - Reduced motion or Save-Data: the poster stays, nothing plays until the visitor asks.
+   - The film fades in over its poster (the same frame, laid under it in CSS) only once it is playing with
+     enough buffered to keep going, so the first seconds never stutter or freeze in view.
    - The copy rises in once the intro has finished (or straight away when there is no intro). */
 (function () {
   var M = window.MALOA || {};
@@ -1302,17 +1383,27 @@ addEventListener("DOMContentLoaded",function(){
   }
   function play() {
     var p = video.play();
-    if (p && p.catch) p.catch(function () { setPaused(true); });
+    if (p && p.catch) p.catch(function () { setPaused(true); ready(); });
   }
+
+  // Show the film: when it plays with data in hand, or whenever it stands still (its poster is then
+  // what the video element shows, identical to the still beneath it)
+  var ready = function () { video.classList.add('is-ready'); };
+  function readyWhenFluent() {
+    if (video.readyState >= 4) ready();
+    else video.addEventListener('canplaythrough', ready, { once: true });
+  }
+  setTimeout(ready, 4000);   // a slow line still gets the film rather than a still forever
 
   if (M.reduce || M.saveData) {
     video.removeAttribute('autoplay');
     video.pause();
     userPaused = true;
     setPaused(true);
+    ready();
   }
 
-  video.addEventListener('playing', function () { setPaused(false); });
+  video.addEventListener('playing', function () { setPaused(false); readyWhenFluent(); });
   btn.addEventListener('click', function () {
     if (video.paused) { userPaused = false; play(); }
     else { userPaused = true; video.pause(); setPaused(true); }
@@ -1343,8 +1434,10 @@ addEventListener("DOMContentLoaded",function(){
               the film pulls back and dims
    0.34–0.56  the leaves close in a little, the nearest grow as if coming towards the camera
    0.52–0.96  the leaves part like a curtain and leave the frame; the Welcome opens between them
-              as a widening circle, settling from a slight zoom; its bowl turns into place
-              (no copy here: the Welcome headline appears once, in the About block)
+              as a widening circle with a soft, feathered edge (a mask, never a hard cut), settling from
+              a slight zoom; its bowl turns into place
+   0.80–0.98  the bowl's small caption (name, ingredients, kcal: the same facts as in Favorites) rises in
+              (no headline here: the Welcome headline appears once, in the About block)
    Phones: three leaves, shorter travel, no 3D turn, shorter pin.
    Reduced motion or no GSAP: nothing here runs; the Welcome block simply follows the Hero. */
 (function () {
@@ -1360,6 +1453,7 @@ addEventListener("DOMContentLoaded",function(){
   var welcome = scene.querySelector('.welcome');
   var inner = welcome.querySelector('.welcome__inner');
   var visual = welcome.querySelector('.welcome__visual');
+  var note = welcome.querySelector('.welcome__note');
   var leaves = [].slice.call(scene.querySelectorAll('.leaf'));
 
   scene.classList.add('scene--cinematic');
@@ -1392,6 +1486,16 @@ addEventListener("DOMContentLoaded",function(){
     var at = '50% 50%';
     var active = leaves.filter(function (l) { return getComputedStyle(l).display !== 'none'; });
 
+    // The opening circle: a radial mask whose edge fades over 18% of the screen's half-diagonal, so the
+    // Welcome swells out of the dark instead of being cut in. Once fully open the mask is dropped.
+    var open = { r: 0 };
+    function openMask() {
+      var R = Math.hypot(innerWidth, innerHeight) / 2, f = R * 0.18, r = open.r * (R + f);
+      var m = open.r >= 1 ? 'none' : 'radial-gradient(circle at ' + at + ', #000 ' + Math.max(0, r - f).toFixed(1) + 'px, transparent ' + r.toFixed(1) + 'px)';
+      welcome.style.webkitMaskImage = m; welcome.style.maskImage = m;
+    }
+    openMask();
+
     var tl = gsap.timeline({
       defaults: { ease: 'none' },
       scrollTrigger: {
@@ -1399,7 +1503,7 @@ addEventListener("DOMContentLoaded",function(){
         start: 'top top',
         end: phone ? '+=150%' : '+=220%',
         pin: true,
-        scrub: phone ? 0.5 : 0.9,        // a little lag reads as weight, not as delay
+        scrub: phone ? 0.35 : 0.5,       // a little lag reads as weight; more reads as delay
         anticipatePin: 1,
         invalidateOnRefresh: true,
         onUpdate: function (self) { syncVideo(self.progress); }
@@ -1421,11 +1525,12 @@ addEventListener("DOMContentLoaded",function(){
     tl.to(copy, { autoAlpha: 0, y: -40, ease: 'power2.in', duration: 0.18 }, 0)
       .to(media, { scale: phone ? 0.94 : 0.88, ease: 'sine.inOut', duration: 0.56 }, 0)
       .to(dim, { opacity: 0.55, ease: 'sine.inOut', duration: 0.5 }, 0.08)
-      .fromTo(welcome, { clipPath: 'circle(0% at ' + at + ')' }, { clipPath: 'circle(100% at ' + at + ')', ease: 'power2.inOut', duration: 0.44 }, 0.52)
+      .fromTo(open, { r: 0 }, { r: 1, ease: 'power2.inOut', duration: 0.44, onUpdate: openMask }, 0.52)
       .fromTo(inner, { scale: 1.1 }, { scale: 1, ease: 'power2.out', duration: 0.48 }, 0.52)
       .fromTo(visual, { rotation: -12, y: function () { return 6 * vh(); } }, { rotation: 0, y: 0, ease: 'power2.out', duration: 0.46 }, 0.54);
+    if (note) tl.fromTo(note, { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, ease: 'power2.out', duration: 0.18 }, 0.8);
 
-    return function () { syncVideo(0); };
+    return function () { syncVideo(0); welcome.style.webkitMaskImage = welcome.style.maskImage = ''; };
   });
 
   // The intro locks scrolling; measure again once it has gone
@@ -1436,7 +1541,8 @@ addEventListener("DOMContentLoaded",function(){
 <script>
 addEventListener("DOMContentLoaded",function(){
 /* Block 3 · Welcome / About Poké
-   - Ground: night → light while the block rises into view (scrubbed), so the dark scene hands over softly.
+   - Ground: a long band from night to light at the top of the block (CSS), scrolled through, so the dark
+     scene hands over to the light with the reader's own scroll (no colour fill is animated).
    - Copy: label fades up, the two headline lines rise out of their own masks one after the other,
      text and link follow; played once, not scrubbed, so reading never waits for the scroll.
    - Photo, the one strong move: it opens from an off-centre pill to its full frame while the picture
@@ -1456,14 +1562,8 @@ addEventListener("DOMContentLoaded",function(){
   var lines = about.querySelectorAll('.about__line > span');
   var follow = about.querySelectorAll('.about__text, .about__cta');
   var body = about.querySelector('.about__body');
-  var night = getComputedStyle(document.documentElement).getPropertyValue('--night').trim() || '#000f0f';
 
   about.classList.add('is-scripted');
-
-  gsap.fromTo(about, { backgroundColor: night }, {
-    backgroundColor: '#f4f7f5', ease: 'none',
-    scrollTrigger: { trigger: about, start: 'top 70%', end: 'top 15%', scrub: true }
-  });
 
   // The fixed header switches to its light-ground version only once the ground under it is light:
   // when most of the night band at the top of this block has passed below the header's bottom edge.
@@ -1486,7 +1586,7 @@ addEventListener("DOMContentLoaded",function(){
     toggleClass: { targets: '.site-header', className: 'is-light' }
   });
 
-  gsap.timeline({ scrollTrigger: { trigger: about, start: 'top 30%', once: true } })
+  gsap.timeline({ scrollTrigger: { trigger: about.querySelector('.about__head'), start: 'top 82%', once: true } })
     .from(label, { autoAlpha: 0, y: 16, duration: 0.8, ease: 'power2.out' })
     // 150%, not 100%: the line box is .88em tall and the umlauts reach above it, so a shorter drop
     // leaves the dots of "STÜCK" peeking inside the mask before the lines rise
@@ -1502,12 +1602,15 @@ addEventListener("DOMContentLoaded",function(){
     // The reveal completes while the photo is in its reading position: its top at 38% of the screen on
     // wide screens, its bottom at 85% on phones. Later ends left the frame slightly inset at rest
     // (a gap at the right edge on desktop, side margins on phones, where the page cannot scroll that far).
+    // The pill starts with real radii (about half its height), not 999px: a 999px radius stays fully round for
+    // most of the way and then squares off all at once near the end, which read as a snap.
+    // The opening runs over a longer stretch of scroll with a gentle in-out, so it never lurches mid-way.
     var revealEnd = phone ? 'bottom 85%' : 'top 38%';
-    gsap.timeline({ scrollTrigger: { trigger: photo, start: phone ? 'top 95%' : 'top 92%', end: revealEnd, scrub: 0.8 } })
+    gsap.timeline({ scrollTrigger: { trigger: photo, start: phone ? 'top 100%' : 'top 100%', end: revealEnd, scrub: 0.5 } })
       .fromTo(photo,
-        { clipPath: phone ? 'inset(12% 16% 14% 12% round 160px 160px 160px 160px)' : 'inset(26% 30% 18% 34% round 999px 999px 999px 999px)' },
-        { clipPath: phone ? 'inset(0% 0% 0% 0% round 0px 0px 0px 0px)' : 'inset(0% 0% 0% 0% round 28px 0px 0px 28px)', ease: 'power3.inOut' }, 0)
-      .fromTo(img, { scale: phone ? 1.2 : 1.3, xPercent: phone ? 0 : 4 }, { scale: phone ? 1.03 : 1.06, xPercent: 0, ease: 'power2.out' }, 0);
+        { clipPath: phone ? 'inset(12% 16% 14% 12% round 160px 160px 160px 160px)' : 'inset(26% 30% 18% 34% round 170px 170px 170px 170px)' },
+        { clipPath: phone ? 'inset(0% 0% 0% 0% round 0px 0px 0px 0px)' : 'inset(0% 0% 0% 0% round 28px 0px 0px 28px)', ease: 'sine.inOut' }, 0)
+      .fromTo(img, { scale: phone ? 1.2 : 1.3, xPercent: phone ? 0 : 4 }, { scale: phone ? 1.03 : 1.06, xPercent: 0, ease: 'power1.out' }, 0);
 
     // After the reveal the picture keeps living inside its mask: a slow push-in and drift,
     // the frame itself moves a little, the copy moves the other way at a different speed.
@@ -1528,14 +1631,18 @@ addEventListener("DOMContentLoaded",function(){
 <script>
 addEventListener("DOMContentLoaded",function(){
 /* Block 4 · Ma'loa Favorites
-   - Head: label fades up, the two headline lines rise out of their masks, the intro follows (once).
-   - Stage, the one strong move: pinned; every bowl sits on a large wheel whose centre lies off to the
-     right (phones: below). Scrolling turns the wheel one bowl at a time, snapping, so the next bowl rises
-     into the ring while the last one leaves; each bowl spins a little more than the wheel turns, like on
-     a turntable, and shrinks and fades with its distance from the ring.
+   - Head: label fades up, the two headline lines rise out of their masks, the intro follows (once),
+     as soon as the headline comes into view.
+   - Stage, the one strong move: every bowl sits on a large wheel whose centre lies off to the right
+     (phones: below). The wheel is driven by the scroll position alone: as the stage comes up, the first bowl
+     already rolls into the ring; once the stage is pinned, each further screen of scroll turns the wheel by one
+     bowl. Each bowl rests in the ring for a while (MALOA.rest) and the wheel eases between rests, so it reads
+     like a snap, but nothing ever scrolls the page: stopping anywhere leaves the wheel where it is, going back
+     retraces the same path, and no bowl can be skipped. Each bowl spins a little more than the wheel turns,
+     like on a turntable, and shrinks and fades with its distance from the ring.
    - Text changes in step, not scrubbed: the island name rises out of its mask (from below going forward,
      from above going back), type, ingredients and kcal follow, the kcal counts to the new value.
-   - The index under the stage jumps to a bowl.
+   - The index under the stage scrolls to a bowl's resting point.
    Reduced motion or no GSAP: nothing here runs; the static list remains. */
 (function () {
   var M = window.MALOA || {};
@@ -1554,7 +1661,7 @@ addEventListener("DOMContentLoaded",function(){
   favs.classList.add('is-scripted');
 
   // Head
-  gsap.timeline({ scrollTrigger: { trigger: favs.querySelector('.favs__head'), start: 'top 70%', once: true } })
+  gsap.timeline({ scrollTrigger: { trigger: favs.querySelector('.favs__title'), start: 'top 92%', once: true } })
     .from('.favs__label', { autoAlpha: 0, y: 16, duration: 0.8, ease: 'power2.out' })
     .from('.favs__line > span', { yPercent: 150, duration: 1.2, ease: 'power4.out', stagger: 0.12 }, 0.1)
     .from('.favs__intro', { autoAlpha: 0, y: 24, duration: 0.9, ease: 'power3.out' }, 0.45);
@@ -1580,7 +1687,7 @@ addEventListener("DOMContentLoaded",function(){
     });
   }
 
-  var state = { p: 0 };
+  var state = { p: -0.7 };   // before the stage arrives the first bowl waits just off the ring (LEAD below)
   function render() {
     for (var k = 0; k < n; k++) {
       var d = k - state.p;
@@ -1595,7 +1702,7 @@ addEventListener("DOMContentLoaded",function(){
         zIndex: 10 - Math.round(dist * 5)
       });
     }
-    var i = Math.round(state.p);
+    var i = Math.max(0, Math.min(n - 1, Math.round(state.p)));
     if (i !== active) show(i, active);
   }
 
@@ -1621,20 +1728,31 @@ addEventListener("DOMContentLoaded",function(){
     active = i;
   }
 
-  var turn = gsap.to(state, {
-    p: n - 1, ease: 'none', onUpdate: render,
+  // One pin; one driver over lead-in + pin. The driver's tween only runs a 0 → 1 value (scrubbed a little,
+  // so a wheel's steps arrive as one movement); render() turns it into the wheel position.
+  var LEAD = 0.7;   // how far (in bowls) the first bowl travels into the ring while the stage comes up
+  var pinST = ScrollTrigger.create({
+    trigger: stage, start: 'top top', pin: true, anticipatePin: 1, invalidateOnRefresh: true,
+    end: function () { return '+=' + Math.round(innerHeight * (n - 1) * (phoneQuery.matches ? 0.75 : 0.9)); }
+  });
+  var drive = { t: 0 };
+  var driver = gsap.to(drive, {
+    t: 1, ease: 'none', onUpdate: function () { if (driver) { state.p = wheelAt(drive.t); render(); } },
     scrollTrigger: {
-      trigger: stage, start: 'top top', pin: true, scrub: 0.8, invalidateOnRefresh: true,
-      end: function () { return '+=' + Math.round(innerHeight * (n - 1) * (phoneQuery.matches ? 0.7 : 0.9)); },
-      snap: { snapTo: 1 / (n - 1), duration: { min: 0.25, max: 0.7 }, delay: 0.08, ease: 'power2.inOut' },
+      trigger: stage, start: 'top 85%', end: function () { return pinST.end; }, scrub: 0.35, invalidateOnRefresh: true,
       onRefresh: function () { measure(); render(); }
     }
   });
+  function wheelAt(t) {
+    var st = driver.scrollTrigger, s = st.start + t * (st.end - st.start);
+    if (s < pinST.start) return -LEAD * (1 - (s - st.start) / Math.max(1, pinST.start - st.start));
+    return M.rest((s - pinST.start) / Math.max(1, pinST.end - pinST.start) * (n - 1), n - 1, 0.22, 'smooth');
+  }
 
   // Inline styles set while ScrollTrigger refreshes are reverted with it, so the text state is
   // (re)applied once a refresh has finished: the current bowl's text on, every other one off
   ScrollTrigger.addEventListener('refresh', function () {
-    var i = Math.round(state.p);
+    var i = Math.max(0, Math.min(n - 1, Math.round(state.p)));
     texts.forEach(function (t, k) { if (k !== i) { t.classList.remove('is-on'); gsap.set(t, { opacity: 0 }); } });
     active = -1;
     show(i, -1);
@@ -1643,14 +1761,12 @@ addEventListener("DOMContentLoaded",function(){
   links.forEach(function (a, i) {
     a.addEventListener('click', function (e) {
       e.preventDefault();
-      var st = turn.scrollTrigger;
-      scrollTo({ top: st.start + (st.end - st.start) * i / (n - 1), behavior: 'smooth' });
+      // the middle of bowl i's rest
+      scrollTo({ top: pinST.start + (pinST.end - pinST.start) * i / (n - 1), behavior: 'smooth' });
     });
   });
 
-  // names are fitted with the metrics of the face on screen: measure again once the web font is in
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { ScrollTrigger.refresh(); });
-
+  // (names are fitted with the metrics of the face on screen: core.js refreshes once the web font is in)
   measure();
   render();
 })();
@@ -1660,11 +1776,17 @@ addEventListener("DOMContentLoaded",function(){
 addEventListener("DOMContentLoaded",function(){
 /* Block 5 · Poké your style
    - Copy: label, the two headline lines out of their masks, the intro (once).
-   - Build, the one strong move: the stage is pinned and one scrubbed timeline fills the empty bowl,
-     snapping to each stage: base (rice, then salad on top) → protein → vegetables (three groups a beat apart) → mango and pineapple
-     → the sauce spreads from where it is poured → coconut chips → sesame in three small showers →
-     the complete photograph settles in. Every ingredient drops in from slightly above, a little turned
-     and smaller, overshoots a touch and settles (back.out); everything stays once it has landed.
+   - Build, the one strong move: the stage is pinned and one timeline fills the empty bowl: base (rice, then
+     salad on top) → protein → vegetables (three groups a beat apart) → mango and pineapple → the sauce spreads
+     from where it is poured → coconut chips → sesame in three small showers → the complete photograph.
+   - Driven by the scroll position alone (no snapping, nothing scrolls the page): each stage has a rest where
+     the bowl holds still (MALOA.rest), and the build plays between rests. Stopping anywhere leaves the bowl as
+     it is; going back takes the ingredients out again along the same path.
+   - Each ingredient is set down, not dropped: it settles from a little above and a touch larger (nearer the
+     camera) to its place while it fades in, with a long, soft ease and no overshoot, no turn on the small
+     pieces. Its cut edge is never seen travelling across the bowl: most of the fade happens in the last
+     few percent of the way.
+   - The sauce spreads out from where it is poured under a soft-edged mask, not a hard circle.
    - The step copy changes in step, not scrubbed (opacity and a small rise); the 01–06 line follows.
    - The light behind the bowl recedes as the bowl fills (a CSS variable, scrubbed).
    Reduced motion or no GSAP: nothing here runs; the finished bowl and the list of steps remain. */
@@ -1687,39 +1809,46 @@ addEventListener("DOMContentLoaded",function(){
     .from('.poke__line > span', { yPercent: 150, duration: 1.2, ease: 'power4.out', stagger: 0.12 }, 0.1)
     .from('.poke__intro', { autoAlpha: 0, y: 24, duration: 0.9, ease: 'power3.out' }, 0.45);
 
-  // An ingredient lands: from a little above (and aside), turned and smaller, to rest with a small overshoot
-  function drop(tl, el, at, from) {
-    tl.fromTo(el, { xPercent: from.x || 0, yPercent: from.y, rotation: from.r || 0, scale: from.s || 0.94 },
-      { xPercent: 0, yPercent: 0, rotation: 0, scale: 1, duration: 0.7, ease: 'back.out(1.7)' }, at)
-      .fromTo(el, { opacity: 0 }, { opacity: 1, duration: 0.28, ease: 'power1.out' }, at);
+  // An ingredient is set down: from a little above (and aside) and a touch larger, to rest, fading in
+  // on the way. power3.out: it arrives softly, nothing overshoots, nothing wobbles when the scroll does.
+  function place(tl, el, at, from) {
+    var d = from.d || 0.75;
+    tl.fromTo(el, { xPercent: from.x || 0, yPercent: from.y, rotation: from.r || 0, scale: from.s || 1.04 },
+      { xPercent: 0, yPercent: 0, rotation: 0, scale: 1, duration: d, ease: 'power3.out' }, at)
+      .fromTo(el, { opacity: 0 }, { opacity: 1, duration: d * 0.55, ease: 'sine.out' }, at);
   }
 
-  // Stage k plays in (k-1, k]; the snap points are the labels s0…s7
-  var tl = gsap.timeline({ defaults: { immediateRender: true } });
+  // Stage k plays in (k-1, k]; the rests are the whole numbers (labels s0…s7)
+  var tl = gsap.timeline({ paused: true, defaults: { immediateRender: true } });
   tl.addLabel('s0', 0);
-  // Stage 01, the base: the rice lands first and stays under everything, the salad follows on top
-  drop(tl, L('rice'), 0.1, { y: -10, r: -4, s: 0.96 });
-  drop(tl, L('greens'), 0.32, { x: -6, y: -16, r: -8 });                       tl.addLabel('s1', 1);
-  drop(tl, L('tofu'), 1.15, { x: 7, y: -14, r: 7 });                          tl.addLabel('s2', 2);
-  drop(tl, L('veg2'), 2.12, { y: -9, r: 14, s: 0.9 });
-  drop(tl, L('veg1'), 2.24, { y: -8, r: -12, s: 0.9 });
-  drop(tl, L('veg3'), 2.36, { y: -10, r: 10, s: 0.9 });                       tl.addLabel('s3', 3);
-  drop(tl, L('mango'), 3.12, { x: -4, y: -14, r: -6 });
-  drop(tl, L('pineapple'), 3.3, { y: -9, r: 12, s: 0.9 });                    tl.addLabel('s4', 4);
-  // The sauce is poured, not dropped: it spreads out from the top left of the bowl
-  tl.fromTo(L('sauce'), { clipPath: 'circle(0% at 26% 36%)', scale: 1.03, opacity: 0.2 },
-    { clipPath: 'circle(85% at 26% 36%)', scale: 1, opacity: 1, duration: 0.8, ease: 'power2.inOut' }, 4.12);
+  // Stage 01, the base: the rice settles first and stays under everything, the salad follows on top
+  place(tl, L('rice'), 0.05, { y: -3, s: 1.02, d: 0.8 });
+  place(tl, L('greens'), 0.25, { x: -1.5, y: -5, r: -2 });                     tl.addLabel('s1', 1);
+  place(tl, L('tofu'), 1.1, { x: 1.5, y: -5, r: 2 });                          tl.addLabel('s2', 2);
+  place(tl, L('veg2'), 2.05, { y: -4, s: 1.05, d: 0.6 });
+  place(tl, L('veg1'), 2.17, { y: -4, s: 1.05, d: 0.6 });
+  place(tl, L('veg3'), 2.29, { y: -4, s: 1.05, d: 0.6 });                      tl.addLabel('s3', 3);
+  place(tl, L('mango'), 3.05, { x: -1, y: -5, r: -2 });
+  place(tl, L('pineapple'), 3.25, { y: -4, s: 1.05, d: 0.65 });                tl.addLabel('s4', 4);
+  // The sauce is poured, not dropped: it spreads out from the top left of the bowl under a soft edge
+  var pour = { r: 0 }, sauce = L('sauce');
+  function pourMask() {
+    // fully poured: no mask at all (nothing left to hide, nothing to composite)
+    var m = pour.r >= 112 ? 'none' : 'radial-gradient(circle at 26% 36%, #000 ' + (pour.r - 14).toFixed(2) + '%, transparent ' + pour.r.toFixed(2) + '%)';
+    sauce.style.webkitMaskImage = m; sauce.style.maskImage = m;
+  }
+  tl.fromTo(pour, { r: 0 }, { r: 112, duration: 0.85, ease: 'power1.inOut', onUpdate: pourMask }, 4.05)
+    .fromTo(sauce, { opacity: 0.35, scale: 1.015 }, { opacity: 1, scale: 1, duration: 0.85, ease: 'sine.out' }, 4.05);
                                                                               tl.addLabel('s5', 5);
-  drop(tl, L('coconut'), 5.1, { x: -9, y: -16, r: -9 });
+  place(tl, L('coconut'), 5.05, { x: -1.5, y: -5, r: -2 });
   ['sesame1', 'sesame2', 'sesame3'].forEach(function (n, i) {
-    tl.fromTo(L(n), { yPercent: -5, scale: 1.03, opacity: 0 },
-      { yPercent: 0, scale: 1, opacity: 1, duration: 0.45, ease: 'power2.out' }, 5.45 + i * 0.13);
+    place(tl, L(n), 5.4 + i * 0.13, { y: -2.5, s: 1.02, d: 0.45 });
   });                                                                         tl.addLabel('s6', 6);
   // The complete photograph settles in over the stack: same picture, every edge back where it was
-  tl.fromTo(L('final'), { opacity: 0 }, { opacity: 1, duration: 0.55, ease: 'power1.inOut' }, 6.15)
-    .fromTo(plate, { scale: 1 }, { scale: 1.025, duration: 0.4, ease: 'power2.out', yoyo: true, repeat: 1 }, 6.1);
+  tl.fromTo(L('final'), { opacity: 0 }, { opacity: 1, duration: 0.7, ease: 'sine.inOut' }, 6.1);
   tl.addLabel('s7', 7);
   tl.fromTo(stage, { '--glow': 1 }, { '--glow': 0.35, duration: 7, ease: 'none' }, 0);
+  pourMask();
 
   // Stage → step copy: base, protein, vegetables, fruit, (sauce, toppings) finish, your poké
   var stepOf = [0, 0, 1, 2, 3, 4, 4, 5];
@@ -1739,11 +1868,16 @@ addEventListener("DOMContentLoaded",function(){
   }
   function sync() { show(stepOf[Math.min(7, Math.ceil(tl.time() - 0.001))] || 0); }
 
-  ScrollTrigger.create({
-    animation: tl, trigger: stage, start: 'top top', pin: true, scrub: 0.6, invalidateOnRefresh: true,
-    end: function () { return '+=' + Math.round(innerHeight * 7 * (phoneQuery.matches ? 0.62 : 0.72)); },
-    snap: { snapTo: 'labels', duration: { min: 0.25, max: 0.8 }, delay: 0.08, ease: 'power2.inOut', inertia: false },
-    onUpdate: sync
+  // The scroll runs a plain 0 → 7 value (scrubbed a little, so a wheel's steps arrive as one movement);
+  // the timeline is set to that value with a rest around every stage
+  var drive = { x: 0 };
+  gsap.to(drive, {
+    x: 7, ease: 'none',
+    onUpdate: function () { tl.time(M.rest(drive.x, 7, 0.18)); sync(); },
+    scrollTrigger: {
+      trigger: stage, start: 'top top', pin: true, anticipatePin: 1, scrub: 0.35, invalidateOnRefresh: true,
+      end: function () { return '+=' + Math.round(innerHeight * 7 * (phoneQuery.matches ? 0.62 : 0.72)); }
+    }
   });
 
   // Inline styles set during a refresh are reverted with it: re-apply the copy state afterwards

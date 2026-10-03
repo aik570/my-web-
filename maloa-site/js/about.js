@@ -1,5 +1,6 @@
 /* Block 3 · Welcome / About Poké
-   - Ground: night → light while the block rises into view (scrubbed), so the dark scene hands over softly.
+   - Ground: a long band from night to light at the top of the block (CSS), scrolled through, so the dark
+     scene hands over to the light with the reader's own scroll (no colour fill is animated).
    - Copy: label fades up, the two headline lines rise out of their own masks one after the other,
      text and link follow; played once, not scrubbed, so reading never waits for the scroll.
    - Photo, the one strong move: it opens from an off-centre pill to its full frame while the picture
@@ -19,14 +20,8 @@
   var lines = about.querySelectorAll('.about__line > span');
   var follow = about.querySelectorAll('.about__text, .about__cta');
   var body = about.querySelector('.about__body');
-  var night = getComputedStyle(document.documentElement).getPropertyValue('--night').trim() || '#000f0f';
 
   about.classList.add('is-scripted');
-
-  gsap.fromTo(about, { backgroundColor: night }, {
-    backgroundColor: '#f4f7f5', ease: 'none',
-    scrollTrigger: { trigger: about, start: 'top 70%', end: 'top 15%', scrub: true }
-  });
 
   // The fixed header switches to its light-ground version only once the ground under it is light:
   // when most of the night band at the top of this block has passed below the header's bottom edge.
@@ -49,7 +44,7 @@
     toggleClass: { targets: '.site-header', className: 'is-light' }
   });
 
-  gsap.timeline({ scrollTrigger: { trigger: about, start: 'top 30%', once: true } })
+  gsap.timeline({ scrollTrigger: { trigger: about.querySelector('.about__head'), start: 'top 82%', once: true } })
     .from(label, { autoAlpha: 0, y: 16, duration: 0.8, ease: 'power2.out' })
     // 150%, not 100%: the line box is .88em tall and the umlauts reach above it, so a shorter drop
     // leaves the dots of "STÜCK" peeking inside the mask before the lines rise
@@ -65,12 +60,15 @@
     // The reveal completes while the photo is in its reading position: its top at 38% of the screen on
     // wide screens, its bottom at 85% on phones. Later ends left the frame slightly inset at rest
     // (a gap at the right edge on desktop, side margins on phones, where the page cannot scroll that far).
+    // The pill starts with real radii (about half its height), not 999px: a 999px radius stays fully round for
+    // most of the way and then squares off all at once near the end, which read as a snap.
+    // The opening runs over a longer stretch of scroll with a gentle in-out, so it never lurches mid-way.
     var revealEnd = phone ? 'bottom 85%' : 'top 38%';
-    gsap.timeline({ scrollTrigger: { trigger: photo, start: phone ? 'top 95%' : 'top 92%', end: revealEnd, scrub: 0.8 } })
+    gsap.timeline({ scrollTrigger: { trigger: photo, start: phone ? 'top 100%' : 'top 100%', end: revealEnd, scrub: 0.5 } })
       .fromTo(photo,
-        { clipPath: phone ? 'inset(12% 16% 14% 12% round 160px 160px 160px 160px)' : 'inset(26% 30% 18% 34% round 999px 999px 999px 999px)' },
-        { clipPath: phone ? 'inset(0% 0% 0% 0% round 0px 0px 0px 0px)' : 'inset(0% 0% 0% 0% round 28px 0px 0px 28px)', ease: 'power3.inOut' }, 0)
-      .fromTo(img, { scale: phone ? 1.2 : 1.3, xPercent: phone ? 0 : 4 }, { scale: phone ? 1.03 : 1.06, xPercent: 0, ease: 'power2.out' }, 0);
+        { clipPath: phone ? 'inset(12% 16% 14% 12% round 160px 160px 160px 160px)' : 'inset(26% 30% 18% 34% round 170px 170px 170px 170px)' },
+        { clipPath: phone ? 'inset(0% 0% 0% 0% round 0px 0px 0px 0px)' : 'inset(0% 0% 0% 0% round 28px 0px 0px 28px)', ease: 'sine.inOut' }, 0)
+      .fromTo(img, { scale: phone ? 1.2 : 1.3, xPercent: phone ? 0 : 4 }, { scale: phone ? 1.03 : 1.06, xPercent: 0, ease: 'power1.out' }, 0);
 
     // After the reveal the picture keeps living inside its mask: a slow push-in and drift,
     // the frame itself moves a little, the copy moves the other way at a different speed.

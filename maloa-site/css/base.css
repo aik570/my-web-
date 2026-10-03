@@ -1,6 +1,8 @@
 /* Reset and type. Header: css/header.css, Hero: css/hero.css. */
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
+/* overflow-anchor: the pinned sections change the height above the reader while they pin and unpin;
+   the browser's scroll anchoring would answer that with a correction of its own (a visible jump) */
+html{-webkit-text-size-adjust:100%;overflow-anchor:none}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip}
 img,video,svg{display:block;max-width:100%}
 a{color:inherit}

@@ -4,8 +4,10 @@
               the film pulls back and dims
    0.34–0.56  the leaves close in a little, the nearest grow as if coming towards the camera
    0.52–0.96  the leaves part like a curtain and leave the frame; the Welcome opens between them
-              as a widening circle, settling from a slight zoom; its bowl turns into place
-              (no copy here: the Welcome headline appears once, in the About block)
+              as a widening circle with a soft, feathered edge (a mask, never a hard cut), settling from
+              a slight zoom; its bowl turns into place
+   0.80–0.98  the bowl's small caption (name, ingredients, kcal: the same facts as in Favorites) rises in
+              (no headline here: the Welcome headline appears once, in the About block)
    Phones: three leaves, shorter travel, no 3D turn, shorter pin.
    Reduced motion or no GSAP: nothing here runs; the Welcome block simply follows the Hero. */
 (function () {
@@ -21,6 +23,7 @@
   var welcome = scene.querySelector('.welcome');
   var inner = welcome.querySelector('.welcome__inner');
   var visual = welcome.querySelector('.welcome__visual');
+  var note = welcome.querySelector('.welcome__note');
   var leaves = [].slice.call(scene.querySelectorAll('.leaf'));
 
   scene.classList.add('scene--cinematic');
@@ -53,6 +56,16 @@
     var at = '50% 50%';
     var active = leaves.filter(function (l) { return getComputedStyle(l).display !== 'none'; });
 
+    // The opening circle: a radial mask whose edge fades over 18% of the screen's half-diagonal, so the
+    // Welcome swells out of the dark instead of being cut in. Once fully open the mask is dropped.
+    var open = { r: 0 };
+    function openMask() {
+      var R = Math.hypot(innerWidth, innerHeight) / 2, f = R * 0.18, r = open.r * (R + f);
+      var m = open.r >= 1 ? 'none' : 'radial-gradient(circle at ' + at + ', #000 ' + Math.max(0, r - f).toFixed(1) + 'px, transparent ' + r.toFixed(1) + 'px)';
+      welcome.style.webkitMaskImage = m; welcome.style.maskImage = m;
+    }
+    openMask();
+
     var tl = gsap.timeline({
       defaults: { ease: 'none' },
       scrollTrigger: {
@@ -60,7 +73,7 @@
         start: 'top top',
         end: phone ? '+=150%' : '+=220%',
         pin: true,
-        scrub: phone ? 0.5 : 0.9,        // a little lag reads as weight, not as delay
+        scrub: phone ? 0.35 : 0.5,       // a little lag reads as weight; more reads as delay
         anticipatePin: 1,
         invalidateOnRefresh: true,
         onUpdate: function (self) { syncVideo(self.progress); }
@@ -82,11 +95,12 @@
     tl.to(copy, { autoAlpha: 0, y: -40, ease: 'power2.in', duration: 0.18 }, 0)
       .to(media, { scale: phone ? 0.94 : 0.88, ease: 'sine.inOut', duration: 0.56 }, 0)
       .to(dim, { opacity: 0.55, ease: 'sine.inOut', duration: 0.5 }, 0.08)
-      .fromTo(welcome, { clipPath: 'circle(0% at ' + at + ')' }, { clipPath: 'circle(100% at ' + at + ')', ease: 'power2.inOut', duration: 0.44 }, 0.52)
+      .fromTo(open, { r: 0 }, { r: 1, ease: 'power2.inOut', duration: 0.44, onUpdate: openMask }, 0.52)
       .fromTo(inner, { scale: 1.1 }, { scale: 1, ease: 'power2.out', duration: 0.48 }, 0.52)
       .fromTo(visual, { rotation: -12, y: function () { return 6 * vh(); } }, { rotation: 0, y: 0, ease: 'power2.out', duration: 0.46 }, 0.54);
+    if (note) tl.fromTo(note, { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, ease: 'power2.out', duration: 0.18 }, 0.8);
 
-    return function () { syncVideo(0); };
+    return function () { syncVideo(0); welcome.style.webkitMaskImage = welcome.style.maskImage = ''; };
   });
 
   // The intro locks scrolling; measure again once it has gone

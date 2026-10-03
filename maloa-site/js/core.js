@@ -27,6 +27,27 @@
     ]
   };
 
+  /* Scroll → state, with rests. x runs 0…n over a pinned section (one unit per state). Around every whole
+     number the result holds still (h of each unit on either side), in between it moves on: the section
+     "settles" on each state like a snap would, but only ever from the scroll position itself. Nothing
+     moves the page; stopping anywhere leaves everything where it is, and going back retraces the same path.
+     ease: 'smooth' for an ease-in-out between rests (a wheel turning), otherwise linear (a timeline
+     whose tweens carry their own eases). */
+  window.MALOA.rest = function (x, n, h, ease) {
+    x = Math.max(0, Math.min(n, x));
+    var i = Math.floor(x), f = x - i;
+    if (i >= n) return n;
+    var t = Math.max(0, Math.min(1, (f - h) / (1 - 2 * h)));
+    if (ease === 'smooth') t = t * t * (3 - 2 * t);
+    return i + t;
+  };
+
+  if (hasGsap) {
+    // Measured layout is only right once the web font is in (it changes line heights above the pins):
+    // measure again then, once, instead of each block doing it on its own
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { ScrollTrigger.refresh(); });
+  }
+
   // If GSAP failed to load, never leave the intro covering the page
   if (!hasGsap) root.classList.remove('intro-on');
 })();

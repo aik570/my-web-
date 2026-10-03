@@ -14,13 +14,32 @@
 /* contact shadow under the bowl: a soft ellipse, cheaper than a filter on a moving image */
 .welcome__visual::after{content:"";position:absolute;left:12%;right:12%;bottom:-4%;height:14%;z-index:-1;border-radius:50%;background:radial-gradient(closest-side,rgb(0 0 0 / .6),rgb(0 0 0 / 0));filter:blur(6px)}
 .welcome__bowl{width:100%;height:auto}
-@media (max-aspect-ratio:4/5){ .welcome__visual{width:min(80vw,52svh,460px)} }
+
+/* The bowl's caption: the same real facts Favorites shows for this bowl, small, at the edge of the frame,
+   so the visual is never an unexplained picture. The bowl stays the picture. */
+.welcome__note{position:absolute;left:var(--gutter);bottom:clamp(40px,12vh,120px);z-index:1;width:min(300px,26vw);margin:0;padding-top:16px;border-top:1px solid rgb(200 209 211 / .25);color:var(--light-gray)}
+.welcome__type{margin:0 0 8px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase}
+.welcome__name{margin:0 0 12px;font-family:var(--font-display);font-weight:800;text-transform:uppercase;font-size:clamp(32px,3vw,48px);line-height:.9;letter-spacing:-.03em;color:var(--bg-light)}
+.welcome__ing{margin:0 0 12px;font-size:14px;line-height:1.55}
+.welcome__kcal{margin:0;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+.welcome__kcal b{font-family:var(--font-display);font-size:22px;font-weight:700;letter-spacing:-.01em;color:var(--bg-light);margin-right:6px}
+
+@media (max-aspect-ratio:4/5){
+  .welcome__visual{width:min(80vw,52svh,460px)}
+  /* phones: under the bowl, centred, one line of facts */
+  .welcome__inner{padding-bottom:calc(32px + 92px)}
+  .welcome__note{left:var(--gutter);right:var(--gutter);bottom:clamp(24px,5svh,48px);width:auto;padding-top:12px;text-align:center}
+  .welcome__type{margin-bottom:6px}
+  .welcome__name{font-size:min(8vw,34px);margin-bottom:8px}
+  .welcome__ing{display:none}
+}
 
 /* ---- Cinematic scene ---- */
 .scene--cinematic{height:100svh;overflow:hidden}
 .scene--cinematic .hero{z-index:1}
 .scene--cinematic .scene__dim{display:block;position:absolute;inset:0;z-index:1;background:var(--night);opacity:0;pointer-events:none}
-.scene--cinematic .welcome{position:absolute;inset:0;z-index:2;min-height:0;clip-path:circle(0% at 50% 50%)}
+.scene--cinematic .welcome{position:absolute;inset:0;z-index:2;min-height:0;
+  -webkit-mask-image:radial-gradient(circle,#000 0,transparent 0);mask-image:radial-gradient(circle,#000 0,transparent 0)}   /* closed until js/scene.js opens it */
 .scene--cinematic .leaves{display:block;position:absolute;inset:0;z-index:3;overflow:hidden;pointer-events:none}
 
 .leaf{position:absolute;height:auto;max-width:none;will-change:transform;-webkit-user-select:none;user-select:none}

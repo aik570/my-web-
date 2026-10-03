@@ -1,10 +1,16 @@
 /* Block 5 · Poké your style
    - Copy: label, the two headline lines out of their masks, the intro (once).
-   - Build, the one strong move: the stage is pinned and one scrubbed timeline fills the empty bowl,
-     snapping to each stage: base (rice, then salad on top) → protein → vegetables (three groups a beat apart) → mango and pineapple
-     → the sauce spreads from where it is poured → coconut chips → sesame in three small showers →
-     the complete photograph settles in. Every ingredient drops in from slightly above, a little turned
-     and smaller, overshoots a touch and settles (back.out); everything stays once it has landed.
+   - Build, the one strong move: the stage is pinned and one timeline fills the empty bowl: base (rice, then
+     salad on top) → protein → vegetables (three groups a beat apart) → mango and pineapple → the sauce spreads
+     from where it is poured → coconut chips → sesame in three small showers → the complete photograph.
+   - Driven by the scroll position alone (no snapping, nothing scrolls the page): each stage has a rest where
+     the bowl holds still (MALOA.rest), and the build plays between rests. Stopping anywhere leaves the bowl as
+     it is; going back takes the ingredients out again along the same path.
+   - Each ingredient is set down, not dropped: it settles from a little above and a touch larger (nearer the
+     camera) to its place while it fades in, with a long, soft ease and no overshoot, no turn on the small
+     pieces. Its cut edge is never seen travelling across the bowl: most of the fade happens in the last
+     few percent of the way.
+   - The sauce spreads out from where it is poured under a soft-edged mask, not a hard circle.
    - The step copy changes in step, not scrubbed (opacity and a small rise); the 01–06 line follows.
    - The light behind the bowl recedes as the bowl fills (a CSS variable, scrubbed).
    Reduced motion or no GSAP: nothing here runs; the finished bowl and the list of steps remain. */
@@ -27,39 +33,46 @@
     .from('.poke__line > span', { yPercent: 150, duration: 1.2, ease: 'power4.out', stagger: 0.12 }, 0.1)
     .from('.poke__intro', { autoAlpha: 0, y: 24, duration: 0.9, ease: 'power3.out' }, 0.45);
 
-  // An ingredient lands: from a little above (and aside), turned and smaller, to rest with a small overshoot
-  function drop(tl, el, at, from) {
-    tl.fromTo(el, { xPercent: from.x || 0, yPercent: from.y, rotation: from.r || 0, scale: from.s || 0.94 },
-      { xPercent: 0, yPercent: 0, rotation: 0, scale: 1, duration: 0.7, ease: 'back.out(1.7)' }, at)
-      .fromTo(el, { opacity: 0 }, { opacity: 1, duration: 0.28, ease: 'power1.out' }, at);
+  // An ingredient is set down: from a little above (and aside) and a touch larger, to rest, fading in
+  // on the way. power3.out: it arrives softly, nothing overshoots, nothing wobbles when the scroll does.
+  function place(tl, el, at, from) {
+    var d = from.d || 0.75;
+    tl.fromTo(el, { xPercent: from.x || 0, yPercent: from.y, rotation: from.r || 0, scale: from.s || 1.04 },
+      { xPercent: 0, yPercent: 0, rotation: 0, scale: 1, duration: d, ease: 'power3.out' }, at)
+      .fromTo(el, { opacity: 0 }, { opacity: 1, duration: d * 0.55, ease: 'sine.out' }, at);
   }
 
-  // Stage k plays in (k-1, k]; the snap points are the labels s0…s7
-  var tl = gsap.timeline({ defaults: { immediateRender: true } });
+  // Stage k plays in (k-1, k]; the rests are the whole numbers (labels s0…s7)
+  var tl = gsap.timeline({ paused: true, defaults: { immediateRender: true } });
   tl.addLabel('s0', 0);
-  // Stage 01, the base: the rice lands first and stays under everything, the salad follows on top
-  drop(tl, L('rice'), 0.1, { y: -10, r: -4, s: 0.96 });
-  drop(tl, L('greens'), 0.32, { x: -6, y: -16, r: -8 });                       tl.addLabel('s1', 1);
-  drop(tl, L('tofu'), 1.15, { x: 7, y: -14, r: 7 });                          tl.addLabel('s2', 2);
-  drop(tl, L('veg2'), 2.12, { y: -9, r: 14, s: 0.9 });
-  drop(tl, L('veg1'), 2.24, { y: -8, r: -12, s: 0.9 });
-  drop(tl, L('veg3'), 2.36, { y: -10, r: 10, s: 0.9 });                       tl.addLabel('s3', 3);
-  drop(tl, L('mango'), 3.12, { x: -4, y: -14, r: -6 });
-  drop(tl, L('pineapple'), 3.3, { y: -9, r: 12, s: 0.9 });                    tl.addLabel('s4', 4);
-  // The sauce is poured, not dropped: it spreads out from the top left of the bowl
-  tl.fromTo(L('sauce'), { clipPath: 'circle(0% at 26% 36%)', scale: 1.03, opacity: 0.2 },
-    { clipPath: 'circle(85% at 26% 36%)', scale: 1, opacity: 1, duration: 0.8, ease: 'power2.inOut' }, 4.12);
+  // Stage 01, the base: the rice settles first and stays under everything, the salad follows on top
+  place(tl, L('rice'), 0.05, { y: -3, s: 1.02, d: 0.8 });
+  place(tl, L('greens'), 0.25, { x: -1.5, y: -5, r: -2 });                     tl.addLabel('s1', 1);
+  place(tl, L('tofu'), 1.1, { x: 1.5, y: -5, r: 2 });                          tl.addLabel('s2', 2);
+  place(tl, L('veg2'), 2.05, { y: -4, s: 1.05, d: 0.6 });
+  place(tl, L('veg1'), 2.17, { y: -4, s: 1.05, d: 0.6 });
+  place(tl, L('veg3'), 2.29, { y: -4, s: 1.05, d: 0.6 });                      tl.addLabel('s3', 3);
+  place(tl, L('mango'), 3.05, { x: -1, y: -5, r: -2 });
+  place(tl, L('pineapple'), 3.25, { y: -4, s: 1.05, d: 0.65 });                tl.addLabel('s4', 4);
+  // The sauce is poured, not dropped: it spreads out from the top left of the bowl under a soft edge
+  var pour = { r: 0 }, sauce = L('sauce');
+  function pourMask() {
+    // fully poured: no mask at all (nothing left to hide, nothing to composite)
+    var m = pour.r >= 112 ? 'none' : 'radial-gradient(circle at 26% 36%, #000 ' + (pour.r - 14).toFixed(2) + '%, transparent ' + pour.r.toFixed(2) + '%)';
+    sauce.style.webkitMaskImage = m; sauce.style.maskImage = m;
+  }
+  tl.fromTo(pour, { r: 0 }, { r: 112, duration: 0.85, ease: 'power1.inOut', onUpdate: pourMask }, 4.05)
+    .fromTo(sauce, { opacity: 0.35, scale: 1.015 }, { opacity: 1, scale: 1, duration: 0.85, ease: 'sine.out' }, 4.05);
                                                                               tl.addLabel('s5', 5);
-  drop(tl, L('coconut'), 5.1, { x: -9, y: -16, r: -9 });
+  place(tl, L('coconut'), 5.05, { x: -1.5, y: -5, r: -2 });
   ['sesame1', 'sesame2', 'sesame3'].forEach(function (n, i) {
-    tl.fromTo(L(n), { yPercent: -5, scale: 1.03, opacity: 0 },
-      { yPercent: 0, scale: 1, opacity: 1, duration: 0.45, ease: 'power2.out' }, 5.45 + i * 0.13);
+    place(tl, L(n), 5.4 + i * 0.13, { y: -2.5, s: 1.02, d: 0.45 });
   });                                                                         tl.addLabel('s6', 6);
   // The complete photograph settles in over the stack: same picture, every edge back where it was
-  tl.fromTo(L('final'), { opacity: 0 }, { opacity: 1, duration: 0.55, ease: 'power1.inOut' }, 6.15)
-    .fromTo(plate, { scale: 1 }, { scale: 1.025, duration: 0.4, ease: 'power2.out', yoyo: true, repeat: 1 }, 6.1);
+  tl.fromTo(L('final'), { opacity: 0 }, { opacity: 1, duration: 0.7, ease: 'sine.inOut' }, 6.1);
   tl.addLabel('s7', 7);
   tl.fromTo(stage, { '--glow': 1 }, { '--glow': 0.35, duration: 7, ease: 'none' }, 0);
+  pourMask();
 
   // Stage → step copy: base, protein, vegetables, fruit, (sauce, toppings) finish, your poké
   var stepOf = [0, 0, 1, 2, 3, 4, 4, 5];
@@ -79,11 +92,16 @@
   }
   function sync() { show(stepOf[Math.min(7, Math.ceil(tl.time() - 0.001))] || 0); }
 
-  ScrollTrigger.create({
-    animation: tl, trigger: stage, start: 'top top', pin: true, scrub: 0.6, invalidateOnRefresh: true,
-    end: function () { return '+=' + Math.round(innerHeight * 7 * (phoneQuery.matches ? 0.62 : 0.72)); },
-    snap: { snapTo: 'labels', duration: { min: 0.25, max: 0.8 }, delay: 0.08, ease: 'power2.inOut', inertia: false },
-    onUpdate: sync
+  // The scroll runs a plain 0 → 7 value (scrubbed a little, so a wheel's steps arrive as one movement);
+  // the timeline is set to that value with a rest around every stage
+  var drive = { x: 0 };
+  gsap.to(drive, {
+    x: 7, ease: 'none',
+    onUpdate: function () { tl.time(M.rest(drive.x, 7, 0.18)); sync(); },
+    scrollTrigger: {
+      trigger: stage, start: 'top top', pin: true, anticipatePin: 1, scrub: 0.35, invalidateOnRefresh: true,
+      end: function () { return '+=' + Math.round(innerHeight * 7 * (phoneQuery.matches ? 0.62 : 0.72)); }
+    }
   });
 
   // Inline styles set during a refresh are reverted with it: re-apply the copy state afterwards

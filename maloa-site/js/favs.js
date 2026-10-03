@@ -1,12 +1,16 @@
 /* Block 4 · Ma'loa Favorites
-   - Head: label fades up, the two headline lines rise out of their masks, the intro follows (once).
-   - Stage, the one strong move: pinned; every bowl sits on a large wheel whose centre lies off to the
-     right (phones: below). Scrolling turns the wheel one bowl at a time, snapping, so the next bowl rises
-     into the ring while the last one leaves; each bowl spins a little more than the wheel turns, like on
-     a turntable, and shrinks and fades with its distance from the ring.
+   - Head: label fades up, the two headline lines rise out of their masks, the intro follows (once),
+     as soon as the headline comes into view.
+   - Stage, the one strong move: every bowl sits on a large wheel whose centre lies off to the right
+     (phones: below). The wheel is driven by the scroll position alone: as the stage comes up, the first bowl
+     already rolls into the ring; once the stage is pinned, each further screen of scroll turns the wheel by one
+     bowl. Each bowl rests in the ring for a while (MALOA.rest) and the wheel eases between rests, so it reads
+     like a snap, but nothing ever scrolls the page: stopping anywhere leaves the wheel where it is, going back
+     retraces the same path, and no bowl can be skipped. Each bowl spins a little more than the wheel turns,
+     like on a turntable, and shrinks and fades with its distance from the ring.
    - Text changes in step, not scrubbed: the island name rises out of its mask (from below going forward,
      from above going back), type, ingredients and kcal follow, the kcal counts to the new value.
-   - The index under the stage jumps to a bowl.
+   - The index under the stage scrolls to a bowl's resting point.
    Reduced motion or no GSAP: nothing here runs; the static list remains. */
 (function () {
   var M = window.MALOA || {};
@@ -25,7 +29,7 @@
   favs.classList.add('is-scripted');
 
   // Head
-  gsap.timeline({ scrollTrigger: { trigger: favs.querySelector('.favs__head'), start: 'top 70%', once: true } })
+  gsap.timeline({ scrollTrigger: { trigger: favs.querySelector('.favs__title'), start: 'top 92%', once: true } })
     .from('.favs__label', { autoAlpha: 0, y: 16, duration: 0.8, ease: 'power2.out' })
     .from('.favs__line > span', { yPercent: 150, duration: 1.2, ease: 'power4.out', stagger: 0.12 }, 0.1)
     .from('.favs__intro', { autoAlpha: 0, y: 24, duration: 0.9, ease: 'power3.out' }, 0.45);
@@ -51,7 +55,7 @@
     });
   }
 
-  var state = { p: 0 };
+  var state = { p: -0.7 };   // before the stage arrives the first bowl waits just off the ring (LEAD below)
   function render() {
     for (var k = 0; k < n; k++) {
       var d = k - state.p;
@@ -66,7 +70,7 @@
         zIndex: 10 - Math.round(dist * 5)
       });
     }
-    var i = Math.round(state.p);
+    var i = Math.max(0, Math.min(n - 1, Math.round(state.p)));
     if (i !== active) show(i, active);
   }
 
@@ -92,20 +96,31 @@
     active = i;
   }
 
-  var turn = gsap.to(state, {
-    p: n - 1, ease: 'none', onUpdate: render,
+  // One pin; one driver over lead-in + pin. The driver's tween only runs a 0 → 1 value (scrubbed a little,
+  // so a wheel's steps arrive as one movement); render() turns it into the wheel position.
+  var LEAD = 0.7;   // how far (in bowls) the first bowl travels into the ring while the stage comes up
+  var pinST = ScrollTrigger.create({
+    trigger: stage, start: 'top top', pin: true, anticipatePin: 1, invalidateOnRefresh: true,
+    end: function () { return '+=' + Math.round(innerHeight * (n - 1) * (phoneQuery.matches ? 0.75 : 0.9)); }
+  });
+  var drive = { t: 0 };
+  var driver = gsap.to(drive, {
+    t: 1, ease: 'none', onUpdate: function () { if (driver) { state.p = wheelAt(drive.t); render(); } },
     scrollTrigger: {
-      trigger: stage, start: 'top top', pin: true, scrub: 0.8, invalidateOnRefresh: true,
-      end: function () { return '+=' + Math.round(innerHeight * (n - 1) * (phoneQuery.matches ? 0.7 : 0.9)); },
-      snap: { snapTo: 1 / (n - 1), duration: { min: 0.25, max: 0.7 }, delay: 0.08, ease: 'power2.inOut' },
+      trigger: stage, start: 'top 85%', end: function () { return pinST.end; }, scrub: 0.35, invalidateOnRefresh: true,
       onRefresh: function () { measure(); render(); }
     }
   });
+  function wheelAt(t) {
+    var st = driver.scrollTrigger, s = st.start + t * (st.end - st.start);
+    if (s < pinST.start) return -LEAD * (1 - (s - st.start) / Math.max(1, pinST.start - st.start));
+    return M.rest((s - pinST.start) / Math.max(1, pinST.end - pinST.start) * (n - 1), n - 1, 0.22, 'smooth');
+  }
 
   // Inline styles set while ScrollTrigger refreshes are reverted with it, so the text state is
   // (re)applied once a refresh has finished: the current bowl's text on, every other one off
   ScrollTrigger.addEventListener('refresh', function () {
-    var i = Math.round(state.p);
+    var i = Math.max(0, Math.min(n - 1, Math.round(state.p)));
     texts.forEach(function (t, k) { if (k !== i) { t.classList.remove('is-on'); gsap.set(t, { opacity: 0 }); } });
     active = -1;
     show(i, -1);
@@ -114,14 +129,12 @@
   links.forEach(function (a, i) {
     a.addEventListener('click', function (e) {
       e.preventDefault();
-      var st = turn.scrollTrigger;
-      scrollTo({ top: st.start + (st.end - st.start) * i / (n - 1), behavior: 'smooth' });
+      // the middle of bowl i's rest
+      scrollTo({ top: pinST.start + (pinST.end - pinST.start) * i / (n - 1), behavior: 'smooth' });
     });
   });
 
-  // names are fitted with the metrics of the face on screen: measure again once the web font is in
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { ScrollTrigger.refresh(); });
-
+  // (names are fitted with the metrics of the face on screen: core.js refreshes once the web font is in)
   measure();
   render();
 })();
