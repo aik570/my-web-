@@ -540,6 +540,27 @@ footer{border-top:1px solid var(--hair);padding-block:44px;background:var(--matt
   .body{margin-top:22px}
   .title{margin-top:16px}
 }
+/* phones, second pass: the pairs read side by side — as on desktop — instead of as a long stack */
+@media (max-width:899px){
+  .dh{column-gap:12px;margin-top:36px}
+  .dh-damen{grid-column:1/4}
+  .dh-herren{grid-column:4/7;margin-top:0;padding-top:56px}
+  .dh-damen .ph-img,.dh-herren .main{aspect-ratio:4/5}
+  .dh-word{margin-bottom:12px;font-size:11px}
+  .s-dh .lede{font-size:18px;line-height:1.55}
+  .atmo-a{grid-column:1/4;grid-row:3;margin-top:22px;aspect-ratio:4/5}
+  .atmo-b{grid-column:4/7;grid-row:3;margin-top:58px;aspect-ratio:4/5}
+  .atmo-a img{object-position:40% 50%}
+  .s-atmo{padding-bottom:44px}
+  .price-list{margin-top:22px}
+  .price-list li{padding:12px 0}
+  .menu .sub{margin-top:10px}
+  .why-list li{padding:22px 0}
+  .s-why{padding-block:56px}
+  .s-termin{padding-block:64px 56px}
+  .step{padding:18px 0}
+  .s-contact{padding-block:48px}
+}
 @media (max-width:420px){
   .hero-eyebrow{font-size:11px;letter-spacing:.28em;gap:14px}
   .hero-eyebrow::before{width:28px}
