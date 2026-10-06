@@ -13,10 +13,11 @@
 <meta property="og:description" content="Ihr Stil. Unsere Leidenschaft. Friseur für Damen und Herren in Potsdam, Charlottenstraße 94. Termin per WhatsApp.">
 <meta name="theme-color" content="#0E0A08">
 <title>AS Beauty Salon Potsdam — Friseur für Damen &amp; Herren</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..600;1,400..500&family=Jost:wght@300..600&display=swap">
 <style>
+/* fonts are bundled locally (SIL Open Font License, see assets/fonts) — no external requests */
+@font-face{font-family:"Playfair Display";font-style:normal;font-weight:400 900;font-display:swap;src:url(assets/fonts/playfair-display-latin-wght-normal.woff2) format("woff2")}
+@font-face{font-family:"Playfair Display";font-style:italic;font-weight:400 900;font-display:swap;src:url(assets/fonts/playfair-display-latin-wght-italic.woff2) format("woff2")}
+@font-face{font-family:"Jost";font-style:normal;font-weight:100 900;font-display:swap;src:url(assets/fonts/jost-latin-wght-normal.woff2) format("woff2")}
 :root{
   --black:#0E0A08;      /* chocolate black: the ground of the page */
   --panel:#161009;
@@ -196,7 +197,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
    ====================================================================== */
 .hero{position:relative;isolation:isolate;background:var(--black);min-height:max(660px,100svh);display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
 /* the film fills the whole opening: landscape cut on wide screens, the vertical brand film on phones */
-.hero-media{position:absolute;inset:0;z-index:-2;background:#120d0a url(media/hero-wide-poster.jpg) 60% 42%/cover no-repeat}
+.hero-media{position:absolute;inset:0;z-index:-2;background:#120d0a url(assets/images/hero-wide-poster.jpg) 60% 42%/cover no-repeat}
 .hero-video{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;
   transform:scale(calc(1.02 + var(--out,0) * .07));transform-origin:60% 40%}
 .hv-wide{object-position:60% 42%}
@@ -433,7 +434,7 @@ footer{border-top:1px solid var(--hair);padding-block:44px;background:var(--matt
   .burger[aria-expanded=true] i::before{top:4px;transform:rotate(45deg)}.burger[aria-expanded=true] i::after{top:4px;transform:rotate(-45deg)}
   /* hero: the vertical brand film fills the phone screen; words sit low, on a deep fade */
   .hero{min-height:max(620px,100svh)}
-  .hero-media{background-image:url(media/hero-poster.jpg);background-position:50% 30%}
+  .hero-media{background-image:url(assets/images/hero-poster.jpg);background-position:50% 30%}
   .hv-wide{display:none}
   .hv-tall{display:block;object-position:50% 30%}
   .hero::before{background:
@@ -624,13 +625,13 @@ footer{border-top:1px solid var(--hair);padding-block:44px;background:var(--matt
 <!-- ============ HERO ============ -->
 <section class="hero" id="top">
   <div class="hero-media" aria-hidden="true">
-    <video class="hero-video hv-wide" poster="media/hero-wide-poster.jpg" width="1192" height="928" autoplay muted loop playsinline preload="auto" disablepictureinpicture>
-      <source src="media/hero-wide.webm" type='video/webm; codecs="vp9"' media="(min-width: 900px)">
-      <source src="media/hero-wide.mp4" type="video/mp4" media="(min-width: 900px)">
+    <video class="hero-video hv-wide" poster="assets/images/hero-wide-poster.jpg" width="1192" height="928" autoplay muted loop playsinline preload="auto" disablepictureinpicture>
+      <source src="assets/videos/hero-wide.webm" type='video/webm; codecs="vp9"' media="(min-width: 900px)">
+      <source src="assets/videos/hero-wide.mp4" type="video/mp4" media="(min-width: 900px)">
     </video>
-    <video class="hero-video hv-tall" poster="media/hero-poster.jpg" width="704" height="1280" autoplay muted loop playsinline preload="auto" disablepictureinpicture>
-      <source src="media/hero.webm" type='video/webm; codecs="vp9"' media="(max-width: 899px)">
-      <source src="media/hero.mp4" type="video/mp4" media="(max-width: 899px)">
+    <video class="hero-video hv-tall" poster="assets/images/hero-poster.jpg" width="704" height="1280" autoplay muted loop playsinline preload="auto" disablepictureinpicture>
+      <source src="assets/videos/hero.webm" type='video/webm; codecs="vp9"' media="(max-width: 899px)">
+      <source src="assets/videos/hero.mp4" type="video/mp4" media="(max-width: 899px)">
     </video>
   </div>
   <script>
@@ -674,7 +675,7 @@ footer{border-top:1px solid var(--hair);padding-block:44px;background:var(--matt
 <section class="s-arrive" id="ankommen">
   <div class="wrap arrive">
     <figure class="arrive-img ph-img" data-rv-img="open" data-par="1">
-      <img src="media/ankommen.webp" alt="Eingang des AS Beauty Salon in der Charlottenstraße 94: offene Tür mit Blick in den Salon" width="1600" height="1998" loading="lazy" decoding="async">
+      <img src="assets/images/ankommen.webp" alt="Eingang des AS Beauty Salon in der Charlottenstraße 94: offene Tür mit Blick in den Salon" width="1600" height="1998" loading="lazy" decoding="async">
     </figure>
     <div class="arrive-text">
       <h2 class="title t-xl" data-rv style="--d:.08s">Ankommen</h2>
@@ -696,13 +697,13 @@ footer{border-top:1px solid var(--hair);padding-block:44px;background:var(--matt
       <div class="dh-damen">
         <p class="dh-word" data-rv>Damen</p>
         <figure class="ph-img" data-rv-img="open" data-par="1">
-          <img src="media/damen.webp" alt="Damenplätze im AS Beauty Salon: Lederstühle vor beleuchteten Spiegeln" width="1200" height="2053" loading="lazy" decoding="async">
+          <img src="assets/images/damen.webp" alt="Damenplätze im AS Beauty Salon: Lederstühle vor beleuchteten Spiegeln" width="1200" height="2053" loading="lazy" decoding="async">
         </figure>
       </div>
       <div class="dh-herren">
         <p class="dh-word dark" data-rv>Herren</p>
         <figure class="ph-img main" data-rv-img="open" data-par="-1" style="--d:.15s">
-          <img src="media/herren.webp" alt="Herrenbereich: schwarze Fliesen, Holzregale und Hängelampe" width="1560" height="1140" loading="lazy" decoding="async">
+          <img src="assets/images/herren.webp" alt="Herrenbereich: schwarze Fliesen, Holzregale und Hängelampe" width="1560" height="1140" loading="lazy" decoding="async">
         </figure>
       </div>
     </div>
@@ -716,13 +717,13 @@ footer{border-top:1px solid var(--hair);padding-block:44px;background:var(--matt
       <h2 class="title t-xxl" data-rv style="--d:.08s">Atmosphäre</h2>
     </div>
     <figure class="atmo-main ph-img" data-rv-img="open" data-par="1">
-      <img src="media/atmosphaere.webp" alt="Wartebereich: Wandbild in Gold und schwarze Lederbank" width="2000" height="2665" loading="lazy" decoding="async">
+      <img src="assets/images/atmosphaere.webp" alt="Wartebereich: Wandbild in Gold und schwarze Lederbank" width="2000" height="2665" loading="lazy" decoding="async">
     </figure>
     <figure class="atmo-a ph-img" data-rv-img data-par="-1" style="--d:.1s">
-      <img src="media/detail-blumen.webp" alt="Goldener Friseurstuhl hinter Blütenzweigen" width="1400" height="1120" loading="lazy" decoding="async">
+      <img src="assets/images/detail-blumen.webp" alt="Goldener Friseurstuhl hinter Blütenzweigen" width="1400" height="1120" loading="lazy" decoding="async">
     </figure>
     <figure class="atmo-b ph-img" data-rv-img style="--d:.2s">
-      <img src="media/detail-vase.webp" alt="Blumenstrauß in goldener Vase" width="1100" height="947" loading="lazy" decoding="async">
+      <img src="assets/images/detail-vase.webp" alt="Blumenstrauß in goldener Vase" width="1100" height="947" loading="lazy" decoding="async">
     </figure>
   </div>
 </section>
@@ -735,8 +736,8 @@ footer{border-top:1px solid var(--hair);padding-block:44px;background:var(--matt
       <p class="quote" data-rv style="--d:.08s">Sie setzen sich, wir übernehmen.</p>
     </div>
     <figure class="film-media ph-img" data-rv-img="open" aria-hidden="true">
-      <video class="salon-tall" data-src="media/hero.mp4" data-src-webm="media/hero.webm" poster="media/hero-poster.jpg" width="704" height="1280" muted loop playsinline preload="none" disablepictureinpicture></video>
-      <video class="salon-video" data-src="media/im-salon.mp4" data-src-webm="media/im-salon.webm" poster="media/im-salon-poster.jpg" width="1080" height="928" muted loop playsinline preload="none" disablepictureinpicture></video>
+      <video class="salon-tall" data-src="assets/videos/hero.mp4" data-src-webm="assets/videos/hero.webm" poster="assets/images/hero-poster.jpg" width="704" height="1280" muted loop playsinline preload="none" disablepictureinpicture></video>
+      <video class="salon-video" data-src="assets/videos/im-salon.mp4" data-src-webm="assets/videos/im-salon.webm" poster="assets/images/im-salon-poster.jpg" width="1080" height="928" muted loop playsinline preload="none" disablepictureinpicture></video>
     </figure>
   </div>
 </section>
@@ -812,7 +813,7 @@ footer{border-top:1px solid var(--hair);padding-block:44px;background:var(--matt
 <section class="s-brand">
   <div class="wrap brand">
     <figure class="brand-img ph-img" data-rv-img="open" data-par="1">
-      <img src="media/marke.webp" alt="Beleuchtetes AS-Logo im Schaufenster des Salons" width="1400" height="1155" loading="lazy" decoding="async">
+      <img src="assets/images/marke.webp" alt="Beleuchtetes AS-Logo im Schaufenster des Salons" width="1400" height="1155" loading="lazy" decoding="async">
     </figure>
     <div class="brand-text">
       <h2 class="title" data-rv>Wir freuen uns <em>auf Sie.</em></h2>
@@ -906,50 +907,9 @@ footer{border-top:1px solid var(--hair);padding-block:44px;background:var(--matt
 </script>
 
 <!-- ================================================================
-     PREISE — HIER BEARBEITEN (einzige Stelle für alle Preise)
-     Namen und Preise nur in "salonPrices" ändern. Reihenfolge = Anzeige.
-     Ein Preis ohne Zahl (z. B. "auf Anfrage") wird automatisch dezent dargestellt.
+     PREISE: werden in der Datei "preise.js" bearbeitet (einzige Stelle für alle Preise)
      ================================================================ -->
-<script>
-var salonPrices = {
-  // VORLÄUFIG — vom Kunden bestätigen
-  // Exklusives Angebot 15 € / 30 €
-  // (die zwei großen Karten oben: name = Zeile über der Zahl, price = große Zahl)
-  angebot: {
-    herren: {
-      name: "Haarschnitt",
-      price: "15 €"
-    },
-    damen: {
-      name: "Haarschnitt",
-      price: "30 €"
-    }
-  },
-  damen: {
-    kurzeHaare:  { name: "Kurze Haare",         price: "35 €" },
-    mitteHaare:  { name: "Mitte Haare",         price: "45 €" },
-    langeHaare:  { name: "Lange Haare",         price: "60 €" },
-    fade:        { name: "Fade",                price: "20 €" },
-    farbe:       { name: "Farbe",               price: "70 €" },
-    kinder:      { name: "Kinderhaarschnitt",   price: "30 €" },
-    augenbrauen: { name: "Augenbrauen färben",  price: "15 €" },
-    lockerKurze: { name: "Locker Haare – Kurz", price: "90 €" },
-    lockerLange: { name: "Locker Haare – Lang", price: "150 €" },
-    frauenPaket: { name: "Frauen Paket",        price: "0 €" }
-  },
-  herren: {
-    haarschnitt:  { name: "Haarschnitt",           price: "25 €" },
-    waschen:      { name: "Haarschnitt + Waschen", price: "30 €" },
-    bart:         { name: "Bart",                  price: "15 €" },
-    fade:         { name: "Fade",                  price: "10 €" },
-    farbe:        { name: "Farbe",                 price: "50 €" },
-    kinder:       { name: "Kinderhaarschnitt",     price: "20 €" },
-    wax:          { name: "Wax",                   price: "10 €" },
-    locker:       { name: "Locker Haare",          price: "100 €" },
-    maennerPaket: { name: "Männer Paket",          price: "0 €" }
-  }
-};
-</script>
+<script src="preise.js"></script>
 <script>
 /* renders salonPrices into the Preise section — no need to edit below */
 (function(P){
@@ -994,6 +954,10 @@ var salonPrices = {
       if (n) offers.push({"@type":"Offer","itemOffered":{"@type":"Service","name":prefix + s.name},"price":String(n),"priceCurrency":"EUR"});
     });
   });
+  /* search-result description: starting prices taken from the offer above */
+  var md = document.querySelector('meta[name="description"]'), oh = P.angebot && P.angebot.herren, od = P.angebot && P.angebot.damen;
+  if (md && oh && od) md.setAttribute('content', md.getAttribute('content').replace(/Herren ab [^,]+, Damen ab [^.]+\./, 'Herren ab ' + oh.price + ', Damen ab ' + od.price + '.'));
+
   var ld = el('script'); ld.type = 'application/ld+json';
   ld.textContent = JSON.stringify({"@context":"https://schema.org","@type":"HairSalon","name":"AS Beauty Salon","makesOffer":offers});
   document.body.appendChild(ld);
