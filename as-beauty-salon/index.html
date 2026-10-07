@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="AS Beauty Salon in Potsdam — Friseur für Damen und Herren in der Charlottenstraße 94. Haarschnitt, Farbe, Styling, Bartpflege. Herren ab 15 €, Damen ab 30 €. Termin per WhatsApp.">
+<meta name="description" content="AS Beauty Salon in Potsdam — Friseur für Damen und Herren in der Charlottenstraße 94. Haarschnitt, Farbe, Styling, Bartpflege. Termin per WhatsApp.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://www.as-beautysalon-potsdam.de/">
 <meta property="og:type" content="website">
@@ -776,22 +776,8 @@ footer{border-top:1px solid var(--hair);padding-block:44px;background:var(--matt
 <!-- ============ 05 LEISTUNGEN & PREISE ============ -->
 <section class="s-prices" id="preise">
   <div class="wrap">
-    <p class="label" data-rv>Exklusives Angebot</p>
+    <p class="label" data-rv>Damen · Herren · Kinder</p>
     <h2 class="title" data-rv style="--d:.08s">Leistungen &amp; Preise</h2>
-    <div class="offer" data-rv style="--d:.12s">
-      <div class="offer-item">
-        <p class="who">Herren</p>
-        <p class="amount" data-price="angebot.herren"></p>
-        <p class="what" data-price-name="angebot.herren"></p>
-        <p class="note">Waschen &amp; Styling inklusive</p>
-      </div>
-      <div class="offer-item">
-        <p class="who">Damen</p>
-        <p class="amount" data-price="angebot.damen"></p>
-        <p class="what" data-price-name="angebot.damen"></p>
-        <p class="note">Waschen &amp; Föhnen inklusive</p>
-      </div>
-    </div>
     <div class="menu">
       <div data-rv>
         <h3>Damen</h3>
@@ -998,7 +984,7 @@ footer{border-top:1px solid var(--hair);padding-block:44px;background:var(--matt
   });
 
   /* structured data for search engines, from the same prices
-     (only fixed amounts; "ab …", "nach Absprache" and the provisional angebot are left out) */
+     (only fixed amounts; "ab …" and "nach Absprache" are left out) */
   var offers = [];
   var groupLabel = {damenKurz:'Damen kurze Haare ', damenLang:'Damen lange Haare ', faerben:'', service:'', herren:'Herren ', kinder:''};
   Object.keys(groupLabel).forEach(function(g){
@@ -1008,10 +994,6 @@ footer{border-top:1px solid var(--hair);padding-block:44px;background:var(--matt
       if (n && plain(s.price)) offers.push({"@type":"Offer","itemOffered":{"@type":"Service","name":prefix + s.name},"price":String(n),"priceCurrency":"EUR"});
     });
   });
-  /* search-result description: starting prices taken from the offer above */
-  var md = document.querySelector('meta[name="description"]'), oh = P.angebot && P.angebot.herren, od = P.angebot && P.angebot.damen;
-  if (md && oh && od) md.setAttribute('content', md.getAttribute('content').replace(/Herren ab [^,]+, Damen ab [^.]+\./, 'Herren ab ' + oh.price + ', Damen ab ' + od.price + '.'));
-
   var ld = el('script'); ld.type = 'application/ld+json';
   ld.textContent = JSON.stringify({"@context":"https://schema.org","@type":"HairSalon","name":"AS Beauty Salon","makesOffer":offers});
   document.body.appendChild(ld);

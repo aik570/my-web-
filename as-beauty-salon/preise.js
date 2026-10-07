@@ -3,8 +3,7 @@
    =====================================================================
    Dies ist die EINZIGE Stelle, an der Preise stehen.
    Jede Änderung hier erscheint automatisch überall auf der Website:
-   in den beiden großen Angebotszahlen, in allen Preislisten
-   und in den Daten für Google.
+   in allen Preislisten und in den Daten für Google.
    Stand: offizielle Preisliste des Salons.
 
    SO ÄNDERN SIE EINEN PREIS
@@ -25,14 +24,6 @@
    ===================================================================== */
 
 var salonPrices = {
-
-  /* --- EXKLUSIVES ANGEBOT: die zwei großen Zahlen oben im Preis-Bereich ---
-     VORLÄUFIG — vom Kunden bestätigen (steht nicht auf der offiziellen Preisliste)
-     name  = Text neben der großen Zahl, price = die große Zahl */
-  angebot: {
-    herren: { name: "Haarschnitt", price: "15 €" },   // Karte "Herren"
-    damen:  { name: "Haarschnitt", price: "30 €" }    // Karte "Damen"
-  },
 
   /* --- DAMEN · KURZE HAARE --- */
   damenKurz: {
