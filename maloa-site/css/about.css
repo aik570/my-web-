@@ -1,0 +1,59 @@
+/* Block 3 · Welcome / About Poké.
+   Editorial, not "text left, picture right": a large headline across the top, the real Welcome photo
+   as the centre of the block, the short site text and the About Poké link tucked beside its lower edge.
+   The ground starts as the scene's night and turns to the light ground as the block comes in
+   (js/about.js); without the script a gradient does the same job. */
+.about{position:relative;color:var(--deep-teal);
+  background:linear-gradient(180deg,var(--night) 0,var(--deep-teal) 90px,var(--mid-teal) 180px,var(--light-gray) 260px,var(--bg-light) 340px);
+  padding:calc(340px + 24px) var(--gutter) clamp(72px,10vw,140px);
+  display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);
+  grid-template-areas:
+    "head head head head head head head head head head head ."
+    "body body body photo photo photo photo photo photo photo photo photo"}
+/* With the script the seam with the dark scene is one long band of the brand's own colours (night → deep teal
+   → mid teal → light gray → light), fixed to the top of the block and simply scrolled through: the light
+   arrives with the reader's own scroll, so it cannot lag, flash or be seen being painted across. The stops
+   are eased (closer together at both ends) so no edge or stripe shows. The headline starts once the band
+   is light gray. The band's height is read by js/about.js for the header switch. */
+.js .about.is-scripted{--band:clamp(280px,46svh,480px);background:var(--bg-light);padding-top:calc(var(--band) * .8);padding-bottom:clamp(64px,8vw,112px)}
+.js .about.is-scripted::before{content:"";position:absolute;left:0;right:0;top:0;height:var(--band);pointer-events:none;
+  background:linear-gradient(180deg,var(--night) 0%,color-mix(in srgb,var(--night) 80%,var(--deep-teal)) 8%,color-mix(in srgb,var(--night) 40%,var(--deep-teal)) 20%,
+    var(--deep-teal) 32%,color-mix(in srgb,var(--deep-teal) 50%,var(--mid-teal)) 45%,var(--mid-teal) 57%,color-mix(in srgb,var(--mid-teal) 45%,var(--light-gray)) 69%,
+    var(--light-gray) 81%,color-mix(in srgb,var(--light-gray) 45%,var(--bg-light)) 91%,var(--bg-light) 100%)}
+.js .about.is-scripted > *{position:relative;z-index:1}
+
+.about__head{grid-area:head;margin-bottom:clamp(20px,2.4vw,36px)}
+.about__label{margin:0 0 18px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--deep-teal)}
+.about__title{margin:0;font-family:var(--font-display);font-weight:800;text-transform:uppercase;font-size:clamp(52px,7.4vw,136px);line-height:.88;letter-spacing:-.035em}
+/* the mask gets headroom (.14em, taken back by the negative margin) so umlauts are never cut at rest */
+.about__line{display:block;overflow:hidden;padding:.14em 0 .04em;margin-top:-.14em}
+.about__line > span{display:block}
+.about__line:nth-child(2){padding-left:clamp(0px,12vw,220px)}   /* offset second line: editorial rhythm */
+
+/* copy hangs from the top edge of the photo under a hairline; the air below it is the column's,
+   answered by the photo running off the right edge */
+.about__body{grid-area:body;align-self:start;margin-top:clamp(24px,3vw,48px);padding-top:20px;border-top:1px solid rgb(0 68 67 / .25)}
+.about__text{margin:0 0 28px;font-size:17px;line-height:1.6;max-width:34ch}
+.about__cta{display:inline-flex;align-items:center;gap:12px;min-height:44px;font-size:12.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;color:var(--deep-teal);
+  background:linear-gradient(currentColor,currentColor) 0 100%/100% 1px no-repeat;transition:background-size .5s var(--ease-out)}
+.about__cta:hover{background-size:0 1px;background-position:100% 100%}
+.about__cta svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .5s var(--ease-out)}
+.about__cta:hover svg{transform:translateX(4px)}
+
+/* the photo keeps its own proportions, so nothing in it is cut away at rest */
+.about__photo{grid-area:photo;margin:0 calc(-1 * var(--gutter)) 0 0;position:relative;overflow:hidden;border-radius:28px 0 0 28px;aspect-ratio:1124/800;background:var(--light-gray)}
+.about__photo img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* Phones and upright tablets: headline, text, then the photo edge to edge, link last */
+@media (max-aspect-ratio:4/5), (max-width:699px){
+  .about{grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "body" "photo" "cta";row-gap:0;padding-bottom:40px}
+  .js .about.is-scripted{--band:clamp(240px,40svh,380px)}
+  .about__head{margin-bottom:18px}
+  .about__label{margin-bottom:12px}
+  .about__title{font-size:min(11.2vw,64px)}
+  .about__line:nth-child(2){padding-left:0}
+  .about__body{display:contents;margin:0;padding:0;border:0}
+  .about__text{grid-area:body;margin:0 0 22px;font-size:16px;line-height:1.55;max-width:none}
+  .about__photo{margin:0 calc(-1 * var(--gutter));border-radius:0}
+  .about__cta{grid-area:cta;justify-self:start;margin-top:20px}
+}

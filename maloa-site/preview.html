@@ -1,0 +1,1951 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<!-- PREVIEW BUILD: generated from index.html by tools/build-preview.py, do not edit. Intro replays on every load. -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ma'loa – Hawaiian Poké Bowl</title>
+<meta name="description" content="Ma'loa Hawaiian Poké Bowl. Jetzt neu in Eschborn.">
+<meta name="theme-color" content="#004443">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://d2ol7oe51mr4n9.cloudfront.net">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet">
+<style>
+/* Ma'loa tokens. Client CI (confirmed 30.09): these five colours are the whole palette.
+   Anything darker or lighter is mixed from them, never a new hue. */
+:root{
+  --deep-teal:   #004443;   /* primary dark turquoise, also the text colour on light grounds */
+  --mid-teal:    #628a87;   /* secondary turquoise */
+  --light-gray:  #c8d1d3;   /* light text on dark */
+  --powder-pink: #f3d2d5;   /* blush accent: actions only */
+  --bg-light:    #f4f7f5;   /* light ground, primary text on dark */
+
+  --bg:      var(--bg-light);
+  --ink:     var(--deep-teal);
+  --on-teal: var(--bg-light);
+  /* Night: the brand teal pushed towards black, the dark of the hero film */
+  --night:     color-mix(in srgb, #004443 22%, #000);
+  --night-rgb: 0 15 15;
+  --pink-hover: color-mix(in srgb, #f3d2d5 60%, #f4f7f5);
+
+  /* Brandon Grotesque is the brand face: it is used as soon as the licensed files are installed.
+     Bricolage Grotesque (Google Fonts) is the loaded fallback. No other faces. */
+  --font-display: "Brandon Grotesque", "brandon-grotesque", "Bricolage Grotesque", system-ui, sans-serif;
+  --font-body:    "Brandon Grotesque", "brandon-grotesque", "Bricolage Grotesque", system-ui, sans-serif;
+  --tracking-tight: -.03em;
+
+  --gutter: 20px;
+  --hh: 72px;
+  --ease-out: cubic-bezier(.22,1,.36,1);
+}
+@media (min-width: 900px){ :root{ --gutter: 40px; --hh: 84px; } }
+</style>
+<style>
+/* Reset and type. Header: css/header.css, Hero: css/hero.css. */
+*,*::before,*::after{box-sizing:border-box}
+/* overflow-anchor: the pinned sections change the height above the reader while they pin and unpin;
+   the browser's scroll anchoring would answer that with a correction of its own (a visible jump) */
+html{-webkit-text-size-adjust:100%;overflow-anchor:none}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip}
+img,video,svg{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--powder-pink);outline-offset:3px;border-radius:6px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
+<style>
+/* Block 0 · Intro. A full-screen layer over the top of the Hero:
+   a stone disc in the jungle jumps, flips like a coin into the dark wordmark
+   disc, and the camera flies through it into the Hero. */
+.intro{position:fixed;inset:0;z-index:40;background:#040807;color:var(--on-teal);overflow:hidden;display:grid;place-items:center}
+/* No script, or already seen this session: never cover the page */
+html:not(.intro-on) .intro{display:none}
+/* Nothing scrolls under the intro; the first scroll is what starts it */
+html.intro-on{overflow:hidden}
+html.intro-on .site-nav{visibility:hidden}
+
+/* Jungle: a touch soft so the disc reads as the sharp subject (depth of field) */
+.intro__bg{position:absolute;inset:-4%;will-change:transform}
+.intro__bg img{width:100%;height:100%;object-fit:cover;filter:blur(1.5px) saturate(1.05) brightness(.82)}
+.intro__bg::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 48%,transparent 30%,rgba(2,6,5,.55) 72%,rgba(2,6,5,.9))}
+
+/* Soft light shafts drifting through the leaves */
+.intro__rays{position:absolute;inset:-30%;pointer-events:none;mix-blend-mode:screen;opacity:.22;
+  background:repeating-linear-gradient(112deg,transparent 0 7%,rgba(214,236,222,.35) 9%,transparent 12% 19%,rgba(214,236,222,.18) 21%,transparent 24% 31%);
+  -webkit-mask-image:radial-gradient(ellipse 55% 60% at 45% 30%,#000,transparent 75%);mask-image:radial-gradient(ellipse 55% 60% at 45% 30%,#000,transparent 75%);
+  will-change:transform}
+
+/* ---- The coin ---- */
+.intro__stage{position:relative;z-index:2;display:grid;place-items:center;perspective:1400px}
+.coin{--d:clamp(230px,36vmin,400px);position:relative;width:var(--d);height:var(--d);transform-style:preserve-3d;will-change:transform;cursor:pointer}
+.coin__body{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform}
+.coin__shadow{position:absolute;inset:4%;border-radius:50%;background:#000;opacity:.75;filter:blur(18px);transform:translate3d(0,16px,-1px);will-change:transform,opacity}
+.coin__face{position:absolute;inset:0;border-radius:50%;overflow:hidden;-webkit-backface-visibility:hidden;backface-visibility:hidden}
+
+/* Front: pale paper-stone with grain and a raking light from the top left */
+.coin__face--front{
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    radial-gradient(circle at 30% 24%,#fbfaf5 0%,#ebe7dd 38%,#cdc7ba 78%,#b3ad9f 100%);
+  background-blend-mode:multiply,normal;
+  box-shadow:inset 0 10px 22px rgba(255,255,255,.55),inset 0 -14px 30px rgba(40,32,20,.35)}
+.coin__mark{position:absolute;inset:0;width:100%;height:100%}
+.coin__mark g{fill:#1b1f1d}
+
+/* Back: dark disc, teal ring with a warm metal edge, raised teal letters */
+.coin__face--back{transform:rotateY(180deg);
+  background:radial-gradient(circle at 38% 30%,#1c2a28 0%,#0f1817 55%,#070c0b 100%);
+  box-shadow:inset 0 8px 24px rgba(255,255,255,.06),inset 0 -18px 36px rgba(0,0,0,.6)}
+.coin__ring{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.coin__ring circle{fill:none}
+.coin__ring-edge{stroke:#b9ad95;stroke-width:.5;opacity:.7}
+.coin__ring-line{stroke:#1f6b63;stroke-width:3.2}
+.coin__word{position:absolute;left:9%;top:30%;width:82%;height:auto;overflow:visible}
+.coin__letters{fill:#2a7c73}
+.coin__tag{fill:#cdc3ad}
+
+/* Light glancing across whichever face is up */
+.coin__shine{position:absolute;inset:-20%;pointer-events:none;mix-blend-mode:soft-light;
+  background:linear-gradient(115deg,transparent 38%,rgba(255,255,255,.9) 50%,transparent 62%);
+  transform:translateX(-80%);will-change:transform}
+
+/* ---- Hint and skip ---- */
+.intro__hint{position:absolute;z-index:3;left:50%;bottom:calc(28px + env(safe-area-inset-bottom,0px));margin:0;transform:translateX(-50%);
+  display:grid;justify-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:rgba(244,247,245,.75)}
+.intro__hint i{display:block;width:1px;height:42px;background:linear-gradient(rgba(244,247,245,.8),transparent);transform-origin:top}
+.intro__skip{position:absolute;z-index:3;right:var(--gutter);bottom:calc(20px + env(safe-area-inset-bottom,0px));min-height:44px;padding:0 18px;border:1.5px solid rgba(244,247,245,.35);border-radius:999px;background:rgba(4,8,7,.25);color:var(--on-teal);font-size:14px;font-weight:600;cursor:pointer;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.intro__skip:hover{border-color:var(--on-teal)}
+@media (max-width:599px){ .intro__hint{bottom:calc(84px + env(safe-area-inset-bottom,0px))} }
+</style>
+<style>
+/* Header. Transparent over the Hero: logo, floating menu items, "Bestellen" always visible.
+   The menu is the live site's German menu. Items marked --md / --lg appear from 900px / 1240px;
+   below that the strip scrolls sideways instead of collapsing into a hamburger. */
+.site-header{position:fixed;inset:0 0 auto;z-index:50;padding:env(safe-area-inset-top,0px) var(--gutter) 0;color:var(--on-teal);pointer-events:none}
+.site-header__row{height:var(--hh);display:flex;align-items:center;gap:12px}
+.site-header__row > *{pointer-events:auto}
+
+.site-header__logo{flex:none;display:flex;align-items:center;min-width:44px;min-height:44px;border-radius:50%}
+.site-header__logo svg{width:40px;height:40px}
+
+.site-nav{flex:1;min-width:0;display:flex;justify-content:center;overflow-x:auto;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12px,#000 calc(100% - 12px),transparent);mask-image:linear-gradient(90deg,transparent,#000 12px,#000 calc(100% - 12px),transparent)}
+.site-nav::-webkit-scrollbar{display:none}
+.site-nav__list{display:flex;gap:6px;margin:0;padding:0 12px;list-style:none}
+.site-nav__md,.site-nav__lg{display:none}
+
+/* Items float on their own: hairline outline, a little glass, no bar behind them */
+.site-nav__link,.site-header__order{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:999px;
+  font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;white-space:nowrap;
+  transition:background-color .35s var(--ease-out),border-color .35s var(--ease-out),color .35s var(--ease-out)}
+.site-nav__link{border:1px solid rgba(244,247,245,.18);background:rgba(var(--night-rgb) / .22);-webkit-backdrop-filter:blur(10px) saturate(1.2);backdrop-filter:blur(10px) saturate(1.2)}
+/* touch devices: a denser fill instead of a live blur over the playing film (see hero.css) */
+@media (hover:none){ .site-nav__link{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(var(--night-rgb) / .4)} }
+.site-nav__link:hover{border-color:rgba(244,247,245,.55);background:rgba(var(--night-rgb) / .38)}
+.site-header__order{flex:none;padding:0 20px;background:var(--powder-pink);color:var(--ink);font-weight:700}
+.site-header__order:hover{background:var(--pink-hover)}
+
+@media (min-width:900px){
+  .site-nav__md{display:list-item}
+  .site-nav__link,.site-header__order{min-height:40px;font-size:12px}
+  .site-header__order{min-height:44px;padding:0 24px}
+}
+@media (min-width:1240px){ .site-nav__lg{display:list-item} }
+@media (max-width:599px){
+  .site-header__row{gap:8px}
+  .site-nav{-webkit-mask-image:none;mask-image:none}
+  .site-nav__list{padding:0;gap:4px}
+  .site-nav__link{padding:0 10px;font-size:11px;letter-spacing:.08em}
+  .site-header__order{padding:0 15px;font-size:11px;letter-spacing:.08em}
+}
+
+/* Over light sections (set by the section's script): teal on light, same shapes */
+.site-header{transition:color .4s var(--ease-out)}
+.site-header.is-light{color:var(--deep-teal)}
+.site-header.is-light .site-nav__link{border-color:rgb(0 68 67 / .22);background:rgb(244 247 245 / .82)}
+.site-header.is-light .site-nav__link:hover{border-color:rgb(0 68 67 / .6)}
+.site-header.is-light .site-header__logo svg g{fill:var(--bg-light) !important}
+.site-header.is-light .site-header__logo svg circle{fill:var(--deep-teal)}
+</style>
+<style>
+/* Block 1 · Hero (base version).
+   The film of the real Maui Tuna bowl fills the screen. The bowl sits right of centre and
+   stays clear; the copy lives on the dark left and bottom of the frame, where a light
+   night-teal shade keeps it readable. Portrait screens stack film over copy so the bowl
+   is never cropped. */
+.hero{position:relative;height:100svh;min-height:400px;overflow:hidden;isolation:isolate;background:var(--night);color:var(--on-teal)}
+
+/* ---- Film ----
+   The poster (the film's own first frame, which is also its last) lies under the video as a background.
+   With the script the video stays transparent until it is really playing with enough buffered, then fades
+   in over the identical still: no frozen first frame, no pop from poster to film, no stall at the start. */
+.hero__media{position:absolute;inset:0;z-index:-1;background:var(--night) url("https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/f0917650-8606-4f26-9dd2-63d7050473ed.webp") 62% 45%/cover no-repeat}
+/* Bowl centre in the frame is about 62% / 45%: keep that point fixed however the screen crops */
+.hero__video{width:100%;height:100%;object-fit:cover;object-position:62% 45%}
+.js .hero__video{opacity:0;transition:opacity 1.1s var(--ease-out)}
+.js .hero__video.is-ready{opacity:1}
+.hero__shade{position:absolute;inset:0;pointer-events:none;background:
+  linear-gradient(180deg,rgb(var(--night-rgb) / .55) 0,rgb(var(--night-rgb) / 0) 20%),
+  linear-gradient(90deg,rgb(var(--night-rgb) / .62) 0,rgb(var(--night-rgb) / .3) 26%,rgb(var(--night-rgb) / 0) 42%),
+  linear-gradient(0deg,rgb(var(--night-rgb) / .8) 0,rgb(var(--night-rgb) / .35) 20%,rgb(var(--night-rgb) / 0) 38%)}
+
+/* ---- Copy ---- */
+.hero__content{position:absolute;left:var(--gutter);right:var(--gutter);bottom:calc(clamp(76px,11vh,112px) + env(safe-area-inset-bottom,0px));
+  display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"labels ." "title actions";align-items:end;column-gap:40px;row-gap:clamp(14px,2.2vh,24px)}
+
+.hero__labels{grid-area:labels;display:flex;align-items:center;gap:16px;max-width:min(640px,46vw)}
+.hero__label{margin:0;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;white-space:nowrap;color:var(--light-gray)}
+.hero__rule{flex:1;min-width:32px;height:1px;background:rgba(244,247,245,.32)}
+
+.hero__title{grid-area:title;margin:0;font-family:var(--font-display);font-weight:800;text-transform:uppercase;
+  font-size:clamp(56px,8.4vw,160px);line-height:.86;letter-spacing:-.035em;font-variation-settings:"opsz" 96;text-wrap:balance}
+.hero__line{display:block}
+
+.hero__actions{grid-area:actions;display:flex;gap:12px;padding-bottom:.35em}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;border-radius:999px;
+  font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;white-space:nowrap;
+  transition:background-color .35s var(--ease-out),border-color .35s var(--ease-out),transform .5s var(--ease-out)}
+.btn:hover{transform:translateY(-2px)}
+.btn--primary{background:var(--powder-pink);color:var(--ink)}
+.btn--primary:hover{background:var(--pink-hover)}
+.btn--ghost{border:1px solid rgba(244,247,245,.5);color:var(--on-teal);background:rgb(var(--night-rgb) / .2);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.btn--ghost:hover{border-color:var(--on-teal);background:rgb(var(--night-rgb) / .35)}
+
+/* ---- Scroll hint and pause ---- */
+.hero__scroll{position:absolute;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:grid;justify-items:center;gap:10px;
+  padding:6px 10px;font-size:10.5px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;text-decoration:none;color:var(--light-gray)}
+.hero__scroll-line{width:1px;height:36px;background:linear-gradient(rgba(244,247,245,.85),rgba(244,247,245,0));transform-origin:top;animation:hero-scroll 2.2s var(--ease-out) infinite}
+@keyframes hero-scroll{0%{transform:scaleY(0)}55%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+
+.hero__pause{position:absolute;right:var(--gutter);bottom:calc(20px + env(safe-area-inset-bottom,0px));width:44px;height:44px;display:grid;place-items:center;padding:0;
+  border:1px solid rgba(244,247,245,.3);border-radius:50%;background:rgb(var(--night-rgb) / .25);color:var(--on-teal);cursor:pointer;
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:border-color .3s var(--ease-out)}
+.hero__pause:hover{border-color:rgba(244,247,245,.7)}
+.hero__pause svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hero__pause .i-play{display:none;fill:currentColor;stroke:none}
+.hero__pause[aria-pressed="true"] .i-pause{display:none}
+.hero__pause[aria-pressed="true"] .i-play{display:block}
+
+/* ---- Entrance: copy rises in after the intro (JS adds .is-in; without JS it is simply there) ---- */
+.js .hero__labels,.js .hero__line,.js .hero__actions,.js .hero__scroll-label{opacity:0;transform:translateY(28px)}
+.js .hero.is-in .hero__labels,.js .hero.is-in .hero__line,.js .hero.is-in .hero__actions,.js .hero.is-in .hero__scroll-label{opacity:1;transform:none;
+  transition:opacity .9s var(--ease-out),transform 1.2s var(--ease-out)}
+.js .hero.is-in .hero__line:nth-child(1){transition-delay:.12s}
+.js .hero.is-in .hero__line:nth-child(2){transition-delay:.22s}
+.js .hero.is-in .hero__actions{transition-delay:.38s}
+.js .hero.is-in .hero__scroll-label{transition-delay:.6s}
+
+/* Touch devices: the glass buttons over the film get a denser fill instead of a live blur. A backdrop blur is
+   recomputed for every frame of the video behind it, which phones pay for with dropped frames in the film. */
+@media (hover:none){
+  .btn--ghost{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgb(var(--night-rgb) / .42)}
+  .hero__pause{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgb(var(--night-rgb) / .45)}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .js .hero__labels,.js .hero__line,.js .hero__actions,.js .hero__scroll-label{transform:none}
+  .hero__scroll-line{animation:none}
+  .btn:hover{transform:none}
+}
+
+/* ---- Portrait screens (phones, tablets upright): film on top, copy below on the night ground ---- */
+@media (max-aspect-ratio:4/5){
+  .hero{height:auto;min-height:100svh;display:flex;flex-direction:column}
+  .hero__media{position:relative;inset:auto;flex:none;height:min(62svh,124vw)}
+  .hero__media{background-position:63% 46%}
+  .hero__video{object-position:63% 46%}
+  .hero__shade{background:
+    linear-gradient(180deg,rgb(var(--night-rgb) / .55) 0,rgb(var(--night-rgb) / 0) 24%),
+    linear-gradient(0deg,var(--night) 0,rgb(var(--night-rgb) / .6) 16%,rgb(var(--night-rgb) / 0) 36%)}
+  .hero__content{position:relative;left:auto;right:auto;bottom:auto;flex:1;margin-top:-9svh;padding:0 var(--gutter) calc(84px + env(safe-area-inset-bottom,0px));
+    grid-template-columns:minmax(0,1fr);grid-template-areas:"labels" "title" "actions";align-content:end;row-gap:18px}
+  .hero__labels{max-width:none}
+  .hero__label{font-size:10.5px;letter-spacing:.2em}
+  .hero__title{font-size:min(14.5vw,96px)}
+  .hero__actions{padding:8px 0 0}
+  .hero__actions .btn{flex:1;padding:0 18px}
+  /* Short phones: the next section is already in reach, the hint would crowd the buttons */
+  @media (max-height:700px){ .hero__scroll{display:none} }
+}
+</style>
+<style>
+/* Hero → leaves → Welcome.
+   Base (no script, no GSAP, reduced motion): the Welcome block simply follows the Hero, no leaves.
+   .scene--cinematic (added by js/scene.js): one pinned screen. Leaves come in from the edges on three
+   depths, the film pulls back, the leaves part like a curtain and the Welcome opens between them. */
+.scene{position:relative}
+.leaves,.scene__dim{display:none}
+
+/* ---- Block 2: the bowl the leaves open onto (visual only) ---- */
+.welcome{position:relative;min-height:100svh;display:grid;place-items:center;overflow:hidden;background:var(--night)}
+/* the same night ground as the film, with the brand teal glowing behind the bowl */
+.welcome::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 50% 58% at 50% 52%,rgb(0 68 67 / .75),rgb(0 68 67 / 0) 70%);pointer-events:none}
+.welcome__inner{position:relative;display:grid;place-items:center;padding:calc(var(--hh) + 16px) var(--gutter) 32px}
+.welcome__visual{position:relative;margin:0;width:min(44vw,68svh,660px)}
+/* contact shadow under the bowl: a soft ellipse, cheaper than a filter on a moving image */
+.welcome__visual::after{content:"";position:absolute;left:12%;right:12%;bottom:-4%;height:14%;z-index:-1;border-radius:50%;background:radial-gradient(closest-side,rgb(0 0 0 / .6),rgb(0 0 0 / 0));filter:blur(6px)}
+.welcome__bowl{width:100%;height:auto}
+@media (max-aspect-ratio:4/5){ .welcome__visual{width:min(80vw,52svh,460px)} }
+
+/* ---- Cinematic scene ---- */
+.scene--cinematic{height:100svh;overflow:hidden}
+.scene--cinematic .hero{z-index:1}
+.scene--cinematic .scene__dim{display:block;position:absolute;inset:0;z-index:1;background:var(--night);opacity:0;pointer-events:none}
+.scene--cinematic .welcome{position:absolute;inset:0;z-index:2;min-height:0;
+  -webkit-mask-image:radial-gradient(circle,#000 0,transparent 0);mask-image:radial-gradient(circle,#000 0,transparent 0)}   /* closed until js/scene.js opens it */
+.scene--cinematic .leaves{display:block;position:absolute;inset:0;z-index:3;overflow:hidden;pointer-events:none}
+
+.leaf{position:absolute;height:auto;max-width:none;will-change:transform;-webkit-user-select:none;user-select:none}
+/* resting spots once they have come in (the "in" pose); the script moves them from/to the edges */
+.leaf--f1{width:13vw;left:56%;top:-10%}
+.leaf--f2{width:9vw;left:9%;bottom:2%}
+.leaf--m1{width:25vw;left:-6%;top:-14%}
+.leaf--m2{width:12vw;right:6%;bottom:-12%}
+.leaf--m3{width:25vw;right:-8%;top:28%}
+.leaf--n1{width:48vw;left:-20%;bottom:-34%}
+.leaf--n2{width:38vw;right:-14%;top:-40%}
+.leaf--n3{width:21vw;left:40%;bottom:-58%}
+
+/* Phones and upright tablets: fewer, smaller leaves, kept to the edges so the copy stays clear */
+@media (max-aspect-ratio:4/5){
+  .leaf--xl{display:none}
+  .leaf--f1{width:30vw;left:52%;top:-8%}
+  .leaf--m1{width:52vw;left:-18%;top:-10%}
+  .leaf--n1{width:92vw;left:-42%;bottom:-26%}
+  .leaf--n2{width:72vw;right:-34%;top:-24%}
+}
+</style>
+<style>
+/* Block 3 · Welcome / About Poké.
+   Editorial, not "text left, picture right": a large headline across the top, the real Welcome photo
+   as the centre of the block, the short site text and the About Poké link tucked beside its lower edge.
+   The ground starts as the scene's night and turns to the light ground as the block comes in
+   (js/about.js); without the script a gradient does the same job. */
+.about{position:relative;color:var(--deep-teal);
+  background:linear-gradient(180deg,var(--night) 0,var(--deep-teal) 90px,var(--mid-teal) 180px,var(--light-gray) 260px,var(--bg-light) 340px);
+  padding:calc(340px + 24px) var(--gutter) clamp(72px,10vw,140px);
+  display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);
+  grid-template-areas:
+    "head head head head head head head head head head head ."
+    "body body body photo photo photo photo photo photo photo photo photo"}
+/* With the script the seam with the dark scene is one long band of the brand's own colours (night → deep teal
+   → mid teal → light gray → light), fixed to the top of the block and simply scrolled through: the light
+   arrives with the reader's own scroll, so it cannot lag, flash or be seen being painted across. The stops
+   are eased (closer together at both ends) so no edge or stripe shows. The headline starts once the band
+   is light gray. The band's height is read by js/about.js for the header switch. */
+.js .about.is-scripted{--band:clamp(280px,46svh,480px);background:var(--bg-light);padding-top:calc(var(--band) * .8);padding-bottom:clamp(64px,8vw,112px)}
+.js .about.is-scripted::before{content:"";position:absolute;left:0;right:0;top:0;height:var(--band);pointer-events:none;
+  background:linear-gradient(180deg,var(--night) 0%,color-mix(in srgb,var(--night) 80%,var(--deep-teal)) 8%,color-mix(in srgb,var(--night) 40%,var(--deep-teal)) 20%,
+    var(--deep-teal) 32%,color-mix(in srgb,var(--deep-teal) 50%,var(--mid-teal)) 45%,var(--mid-teal) 57%,color-mix(in srgb,var(--mid-teal) 45%,var(--light-gray)) 69%,
+    var(--light-gray) 81%,color-mix(in srgb,var(--light-gray) 45%,var(--bg-light)) 91%,var(--bg-light) 100%)}
+.js .about.is-scripted > *{position:relative;z-index:1}
+
+.about__head{grid-area:head;margin-bottom:clamp(20px,2.4vw,36px)}
+.about__label{margin:0 0 18px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--deep-teal)}
+.about__title{margin:0;font-family:var(--font-display);font-weight:800;text-transform:uppercase;font-size:clamp(52px,7.4vw,136px);line-height:.88;letter-spacing:-.035em}
+/* the mask gets headroom (.14em, taken back by the negative margin) so umlauts are never cut at rest */
+.about__line{display:block;overflow:hidden;padding:.14em 0 .04em;margin-top:-.14em}
+.about__line > span{display:block}
+.about__line:nth-child(2){padding-left:clamp(0px,12vw,220px)}   /* offset second line: editorial rhythm */
+
+/* copy hangs from the top edge of the photo under a hairline; the air below it is the column's,
+   answered by the photo running off the right edge */
+.about__body{grid-area:body;align-self:start;margin-top:clamp(24px,3vw,48px);padding-top:20px;border-top:1px solid rgb(0 68 67 / .25)}
+.about__text{margin:0 0 28px;font-size:17px;line-height:1.6;max-width:34ch}
+.about__cta{display:inline-flex;align-items:center;gap:12px;min-height:44px;font-size:12.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;color:var(--deep-teal);
+  background:linear-gradient(currentColor,currentColor) 0 100%/100% 1px no-repeat;transition:background-size .5s var(--ease-out)}
+.about__cta:hover{background-size:0 1px;background-position:100% 100%}
+.about__cta svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .5s var(--ease-out)}
+.about__cta:hover svg{transform:translateX(4px)}
+
+/* the photo keeps its own proportions, so nothing in it is cut away at rest */
+.about__photo{grid-area:photo;margin:0 calc(-1 * var(--gutter)) 0 0;position:relative;overflow:hidden;border-radius:28px 0 0 28px;aspect-ratio:1124/800;background:var(--light-gray)}
+.about__photo img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* Phones and upright tablets: headline, text, then the photo edge to edge, link last */
+@media (max-aspect-ratio:4/5), (max-width:699px){
+  .about{grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "body" "photo" "cta";row-gap:0;padding-bottom:40px}
+  .js .about.is-scripted{--band:clamp(240px,40svh,380px)}
+  .about__head{margin-bottom:18px}
+  .about__label{margin-bottom:12px}
+  .about__title{font-size:min(11.2vw,64px)}
+  .about__line:nth-child(2){padding-left:0}
+  .about__body{display:contents;margin:0;padding:0;border:0}
+  .about__text{grid-area:body;margin:0 0 22px;font-size:16px;line-height:1.55;max-width:none}
+  .about__photo{margin:0 calc(-1 * var(--gutter));border-radius:0}
+  .about__cta{grid-area:cta;justify-self:start;margin-top:20px}
+}
+</style>
+<style>
+/* Block 4 · Ma'loa Favorites.
+   The ground turns from the Welcome block's light back to deep teal, the colour the bowls were cut out on.
+   Without the script: a plain editorial list, bowl and text per row.
+   With it (.is-scripted, js/favs.js): the stage is pinned; the bowls sit on a large, slowly turning wheel
+   (the next one rises into the ring, the last one leaves), each spinning a little like on a turntable,
+   and the island name, bowl type, ingredients and kcal change in step. */
+.favs{position:relative;color:var(--on-teal);background:var(--deep-teal)}
+/* The seam with the light Welcome block: one long band of the brand colours back into deep teal (the same
+   eased stops as the top of Welcome, the other way round), scrolled through, never animated. The headline
+   starts while the band is still finishing, on teal dark enough for light type, so the section is already
+   there as soon as the light gives way. The band's height is read by js/about.js for the header switch. */
+.favs{--band:clamp(220px,36svh,380px)}
+.favs::before{content:"";position:absolute;left:0;right:0;top:0;height:var(--band);pointer-events:none;
+  background:linear-gradient(180deg,var(--bg-light) 0%,color-mix(in srgb,var(--bg-light) 55%,var(--light-gray)) 9%,var(--light-gray) 20%,
+    color-mix(in srgb,var(--light-gray) 50%,var(--mid-teal)) 33%,var(--mid-teal) 46%,color-mix(in srgb,var(--mid-teal) 50%,var(--deep-teal)) 62%,
+    color-mix(in srgb,var(--mid-teal) 18%,var(--deep-teal)) 80%,var(--deep-teal) 100%)}
+
+.favs__head{position:relative;z-index:1;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);align-items:end;
+  padding:calc(var(--band) * .74) var(--gutter) clamp(40px,6vw,88px)}
+.favs__label{grid-column:1 / -1;margin:0 0 18px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--light-gray)}
+.favs__title{grid-column:1 / span 8;margin:0;font-family:var(--font-display);font-weight:800;text-transform:uppercase;font-size:clamp(44px,6vw,112px);line-height:.88;letter-spacing:-.035em;color:var(--bg-light)}
+.favs__line{display:block;overflow:hidden;padding:.14em 0 .04em;margin-top:-.14em}
+.favs__line > span{display:block}
+.favs__line:nth-child(2){padding-left:clamp(0px,8vw,150px)}
+.favs__intro{grid-column:9 / -1;margin:0;font-size:16px;line-height:1.6;color:var(--light-gray);max-width:36ch;padding-top:18px;border-top:1px solid rgb(200 209 211 / .25)}
+
+/* ---------- Static list (no script, reduced motion) ---------- */
+.favs__stage{position:relative;padding:0 var(--gutter) clamp(64px,8vw,112px)}
+.favs__list{margin:0;padding:0;list-style:none;display:grid;gap:clamp(32px,5vw,72px)}
+.fav{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);align-items:center}
+.fav__bowl{grid-column:1 / span 5;margin:0;position:relative}
+.fav__bowl img{width:100%;height:auto;position:relative}
+/* a soft contact shadow under the bowl: a gradient, not a filter, so moving it stays cheap */
+.fav__bowl::before{content:"";position:absolute;inset:8% 4% -2% 8%;border-radius:50%;background:radial-gradient(closest-side,rgb(var(--night-rgb) / .55),rgb(var(--night-rgb) / 0));transform:translate(3%,5%)}
+.fav__text{grid-column:7 / span 6}
+.fav__type{margin:0 0 14px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--light-gray)}
+.fav__no{color:var(--bg-light);margin-right:10px}
+.fav__name{margin:0 0 20px;font-family:var(--font-display);font-weight:800;text-transform:uppercase;font-size:clamp(48px,6vw,112px);line-height:.9;letter-spacing:-.035em;color:var(--bg-light);overflow:hidden;padding:.1em 0 .04em;margin-top:-.1em}
+.fav__name > span{display:block}
+.fav__ing{margin:0 0 22px;font-size:16px;line-height:1.6;color:var(--light-gray);max-width:34ch}
+.fav__kcal{display:inline-flex;align-items:baseline;gap:8px;margin:0;padding-top:14px;border-top:1px solid rgb(200 209 211 / .3);font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--light-gray)}
+.fav__kcal-n{font-family:var(--font-display);font-size:32px;font-weight:700;letter-spacing:-.01em;color:var(--bg-light);font-variant-numeric:tabular-nums}
+
+.favs__foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px 32px;margin-top:clamp(40px,5vw,72px)}
+.favs__index ol{display:flex;flex-wrap:wrap;gap:4px 20px;margin:0;padding:0;list-style:none}
+.favs__index a{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:rgb(200 209 211 / .6);transition:color .35s var(--ease-out)}
+.favs__index a span{font-variant-numeric:tabular-nums}
+.favs__index a:hover,.favs__index a[aria-current="true"]{color:var(--bg-light)}
+.favs__index a[aria-current="true"]{background:linear-gradient(currentColor,currentColor) 0 calc(100% - 8px)/100% 1px no-repeat}
+
+@media (max-aspect-ratio:4/5), (max-width:699px){
+  .favs__title{grid-column:1 / -1;font-size:min(11.2vw,64px)}
+  .favs__line:nth-child(2){padding-left:0}
+  .favs__intro{grid-column:1 / -1;margin-top:22px;border-top:0;padding-top:0}
+  .fav{grid-template-columns:minmax(0,1fr)}
+  .fav__bowl{grid-column:1;width:min(78vw,420px);justify-self:center;margin-bottom:20px}
+  .fav__text{grid-column:1}
+  .fav__name{font-size:min(12vw,56px)}
+  .favs__index ol{flex-wrap:nowrap;gap:0}
+  .favs__index a{min-width:34px;justify-content:center;letter-spacing:.08em}
+  .favs__nm{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}   /* numbers only, names stay for screen readers */
+}
+
+/* ---------- Pinned stage (js/favs.js) ----------
+   --cx/--cy: where the active bowl sits (the ring), --bs: bowl size. The script moves every bowl
+   along the wheel from there with transforms only. */
+.js .favs.is-scripted .favs__stage{height:100vh;height:100svh;padding:0;overflow:hidden;
+  --bs:min(66svh,44vw);--cx:69%;--cy:52%;
+  /* the vignette fades in below the top edge, so the head's flat teal runs into the stage without a seam */
+  background:linear-gradient(180deg,var(--deep-teal) 0,rgb(0 68 67 / 0) 28%),
+    linear-gradient(0deg,var(--night) 0,rgb(var(--night-rgb) / 0) 24%),   /* ends in night, where Poké your style begins */
+    radial-gradient(60% 75% at var(--cx) var(--cy),var(--deep-teal) 0%,color-mix(in srgb,var(--deep-teal) 55%,var(--night)) 70%,var(--night) 100%)}
+.favs.is-scripted .favs__stage::before{content:"";position:absolute;left:var(--cx);top:var(--cy);width:calc(var(--bs) * 1.1);aspect-ratio:1;border-radius:50%;
+  border:1px solid rgb(200 209 211 / .16);transform:translate(-50%,-50%);pointer-events:none}   /* the ring each bowl lands in */
+.favs.is-scripted .favs__list{position:absolute;inset:0;display:block}
+.favs.is-scripted .fav{position:absolute;inset:0;display:block;pointer-events:none}
+.favs.is-scripted .fav__bowl{position:absolute;left:calc(var(--cx) - var(--bs) / 2);top:calc(var(--cy) - var(--bs) / 2);width:var(--bs);will-change:transform,opacity}
+.favs.is-scripted .fav__text{position:absolute;left:var(--gutter);top:50%;width:min(38vw,560px);transform:translateY(-50%);opacity:0}
+.favs.is-scripted .fav__text.is-on{pointer-events:auto}
+.favs.is-scripted .fav__name{font-size:var(--fit,clamp(64px,7.6vw,148px))}
+.favs.is-scripted .favs__foot{position:absolute;left:var(--gutter);right:var(--gutter);bottom:clamp(16px,3.2vh,36px);margin:0;z-index:2}
+
+@media (max-aspect-ratio:4/5), (max-width:699px){
+  .js .favs.is-scripted .favs__stage{--bs:min(84vw,42svh);--cx:50%;--cy:calc(var(--hh) + 16px + var(--bs) / 2)}
+  .favs.is-scripted .fav__text{left:var(--gutter);right:var(--gutter);width:auto;top:calc(var(--cy) + var(--bs) / 2 + 22px);transform:none}
+  .favs.is-scripted .fav__type{margin-bottom:10px}
+  .favs.is-scripted .fav__name{font-size:var(--fit,min(12vw,56px));margin-bottom:12px}
+  .favs.is-scripted .fav__ing{font-size:15px;line-height:1.5;margin-bottom:14px}
+  .favs.is-scripted .fav__kcal{padding-top:10px}
+  .favs.is-scripted .fav__kcal-n{font-size:26px}
+  .favs.is-scripted .favs__foot{flex-wrap:nowrap}
+  .favs.is-scripted .favs__cta{min-height:48px;padding:0 22px}
+}
+/* short phones: the ingredients give way to the name, type and kcal */
+@media (max-aspect-ratio:4/5) and (max-height:700px), (max-width:699px) and (max-height:700px){
+  .js .favs.is-scripted .favs__stage{--bs:min(66vw,33svh)}
+  .favs.is-scripted .fav__ing{display:none}
+}
+</style>
+<style>
+/* Block 5 · Poké your style.
+   One real bowl (Spicy Tropical) taken apart into its own ingredients, all cut from the same photograph
+   (tools/poke-layers). Without the script: the finished bowl beside the steps as a list.
+   With it (.is-scripted, js/poke.js): the stage is pinned and the bowl is built ingredient by ingredient
+   while the copy on the left follows the steps. */
+.poke{position:relative;color:var(--on-teal);background:var(--deep-teal)}
+.poke:not(.is-scripted){overflow-x:clip}   /* the light behind the bowl may not widen the page */
+
+/* ---------- Static layout (no script, reduced motion) ---------- */
+.poke__stage{position:relative;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);
+  grid-template-areas:"copy copy copy copy copy . bowl bowl bowl bowl bowl bowl" "steps steps steps steps steps steps steps steps steps steps steps steps";
+  padding:clamp(72px,10vw,140px) var(--gutter)}
+.poke__copy{grid-area:copy;align-self:center}
+.poke__label{margin:0 0 18px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--light-gray)}
+.poke__title{margin:0 0 24px;font-family:var(--font-display);font-weight:800;text-transform:uppercase;font-size:clamp(48px,6.2vw,116px);line-height:.88;letter-spacing:-.035em;color:var(--bg-light)}
+.poke__line{display:block;overflow:hidden;padding:.14em 0 .04em;margin-top:-.14em}
+.poke__line > span{display:block}
+.poke__line:nth-child(2){padding-left:clamp(0px,6vw,110px)}
+.poke__intro{margin:0;font-size:16px;line-height:1.6;color:var(--light-gray);max-width:36ch}
+
+.poke__bowl{grid-area:bowl;margin:0;position:relative}
+/* soft light under the bowl and a contact shadow, gradients only */
+.poke__bowl::before{content:"";position:absolute;inset:-14%;border-radius:50%;background:radial-gradient(closest-side,rgb(98 138 135 / .26),rgb(98 138 135 / 0));pointer-events:none}
+.poke__plate{position:relative;aspect-ratio:1}
+.poke__plate::before{content:"";position:absolute;inset:4% 2% -4% 6%;border-radius:50%;background:radial-gradient(closest-side,rgb(var(--night-rgb) / .6),rgb(var(--night-rgb) / 0))}
+.poke__layer{position:absolute;inset:0;width:100%;height:100%;display:none}
+.poke__layer--final{display:block}
+
+.poke__steps{grid-area:steps;margin:clamp(40px,6vw,80px) 0 0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px clamp(16px,2vw,32px)}
+.poke__no{margin:0 0 10px;font-size:12px;font-weight:600;letter-spacing:.24em;color:var(--bg-light)}
+.poke__step-title{margin:0 0 10px;font-family:var(--font-display);font-weight:800;text-transform:uppercase;font-size:clamp(24px,2.2vw,34px);line-height:.95;letter-spacing:-.02em;color:var(--bg-light)}
+.poke__step-title > span{display:inline-block}
+.poke__step-text{margin:0 0 12px;font-size:15px;line-height:1.55;color:var(--light-gray);max-width:36ch}
+.poke__in{margin:0;padding-top:10px;border-top:1px solid rgb(200 209 211 / .25);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--light-gray);display:inline-block}
+.poke__in b{color:var(--bg-light);font-weight:700}
+.poke__actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;margin:18px 0 0}
+.poke__link{display:inline-flex;align-items:center;min-height:44px;font-size:12.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;color:var(--bg-light);
+  background:linear-gradient(currentColor,currentColor) 0 calc(100% - 10px)/100% 1px no-repeat}
+.poke__progress{display:none}
+
+@media (max-aspect-ratio:4/5), (max-width:699px){
+  .poke__stage{grid-template-columns:minmax(0,1fr);grid-template-areas:"copy" "bowl" "steps"}
+  .poke__title{font-size:min(12vw,64px)}
+  .poke__line:nth-child(2){padding-left:0}
+  .poke__bowl{width:min(86vw,520px);justify-self:center;margin-top:28px}
+  .poke__steps{grid-template-columns:minmax(0,1fr)}
+}
+
+/* ---------- Pinned build (js/poke.js) ----------
+   --bs: bowl size, --cx/--cy: bowl centre. Layers move with transforms only. */
+.js .poke.is-scripted .poke__stage{display:block;height:100vh;height:100svh;padding:0;overflow:hidden;
+  --bs:min(74svh,46vw);--cx:70%;--cy:53%}
+/* the ground: deep teal, a lighter teal light behind the bowl that recedes as the bowl fills (opacity, scrubbed) */
+.poke.is-scripted .poke__stage::before,.poke.is-scripted .poke__stage::after{content:"";position:absolute;inset:0;pointer-events:none}
+/* starts in night, where the Favorites stage ends, so the two stages meet without a seam */
+.poke.is-scripted .poke__stage::before{background:linear-gradient(180deg,var(--night) 0,rgb(var(--night-rgb) / 0) 26%),radial-gradient(70% 85% at var(--cx) var(--cy),var(--deep-teal) 0%,color-mix(in srgb,var(--deep-teal) 55%,var(--night)) 72%,var(--night) 100%)}
+.poke.is-scripted .poke__stage::after{background:radial-gradient(42% 55% at var(--cx) var(--cy),color-mix(in srgb,var(--deep-teal) 60%,var(--mid-teal)) 0%,rgb(0 68 67 / 0) 100%);opacity:var(--glow,1)}
+.poke.is-scripted .poke__copy{position:absolute;left:var(--gutter);top:calc(var(--hh) + clamp(28px,7vh,80px));width:min(40vw,580px);z-index:2}
+.poke.is-scripted .poke__title{font-size:clamp(48px,5.6vw,108px)}
+.poke.is-scripted .poke__bowl{position:absolute;left:calc(var(--cx) - var(--bs) / 2);top:calc(var(--cy) - var(--bs) / 2);width:var(--bs);z-index:1}
+.poke.is-scripted .poke__layer{display:block;transform-origin:var(--o);opacity:0;will-change:transform,opacity}
+.poke.is-scripted .poke__layer--bowl{opacity:1}
+.poke.is-scripted .poke__steps{position:absolute;left:var(--gutter);bottom:calc(clamp(16px,3.2vh,36px) + 72px);width:min(36vw,520px);height:clamp(150px,22vh,200px);margin:0;display:block;z-index:2}
+.poke.is-scripted .poke__step{position:absolute;left:0;right:0;bottom:0;opacity:0}
+.poke.is-scripted .poke__step.is-on{pointer-events:auto}
+.poke.is-scripted .poke__step:not(.is-on){pointer-events:none}
+.poke.is-scripted .poke__step-title{font-size:clamp(28px,2.6vw,44px)}
+.poke.is-scripted .poke__step--final .poke__step-title{font-size:clamp(36px,3.6vw,64px)}
+.poke.is-scripted .poke__step--final .poke__step-title > span{display:block}
+/* The final state shows only "Your Poké. Your style." and its two actions: its number and the bowl line stay
+   in the static list, and the intro steps back while the final message is on, so on shorter screens the taller
+   final step can never run into it (!important: the intro's entrance leaves inline opacity/visibility behind) */
+.poke.is-scripted .poke__step--final .poke__no,.poke.is-scripted .poke__step--final .poke__step-text{display:none}
+.poke.is-scripted .poke__intro{transition:opacity .4s var(--ease-out),visibility 0s}
+.poke.is-scripted.is-final .poke__intro{opacity:0 !important;visibility:hidden !important;transition:opacity .3s var(--ease-out),visibility 0s .3s}
+.poke.is-scripted .poke__progress{position:absolute;left:var(--gutter);bottom:clamp(16px,3.2vh,36px);display:flex;gap:4px 20px;z-index:2}
+.poke__progress span{display:inline-flex;align-items:center;min-height:44px;font-size:12px;font-weight:600;letter-spacing:.16em;font-variant-numeric:tabular-nums;color:rgb(200 209 211 / .5);
+  background:linear-gradient(currentColor,currentColor) 0 calc(100% - 8px)/0 1px no-repeat;transition:color .4s var(--ease-out),background-size .5s var(--ease-out)}
+.poke__progress span.is-done{color:rgb(200 209 211 / .8)}
+.poke__progress span.is-on{color:var(--bg-light);background-size:100% 1px}
+
+@media (max-aspect-ratio:4/5), (max-width:699px){
+  .js .poke.is-scripted .poke__stage{--bs:min(84vw,40svh);--cx:50%;--cy:calc(var(--hh) + 132px + var(--bs) / 2)}
+  .poke.is-scripted .poke__copy{top:calc(var(--hh) + 18px);width:auto;right:var(--gutter)}
+  .poke.is-scripted .poke__label{margin-bottom:10px}
+  .poke.is-scripted .poke__title{font-size:min(10.4vw,48px);margin:0}
+  .poke.is-scripted .poke__intro{display:none}
+  .poke.is-scripted .poke__steps{top:calc(var(--cy) + var(--bs) / 2 + 22px);bottom:auto;width:auto;right:var(--gutter);height:auto}
+  .poke.is-scripted .poke__step{top:0;bottom:auto}
+  .poke.is-scripted .poke__step-title{font-size:min(8vw,34px)}
+  .poke.is-scripted .poke__step--final .poke__step-title{font-size:min(9.6vw,44px)}
+  .poke.is-scripted .poke__step--final .poke__step-title > span{display:inline}
+  .poke.is-scripted .poke__step-text{font-size:14.5px;margin-bottom:10px}
+  .poke.is-scripted .poke__progress{gap:0}
+  .poke.is-scripted .poke__progress span{min-width:38px;justify-content:center;letter-spacing:.08em}
+  /* the last step needs the room for its two actions: the 01–06 line has done its job */
+  .poke.is-scripted .poke__progress{transition:opacity .4s var(--ease-out)}
+  .poke.is-scripted.is-final .poke__progress{opacity:0}
+}
+/* short phones: the long step text gives way, the ingredients of this bowl stay */
+@media (max-aspect-ratio:4/5) and (max-height:740px), (max-width:699px) and (max-height:740px){
+  .js .poke.is-scripted .poke__stage{--bs:min(72vw,34svh);--cy:calc(var(--hh) + 112px + var(--bs) / 2)}
+  .poke.is-scripted .poke__step-text{display:none}
+}
+/* tall upright screens (tablets): a larger bowl, the room is there */
+@media (max-aspect-ratio:4/5) and (min-height:960px) and (min-width:600px){
+  .js .poke.is-scripted .poke__stage{--bs:min(78vw,50svh);--cy:calc(var(--hh) + 150px + var(--bs) / 2)}
+  .poke.is-scripted .poke__title{font-size:min(8vw,64px)}
+}
+</style>
+<style>
+/* Block 6 · Gift Card.
+   Picks up from the night at the end of Poké your style and opens into the light ground: copy on the left,
+   two cards on the right (a blush card behind, the deep teal MA'LOA card in front), drawn in CSS from the
+   traced logo. js/gift.js lets the cards rise in and drift a little apart with the scroll. */
+.gift{position:relative;overflow-x:clip;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);align-items:center;
+  padding:clamp(120px,15vw,210px) var(--gutter) clamp(110px,13vw,180px);color:var(--deep-teal);
+  background:linear-gradient(180deg,color-mix(in srgb,var(--deep-teal) 40%,var(--night)) 0,color-mix(in srgb,var(--deep-teal) 60%,var(--night)) clamp(60px,8vw,120px),var(--mid-teal) clamp(140px,16vw,240px),var(--light-gray) clamp(200px,22vw,320px),var(--bg-light) clamp(260px,28vw,400px))}
+.gift__copy{grid-column:1 / span 6;position:relative;z-index:1}
+.gift__label{margin:0 0 18px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase}
+.gift__title{margin:0;font-family:var(--font-display);font-weight:800;text-transform:uppercase;font-size:clamp(44px,5vw,96px);line-height:.88;letter-spacing:-.035em}
+.gift__line{display:block;overflow:hidden;padding:.14em 0 .04em;margin-top:-.14em}
+.gift__line > span{display:block}
+.gift__line:nth-child(2){padding-left:clamp(0px,5vw,90px)}
+.gift__text{margin:28px 0 0;font-size:17px;line-height:1.6;max-width:36ch;padding-top:20px;border-top:1px solid rgb(0 68 67 / .25)}
+.gift__actions{margin:32px 0 0}
+
+/* the cards: credit-card proportions (85.6 × 54 mm) */
+.gift__stage{grid-column:7 / -1;position:relative;aspect-ratio:1.18;max-width:640px;width:100%;justify-self:center}
+.gift__card{position:absolute;width:82%;aspect-ratio:85.6/54;border-radius:clamp(14px,1.6vw,22px);overflow:hidden;will-change:transform}
+.gift__card--back{right:0;top:4%;background:linear-gradient(135deg,var(--powder-pink),var(--pink-hover));transform:rotate(9deg);
+  box-shadow:0 30px 60px -20px rgb(0 68 67 / .35)}
+.gift__mark{position:absolute;right:-12%;bottom:-30%;width:70%;aspect-ratio:1;border-radius:50%;border:1px solid rgb(0 68 67 / .18)}
+.gift__card--front{left:0;bottom:6%;color:var(--bg-light);transform:rotate(-6deg);
+  background:radial-gradient(120% 140% at 85% 0%,color-mix(in srgb,var(--deep-teal) 70%,var(--mid-teal)) 0%,var(--deep-teal) 45%,var(--night) 100%);
+  box-shadow:0 40px 70px -24px rgb(var(--night-rgb) / .65),inset 0 0 0 1px rgb(244 247 245 / .1)}
+/* a faint sheen across the card */
+.gift__card--front::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgb(244 247 245 / 0) 35%,rgb(244 247 245 / .08) 50%,rgb(244 247 245 / 0) 65%);pointer-events:none}
+.gift__waves{position:absolute;inset:0;width:100%;height:100%;fill:none;stroke:rgb(200 209 211 / .16);stroke-width:1}
+.gift__logo{position:absolute;left:7%;top:11%;width:12%;height:auto;color:var(--bg-light)}
+.gift__kind{position:absolute;right:7%;top:12%;font-size:clamp(9px,.9vw,12px);font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--light-gray)}
+/* the traced wordmark, coloured through a mask so it follows the card's palette */
+.gift__wordmark{position:absolute;left:7%;bottom:15%;width:46%;aspect-ratio:1295/520;background:var(--bg-light);
+  -webkit-mask:url(../assets/logo/logo-wordmark.svg) left bottom/contain no-repeat;mask:url(../assets/logo/logo-wordmark.svg) left bottom/contain no-repeat}
+.gift__foot{position:absolute;right:7%;bottom:13%;font-size:clamp(8px,.8vw,11px);font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--powder-pink)}
+
+@media (max-aspect-ratio:4/5), (max-width:699px){
+  .gift{grid-template-columns:minmax(0,1fr);row-gap:56px;padding:120px var(--gutter) 96px}
+  .gift__copy{grid-column:1}
+  .gift__title{font-size:min(12vw,64px)}
+  .gift__line:nth-child(2){padding-left:0}
+  .gift__text{font-size:16px}
+  .gift__actions .btn{width:100%}
+  .gift__stage{grid-column:1;grid-row:2;max-width:480px;margin:0 auto}
+  .gift__copy{grid-row:1}
+}
+</style>
+<style>
+/* Block 7 · Closing: the landing of the page.
+   The light ground of Gift Card sinks back into night; a large headline with the two final actions, three quiet
+   columns (visit, contact, follow), the traced wordmark across the full width as the last image, then the footer.
+   Same type, colours and buttons as everything above. */
+.closing{position:relative;overflow-x:clip;color:var(--on-teal);
+  background:linear-gradient(180deg,var(--bg-light) 0,var(--light-gray) clamp(50px,6vw,90px),var(--mid-teal) clamp(110px,12vw,180px),var(--deep-teal) clamp(170px,18vw,260px),color-mix(in srgb,var(--deep-teal) 45%,var(--night)) 60%,var(--night) 100%);
+  padding:clamp(220px,24vw,340px) var(--gutter) 0}
+
+.closing__top{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(16px,2vw,32px);align-items:end}
+.closing__title{grid-column:1 / span 8;margin:0;font-family:var(--font-display);font-weight:800;text-transform:uppercase;font-size:clamp(56px,8vw,156px);line-height:.86;letter-spacing:-.04em;color:var(--bg-light)}
+.closing__line{display:block;overflow:hidden;padding:.14em 0 .04em;margin-top:-.14em}
+.closing__line > span{display:block}
+.closing__line:nth-child(2){padding-left:clamp(0px,8vw,150px)}
+.closing__cta{grid-column:9 / -1;padding-bottom:.6em}
+.closing__lead{margin:0;font-size:17px;line-height:1.6;color:var(--light-gray);max-width:30ch}
+.closing__actions{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0 0}
+
+.closing__info{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,32px);margin-top:clamp(80px,10vw,150px)}
+.closing__col{padding-top:22px;border-top:1px solid rgb(200 209 211 / .25)}
+.closing__head{margin:0 0 20px;font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--light-gray)}
+.closing__big{display:inline-flex;align-items:center;min-height:44px;font-family:var(--font-display);font-size:clamp(26px,2.4vw,40px);font-weight:700;letter-spacing:-.01em;line-height:1.05;
+  color:var(--bg-light);text-decoration:none;background:linear-gradient(var(--powder-pink),var(--powder-pink)) 0 100%/0 2px no-repeat;transition:background-size .5s var(--ease-out),color .3s var(--ease-out)}
+.closing__big:hover{background-size:100% 2px;color:var(--powder-pink)}
+.closing__note{margin:12px 0 0;font-size:15px;color:var(--light-gray)}
+.closing__list{margin:0;padding:0;list-style:none}
+.closing__list a,.closing__social a{display:inline-flex;align-items:center;min-height:40px;font-size:16px;color:var(--bg-light);text-decoration:none;
+  background:linear-gradient(currentColor,currentColor) 0 calc(100% - 8px)/0 1px no-repeat;transition:background-size .4s var(--ease-out)}
+.closing__list a:hover,.closing__social a:hover{background-size:100% 1px}
+.closing__social{display:flex;gap:24px;margin:10px 0 0}
+.closing__social a{font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--light-gray)}
+
+/* the last image: the traced wordmark across the whole width (the word only: SVG y 12–410 of 520,
+   the tagline below it stays out of the frame), resting on the footer line */
+.closing__word{margin:clamp(72px,9vw,140px) 0 0;overflow:hidden}
+.closing__word span{display:block;width:100%;aspect-ratio:1295/420;background:var(--deep-teal);
+  -webkit-mask:url(../assets/logo/logo-wordmark.svg) center top/100% auto no-repeat;mask:url(../assets/logo/logo-wordmark.svg) center top/100% auto no-repeat}
+
+.site-footer{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px 40px;margin:0 calc(-1 * var(--gutter));
+  padding:28px var(--gutter) calc(28px + env(safe-area-inset-bottom,0px));border-top:1px solid rgb(200 209 211 / .14);background:var(--night)}
+.site-footer__logo{display:flex;width:44px;height:44px;color:var(--bg-light);transition:color .3s var(--ease-out)}
+.site-footer__logo:hover{color:var(--powder-pink)}
+.site-footer__logo svg{width:44px;height:44px}
+.site-footer__nav{display:flex;flex-wrap:wrap;gap:0 24px}
+.site-footer a{color:var(--light-gray);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;min-height:44px;display:inline-flex;align-items:center;transition:color .3s var(--ease-out)}
+.site-footer__nav a:hover,.site-footer__legal a:hover{color:var(--bg-light)}
+.site-footer__legal{margin:0;display:flex;flex-wrap:wrap;align-items:center;gap:0 22px}
+.site-footer__legal span{font-size:12px;color:rgb(200 209 211 / .6)}
+
+@media (max-width:1100px) and (min-aspect-ratio:4/5){
+  .closing__title{grid-column:1 / -1}
+  .closing__cta{grid-column:1 / span 8;margin-top:36px;padding:0}
+  .site-footer{grid-template-columns:auto 1fr}
+  .site-footer__legal{grid-column:1 / -1}
+}
+@media (max-aspect-ratio:4/5), (max-width:699px){
+  .closing{padding-top:200px}
+  .closing__top{grid-template-columns:minmax(0,1fr)}
+  .closing__title{grid-column:1;font-size:min(15vw,96px)}
+  .closing__line:nth-child(2){padding-left:0}
+  .closing__cta{grid-column:1;margin-top:28px;padding:0}
+  .closing__lead{font-size:16px}
+  .closing__actions .btn{flex:1 1 140px;padding:0 20px}
+  .closing__info{grid-template-columns:minmax(0,1fr);gap:0;margin-top:64px}
+  .closing__col{padding:20px 0 28px}
+  .closing__word{margin-top:48px}
+  .site-footer{grid-template-columns:minmax(0,1fr);gap:12px}
+  .site-footer__nav{gap:0 20px}
+}
+</style>
+<script>
+document.documentElement.classList.add('js');
+/* Decide before first paint whether the intro plays: once per session, script required */
+document.documentElement.classList.add('intro-on');
+</script>
+</head>
+<body>
+<!-- Brand shapes, traced from the client's logo files (assets/logo). Defined once, reused below. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <path id="maloa-m" transform="translate(10 0) scale(0.25) translate(0.000000,1640.000000) scale(0.100000,-0.100000)" d="M5439 9000 c-1101 -126 -1965 -831 -2429 -1982 -23 -55 -49 -117 -60 -138 -11 -21 -42 -95 -70 -165 -28 -70 -62 -149 -76 -177 -14 -27 -38 -84 -53 -126 -16 -42 -48 -117 -71 -167 -23 -49 -55 -124 -72 -165 -16 -41 -51 -124 -78 -185 -67 -152 -250 -583 -250 -589 0 -3 -16 -38 -35 -78 -19 -40 -59 -131 -88 -203 -75 -178 -136 -322 -216 -505 -38 -85 -76 -176 -86 -202 -20 -53 -41 -76 -55 -62 -6 6 -11 840 -12 2221 -3 1799 -5 2214 -16 2225 -25 25 -1600 18 -1618 -6 -26 -36 -21 -8547 5 -8570 22 -20 1651 -27 1688 -8 16 9 66 117 199 427 26 61 76 178 111 260 36 83 99 231 140 330 41 99 79 185 84 191 5 6 32 68 59 137 27 69 59 145 71 169 12 24 48 106 79 183 32 77 74 176 93 220 86 196 220 510 301 705 31 74 74 173 96 220 22 47 65 146 96 220 118 285 187 446 209 490 12 25 35 79 49 120 15 41 49 122 76 180 27 58 74 166 105 240 127 303 262 619 439 1025 35 83 87 204 115 270 88 212 168 399 215 502 25 55 46 103 46 107 0 49 241 551 326 681 510 770 1641 752 1946 -30 117 -301 119 -296 -230 -405 -680 -211 -1228 -627 -1667 -1266 -103 -150 -295 -524 -367 -714 -22 -58 -55 -143 -73 -190 -170 -428 -285 -1082 -271 -1545 38 -1352 699 -2326 1761 -2596 44 -11 90 -27 102 -35 34 -21 779 -21 803 1 9 8 52 22 96 31 714 144 1256 729 1450 1564 134 573 141 676 149 2185 7 1270 -6 1141 114 1131 173 -16 513 -111 660 -185 573 -290 890 -754 1016 -1486 13 -78 15 -285 15 -1596 0 -1420 1 -1508 18 -1528 25 -31 1606 -36 1629 -5 16 22 19 2719 3 3004 -21 362 -56 559 -165 920 -44 143 -53 168 -135 365 -423 1021 -1315 1804 -2350 2064 -195 49 -644 121 -756 121 -49 0 -61 23 -84 165 -57 353 -204 744 -389 1034 -335 526 -758 860 -1366 1078 -282 101 -886 162 -1226 123z m1351 -4346 c26 -68 5 -2020 -25 -2289 -72 -652 -321 -897 -656 -646 -483 361 -476 1489 15 2346 194 338 619 714 666 589z"/>
+  </defs>
+</svg>
+
+
+<!-- Header: transparent, floating over the Hero. Items are the live site's German menu (maloa.com).
+     Wide screens show all of them; narrower screens keep the most used ones (the rest move to the footer).
+     No hamburger. "Bestellen" is always visible. -->
+<header class="site-header">
+  <div class="site-header__row">
+    <a class="site-header__logo" href="#hero" aria-label="Ma'loa – Startseite">
+      <svg viewBox="0 0 726 726" aria-hidden="true">
+        <circle cx="363" cy="363" r="363" fill="currentColor"/>
+        <g transform="translate(114.76 -100.00) scale(1.5568)" style="fill:var(--deep-teal)"><use href="#maloa-m"/></g>
+      </svg>
+    </a>
+    <nav class="site-nav" aria-label="Hauptmenü">
+      <ul class="site-nav__list">
+        <li><a class="site-nav__link" href="https://maloa.com/what-is-poke/">Über Ma'loa</a></li>
+        <li><a class="site-nav__link" href="menu.html">Menü</a></li>
+        <li class="site-nav__md"><a class="site-nav__link" href="https://maloa.smoothr.de/map">Standorte</a></li>
+        <li class="site-nav__md"><a class="site-nav__link" href="https://maloa.com/catering/">Catering</a></li>
+        <li class="site-nav__lg"><a class="site-nav__link" href="https://maloa.com/jobs/">Jobs</a></li>
+        <li class="site-nav__md"><a class="site-nav__link" href="franchise.html">Franchise</a></li>
+        <li class="site-nav__lg"><a class="site-nav__link" href="https://www.paynoweatlater.de/at/maloa/?crt=maloa">Gutscheine</a></li>
+      </ul>
+    </nav>
+    <a class="site-header__order" href="https://maloa.smoothr.de/map">Bestellen</a>
+  </div>
+</header>
+
+<!-- Block 0 · Intro (decorative; the skip button is the only control)
+     1. A stone disc with the monogram rests in the jungle, light drifts over it.
+     2. A small scroll (or 7 s of waiting) makes it jump; in the air it flips like a coin.
+     3. It lands as the dark disc: the ring draws itself, the letters slide out of the "m",
+        the tagline opens from the centre.
+     4. The camera flies through the disc into the Hero. -->
+<div class="intro" id="intro">
+  <div class="intro__bg" aria-hidden="true">
+    <img src="assets/intro/jungle-portrait.webp" alt="" width="783" height="1158" decoding="async" fetchpriority="high">
+  </div>
+  <div class="intro__rays" aria-hidden="true"></div>
+
+  <div class="intro__stage" aria-hidden="true">
+    <div class="coin">
+      <div class="coin__shadow"></div>
+      <div class="coin__body">
+        <!-- Front: pale stone, monogram pressed in -->
+        <div class="coin__face coin__face--front">
+          <svg class="coin__mark" viewBox="0 0 726 726">
+            <g transform="translate(114.76 -100.00) scale(1.5568)" filter="url(#engrave)"><use href="#maloa-m"/></g>
+          </svg>
+          <span class="coin__shine"></span>
+        </div>
+        <!-- Back: dark disc with the full wordmark -->
+        <div class="coin__face coin__face--back">
+          <svg class="coin__ring" viewBox="0 0 100 100">
+            <circle class="coin__ring-edge" cx="50" cy="50" r="48.6"/>
+            <circle class="coin__ring-line" cx="50" cy="50" r="46.4"/>
+          </svg>
+          <svg class="coin__word" viewBox="0 0 1295 520">
+            <g class="coin__letters" filter="url(#bevel)">
+            <g class="glyph glyph--m"><use href="#maloa-m"/></g>
+            <g class="glyph glyph--a"><path transform="translate(328 0) scale(0.25) translate(0.000000,1640.000000) scale(0.100000,-0.100000)" d="M4215 8995 c-284 -30 -640 -97 -818 -154 -51 -17 -148 -48 -217 -70 -913 -290 -1802 -996 -2341 -1861 -786 -1260 -899 -2878 -298 -4253 631 -1445 1991 -2447 3552 -2617 54 -5 111 -17 127 -25 43 -22 780 -22 833 0 20 8 77 19 129 25 540 60 1026 207 1536 464 219 111 198 106 271 62 132 -79 377 -194 615 -288 237 -93 691 -197 1025 -234 74 -8 148 -21 165 -29 22 -11 69 -15 197 -15 l169 0 2 702 c4 928 19 837 -139 850 -201 16 -585 98 -720 155 -92 38 -91 40 30 221 306 458 518 930 646 1437 412 1644 -131 3020 -1336 3385 -142 43 -167 8 319 448 193 175 190 150 42 317 -432 489 -998 896 -1589 1142 -190 79 -246 100 -359 134 -55 17 -145 44 -199 60 -157 47 -260 67 -622 124 -237 37 -762 47 -1020 20z m755 -1564 c361 -53 508 -90 757 -186 296 -116 751 -403 741 -468 -3 -24 -1 -23 -192 -109 -539 -242 -956 -755 -1139 -1403 -99 -348 -116 -457 -124 -790 -22 -923 252 -2009 658 -2606 64 -95 53 -114 -102 -164 -328 -106 -822 -156 -1179 -120 -452 45 -709 115 -1055 285 -433 213 -828 573 -1054 960 -25 41 -57 96 -73 121 -198 320 -343 855 -370 1363 -98 1839 1117 3166 2867 3131 110 -3 229 -9 265 -14z m2172 -2251 c328 -122 429 -903 213 -1639 -97 -330 -291 -731 -354 -731 -38 0 -145 211 -233 460 -333 946 -109 2091 374 1910z"/></g>
+            <g class="glyph glyph--apos"><path transform="translate(579 0) scale(0.25) translate(0.000000,1640.000000) scale(0.100000,-0.100000)" d="M172 10948 c-21 -21 -17 -4172 4 -4192 27 -28 1596 -24 1624 4 30 30 32 4156 2 4183 -24 22 -1609 26 -1630 5z"/></g>
+            <g class="glyph glyph--l"><path transform="translate(671 0) scale(0.25) translate(0.000000,1640.000000) scale(0.100000,-0.100000)" d="M2325 15919 c-1255 -121 -2059 -1189 -2145 -2854 -14 -262 -13 -10066 0 -10194 24 -226 102 -574 170 -757 416 -1127 1394 -1919 2559 -2074 47 -6 97 -18 112 -26 21 -10 67 -14 174 -14 l145 0 0 798 c0 933 19 825 -147 841 -740 69 -1363 755 -1363 1501 0 104 12 124 77 135 1163 193 2142 1083 2660 2420 99 256 113 299 177 525 107 375 154 631 176 945 5 77 16 221 24 320 38 463 38 482 34 3115 -5 2760 -3 2662 -58 3000 -176 1072 -533 1693 -1175 2045 -38 21 -81 46 -95 55 -77 54 -392 169 -550 201 -121 25 -589 35 -775 18z m472 -1664 c212 -68 306 -177 399 -465 117 -359 108 -84 112 -3180 2 -1843 0 -2723 -7 -2830 -6 -85 -16 -240 -21 -345 -55 -1035 -594 -2056 -1260 -2386 -142 -71 -147 -72 -170 -49 -34 34 -26 7977 8 8245 84 663 267 949 657 1029 70 14 208 5 282 -19z"/></g>
+            <g class="glyph glyph--o"><path transform="translate(803 0) scale(0.25) translate(0.000000,1640.000000) scale(0.100000,-0.100000)" d="M6688 9003 c-12 -14 -17 -56 -23 -173 -14 -289 -15 -291 -122 -243 -119 55 -436 181 -493 196 -30 8 -111 31 -180 52 -214 64 -301 82 -695 140 -1051 157 -2149 -199 -2672 -867 -133 -169 -279 -471 -314 -648 -28 -145 -3 -159 -457 247 -128 115 -119 116 -281 -49 -631 -648 -1041 -1434 -1201 -2303 -17 -93 -33 -172 -35 -175 -38 -62 -54 -910 -22 -1175 24 -193 85 -517 133 -705 88 -341 317 -880 480 -1132 24 -37 51 -82 60 -100 18 -36 124 -188 212 -306 539 -716 1362 -1298 2187 -1545 351 -105 496 -137 780 -172 71 -9 143 -22 159 -30 43 -22 918 -22 962 -1 16 8 67 20 114 26 256 33 449 69 602 114 272 79 351 105 513 171 1134 458 2047 1369 2471 2465 25 63 58 149 74 191 233 605 315 1504 205 2249 -42 283 -157 678 -295 1015 -135 330 -427 810 -653 1073 -64 76 -64 77 -8 300 96 379 176 1344 116 1389 -32 23 -1597 19 -1617 -4z m-1698 -1498 c259 -41 543 -136 815 -272 249 -124 247 -120 117 -244 -392 -376 -887 -525 -1476 -444 -462 64 -702 231 -701 490 2 263 277 442 755 489 85 8 395 -4 490 -19z m-2655 -1466 c220 -425 707 -811 1245 -987 282 -91 379 -112 735 -157 243 -31 739 -23 985 15 668 104 1282 413 1782 898 115 111 129 114 170 37 75 -142 200 -554 223 -735 4 -30 11 -71 16 -91 113 -442 6 -1288 -232 -1830 -600 -1372 -2236 -1978 -3744 -1387 -1476 578 -2124 2511 -1367 4078 101 211 143 246 187 159z"/></g>
+            <g class="glyph glyph--a2"><path transform="translate(1052 0) scale(0.25) translate(0.000000,1640.000000) scale(0.100000,-0.100000)" d="M4415 9014 c-269 -21 -325 -26 -364 -35 -25 -5 -79 -14 -121 -19 -105 -14 -420 -77 -472 -96 -24 -8 -115 -37 -203 -64 -88 -27 -194 -63 -235 -80 -41 -18 -124 -51 -183 -76 -251 -102 -624 -321 -892 -522 -1453 -1094 -2099 -2964 -1645 -4757 322 -1270 1153 -2307 2315 -2887 83 -42 204 -97 270 -122 66 -26 145 -58 175 -71 214 -93 702 -205 1065 -245 55 -7 113 -18 129 -26 43 -21 709 -21 752 0 16 8 76 20 134 26 224 23 482 67 625 107 171 48 448 134 476 148 15 8 79 35 142 59 63 24 205 90 315 145 211 107 228 112 270 83 62 -43 333 -177 470 -233 414 -170 773 -257 1261 -309 57 -6 120 -18 140 -26 28 -11 72 -14 177 -12 l139 3 3 756 c3 885 22 782 -153 797 -196 17 -580 99 -705 150 -80 33 -89 60 -42 120 300 384 552 932 738 1604 73 265 136 926 114 1193 -93 1129 -604 1867 -1472 2130 -126 38 -124 41 59 207 473 429 444 388 352 503 -395 497 -1074 975 -1794 1262 -424 169 -1014 279 -1530 287 -143 2 -282 2 -310 0z m590 -1583 c28 -5 115 -21 195 -35 291 -51 554 -142 813 -282 224 -121 457 -292 457 -335 0 -21 0 -21 -205 -110 -653 -286 -1132 -1025 -1236 -1907 -41 -348 -6 -1011 72 -1377 44 -208 132 -552 159 -624 15 -42 47 -128 70 -191 79 -215 232 -527 358 -730 42 -67 28 -83 -114 -129 -314 -103 -823 -158 -1149 -126 -989 97 -1657 485 -2145 1244 -610 951 -599 2458 26 3407 463 703 1120 1090 2044 1203 92 12 586 6 655 -8z m2191 -2277 c400 -275 350 -1459 -94 -2214 -108 -185 -111 -184 -226 67 -299 653 -357 1489 -136 1949 107 223 300 306 456 198z"/></g>
+            </g>
+            <g class="coin__tag"><path transform="translate(0 410) scale(0.25) translate(0.000000,440.000000) scale(0.100000,-0.100000)" d="M32103 2422 c-16 -9 -67 -38 -114 -64 -233 -130 -270 -179 -196 -253 48 -48 22 -56 395 115 70 33 74 64 17 152 -38 60 -63 72 -102 50z M13254 1948 c-25 -12 -55 -64 -112 -194 -22 -50 -61 -133 -85 -185 -97 -202 -206 -438 -236 -509 -18 -41 -38 -84 -45 -95 -7 -11 -43 -87 -80 -169 -37 -82 -74 -159 -81 -170 -67 -108 -43 -134 127 -138 150 -3 157 1 213 117 46 97 39 95 328 95 284 0 270 4 323 -106 48 -102 56 -105 209 -105 176 0 183 9 115 149 -21 45 -54 115 -71 154 -17 40 -54 120 -82 178 -27 58 -79 168 -115 245 -35 77 -92 201 -127 275 -34 74 -91 198 -126 274 -58 127 -103 197 -126 195 -4 0 -18 -5 -29 -11z m45 -692 c18 -21 111 -214 111 -229 0 -27 -30 -40 -98 -44 -176 -9 -192 9 -127 145 70 147 85 163 114 128z M15232 1937 c-22 -23 -53 -87 -127 -262 -211 -495 -210 -495 -275 -200 -12 55 -35 141 -50 190 -15 50 -35 123 -45 163 -25 104 -37 112 -180 112 -186 0 -184 11 -59 -411 24 -80 61 -210 82 -290 22 -79 60 -216 85 -304 25 -88 60 -212 77 -275 50 -185 66 -207 129 -180 35 14 37 18 176 335 243 555 227 539 325 317 29 -64 74 -164 100 -222 27 -58 77 -170 111 -250 121 -278 165 -268 253 55 67 246 153 550 211 750 48 161 115 410 115 426 0 37 -39 49 -160 49 -137 0 -151 -6 -170 -82 -6 -24 -27 -101 -47 -173 -19 -71 -50 -190 -68 -263 -54 -222 -54 -222 -210 133 -32 72 -80 182 -107 245 -65 154 -113 194 -166 137z M21408 1941 c-13 -11 -49 -73 -80 -138 -108 -229 -207 -440 -268 -573 -67 -145 -177 -382 -267 -573 -82 -174 -84 -171 161 -167 102 2 111 7 151 93 53 117 36 112 329 115 294 3 271 11 339 -113 55 -100 67 -105 222 -98 172 9 171 5 42 275 -30 62 -82 172 -115 243 -202 432 -291 623 -338 726 -104 231 -122 252 -176 210z m54 -685 c31 -31 112 -227 101 -244 -13 -22 -79 -31 -173 -23 -97 8 -99 18 -34 155 64 136 73 145 106 112z M22795 1936 c-30 -30 -28 -1376 1 -1423 14 -22 20 -23 144 -23 186 0 170 -36 170 373 0 467 -20 453 255 176 598 -604 567 -575 615 -564 51 11 50 1 50 734 0 813 19 731 -165 731 -173 0 -159 33 -165 -377 -6 -430 18 -417 -266 -141 -115 112 -252 243 -304 292 -52 49 -111 106 -130 127 -103 111 -162 138 -205 95z M28055 1949 c-500 -84 -760 -626 -523 -1091 228 -448 889 -529 1217 -149 469 545 13 1359 -694 1240z m282 -351 c279 -104 349 -483 128 -687 -150 -138 -348 -149 -515 -28 -383 279 -57 881 387 715z M36434 1951 c-620 -99 -834 -927 -342 -1320 429 -342 1082 -125 1199 399 121 544 -311 1008 -857 921z m226 -337 c276 -65 407 -392 250 -624 -185 -272 -560 -244 -715 52 -155 294 134 650 465 572z M38717 1948 c-17 -14 -70 -123 -172 -358 -177 -407 -172 -406 -255 -60 -106 446 -82 410 -261 410 -171 0 -177 -11 -110 -220 22 -67 43 -137 47 -154 12 -60 76 -292 99 -361 13 -38 42 -142 65 -230 91 -354 139 -492 173 -500 62 -16 82 17 232 371 24 56 70 159 102 230 33 71 68 148 78 172 41 97 41 97 267 -418 141 -324 170 -369 224 -356 35 9 49 38 83 171 16 66 40 147 51 180 12 33 48 161 81 285 33 123 69 249 79 280 10 30 35 118 55 195 20 77 47 175 61 218 41 134 38 137 -135 137 -166 0 -158 9 -211 -220 -77 -325 -122 -462 -149 -446 -16 10 -73 125 -142 286 -174 409 -194 439 -262 388z M17227 1913 c-12 -21 -40 -76 -61 -123 -22 -47 -68 -144 -103 -217 -35 -73 -70 -149 -77 -170 -8 -21 -41 -94 -74 -163 -109 -229 -202 -427 -202 -433 0 -4 -27 -62 -60 -130 -90 -186 -89 -187 95 -187 157 0 161 2 214 108 51 105 42 102 323 102 281 0 274 2 324 -94 62 -119 56 -116 210 -116 191 0 194 5 108 181 -31 63 -64 134 -74 159 -10 25 -47 106 -83 180 -119 249 -205 435 -226 488 -12 30 -39 86 -60 125 -21 40 -58 118 -81 175 -68 160 -122 197 -173 115z m79 -660 c27 -27 104 -194 104 -225 0 -39 -29 -48 -140 -44 -139 5 -141 11 -70 157 67 138 73 144 106 112z M10710 1920 c-20 -20 -20 -33 -20 -708 0 -814 -20 -723 160 -724 170 -1 157 -24 163 291 5 325 -29 291 301 291 138 0 256 -4 263 -8 27 -17 33 -70 33 -302 0 -295 -15 -272 168 -268 134 3 137 3 149 28 10 20 12 170 10 703 -2 803 17 717 -166 717 -171 0 -158 23 -163 -281 -5 -313 32 -279 -298 -279 -325 0 -294 -24 -297 234 -2 297 -1 284 -23 306 -18 18 -33 20 -140 20 -107 0 -122 -2 -140 -20z M18649 1921 c-40 -32 -43 -1376 -3 -1416 23 -23 276 -22 295 2 29 34 19 1390 -10 1414 -35 28 -247 28 -282 0z M19810 1933 c-40 -14 -40 -12 -40 -718 0 -600 2 -683 16 -703 21 -31 270 -34 297 -4 29 32 25 1384 -3 1412 -20 20 -224 30 -270 13z M25859 1921 c-27 -22 -44 -1296 -19 -1383 13 -46 32 -53 155 -52 167 0 159 -14 162 268 3 272 -11 251 171 259 226 10 333 61 432 207 180 265 32 644 -278 709 -101 21 -595 15 -623 -8z m569 -309 c127 -58 112 -229 -25 -278 -60 -21 -195 -18 -224 5 -24 19 -34 181 -16 253 12 47 179 60 265 20z M29689 1921 c-27 -22 -44 -1296 -19 -1382 13 -47 19 -49 167 -50 180 -1 167 -26 173 314 6 317 11 330 86 225 21 -29 74 -102 119 -163 45 -60 121 -163 168 -227 113 -153 105 -149 269 -151 267 -4 267 -5 -13 357 -300 389 -304 395 -294 427 4 10 110 148 236 305 289 361 289 364 63 364 -156 0 -170 -6 -240 -93 -32 -40 -74 -92 -94 -117 -20 -25 -80 -99 -132 -165 -130 -163 -167 -190 -169 -123 0 13 0 109 0 213 0 201 -8 258 -39 275 -36 20 -255 13 -281 -9z M31540 1920 c-28 -28 -32 -1369 -4 -1408 15 -22 15 -22 448 -22 520 0 471 -15 471 145 0 166 21 155 -311 155 -327 0 -307 -9 -302 145 4 139 -15 129 259 135 277 6 259 -4 259 146 0 171 12 164 -272 164 -259 0 -252 -4 -246 131 5 131 -13 124 296 125 336 1 322 -6 322 160 0 155 37 144 -475 144 -412 0 -426 -1 -445 -20z M34200 1920 c-29 -29 -32 -1373 -2 -1409 26 -33 602 -33 701 0 311 101 390 465 141 646 -99 72 -99 65 -10 153 223 218 123 532 -195 615 -100 26 -608 22 -635 -5z m544 -304 c88 -57 84 -172 -7 -240 -42 -31 -177 -36 -206 -7 -32 32 -32 220 0 252 27 27 169 24 213 -5z m13 -563 c105 -55 108 -186 4 -247 -53 -30 -206 -29 -232 3 -30 36 -28 222 2 252 28 28 166 23 226 -8z M40330 1920 c-30 -30 -32 -1373 -2 -1410 18 -22 18 -22 417 -22 475 1 430 -14 430 146 0 166 17 156 -264 156 -124 0 -231 4 -238 8 -30 19 -33 70 -33 586 0 494 -1 524 -18 539 -30 27 -264 25 -292 -3z"/></g>
+          </svg>
+          <span class="coin__shine"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="intro__hint" aria-hidden="true"><span>Scroll</span><i></i></p>
+  <button class="intro__skip" type="button">Intro überspringen</button>
+
+  <!-- Surface filters: pressed-in monogram on the stone, raised letters on the dark disc -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <filter id="engrave" x="-10%" y="-10%" width="120%" height="120%">
+      <feFlood flood-color="#000" flood-opacity=".85"/>
+      <feComposite in2="SourceAlpha" operator="out"/>
+      <feGaussianBlur stdDeviation="9"/>
+      <feOffset dy="12" result="inner"/>
+      <feComposite in="inner" in2="SourceAlpha" operator="in" result="innerShadow"/>
+      <feOffset in="SourceAlpha" dy="5" result="lip"/>
+      <feComposite in="lip" in2="SourceAlpha" operator="out" result="lipOnly"/>
+      <feFlood flood-color="#fff" flood-opacity=".7"/>
+      <feComposite in2="lipOnly" operator="in" result="rim"/>
+      <feMerge><feMergeNode in="rim"/><feMergeNode in="SourceGraphic"/><feMergeNode in="innerShadow"/></feMerge>
+    </filter>
+    <filter id="bevel" x="-10%" y="-10%" width="120%" height="130%">
+      <feOffset in="SourceAlpha" dy="-3" result="up"/>
+      <feComposite in="SourceAlpha" in2="up" operator="out" result="topEdge"/>
+      <feFlood flood-color="#9fe0d6" flood-opacity=".55"/>
+      <feComposite in2="topEdge" operator="in" result="light"/>
+      <feGaussianBlur in="SourceAlpha" stdDeviation="6"/>
+      <feOffset dy="10" result="drop"/>
+      <feFlood flood-color="#000" flood-opacity=".7"/>
+      <feComposite in2="drop" operator="in" result="shadow"/>
+      <feMerge><feMergeNode in="shadow"/><feMergeNode in="SourceGraphic"/><feMergeNode in="light"/></feMerge>
+    </filter>
+  </svg>
+</div>
+
+<main id="main">
+  <!-- Hero → leaves → Welcome, one pinned scene (css/scene.css, js/scene.js).
+       Without the scene script (no GSAP, reduced motion) this is just the Hero followed by the Welcome block. -->
+  <div class="scene" id="scene">
+
+  <!-- Block 1 · Hero (css/hero.css, js/hero.js)
+       Base version: the Kling film of the real Maui Tuna bowl fills the screen, the copy sits on the
+       dark left and bottom of the frame. Next steps add the scroll story and the hanging leaves. -->
+  <section class="hero" id="hero" aria-labelledby="hero-title">
+
+    <!-- Film. Wide screens get 1080p, phones 720p; the poster shows until the first frame is ready.
+         Hosted on the Higgsfield CDN for the demo; move to our own server for production. -->
+    <div class="hero__media">
+      <video class="hero__video" autoplay muted loop playsinline disablepictureinpicture preload="auto"
+             poster="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/f0917650-8606-4f26-9dd2-63d7050473ed.webp" aria-hidden="true">
+        <source src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/ddc9eb47-501e-4cee-af2d-dbbc51047227.mp4" type="video/mp4" media="(min-width: 900px)">
+        <source src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/ec8320e3-dc35-404f-82dc-3b6648f7a9a6.mp4" type="video/mp4">
+      </video>
+      <!-- Shade only where the copy sits: top for the menu, left and bottom for the text. The bowl stays clear. -->
+      <div class="hero__shade" aria-hidden="true"></div>
+    </div>
+
+    <div class="hero__content">
+      <div class="hero__labels">
+        <p class="hero__label">Hawaiian Poké Bowl</p>
+        <span class="hero__rule" aria-hidden="true"></span>
+        <p class="hero__label">Neu in Eschborn</p>
+      </div>
+      <h1 class="hero__title" id="hero-title">
+        <span class="hero__line">Aloha,</span>
+        <span class="hero__line">Eschborn.</span>
+      </h1>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="https://maloa.smoothr.de/map">Jetzt bestellen</a>
+        <a class="btn btn--ghost" href="menu.html">Zum Menü</a>
+      </div>
+    </div>
+
+    <a class="hero__scroll" href="#welcome">
+      <span class="hero__scroll-label">Scroll</span>
+      <span class="hero__scroll-line" aria-hidden="true"></span>
+    </a>
+    <!-- WCAG 2.2.2: a looping film needs a pause control -->
+    <button class="hero__pause" type="button" aria-pressed="false" aria-label="Video pausieren">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-pause" d="M9 6v12M15 6v12"/><path class="i-play" d="M8 5.5l11 6.5-11 6.5z"/></svg>
+    </button>
+  </section>
+
+    <!-- Dims the film as the camera pulls back -->
+    <div class="scene__dim" aria-hidden="true"></div>
+
+    <!-- Block 2 · the bowl the leaves open onto (the Hero's Maui Tuna bowl). Visual only:
+         the Welcome headline and text appear once, in the About block that follows. -->
+    <div class="welcome" id="welcome">
+      <div class="welcome__inner">
+        <figure class="welcome__visual">
+          <img class="welcome__bowl" src="assets/bowls/maui-tuna-900.webp"
+               srcset="assets/bowls/maui-tuna-560.webp 560w, assets/bowls/maui-tuna-900.webp 900w"
+               sizes="(max-aspect-ratio: 4/5) 72vw, 42vw" width="900" height="900" decoding="async"
+               alt="Maui Tuna Bowl von Ma'loa mit Ahi Tuna, Avocado, Masago, Edamame und Vul'Cano Flavor">
+        </figure>
+      </div>
+    </div>
+
+    <!-- Foreground leaves, three depths (data-depth scales how far they travel).
+         Keyed out of the project's Higgsfield leaf frames; the blur and darkness of each depth is baked in.
+         leaf--xl ones are left out on phones. -->
+    <div class="leaves" aria-hidden="true">
+      <img class="leaf leaf--far leaf--f1" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/73343198-6048-4b4e-9fc4-b7a4d4a0e6d0.webp" width="354" height="560" alt="" decoding="async" data-dir="0.2,-1" data-depth=".35" data-rot="-160">
+      <img class="leaf leaf--far leaf--f2 leaf--xl" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/b1312f09-f80c-41a2-94c8-db2de06f700b.webp" width="273" height="520" alt="" decoding="async" data-dir="-0.8,0.6" data-depth=".35" data-rot="18">
+      <img class="leaf leaf--mid leaf--m1" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/a9721976-0d00-41a9-bb6f-04f242bfa250.webp" width="625" height="720" alt="" decoding="async" data-dir="-0.8,-0.8" data-depth=".6" data-rot="150">
+      <img class="leaf leaf--mid leaf--m2 leaf--xl" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/3003086a-d480-4295-8092-8ec59e35f77b.webp" width="378" height="720" alt="" decoding="async" data-dir="0.6,0.9" data-depth=".6" data-rot="-24">
+      <img class="leaf leaf--mid leaf--m3 leaf--xl" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/1e985fa3-98a9-4f00-942b-62fc5bcdedaa.webp" width="624" height="720" alt="" decoding="async" data-dir="1,0.1" data-depth=".6" data-rot="-96">
+      <img class="leaf leaf--near leaf--n1" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/658ce916-1759-451e-ae5b-e7e14dff0731.webp" width="953" height="1100" alt="" decoding="async" data-dir="-1,0.6" data-depth="1" data-rot="32">
+      <img class="leaf leaf--near leaf--n2" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/90823238-0bef-4f67-8ed1-63815cdcb3f9.webp" width="759" height="1200" alt="" decoding="async" data-dir="1,-0.8" data-depth="1" data-rot="196">
+      <img class="leaf leaf--near leaf--n3 leaf--xl" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/cf9faaaa-cdf0-48e0-9913-3009e9c29aeb.webp" width="474" height="1100" alt="" decoding="async" data-dir="0.1,1" data-depth="1" data-rot="6">
+    </div>
+  </div>
+
+  <!-- Block 3 · Welcome / About Poké (css/about.css, js/about.js).
+       Real content from maloa.com: the German Welcome text and the Welcome photo (Um_Maloa.jpg, 1124×800),
+       used as is (crop, mask and motion only). The ground turns from the scene's night to the light ground. -->
+  <section class="about" id="about" aria-labelledby="about-title">
+    <div class="about__head">
+      <p class="about__label">Welcome to Ma'loa</p>
+      <h2 class="about__title" id="about-title"><span class="about__line"><span>Ein Stück Hawaii</span></span> <span class="about__line"><span>in Eurer Stadt</span></span></h2>
+    </div>
+    <div class="about__body">
+      <p class="about__text">Ma’Loa legt den Fokus auf etwas, von dem Hawaiianer sagen würden, dass es ohne nicht geht. Die Rede ist von Poké Bowl, dem traditionellen hawaiianischen Nationalgericht. Wir geben Euch die Gelegenheit mit Poké, in den Insel-Vibe Hawaiis zu gelangen.</p>
+      <a class="about__cta" href="https://maloa.com/what-is-poke/"><span>About Poké</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <figure class="about__photo">
+      <!-- The client's own Welcome photo, hot-linked from maloa.com for the demo; ships with the site in production -->
+      <img src="https://maloa.com/wp-content/uploads/2020/01/Um_Maloa.jpg" width="1124" height="800" loading="lazy" decoding="async"
+           alt="Ma'loa: Gäste mit Poké Bowls">
+    </figure>
+  </section>
+
+  <!-- Block 4 · Ma'loa Favorites (css/favs.css, js/favs.js).
+       Real bowls only: the client's photos (cut out) and the data from maloa.com's product popups
+       (original.html, PRODUCT DATA). Bowls without a photo are left out rather than illustrated.
+       Without the script (or with reduced motion) this is a plain list; with it, the bowls sit on a slowly
+       turning wheel and the list's text changes in step with it. -->
+  <section class="favs" id="favorites" aria-labelledby="favs-title">
+    <div class="favs__head">
+      <p class="favs__label">Ma'loa Favorites</p>
+      <h2 class="favs__title" id="favs-title"><span class="favs__line"><span>Auf welche Insel</span></span> <span class="favs__line"><span>geht es heute?</span></span></h2>
+      <!-- Translated from the EN home page (original.html); the German wording on maloa.com could not be fetched: confirm with the client -->
+      <p class="favs__intro">Einige der Lieblings-Bowls unseres Teams sind nach den 8 Inseln Hawaiis benannt. Wählt zwischen Seafood, Chicken oder unseren veganen Varianten.</p>
+    </div>
+    <div class="favs__stage">
+      <ol class="favs__list">
+      <li class="fav" id="fav-lanai" data-kcal="507">
+        <figure class="fav__bowl"><img src="assets/bowls/lanai-560.webp" srcset="assets/bowls/lanai-560.webp 560w, assets/bowls/lanai-900.webp 900w" sizes="(max-aspect-ratio: 4/5) 78vw, 46vw" width="900" height="900" loading="lazy" decoding="async" alt="Lanai Tuna Bowl von oben: Ahi Tuna, Rote Bete, Gurke, Edamame und Erdnüsse"></figure>
+        <div class="fav__text">
+          <p class="fav__type"><span class="fav__no">01</span> Tuna Bowl</p>
+          <h3 class="fav__name"><span>Lanai</span></h3>
+          <p class="fav__ing">Ahi Tuna, Edamame, Gurke, Rote Bete, Koriander, Crazy Lime, Avocado, Erdnüsse</p>
+          <p class="fav__kcal"><span class="fav__kcal-n">507</span> kcal</p>
+        </div>
+      </li>
+      <li class="fav" id="fav-spicy-tropical" data-kcal="352">
+        <figure class="fav__bowl"><img src="assets/bowls/spicy-tropical-560.webp" srcset="assets/bowls/spicy-tropical-560.webp 560w, assets/bowls/spicy-tropical-900.webp 900w" sizes="(max-aspect-ratio: 4/5) 78vw, 46vw" width="900" height="900" loading="lazy" decoding="async" alt="Spicy Tropical Tofu Bowl von oben: Tofu, Mango, Ananas und Korean Love Sauce"></figure>
+        <div class="fav__text">
+          <p class="fav__type"><span class="fav__no">02</span> Tofu Bowl</p>
+          <h3 class="fav__name"><span>Spicy Tropical</span></h3>
+          <p class="fav__ing">Tofu, Gurke, Ananas, Frühlingszwiebel, Korean Love, Mango, Kokoschips</p>
+          <p class="fav__kcal"><span class="fav__kcal-n">352</span> kcal</p>
+        </div>
+      </li>
+      <li class="fav" id="fav-green-cream-shrimp" data-kcal="415">
+        <figure class="fav__bowl"><img src="assets/bowls/green-cream-shrimp-560.webp" srcset="assets/bowls/green-cream-shrimp-560.webp 560w, assets/bowls/green-cream-shrimp-900.webp 900w" sizes="(max-aspect-ratio: 4/5) 78vw, 46vw" width="900" height="900" loading="lazy" decoding="async" alt="Green Cream Shrimp Bowl von oben: Garnelen, Edamame, Algensalat und Green Cream Sauce"></figure>
+        <div class="fav__text">
+          <p class="fav__type"><span class="fav__no">03</span> Shrimp Bowl</p>
+          <h3 class="fav__name"><span>Green Cream Shrimp</span></h3>
+          <p class="fav__ing">Garnele, Frühlingszwiebel, Gurke, Edamame, Green Cream Flavor, Algensalat, Wasabinüsse</p>
+          <p class="fav__kcal"><span class="fav__kcal-n">415</span> kcal</p>
+        </div>
+      </li>
+      <li class="fav" id="fav-peanutlover" data-kcal="507">
+        <figure class="fav__bowl"><img src="assets/bowls/peanutlover-560.webp" srcset="assets/bowls/peanutlover-560.webp 560w, assets/bowls/peanutlover-900.webp 900w" sizes="(max-aspect-ratio: 4/5) 78vw, 46vw" width="900" height="900" loading="lazy" decoding="async" alt="Peanutlover Chicken Bowl von oben: Chicken, Algensalat, Erdnüsse und Salat"></figure>
+        <div class="fav__text">
+          <p class="fav__type"><span class="fav__no">04</span> Chicken Bowl</p>
+          <h3 class="fav__name"><span>Peanutlover</span></h3>
+          <p class="fav__ing">Chicken, Edamame, Gurke, Frühlingszwiebel, Peanut Butter Dream, Algensalat, Erdnüsse</p>
+          <p class="fav__kcal"><span class="fav__kcal-n">507</span> kcal</p>
+        </div>
+      </li>
+      <li class="fav" id="fav-maui-tuna" data-kcal="498">
+        <figure class="fav__bowl"><img src="assets/bowls/maui-tuna-560.webp" srcset="assets/bowls/maui-tuna-560.webp 560w, assets/bowls/maui-tuna-900.webp 900w" sizes="(max-aspect-ratio: 4/5) 78vw, 46vw" width="900" height="900" loading="lazy" decoding="async" alt="Maui Tuna Bowl von oben: Ahi Tuna, Avocado, Masago und Vul'Cano Sauce"></figure>
+        <div class="fav__text">
+          <p class="fav__type"><span class="fav__no">05</span> Tuna Bowl</p>
+          <h3 class="fav__name"><span>Maui</span></h3>
+          <p class="fav__ing">Ahi Tuna, Rote Zwiebeln, Frühlingszwiebel, Edamame, Vul'Cano Flavor, Avocado, Masago</p>
+          <p class="fav__kcal"><span class="fav__kcal-n">498</span> kcal</p>
+        </div>
+      </li>
+      </ol>
+      <div class="favs__foot">
+        <nav class="favs__index" aria-label="Favorites">
+          <ol><li><a href="#fav-lanai"><span>01</span> <span class="favs__nm">Lanai</span></a></li><li><a href="#fav-spicy-tropical"><span>02</span> <span class="favs__nm">Spicy Tropical</span></a></li><li><a href="#fav-green-cream-shrimp"><span>03</span> <span class="favs__nm">Green Cream Shrimp</span></a></li><li><a href="#fav-peanutlover"><span>04</span> <span class="favs__nm">Peanutlover</span></a></li><li><a href="#fav-maui-tuna"><span>05</span> <span class="favs__nm">Maui</span></a></li></ol>
+        </nav>
+        <a class="btn btn--primary favs__cta" href="menu.html#favorites">Zum Menü</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Block 5 · Poké your style (css/poke.css, js/poke.js).
+       The bowl is the client's Spicy Tropical photo (assets/src/bowls/bowl-02-spicy-tropical-tofu.jpg) taken apart
+       into its own ingredients (tools/poke-layers): every layer is cut from that one photograph, so light and
+       perspective match, and the finished stack is the photo itself (the last layer). The one exception is the rice
+       base (no client photo shows rice): generated once against the real empty bowl and fitted to it (tools/poke-layers/rice.py).
+       Without the script (or with reduced motion): the finished bowl and the steps as a list. -->
+  <section class="poke" id="poke" aria-labelledby="poke-title">
+    <div class="poke__stage">
+      <div class="poke__copy">
+        <p class="poke__label">Poké your style</p>
+        <h2 class="poke__title" id="poke-title"><span class="poke__line"><span>Build your</span></span> <span class="poke__line"><span>own Poké</span></span></h2>
+        <!-- Translated from the EN home page (original.html); confirm the German wording with the client -->
+        <p class="poke__intro">Stellt Euch Eure eigene Poké Bowl zusammen: frisches Seafood, Grünes oder Reis, knackiges Gemüse und exotische Flavors. Seid kreativ und entdeckt die Vielfalt!</p>
+      </div>
+      <figure class="poke__bowl">
+        <div class="poke__plate">
+          <img class="poke__layer poke__layer--bowl" style="--o:50% 50%" src="assets/poke/spicy-tropical-bowl-600.webp" srcset="assets/poke/spicy-tropical-bowl-600.webp 600w, assets/poke/spicy-tropical-bowl-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--rice" style="--o:50% 50%" src="assets/poke/spicy-tropical-rice-600.webp" srcset="assets/poke/spicy-tropical-rice-600.webp 600w, assets/poke/spicy-tropical-rice-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--greens" style="--o:27.6% 31.6%" src="assets/poke/spicy-tropical-greens-600.webp" srcset="assets/poke/spicy-tropical-greens-600.webp 600w, assets/poke/spicy-tropical-greens-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--tofu" style="--o:70.4% 42.7%" src="assets/poke/spicy-tropical-tofu-600.webp" srcset="assets/poke/spicy-tropical-tofu-600.webp 600w, assets/poke/spicy-tropical-tofu-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--veg1" style="--o:77.4% 49.2%" src="assets/poke/spicy-tropical-veg1-600.webp" srcset="assets/poke/spicy-tropical-veg1-600.webp 600w, assets/poke/spicy-tropical-veg1-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--veg2" style="--o:73.8% 29.9%" src="assets/poke/spicy-tropical-veg2-600.webp" srcset="assets/poke/spicy-tropical-veg2-600.webp 600w, assets/poke/spicy-tropical-veg2-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--veg3" style="--o:67.8% 45.7%" src="assets/poke/spicy-tropical-veg3-600.webp" srcset="assets/poke/spicy-tropical-veg3-600.webp 600w, assets/poke/spicy-tropical-veg3-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--mango" style="--o:40% 79.7%" src="assets/poke/spicy-tropical-mango-600.webp" srcset="assets/poke/spicy-tropical-mango-600.webp 600w, assets/poke/spicy-tropical-mango-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--pineapple" style="--o:76.2% 35.4%" src="assets/poke/spicy-tropical-pineapple-600.webp" srcset="assets/poke/spicy-tropical-pineapple-600.webp 600w, assets/poke/spicy-tropical-pineapple-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--sauce" style="--o:30.8% 59.1%" src="assets/poke/spicy-tropical-sauce-600.webp" srcset="assets/poke/spicy-tropical-sauce-600.webp 600w, assets/poke/spicy-tropical-sauce-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--coconut" style="--o:32.3% 56.9%" src="assets/poke/spicy-tropical-coconut-600.webp" srcset="assets/poke/spicy-tropical-coconut-600.webp 600w, assets/poke/spicy-tropical-coconut-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--sesame1" style="--o:53.9% 44.5%" src="assets/poke/spicy-tropical-sesame1-600.webp" srcset="assets/poke/spicy-tropical-sesame1-600.webp 600w, assets/poke/spicy-tropical-sesame1-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--sesame2" style="--o:56.1% 43.9%" src="assets/poke/spicy-tropical-sesame2-600.webp" srcset="assets/poke/spicy-tropical-sesame2-600.webp 600w, assets/poke/spicy-tropical-sesame2-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--sesame3" style="--o:53.6% 45.9%" src="assets/poke/spicy-tropical-sesame3-600.webp" srcset="assets/poke/spicy-tropical-sesame3-600.webp 600w, assets/poke/spicy-tropical-sesame3-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="">
+          <img class="poke__layer poke__layer--final" style="--o:50% 50%" src="assets/poke/spicy-tropical-final-600.webp" srcset="assets/poke/spicy-tropical-final-600.webp 600w, assets/poke/spicy-tropical-final-960.webp 960w" sizes="(max-aspect-ratio: 4/5) 86vw, 46vw" width="960" height="960" loading="lazy" decoding="async" alt="Spicy Tropical Bowl von oben: Salat, Tofu, Gurke, Frühlingszwiebel, Mango, Ananas, Kokoschips, Korean Love und Sesam">
+        </div>
+      </figure>
+      <ol class="poke__steps">
+        <li class="poke__step">
+          <p class="poke__no">01</p>
+          <h3 class="poke__step-title">Wählt Eure Base</h3>
+          <p class="poke__step-text">Startet mit Reis, Salat oder beidem.</p>
+          <p class="poke__in">In dieser Bowl: <b>Reis, Salat</b></p>
+        </li>
+        <li class="poke__step">
+          <p class="poke__no">02</p>
+          <h3 class="poke__step-title">Euer Protein</h3>
+          <p class="poke__step-text">Frisches Seafood, Chicken oder pflanzlich: Lachs, Ahi Tuna, Garnele, Chicken oder Tofu.</p>
+          <p class="poke__in">In dieser Bowl: <b>Tofu</b></p>
+        </li>
+        <li class="poke__step">
+          <p class="poke__no">03</p>
+          <h3 class="poke__step-title">Frisch und knackig</h3>
+          <p class="poke__step-text">Frisches Gemüse und Texturen: Gurke, Frühlingszwiebel, Edamame, Algensalat.</p>
+          <p class="poke__in">In dieser Bowl: <b>Gurke, Frühlingszwiebel</b></p>
+        </li>
+        <li class="poke__step">
+          <p class="poke__no">04</p>
+          <h3 class="poke__step-title">Bringt den Flavor</h3>
+          <p class="poke__step-text">Süß, scharf und tropisch: Mango, Ananas, Avocado.</p>
+          <p class="poke__in">In dieser Bowl: <b>Mango, Ananas</b></p>
+        </li>
+        <li class="poke__step">
+          <p class="poke__no">05</p>
+          <h3 class="poke__step-title">Das Finish</h3>
+          <p class="poke__step-text">Sauce, Sesam und Crunch: Korean Love, Kokoschips, Erdnüsse.</p>
+          <p class="poke__in">In dieser Bowl: <b>Korean Love, Kokoschips, Sesam</b></p>
+        </li>
+        <li class="poke__step poke__step--final">
+          <p class="poke__no">06</p>
+          <h3 class="poke__step-title"><span>Your Poké.</span> <span>Your style.</span></h3>
+          <p class="poke__step-text">Spicy Tropical: Tofu, Gurke, Ananas, Frühlingszwiebel, Korean Love, Mango, Kokoschips. 352 kcal.</p>
+          <p class="poke__actions"><a class="btn btn--primary" href="https://maloa.smoothr.de/map">Jetzt bestellen</a> <a class="poke__link" href="menu.html#poke">Zum Menü</a></p>
+        </li>
+      </ol>
+      <div class="poke__progress" aria-hidden="true"><span>01</span><span>02</span><span>03</span><span>04</span><span>05</span><span>06</span></div>
+    </div>
+  </section>
+
+  <!-- Block 6 · Gift Card (css/gift.css, js/gift.js).
+       The destination is the client's real voucher shop (paynoweatlater.de, the same link as "Gutscheine" in the
+       header and "GET YOUR GIFT CARD HERE" on maloa.com). No values or prices are shown: none are published.
+       The card is drawn from the traced logo (assets/logo), no image is generated. -->
+  <section class="gift" id="gutschein" aria-labelledby="gift-title">
+    <div class="gift__copy">
+      <p class="gift__label">Gift Card</p>
+      <h2 class="gift__title" id="gift-title"><span class="gift__line"><span>Verschenkt ein</span></span> <span class="gift__line"><span>Stück Aloha</span></span></h2>
+      <p class="gift__text">Der MA'LOA Gutschein: für Geburtstage, besondere Anlässe oder einfach so. Ein Geschenk, das nach Hawaii schmeckt.</p>
+      <p class="gift__actions"><a class="btn btn--primary" href="https://www.paynoweatlater.de/at/maloa/?crt=maloa">Gift Card kaufen</a></p>
+    </div>
+    <div class="gift__stage" aria-hidden="true">
+      <div class="gift__card gift__card--back"><span class="gift__mark"></span></div>
+      <div class="gift__card gift__card--front">
+        <svg class="gift__waves" viewBox="0 0 400 250" preserveAspectRatio="none">
+          <path d="M-10 170 C 60 140, 120 200, 200 168 S 330 130, 410 160"/>
+          <path d="M-10 190 C 60 160, 120 220, 200 188 S 330 150, 410 180"/>
+          <path d="M-10 210 C 60 180, 120 240, 200 208 S 330 170, 410 200"/>
+        </svg>
+        <svg class="gift__logo" viewBox="0 0 726 726"><circle cx="363" cy="363" r="363" fill="currentColor"/><g transform="translate(114.76 -100.00) scale(1.5568)" style="fill:var(--deep-teal)"><use href="#maloa-m"/></g></svg>
+        <span class="gift__kind">Gift Card</span>
+        <span class="gift__wordmark"></span>
+        <span class="gift__foot">Gutschein</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Block 7 · Closing: visit, contact, social (css/closing.css, js/closing.js).
+       Facts only from maloa.com (original.html footer): store map, office contacts, social accounts, legal pages.
+       The Eschborn street address and opening hours are not known here: marked data-todo, not invented. -->
+  <section class="closing" id="kontakt" aria-labelledby="closing-title">
+    <div class="closing__top">
+      <h2 class="closing__title" id="closing-title"><span class="closing__line"><span>See you</span></span> <span class="closing__line"><span>at MA'LOA</span></span></h2>
+      <div class="closing__cta">
+        <p class="closing__lead">Kommt vorbei, bestellt online oder holt Euch die Insel nach Hause.</p>
+        <p class="closing__actions">
+          <a class="btn btn--primary" href="https://maloa.smoothr.de/map">Bestellen</a>
+          <a class="btn btn--ghost" href="https://www.instagram.com/maloapoke_de/">Instagram</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="closing__info">
+      <div class="closing__col">
+        <p class="closing__head">Besucht uns</p>
+        <a class="closing__big" href="https://maloa.smoothr.de/map">Alle Standorte</a>
+        <p class="closing__note">Neu in Eschborn<span class="closing__todo" hidden data-todo="Adresse Eschborn vom Kunden"></span></p>
+        <p class="closing__todo" hidden data-todo="Öffnungszeiten je Standort vom Kunden (nicht auf maloa.com gefunden)"></p>
+      </div>
+      <div class="closing__col">
+        <p class="closing__head">Kontakt</p>
+        <ul class="closing__list">
+          <li><a href="tel:00493022013811">(030) 220 138 11</a></li>
+          <li><a href="https://wa.me/+4917624722381">WhatsApp 0176 247 223 81</a></li>
+          <li><a href="mailto:info@maloa.com">info@maloa.com</a></li>
+          <li><a href="https://maps.app.goo.gl/HaQTVUUgpdPhea5T7">Fuggerstraße 26, 10777 Berlin</a></li>
+        </ul>
+      </div>
+      <div class="closing__col">
+        <p class="closing__head">Folgt uns</p>
+        <a class="closing__big closing__insta" href="https://www.instagram.com/maloapoke_de/">@maloapoke_de</a>
+        <p class="closing__social"><a href="https://www.facebook.com/maloapoke/">Facebook</a> <a href="https://www.tiktok.com/@maloapoke">TikTok</a></p>
+      </div>
+    </div>
+
+    <div class="closing__word" aria-hidden="true"><span></span></div>
+
+    <footer class="site-footer">
+      <a class="site-footer__logo" href="#hero" aria-label="Ma'loa – nach oben"><svg viewBox="0 0 726 726" aria-hidden="true"><circle cx="363" cy="363" r="363" fill="currentColor"/><g transform="translate(114.76 -100.00) scale(1.5568)" style="fill:var(--deep-teal)"><use href="#maloa-m"/></g></svg></a>
+      <nav class="site-footer__nav" aria-label="Footer">
+        <a href="https://maloa.com/what-is-poke/">Über Ma'loa</a>
+        <a href="menu.html">Menü</a>
+        <a href="https://maloa.smoothr.de/map">Standorte</a>
+        <a href="https://maloa.com/catering/">Catering</a>
+        <a href="https://maloa.com/jobs/">Jobs</a>
+        <a href="franchise.html">Franchise</a>
+        <a href="https://www.paynoweatlater.de/at/maloa/?crt=maloa">Gutscheine</a>
+        <a href="https://maloa.com/faq/">FAQ</a>
+      </nav>
+      <p class="site-footer__legal"><a href="https://maloa.com/impressum/">Impressum</a> <a href="https://maloa.com/privacy/">Datenschutz</a> <span>© 2026 MA'LOA</span></p>
+    </footer>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/DrawSVGPlugin.min.js" defer></script>
+<script>
+addEventListener("DOMContentLoaded",function(){
+/* Shared flags, media addresses and plugin registration. Loaded before every block. */
+(function () {
+  var root = document.documentElement;
+  var hasGsap = !!(window.gsap && window.ScrollTrigger && window.DrawSVGPlugin);
+  if (hasGsap) gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
+
+  /* Demo hosting. The webm files are served with a video/mp4 type by this CDN;
+     browsers sniff the container, but self-host them with video/webm in production. */
+  var CDN = 'https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/';
+
+  window.MALOA = {
+    gsap: hasGsap,
+    reduce: matchMedia('(prefers-reduced-motion: reduce)').matches,
+    touch: matchMedia('(hover: none), (pointer: coarse)').matches,
+    wide: function () { return matchMedia('(min-width: 900px)').matches; },
+    saveData: !!(navigator.connection && navigator.connection.saveData),
+
+    /* Leaf loops generated in Higgsfield, hosted on its CDN for the demo.
+       webm first, mp4 for Safari; the poster is what phones get. */
+    leaves: [
+      { webm: CDN + '30f84563-242f-4fc9-bde8-9e82df2991eb.mp4', mp4: CDN + 'fad5d329-8d93-42b3-817c-f40e3bfbb5a4.mp4', poster: CDN + '34566854-68de-4309-a002-0253021a23b1.webp' }, // monstera
+      { webm: CDN + '7be90413-4925-4586-bb08-f4323ac8d685.mp4', mp4: CDN + 'e7fa7e12-06ac-4648-9015-4a6f11f749d5.mp4', poster: CDN + '0c179bad-29bb-49ab-95e0-a6032d006055.webp' }, // palm frond
+      { webm: CDN + '8ebb9853-a885-4ea1-ad7e-91f6ded93ec9.mp4', mp4: CDN + 'ac8d3080-b601-4b2c-8562-5bb35df6e164.mp4', poster: CDN + 'a6920dcb-73d8-4c0a-895d-82bca308a291.webp' }, // calathea
+      { webm: CDN + 'd0b18307-8900-4540-9a3c-3d8e09cef830.mp4', mp4: CDN + '3f27cae8-0d15-4d07-8585-6ee8a9269508.mp4', poster: CDN + '4ff23060-3e3a-493c-88f5-7c1e8fbd62b6.webp' }, // banana leaf
+      { webm: CDN + 'd34a5e9c-66f9-4b98-b266-274a6efe6231.mp4', mp4: CDN + '2632655a-db0e-4fdb-ab2d-398cf032aef1.mp4', poster: CDN + '6e61e95a-504f-4a3d-b871-b796f64f480e.webp' }, // pineapple crown
+      { webm: CDN + '2bf96699-9ec9-4d15-ab79-798de984d4cb.mp4', mp4: CDN + 'beae11e1-894c-45a7-963c-daee4d036ef0.mp4', poster: CDN + '00e73827-a29a-41f9-ad58-d7878a72ebb5.webp' }  // philodendron
+    ]
+  };
+
+  /* Scroll → state, with rests. x runs 0…n over a pinned section (one unit per state). Around every whole
+     number the result holds still (h of each unit on either side), in between it moves on: the section
+     "settles" on each state like a snap would, but only ever from the scroll position itself. Nothing
+     moves the page; stopping anywhere leaves everything where it is, and going back retraces the same path.
+     ease: 'smooth' for an ease-in-out between rests (a wheel turning), otherwise linear (a timeline
+     whose tweens carry their own eases). */
+  window.MALOA.rest = function (x, n, h, ease) {
+    x = Math.max(0, Math.min(n, x));
+    var i = Math.floor(x), f = x - i;
+    if (i >= n) return n;
+    var t = Math.max(0, Math.min(1, (f - h) / (1 - 2 * h)));
+    if (ease === 'smooth') t = t * t * (3 - 2 * t);
+    return i + t;
+  };
+
+  if (hasGsap) {
+    // Measured layout is only right once the web font is in (it changes line heights above the pins):
+    // measure again then, once, instead of each block doing it on its own
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { ScrollTrigger.refresh(); });
+  }
+
+  // If GSAP failed to load, never leave the intro covering the page
+  if (!hasGsap) root.classList.remove('intro-on');
+})();
+});
+</script>
+<script>
+addEventListener("DOMContentLoaded",function(){
+/* Block 0 · Intro
+   idle   stone disc breathes in the jungle, light glances over it, rays drift
+   start  on a small scroll / swipe / key / tap (or after 7 s):
+          1. press: the disc sinks into the leaves (anticipation)
+          2. jump: it lifts toward the camera and flips like a coin
+          3. land: bounces onto the dark side; ring draws, letters slide out of the "m",
+             tagline opens from the centre
+          4. fly-through: the camera passes through the disc into the Hero
+   Never blocks ordering: the header sits above it, the skip button ends it at once,
+   further scrolling plays it faster, and it runs once per browser session.
+   Reduced motion: the dark disc fades in and out, nothing moves. */
+(function () {
+  var M = window.MALOA;
+  var root = document.documentElement;
+  var intro = document.getElementById('intro');
+  if (!intro || !root.classList.contains('intro-on')) return;
+
+  var q = function (s) { return intro.querySelector(s); };
+  var bg = q('.intro__bg'), rays = q('.intro__rays'), coin = q('.coin'), body = q('.coin__body'),
+      shadow = q('.coin__shadow'), front = q('.coin__face--front'), back = q('.coin__face--back'),
+      ringLine = q('.coin__ring-line'), ringEdge = q('.coin__ring-edge'),
+      letters = [].slice.call(intro.querySelectorAll('.glyph')), tag = q('.coin__tag'),
+      hint = q('.intro__hint'), skip = q('.intro__skip'),
+      shines = [].slice.call(intro.querySelectorAll('.coin__shine'));
+  var others = letters.filter(function (g) { return !g.classList.contains('glyph--m'); });
+
+  function done() {
+    try { sessionStorage.setItem('maloa-intro', '1'); } catch (e) {}
+    root.classList.remove('intro-on');
+    intro.remove();
+    document.dispatchEvent(new CustomEvent('maloa:intro-done'));
+  }
+
+  function onIntent(fn) {
+    var sy = null, fired = false;
+    function go() { if (fired) return; fired = true; off(); fn(); }
+    function wheel(e) { if (e.deltaY > 2) go(); }
+    function tstart(e) { sy = e.touches[0].clientY; }
+    function tmove(e) { if (sy !== null && sy - e.touches[0].clientY > 8) go(); }
+    function key(e) { if (/^(ArrowDown|PageDown| |Spacebar|Enter)$/.test(e.key)) go(); }
+    function off() {
+      removeEventListener('wheel', wheel); removeEventListener('touchstart', tstart);
+      removeEventListener('touchmove', tmove); removeEventListener('keydown', key);
+      coin.removeEventListener('click', go);
+    }
+    addEventListener('wheel', wheel, { passive: true });
+    addEventListener('touchstart', tstart, { passive: true });
+    addEventListener('touchmove', tmove, { passive: true });
+    addEventListener('keydown', key);
+    coin.addEventListener('click', go);
+    return go;
+  }
+
+  skip.addEventListener('click', function () { clearTimeout(auto); done(); });
+  var auto;
+
+  /* ---- Reduced motion: show the finished dark disc, fade it away ---- */
+  if (M.reduce) {
+    gsap.set(body, { rotationY: 180 });
+    gsap.set([hint, rays], { autoAlpha: 0 });
+    gsap.from(coin, { opacity: 0, duration: .4 });
+    var leave = function () { gsap.to(intro, { opacity: 0, duration: .4, onComplete: done }); };
+    onIntent(leave);
+    setTimeout(leave, 2500);
+    return;
+  }
+
+  /* ---- Idle ---- */
+  gsap.set(ringLine, { drawSVG: '0%' });
+  gsap.set(ringEdge, { opacity: 0 });
+  gsap.set(others, { opacity: 0, x: -120 });
+  gsap.set(tag, { clipPath: 'inset(0 50% 0 50%)' });
+  gsap.set(back.querySelector('.glyph--m'), { opacity: 1 });
+
+  var idle = gsap.timeline();
+  idle.from(bg, { scale: 1.12, duration: 2.4, ease: 'power2.out' }, 0)
+      .from(coin, { opacity: 0, scale: .9, duration: 1.2, ease: 'power3.out' }, .3)
+      .from(hint, { opacity: 0, y: 10, duration: .8, ease: 'power2.out' }, 1.2);
+  var loops = [
+    gsap.to(coin, { scale: 1.015, duration: 2.6, ease: 'sine.inOut', yoyo: true, repeat: -1 }),
+    gsap.to(rays, { xPercent: 6, duration: 9, ease: 'sine.inOut', yoyo: true, repeat: -1 }),
+    gsap.to(shines[0], { xPercent: 160, duration: 2.2, ease: 'power2.inOut', repeat: -1, repeatDelay: 2.4, delay: 1.4 }),
+    gsap.fromTo(hint.querySelector('i'), { scaleY: 0 }, { scaleY: 1, duration: 1.2, ease: 'power2.inOut', repeat: -1, repeatDelay: .3 })
+  ];
+
+  /* ---- The jump ---- */
+  var tl = gsap.timeline({ paused: true, onComplete: done });
+  tl.add(function () { loops.forEach(function (t) { t.kill(); }); gsap.to(coin, { scale: 1, duration: .2 }); }, 0)
+    .to(hint, { autoAlpha: 0, y: 10, duration: .3 }, 0)
+    // 1. press into the leaves
+    .to(body, { scale: .93, duration: .22, ease: 'power2.in' }, 0)
+    .to(shadow, { scale: .96, y: 8, opacity: .9, duration: .22, ease: 'power2.in' }, 0)
+    // 2. lift toward the camera, flip in the air
+    .addLabel('jump', .22)
+    .to(body, { y: '-7vh', scale: 1.14, duration: .5, ease: 'power3.out' }, 'jump')
+    .to(body, { rotationY: 180, duration: 1, ease: 'power2.inOut' }, 'jump')
+    .to(shadow, { y: 70, scale: .82, opacity: .35, duration: .5, ease: 'power3.out' }, 'jump')
+    // 3. land on the dark side and settle
+    .to(body, { y: 0, scale: 1, duration: .7, ease: 'bounce.out' }, 'jump+=.5')
+    .to(shadow, { y: 16, scale: 1, opacity: .75, duration: .7, ease: 'bounce.out' }, 'jump+=.5')
+    .addLabel('land', 'jump+=1.05')
+    .to(ringLine, { drawSVG: '100%', duration: 1, ease: 'power2.inOut' }, 'land-=.25')
+    .to(ringEdge, { opacity: .7, duration: .8 }, 'land')
+    .to(others, { opacity: 1, x: 0, duration: .8, ease: 'power3.out', stagger: .07 }, 'land-=.1')
+    .to(tag, { clipPath: 'inset(0 0% 0 0%)', duration: .9, ease: 'power2.inOut' }, 'land+=.35')
+    .fromTo(shines[1], { xPercent: -10 }, { xPercent: 160, duration: 1.4, ease: 'power2.inOut' }, 'land+=.4')
+    // 4. hold, then fly through the disc
+    .addLabel('fly', 'land+=2.1')
+    .to(coin, { scale: 16, duration: 1.1, ease: 'power3.in' }, 'fly')
+    .to(bg, { scale: 1.35, duration: 1.1, ease: 'power3.in' }, 'fly')
+    .to(rays, { opacity: 0, duration: .5 }, 'fly')
+    .to(intro, { opacity: 0, duration: .45, ease: 'power1.out' }, 'fly+=.75');
+
+  var start = onIntent(function () {
+    clearTimeout(auto);
+    idle.progress(1);
+    tl.play();
+    // Scrolling again while it plays: move along faster
+    setTimeout(function () {
+      function hurry() { tl.timeScale(2.5); removeEventListener('wheel', hurry); removeEventListener('touchmove', hurry); }
+      addEventListener('wheel', hurry, { passive: true });
+      addEventListener('touchmove', hurry, { passive: true });
+    }, 400);
+  });
+  auto = setTimeout(start, 7000);
+})();
+});
+</script>
+<script>
+addEventListener("DOMContentLoaded",function(){
+/* Block 1 · Hero (base version)
+   - The film autoplays muted and loops (attributes in the HTML, so iOS Safari starts it without script).
+   - Pause button for the loop (WCAG 2.2.2). If the browser refuses autoplay (e.g. iOS Low Power Mode),
+     the button switches to "play" so the poster is not mistaken for a frozen video.
+   - The film pauses while off screen and resumes when it comes back, unless the visitor paused it.
+   - Reduced motion or Save-Data: the poster stays, nothing plays until the visitor asks.
+   - The film fades in over its poster (the same frame, laid under it in CSS) only once it is playing with
+     enough buffered to keep going, so the first seconds never stutter or freeze in view.
+   - The copy rises in once the intro has finished (or straight away when there is no intro). */
+(function () {
+  var M = window.MALOA || {};
+  var hero = document.getElementById('hero');
+  if (!hero) return;
+  var video = hero.querySelector('.hero__video');
+  var btn = hero.querySelector('.hero__pause');
+  var userPaused = false;
+
+  function setPaused(paused) {
+    hero.dataset.userPaused = userPaused ? 'true' : 'false'; // read by the scene script
+    btn.setAttribute('aria-pressed', paused ? 'true' : 'false');
+    btn.setAttribute('aria-label', paused ? 'Video abspielen' : 'Video pausieren');
+  }
+  function play() {
+    var p = video.play();
+    if (p && p.catch) p.catch(function () { setPaused(true); ready(); });
+  }
+
+  // Show the film: when it plays with data in hand, or whenever it stands still (its poster is then
+  // what the video element shows, identical to the still beneath it)
+  var ready = function () { video.classList.add('is-ready'); };
+  function readyWhenFluent() {
+    if (video.readyState >= 4) ready();
+    else video.addEventListener('canplaythrough', ready, { once: true });
+  }
+  setTimeout(ready, 4000);   // a slow line still gets the film rather than a still forever
+
+  if (M.reduce || M.saveData) {
+    video.removeAttribute('autoplay');
+    video.pause();
+    userPaused = true;
+    setPaused(true);
+    ready();
+  }
+
+  video.addEventListener('playing', function () { setPaused(false); readyWhenFluent(); });
+  btn.addEventListener('click', function () {
+    if (video.paused) { userPaused = false; play(); }
+    else { userPaused = true; video.pause(); setPaused(true); }
+  });
+
+  // Save battery and decoding time while the Hero is out of view
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) { if (!userPaused && video.paused) play(); }
+      else if (!video.paused) video.pause();
+    }, { threshold: 0.05 }).observe(hero);
+  }
+
+  // Entrance
+  function reveal() { requestAnimationFrame(function () { hero.classList.add('is-in'); }); }
+  if (document.documentElement.classList.contains('intro-on')) {
+    document.addEventListener('maloa:intro-done', reveal, { once: true });
+    setTimeout(reveal, 12000); // never leave the copy hidden if the intro fails
+  } else reveal();
+})();
+});
+</script>
+<script>
+addEventListener("DOMContentLoaded",function(){
+/* Hero → leaves → Welcome, one pinned, scrubbed scene (GSAP + ScrollTrigger).
+   Progress 0 → 1 over the pin:
+   0.00–0.34  leaves come in from the edges (near ones travel most), the copy lifts away,
+              the film pulls back and dims
+   0.34–0.56  the leaves close in a little, the nearest grow as if coming towards the camera
+   0.52–0.96  the leaves part like a curtain and leave the frame; the Welcome opens between them
+              as a widening circle with a soft, feathered edge (a mask, never a hard cut), settling from
+              a slight zoom; its bowl turns into place
+              (no copy here: the bowl is the picture; the Welcome headline appears once, in the About block)
+   Phones: three leaves, shorter travel, no 3D turn, shorter pin.
+   Reduced motion or no GSAP: nothing here runs; the Welcome block simply follows the Hero. */
+(function () {
+  var M = window.MALOA || {};
+  var scene = document.getElementById('scene');
+  if (!scene || !M.gsap || M.reduce) return;
+
+  var hero = scene.querySelector('.hero');
+  var video = hero.querySelector('.hero__video');
+  var media = hero.querySelector('.hero__media');
+  var copy = hero.querySelectorAll('.hero__content, .hero__scroll, .hero__pause');
+  var dim = scene.querySelector('.scene__dim');
+  var welcome = scene.querySelector('.welcome');
+  var inner = welcome.querySelector('.welcome__inner');
+  var visual = welcome.querySelector('.welcome__visual');
+  var leaves = [].slice.call(scene.querySelectorAll('.leaf'));
+
+  scene.classList.add('scene--cinematic');
+  ScrollTrigger.config({ ignoreMobileResize: true }); // iOS address bar must not re-lay out the pin
+
+  leaves.forEach(function (l) {
+    var d = l.getAttribute('data-dir').split(',');
+    l._dx = +d[0]; l._dy = +d[1]; l._depth = +l.getAttribute('data-depth');
+  });
+
+  // The film is hidden once the Welcome covers it: stop decoding it, resume on the way back
+  var autoPaused = false;
+  function syncVideo(progress) {
+    if (progress > 0.97) {
+      if (!video.paused) { video.pause(); autoPaused = true; }
+    } else if (autoPaused && hero.dataset.userPaused !== 'true') {
+      autoPaused = false;
+      var p = video.play(); if (p && p.catch) p.catch(function () {});
+    }
+  }
+
+  var mm = gsap.matchMedia();
+  mm.add({ phone: '(max-aspect-ratio: 4/5)', wide: '(min-aspect-ratio: 4/5)' }, function (ctx) {
+    var phone = ctx.conditions.phone;
+    // travel in vw / vh per depth unit, 3D turn in degrees
+    var T = phone ? { enter: 44, close: 7, exit: 78, turn: 0 } : { enter: 58, close: 15, exit: 96, turn: 9 };
+    var vw = function () { return innerWidth / 100; };
+    var vh = function () { return innerHeight / 100; };
+    // the Welcome opens as a circle centred on its bowl
+    var at = '50% 50%';
+    var active = leaves.filter(function (l) { return getComputedStyle(l).display !== 'none'; });
+
+    // The opening circle: a radial mask whose edge fades over 18% of the screen's half-diagonal, so the
+    // Welcome swells out of the dark instead of being cut in. Once fully open the mask is dropped.
+    var open = { r: 0 };
+    function openMask() {
+      var R = Math.hypot(innerWidth, innerHeight) / 2, f = R * 0.18, r = open.r * (R + f);
+      var m = open.r >= 1 ? 'none' : 'radial-gradient(circle at ' + at + ', #000 ' + Math.max(0, r - f).toFixed(1) + 'px, transparent ' + r.toFixed(1) + 'px)';
+      welcome.style.webkitMaskImage = m; welcome.style.maskImage = m;
+    }
+    openMask();
+
+    var tl = gsap.timeline({
+      defaults: { ease: 'none' },
+      scrollTrigger: {
+        trigger: scene,
+        start: 'top top',
+        end: phone ? '+=150%' : '+=220%',
+        pin: true,
+        scrub: phone ? 0.35 : 0.5,       // a little lag reads as weight; more reads as delay
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        onUpdate: function (self) { syncVideo(self.progress); }
+      }
+    });
+
+    active.forEach(function (l) {
+      var k = l._depth, dx = l._dx, dy = l._dy, rot = +l.getAttribute('data-rot') || 0;
+      gsap.set(l, { rotation: rot, transformPerspective: 1200, force3D: true });
+      tl.fromTo(l,
+        { x: function () { return dx * T.enter * k * vw(); }, y: function () { return dy * T.enter * k * vh(); }, rotationY: dx * T.turn * 1.6, scale: 1 },
+        { x: 0, y: 0, rotationY: dx * T.turn * 0.4, ease: 'power2.out', duration: 0.34 }, 0)
+        .to(l, { x: function () { return -dx * T.close * k * vw(); }, y: function () { return -dy * T.close * k * vh(); },
+          rotationY: 0, rotation: rot + dx * 3 * k, scale: 1 + 0.1 * k, ease: 'sine.inOut', duration: 0.22 }, 0.34)
+        .to(l, { x: function () { return dx * T.exit * k * vw(); }, y: function () { return dy * T.exit * k * vh(); },
+          rotationY: -dx * T.turn, rotation: rot + dx * 6 * k, scale: 1 + 0.25 * k, ease: 'power2.in', duration: 0.42 }, 0.56);
+    });
+
+    tl.to(copy, { autoAlpha: 0, y: -40, ease: 'power2.in', duration: 0.18 }, 0)
+      .to(media, { scale: phone ? 0.94 : 0.88, ease: 'sine.inOut', duration: 0.56 }, 0)
+      .to(dim, { opacity: 0.55, ease: 'sine.inOut', duration: 0.5 }, 0.08)
+      .fromTo(open, { r: 0 }, { r: 1, ease: 'power2.inOut', duration: 0.44, onUpdate: openMask }, 0.52)
+      .fromTo(inner, { scale: 1.1 }, { scale: 1, ease: 'power2.out', duration: 0.48 }, 0.52)
+      .fromTo(visual, { rotation: -12, y: function () { return 6 * vh(); } }, { rotation: 0, y: 0, ease: 'power2.out', duration: 0.46 }, 0.54);
+
+    return function () { syncVideo(0); welcome.style.webkitMaskImage = welcome.style.maskImage = ''; };
+  });
+
+  // The intro locks scrolling; measure again once it has gone
+  document.addEventListener('maloa:intro-done', function () { ScrollTrigger.refresh(); });
+})();
+});
+</script>
+<script>
+addEventListener("DOMContentLoaded",function(){
+/* Block 3 · Welcome / About Poké
+   - Ground: a long band from night to light at the top of the block (CSS), scrolled through, so the dark
+     scene hands over to the light with the reader's own scroll (no colour fill is animated).
+   - Copy: label fades up, the two headline lines rise out of their own masks one after the other,
+     text and link follow; played once, not scrubbed, so reading never waits for the scroll.
+   - Photo, the one strong move: it opens from an off-centre pill to its full frame while the picture
+     inside settles from a closer crop, scrubbed, like walking into the photograph; afterwards it keeps
+     a slow push-in and drift inside the mask.
+   - Afterwards a gentle parallax: the picture drifts inside its frame, the copy drifts the other way
+     at a different speed (wide screens only).
+   Reduced motion or no GSAP: nothing here runs; the CSS gradient and the static layout remain. */
+(function () {
+  var M = window.MALOA || {};
+  var about = document.getElementById('about');
+  if (!about || !M.gsap || M.reduce) return;
+
+  var photo = about.querySelector('.about__photo');
+  var img = photo.querySelector('img');
+  var label = about.querySelector('.about__label');
+  var lines = about.querySelectorAll('.about__line > span');
+  var follow = about.querySelectorAll('.about__text, .about__cta');
+  var body = about.querySelector('.about__body');
+
+  about.classList.add('is-scripted');
+
+  // The fixed header switches to its light-ground version only once the ground under it is light:
+  // when most of the night band at the top of this block has passed below the header's bottom edge.
+  // Earlier, light pills would sit on the dark scene; later, light text would sit on the light ground.
+  ScrollTrigger.create({
+    trigger: about,
+    start: function () {
+      var band = parseFloat(getComputedStyle(about, '::before').height) || 0;
+      var hh = document.querySelector('.site-header__row').offsetHeight;
+      return 'top+=' + Math.round(band * 0.7) + ' ' + hh + 'px';
+    },
+    // ...and back to the dark version once the next block's (Favorites) light band has mostly passed
+    endTrigger: document.getElementById('favorites') || about,
+    end: function () {
+      var next = document.getElementById('favorites');
+      if (!next) return 'bottom top';
+      var band = parseFloat(getComputedStyle(next, '::before').height) || 0;
+      return 'top+=' + Math.round(band * 0.7) + ' ' + document.querySelector('.site-header__row').offsetHeight + 'px';
+    },
+    toggleClass: { targets: '.site-header', className: 'is-light' }
+  });
+
+  gsap.timeline({ scrollTrigger: { trigger: about.querySelector('.about__head'), start: 'top 82%', once: true } })
+    .from(label, { autoAlpha: 0, y: 16, duration: 0.8, ease: 'power2.out' })
+    // 150%, not 100%: the line box is .88em tall and the umlauts reach above it, so a shorter drop
+    // leaves the dots of "STÜCK" peeking inside the mask before the lines rise
+    .from(lines, { yPercent: 150, duration: 1.2, ease: 'power4.out', stagger: 0.12 }, 0.1)
+    .from(follow, { autoAlpha: 0, y: 24, duration: 0.9, ease: 'power3.out', stagger: 0.1 }, 0.45);
+
+  var mm = gsap.matchMedia();
+  mm.add({ phone: '(max-aspect-ratio: 4/5), (max-width: 699px)', wide: '(min-aspect-ratio: 4/5) and (min-width: 700px)' }, function (ctx) {
+    var phone = ctx.conditions.phone;
+    // Reveal: an off-centre pill (so it reads organic, not geometric) opens to the full frame while the
+    // picture settles from a closer crop and drifts back to centre. Scale stays at or under 1.3 → 1.06
+    // so faces and bowls near the edges are only ever trimmed by a few percent.
+    // The reveal completes while the photo is in its reading position: its top at 38% of the screen on
+    // wide screens, its bottom at 85% on phones. Later ends left the frame slightly inset at rest
+    // (a gap at the right edge on desktop, side margins on phones, where the page cannot scroll that far).
+    // The pill starts with real radii (about half its height), not 999px: a 999px radius stays fully round for
+    // most of the way and then squares off all at once near the end, which read as a snap.
+    // The opening runs over a longer stretch of scroll with a gentle in-out, so it never lurches mid-way.
+    var revealEnd = phone ? 'bottom 85%' : 'top 38%';
+    gsap.timeline({ scrollTrigger: { trigger: photo, start: phone ? 'top 100%' : 'top 100%', end: revealEnd, scrub: 0.5 } })
+      .fromTo(photo,
+        { clipPath: phone ? 'inset(12% 16% 14% 12% round 160px 160px 160px 160px)' : 'inset(26% 30% 18% 34% round 170px 170px 170px 170px)' },
+        { clipPath: phone ? 'inset(0% 0% 0% 0% round 0px 0px 0px 0px)' : 'inset(0% 0% 0% 0% round 28px 0px 0px 28px)', ease: 'sine.inOut' }, 0)
+      .fromTo(img, { scale: phone ? 1.2 : 1.3, xPercent: phone ? 0 : 4 }, { scale: phone ? 1.03 : 1.06, xPercent: 0, ease: 'power1.out' }, 0);
+
+    // After the reveal the picture keeps living inside its mask: a slow push-in and drift,
+    // the frame itself moves a little, the copy moves the other way at a different speed.
+    gsap.timeline({ scrollTrigger: { trigger: photo, start: revealEnd, end: 'bottom top', scrub: true } })
+      // The drift never exceeds the overscan ((scale - 1) / 2), so the frame's edge never shows
+      .fromTo(img, { yPercent: phone ? -1.5 : -3 }, { yPercent: phone ? 1.5 : 3, scale: phone ? 1.07 : 1.12, ease: 'none' }, 0);
+
+    if (!phone) {
+      gsap.fromTo(photo, { y: 50 }, { y: -50, ease: 'none',
+        scrollTrigger: { trigger: about, start: 'top 60%', end: 'bottom top', scrub: true } });
+      gsap.fromTo(body, { y: 70 }, { y: -30, ease: 'none',
+        scrollTrigger: { trigger: about, start: 'top 20%', end: 'bottom top', scrub: true } });
+    }
+  });
+})();
+});
+</script>
+<script>
+addEventListener("DOMContentLoaded",function(){
+/* Block 4 · Ma'loa Favorites
+   - Head: label fades up, the two headline lines rise out of their masks, the intro follows (once),
+     as soon as the headline comes into view.
+   - Stage, the one strong move: every bowl sits on a large wheel whose centre lies off to the right
+     (phones: below). The wheel is driven by the scroll position alone: as the stage comes up, the first bowl
+     already rolls into the ring; once the stage is pinned, each further screen of scroll turns the wheel by one
+     bowl. Each bowl rests in the ring for a while (MALOA.rest) and the wheel eases between rests, so it reads
+     like a snap, but nothing ever scrolls the page: stopping anywhere leaves the wheel where it is, going back
+     retraces the same path, and no bowl can be skipped. Each bowl spins a little more than the wheel turns,
+     like on a turntable, and shrinks and fades with its distance from the ring.
+   - Text changes in step, not scrubbed: the island name rises out of its mask (from below going forward,
+     from above going back), type, ingredients and kcal follow, the kcal counts to the new value.
+   - The index under the stage scrolls to a bowl's resting point.
+   Reduced motion or no GSAP: nothing here runs; the static list remains. */
+(function () {
+  var M = window.MALOA || {};
+  var favs = document.getElementById('favorites');
+  if (!favs || !M.gsap || M.reduce) return;
+
+  var stage = favs.querySelector('.favs__stage');
+  var items = gsap.utils.toArray(favs.querySelectorAll('.fav'));
+  var bowls = items.map(function (li) { return li.querySelector('.fav__bowl'); });
+  var texts = items.map(function (li) { return li.querySelector('.fav__text'); });
+  var links = gsap.utils.toArray(favs.querySelectorAll('.favs__index a'));
+  var n = items.length;
+  var spin = [0, -24, 18, -12, 30];   // each bowl's own resting angle, so no two land alike
+  var phoneQuery = matchMedia('(max-aspect-ratio: 4/5), (max-width: 699px)');
+
+  favs.classList.add('is-scripted');
+
+  // Head
+  gsap.timeline({ scrollTrigger: { trigger: favs.querySelector('.favs__title'), start: 'top 92%', once: true } })
+    .from('.favs__label', { autoAlpha: 0, y: 16, duration: 0.8, ease: 'power2.out' })
+    .from('.favs__line > span', { yPercent: 150, duration: 1.2, ease: 'power4.out', stagger: 0.12 }, 0.1)
+    .from('.favs__intro', { autoAlpha: 0, y: 24, duration: 0.9, ease: 'power3.out' }, 0.45);
+
+  // Wheel geometry, re-read on every refresh (resize, orientation)
+  var geo = {};
+  function measure() {
+    geo.phone = phoneQuery.matches;
+    geo.bs = bowls[0].offsetWidth;
+    geo.R = geo.bs * (geo.phone ? 1.6 : 1.3);
+    geo.step = (geo.phone ? 48 : 40) * Math.PI / 180;
+    fitNames();
+  }
+
+  // The island names are set as large as their column allows: the longest word decides
+  function fitNames() {
+    texts.forEach(function (t) {
+      var h = t.querySelector('.fav__name');
+      h.style.removeProperty('--fit');
+      var size = parseFloat(getComputedStyle(h).fontSize);
+      var over = h.scrollWidth / h.clientWidth;
+      if (over > 1) h.style.setProperty('--fit', Math.floor(size / over) + 'px');
+    });
+  }
+
+  var state = { p: -0.7 };   // before the stage arrives the first bowl waits just off the ring (LEAD below)
+  function render() {
+    for (var k = 0; k < n; k++) {
+      var d = k - state.p;
+      var a = d * geo.step;
+      var dist = Math.min(Math.abs(d), 1.4);
+      gsap.set(bowls[k], {
+        x: geo.phone ? geo.R * Math.sin(a) : geo.R * (1 - Math.cos(a)),
+        y: geo.phone ? geo.R * (1 - Math.cos(a)) : geo.R * Math.sin(a),
+        rotation: spin[k % spin.length] + d * 58,
+        scale: 1 - dist * 0.3,
+        opacity: Math.max(0, 1 - dist * (geo.phone ? 1.1 : 0.7)),
+        zIndex: 10 - Math.round(dist * 5)
+      });
+    }
+    var i = Math.max(0, Math.min(n - 1, Math.round(state.p)));
+    if (i !== active) show(i, active);
+  }
+
+  // Text: opacity only (never visibility), so every bowl stays readable to screen readers
+  var active = -1;
+  var kcal = { v: +items[0].dataset.kcal };
+  function show(i, prev) {
+    var dir = prev < 0 || i > prev ? 1 : -1;
+    if (prev >= 0) {
+      texts[prev].classList.remove('is-on');
+      gsap.to(texts[prev], { opacity: 0, y: -16 * dir, duration: 0.3, ease: 'power2.in', overwrite: true });
+      links[prev] && links[prev].removeAttribute('aria-current');
+    }
+    var t = texts[i];
+    t.classList.add('is-on');
+    links[i] && links[i].setAttribute('aria-current', 'true');
+    gsap.set(t, { opacity: 1, y: 0, overwrite: true });
+    var num = t.querySelector('.fav__kcal-n');
+    gsap.timeline({ defaults: { overwrite: true } })
+      .fromTo(t.querySelector('.fav__name > span'), { yPercent: 110 * dir }, { yPercent: 0, duration: 0.9, ease: 'power4.out' }, 0.05)
+      .fromTo(t.querySelectorAll('.fav__type, .fav__ing, .fav__kcal'), { opacity: 0, y: 14 * dir }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out', stagger: 0.06 }, 0.12)
+      .to(kcal, { v: +items[i].dataset.kcal, duration: 0.8, ease: 'power2.out', onUpdate: function () { num.textContent = Math.round(kcal.v); } }, 0.12);
+    active = i;
+  }
+
+  // One pin; one driver over lead-in + pin. The driver's tween only runs a 0 → 1 value (scrubbed a little,
+  // so a wheel's steps arrive as one movement); render() turns it into the wheel position.
+  var LEAD = 0.7;   // how far (in bowls) the first bowl travels into the ring while the stage comes up
+  var pinST = ScrollTrigger.create({
+    trigger: stage, start: 'top top', pin: true, anticipatePin: 1, invalidateOnRefresh: true,
+    end: function () { return '+=' + Math.round(innerHeight * (n - 1) * (phoneQuery.matches ? 0.75 : 0.9)); }
+  });
+  var drive = { t: 0 };
+  var driver = gsap.to(drive, {
+    t: 1, ease: 'none', onUpdate: function () { if (driver) { state.p = wheelAt(drive.t); render(); } },
+    scrollTrigger: {
+      trigger: stage, start: 'top 85%', end: function () { return pinST.end; }, scrub: 0.35, invalidateOnRefresh: true,
+      onRefresh: function () { measure(); render(); }
+    }
+  });
+  function wheelAt(t) {
+    var st = driver.scrollTrigger, s = st.start + t * (st.end - st.start);
+    if (s < pinST.start) return -LEAD * (1 - (s - st.start) / Math.max(1, pinST.start - st.start));
+    return M.rest((s - pinST.start) / Math.max(1, pinST.end - pinST.start) * (n - 1), n - 1, 0.22, 'smooth');
+  }
+
+  // Inline styles set while ScrollTrigger refreshes are reverted with it, so the text state is
+  // (re)applied once a refresh has finished: the current bowl's text on, every other one off
+  ScrollTrigger.addEventListener('refresh', function () {
+    var i = Math.max(0, Math.min(n - 1, Math.round(state.p)));
+    texts.forEach(function (t, k) { if (k !== i) { t.classList.remove('is-on'); gsap.set(t, { opacity: 0 }); } });
+    active = -1;
+    show(i, -1);
+  });
+
+  links.forEach(function (a, i) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      // the middle of bowl i's rest
+      scrollTo({ top: pinST.start + (pinST.end - pinST.start) * i / (n - 1), behavior: 'smooth' });
+    });
+  });
+
+  // (names are fitted with the metrics of the face on screen: core.js refreshes once the web font is in)
+  measure();
+  render();
+})();
+});
+</script>
+<script>
+addEventListener("DOMContentLoaded",function(){
+/* Block 5 · Poké your style
+   - Copy: label, the two headline lines out of their masks, the intro (once).
+   - Build, the one strong move: the stage is pinned and one timeline fills the empty bowl in six stages, one
+     per step of the copy: base (rice, then salad) → protein → vegetables → mango and pineapple → the finish
+     (the sauce first, at once, then coconut chips and sesame) → the complete photograph.
+   - Compact: about 0.42 of a screen of scroll per stage (phones 0.38), so the whole build takes about two and
+     a half screens. Driven by the scroll position alone (no snapping, nothing scrolls the page): each stage has
+     a short rest where the bowl holds still (MALOA.rest), the build plays between rests; going back takes the
+     ingredients out again along the same path.
+   - Each ingredient is put into the bowl, not slid onto it: it grows into view from its own centre under a
+     soft-edged mask (so no cut-out outline is ever seen arriving), fades in at the same time, and settles the
+     last few pixels down and from a touch larger, with a long, soft ease. No sideways travel, no turn, no
+     overshoot. The mask is dropped once the piece is fully in.
+   - The sauce spreads out from where it is poured under the same kind of soft mask.
+   - The step copy changes in step, not scrubbed (opacity and a small rise); the 01–06 line follows.
+     The final state shows only "Your Poké. Your style." and its two actions: the intro and the smaller texts
+     step back, so nothing overlaps.
+   - The light behind the bowl recedes as the bowl fills (a CSS variable, scrubbed).
+   Reduced motion or no GSAP: nothing here runs; the finished bowl and the list of steps remain. */
+(function () {
+  var M = window.MALOA || {};
+  var poke = document.getElementById('poke');
+  if (!poke || !M.gsap || M.reduce) return;
+
+  var stage = poke.querySelector('.poke__stage');
+  var plate = poke.querySelector('.poke__plate');
+  var steps = gsap.utils.toArray(poke.querySelectorAll('.poke__step'));
+  var dots = gsap.utils.toArray(poke.querySelectorAll('.poke__progress span'));
+  var L = function (n) { return poke.querySelector('.poke__layer--' + n); };
+  var phoneQuery = matchMedia('(max-aspect-ratio: 4/5), (max-width: 699px)');
+
+  poke.classList.add('is-scripted');
+
+  gsap.timeline({ scrollTrigger: { trigger: stage, start: 'top 75%', once: true } })
+    .from('.poke__label', { autoAlpha: 0, y: 16, duration: 0.8, ease: 'power2.out' })
+    .from('.poke__line > span', { yPercent: 150, duration: 1.2, ease: 'power4.out', stagger: 0.12 }, 0.1)
+    .from('.poke__intro', { autoAlpha: 0, y: 24, duration: 0.9, ease: 'power3.out' }, 0.45);
+
+  // An ingredient is put in: a soft-edged circle opens from the ingredient's own centre (its --o) while it
+  // fades in and settles the last few pixels, so the piece seems to land and spread, never to be dragged.
+  function place(tl, el, at, d, drop) {
+    var o = (el.style.getPropertyValue('--o') || '50% 50%').trim(), m = { r: 0 };
+    function mask() {
+      // r 0 → 1: the clear radius grows to 150% of the layer (covers it from any centre), edge 28% soft
+      var v = m.r >= 1 ? 'none' : 'radial-gradient(circle at ' + o + ', #000 ' + (m.r * 150 - 28).toFixed(1) + '%, transparent ' + (m.r * 150).toFixed(1) + '%)';
+      el.style.webkitMaskImage = v; el.style.maskImage = v;
+    }
+    tl.fromTo(m, { r: 0 }, { r: 1, duration: d, ease: 'power2.out', onUpdate: mask }, at)
+      // solid early: the piece is mostly revealed by the spreading edge, not by a see-through fade
+      .fromTo(el, { opacity: 0 }, { opacity: 1, duration: d * 0.25, ease: 'sine.out' }, at)
+      .fromTo(el, { yPercent: -(drop || 1.2), scale: 1.025 }, { yPercent: 0, scale: 1, duration: d, ease: 'power3.out' }, at);
+    mask();
+  }
+
+  // Stage k plays in (k-1, k]; the rests are the whole numbers (labels s0…s6)
+  var tl = gsap.timeline({ paused: true, defaults: { immediateRender: true } });
+  tl.addLabel('s0', 0);
+  // 01 base: the rice goes in first and stays under everything, the salad follows on top
+  place(tl, L('rice'), 0.04, 0.7, 0.8);
+  place(tl, L('greens'), 0.28, 0.66);                                         tl.addLabel('s1', 1);
+  // 02 protein
+  place(tl, L('tofu'), 1.06, 0.76);                                           tl.addLabel('s2', 2);
+  // 03 vegetables, three groups a beat apart
+  place(tl, L('veg2'), 2.04, 0.58);
+  place(tl, L('veg1'), 2.15, 0.58);
+  place(tl, L('veg3'), 2.26, 0.58);                                           tl.addLabel('s3', 3);
+  // 04 fruit
+  place(tl, L('mango'), 3.04, 0.64);
+  place(tl, L('pineapple'), 3.22, 0.6);                                       tl.addLabel('s4', 4);
+  // 05 the finish: the sauce is poured straight away as the step begins (it spreads from the top left of
+  // the bowl under a soft edge), coconut and sesame follow within the same step
+  var pour = { r: 0 }, sauce = L('sauce');
+  function pourMask() {
+    // fully poured: no mask at all (nothing left to hide, nothing to composite)
+    var m = pour.r >= 112 ? 'none' : 'radial-gradient(circle at 26% 36%, #000 ' + (pour.r - 14).toFixed(2) + '%, transparent ' + pour.r.toFixed(2) + '%)';
+    sauce.style.webkitMaskImage = m; sauce.style.maskImage = m;
+  }
+  tl.fromTo(pour, { r: 0 }, { r: 112, duration: 0.62, ease: 'power1.inOut', onUpdate: pourMask }, 4.02)
+    .fromTo(sauce, { opacity: 0.35 }, { opacity: 1, duration: 0.5, ease: 'sine.out' }, 4.02);
+  place(tl, L('coconut'), 4.32, 0.5);
+  ['sesame1', 'sesame2', 'sesame3'].forEach(function (n, i) { place(tl, L(n), 4.5 + i * 0.1, 0.36, 0.6); });
+                                                                              tl.addLabel('s5', 5);
+  // 06 the complete photograph settles in over the stack: same picture, every edge back where it was
+  tl.fromTo(L('final'), { opacity: 0 }, { opacity: 1, duration: 0.7, ease: 'sine.inOut' }, 5.08);
+  tl.addLabel('s6', 6);
+  tl.fromTo(stage, { '--glow': 1 }, { '--glow': 0.35, duration: 6, ease: 'none' }, 0);
+  pourMask();
+
+  // Stage → step copy (one step per stage): base, protein, vegetables, fruit, finish, your poké
+  var stepOf = [0, 0, 1, 2, 3, 4, 5];
+  var active = -1;
+  function show(i) {
+    if (i === active) return;
+    var dir = active < 0 || i > active ? 1 : -1;
+    if (active >= 0) {
+      steps[active].classList.remove('is-on');
+      gsap.to(steps[active], { opacity: 0, y: -14 * dir, duration: 0.24, ease: 'power2.in', overwrite: true });
+    }
+    steps[i].classList.add('is-on');
+    gsap.fromTo(steps[i], { opacity: 0, y: 18 * dir }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out', delay: active < 0 ? 0 : 0.22, overwrite: true });   // the new copy rises once the old one has mostly gone
+    dots.forEach(function (d, k) { d.classList.toggle('is-on', k === i); d.classList.toggle('is-done', k < i); });
+    poke.classList.toggle('is-final', i === steps.length - 1);
+    active = i;
+  }
+  function sync() { show(stepOf[Math.min(6, Math.ceil(tl.time() - 0.001))] || 0); }
+
+  // The scroll runs a plain 0 → 6 value (scrubbed a little, so a wheel's steps arrive as one movement);
+  // the timeline is set to that value with a short rest around every stage
+  var drive = { x: 0 };
+  gsap.to(drive, {
+    x: 6, ease: 'none',
+    onUpdate: function () { tl.time(M.rest(drive.x, 6, 0.14)); sync(); },
+    scrollTrigger: {
+      trigger: stage, start: 'top top', pin: true, anticipatePin: 1, scrub: 0.35, invalidateOnRefresh: true,
+      end: function () { return '+=' + Math.round(innerHeight * 6 * (phoneQuery.matches ? 0.38 : 0.42)); }
+    }
+  });
+
+  // Inline styles set during a refresh are reverted with it: re-apply the copy state afterwards
+  ScrollTrigger.addEventListener('refresh', function () {
+    var i = active < 0 ? 0 : active;
+    steps.forEach(function (s, k) { if (k !== i) { s.classList.remove('is-on'); gsap.set(s, { opacity: 0 }); } });
+    active = -1;
+    show(stepOf[Math.min(6, Math.ceil(tl.time() - 0.001))] || i);
+  });
+  show(0);
+})();
+});
+</script>
+<script>
+addEventListener("DOMContentLoaded",function(){
+/* Block 6 · Gift Card
+   - Copy: label, the two headline lines out of their masks, text and button (once).
+   - Cards: rise in once, the front card a beat after the back one; then, scrubbed, they drift a little apart
+     and turn a touch, as if lifted off the table.
+   Reduced motion or no GSAP: the cards rest in place. */
+(function () {
+  var M = window.MALOA || {};
+  var gift = document.getElementById('gutschein');
+  if (!gift || !M.gsap || M.reduce) return;
+
+  var back = gift.querySelector('.gift__card--back');
+  var front = gift.querySelector('.gift__card--front');
+
+  // The header takes its light version once the light ground is under it (as over Welcome): the
+  // gradient at the top of this block is light after ~70% of its band (CSS: up to clamp(260px,28vw,400px))
+  ScrollTrigger.create({
+    trigger: gift, end: 'bottom top', toggleClass: { targets: '.site-header', className: 'is-light' },
+    start: function () {
+      var band = Math.min(400, Math.max(260, innerWidth * 0.28));
+      return 'top+=' + Math.round(band * 0.7) + ' ' + document.querySelector('.site-header__row').offsetHeight + 'px';
+    }
+  });
+
+  gsap.timeline({ scrollTrigger: { trigger: gift, start: 'top 55%', once: true } })
+    .from(gift.querySelector('.gift__label'), { autoAlpha: 0, y: 16, duration: 0.8, ease: 'power2.out' })
+    .from(gift.querySelectorAll('.gift__line > span'), { yPercent: 150, duration: 1.2, ease: 'power4.out', stagger: 0.12 }, 0.1)
+    .from(gift.querySelectorAll('.gift__text, .gift__actions'), { autoAlpha: 0, y: 24, duration: 0.9, ease: 'power3.out', stagger: 0.1 }, 0.45);
+
+  gsap.timeline({ scrollTrigger: { trigger: gift.querySelector('.gift__stage'), start: 'top 85%', once: true } })
+    .from(back, { autoAlpha: 0, y: 80, rotation: 2, duration: 1.2, ease: 'power3.out' })
+    .from(front, { autoAlpha: 0, y: 110, rotation: 2, duration: 1.3, ease: 'power3.out' }, 0.15);
+
+  // after landing: a gentle drift apart with the scroll (y only, the resting angles stay in CSS)
+  gsap.fromTo(back, { yPercent: 6 }, { yPercent: -8, ease: 'none',
+    scrollTrigger: { trigger: gift, start: 'top bottom', end: 'bottom top', scrub: true } });
+  gsap.fromTo(front, { yPercent: 10 }, { yPercent: -6, ease: 'none',
+    scrollTrigger: { trigger: gift, start: 'top bottom', end: 'bottom top', scrub: true } });
+})();
+});
+</script>
+<script>
+addEventListener("DOMContentLoaded",function(){
+/* Block 7 · Closing
+   - Headline lines rise out of their masks, then the lead and the two actions (once).
+   - The three columns fade up one after another (once).
+   - The wordmark rises into its frame with the scroll, as if the page settles on it.
+   Reduced motion or no GSAP: everything stands. */
+(function () {
+  var M = window.MALOA || {};
+  var el = document.getElementById('kontakt');
+  if (!el || !M.gsap || M.reduce) return;
+
+  gsap.timeline({ scrollTrigger: { trigger: el.querySelector('.closing__top'), start: 'top 80%', once: true } })
+    .from(el.querySelectorAll('.closing__line > span'), { yPercent: 150, duration: 1.2, ease: 'power4.out', stagger: 0.12 })
+    .from(el.querySelectorAll('.closing__lead, .closing__actions'), { autoAlpha: 0, y: 24, duration: 0.9, ease: 'power3.out', stagger: 0.1 }, 0.35);
+
+  gsap.from(el.querySelectorAll('.closing__col'), { autoAlpha: 0, y: 30, duration: 0.9, ease: 'power3.out', stagger: 0.1,
+    scrollTrigger: { trigger: el.querySelector('.closing__info'), start: 'top 88%', once: true } });
+
+  gsap.fromTo(el.querySelector('.closing__word span'), { yPercent: 45 }, { yPercent: 0, ease: 'none',
+    scrollTrigger: { trigger: el.querySelector('.closing__word'), start: 'top bottom', end: 'bottom bottom', scrub: true } });
+})();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+/* Hero → leaves → Welcome.
+   Base (no script, no GSAP, reduced motion): the Welcome block simply follows the Hero, no leaves.
+   .scene--cinematic (added by js/scene.js): one pinned screen. Leaves come in from the edges on three
+   depths, the film pulls back, the leaves part like a curtain and the Welcome opens between them. */
+.scene{position:relative}
+.leaves,.scene__dim{display:none}
+
+/* ---- Block 2: the bowl the leaves open onto (visual only) ---- */
+.welcome{position:relative;min-height:100svh;display:grid;place-items:center;overflow:hidden;background:var(--night)}
+/* the same night ground as the film, with the brand teal glowing behind the bowl */
+.welcome::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 50% 58% at 50% 52%,rgb(0 68 67 / .75),rgb(0 68 67 / 0) 70%);pointer-events:none}
+.welcome__inner{position:relative;display:grid;place-items:center;padding:calc(var(--hh) + 16px) var(--gutter) 32px}
+.welcome__visual{position:relative;margin:0;width:min(44vw,68svh,660px)}
+/* contact shadow under the bowl: a soft ellipse, cheaper than a filter on a moving image */
+.welcome__visual::after{content:"";position:absolute;left:12%;right:12%;bottom:-4%;height:14%;z-index:-1;border-radius:50%;background:radial-gradient(closest-side,rgb(0 0 0 / .6),rgb(0 0 0 / 0));filter:blur(6px)}
+.welcome__bowl{width:100%;height:auto}
+@media (max-aspect-ratio:4/5){ .welcome__visual{width:min(80vw,52svh,460px)} }
+
+/* ---- Cinematic scene ---- */
+.scene--cinematic{height:100svh;overflow:hidden}
+.scene--cinematic .hero{z-index:1}
+.scene--cinematic .scene__dim{display:block;position:absolute;inset:0;z-index:1;background:var(--night);opacity:0;pointer-events:none}
+.scene--cinematic .welcome{position:absolute;inset:0;z-index:2;min-height:0;
+  -webkit-mask-image:radial-gradient(circle,#000 0,transparent 0);mask-image:radial-gradient(circle,#000 0,transparent 0)}   /* closed until js/scene.js opens it */
+.scene--cinematic .leaves{display:block;position:absolute;inset:0;z-index:3;overflow:hidden;pointer-events:none}
+
+.leaf{position:absolute;height:auto;max-width:none;will-change:transform;-webkit-user-select:none;user-select:none}
+/* resting spots once they have come in (the "in" pose); the script moves them from/to the edges */
+.leaf--f1{width:13vw;left:56%;top:-10%}
+.leaf--f2{width:9vw;left:9%;bottom:2%}
+.leaf--m1{width:25vw;left:-6%;top:-14%}
+.leaf--m2{width:12vw;right:6%;bottom:-12%}
+.leaf--m3{width:25vw;right:-8%;top:28%}
+.leaf--n1{width:48vw;left:-20%;bottom:-34%}
+.leaf--n2{width:38vw;right:-14%;top:-40%}
+.leaf--n3{width:21vw;left:40%;bottom:-58%}
+
+/* Phones and upright tablets: fewer, smaller leaves, kept to the edges so the copy stays clear */
+@media (max-aspect-ratio:4/5){
+  .leaf--xl{display:none}
+  .leaf--f1{width:30vw;left:52%;top:-8%}
+  .leaf--m1{width:52vw;left:-18%;top:-10%}
+  .leaf--n1{width:92vw;left:-42%;bottom:-26%}
+  .leaf--n2{width:72vw;right:-34%;top:-24%}
+}
