@@ -144,7 +144,9 @@ section{padding-block:0}
 .quote{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(32px,3.7vw,58px);line-height:1.08;letter-spacing:-.01em;color:var(--text);max-width:11em}
 figure{margin:0}
 .ph-img{position:relative;overflow:hidden;background:var(--charcoal)}
-.ph-img img,.ph-img video{position:absolute;inset:0;display:block;width:100%;height:100%;max-width:none;object-fit:cover;filter:saturate(.86) contrast(1.05) brightness(.95) sepia(.06)}
+.ph-img img,.ph-img video{position:absolute;inset:0;display:block;width:100%;height:100%;max-width:none;object-fit:cover}
+/* the colour grade of the photos is baked into the image files (no live filter = smooth scrolling); videos keep it live */
+.ph-img video{filter:saturate(.86) contrast(1.05) brightness(.95) sepia(.06)}
 .ph-img::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;box-shadow:inset 0 0 140px rgba(14,10,8,.38)}
 
 /* primary CTA: a hairline, not a pill */
@@ -204,6 +206,8 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
 .js-motion [data-rv-img="open"].in{clip-path:inset(0)}
 .js-motion .film-media[data-rv-img="open"].in{clip-path:inset(-14px -14px -70px -14px)}  /* let the frame show once revealed */
 .js-motion [data-rv-img].in img,.js-motion [data-rv-img].in video{transform:translate3d(0,var(--py,0px),0) scale(var(--sc,1))}
+.js-motion [data-rv-img] img,.js-motion [data-rv-img] video{will-change:transform;backface-visibility:hidden}
+.js-motion [data-rv-img].settled img,.js-motion [data-rv-img].settled video{transition:transform .12s linear}
 @media (hover:hover){
   .js-motion [data-rv-img].in:hover img{transform:translate3d(0,var(--py,0px),0) scale(calc(var(--sc,1) + .025))}
 }
@@ -218,7 +222,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
   transform:scale(calc(1.02 + var(--out,0) * .07));transform-origin:60% 40%}
 .hv-wide{object-position:60% 42%}
 /* fine film grain over the footage: a cinematic texture that also hides phone-camera softness */
-.hero-media::after{content:"";position:absolute;inset:-50%;pointer-events:none;opacity:.16;mix-blend-mode:overlay;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain 1.2s steps(6) infinite}
+.hero-media::after{content:"";position:absolute;inset:-50%;pointer-events:none;opacity:.16;mix-blend-mode:overlay;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
 @keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-1%)}80%{transform:translate(3%,3%)}100%{transform:translate(0,0)}}
 .hv-tall{display:none}
 /* grade: warm, readable on the left where the words are, the film stays clearly visible on the right */
@@ -286,7 +290,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
 .dh-herren{grid-column:8/13;padding-top:clamp(80px,11vw,180px)}
 .dh-herren .main{aspect-ratio:4/5}
 .dh-herren .main img{object-position:22% 40%}
-.dh-herren .main img{filter:brightness(.84) contrast(1.08) saturate(.8) sepia(.06)}
+.dh-herren .main img{filter:none}
 
 /* ======================================================================
    03 ATMOSPHÄRE — magazine spread on charcoal
@@ -1137,8 +1141,9 @@ footer{border-top:1px solid var(--hair);padding-block:44px;background:var(--matt
   if (reduce || !hasIO) return;
   document.documentElement.classList.add('js-motion');
   var els = [].slice.call(document.querySelectorAll('[data-rv],[data-rv-img]'));
+  function reveal(el){ el.classList.add('in'); io.unobserve(el); if (el.hasAttribute('data-rv-img')) setTimeout(function(){ el.classList.add('settled'); }, 1700); }
   var io = new IntersectionObserver(function(es){
-    es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    es.forEach(function(e){ if (e.isIntersecting){ reveal(e.target); } });
   }, {threshold:0, rootMargin:'0px 0px 0px 0px'});
   els.forEach(function(el){ io.observe(el); });
   /* safety net: a very fast flick can skip the frame in which an element is on screen —
@@ -1149,7 +1154,7 @@ footer{border-top:1px solid var(--hair);padding-block:44px;background:var(--matt
     var vh = window.innerHeight;
     pending = pending.filter(function(el){
       if (el.classList.contains('in')) return false;
-      if (el.getBoundingClientRect().top < vh){ el.classList.add('in'); io.unobserve(el); return false; }
+      if (el.getBoundingClientRect().top < vh){ reveal(el); return false; }
       return true;
     });
     if (!pending.length) window.removeEventListener('scroll', onSweep);
