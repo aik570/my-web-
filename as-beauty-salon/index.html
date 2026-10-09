@@ -429,7 +429,7 @@ footer{border-top:1px solid var(--hair);padding-block:44px;background:var(--matt
 .f-links a{color:var(--muted);text-decoration:none;transition:color .2s}
 .f-links a:hover{color:var(--gold-pale)}
 .f-copy{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;font-size:12px;color:var(--muted);letter-spacing:.06em;width:100%;padding-top:22px;margin-top:22px;border-top:1px solid var(--hair)}
-.f-credit{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(165,151,138,.7)}
+.f-credit{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
 .fab{
   position:fixed;right:18px;bottom:18px;z-index:70;width:50px;height:50px;display:grid;place-items:center;
   border-radius:50%;background:rgba(26,18,13,.92);border:1px solid var(--hair-gold);text-decoration:none;
@@ -1075,7 +1075,8 @@ footer{border-top:1px solid var(--hair);padding-block:44px;background:var(--matt
   /* WhatsApp button steps aside while prices, the booking CTA or contact details pass underneath it,
      so it never covers a price, an opening hour or a link (those areas have their own WhatsApp links) */
   var fab = document.querySelector('.fab');
-  var fabWatch = document.querySelectorAll('.offer, .price-list, .termin-cta, .contact, .map-bar');
+  var fabWatch = document.querySelectorAll('.hero-meta, .offer, .price-list, .termin-cta, .contact, .map-bar');
+  var heroMeta = document.querySelector('.hero-meta');   /* only reaches the button's corner below 1280px */
   if (fab && hasIO && fabWatch.length){
     var busy = new Set(), fio = null;
     function watch(){
@@ -1086,7 +1087,7 @@ footer{border-top:1px solid var(--hair);padding-block:44px;background:var(--matt
         es.forEach(function(e){ e.isIntersecting ? busy.add(e.target) : busy.delete(e.target); });
         fab.classList.toggle('away', busy.size > 0);
       }, {rootMargin: '-' + band + 'px 0px 0px 0px'});
-      fabWatch.forEach(function(el){ fio.observe(el); });
+      fabWatch.forEach(function(el){ if (el !== heroMeta || window.innerWidth < 1280) fio.observe(el); });
     }
     watch();
     var rt; window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(watch, 200); });
