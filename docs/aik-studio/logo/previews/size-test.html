@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>AIK Studio — size test</title>
+<style>
+  body{margin:0;font:11px/1 system-ui,sans-serif;color:#647F93}
+  .band{display:flex;gap:28px;align-items:flex-end;padding:14px 16px}
+  .light{background:#F2F5F7}.dark{background:#101419}
+  .name{width:150px;align-self:center}
+  figure{margin:0;display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+  img{display:block;image-rendering:auto}
+</style></head><body>
+<!-- Heights are CSS px at device-pixel-ratio 1: 16, 24, 32, 48, 64. Every image is the actual SVG file. -->
+<script>
+const rows = [
+  ['Full symbol', 'aik-symbol', 'h'],
+  ['Simplified favicon symbol', 'aik-favicon-symbol', 'h'],
+  ['Favicon tile', 'aik-favicon', 'sq'],
+];
+for (const [label, file, mode] of rows) for (const tone of ['light', 'dark']) {
+  const f = file === 'aik-favicon' ? file : (tone === 'dark' ? file + '-reverse' : file);
+  let h = `<div class="band ${tone}"><div class="name">${label} — ${tone} bg</div>`;
+  for (const s of [16, 24, 32, 48, 64]) h += `<figure><img src="../${f}.svg" style="height:${s}px"><figcaption>${s}px</figcaption></figure>`;
+  document.write(h + '</div>');
+}
+</script>
+</body></html>

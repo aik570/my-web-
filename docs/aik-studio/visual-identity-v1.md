@@ -107,7 +107,7 @@ These rules are for the vector redraw, done by hand in a vector tool and **not t
 
 - The tagline "Digital solutions for businesses" and "Potsdam | Berlin" are **not** part of the logo. They are set as typography where needed (footer, opening sequence end card).
 - Clear space: the height of the I-stem's stroke width × 4 on all sides.
-- Minimum size (target, updated by QA §13.1): full symbol 32 px tall on screen and 10 mm in print. The horizontal lockup needs at least 140 px wide. Below 32 px, use the simplified favicon variant.
+- Minimum size (rendered test, `logo/README.md`): full symbol 24 px tall on screen and 10 mm in print. Horizontal lockup 32 px tall is recommended; 24 px is the tested minimum. Stacked lockup 64 px tall. Below 24 px, use the simplified favicon variant. Draft; not yet approved.
 - Champagne never appears in the flat logo. Warmth belongs to the cinematic version only.
 - Never place the flat logo on busy image areas. Use a haze or sky zone, or put it on a solid surface.
 
@@ -630,8 +630,8 @@ The two parallel diagonals left of the A are separated by gaps of the same order
 | Colour contrast (§3.2) | **Pass** (measured) |
 | Logo, Ref 01 at 16–64 px | **Fail** (≤32 px recognition, K join, separation, M silhouette) |
 | Logo, Ref 02 at 16–64 px | **Fail** (no AIK letterforms) |
-| Logo, redrawn flat vector | **Not verified** (does not exist) |
-| Favicon variant | **Not verified** (required; does not exist) |
+| Logo, redrawn flat vector | **Draft drawn** (`logo/`). Rendered test passes at 24–64 px; 16 px is limited, so the favicon variant applies. Awaiting owner review |
+| Favicon variant | **Draft drawn** (`logo/aik-favicon.svg`). Rendered at 16–64 px: recognisable, with letters reduced at 16 px. Awaiting owner review |
 | Eagle consistency | **Fail** (only reference is the wrong species with artefacts); golden-eagle set **not verified** |
 | Image sequence vs video | **Not verified** (desk analysis only; device test pending) |
 | Loading budget | **Not verified** (targets only) |
@@ -655,9 +655,9 @@ The two parallel diagonals left of the A are separated by gaps of the same order
 - [x] Logo reference QA documented (16–64 px)
 - [x] Eagle consistency rules defined
 - [x] Media comparison, device test plan and provisional budgets documented
-- [ ] **Flat vector logo drawn** (symbol, horizontal and stacked lockups) per §2.1
-- [ ] Vector logo passes §13.1 at 24/32/48/64 px on dark and light
-- [ ] Simplified favicon variant drawn and passes at 16/32 px
+- [x] Flat vector logo drawn (symbol, horizontal and stacked lockups) per §2.1, as a draft in `logo/`
+- [x] Vector logo rendered at 16–64 px on dark and light: passes at 24–64 px, limited at 16 px (headless Chromium only; no real-device check)
+- [x] Simplified favicon variant drawn and rendered at 16/32 px (recognisable as the mark; letters reduced at 16 px)
 - [ ] Client approval of the vector logo
 - [ ] Client approval of this document
 
