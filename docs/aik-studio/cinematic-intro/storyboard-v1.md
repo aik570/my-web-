@@ -15,7 +15,7 @@ Scope: the homepage cinematic opening only, ending at the final AIK Studio revea
 | Logo assets | **No approved logo.** V1 (`docs/aik-studio/logo/archive/v1-rejected/`) was rejected. The V2 draft (`docs/aik-studio/logo/aik-symbol.svg`, 212.46 × 100) is uncommitted and not approved; the owner wants more horizontal spread on the K. |
 | Video / image assets | None usable. Only the two mood references in `docs/aik-studio/references/` (AI-generated; Ref 02 has a bald eagle, the wrong species) and the unrelated A135 listing photos. |
 | Higgsfield | **Connected and usable from this session.** Pro plan, 531.25 credits (checked 10.10.2026). Cost preflights, none submitted: a storyboard frame with `gpt_image_2_5` costs 0.25 credits at 1k/low and 2.75 at 2k/high. An 8 s 1080p silent shot with `flux_3_video` (supports a start **and** end frame) costs 72 credits. |
-| Frame extraction | Playwright ships a limited ffmpeg. A full ffmpeg (for video → AVIF/WebP frames) still needs to be confirmed in phase D. |
+| Frame extraction | System ffmpeg 6.1.1 is available, with AV1 (libaom, SVT-AV1) and WebP encoders, so video → AVIF/WebP frames can be produced here. |
 
 ---
 
@@ -200,4 +200,3 @@ The sequence loads after first paint, coarse frames first.
 
 1. **No approved logo.** Shots 02, 03 and 07 need the final SVG. Storyboard frames 04–07 can still be generated now. The final summit alignment in shot 07 waits for the logo.
 2. **Spending approval.** Storyboard frames (about 14–34 credits) need an explicit go-ahead. Phase D video needs a separate approval after the storyboard (about 216+ credits).
-3. **Full ffmpeg** for frame extraction is not yet confirmed in this environment.
