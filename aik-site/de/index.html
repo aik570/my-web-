@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AIK Studio — Premium-Websites für ambitionierte Unternehmen</title>
+<meta name="description" content="AIK Studio gestaltet und entwickelt Premium-Websites für ambitionierte Unternehmen. Strategie, Design und Entwicklung aus Potsdam und Berlin.">
+<meta name="theme-color" content="#101419">
+<link rel="alternate" hreflang="en" href="../">
+<link rel="alternate" hreflang="de" href="../de/">
+<link rel="alternate" hreflang="x-default" href="../">
+<link rel="preload" href="../fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../css/site.css">
+<script>
+  /* Entrance motion is opt-in and set before first paint, so nothing flashes.
+     Reduced motion or no script: the page renders at rest. */
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.add('motion');
+    addEventListener('DOMContentLoaded', () => requestAnimationFrame(() =>
+      requestAnimationFrame(() => document.querySelector('.hero').classList.add('is-in'))));
+  }
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="wordmark" href="../de/" aria-label="AIK Studio — Startseite">AIK <span>Studio</span></a>
+
+    <nav class="nav" id="site-nav" aria-label="Hauptnavigation">
+      <ul class="nav__list">
+        <li><a href="#work">Arbeiten</a></li>
+        <li><a href="#services">Leistungen</a></li>
+        <li><a href="#pricing">Preise</a></li>
+        <li><a href="#process">Ablauf</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Kontakt</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-tools">
+      <div class="lang" aria-label="Sprache">
+        <a href="../" hreflang="en" lang="en">EN</a>
+        <a href="../de/" hreflang="de" lang="de" aria-current="true">DE</a>
+      </div>
+      <a class="btn btn--ghost btn--sm" href="#contact">Projekt starten</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="visually-hidden">Menü</span>
+        <span class="menu-toggle__bars" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" aria-labelledby="hero-title">
+    <!-- The homepage cinematic sequence mounts here in a later stage.
+         This static composition is its fallback and must stay complete on its own. -->
+    <div class="container hero__content">
+      <p class="eyebrow" data-reveal style="--i:0">Digitalstudio · Potsdam &amp; Berlin</p>
+      <h1 class="hero__title" id="hero-title">
+        <span class="line" data-reveal style="--i:1">Premium-Websites</span>
+        <span class="line muted" data-reveal style="--i:2">für ambitionierte Unternehmen.</span>
+      </h1>
+      <p class="hero__lead" data-reveal style="--i:3">Strategie, Design und Entwicklung für Unternehmen, die von ihrer Website erwarten, dass sie so gut funktioniert, wie sie aussieht.</p>
+      <div class="hero__actions" data-reveal style="--i:4">
+        <a class="btn btn--primary" href="#contact">Projekt starten <span class="arrow" aria-hidden="true">&rarr;</span></a>
+        <a class="btn btn--ghost" href="#work">Zum MA’LOA-Konzept</a>
+      </div>
+    </div>
+    <div class="hero__foot">
+      <div class="container hero__foot-inner">
+        <span>Potsdam · Berlin</span>
+        <span>Strategie — Design — Entwicklung</span>
+        <a class="scroll-cue" href="#work">Scrollen</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="../js/site.js" defer></script>
+</body>
+</html>
