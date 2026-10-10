@@ -1,7 +1,10 @@
 # AIK Studio — Visual Identity v1.0
 
 **Stage 5A · Master Art Direction**
-Status: proposed for approval. Nothing in this document has been built, rendered or tested yet.
+Status: proposed for approval. QA pass completed on 2026-10-10 (see §13). No website code, assets or images have been produced. The QA used only the two raster references: no vector source exists, and no real devices were tested.
+
+**Positioning (locked):** Premium Websites for Ambitious Businesses.
+**Languages (locked):** English is primary, German is secondary.
 
 References (stored next to this file):
 
@@ -87,7 +90,7 @@ These rules are for the vector redraw, done by hand in a vector tool and **not t
 
 | | **Flat logo (everyday)** | **Cinematic logo (brand moments)** |
 |---|---|---|
-| Use | Header, mobile, favicon, footer, documents, social avatars, email, invoices | Opening sequence, end of hero reveal, case-study title cards, social covers |
+| Use | Header, mobile, favicon, footer, documents, social avatars, email, invoices | Homepage opening sequence (homepage only), plus selected brand moments as **static pre-rendered stills** (case-study title card, social covers) |
 | Form | Solid vector, one colour, no gradients, no bevel | Same geometry, extruded and bevelled, brushed steel |
 | Colour | Ice White `#F2F5F7` on dark, Obsidian `#101419` on light | Cool satin steel with a champagne edge light on key-light-facing bevels only |
 | Format | SVG master; PNG/ICO exports | Pre-rendered still or video/image sequence (see §8). Never a live 3D render in the header |
@@ -104,7 +107,7 @@ These rules are for the vector redraw, done by hand in a vector tool and **not t
 
 - The tagline "Digital solutions for businesses" and "Potsdam | Berlin" are **not** part of the logo. They are set as typography where needed (footer, opening sequence end card).
 - Clear space: the height of the I-stem's stroke width × 4 on all sides.
-- Minimum size: symbol 24 px wide on screen and 10 mm in print. The horizontal lockup needs at least 120 px wide.
+- Minimum size (target, updated by QA §13.1): full symbol 32 px tall on screen and 10 mm in print. The horizontal lockup needs at least 140 px wide. Below 32 px, use the simplified favicon variant.
 - Champagne never appears in the flat logo. Warmth belongs to the cinematic version only.
 - Never place the flat logo on busy image areas. Use a haze or sky zone, or put it on a solid surface.
 
@@ -171,7 +174,7 @@ Known constraints and how they are handled:
 
 - **Space Grotesk has no italic.** Emphasis in headings comes from weight (400 → 600) or colour (Steel Light/Steel Ink), never faux-italic.
 - **Space Grotesk's personality** (its `G`, `R` and `t`) gets louder at heavy weights. Headings stay at 500, and 600 is reserved for very small sizes.
-- **German compound words** (assumption: the site will be at least partly German). Display sizes are capped and headings use `hyphens: auto` with a correct `lang`, so words like "Webentwicklungsleistungen" never overflow on mobile.
+- **Languages.** English is primary and German secondary. Layouts are designed in English and must survive German without redesign. Allow for German strings running roughly 20–35% longer: this is a localisation rule of thumb, not a measurement. Display sizes are capped. German pages set `lang="de"` and use `hyphens: auto` on headings, so compounds like "Webentwicklungsleistungen" never overflow on mobile. Buttons and navigation must fit the German strings at 360 px width.
 
 ### 4.1 Scale
 
@@ -260,10 +263,12 @@ Generic stock vistas, lakes with jetties, saturated blue skies, orange or pink s
   - **One close pass maximum** across the whole site: the wing crossing camera as a transition.
   - No portrait close-ups of the head, no open beak, no talons toward camera, no hunting or attack. The message is perspective and control, not aggression.
 - **Motion:** gliding and banking, with slow, broad turns. At most 1–2 wingbeats per shot. The camera never "chases" it frantically.
-- **When it appears (maximum 3 times):**
-  1. **Opening sequence:** it crosses the frame and leads the eye toward the logo reveal.
-  2. **One transition:** recommended into the Featured case study or Process ("seeing the whole terrain"), where its flight line leads the camera through a pass.
-  3. **Optional:** a distant silhouette in the contact close.
+- **When it appears (locked: Hero and selected transitions only, maximum 3 times on the homepage):**
+  1. **Hero/opening sequence:** it crosses the frame and leads the eye toward the logo reveal.
+  2. **Transition 1:** into the Featured MA'LOA case study, where its flight line leads the camera through a pass.
+  3. **Transition 2 (optional):** into Process.
+
+  It never appears in the contact section, footer or content sections, or on inner pages.
 - **Connecting scenes:**
   - Its flight vector sets the camera direction for the next scene.
   - A near-camera wing pass works as an occlusion wipe (a natural cut point).
@@ -274,7 +279,7 @@ Generated video **cannot be assumed** to keep the same bird across shots. Plan:
 
 1. Create a locked **reference set**: side glide, top-down glide, three-quarter underside, banking. Same species, adult plumage, same light.
 2. Generate each shot **image-first from that set**, then animate image-to-video. Test continuity between at least two consecutive shots before committing.
-3. **Fallback A:** a licensed 3D golden-eagle model with feather groom, rendered into image sequences. This gives the most consistent result and full camera control.
+3. **Fallback A:** a licensed 3D golden-eagle model with feather groom, **rendered offline** into image sequences. This gives the most consistent result and full camera control. It is not real-time 3D, which stays excluded in v1.
 4. **Fallback B:** licensed real footage, graded to the palette.
 5. Decide the production route only after the test in step 2.
 
@@ -311,14 +316,14 @@ Generated video **cannot be assumed** to keep the same bird across shots. Plan:
 
 | Moment | Intended behaviour | Technique (recommended) |
 |---|---|---|
-| **Opening / logo reveal** | Dark frame, cloud drifts, light rakes across the ridge, eagle crosses, then the metal AIK resolves. At the end the cinematic logo hands off to the flat SVG logo in the header. | **Hybrid:** pre-rendered image sequence scrubbed on canvas, plus a DOM/SVG flat logo and type layered on top. Autoplay plays once if there is no scroll within about 2 s. |
-| **Camera through passes** | A slow forward dolly between ridges, with haze layers parting. | **Image sequence** (AVIF/WebP frames). Scrubbing `<video>` is unreliable on iOS Safari. Test before choosing. |
+| **Opening / logo reveal** (homepage only) | Dark frame, cloud drifts, light rakes across the ridge, eagle crosses, then the metal AIK resolves. At the end the cinematic logo hands off to the flat SVG logo in the header. | **Hybrid:** pre-rendered image sequence scrubbed on canvas, plus a DOM/SVG flat logo and type layered on top. Autoplay plays once if there is no scroll within about 2 s. |
+| **Camera through passes** | A slow forward dolly between ridges, with haze layers parting. | **Image sequence** (provisional; see §13.3). Final choice after the device test plan. |
 | **Eagle flight** | Glide across or toward the scene and lead the camera. | Rendered **inside the sequence**. A separate alpha-video layer (WebM VP9 alpha plus HEVC alpha for Safari) only if the test proves it is needed. |
 | **Scene transitions** | Cloud or haze cross-dissolve, or the eagle's wing occlusion wipe. No slides, zooms or glitch effects. | Part of the sequence, or a CSS opacity crossfade between stills. |
 | **Typography entrance** | A line-by-line mask reveal: 12–16 px rise plus opacity, 700–900 ms, `cubic-bezier(0.22, 1, 0.36, 1)`, 70 ms stagger. Body copy fades in only (400 ms). | CSS/JS, IntersectionObserver or scroll timeline. |
 | **UI micro-motion** | Hover and focus at 150–200 ms, colour or underline only. Buttons don't scale or bounce. | CSS |
 | **Parallax** | At most two layers in mode B bands, with a small offset of 4–8%. | CSS transforms, disabled on reduced motion. |
-| **Real-time 3D** | **Not recommended for v1.** At most an optional subtle tilt/light response on the cinematic logo, evaluated later against performance. | WebGL, only if justified. |
+| **Real-time 3D** | **Excluded from v1 (locked).** No WebGL, no live logo or scene. | — |
 
 ### 8.3 Reduced motion and performance
 
@@ -338,7 +343,7 @@ Generated video **cannot be assumed** to keep the same bird across shots. Plan:
 |---|---|---|---|
 | **Header & nav** | Transparent over the hero, then Graphite at 85% with backdrop blur after scroll | — | Flat horizontal lockup. Nav in Inter 500, sentence case. One primary CTA. The active item gets a 1 px champagne underline. |
 | **Hero** | Obsidian | Mode A (opening sequence) | Display headline in a haze zone with a measured scrim (Obsidian gradient, 0 → 70%). Text meets AA on the scrim. |
-| **Featured: MA'LOA** | Obsidian/Deep Slate | Project visuals; mode B band optional | **Clearly labelled as a concept project.** No invented client, results or metrics. |
+| **Featured: MA'LOA** | Obsidian/Deep Slate | Project visuals; mode B band optional | **Labelled as a self-initiated concept redesign, not client work.** No invented client, results, metrics or testimonials. |
 | **Services** | Ice White | None or a small mode B detail | Typographic grid, Steel Ink labels, hairline dividers. |
 | **Pricing** | Snow | None | Tabular numerals. One emphasised plan on Deep Slate with Ice text, no gold. Prices and inclusions are readable in 5 seconds. |
 | **Process** | Ice White, with an optional mode B/C band before it | Eagle transition candidate | Numbered steps in large Steel Blue numerals (decorative, ≥ 48 px). |
@@ -372,7 +377,7 @@ These are what keep the brand recognisable when no mountain is on screen:
 - Keep the key light upper-left everywhere: logo, mountains, eagle.
 - Alternate dark and light sections for rhythm and readability.
 - Keep champagne rare enough that people notice it.
-- Label MA'LOA as a concept. State only verifiable facts.
+- Label MA'LOA as a self-initiated concept redesign. State only verifiable facts.
 - Test every image with real headline text placed on it.
 
 **Don't**
@@ -425,35 +430,238 @@ These are what keep the brand recognisable when no mountain is on screen:
 
 ## 12. Decision status
 
-### Confirmed (by brief or by this document)
+### Locked (confirmed by the client, 2026-10-10)
 
-- Direction: Elite Technology + Cinematic Digital, with technology leading
-- AIK monogram built from mountain geometry. Generic mountain icon rejected.
-- Two logo applications: flat and cinematic
-- Core palette values (the six original HEX values unchanged), plus four functional tints for accessibility
+- Positioning: Premium Websites for Ambitious Businesses
+- Art direction: hybrid, with a cinematic introduction and a clean technological website. Technology leads.
+- Languages: English primary, German secondary
+- Typography: Space Grotesk + Inter, no serif display face
+- Logo: flat monochrome for the interface; metallic for the homepage opening and selected brand moments
+- Logo geometry: keeps the AIK letterforms and three distinct peaks, with no overall M silhouette. Generic mountain icon rejected.
+- Eagle: Hero and selected transitions only, at most 3 appearances, gliding only, never attacking
+- MA'LOA: self-initiated concept redesign, not client work
+- Cinematic opening: homepage only
+- No real-time 3D in v1
+
+### Confirmed by this document
+
+- The six core palette values are unchanged, plus four functional tints for accessibility (contrast measured, §3.2)
 - Champagne limited to ≤1% and never used as text on light
-- Space Grotesk + Inter, with no serif display face
-- Three image modes A/B/C sharing one world, key light upper-left
-- Golden eagle, at most 3 appearances
+- Three image modes A/B/C sharing one world, with the key light upper-left
+- Golden eagle, not bald eagle
 - Reduced-motion fallbacks required for all motion
 
-### Assumptions (need your confirmation)
+### Still needs testing
 
-- The site is German-first or bilingual (this affects hyphenation and wordmark/tagline language)
-- MA'LOA is presented as a self-initiated concept, not as client work
-- The opening sequence plays on the home page only
+See §13 for status and §13.6 for the closing checklist.
 
-### Needs testing before commitment
+**Note on tools:** an image/video generation integration (Higgsfield) is connected to this workspace. It has **not** been used or capability-checked. No assets have been generated.
 
-- Logo peak ratios (86/100/78) and the 58° angle, at all sizes
-- The connected K join, and whether "AIK" reads at 24 px
-- Whether the generation tool can deliver usable, artefact-free mountain style frames
-- Eagle continuity across shots; final production route
-- Image sequence vs. video for scroll scrubbing (iOS Safari, mid-range Android)
-- Opening sequence weight and LCP on mobile
-- Whether an optional live 3D logo is worth its performance cost
+---
 
-**Note on tools:** an image/video generation integration (Higgsfield) is connected to this workspace, but its capabilities have **not** been checked or used yet. No assets have been generated and no tests have been run for this document.
+## 13. QA, Stage 5A (2026-10-10)
+
+**Method and limits**
+
+- The repository contains **no logo source files** (no SVG, AI or PDF). The only material is the two AI-generated raster references.
+- Logo QA was done by cropping the symbol from each reference, downscaling it with Lanczos to 16/24/32/48/64 px tall (also fitted into a square, for favicon use), and inspecting the result. Stroke and gap widths were measured on a horizontal pixel profile of Ref 01.
+- This tests the **reference geometry only**. The redrawn flat logo (§2.1) does not exist yet, so every check on it is *not verified*.
+- No real devices were used. Media findings are labelled **[documented]** (specs and platform documentation), **[arithmetic]** (calculated) or **[hypothesis]** (to be tested).
+
+### 13.1 Logo QA, 16–64 px
+
+**Ref 01 measurements**
+
+At the cut through the I and K (symbol crop 1045 × 455 px):
+
+| Element | Source width | At 16 px | At 24 px | At 32 px | At 48 px | At 64 px |
+|---|---|---|---|---|---|---|
+| I stem | ≈ 43 px | ≈ 1.5 px | 2.3 px | 3.0 px | 4.5 px | 6.0 px |
+| Gap from I to K stem | ≈ 48 px | ≈ 1.7 px | 2.5 px | 3.4 px | 5.1 px | 6.8 px |
+| Gap from K stem to chevron | ≈ 19 px | ≈ 0.7 px | 1.0 px | 1.3 px | 2.0 px | 2.7 px |
+
+The two parallel diagonals left of the A are separated by gaps of the same order as the K gap.
+
+| Check | Ref 01 (AIK monogram) | Ref 02 ("logo direction") | Redrawn flat logo |
+|---|---|---|---|
+| AIK letter recognition | **Fail** ≤24 px (letters merge into the background photo). **Pass** ≥32 px. | **Fail** at all sizes: no crossbar on the A, no upright on the K, reads "A1\\" | Not verified |
+| Three distinct peaks | **Fail.** Side peaks dissolve into the background mountains ≤32 px. The centre peak dominates (M silhouette) at every size. | Partial: three peaks visible ≥32 px, but the dominant centre still reads as an M. **Fail** | Not verified |
+| K diagonals connected to upright | **Fail.** The 19 px source gap shows as a detached chevron ≥48 px and blurs ≤32 px. | **Fail** (no upright) | Not verified (rule set in §2.1) |
+| Stroke separation | **Fail** ≤32 px: gaps under 1.5 px merge, and the left parallels form one wedge | **Fail** ≤24 px | Not verified |
+| Optical balance and negative space | **Fail.** Mass is concentrated in the photo-filled centre peak; the right flank trails off-balance. | Pass ≥48 px; centre-heavy | Not verified |
+| Favicon / compact UI (square, 16–32 px) | **Fail.** The symbol is ≈ 7–14 px tall in the square and unreadable. | **Fail** | Not verified |
+
+**Conclusions**
+
+- Neither reference is usable as an interface logo. The vector redraw is mandatory, not optional.
+- A **simplified favicon variant is required.** At 16 px the full geometry produces gaps under 1 px. The variant keeps three peaks and the I stem, drops the A crossbar and the second flank layer, and uses a heavier stroke.
+- **Size guidance for the redraw** (target, to be verified on the vector):
+  - Every stroke must be at least 2 px and every gap at least 1.5 px at the smallest permitted size. In construction terms: stroke ≥ 1/12 and gap ≥ 1/16 of symbol height.
+  - **Full symbol:** minimum 32 px tall. Use 24–31 px only after a passing test.
+  - **Horizontal lockup:** minimum 140 px wide.
+  - **Below 32 px:** use the simplified favicon variant.
+  - At 1× density, Ref 01's own geometry would need **≥ 48 px** for the K gap to reach 2 px.
+
+### 13.2 Eagle consistency QA
+
+**Evidence available:** one eagle, in Ref 02 panel C, about 260 × 170 px, AI-generated.
+
+| Check | Result |
+|---|---|
+| Species | **Fail.** It's a bald eagle, not the locked golden eagle. |
+| Anatomy | **Fail.** There's a second white mass on the back (a duplicated head/nape artefact), and the white tail has dark banding, which is wrong for an adult bald eagle. |
+| Behaviour | **Fail.** It's in a wing upstroke flap, not a glide. |
+| Lighting | Partial. Cool and overall consistent with the scene, but too low-resolution to judge the feathers. |
+| Usability as a reference | **Fail.** Mood only; do not use it as an input image. |
+
+**Missing evidence:**
+
+- golden-eagle reference set (4 poses)
+- any two-shot continuity test
+- the production-route decision
+
+**Consistency rules** (binding for every eagle asset):
+
+1. **Silhouette:**
+   - adult golden eagle, gliding
+   - wings held in a slight dihedral (shallow V)
+   - 5–7 separated "fingered" primaries per wing
+   - tail fanned modestly, never fully spread
+   - head forward and level
+2. **Proportions:**
+   - wingspan about 2.2× body length (nose to tail tip)
+   - wing chord about 0.2× span
+   - tail about 0.35× body length
+   - these are checked as the same ratios in every shot
+3. **Coloration:**
+   - umber-brown body, graded toward Graphite
+   - tawny-golden nape (the only warm element)
+   - darker primaries
+   - no white head, no white tail band (adult plumage)
+   - same grade LUT across all shots
+4. **Lighting:**
+   - key light upper-left, from the same scene source
+   - underside in shadow with cool snow bounce
+   - matte feathers, tiny specular highlights only on the leading edge and nape
+5. **Camera:**
+   - eye level or slightly below the bird (looking up 5–15°), never top-down in hero shots
+   - eagle fills 8–25% of frame width
+   - at most one near-camera wing pass across the site
+6. **Flight direction:**
+   - a single site-wide vector, **left → right with a slight climb**, matching the reading direction and the logo light
+   - transitions continue that vector
+   - no reversals between consecutive shots
+7. **Approval gate:** an eagle shot is accepted only if it matches all six rules and the previous shot side by side.
+
+### 13.3 Image sequence vs video (scroll-driven scene)
+
+| Criterion | Image sequence (canvas) | Video (`<video>` + `currentTime`) |
+|---|---|---|
+| Scroll sync | Frame-exact: draw frame *n* for scroll position *n* **[documented: canvas `drawImage`]** | Each scroll update is a seek. The decoder must start from the previous keyframe, so latency grows with keyframe interval **[documented codec behaviour]** |
+| Reverse scrubbing | Same cost as forward **[arithmetic: random access]** | No native reverse decode; every backward step is a seek. Smooth only with all-intra or very short GOP encoding, which inflates the file **[documented]**. Actual smoothness per browser **[hypothesis]** |
+| iOS Safari | Canvas works, but browser-imposed canvas memory caps can blank the canvas **[hypothesis; reported limits must be verified on device]** | Inline autoplay requires `muted` + `playsinline` **[documented]**. Low Power Mode can block autoplay **[documented by WebKit behaviour; verify]**. Seek smoothness **[hypothesis]** |
+| Android Chrome | Good on mid-range devices if decoded frames are bounded **[hypothesis]** | Seeking generally works; smoothness depends on hardware decoder **[hypothesis]** |
+| Memory | Decoded frame = w × h × 4 bytes. 1600 × 900 is 5.8 MB per frame, so 96 frames is ≈ 553 MB: never keep all frames decoded **[arithmetic]** | One decoder; low, steady memory **[documented]** |
+| Decoding cost | AVIF decode is CPU-heavy. Decode off the main thread with `img.decode()` / `createImageBitmap` **[documented APIs]**; per-frame cost on devices **[hypothesis]** | Hardware decoding; cheap for forward play, expensive for repeated seeks **[documented]** |
+| Network | Many small files over HTTP/2. Can load progressively (coarse frames first). Larger total, since there is no inter-frame compression **[documented]** | One file with range requests and inter-frame compression, so it's much smaller. A scrub can stall on unbuffered ranges **[documented]** |
+| Mobile fallback / reduced motion | Show one still frame. Trivial **[arithmetic]** | Show the poster. Trivial **[documented]** |
+
+**Recommendation (provisional):**
+
+- **Image sequence** for the scroll-scrubbed homepage opening: frame-exact, symmetric reverse scrubbing, and progressive loading.
+- **Video** only for non-scrubbed, autoplaying ambient clips, if any are added.
+- The final decision follows the device test below.
+
+**Device test plan (not yet performed)**
+
+1. Build two throwaway prototypes of the same 4 s, 96-frame scene:
+   - AVIF/WebP sequence, 1600 × 900 desktop and 720 × 1280 mobile
+   - H.264 MP4 at the same sizes, in two encodings: GOP 1 (all-intra) and GOP 12
+2. Test on these devices:
+   - iPhone (current iOS, plus one 3+ year-old model)
+   - iPad Safari
+   - mid-range Android, around €250, on Chrome
+   - desktop Safari, Chrome and Firefox
+3. Measure:
+   - frame drops during forward and reverse scrub (DevTools/performance traces, target ≥ 50 fps)
+   - time to first scrubbable frame on throttled Fast 4G
+   - peak memory (Safari Web Inspector, Chrome task manager)
+   - canvas blanking or crashes
+   - Low Power Mode and Data Saver behaviour
+   - reduced-motion path
+4. **Pass criteria:** no visible stutter on reverse scrub, peak tab memory ≤ 300 MB on mobile, first scrubbable frame ≤ 3 s on Fast 4G.
+
+### 13.4 Provisional loading budget
+
+**These are targets, not measured results.**
+
+| Item | Mobile | Desktop |
+|---|---|---|
+| Initial homepage payload before the sequence (HTML + CSS + JS + fonts + poster, compressed) | ≤ 450 KB | ≤ 600 KB |
+| HTML / CSS / JS (critical) | ≤ 30 / 40 / 60 KB | same |
+| Fonts | 2 variable WOFF2 files, Latin + Latin-Ext subset, ≤ 120 KB total; preload only Space Grotesk | same |
+| Hero poster (LCP image) | AVIF 720 × 1280, ≤ 120 KB | AVIF 1920 × 1080, ≤ 220 KB |
+| Cinematic sequence | ≤ 72 frames at 720 × 1280, ≤ 25 KB per frame avg, **≤ 1.8 MB** total | ≤ 96 frames at 1600 × 900, ≤ 40 KB per frame avg, **≤ 3.8 MB** total |
+| Decoded frames held in memory | ≤ 16 (≈ 59 MB) | ≤ 24 (≈ 138 MB) |
+| Content image bands | 4:5, 1080 × 1350, ≤ 140 KB | 21:9, 2560 × 1100, ≤ 220 KB |
+| Image formats | AVIF primary, WebP fallback; `srcset` widths 640 / 960 / 1280 / 1920 / 2560 | same |
+| Logo / favicon | SVG ≤ 3 KB inline; ICO 16/32, 180 apple-touch, 512 maskable | same |
+| OG image | 1200 × 630 JPEG ≤ 150 KB | same |
+| Total homepage including sequence | ≤ 3 MB | ≤ 6 MB |
+| Core Web Vitals (Google "good" thresholds) | LCP ≤ 2.5 s, CLS ≤ 0.1, INP ≤ 200 ms on mid-range mobile, Fast 4G | same |
+
+**Loading strategy (intended, not implemented)**
+
+1. **Content first.** The hero headline, navigation and CTA are real HTML text over a static poster, so they're visible and usable at first paint. The poster is the LCP element and the only hero image preloaded.
+2. **The sequence never blocks.** Frames start loading after first paint, when the browser is idle. Coarse frames load first (every 8th, then every 4th, then all), so scrubbing works early at reduced smoothness. If the user scrolls before a frame arrives, the nearest loaded frame is drawn.
+3. **The rest of the page is independent.** Sections below the hero render and lazy-load normally. Scroll is never locked or delayed.
+4. **Static fallback.** The poster plus the final frame (logo resolved) replace the sequence when any of these apply:
+   - `prefers-reduced-motion`
+   - a `Save-Data` header, or a slow connection (Network Information API, **Chromium only [documented]**)
+   - low device memory (`navigator.deviceMemory`, **Chromium only [documented]**)
+   - a load or decode failure
+5. **Bounded decoding.** Decode around the current scroll position within the memory caps above, and release decoded frames when the hero leaves the viewport.
+
+### 13.5 QA summary, blockers and risks
+
+| Area | Status |
+|---|---|
+| Document reflects locked decisions | **Pass** (updated in this QA) |
+| Colour contrast (§3.2) | **Pass** (measured) |
+| Logo, Ref 01 at 16–64 px | **Fail** (≤32 px recognition, K join, separation, M silhouette) |
+| Logo, Ref 02 at 16–64 px | **Fail** (no AIK letterforms) |
+| Logo, redrawn flat vector | **Not verified** (does not exist) |
+| Favicon variant | **Not verified** (required; does not exist) |
+| Eagle consistency | **Fail** (only reference is the wrong species with artefacts); golden-eagle set **not verified** |
+| Image sequence vs video | **Not verified** (desk analysis only; device test pending) |
+| Loading budget | **Not verified** (targets only) |
+
+**Blockers**
+
+1. **No vector logo exists.** All logo checks on the actual identity are blocked until the flat SVG is drawn per §2.1 and §13.1.
+2. **No usable eagle reference.** Rules 1–7 can't be verified until a golden-eagle reference set exists. Creating it is image generation and needs your approval.
+
+**Risks**
+
+- The redraw may still read as an M if the centre-peak ratio isn't held at about 100 vs 86/78.
+- iOS canvas memory limits may force a smaller or shorter mobile sequence.
+- AI-generated eagle continuity may fail, which would push production to the offline 3D or licensed-footage route (cost and time).
+- German string lengths may break navigation and buttons at 360 px.
+
+### 13.6 Checklist to close Stage 5A
+
+- [x] Visual Identity v1.0 written and updated with the locked decisions
+- [x] Contrast verified for all text pairings
+- [x] Logo reference QA documented (16–64 px)
+- [x] Eagle consistency rules defined
+- [x] Media comparison, device test plan and provisional budgets documented
+- [ ] **Flat vector logo drawn** (symbol, horizontal and stacked lockups) per §2.1
+- [ ] Vector logo passes §13.1 at 24/32/48/64 px on dark and light
+- [ ] Simplified favicon variant drawn and passes at 16/32 px
+- [ ] Client approval of the vector logo
+- [ ] Client approval of this document
+
+The golden-eagle reference set, the mountain style frames and the media device test are **Stage 5B prerequisites**. They don't block 5A closure and each needs explicit approval before any generation or prototyping.
 
 ---
 
