@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AIK Studio</title>
+<meta name="description" content="AIK Studio designs digital experiences that elevate brands and turn attention into action.">
+<meta name="theme-color" content="#0b0d10">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230b0d10'/%3E%3Crect x='6' y='22' width='20' height='2' fill='%23c9a46a'/%3E%3C/svg%3E">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="AIK Studio">
+<meta property="og:description" content="From vision to digital experience.">
+<meta property="og:image" content="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/a5ce4731-def3-447e-b624-c8de3238d863.jpg">
+
+<link rel="preconnect" href="https://d2ol7oe51mr4n9.cloudfront.net">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100,600;100,700;112,700&family=Instrument+Sans:wght@400;500&display=swap">
+<link rel="stylesheet" href="studio.css">
+
+<script>
+  /* Same contract as the listing page: motion is opt-in. The scroll
+     sequence only arms when scripting is on and reduced motion is not
+     requested. Otherwise the hero renders as one still frame with all
+     copy visible. */
+  (function () {
+    try {
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.className += ' anim';
+      }
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+
+<a class="skip" href="#work">Skip to content</a>
+
+<header class="top">
+  <a class="top__mark" href="#cine" aria-label="AIK Studio, back to top">AIK<span>Studio</span></a>
+  <nav class="top__nav" aria-label="Main">
+    <a href="#work">Work</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ============ CINEMATIC HERO ============
+       The section is tall; the stage inside it is sticky. Scroll
+       progress through the section drives video.currentTime and the
+       copy beats. One rAF loop in studio.js owns all of it. -->
+  <section class="cine" id="cine" aria-label="Introduction">
+    <div class="cine__stage">
+
+      <div class="cine__frame">
+        <video class="cine__video" id="cineVideo"
+               muted playsinline preload="metadata"
+               poster="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/a5ce4731-def3-447e-b624-c8de3238d863.jpg"
+               width="1920" height="1080"
+               aria-hidden="true" tabindex="-1"
+               data-poster-start="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/f196ed79-648b-40cd-bbc7-4e52342a86d8.jpg"
+               data-sm="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/1462dd5d-2c0b-4683-9e7d-623cebd0f825.mp4"
+               data-lg="https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/382988d8-4d91-46cd-89d2-a7d834276b17.mp4"></video>
+      </div>
+
+      <div class="cine__mist cine__mist--far" aria-hidden="true"></div>
+      <div class="cine__mist cine__mist--near" aria-hidden="true"></div>
+      <div class="cine__shade" aria-hidden="true"></div>
+      <div class="cine__grain" aria-hidden="true"></div>
+
+      <div class="cine__copy">
+        <p class="beat beat--kicker" data-beat="0 .2">
+          <span>AIK Studio</span>
+          <span>Digital design studio</span>
+        </p>
+
+        <h1 class="beat beat--head" data-beat=".3 .74">
+          <span class="ln">From vision</span>
+          <span class="ln">to digital experience.</span>
+        </h1>
+
+        <div class="beat beat--end" data-beat=".8 1" data-hold>
+          <p>Digital experiences designed to elevate brands and turn attention into action.</p>
+          <a class="cta" href="#work">
+            <span>See the work</span>
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v14M4 11l6 6 6-6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="cine__hud" aria-hidden="true">
+        <span class="hud__tc" id="cineTc">00:00</span>
+        <span class="hud__rail"><i id="cineRail"></i></span>
+      </div>
+
+      <p class="cine__cue" aria-hidden="true"><span></span>Scroll</p>
+    </div>
+  </section>
+
+  <!-- ============ WORK ============ -->
+  <section class="work" id="work">
+    <div class="work__in">
+      <header class="work__head">
+        <p class="label">Selected work</p>
+        <h2>Built with the same care, frame by frame.</h2>
+      </header>
+
+      <a class="case" href="../">
+        <figure class="case__img">
+          <picture>
+            <source srcset="../img/aerial-wide.webp" type="image/webp">
+            <img src="../img/aerial-wide.jpg" alt="Aerial view of the A135 commercial complex in Langley with the valley behind" width="828" height="560" loading="lazy" decoding="async">
+          </picture>
+        </figure>
+        <div class="case__txt">
+          <p class="label">01 — Single-listing website</p>
+          <h3>A135, 6286 203 Street, Langley</h3>
+          <p>A listing page for a commercial strata unit. The palette is taken off the building itself: charcoal cladding, white concrete and the orange stripe on the facade.</p>
+          <span class="case__go">View the project
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h14M11 4l6 6-6 6"/></svg>
+          </span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <span>© 2026 AIK Studio</span>
+  <a href="#cine">Back to top</a>
+</footer>
+
+<script src="studio.js" defer></script>
+</body>
+</html>

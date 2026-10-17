@@ -1,0 +1,403 @@
+/* =========================================================
+   AIK Studio — cinematic scroll hero
+   Near-black ground, slate fog, and one warm note taken off
+   the eagle's nape. Type is shared with the listing page:
+   Archivo widened for display, Instrument Sans for body.
+
+   Motion is opt-in. The tall, pinned sequence only exists
+   behind .anim; without it the hero is a single still frame.
+   ========================================================= */
+
+:root{
+  --ink:     #0b0d10;
+  --ink-2:   #12161b;
+  --slate:   #1b222a;
+  --fog:     #c9ced4;
+  --fog-2:   rgba(201, 206, 212, .62);
+  --fog-3:   rgba(201, 206, 212, .16);
+  --gold:    #c9a46a;
+
+  --display: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --body:    "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  --gut:  clamp(20px, 5vw, 72px);
+  --top-h: 72px;
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+
+  /* Where the copy sits, read off the actual frames:
+     0-2 s   empty valley, then a speck at centre      -> kicker low left
+     3-7 s   bird in the lower-middle third (y 55-72%) -> headline in the
+             top band, over the peaks
+     8-10 s  wings fill the upper two thirds; the fog
+             below-left stays clear                     -> closing line low left
+     Overridden per breakpoint below. */
+  --kick-y: 14%;
+  --head-y: 15%;
+  --end-y:  10%;
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+
+html{ background:var(--ink); }
+body{
+  margin:0;
+  background:var(--ink);
+  color:var(--fog);
+  font-family:var(--body);
+  font-size:clamp(15px, .5vw + 13.5px, 17px);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:clip;
+}
+
+a{ color:inherit; text-decoration:none; }
+::selection{ background:var(--gold); color:var(--ink); }
+:focus-visible{ outline:1px solid var(--gold); outline-offset:4px; }
+
+.skip{ position:absolute; left:-9999px; top:0; z-index:50; }
+.skip:focus{ left:0; background:var(--fog); color:var(--ink); padding:14px 18px; font-size:13px; }
+
+.label{
+  margin:0;
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--fog-2);
+}
+
+/* ---------------------------------------------------------
+   top bar — sits over the film, never gets a fill
+   --------------------------------------------------------- */
+
+.top{
+  position:fixed; inset:0 0 auto 0; z-index:20;
+  height:var(--top-h);
+  padding:0 var(--gut);
+  padding-top:env(safe-area-inset-top);
+  display:flex; align-items:center; justify-content:space-between;
+  pointer-events:none;
+  mix-blend-mode:difference;
+  color:#e6e8eb;
+}
+.top a{ pointer-events:auto; }
+
+.top__mark{
+  display:inline-flex; align-items:baseline; gap:.5em;
+  min-height:44px; align-items:center;
+  font-family:var(--display);
+  font-weight:700; font-stretch:112%;
+  font-size:17px; letter-spacing:.08em;
+}
+.top__mark span{
+  font-family:var(--body);
+  font-weight:400; font-size:12px;
+  letter-spacing:.24em; text-transform:uppercase;
+  opacity:.7;
+}
+
+.top__nav a{
+  display:inline-flex; align-items:center; min-height:44px;
+  font-size:12px; letter-spacing:.22em; text-transform:uppercase;
+  position:relative;
+}
+.top__nav a::after{
+  content:""; position:absolute; left:0; right:0; bottom:10px; height:1px;
+  background:currentColor; transform:scaleX(0); transform-origin:right;
+  transition:transform .5s var(--ease-out);
+}
+.top__nav a:hover::after{ transform:scaleX(1); transform-origin:left; }
+
+/* ---------------------------------------------------------
+   hero — static layout (also the no-script / reduced view)
+   --------------------------------------------------------- */
+
+.cine{ position:relative; background:var(--ink); }
+
+.cine__stage{
+  position:relative;
+  height:100vh; height:100svh;
+  min-height:520px;
+  overflow:hidden;
+  isolation:isolate;
+}
+
+.cine__frame{
+  position:absolute; inset:0;
+  transform-origin:50% 45%;
+  will-change:transform;
+}
+.cine__video{
+  display:block;
+  width:100%; height:100%;
+  object-fit:cover;
+  object-position:var(--focus, 50% 45%);
+  background:var(--ink) var(--poster, url("https://d2ol7oe51mr4n9.cloudfront.net/user_3K31NSDIHA0gXz2VXZIk09GnTID/a5ce4731-def3-447e-b624-c8de3238d863.jpg")) var(--focus, 50% 45%) / cover no-repeat;
+}
+
+/* Two fog sheets drift at different rates for parallax over the
+   footage's own depth. Kept low in contrast so they read as air,
+   not as an effect. */
+.cine__mist{
+  position:absolute; inset:-20% -10%;
+  pointer-events:none;
+  will-change:transform, opacity;
+}
+.cine__mist--far{
+  background:
+    radial-gradient(60% 30% at 30% 70%, rgba(170, 180, 192, .16), transparent 70%),
+    radial-gradient(50% 24% at 75% 62%, rgba(170, 180, 192, .12), transparent 70%);
+}
+.cine__mist--near{
+  background:
+    radial-gradient(70% 26% at 20% 92%, rgba(200, 206, 214, .22), transparent 70%),
+    radial-gradient(55% 22% at 85% 96%, rgba(200, 206, 214, .18), transparent 72%);
+  filter:blur(8px);
+}
+
+/* Edge darkening so the type always has ground to sit on, plus a
+   fade-to-ink that carries the hero into the next section. */
+.cine__shade{
+  position:absolute; inset:0; pointer-events:none;
+  background:
+    linear-gradient(180deg, rgba(11, 13, 16, .72) 0%, rgba(11, 13, 16, .34) 30%, transparent 52%, transparent 62%, rgba(11, 13, 16, .8) 100%),
+    radial-gradient(120% 90% at 50% 45%, transparent 55%, rgba(11, 13, 16, .55) 100%);
+}
+.cine__shade::after{
+  content:""; position:absolute; inset:0;
+  background:var(--ink);
+  opacity:var(--out, 0);
+}
+
+.cine__grain{
+  position:absolute; inset:-50%; pointer-events:none; opacity:.07;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode:overlay;
+}
+
+/* copy ---------------------------------------------------- */
+
+.cine__copy{
+  position:absolute; inset:0;
+  padding:var(--top-h) var(--gut) 0;
+  pointer-events:none;
+}
+.cine__copy a{ pointer-events:auto; }
+
+.beat{ position:absolute; margin:0; }
+
+.beat--kicker{
+  left:var(--gut); bottom:var(--kick-y);
+  display:flex; flex-direction:column; gap:6px;
+  font-size:11px; letter-spacing:.28em; text-transform:uppercase;
+  color:var(--fog-2);
+}
+.beat--kicker span:first-child{ color:var(--fog); }
+.beat--kicker::before{
+  content:""; width:40px; height:1px; margin-bottom:14px;
+  background:var(--gold); opacity:.8;
+}
+
+.beat--head{
+  left:var(--gut); top:var(--head-y);
+  font-family:var(--display);
+  font-weight:700; font-stretch:112%;
+  font-size:clamp(2.3rem, 5.4vw, 5.8rem);
+  line-height:.94;
+  letter-spacing:-.035em;
+  text-transform:uppercase;
+  color:#eef0f2;
+  text-wrap:balance;
+}
+.beat--head .ln{ display:block; }
+.beat--head .ln + .ln{ color:var(--fog); }
+
+.beat--end{
+  left:var(--gut); bottom:var(--end-y);
+  max-width:30rem;
+}
+.beat--end p{
+  margin:0 0 28px;
+  font-size:clamp(1.05rem, .6vw + .9rem, 1.35rem);
+  line-height:1.45;
+  color:#e6e8eb;
+  text-wrap:pretty;
+}
+
+.cta{
+  display:inline-flex; align-items:center; gap:14px;
+  min-height:48px; padding:0 22px 0 24px;
+  border:1px solid var(--fog-3);
+  border-radius:999px;
+  font-size:12px; letter-spacing:.2em; text-transform:uppercase;
+  color:#eef0f2;
+  background:rgba(11, 13, 16, .28);
+  -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+  transition:border-color .4s var(--ease-out), background-color .4s var(--ease-out);
+}
+.cta svg{
+  width:14px; height:14px; fill:none; stroke:var(--gold); stroke-width:1.5;
+  transition:transform .5s var(--ease-out);
+}
+.cta:hover{ border-color:rgba(201, 164, 106, .6); background:rgba(11, 13, 16, .5); }
+.cta:hover svg{ transform:translateY(3px); }
+
+/* hud ------------------------------------------------------ */
+
+.cine__hud{
+  position:absolute; right:var(--gut); top:50%;
+  transform:translateY(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:14px;
+  font-size:10px; letter-spacing:.18em;
+  font-variant-numeric:tabular-nums;
+  color:var(--fog-2);
+}
+.hud__tc{ writing-mode:vertical-rl; transform:rotate(180deg); }
+.hud__rail{ position:relative; width:1px; height:120px; background:var(--fog-3); overflow:hidden; }
+.hud__rail i{
+  position:absolute; inset:0; background:var(--gold);
+  transform-origin:top; transform:scaleY(var(--p, 0));
+}
+
+.cine__cue{
+  position:absolute; left:50%; bottom:calc(28px + env(safe-area-inset-bottom));
+  transform:translateX(-50%);
+  margin:0; display:flex; flex-direction:column; align-items:center; gap:12px;
+  font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:var(--fog-2);
+}
+.cine__cue span{
+  width:1px; height:44px; background:linear-gradient(var(--fog-2), transparent);
+  transform-origin:top;
+}
+
+/* Static view: show every beat at rest, stacked without overlap. */
+html:not(.anim) .cine__hud,
+html:not(.anim) .cine__cue,
+html:not(.anim) .beat--kicker{ display:none; }
+
+/* ---------------------------------------------------------
+   hero — scroll sequence
+   --------------------------------------------------------- */
+
+.anim .cine{ height:420vh; height:420svh; }
+.anim .cine__stage{ position:sticky; top:0; }
+
+.anim .beat{ opacity:0; visibility:hidden; will-change:opacity, transform; }
+.anim .beat.is-on{ visibility:visible; }
+
+@media (prefers-reduced-motion: no-preference){
+  .anim .cine__cue span{ animation:cue 2.4s var(--ease-out) infinite; }
+}
+@keyframes cue{
+  0%{ transform:scaleY(0); }
+  50%{ transform:scaleY(1); transform-origin:top; }
+  51%{ transform-origin:bottom; }
+  100%{ transform:scaleY(0); transform-origin:bottom; }
+}
+
+/* ---------------------------------------------------------
+   work
+   --------------------------------------------------------- */
+
+.work{
+  position:relative;
+  background:var(--ink);
+  padding:clamp(96px, 14vw, 200px) var(--gut) clamp(80px, 10vw, 140px);
+}
+.work__in{ max-width:1320px; margin:0 auto; }
+
+.work__head{
+  display:grid; gap:22px;
+  margin-bottom:clamp(48px, 7vw, 96px);
+  max-width:46rem;
+}
+.work__head h2{
+  margin:0;
+  font-family:var(--display);
+  font-weight:700; font-stretch:112%;
+  font-size:clamp(1.9rem, 3.6vw, 3.4rem);
+  line-height:1.02; letter-spacing:-.03em;
+  color:#eef0f2;
+  text-wrap:balance;
+}
+
+.case{
+  display:grid;
+  grid-template-columns:minmax(0, 1.5fr) minmax(0, 1fr);
+  gap:clamp(28px, 4vw, 72px);
+  align-items:end;
+  padding-top:28px;
+  border-top:1px solid var(--fog-3);
+}
+.case__img{
+  margin:0; overflow:hidden; background:var(--slate);
+  aspect-ratio:828 / 560;
+}
+.case__img img{
+  display:block; width:100%; height:100%; object-fit:cover;
+  filter:saturate(.8);
+  transition:transform 1.2s var(--ease-out), filter 1.2s var(--ease-out);
+}
+.case:hover .case__img img{ transform:scale(1.03); filter:saturate(1); }
+
+.case__txt{ display:grid; gap:16px; padding-bottom:6px; }
+.case__txt h3{
+  margin:0;
+  font-family:var(--display);
+  font-weight:600; font-stretch:100%;
+  font-size:clamp(1.3rem, 1.6vw, 1.7rem);
+  line-height:1.15; letter-spacing:-.01em;
+  color:#eef0f2;
+}
+.case__txt p:not(.label){ margin:0; color:var(--fog-2); max-width:34em; }
+
+.case__go{
+  display:inline-flex; align-items:center; gap:12px;
+  min-height:44px; margin-top:6px;
+  font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#eef0f2;
+}
+.case__go svg{
+  width:14px; height:14px; fill:none; stroke:var(--gold); stroke-width:1.5;
+  transition:transform .5s var(--ease-out);
+}
+.case:hover .case__go svg{ transform:translateX(4px); }
+
+/* ---------------------------------------------------------
+   footer
+   --------------------------------------------------------- */
+
+.foot{
+  display:flex; justify-content:space-between; align-items:center; gap:20px;
+  padding:28px var(--gut) calc(28px + env(safe-area-inset-bottom));
+  border-top:1px solid var(--fog-3);
+  font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--fog-2);
+}
+.foot a{ display:inline-flex; align-items:center; min-height:44px; }
+.foot a:hover{ color:var(--fog); }
+
+/* ---------------------------------------------------------
+   breakpoints
+   --------------------------------------------------------- */
+
+@media (max-width: 860px){
+  .case{ grid-template-columns:1fr; }
+}
+
+/* Portrait phones: the 16:9 film is cropped to a narrow column, so
+   the copy moves to the top and bottom bands, away from the bird. */
+@media (max-width: 640px){
+  :root{
+    --top-h: 64px;
+    --kick-y: 16%;
+    --head-y: 15%;
+    --end-y: 9%;
+  }
+  .beat--head{ right:var(--gut); font-size:clamp(2.1rem, 10.4vw, 3.4rem); }
+  .beat--end{ right:var(--gut); }
+  .cine__hud{ display:none; }
+  .anim .cine{ height:340vh; height:340svh; }
+}
+
+/* Scrubbing unavailable: the poster under the element carries it. */
+.cine--still .cine__video{ opacity:0; }
