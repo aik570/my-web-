@@ -76,8 +76,10 @@
 
   /* ---------- measurement ---------------------------------- */
 
-  var top = 0, span = 1;
+  var top = 0, span = 1, portrait = false;
   function measure() {
+    portrait = window.innerHeight > window.innerWidth;
+    if (!portrait) video.style.objectPosition = '';
     var r = hero.getBoundingClientRect();
     top = r.top + window.pageYOffset;
     span = Math.max(1, hero.offsetHeight - stage.offsetHeight);
@@ -157,7 +159,11 @@
       mistFar.style.transform  = 'translate3d(0,' + (-p * 6).toFixed(2) + '%,0)';
       mistNear.style.transform = 'translate3d(' + (p * 4).toFixed(2) + '%,' + (-p * 20).toFixed(2) + '%,0)';
       mistNear.style.opacity = (1 - 0.6 * ramp(p, 0, 0.5)).toFixed(3);
-      shade.style.setProperty('--out', (0.62 * ramp(p, 0.9, 1)).toFixed(3));
+      shade.style.setProperty('--out', (0.3 * ramp(p, 0.94, 1)).toFixed(3));
+      // Portrait screens see a narrow column of the 16:9 film. The bird
+      // flies up the centre, but in the final close pass its head sits
+      // right of centre, so the crop drifts right to keep the eye in frame.
+      if (portrait) video.style.objectPosition = (50 + 12 * ramp(p, 0.72, 1)).toFixed(2) + '% 45%';
       rail.style.setProperty('--p', p.toFixed(4));
       cue.style.opacity = ((1 - ramp(p, 0, 0.05)) * intro).toFixed(3);
 

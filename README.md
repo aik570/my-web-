@@ -147,3 +147,75 @@ is an offer.
 
 In `js/main.js`, replace the block marked `Demo only: nothing is sent` with
 a `fetch()` to your endpoint.
+
+---
+
+# AIK Studio — `studio/`
+
+A separate page for the studio itself, built around one scroll-driven
+film: a golden eagle coming out of mountain fog toward the camera. The
+listing above is untouched; the studio page links to it as its first
+case study.
+
+```
+studio/index.html
+studio/studio.css
+studio/studio.js
+```
+
+Same stack as the listing: plain HTML, CSS and JavaScript, no build step,
+no animation library. Same fonts (Archivo, Instrument Sans).
+
+## The film
+
+Generated on Higgsfield (Kling 3.0, 10 s, 1920 × 1080, 24 fps), then
+graded darker and cooler and re-encoded for scrubbing. The source file had
+a single keyframe, which makes every seek decode from frame 0. Both
+encodes put a keyframe every 6 frames and have no B-frames, so a seek
+decodes at most five frames.
+
+| File | Size | Used for |
+|---|---|---|
+| 1920 × 1080, CRF 22 | 4.5 MB | Windows wider than 900 px |
+| 1280 × 720, CRF 23 | 1.8 MB | Phones and small windows |
+| First frame, 1600 px JPEG | 33 KB | Poster while the sequence loads |
+| 6.8 s frame, 1600 px JPEG | 38 KB | Still hero for reduced motion, og:image |
+
+**The files are served from the Higgsfield CDN**, not from this
+repository; the URLs are in the `data-*` attributes on `#cineVideo` in
+`studio/index.html` and in one `url()` in `studio.css`. To self-host,
+download the four files, put them in `studio/media/`, and swap the URLs.
+
+## What the frames contain
+
+The copy is placed from the actual footage, not guessed:
+
+| Time | Frame | Copy |
+|---|---|---|
+| 0–1.5 s | Empty valley, fog, two peaks | Kicker, low left |
+| 1.5–7 s | Eagle rises out of the fog, lower-middle third | Headline in the top band, over the peaks |
+| 8–10 s | Close pass; wings fill the upper two thirds | Closing line and CTA, low left, over fog |
+
+## How the scroll works
+
+The section is 420 svh tall (340 on phones) with a sticky stage inside.
+One `requestAnimationFrame` loop eases a progress value toward the scroll
+position (about 90 ms time constant) and writes everything from that one
+number: `video.currentTime`, the three copy beats, two fog layers moving
+at different rates, a slow 1.06 → 1.0 settle of the frame, the timecode
+rail and a light fade at the end. The loop stops when it has caught up.
+
+- The video is never played while scrubbing. One seek is in flight at a
+  time; when `seeked` fires, the next one goes to wherever the scroll is
+- iOS Safari will not paint a seeked frame until the element has played
+  once, so it is played muted and paused immediately on `loadedmetadata`
+- If a seek never lands (2.5 s) or the file errors, the page drops to
+  the poster and the copy keeps working
+- On portrait screens the crop pans from 50% to 62% over the last
+  quarter, so the eagle's head stays in frame during the close pass
+- Reduced motion or data saver: no film is requested at all. The hero is
+  one still frame with the headline and closing line both visible
+
+Checked in Chromium at 1440 × 900 and 390 × 844 at 0, 20, 50, 78 and 100%
+of the sequence: video time tracked progress to within 0.02 s, no
+horizontal overflow, no console errors.
