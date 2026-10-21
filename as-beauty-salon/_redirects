@@ -1,0 +1,4 @@
+# Kurze Adressen für die Rechtstexte (200 = Rewrite, keine Weiterleitung, keine Schleife).
+# Die Dateien selbst bleiben unter /impressum.html und /datenschutz.html erreichbar.
+/impressum      /impressum.html     200
+/datenschutz    /datenschutz.html   200
