@@ -20,7 +20,7 @@ As of 2026-10-21. This file is **not** part of the website upload; it is only fo
 
 | Item | Where | Why |
 |---|---|---|
-| Postcode: **14471** (Impressum, Datenschutz) or **14467** (homepage, map, JSON-LD) | all pages | Must be consistent. Inconsistent addresses look untrustworthy. |
+| Postcode: resolved, 14467 everywhere (confirmed 2026-10-22) | all pages | — |
 | Legal form / registered business name, if there is one | Impressum | § 5 DDG |
 | VAT ID (USt-IdNr.), if one exists | Impressum | § 5 Abs. 1 Nr. 6 DDG |
 | Hairdressing is a licensed trade: professional title (e.g. Friseurmeister/in) and the country that granted it, responsible Handwerkskammer, Handwerksrolle entry, reference to the Handwerksordnung | Impressum | § 5 Abs. 1 Nr. 3 and 5 DDG |
