@@ -1,0 +1,312 @@
+<title>Angebot Handy Chirurg</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a one-page offer in the site's own clinic language. Hero, then a single reading column with three package cards. */
+:root {
+  --bg: #ffffff;
+  --mint: #f3f8f6;
+  --mint-2: #e4f0ec;
+  --mint-3: #c9e2da;
+  --teal: #2f7a68;
+  --teal-d: #1a4a3e;
+  --deep: #0f2621;
+  --ink: #2a2a2a;
+  --grey: #5c6764;
+  --rule: rgba(42, 42, 42, .12);
+  --red: #c8312a;
+  --signal: #6fe3c0;
+  --sans: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 17px/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
+h1, h2, h3, p, ul, ol { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+h1, h2, h3 { font-stretch: 125%; font-weight: 800; letter-spacing: -.03em; text-wrap: balance; }
+a { color: var(--teal); }
+.wrap { max-width: 66rem; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+
+.kicker { display: inline-flex; align-items: center; gap: .55rem; font: 600 .75rem/1 var(--sans); font-stretch: 125%; letter-spacing: .18em; text-transform: uppercase; color: var(--teal); }
+.kicker::before { content: ""; width: 11px; height: 11px; flex: none; background:
+  linear-gradient(currentColor, currentColor) center / 3px 11px no-repeat,
+  linear-gradient(currentColor, currentColor) center / 11px 3px no-repeat; }
+.kicker--light { color: var(--signal); }
+
+/* hero */
+.hero { background: var(--deep); color: #e7f1ee; padding-block: 3rem 0; overflow: hidden; }
+.hero__meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem 2rem; font: 400 .8125rem var(--mono); color: rgba(231, 241, 238, .6); }
+.hero h1 { margin-top: 3.5rem; font-size: clamp(2.4rem, 1.2rem + 5vw, 5rem); line-height: .98; color: #fff; max-width: 14ch; }
+.hero__lede { margin-top: 1.5rem; max-width: 46ch; font-size: clamp(1.05rem, 1rem + .4vw, 1.3rem); color: rgba(231, 241, 238, .78); }
+.hero__cta { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+.btn { display: inline-flex; align-items: center; min-height: 3.1rem; padding: 0 1.4rem; border-radius: 8px; font: 600 1rem var(--sans); font-stretch: 110%; text-decoration: none; }
+.btn--signal { background: var(--signal); color: var(--deep); }
+.btn--line { color: #fff; border: 1.5px solid rgba(255, 255, 255, .35); }
+.ecg { display: block; width: 100%; height: 90px; margin-top: 3rem; }
+.ecg path { fill: none; stroke: var(--signal); stroke-width: 2; stroke-linejoin: round; vector-effect: non-scaling-stroke; filter: drop-shadow(0 0 4px rgba(111, 227, 192, .7)); }
+
+/* sections */
+section { padding-block: clamp(3.5rem, 2.5rem + 4vw, 6rem); }
+section.tint { background: var(--mint); }
+.head { max-width: 44rem; margin-bottom: 2.5rem; }
+.head h2 { margin-top: 1rem; font-size: clamp(1.9rem, 1.3rem + 2.4vw, 3.1rem); line-height: 1.04; }
+.head p { margin-top: 1rem; color: var(--grey); font-size: 1.125rem; max-width: 52ch; }
+
+/* findings: before → after */
+.findings { display: grid; gap: 12px; }
+.finding { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1px; background: var(--rule); border-radius: 10px; overflow: hidden; }
+.finding > div { background: #fff; padding: 1.1rem 1.25rem; min-width: 0; }
+.finding .lbl { display: block; font: 500 .6875rem var(--mono); letter-spacing: .08em; text-transform: uppercase; margin-bottom: .35rem; }
+.finding .now .lbl { color: var(--red); }
+.finding .new .lbl { color: var(--teal); }
+.finding .new { background: #fbfdfc; }
+@media (max-width: 640px) { .finding { grid-template-columns: minmax(0, 1fr); } }
+
+/* scope */
+.scope { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 3rem; border-top: 2px solid var(--ink); }
+.scope li { padding: 1rem 0 1rem 1.6rem; border-bottom: 1px solid var(--rule); position: relative; }
+.scope li::before { content: ""; position: absolute; left: 0; top: 1.55rem; width: 10px; height: 5px; border-left: 2px solid var(--teal); border-bottom: 2px solid var(--teal); transform: rotate(-45deg); }
+.scope strong { font-weight: 600; }
+.scope span { display: block; color: var(--grey); font-size: .9375rem; }
+@media (max-width: 760px) { .scope { grid-template-columns: minmax(0, 1fr); } }
+
+/* packages */
+.pkgs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; align-items: stretch; }
+.pkg { display: flex; flex-direction: column; padding: 1.5rem; border-radius: 12px; border: 1px solid var(--mint-3); background: #fff; min-width: 0; }
+.pkg--rec { background: var(--teal); border-color: var(--teal); color: #fff; }
+.pkg__name { font: 700 1.25rem var(--sans); font-stretch: 125%; }
+.pkg__tag { align-self: flex-start; margin-bottom: .9rem; padding: .25rem .55rem; border-radius: 5px; background: var(--signal); color: var(--deep); font: 500 .6875rem var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+.pkg__for { margin-top: .35rem; color: var(--grey); font-size: .9375rem; }
+.pkg--rec .pkg__for { color: rgba(255, 255, 255, .78); }
+.pkg__price { margin-top: 1.25rem; font: 800 2.4rem/1 var(--sans); font-stretch: 125%; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+.pkg__price small { font: 400 .8125rem var(--mono); letter-spacing: 0; margin-left: .3rem; opacity: .7; }
+.pkg ul { margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--rule); display: grid; gap: .5rem; font-size: .9375rem; }
+.pkg--rec ul { border-top-color: rgba(255, 255, 255, .2); }
+.pkg li { padding-left: 1.2rem; position: relative; }
+.pkg li::before { content: "+"; position: absolute; left: 0; font-weight: 700; color: var(--teal); }
+.pkg--rec li::before { color: var(--signal); }
+.pkg li.inherit { font-weight: 600; }
+.care { margin-top: 12px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem 2rem; align-items: center; padding: 1.25rem 1.5rem; border-radius: 12px; background: var(--mint-2); }
+.care p { color: var(--grey); max-width: 52ch; }
+.care strong { color: var(--ink); }
+.care__price { font: 800 1.5rem var(--sans); font-stretch: 125%; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.note { margin-top: 1rem; font: 400 .8125rem var(--mono); color: var(--grey); }
+@media (max-width: 900px) { .pkgs { grid-template-columns: minmax(0, 1fr); } }
+
+/* timeline */
+.time { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem; counter-reset: s; }
+.time li { counter-increment: s; border-top: 2px solid var(--teal); padding-top: 1rem; }
+.time li::before { content: counter(s); display: grid; place-items: center; width: 34px; height: 34px; margin-top: -2.1rem; margin-bottom: .9rem; border-radius: 50%; background: #fff; border: 2px solid var(--teal); font: 800 .9375rem var(--sans); font-stretch: 125%; color: var(--teal-d); }
+.time .when { font: 500 .75rem var(--mono); color: var(--teal); letter-spacing: .04em; text-transform: uppercase; }
+.time h3 { margin-top: .35rem; font-size: 1.15rem; }
+.time p { margin-top: .35rem; color: var(--grey); font-size: .9375rem; }
+@media (max-width: 760px) { .time { grid-template-columns: minmax(0, 1fr); gap: 2.25rem; } }
+
+/* need + terms */
+.two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+.card { padding: 1.5rem; border-radius: 12px; background: #fff; border: 1px solid var(--mint-3); min-width: 0; }
+.card h3 { font-size: 1.15rem; padding-bottom: .8rem; border-bottom: 2px solid var(--teal); }
+.card li { padding: .6rem 0; border-bottom: 1px solid var(--rule); color: var(--grey); }
+.card li:last-child { border-bottom: 0; }
+.card li strong { color: var(--ink); font-weight: 600; }
+@media (max-width: 760px) { .two { grid-template-columns: minmax(0, 1fr); } }
+
+/* close */
+.close { background: var(--deep); color: #e7f1ee; text-align: left; }
+.close h2 { font-size: clamp(1.9rem, 1.3rem + 2.4vw, 3.1rem); line-height: 1.04; color: #fff; max-width: 18ch; margin-top: 1rem; }
+.close p { margin-top: 1rem; max-width: 50ch; color: rgba(231, 241, 238, .75); }
+.close .contact { margin-top: 2rem; font: 500 1rem var(--mono); color: #fff; }
+footer { padding-block: 1.5rem; font: 400 .75rem var(--mono); color: var(--grey); }
+:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+</style>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero__meta">
+      <span>Angebot Nr. HC-2026-01</span>
+      <span>Potsdam, 26.10.2026 · gültig 14 Tage</span>
+    </div>
+    <p class="kicker kicker--light" style="margin-top:3rem">Für Handy Chirurg Potsdam · Dortustraße 23</p>
+    <h1>Eine Website, die Kunden in den Laden bringt.</h1>
+    <p class="hero__lede">Das Konzept haben Sie bereits gesehen. Hier steht, was genau Sie bekommen, wie lange es dauert und was es kostet.</p>
+    <div class="hero__cta">
+      <a class="btn btn--signal" href="https://claude.ai/artifact/EkiTf1vMa51btgxDCYYfc7" target="_blank" rel="noopener">Konzept ansehen</a>
+      <a class="btn btn--line" href="#pakete">Zu den Paketen</a>
+    </div>
+  </div>
+  <svg class="ecg" viewBox="0 0 1200 90" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 60 H160 L172 60 L180 52 L188 60 H230 L238 64 L246 14 L256 82 L264 60 H330 L348 50 L366 60 H560 L572 60 L580 52 L588 60 H630 L638 64 L646 14 L656 82 L664 60 H730 L748 50 L766 60 H960 L972 60 L980 52 L988 60 H1030 L1038 64 L1046 14 L1056 82 L1064 60 H1130 L1148 50 L1166 60 H1200"/>
+  </svg>
+</header>
+
+<main>
+  <section>
+    <div class="wrap">
+      <div class="head">
+        <p class="kicker">Befund</p>
+        <h2>Was die jetzige Seite Kunden kostet.</h2>
+        <p>Die heutige Seite hat die richtigen Informationen. Sie stehen nur an der falschen Stelle oder widersprechen sich.</p>
+      </div>
+      <div class="findings">
+        <div class="finding"><div class="now"><span class="lbl">Heute</span>Adresse und Öffnungszeiten stehen erst weit unten. Auf dem Handy muss man lange scrollen.</div><div class="new"><span class="lbl">Neu</span>Im ersten Bildschirm: „Jetzt geöffnet“, Uhrzeit, Adresse, „ohne Termin“ und ein Anruf-Knopf.</div></div>
+        <div class="finding"><div class="now"><span class="lbl">Heute</span>Texte sprechen mal mit „Sie“, mal mit „Du“ und erwähnen Filialen in Berlin.</div><div class="new"><span class="lbl">Neu</span>Einheitliche Sprache, alles bezogen auf den Laden in Potsdam.</div></div>
+        <div class="finding"><div class="now"><span class="lbl">Heute</span>Stockfotos und eine Figur, die die Überschrift verdeckt.</div><div class="new"><span class="lbl">Neu</span>Ihr Logo als Animation, ein interaktives 3D-Handy und echte Fotos Ihres Ladens.</div></div>
+        <div class="finding"><div class="now"><span class="lbl">Heute</span>Sieht aus wie viele andere Reparatur-Seiten.</div><div class="new"><span class="lbl">Neu</span>Ein eigener Auftritt als „Notaufnahme für Ihr Handy“, der zum Namen Handy Chirurg passt.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tint">
+    <div class="wrap">
+      <div class="head">
+        <p class="kicker">Leistungsumfang</p>
+        <h2>Was Sie bekommen.</h2>
+      </div>
+      <ul class="scope">
+        <li><strong>Individuelles Design</strong><span>In Ihren Markenfarben, für Handy und Desktop.</span></li>
+        <li><strong>Animiertes Logo</strong><span>Ihr Logo zeichnet sich beim Laden wie ein Herzmonitor.</span></li>
+        <li><strong>Interaktives 3D-Handy</strong><span>Wird beim Scrollen geöffnet und repariert. Ihre Leistungen am Gerät erklärt.</span></li>
+        <li><strong>Live-Öffnungsstatus</strong><span>„Jetzt geöffnet“ oder „öffnet um 10:00“, automatisch nach Potsdamer Zeit.</span></li>
+        <li><strong>Ihre Preisliste</strong><span>Übersichtlich eingebunden, leicht zu aktualisieren.</span></li>
+        <li><strong>Anruf, Route, WhatsApp</strong><span>Mit einem Tipp auf dem Handy erreichbar.</span></li>
+        <li><strong>Lokales SEO</strong><span>Seitentitel, Beschreibungen und strukturierte Daten für „Handyreparatur Potsdam“.</span></li>
+        <li><strong>Rechtliches eingebunden</strong><span>Impressum und Datenschutz nach Ihren Angaben, ohne Tracking-Banner.</span></li>
+        <li><strong>Schnell und leicht</strong><span>Optimierte Bilder, kein Baukasten, keine Plugins.</span></li>
+        <li><strong>Livegang</strong><span>Einrichtung auf Ihrer Domain handychirurg.de.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="pakete">
+    <div class="wrap">
+      <div class="head">
+        <p class="kicker">Pakete</p>
+        <h2>Drei Wege, ein Ziel.</h2>
+        <p>Alle Pakete enthalten Design, Umsetzung, zwei Korrekturrunden und den Livegang.</p>
+      </div>
+      <div class="pkgs">
+        <div class="pkg">
+          <p class="pkg__name">Basis</p>
+          <p class="pkg__for">Die neue Seite ohne 3D-Effekte.</p>
+          <p class="pkg__price" data-price="basis"></p>
+          <ul>
+            <li>Startseite im neuen Design</li>
+            <li>Animiertes Logo</li>
+            <li>Live-Öffnungsstatus</li>
+            <li>Preisliste, FAQ, Kontakt</li>
+            <li>Impressum und Datenschutz</li>
+            <li>Lokales SEO</li>
+          </ul>
+        </div>
+        <div class="pkg pkg--rec">
+          <span class="pkg__tag">Empfohlen</span>
+          <p class="pkg__name">Komplett</p>
+          <p class="pkg__for">Das Konzept, so wie Sie es gesehen haben.</p>
+          <p class="pkg__price" data-price="komplett"></p>
+          <ul>
+            <li class="inherit">Alles aus Basis</li>
+            <li>Interaktives 3D-Handy</li>
+            <li>Behandlungsweg, Laden und Post</li>
+            <li>Franchise-Bereich</li>
+            <li>Google-Unternehmensprofil geprüft und abgestimmt</li>
+          </ul>
+        </div>
+        <div class="pkg">
+          <p class="pkg__name">Premium</p>
+          <p class="pkg__for">Für mehr Anfragen über Google.</p>
+          <p class="pkg__price" data-price="premium"></p>
+          <ul>
+            <li class="inherit">Alles aus Komplett</li>
+            <li>Eigene Seiten für Display, Akku, Wasserschaden, Platine</li>
+            <li>Preisrechner nach Hersteller und Modell</li>
+            <li>Foto-Termin im Laden</li>
+            <li>Zweisprachig Deutsch und Englisch</li>
+          </ul>
+        </div>
+      </div>
+      <div class="care">
+        <p><strong>Betreuung, optional.</strong> Hosting, Updates, Änderungen an Preisen und Öffnungszeiten, Sicherheits-Checks. Monatlich kündbar.</p>
+        <p class="care__price" data-price="care"></p>
+      </div>
+      <p class="note" data-vat></p>
+    </div>
+  </section>
+
+  <section class="tint">
+    <div class="wrap">
+      <div class="head">
+        <p class="kicker">Zeitplan</p>
+        <h2>In drei Wochen online.</h2>
+      </div>
+      <ol class="time">
+        <li><span class="when">Tag 1</span><h3>Start</h3><p>Kurzes Gespräch, Sie schicken Preisliste, Fotos und Angaben fürs Impressum.</p></li>
+        <li><span class="when">Woche 1–2</span><h3>Umsetzung</h3><p>Wir bauen die Seite auf Basis des Konzepts mit Ihren echten Inhalten.</p></li>
+        <li><span class="when">Woche 2</span><h3>Korrekturen</h3><p>Sie prüfen auf Handy und Computer. Zwei Korrekturrunden sind enthalten.</p></li>
+        <li><span class="when">Woche 3</span><h3>Livegang</h3><p>Umzug auf handychirurg.de, Test aller Funktionen, Übergabe.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap two">
+      <div class="card">
+        <h3>Was wir von Ihnen brauchen</h3>
+        <ul>
+          <li><strong>Preisliste</strong> als Datei oder Foto</li>
+          <li><strong>Fotos</strong> vom Laden, gern auch vom Arbeitsplatz</li>
+          <li><strong>Impressum:</strong> Rechtsform und vollständige Angaben</li>
+          <li><strong>Zugang</strong> zu Domain und Hosting</li>
+          <li><strong>Telefon-</strong> und WhatsApp-Nummer, die auf der Seite stehen soll</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Konditionen</h3>
+        <ul>
+          <li><strong>50 %</strong> bei Auftrag, <strong>50 %</strong> beim Livegang</li>
+          <li>Zwei Korrekturrunden inklusive, weitere nach Aufwand</li>
+          <li>Alle Rechte an Design und Code gehen nach Zahlung an Sie</li>
+          <li>Hosting-Kosten des Anbieters sind nicht enthalten</li>
+          <li>Dieses Angebot gilt 14 Tage</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="close">
+    <div class="wrap">
+      <p class="kicker kicker--light">Nächster Schritt</p>
+      <h2>Ein kurzes Ja genügt.</h2>
+      <p>Antworten Sie einfach auf diese Nachricht mit dem Paket Ihrer Wahl. Wir melden uns am selben Tag und vereinbaren den Start.</p>
+      <p class="contact" data-contact></p>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="wrap" data-sender></div>
+</footer>
+
+<script>
+  /* Edit prices and sender here. Everything on the page reads from this object. */
+  var OFFER = {
+    basis: 2400,
+    komplett: 4900,
+    premium: 7900,
+    care: 79,
+    vat: 'Alle Preise netto zzgl. 19 % USt.',   // bei Kleinunternehmerregelung: 'Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.'
+    sender: 'AIK Studio',
+    contact: ''                                   // z. B. Telefon oder E-Mail des Absenders
+  };
+
+  var fmt = function (n) { return n.toLocaleString('de-DE') + ' €'; };
+  document.querySelectorAll('[data-price]').forEach(function (el) {
+    var k = el.getAttribute('data-price');
+    el.innerHTML = k === 'care' ? fmt(OFFER.care) + '<small>/ Monat</small>' : fmt(OFFER[k]) + '<small>einmalig</small>';
+  });
+  document.querySelector('[data-vat]').textContent = OFFER.vat;
+  document.querySelector('[data-sender]').textContent = 'Angebot von ' + OFFER.sender + ' für Handy Chirurg Potsdam';
+  var c = document.querySelector('[data-contact]');
+  if (OFFER.contact) c.textContent = OFFER.contact; else c.remove();
+</script>

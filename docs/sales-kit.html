@@ -1,0 +1,288 @@
+<title>Продажа Handy Chirurg</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: an internal playbook. Sticky contents on the left, one reading column; German copy sits in tinted blocks with a copy button. */
+:root {
+  --bg: #ffffff; --surface: #f3f8f6; --surface-2: #e4f0ec; --line: #c9e2da;
+  --fg: #2a2a2a; --fg-2: #5c6764; --rule: rgba(42, 42, 42, .12);
+  --accent: #2f7a68; --accent-d: #1a4a3e; --red: #c8312a;
+  --sans: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #111816; --surface: #18221f; --surface-2: #1e2b27; --line: #2c3d38;
+  --fg: #e7eeeb; --fg-2: #a2b1ac; --rule: rgba(231, 238, 235, .13);
+  --accent: #6fd0b7; --accent-d: #a6e6d4; --red: #ff7a6e; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #111816; --surface: #18221f; --surface-2: #1e2b27; --line: #2c3d38;
+  --fg: #e7eeeb; --fg-2: #a2b1ac; --rule: rgba(231, 238, 235, .13);
+  --accent: #6fd0b7; --accent-d: #a6e6d4; --red: #ff7a6e; color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 400 16px/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
+.page { max-width: 70rem; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 2.5rem 5rem; display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: 3rem; }
+@media (max-width: 860px) { .page { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; } }
+nav { position: sticky; top: 1.5rem; align-self: start; font-size: .875rem; }
+nav p { font: 500 .75rem var(--mono); letter-spacing: .06em; color: var(--fg-2); margin: 0 0 .6rem; }
+nav ol { margin: 0; padding: 0; list-style: none; display: grid; gap: .1rem; }
+nav a { display: block; padding: .3rem 0; color: var(--fg-2); text-decoration: none; }
+nav a:hover { color: var(--fg); }
+@media (max-width: 860px) { nav { position: static; border-bottom: 1px solid var(--rule); padding-bottom: 1rem; } nav ol { grid-template-columns: 1fr 1fr; } }
+main { min-width: 0; }
+h1, h2, h3, h4 { margin: 0; text-wrap: balance; font-stretch: 125%; letter-spacing: -.025em; }
+h1 { font-size: clamp(1.9rem, 1.3rem + 2.2vw, 2.6rem); line-height: 1.08; font-weight: 800; }
+h2 { font-size: 1.55rem; line-height: 1.2; font-weight: 800; }
+h3 { font-size: 1.1rem; margin-top: 2rem; font-weight: 700; }
+h4 { font-size: 1rem; margin-top: 1.25rem; font-weight: 700; }
+p, ul, ol, table { margin: .7rem 0 0; }
+p, li { max-width: 68ch; }
+ul, ol { padding-left: 1.25rem; }
+li + li { margin-top: .3rem; }
+a { color: var(--accent); }
+strong { font-weight: 600; }
+.lede { font-size: 1.1rem; color: var(--fg-2); margin-top: .9rem; }
+.label { font: 500 .75rem var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
+section { margin-top: 3rem; padding-top: 2.5rem; border-top: 2px solid var(--fg); scroll-margin-top: 1rem; }
+section > .label { display: block; margin-bottom: .5rem; }
+
+.tbl { overflow-x: auto; margin-top: 1rem; }
+table { width: 100%; border-collapse: collapse; font-size: .9375rem; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; vertical-align: top; padding: .6rem .75rem .6rem 0; border-bottom: 1px solid var(--rule); }
+thead th { font: 500 .72rem var(--mono); letter-spacing: .05em; color: var(--fg-2); border-bottom-color: var(--fg); text-transform: uppercase; }
+td.num { white-space: nowrap; font-weight: 600; }
+
+.calc { margin-top: 1rem; padding: 1.25rem 1.4rem; background: var(--surface); border-radius: 10px; display: grid; gap: .9rem; }
+.calc__row { display: grid; grid-template-columns: minmax(0, 1fr) 8rem; gap: 1rem; align-items: center; }
+.calc label { font-size: .9375rem; }
+.calc input { width: 100%; padding: .5rem .6rem; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--fg); font: 500 1rem var(--mono); text-align: right; }
+.calc__out { padding-top: .9rem; border-top: 1px dashed var(--line); font-size: 1.05rem; }
+.calc__out strong { color: var(--accent-d); font-size: 1.25rem; }
+
+.de { margin-top: 1rem; background: var(--surface); border-left: 3px solid var(--accent); border-radius: 0 10px 10px 0; padding: 1rem 1.25rem 1.1rem; }
+.de__top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: .5rem; }
+.de pre { margin: 0; white-space: pre-wrap; font: 400 .975rem/1.6 var(--sans); color: var(--fg); }
+.ru { margin-top: .5rem; color: var(--fg-2); font-size: .9375rem; }
+.copy { border: 1px solid var(--line); background: var(--bg); color: var(--fg); border-radius: 6px; padding: .35rem .7rem; font: 500 .75rem var(--mono); cursor: pointer; }
+.copy:hover { border-color: var(--accent); }
+
+.script { list-style: none; padding: 0; margin-top: 1rem; }
+.script > li { display: grid; grid-template-columns: 5.5rem minmax(0, 1fr); gap: .25rem 1rem; padding: 1.1rem 0; border-bottom: 1px solid var(--rule); max-width: none; margin: 0; }
+.script .t { font: 500 .8125rem var(--mono); color: var(--accent); padding-top: .15rem; }
+.script h4 { margin: 0; }
+.say { margin-top: .5rem; padding: .6rem .8rem; background: var(--surface); border-radius: 8px; font-size: .9375rem; }
+.say i { color: var(--fg-2); font-style: normal; display: block; margin-top: .2rem; font-size: .875rem; }
+
+.obj { display: grid; gap: 10px; margin-top: 1rem; }
+.obj details { border: 1px solid var(--line); border-radius: 10px; padding: 0 1.1rem; background: var(--bg); }
+.obj summary { cursor: pointer; padding: .9rem 0; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+.obj summary::-webkit-details-marker { display: none; }
+.obj summary::after { content: "+"; color: var(--accent); font-weight: 400; }
+.obj details[open] summary::after { content: "–"; }
+.obj details > div { padding-bottom: 1rem; }
+.warn { margin-top: 1rem; padding: .9rem 1.1rem; border-left: 3px solid var(--red); background: var(--surface); border-radius: 0 10px 10px 0; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+</style>
+
+<div class="page">
+  <nav aria-label="Содержание">
+    <p>СОДЕРЖАНИЕ</p>
+    <ol>
+      <li><a href="#price">1 · Цена</a></li>
+      <li><a href="#calc">2 · Окупаемость</a></li>
+      <li><a href="#msg">3 · Сообщения</a></li>
+      <li><a href="#call">4 · Созвон</a></li>
+      <li><a href="#obj">5 · Возражения</a></li>
+      <li><a href="#close">6 · После «да»</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <span class="label">Handy Chirurg · для тебя, не для клиента</span>
+    <h1 style="margin-top:.6rem">Как продать сайт Handy Chirurg</h1>
+    <p class="lede">Цена, расчёт окупаемости, готовые сообщения на немецком, скрипт созвона и ответы на возражения. Страница-предложение для клиента лежит отдельно, цены в ней меняются в одном месте.</p>
+
+    <!-- 1 -->
+    <section id="price">
+      <span class="label">1</span>
+      <h2>Как назначить цену</h2>
+      <h3>Три правила</h3>
+      <ol>
+        <li><strong>Нижняя граница — твоё время.</strong> Посчитай часы на пакет «Basis» и умножь на свою ставку. Например, 40 часов × 60 € = 2 400 €. Дешевле этого не продавай: ты работаешь в минус.</li>
+        <li><strong>Верхняя граница — что сайт приносит клиенту.</strong> На созвоне узнай средний чек и сколько ремонтов в день. Покажи, за сколько дополнительных ремонтов сайт окупится (раздел 2). Владелец мастерской думает в ремонтах, а не в евро за дизайн.</li>
+        <li><strong>Три пакета, продаёшь средний.</strong> «Premium» нужен, чтобы «Komplett» выглядел разумным. «Basis» нужен, чтобы клиенту было куда отступить, а не уйти. Скидку не давай: если дорого, убирай объём (3D, франшизу), а не цену.</li>
+      </ol>
+
+      <h3>Ориентиры</h3>
+      <p>Это моя оценка для Германии 2026 года, а не результат исследования рынка. Сверь с тем, сколько берут знакомые фрилансеры и студии.</p>
+      <div class="tbl"><table>
+        <thead><tr><th>Пакет</th><th>Диапазон</th><th>Стоит в предложении</th><th>Что внутри</th></tr></thead>
+        <tbody>
+          <tr><td>Basis</td><td class="num">1 900–2 900 €</td><td class="num">2 400 €</td><td>Новый дизайн, анимированный логотип, статус «открыто», прайс, FAQ, юридические страницы, локальное SEO</td></tr>
+          <tr><td>Komplett</td><td class="num">3 900–5 900 €</td><td class="num">4 900 €</td><td>Всё из Basis + 3D-телефон, ход ремонта, франшиза, проверка Google-профиля</td></tr>
+          <tr><td>Premium</td><td class="num">6 900–9 500 €</td><td class="num">7 900 €</td><td>Всё из Komplett + страницы под каждую услугу, калькулятор цен по моделям, фотосъёмка, DE/EN</td></tr>
+          <tr><td>Поддержка</td><td class="num">50–150 € / мес.</td><td class="num">79 € / мес.</td><td>Хостинг, обновления, смена цен и часов работы, проверки безопасности</td></tr>
+        </tbody>
+      </table></div>
+      <p>Студия в Германии за похожий объём обычно берёт от 8 000 € и выше. Это твой аргумент: качество агентства по цене фрилансера.</p>
+
+      <h3>Рычаг, о котором легко забыть: франшиза</h3>
+      <p>У бренда есть франшиза. Сайт, который ты делаешь, — это шаблон для каждой новой точки. Предложи отдельно: <strong>адаптация под новый филиал от 990 €</strong>, только тексты, адрес и часы. Так один проект становится постоянным источником заказов. На первом созвоне только упомяни, не продавай.</p>
+
+      <h3>Условия</h3>
+      <ul>
+        <li><strong>50 % предоплата</strong>, 50 % при запуске. Без предоплаты не начинай.</li>
+        <li><strong>Две правки</strong> включены, дальше по часам. Это защищает от бесконечных «а можно ещё».</li>
+        <li><strong>НДС:</strong> если ты Kleinunternehmer по § 19 UStG, НДС не берёшь, и в предложении нужна соответствующая строка. Если нет, цены нетто плюс 19 %. Уточни у налогового консультанта.</li>
+        <li>Цены в предложении меняются в одном месте: объект <code>OFFER</code> в конце файла <code>docs/angebot.html</code>.</li>
+      </ul>
+    </section>
+
+    <!-- 2 -->
+    <section id="calc">
+      <span class="label">2</span>
+      <h2>За сколько ремонтов сайт окупится</h2>
+      <p>Подставь цифры клиента прямо на созвоне. Начальные значения — пример, не его данные.</p>
+      <div class="calc">
+        <div class="calc__row"><label for="c-price">Цена пакета, €</label><input id="c-price" type="number" value="4900" min="0" step="100"></div>
+        <div class="calc__row"><label for="c-ticket">Средний чек ремонта, €</label><input id="c-ticket" type="number" value="90" min="1" step="5"></div>
+        <div class="calc__row"><label for="c-margin">Маржа с ремонта, %</label><input id="c-margin" type="number" value="50" min="1" max="100" step="5"></div>
+        <div class="calc__row"><label for="c-months">За сколько месяцев окупить</label><input id="c-months" type="number" value="6" min="1" step="1"></div>
+        <p class="calc__out" id="c-out"></p>
+      </div>
+      <p>Как сказать клиенту: <em>„Wenn die neue Seite Ihnen nur ein paar Reparaturen pro Woche mehr bringt, hat sie sich nach einem halben Jahr bezahlt gemacht. Danach verdient sie für Sie.“</em></p>
+      <div class="warn">Не обещай рост клиентов или место в Google. Говори «если», а не «будет». Обещание, которое не сбудется, превращается в претензию.</div>
+    </section>
+
+    <!-- 3 -->
+    <section id="msg">
+      <span class="label">3</span>
+      <h2>Сообщения клиенту</h2>
+      <p>Немецкий текст для отправки, под ним перевод для тебя. Квадратные скобки заполни сам. Перед отправкой открой ссылкам доступ через Share.</p>
+
+      <h3>Первое сообщение: показать концепт и позвать на звонок</h3>
+      <div class="de"><div class="de__top"><span class="label">DE · WhatsApp</span><button class="copy" type="button">Копировать</button></div><pre>Hallo [Name], hier ist [Ihr Name].
+
+Ich habe mir die Website von Handy Chirurg angesehen und ein Konzept für eine neue Seite gebaut: Ihr Logo zeichnet sich wie ein Herzmonitor, und ein 3D-Handy wird beim Scrollen geöffnet und repariert. Am besten auf dem Handy öffnen:
+https://claude.ai/artifact/EkiTf1vMa51btgxDCYYfc7
+
+Das Wichtigste für Ihre Kunden steht jetzt ganz oben: ob Sie gerade geöffnet haben, die Adresse, „ohne Termin“ und Anrufen mit einem Tipp.
+
+Haben Sie diese Woche 15 Minuten? Ich zeige Ihnen, wie es funktioniert, und wir besprechen, was Sie brauchen. Passt Ihnen [Tag] oder [Tag]?</pre></div>
+      <p class="ru">Здравствуйте, это [имя]. Я посмотрел сайт Handy Chirurg и сделал концепт нового: логотип рисуется как кардиомонитор, 3D-телефон при прокрутке разбирается и чинится. Лучше открыть на телефоне. Самое важное для клиентов теперь наверху: открыто ли сейчас, адрес, «без записи», звонок одним нажатием. Есть 15 минут на этой неделе? Покажу, как всё работает, и обсудим, что вам нужно. Удобно [день] или [день]?</p>
+
+      <h3>После созвона: отправить предложение</h3>
+      <div class="de"><div class="de__top"><span class="label">DE · WhatsApp</span><button class="copy" type="button">Копировать</button></div><pre>Danke für das Gespräch, [Name]!
+
+Hier ist das Angebot mit den drei Paketen: https://claude.ai/artifact/RUxnZBfHPJfBFmigmL6941
+
+Wie besprochen empfehle ich „Komplett“. Wenn Sie bis [Datum] zusagen, starten wir am [Datum], und die Seite ist in etwa drei Wochen online.
+
+Ein kurzes „Ja, Komplett“ hier im Chat genügt.</pre></div>
+      <p class="ru">Спасибо за разговор! Вот предложение с тремя пакетами. Как обсудили, рекомендую «Komplett». Если согласуете до [даты], начнём [дата], и примерно через три недели сайт будет онлайн. Достаточно короткого «Да, Komplett» в чате.</p>
+
+      <h3>Если молчит 3 дня</h3>
+      <div class="de"><div class="de__top"><span class="label">DE · WhatsApp</span><button class="copy" type="button">Копировать</button></div><pre>Hallo [Name], kurze Nachfrage zum Angebot. Haben Sie noch Fragen, oder soll ich etwas am Umfang anpassen? Ich halte Ihnen den Starttermin [Datum] gern bis Freitag frei.</pre></div>
+      <p class="ru">Короткий вопрос по предложению. Остались вопросы или подправить объём? Могу держать дату старта [дата] до пятницы.</p>
+    </section>
+
+    <!-- 4 -->
+    <section id="call">
+      <span class="label">4</span>
+      <h2>Скрипт созвона, 20 минут</h2>
+      <p>Говори меньше, чем клиент. Твоя задача на первых 7 минутах — узнать его цифры и проблемы, а не рассказывать про себя.</p>
+      <ol class="script">
+        <li><span class="t">0–2 мин</span><div><h4>Рамка</h4><p>Поблагодари, скажи, сколько займёт, и договорись о результате.</p>
+          <div class="say">„Ich zeige Ihnen das Konzept, stelle ein paar Fragen, und am Ende sagen Sie mir ehrlich, ob es für Sie passt. Einverstanden?“<i>Покажу концепт, задам пару вопросов, а в конце вы честно скажете, подходит ли. Договорились?</i></div></div></li>
+        <li><span class="t">2–7 мин</span><div><h4>Вопросы</h4><p>Запиши ответы: они нужны для расчёта окупаемости.</p>
+          <ul>
+            <li>„Wie finden die meisten Kunden zu Ihnen?“ — откуда приходят клиенты?</li>
+            <li>„Wie oft ruft jemand an, nur um zu fragen, ob Sie geöffnet haben?“ — как часто звонят спросить, открыто ли?</li>
+            <li>„Wie viele Reparaturen machen Sie am Tag? Was kostet eine im Schnitt?“ — сколько ремонтов в день и средний чек?</li>
+            <li>„Was stört Sie an der jetzigen Seite?“ — что не нравится в текущем сайте?</li>
+            <li>„Wer kümmert sich um Ihr Google-Profil?“ — кто ведёт профиль в Google?</li>
+            <li>„Sind weitere Filialen oder Franchise-Partner geplant?“ — планируются новые точки?</li>
+          </ul></div></li>
+        <li><span class="t">7–12 мин</span><div><h4>Показ концепта</h4><p>Пусть клиент откроет ссылку на <strong>своём</strong> телефоне. Порядок показа:</p>
+          <ol>
+            <li>Заставка: «это ваш логотип, он рисуется как монитор».</li>
+            <li>Монитор «Jetzt geöffnet»: свяжи с ответом про звонки «вы открыты?».</li>
+            <li>Прокрутка: телефон разбирается. «Так клиент сразу видит, что вы чините».</li>
+            <li>Таблички услуг, табличка с часами, большой номер телефона.</li>
+          </ol>
+          <div class="say">„Was ist Ihr erster Eindruck?“<i>Какое первое впечатление? Дальше молчи и слушай.</i></div></div></li>
+        <li><span class="t">12–16 мин</span><div><h4>Цена</h4><p>Назови три пакета, порекомендуй средний, назови цену и замолчи. Первым заговорит клиент.</p>
+          <div class="say">„Es gibt drei Pakete. Ich empfehle Ihnen ‚Komplett‘: genau das, was Sie gerade gesehen haben, für 4.900 €. Ohne 3D gibt es ‚Basis‘ für 2.400 €.“<i>Есть три пакета. Рекомендую «Komplett»: ровно то, что вы сейчас видели, за 4 900 €. Без 3D есть «Basis» за 2 400 €.</i></div></div></li>
+        <li><span class="t">16–20 мин</span><div><h4>Закрытие</h4><p>Не спрашивай «ну как вам?». Спрашивай про следующий шаг.</p>
+          <div class="say">„Mit welchem Paket möchten Sie starten? Dann schicke ich Ihnen heute das Angebot, und wir können am [Datum] beginnen.“<i>С какого пакета начнём? Тогда сегодня пришлю предложение, и начнём [дата].</i></div></div></li>
+      </ol>
+    </section>
+
+    <!-- 5 -->
+    <section id="obj">
+      <span class="label">5</span>
+      <h2>Возражения</h2>
+      <div class="obj">
+        <details><summary>„Das ist zu teuer.“ — дорого</summary><div>
+          <p>Не спорь и не снижай цену. Верни к окупаемости и предложи меньший объём.</p>
+          <div class="say">„Verstehe. Wenn die Seite Ihnen drei, vier Reparaturen pro Woche mehr bringt, ist sie in einem halben Jahr bezahlt. Wenn das Budget jetzt knapp ist, starten wir mit ‚Basis‘ und ergänzen das 3D später.“<i>Понимаю. Если сайт даст 3–4 ремонта в неделю сверху, за полгода он окупится. Если бюджет сейчас ограничен, начнём с «Basis», 3D добавим позже.</i></div>
+          <p>Можно предложить оплату в три части: 40 % / 30 % / 30 %.</p></div></details>
+        <details><summary>„Ich muss darüber nachdenken.“ — подумаю</summary><div>
+          <div class="say">„Klar. Was genau möchten Sie noch klären: den Preis, den Umfang oder den Zeitpunkt?“<i>Конечно. Что именно хотите обдумать: цену, объём или сроки?</i></div>
+          <p>Чаще всего за «подумаю» стоит цена. Узнай настоящую причину и договорись о дате решения: „Darf ich mich am Donnerstag kurz melden?“</p></div></details>
+        <details><summary>„Wir haben doch schon eine Website.“ — сайт уже есть</summary><div>
+          <div class="say">„Ja, und die Inhalte sind gut. Nur stehen Adresse und Öffnungszeiten weit unten, die Texte wechseln zwischen ‚Sie‘ und ‚Du‘ und nennen Filialen in Berlin. Die neue Seite zeigt das Wichtigste sofort.“<i>Да, и содержание хорошее. Но адрес и часы далеко внизу, тексты то на «Sie», то на «Du» и упоминают филиалы в Берлине. Новый сайт показывает главное сразу.</i></div></div></details>
+        <details><summary>„Das macht mein Bekannter günstiger.“ — знакомый сделает дешевле</summary><div>
+          <div class="say">„Das kann gut sein. Der Unterschied ist das Konzept: Ihr Logo als Animation, das 3D-Handy und der Live-Status. Das haben Sie gesehen, das gibt es bei mir fertig gedacht und in drei Wochen online.“<i>Может быть. Разница в концепте: логотип-анимация, 3D-телефон, статус «открыто». Это вы уже видели, у меня оно продумано и будет онлайн через три недели.</i></div></div></details>
+        <details><summary>„Brauche ich wirklich 3D?“ — зачем 3D</summary><div>
+          <div class="say">„Nicht unbedingt, dafür gibt es ‚Basis‘. Das 3D sorgt dafür, dass man sich an Ihre Seite erinnert, und es zeigt jedem Franchise-Interessenten, dass Handy Chirurg modern auftritt.“<i>Не обязательно, для этого есть «Basis». 3D делает сайт запоминающимся и показывает потенциальным франчайзи, что Handy Chirurg — современный бренд.</i></div></div></details>
+        <details><summary>„Und wenn es mir nicht gefällt?“ — а если не понравится</summary><div>
+          <div class="say">„Zwei Korrekturrunden sind dabei, und die zweite Hälfte zahlen Sie erst, wenn die Seite online ist und Ihnen gefällt.“<i>Две правки включены, а вторую половину вы платите только когда сайт онлайн и нравится.</i></div></div></details>
+      </div>
+    </section>
+
+    <!-- 6 -->
+    <section id="close">
+      <span class="label">6</span>
+      <h2>После «да»</h2>
+      <ol>
+        <li>Счёт на 50 % в тот же день. Работа начинается после оплаты.</li>
+        <li>Попроси материалы: прайс, фото магазина, данные для Impressum (правовая форма), доступ к домену и хостингу, номер WhatsApp.</li>
+        <li>Назначь дату показа первой версии, примерно через 10 дней.</li>
+        <li>Не обещай в переписке ничего сверх предложения. Новые пожелания записывай в отдельный список на потом.</li>
+      </ol>
+    </section>
+  </main>
+</div>
+
+<script>
+  (function () {
+    var ids = ['c-price', 'c-ticket', 'c-margin', 'c-months'];
+    var out = document.getElementById('c-out');
+    function calc() {
+      var v = ids.map(function (id) { return Math.max(0, parseFloat(document.getElementById(id).value) || 0); });
+      var profit = v[1] * v[2] / 100;
+      if (!profit || !v[3]) { out.textContent = 'Введите средний чек, маржу и срок.'; return; }
+      var repairs = Math.ceil(v[0] / profit);
+      var perWeek = repairs / (v[3] * 4.33);
+      out.innerHTML = 'С одного ремонта остаётся <strong>' + profit.toLocaleString('ru-RU') + ' €</strong>. Сайт окупится за <strong>' + repairs + ' ремонтов</strong>, это примерно <strong>' + perWeek.toLocaleString('ru-RU', { maximumFractionDigits: 1 }) + ' в неделю</strong> за ' + v[3] + ' мес.';
+    }
+    ids.forEach(function (id) { document.getElementById(id).addEventListener('input', calc); });
+    calc();
+
+    document.querySelectorAll('.copy').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var pre = btn.closest('.de').querySelector('pre');
+        var done = function () { btn.textContent = 'Скопировано'; setTimeout(function () { btn.textContent = 'Копировать'; }, 1500); };
+        var fallback = function () {
+          var r = document.createRange(); r.selectNodeContents(pre);
+          var s = getSelection(); s.removeAllRanges(); s.addRange(r);
+          btn.textContent = 'Выделено, нажмите Копировать';
+        };
+        try { navigator.clipboard.writeText(pre.textContent).then(done, fallback); } catch (e) { fallback(); }
+      });
+    });
+  })();
+</script>
