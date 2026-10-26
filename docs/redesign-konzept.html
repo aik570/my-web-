@@ -1,0 +1,580 @@
+<title>Handy Chirurg Redesign-Konzept</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Layout: a working brief. Sticky contents rail on the left, one reading column, tables for copy variants. */
+:root {
+  --bg: #f7f7f4;
+  --surface: #eef0ec;
+  --fg: #17201e;
+  --fg-2: #4b5653;
+  --rule: rgba(23, 32, 30, .14);
+  --accent: #22604f;      /* logo teal, darkened for text */
+  --pulse: #c13329;       /* logo heartbeat red: flags only */
+  --flag-bg: #fbeeea;
+  --sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131a18; --surface: #1b2421; --fg: #e8ece9; --fg-2: #a3b0ac;
+    --rule: rgba(232, 236, 233, .14); --accent: #7fc4ae; --pulse: #ef7a6c; --flag-bg: #2a1c19;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #131a18; --surface: #1b2421; --fg: #e8ece9; --fg-2: #a3b0ac;
+  --rule: rgba(232, 236, 233, .14); --accent: #7fc4ae; --pulse: #ef7a6c; --flag-bg: #2a1c19;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg);
+  font: 400 16px/1.6 var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+.page {
+  max-width: 72rem; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 3rem 5rem;
+  display: grid; grid-template-columns: 14rem minmax(0, 1fr); gap: 3.5rem;
+}
+@media (max-width: 860px) { .page { grid-template-columns: minmax(0, 1fr); gap: 2rem; padding-block: 2rem 4rem; } }
+
+/* rail */
+.rail { position: sticky; top: 2rem; align-self: start; font-size: .875rem; }
+.rail p { font: 500 .75rem/1.4 var(--mono); letter-spacing: .05em; color: var(--fg-2); margin: 0 0 .75rem; }
+.rail ol { margin: 0; padding: 0; list-style: none; display: grid; gap: .15rem; }
+.rail a { display: block; padding: .3rem 0; color: var(--fg-2); text-decoration: none; }
+.rail a:hover { color: var(--fg); }
+.rail a span { font-family: var(--mono); font-size: .75rem; margin-right: .5rem; }
+@media (max-width: 860px) { .rail { position: static; border-bottom: 1px solid var(--rule); padding-bottom: 1.5rem; } .rail ol { grid-template-columns: 1fr 1fr; } }
+
+/* type */
+main { min-width: 0; }
+h1, h2, h3, h4 { text-wrap: balance; letter-spacing: -.015em; margin: 0; }
+h1 { font-size: clamp(2rem, 1.4rem + 2.4vw, 2.75rem); line-height: 1.1; font-weight: 600; }
+h2 { font-size: 1.625rem; line-height: 1.2; font-weight: 600; }
+h3 { font-size: 1.125rem; line-height: 1.35; font-weight: 600; margin-top: 2.25rem; }
+h4 { font-size: 1rem; font-weight: 600; margin-top: 1.5rem; }
+p, ul, ol, table { margin: .75rem 0 0; }
+p, li { max-width: 66ch; }
+ul, ol { padding-left: 1.25rem; }
+li + li { margin-top: .35rem; }
+a { color: var(--accent); text-underline-offset: .2em; }
+strong { font-weight: 600; }
+.lede { font-size: 1.125rem; color: var(--fg-2); margin-top: 1rem; }
+.meta { font: 400 .8125rem/1.5 var(--mono); color: var(--fg-2); margin-top: 1.25rem; }
+.label { font: 500 .75rem/1.4 var(--mono); letter-spacing: .05em; color: var(--fg-2); }
+.de { font-style: italic; }
+.muted { color: var(--fg-2); }
+
+section { padding-top: 3.5rem; margin-top: 3.5rem; border-top: 1px solid var(--fg); scroll-margin-top: 1rem; }
+section > .label { display: block; margin-bottom: .5rem; }
+
+/* the heartbeat rule under the title: same motif as the site */
+.pulse { display: block; width: 100%; height: 28px; margin-top: 2rem; }
+.pulse path { fill: none; stroke: var(--pulse); stroke-width: 1.5; vector-effect: non-scaling-stroke; stroke-linejoin: round; }
+
+/* flags: things to clarify with the client */
+.flags { margin-top: 2rem; background: var(--flag-bg); padding: 1.25rem 1.5rem; border-left: 2px solid var(--pulse); }
+.flags h2 { font-size: 1.125rem; }
+.flags ol { margin-top: .75rem; }
+
+/* tables */
+.tbl { overflow-x: auto; margin-top: 1rem; }
+table { width: 100%; border-collapse: collapse; font-size: .9375rem; }
+th, td { text-align: left; vertical-align: top; padding: .65rem .75rem .65rem 0; border-bottom: 1px solid var(--rule); }
+thead th { font: 500 .75rem/1.4 var(--mono); letter-spacing: .05em; color: var(--fg-2); border-bottom-color: var(--fg); }
+td:first-child { white-space: nowrap; font-family: var(--mono); font-size: .8125rem; color: var(--fg-2); padding-top: .8rem; }
+td.wrap { white-space: normal; }
+
+/* copy blocks: German copy ready to paste */
+.copy { margin-top: 1rem; background: var(--surface); padding: 1.25rem 1.5rem; }
+.copy .label { display: block; margin-bottom: .5rem; }
+.copy p, .copy li { max-width: 60ch; }
+.copy h4 { margin-top: 1rem; }
+.copy h4:first-of-type { margin-top: 0; }
+.copy > :first-child { margin-top: 0; }
+.pair { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1px; background: var(--rule); margin-top: 1rem; }
+.pair > div { background: var(--surface); padding: 1.25rem 1.5rem; min-width: 0; }
+.pair > div > :first-child { margin-top: 0; }
+@media (max-width: 700px) { .pair { grid-template-columns: minmax(0, 1fr); } }
+
+/* sitemap */
+.tree { font: 400 .875rem/1.8 var(--mono); background: var(--surface); padding: 1.25rem 1.5rem; margin-top: 1rem; overflow-x: auto; white-space: pre; }
+.tree b { font-weight: 500; color: var(--fg); }
+.tree i { font-style: normal; color: var(--fg-2); }
+
+/* page order on home */
+.order { list-style: none; padding: 0; counter-reset: b; margin-top: 1.25rem; }
+.order > li { counter-increment: b; display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); gap: 0 1rem; padding: 1rem 0; border-bottom: 1px solid var(--rule); max-width: none; margin: 0; }
+.order > li::before { content: counter(b, decimal-leading-zero); font: 500 .8125rem/1.9 var(--mono); color: var(--fg-2); }
+.order h4 { margin: 0; }
+.order p { margin-top: .25rem; color: var(--fg-2); }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+</style>
+
+<div class="page">
+  <nav class="rail" aria-label="Inhalt">
+    <p>СОДЕРЖАНИЕ</p>
+    <ol>
+      <li><a href="#check"><span>00</span>Уточнить</a></li>
+      <li><a href="#sitemap"><span>01</span>Структура сайта</a></li>
+      <li><a href="#home"><span>02</span>Главная</a></li>
+      <li><a href="#headlines"><span>03</span>Заголовки и CTA</a></li>
+      <li><a href="#pages"><span>04</span>Страницы</a></li>
+      <li><a href="#ux"><span>05</span>UX/UI</a></li>
+      <li><a href="#local"><span>06</span>Локальность и SEO</a></li>
+      <li><a href="#copy"><span>07</span>Тексты</a></li>
+      <li><a href="#franchise"><span>08</span>Франшиза</a></li>
+      <li><a href="#legal"><span>09</span>Юридическое</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <header>
+      <span class="label">HANDY CHIRURG · POTSDAM · REDESIGN</span>
+      <h1 style="margin-top:.75rem">Концепция редизайна handychirurg.de</h1>
+      <p class="lede">Сервис по ремонту смартфонов, планшетов и ноутбуков на Dortustraße 23 в Потсдаме. Задача сайта: за несколько секунд объяснить, что здесь чинят, сколько это стоит и что можно прийти прямо сейчас без записи.</p>
+      <p class="meta">Для дизайнера, разработчика и владельца · тексты сайта на немецком, пояснения на русском</p>
+      <svg class="pulse" viewBox="0 0 1000 28" preserveAspectRatio="none" aria-hidden="true"><path d="M0 20 H470 L480 20 L488 4 L499 27 L507 13 L513 20 H1000"/></svg>
+    </header>
+
+    <!-- 00 -->
+    <div class="flags" id="check">
+      <h2>Прежде чем рисовать: 8 противоречий в исходных данных</h2>
+      <p>Это нужно решить с владельцем до дизайна. Каждое из них видно клиенту и влияет на доверие.</p>
+      <ol>
+        <li><strong>Два телефона.</strong> В брифе 0163 228 8224, на текущем сайте 0331 29080953. Нужен один основной номер, одинаковый на сайте, в Google и в Impressum. Если мобильный — для WhatsApp, так и подписать.</li>
+        <li><strong>Филиалы в Берлине.</strong> Шаги 1 и 4 на старом сайте говорят «in einer unserer beiden Filialen in Berlin». Для страницы Потсдама это ошибка: клиент решит, что ехать надо в Берлин.</li>
+        <li><strong>Предоплата против «прийти и забрать через час».</strong> Шаг 3 описывает предоплату переводом или через Stripe. Для клиента в магазине это звучит странно. Скорее всего, предоплата нужна только для Send-in. Уточнить и разделить два сценария (см. раздел 02).</li>
+        <li><strong>Работает ли Send-in из Потсдама,</strong> куда отправлять посылку и кто платит доставку.</li>
+        <li><strong>Срок гарантии.</strong> «Garantie auf jede Reparatur» без срока выглядит размыто. Нужно число: например, «6 Monate». И не путать с законной Gewährleistung.</li>
+        <li><strong>«Original-Ersatzteile».</strong> Если не все запчасти оригинальные, формулировка рискованна по UWG (недобросовестная реклама). Безопаснее: «Original- und hochwertige Ersatzteile, je nach Modell — wir sagen Ihnen vorher, welches Teil verbaut wird».</li>
+        <li><strong>60 минут.</strong> Это реально для дисплея и аккумулятора при наличии детали, но не для влаги и платы. На сайте всегда писать «in der Regel» и уточнять, к каким ремонтам относится.</li>
+        <li><strong>Чей Impressum.</strong> Если Потсдам работает как франчайзи, в Impressum указывается оператор именно этой точки. Проверить, что Malake Mansour — владелец потсдамского магазина, и добавить правовую форму и полный адрес.</li>
+      </ol>
+    </div>
+
+    <!-- 01 -->
+    <section id="sitemap">
+      <span class="label">01</span>
+      <h2>Новая структура сайта</h2>
+      <p>Главная остаётся основной посадочной страницей: у локального сервиса большинство визитов с телефона и из Google Maps, и человеку нужен ответ на одном экране. Отдельные страницы добавляем под поисковые запросы («Display Reparatur Potsdam») и под то, что не помещается на главную.</p>
+<div class="tree"><b>/</b>                         <i>Главная: всё самое важное, без перехода</i>
+├─ <b>/reparatur</b>               <i>Все ремонты, обзор</i>
+│  ├─ /display-reparatur     <i>Замена дисплея</i>
+│  ├─ /akku-tausch           <i>Замена аккумулятора</i>
+│  ├─ /wasserschaden         <i>После попадания влаги</i>
+│  └─ /platinenreparatur     <i>Ремонт платы</i>
+├─ <b>/preise</b>                  <i>Цены: подбор по модели или таблица</i>
+├─ <b>/einsenden</b>               <i>Send-in-Service: ремонт по почте</i>
+├─ <b>/faq</b>                     <i>Частые вопросы</i>
+├─ <b>/laden</b>                   <i>О магазине: фото, команда, как добраться</i>
+├─ <b>/kontakt</b>                 <i>Адрес, часы, карта, форма</i>
+├─ /franchise              <i>Партнёрство (только в футере)</i>
+├─ /impressum
+├─ /datenschutz
+└─ /agb                    <i>Нужны, если есть Send-in с предоплатой</i></div>
+      <h3>Главное меню</h3>
+      <p><span class="de">Reparaturen · Preise · Ablauf · FAQ · Kontakt</span> + кнопка с номером телефона справа.</p>
+      <ul>
+        <li>«Франшиза» в главное меню не входит. Это другая аудитория (предприниматели), она отвлекает клиента со сломанным телефоном. Место ей в футере.</li>
+        <li>«Ablauf» ведёт на якорь главной, а не на отдельную страницу.</li>
+        <li>Не больше 5 пунктов: на телефоне меню должно помещаться без прокрутки.</li>
+      </ul>
+      <h3>Если бюджет ограничен</h3>
+      <p>Первый этап: главная + /preise + /faq + /kontakt + юридические страницы. Страницы отдельных ремонтов добавить вторым этапом, когда станет понятно, по каким запросам приходят люди.</p>
+    </section>
+
+    <!-- 02 -->
+    <section id="home">
+      <span class="label">02</span>
+      <h2>Главная страница: блоки и порядок</h2>
+      <p>Принцип: сначала ответы на вопросы «можно ли прямо сейчас?», «что вы чините?», «сколько стоит?». Доверие и подробности потом. Адрес, часы и «ohne Termin» должны быть видны уже на первом экране телефона.</p>
+      <ol class="order">
+        <li><div><h4>Шапка</h4><p>Логотип, меню, кнопка «Anrufen» с номером. На телефоне: логотип, «Anrufen», бургер. Шапка липкая, высотой не больше 64 px.</p></div></li>
+        <li><div><h4>Первый экран</h4><p>H1, одна строка подзаголовка, основная кнопка «Jetzt anrufen», вторичная «Route planen». Под кнопками строка статуса: «Jetzt geöffnet · bis 18:30 · Dortustraße 23 · ohne Termin». Статус считается по времени Берлина. Фото: настоящий магазин или настоящие руки мастера, без стоковых фото.</p></div></li>
+        <li><div><h4>Подбор цены</h4><p>Производитель → модель → ремонт → цена. Это самый полезный инструмент на сайте и прямой ответ на УТП «прозрачные цены». Если цены по моделям не готовы, форма отправляет запрос, а не показывает пустую цену.</p></div></li>
+        <li><div><h4>Что мы ремонтируем</h4><p>Четыре ремонта списком с короткой строкой о каждом и ссылкой на страницу услуги. Отдельной строкой: «Fehleranalyse 25 €, wird bei Reparatur verrechnet».</p></div></li>
+        <li><div><h4>Два пути ремонта</h4><p>Две колонки: «Im Laden» (3 шага, обычно около 60 минут) и «Per Post» (Send-in, 4 шага). Сейчас оба сценария смешаны в одном списке, и он противоречит сам себе.</p></div></li>
+        <li><div><h4>Почему к нам</h4><p>Шесть УТП. Не сетка карточек с иконками, а список: короткое утверждение плюс одна поясняющая фраза. Цифры (60 минут, 25 €, срок гарантии) выделить типографикой.</p></div></li>
+        <li><div><h4>Магазин</h4><p>Фото витрины, адрес, таблица часов с выделенным сегодняшним днём, кнопка маршрута, как добраться (трамвай, парковка — уточнить).</p></div></li>
+        <li><div><h4>Отзывы</h4><p>Только если есть настоящие: рейтинг и ссылка на Google-профиль. Без выдуманных отзывов и счётчиков. Если отзывов нет, блок не делать.</p></div></li>
+        <li><div><h4>FAQ</h4><p>5–6 вопросов в аккордеоне и ссылка на /faq.</p></div></li>
+        <li><div><h4>Заявка</h4><p>Короткая форма: устройство, проблема, имя, телефон или e-mail. Рядом снова телефон: для срочного случая звонок быстрее.</p></div></li>
+        <li><div><h4>Футер</h4><p>Название, адрес, телефон, e-mail, часы (полностью, текстом), ссылки: Impressum, Datenschutz, AGB, Franchise.</p></div></li>
+      </ol>
+      <h3>Мобильная нижняя панель</h3>
+      <p>На телефоне закреплённая панель внизу из трёх кнопок: <span class="de">Anrufen · WhatsApp · Route</span>. Это три действия, ради которых открывают сайт мастерской. Панель появляется после первого экрана, чтобы не дублировать кнопки hero.</p>
+    </section>
+
+    <!-- 03 -->
+    <section id="headlines">
+      <span class="label">03</span>
+      <h2>Заголовки и CTA для главной</h2>
+      <h3>Варианты H1</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>#</th><th>Немецкий</th><th>Перевод и когда подходит</th></tr></thead>
+        <tbody>
+          <tr><td>A</td><td class="wrap"><strong>Handyreparatur in Potsdam – meist in 60 Minuten.</strong></td><td class="wrap">«Ремонт телефонов в Потсдаме, обычно за 60 минут». Рекомендую: город и услуга в H1 работают на SEO, цифра на скорость.</td></tr>
+          <tr><td>B</td><td class="wrap"><strong>Handy kaputt? Kommen Sie vorbei.</strong></td><td class="wrap">«Телефон сломался? Заходите». Тон живее, призыв сразу к действию. Город тогда в подзаголовке.</td></tr>
+          <tr><td>C</td><td class="wrap"><strong>Display, Akku, Wasserschaden – repariert in der Dortustraße.</strong></td><td class="wrap">«Дисплей, аккумулятор, влага — чиним на Dortustraße». Сразу показывает ассортимент и место.</td></tr>
+          <tr><td>D</td><td class="wrap"><strong>Ohne Termin. Mit Garantie. Mitten in Potsdam.</strong></td><td class="wrap">«Без записи. С гарантией. В центре Потсдама». Три УТП ритмом, хорошо на баннере, хуже для SEO.</td></tr>
+        </tbody>
+      </table></div>
+      <h3>Подзаголовок</h3>
+      <div class="copy"><span class="label">DE</span>
+        <p>Wir reparieren Smartphones, Tablets und Laptops in der Potsdamer Innenstadt. Ohne Termin, mit Garantie auf Arbeit und Ersatzteile. Den Preis kennen Sie, bevor wir anfangen.</p>
+        <p class="muted" style="font-style:normal">RU: Ремонтируем смартфоны, планшеты и ноутбуки в центре Потсдама. Без записи, с гарантией на работу и запчасти. Цену вы знаете до начала ремонта.</p>
+      </div>
+      <h3>CTA</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>Роль</th><th>Текст</th><th>Где</th></tr></thead>
+        <tbody>
+          <tr><td>основная</td><td class="wrap"><strong>Jetzt anrufen</strong> · на десктопе с номером: «0163 228 8224 anrufen»</td><td class="wrap">Hero, шапка, мобильная панель</td></tr>
+          <tr><td>вторичная</td><td class="wrap"><strong>Route planen</strong></td><td class="wrap">Hero, блок магазина</td></tr>
+          <tr><td>цена</td><td class="wrap"><strong>Preis anzeigen</strong> / если цен нет: <strong>Preis anfragen</strong></td><td class="wrap">Подбор цены</td></tr>
+          <tr><td>почта</td><td class="wrap"><strong>Gerät einsenden</strong></td><td class="wrap">Блок «два пути», /einsenden</td></tr>
+          <tr><td>форма</td><td class="wrap"><strong>Anfrage senden</strong></td><td class="wrap">Форма заявки</td></tr>
+          <tr><td>франшиза</td><td class="wrap"><strong>Erstgespräch vereinbaren</strong></td><td class="wrap">/franchise</td></tr>
+        </tbody>
+      </table></div>
+      <p>Чего избегать: «Mehr erfahren», «Jetzt starten», «Kontaktieren Sie uns» как текст кнопки. Кнопка называет действие и его результат.</p>
+    </section>
+
+    <!-- 04 -->
+    <section id="pages">
+      <span class="label">04</span>
+      <h2>Какие страницы добавить</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>Страница</th><th>Зачем</th><th>Что на ней</th></tr></thead>
+        <tbody>
+          <tr><td>/reparatur/…</td><td class="wrap">SEO по запросам «Display Reparatur Potsdam», «Akku tauschen Potsdam», «Wasserschaden Handy Potsdam»</td><td class="wrap">Что за поломка и её признаки, как проходит ремонт, срок, цена «ab …» или подбор по модели, гарантия, 3 вопроса FAQ, CTA. Объём 300–600 слов, без воды.</td></tr>
+          <tr><td>/preise</td><td class="wrap">Главный аргумент «прозрачные цены»</td><td class="wrap">Подбор по модели или таблица по популярным моделям. Строка про диагностику 25 €. Дата обновления цен. Пометка, какой тип запчасти входит в цену.</td></tr>
+          <tr><td>/einsenden</td><td class="wrap">Отдельный сценарий, сейчас размазан по шагам</td><td class="wrap">4 шага, адрес отправки, упаковка, кто платит доставку, оплата (перевод / Stripe), срок, возврат. Форма с распечаткой наклейки.</td></tr>
+          <tr><td>/faq</td><td class="wrap">Снимает возражения, даёт ответы для Google</td><td class="wrap">10–15 вопросов, сгруппированных: запись и сроки, цены и оплата, данные, гарантия, Send-in. Разметка FAQPage.</td></tr>
+          <tr><td>/laden</td><td class="wrap">Доверие: реальное место и люди</td><td class="wrap">Фото витрины и внутри, мастер за работой, как добраться, парковка, доступность (ступеньки?).</td></tr>
+          <tr><td>/kontakt</td><td class="wrap">Всё для связи на одном экране</td><td class="wrap">Адрес, телефон, WhatsApp, e-mail, часы, карта (с согласием), форма.</td></tr>
+          <tr><td>/franchise</td><td class="wrap">Отдельная аудитория</td><td class="wrap">См. раздел 08.</td></tr>
+          <tr><td>/impressum, /datenschutz, /agb</td><td class="wrap">Обязательно в Германии</td><td class="wrap">См. раздел 09.</td></tr>
+        </tbody>
+      </table></div>
+      <p>Страницу «Über uns» отдельно не делать: о магазине честнее рассказать на /laden через фото и факты, а не через общий текст о «команде профессионалов».</p>
+    </section>
+
+    <!-- 05 -->
+    <section id="ux">
+      <span class="label">05</span>
+      <h2>Рекомендации по UX/UI</h2>
+
+      <h3>Визуальный язык</h3>
+      <ul>
+        <li>Взять из логотипа бирюзу и красную линию пульса. Линию пульса использовать как единственный графический мотив (под hero, в шагах ремонта), а не размножать.</li>
+        <li>Убрать то, что выглядит шаблонно: сетку одинаковых карточек с круглыми иконками, стоковые фото мастерских, мультяшного доктора поверх заголовка (сейчас он перекрывает текст «So läuft Deine Reparatur ab»).</li>
+        <li>Одна основная кнопка, одна вторичная, текстовая ссылка. Скругления маленькие и одинаковые, тени почти не нужны.</li>
+        <li>Обращение везде на «Sie». Сейчас сайт смешивает «Sie» и «Du» в соседних блоках.</li>
+      </ul>
+
+      <h3>Навигация</h3>
+      <ul>
+        <li>Убрать верхнюю полоску с двумя иконками (письмо, телефон) без подписей: на телефоне она съедает 100 px и непонятна. Телефон переезжает в шапку как кнопка.</li>
+        <li>Активный раздел подсвечивать при прокрутке. Мобильное меню закрывается по нажатию на пункт и по Esc.</li>
+      </ul>
+
+      <h3>Мобильная версия</h3>
+      <ul>
+        <li>Первый экран на 390 px: H1, подзаголовок, кнопка «Anrufen», строка статуса. Всё без прокрутки.</li>
+        <li>Номер телефона и адрес — ссылки (tel:, карта). Зоны нажатия не меньше 44 × 44 px.</li>
+        <li>Заголовки на телефоне не крупнее 40 px: сейчас «Kontaktieren Sie uns» и «So läuft…» обрезаются краем экрана.</li>
+        <li>Нижняя панель «Anrufen · WhatsApp · Route» (раздел 02).</li>
+      </ul>
+
+      <h3>Формы</h3>
+      <ul>
+        <li>Подбор цены: три последовательных выпадающих списка. Неактивный следующий шаг показывать бледным, но с понятной подписью.</li>
+        <li>Заявка: максимум 4 поля (устройство, проблема, имя, телефон/e-mail). Фото поломки — по желанию.</li>
+        <li>Ошибки под полем, конкретно: «Bitte geben Sie eine Telefonnummer oder E-Mail an».</li>
+        <li>После отправки честно: «Danke. Wir melden uns in der Regel am selben Werktag» — только если это правда.</li>
+        <li>Под кнопкой ссылка на Datenschutz. Галочка согласия не обязательна, если обработка нужна для ответа на запрос (Art. 6 Abs. 1 lit. b DSGVO); решить вместе с юристом.</li>
+      </ul>
+
+      <h3>Карта</h3>
+      <ul>
+        <li>Встроенная Google Maps без согласия нарушает DSGVO (передача IP в Google). Вариант: статичная картинка-превью карты, по нажатию открывается Google Maps или Apple Maps в новой вкладке. Либо встраивание после клика «Karte laden».</li>
+        <li>Рядом с картой текстом: остановка трамвая, парковка поблизости, ориентир («gegenüber …» — уточнить).</li>
+      </ul>
+
+      <h3>Доверие</h3>
+      <ul>
+        <li>Настоящие фото: витрина, интерьер, рабочее место, руки мастера с инструментом. Это сильнее любого стокового изображения.</li>
+        <li>Гарантия с конкретным сроком. Цены с датой обновления.</li>
+        <li>Способы оплаты значками или текстом (Bar, EC, Karte — уточнить).</li>
+        <li>Рейтинг Google с ссылкой на профиль, если он есть. Ничего выдуманного: ни отзывов, ни «10 000 довольных клиентов».</li>
+        <li>Короткий абзац о защите данных: что мастер делает и не делает с телефоном, и совет сделать резервную копию.</li>
+      </ul>
+
+      <h3>Производительность и доступность</h3>
+      <ul>
+        <li>Изображения в WebP/AVIF с размерами, hero-фото с приоритетом загрузки. Цель: LCP меньше 2,5 с на мобильном 4G.</li>
+        <li>Контраст текста не ниже 4,5 : 1 (сейчас серый текст на сером фоне в карточках на грани). Видимый фокус для клавиатуры.</li>
+      </ul>
+    </section>
+
+    <!-- 06 -->
+    <section id="local">
+      <span class="label">06</span>
+      <h2>Локальность и локальное SEO</h2>
+      <h3>Что должно быть видно всегда</h3>
+      <ul>
+        <li><strong>Адрес</strong> — на первом экране (строка статуса), в блоке магазина, в футере.</li>
+        <li><strong>Часы</strong> — «Jetzt geöffnet / Geschlossen · öffnet …» в hero, полная таблица в блоке магазина, текстом в футере.</li>
+        <li><strong>«Ohne Termin»</strong> — в подзаголовке hero, в строке статуса и в FAQ.</li>
+      </ul>
+      <h3>Чек-лист для разработчика</h3>
+      <ul>
+        <li>Разметка schema.org <code>MobilePhoneStore</code> (или <code>LocalBusiness</code>): название, адрес, телефон, часы, геокоординаты, ссылка на Google-профиль в <code>sameAs</code>. На /faq — <code>FAQPage</code>.</li>
+        <li><strong>NAP</strong> (Name, Address, Phone) одинаково на сайте, в Google Business Profile, Apple Business Connect, Bing Places, gelbeseiten.de, 11880.com. Расхождение номеров (см. раздел 00) прямо вредит позициям.</li>
+        <li>Title главной: «Handy Reparatur Potsdam – ohne Termin | Handy Chirurg». Description с адресом и часами.</li>
+        <li>Title услуг: «Display Reparatur Potsdam – iPhone &amp; Samsung | Handy Chirurg».</li>
+        <li>Один H1 на страницу, в нём город и услуга.</li>
+        <li>Особые часы (праздники, Weihnachten) обновлять в Google-профиле и баннером на сайте.</li>
+        <li>Просить отзывы в Google после ремонта: QR-код на кассе и в чеке. Отвечать на все отзывы.</li>
+        <li>Если у бренда несколько городов: у Потсдама свой адрес-страница со своим текстом, а не копия берлинской.</li>
+      </ul>
+    </section>
+
+    <!-- 07 -->
+    <section id="copy">
+      <span class="label">07</span>
+      <h2>Тексты для ключевых блоков</h2>
+      <p>Немецкий — готовый текст для сайта. Русский — перевод для согласования. В квадратных скобках то, что нужно уточнить.</p>
+
+      <h3>Первый экран</h3>
+      <div class="pair">
+        <div><span class="label">DE</span>
+          <h4>Handyreparatur in Potsdam – meist in 60 Minuten.</h4>
+          <p>Wir reparieren Smartphones, Tablets und Laptops in der Potsdamer Innenstadt. Ohne Termin, mit Garantie auf Arbeit und Ersatzteile. Den Preis kennen Sie, bevor wir anfangen.</p>
+          <p class="label">Jetzt geöffnet · bis 18:30 Uhr · Dortustraße 23 · ohne Termin</p>
+        </div>
+        <div><span class="label">RU</span>
+          <h4>Ремонт телефонов в Потсдаме — обычно за 60 минут.</h4>
+          <p>Ремонтируем смартфоны, планшеты и ноутбуки в центре Потсдама. Без записи, с гарантией на работу и запчасти. Цену вы знаете до начала ремонта.</p>
+          <p class="label">Сейчас открыто · до 18:30 · Dortustraße 23 · без записи</p>
+        </div>
+      </div>
+
+      <h3>Услуги</h3>
+      <div class="pair">
+        <div><span class="label">DE</span>
+          <h4>Was wir reparieren</h4>
+          <p><strong>Display-Reparatur.</strong> Gesprungenes Glas, Streifen, schwarzer Bildschirm, Touch reagiert nicht.</p>
+          <p><strong>Akku-Tausch.</strong> Wenn das Gerät nicht mehr durch den Tag kommt, plötzlich ausgeht oder der Akku sich wölbt.</p>
+          <p><strong>Wasserschaden.</strong> Gerät ausschalten, nicht laden, möglichst schnell vorbeibringen. Wir reinigen, trocknen und prüfen jede Baugruppe.</p>
+          <p><strong>Platinenreparatur.</strong> Komplexe Fehler auf der Hauptplatine, zum Beispiel wenn das Gerät nicht mehr startet oder nicht lädt.</p>
+          <p><strong>Fehleranalyse: 25 €.</strong> Wird bei einer Reparatur bei uns vollständig verrechnet.</p>
+        </div>
+        <div><span class="label">RU</span>
+          <h4>Что мы ремонтируем</h4>
+          <p><strong>Замена дисплея.</strong> Треснувшее стекло, полосы, чёрный экран, не реагирует сенсор.</p>
+          <p><strong>Замена аккумулятора.</strong> Если устройство не держит заряд весь день, внезапно выключается или аккумулятор вздулся.</p>
+          <p><strong>Попадание влаги.</strong> Выключите устройство, не заряжайте, принесите как можно скорее. Мы чистим, сушим и проверяем каждый узел.</p>
+          <p><strong>Ремонт платы.</strong> Сложные неисправности на материнской плате, например если устройство не включается или не заряжается.</p>
+          <p><strong>Диагностика: 25 €.</strong> При ремонте у нас полностью засчитывается в его стоимость.</p>
+        </div>
+      </div>
+
+      <h3>Почему к нам (6 УТП)</h3>
+      <div class="pair">
+        <div><span class="label">DE</span>
+          <h4>Darauf können Sie sich verlassen</h4>
+          <p><strong>In der Regel in 60 Minuten.</strong> Display- und Akkutausch erledigen wir meist, während Sie einen Kaffee trinken, sofern das Teil auf Lager ist.</p>
+          <p><strong>Ohne Termin.</strong> Kommen Sie Mo–Sa zwischen 10:00 und 18:30 Uhr vorbei.</p>
+          <p><strong>Garantie.</strong> [6] Monate auf die Arbeit und die verbauten Teile.</p>
+          <p><strong>Ihre Daten bleiben unangetastet.</strong> Wir öffnen keine Fotos, Nachrichten oder Apps und löschen nichts.</p>
+          <p><strong>Preis vorab.</strong> Sie erfahren die Kosten, bevor wir anfangen. Keine versteckten Gebühren.</p>
+          <p><strong>Teile vor Ort.</strong> Ersatzteile für die gängigen Modelle haben wir im Laden auf Lager.</p>
+        </div>
+        <div><span class="label">RU</span>
+          <h4>На что вы можете рассчитывать</h4>
+          <p><strong>Обычно за 60 минут.</strong> Замену дисплея и аккумулятора чаще всего делаем, пока вы пьёте кофе, если деталь есть на складе.</p>
+          <p><strong>Без записи.</strong> Приходите пн–сб с 10:00 до 18:30.</p>
+          <p><strong>Гарантия.</strong> [6] месяцев на работу и установленные детали.</p>
+          <p><strong>Ваши данные не трогаем.</strong> Не открываем фото, переписку и приложения, ничего не удаляем.</p>
+          <p><strong>Цена заранее.</strong> Стоимость вы узнаёте до начала работ. Никаких скрытых платежей.</p>
+          <p><strong>Запчасти на месте.</strong> Детали для популярных моделей лежат у нас в магазине.</p>
+        </div>
+      </div>
+
+      <h3>Как проходит ремонт: два пути</h3>
+      <div class="pair">
+        <div><span class="label">DE · Im Laden</span>
+          <ol>
+            <li><strong>Vorbeikommen.</strong> Ohne Termin, Mo–Sa 10:00–18:30 Uhr.</li>
+            <li><strong>Diagnose und Preis.</strong> Wir prüfen das Gerät und nennen Ihnen den Preis. Sie entscheiden.</li>
+            <li><strong>Reparatur und Abholung.</strong> In der Regel nach etwa 60 Minuten. Bezahlt wird bei Abholung.</li>
+          </ol>
+          <span class="label" style="display:block;margin-top:1.25rem">DE · Per Post</span>
+          <ol>
+            <li><strong>Versandaufkleber drucken</strong> und das Gerät gut verpackt bei der Post abgeben.</li>
+            <li><strong>Diagnose.</strong> Wir prüfen das Gerät und schicken Ihnen ein Angebot.</li>
+            <li><strong>Reparatur und Zahlung.</strong> Nach Ihrer Zusage per Überweisung oder Karte (Stripe).</li>
+            <li><strong>Rückversand</strong> an Ihre Adresse [oder Abholung im Laden].</li>
+          </ol>
+        </div>
+        <div><span class="label">RU · В магазине</span>
+          <ol>
+            <li><strong>Приходите.</strong> Без записи, пн–сб 10:00–18:30.</li>
+            <li><strong>Диагностика и цена.</strong> Проверяем устройство и называем цену. Решение за вами.</li>
+            <li><strong>Ремонт и выдача.</strong> Обычно примерно через 60 минут. Оплата при получении.</li>
+          </ol>
+          <span class="label" style="display:block;margin-top:1.25rem">RU · По почте</span>
+          <ol>
+            <li><strong>Распечатайте наклейку</strong> и сдайте хорошо упакованное устройство на почту.</li>
+            <li><strong>Диагностика.</strong> Проверяем устройство и присылаем предложение.</li>
+            <li><strong>Ремонт и оплата.</strong> После вашего согласия, переводом или картой (Stripe).</li>
+            <li><strong>Отправка обратно</strong> на ваш адрес [или выдача в магазине].</li>
+          </ol>
+        </div>
+      </div>
+
+      <h3>Магазин</h3>
+      <div class="pair">
+        <div><span class="label">DE</span>
+          <h4>Besuchen Sie uns in der Dortustraße</h4>
+          <p>Handy Chirurg Potsdam<br>Dortustraße 23, 14467 Potsdam</p>
+          <p>Mo–Sa 10:00–18:30 Uhr<br>So geschlossen</p>
+          <p>[Tram-Haltestelle, Parkmöglichkeit]</p>
+        </div>
+        <div><span class="label">RU</span>
+          <h4>Приходите к нам на Dortustraße</h4>
+          <p>Handy Chirurg Potsdam<br>Dortustraße 23, 14467 Potsdam</p>
+          <p>Пн–сб 10:00–18:30<br>Вс выходной</p>
+          <p>[Остановка трамвая, где припарковаться]</p>
+        </div>
+      </div>
+
+      <h3>FAQ</h3>
+      <div class="pair">
+        <div><span class="label">DE</span>
+          <h4>Brauche ich einen Termin?</h4>
+          <p>Nein. Kommen Sie während der Öffnungszeiten vorbei.</p>
+          <h4>Wie lange dauert die Reparatur?</h4>
+          <p>Display- und Akkutausch meist etwa 60 Minuten, wenn das Teil auf Lager ist. Bei Wasserschäden und Platinenarbeiten nennen wir Ihnen die Dauer nach der Diagnose.</p>
+          <h4>Was kostet die Fehleranalyse?</h4>
+          <p>25 €. Lassen Sie das Gerät bei uns reparieren, verrechnen wir den Betrag.</p>
+          <h4>Was passiert mit meinen Daten?</h4>
+          <p>Wir greifen nicht auf Ihre persönlichen Daten zu und löschen nichts. Eine Sicherung vorab empfehlen wir trotzdem, wenn sie möglich ist.</p>
+          <h4>Welche Garantie bekomme ich?</h4>
+          <p>[6] Monate auf die Arbeit und die verbauten Teile.</p>
+          <h4>Wie kann ich bezahlen?</h4>
+          <p>[Bar, EC-Karte, Kreditkarte]. Beim Versand per Überweisung oder Karte über Stripe.</p>
+        </div>
+        <div><span class="label">RU</span>
+          <h4>Нужна ли запись?</h4>
+          <p>Нет. Приходите в часы работы.</p>
+          <h4>Сколько длится ремонт?</h4>
+          <p>Замена дисплея и аккумулятора обычно около 60 минут, если деталь есть на складе. Для влаги и ремонта платы срок называем после диагностики.</p>
+          <h4>Сколько стоит диагностика?</h4>
+          <p>25 €. Если ремонтируете у нас, сумма засчитывается.</p>
+          <h4>Что с моими данными?</h4>
+          <p>Мы не получаем доступ к вашим данным и ничего не удаляем. Резервную копию всё равно советуем сделать, если это возможно.</p>
+          <h4>Какая гарантия?</h4>
+          <p>[6] месяцев на работу и установленные детали.</p>
+          <h4>Как оплатить?</h4>
+          <p>[Наличные, EC-карта, кредитная карта]. При отправке по почте — переводом или картой через Stripe.</p>
+        </div>
+      </div>
+
+      <h3>Форма заявки</h3>
+      <div class="pair">
+        <div><span class="label">DE</span>
+          <h4>Lieber vorher fragen?</h4>
+          <p>Schreiben Sie uns Gerät und Problem. Wir melden uns mit einer Einschätzung. Für schnelle Hilfe rufen Sie am besten an.</p>
+          <p class="muted">Felder: Gerät und Modell · Was ist kaputt? · Ihr Name · Telefon oder E-Mail<br>Button: Anfrage senden<br>Danke-Text: Danke, Ihre Anfrage ist da. Wir melden uns [am selben Werktag].</p>
+        </div>
+        <div><span class="label">RU</span>
+          <h4>Хотите спросить заранее?</h4>
+          <p>Напишите устройство и проблему. Мы ответим с оценкой. Если срочно — лучше позвоните.</p>
+          <p class="muted">Поля: устройство и модель · что сломалось · имя · телефон или e-mail<br>Кнопка: отправить заявку<br>После отправки: спасибо, заявка получена, ответим [в тот же рабочий день].</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 -->
+    <section id="franchise">
+      <span class="label">08</span>
+      <h2>Страница франшизы</h2>
+      <p>Аудитория другая: не клиент со сломанным телефоном, а человек, который считает деньги. Тон деловой, без восклицательных знаков. Главное, что ему нужно: что он получает, что от него требуется, сколько денег, что дальше. Если есть цифры (паушальный взнос, роялти, число точек), их стоит показать; выдумывать нельзя.</p>
+      <p><strong>Структура:</strong> первый экран → что вы получаете → что нужно от вас → как проходит старт (шаги) → [существующие точки] → форма «Erstgespräch».</p>
+      <div class="pair">
+        <div><span class="label">DE</span>
+          <h4>Handy Chirurg in Ihrer Stadt</h4>
+          <p>Eröffnen Sie eine Reparaturwerkstatt mit einem erprobten Konzept, eingespieltem Einkauf und Unterstützung vom ersten Tag an.</p>
+          <h4>Was Sie von uns bekommen</h4>
+          <ul>
+            <li>Ein erprobtes Geschäftsmodell</li>
+            <li>Schulung und laufende Betreuung</li>
+            <li>Gebietsschutz für Ihren Standort</li>
+            <li>Unterstützung im Marketing</li>
+            <li>Günstige Ersatzteile über unseren Einkauf</li>
+            <li>Eigene Software für die Reparaturverwaltung</li>
+          </ul>
+          <h4>Was Sie mitbringen</h4>
+          <ul>
+            <li>Interesse an Technik und Service</li>
+            <li>Unternehmerisches Denken</li>
+            <li>Startkapital ab 25.000 €</li>
+            <li>Die Bereitschaft, selbst mit anzupacken</li>
+          </ul>
+          <p><strong>Button:</strong> Erstgespräch vereinbaren</p>
+        </div>
+        <div><span class="label">RU</span>
+          <h4>Handy Chirurg в вашем городе</h4>
+          <p>Откройте мастерскую по проверенной модели, с налаженными закупками и поддержкой с первого дня.</p>
+          <h4>Что вы получаете</h4>
+          <ul>
+            <li>Проверенную бизнес-модель</li>
+            <li>Обучение и постоянную поддержку</li>
+            <li>Эксклюзивное право на территорию</li>
+            <li>Помощь в маркетинге</li>
+            <li>Недорогие запчасти через наши закупки</li>
+            <li>Собственное ПО для управления ремонтами</li>
+          </ul>
+          <h4>Что нужно от вас</h4>
+          <ul>
+            <li>Интерес к технике и сервису</li>
+            <li>Предпринимательское мышление</li>
+            <li>Стартовый капитал от 25 000 €</li>
+            <li>Готовность работать самому</li>
+          </ul>
+          <p><strong>Кнопка:</strong> договориться о первой встрече</p>
+        </div>
+      </div>
+      <p>Форма для франшизы отдельная: имя, город, телефон, e-mail, капитал (диапазон), комментарий. Заявки идут не на почту магазина Потсдама, а владельцу бренда.</p>
+    </section>
+
+    <!-- 09 -->
+    <section id="legal">
+      <span class="label">09</span>
+      <h2>Юридическое</h2>
+      <p>Это не юридическая консультация. Перед запуском тексты Impressum, Datenschutz и AGB должен проверить юрист или генератор вроде eRecht24.</p>
+      <ul>
+        <li><strong>Impressum</strong> (§ 5 DDG): имя владельца — Malake Mansour, [правовая форма], полный адрес, телефон, e-mail, USt-IdNr. DE368877064. Доступен с каждой страницы одним кликом (футер).</li>
+        <li><strong>Отказ от разрешения споров</strong> (§ 36 VSBG), формулировка на сайте:
+          <div class="copy" style="margin-top:.5rem"><p class="de" style="font-style:normal">Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p></div>
+        </li>
+        <li><strong>Datenschutz:</strong> обновить под новый сайт: хостинг, шрифты (лучше хранить локально, не грузить с Google), форма заявки, карта (с согласием), Stripe, WhatsApp, если будет кнопка.</li>
+        <li><strong>Баннер cookies</strong> нужен только если есть отслеживание или сторонние встраивания. Без аналитики и без встроенной карты можно обойтись без баннера.</li>
+        <li><strong>AGB и право отказа:</strong> для Send-in (договор заключается дистанционно) нужны условия и, вероятно, информация о праве отказа (Widerrufsbelehrung).</li>
+        <li><strong>Рекламные утверждения:</strong> «Original-Ersatzteile», «60 Minuten», «Garantie» — только в той формулировке, которую бизнес действительно выполняет (раздел 00).</li>
+      </ul>
+    </section>
+  </main>
+</div>
