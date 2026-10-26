@@ -2,6 +2,11 @@
 
 Stage 01 · updated 2026-10-26 (after retrieval and full page audit)
 
+> **Superseded for client communication by `CLIENT_DECISIONS.md` (Stage 02)**,
+> which covers every client item below with a decision ID and a fallback.
+> A5 (Ma'Loa material) is for the project owner and stays tracked here and in
+> PROJECT_STATUS. This file is kept as the Stage 01 record.
+
 Nothing listed here may be filled with invented content: no placeholder
 job titles, benefits, testimonials, certifications, salaries, team sizes or
 project stories. The site's existing claims are quoted in

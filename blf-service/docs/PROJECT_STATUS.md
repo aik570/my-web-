@@ -1,9 +1,8 @@
 # Project Status — BLF Service redesign
 
-Last update: 2026-10-26 · **Stage 01 complete.** Waiting for approval
-before Stage 02. Gallery classification is applied; only GAL-16 waits on
-the client (A4 in
-MISSING_INFORMATION).
+Last update: 2026-10-26 · **Stage 01 complete and approved.** **Stage 02
+(UX architecture) complete.** Waiting for approval before Stage 03.
+GAL-16 still waits on the client (D-14).
 
 ## Stage 01 — Discovery, asset extraction, foundation
 
@@ -118,10 +117,46 @@ blf-service/
   scripts/fetch-originals.sh
 ```
 
-## Before Stage 02
+## Stage 02 — UX architecture (documentation only)
 
-1. Get the client's answer on GAL-16, then `git mv` it to `baumkontrolle/`
-   (or wherever the client says).
-2. Send the German client questions (`MISSING_INFORMATION.md`).
-3. Supply the Ma'Loa reference material.
-4. Give explicit approval to start Stage 02.
+### Done
+
+- [x] `docs/research/USER_JOURNEYS.md`: customer and candidate journeys,
+      today vs proposed, with friction points and conversion opportunities.
+- [x] `docs/research/SITEMAP.md`: proposed hierarchy, URLs and 301s,
+      purpose of each page, header/footer navigation. Legal pages are
+      reachable from every page.
+- [x] `docs/research/PAGE_ARCHITECTURE.md`: section-by-section outlines
+      for Home, Leistungen, Galerie, Über uns, Karriere, Kontakt (goal,
+      content, CTA, assets, desktop/mobile).
+- [x] `docs/research/MOTION_SPEC.md`: scroll-driven gallery. 18 real
+      photos in 8 service chapters; pinned desktop stage; reduced-motion
+      and mobile fallbacks; no-upscaling caps; performance budgets; no
+      chronology claims.
+- [x] `docs/research/CLIENT_DECISIONS.md`: master list of 26 decisions for
+      Daniel Witte (11 critical, 8 quality, 7 optional), each with a
+      no-invention fallback, plus German questions.
+- [x] Consistency review:
+      - every D-ID is defined and used;
+      - every photo ID exists, and GAL-16 is never used without its
+        condition;
+      - claims only appear with D-08;
+      - the gallery sequence covers the 18 photos exactly once;
+      - every quote presented as site text was checked against the saved
+        pages. Five inexact quotes were corrected, including four in the
+        Stage 01 CONTENT_AUDIT.
+
+### Not done on purpose
+
+- No visual design, no frontend code, no copywriting beyond labelled
+  example microcopy.
+- No changes to source HTML, assets or anything outside `blf-service/`.
+
+## Before Stage 03
+
+1. Send the client questions in `CLIENT_DECISIONS.md` (**critical:
+   D-01 – D-11**).
+2. Supply the Ma'Loa reference material (MOTION_SPEC §0 checkpoint).
+3. Decide whether Über uns is a page or a Home section (SITEMAP §4).
+4. When the client answers D-14, `git mv` GAL-16 accordingly.
+5. Give explicit approval to start Stage 03.

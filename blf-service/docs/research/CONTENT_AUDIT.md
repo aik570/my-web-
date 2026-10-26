@@ -76,7 +76,7 @@ Baumfällung as unstyled paragraphs.
 | 2 | `Baumpflege` | Kronenpflege, Schnittarbeiten, Düngung, Totholzentfernung, Kroneneinkürzung, Lichtraumprofilschnitt, **Einbau einer Kronensicherung** |
 | 3 | `Baumkontrolle` | inspections, risk identification, recommendations |
 | 4 | `Baufeldberäumung` | removal of plants, trees, shrubs before construction |
-| 5 | `Straßen-und Flächenreinigung` | street sweeping, footpaths, leaves and dirt, "mit professionellen Reinigungsmaschinen" |
+| 5 | `Straßen-und Flächenreinigung` | street sweeping, footpaths, leaves and dirt, "Mit professionellen Reinigungsmaschinen" |
 | 6 | `Winterdienst` | subtitle **`Gewerblich und Kommunen`**; snow clearing, de-icing |
 | 7 | `Pflasterarbeiten` | new build and repair: paths, driveways, terraces |
 | 8 | `Neuanpflanzung & Freistellen von Neuanpflanzung` | planning and planting, freeing young plantings |
@@ -143,7 +143,7 @@ The five "Wir bieten" items are the only stated benefits.
 
 | Section | Content |
 |---|---|
-| Hosting | "externer Dienstleister", **hoster not named**; says a processing agreement (AVV) exists |
+| Hosting | "einem externen Dienstleister", **hoster not named**; says a processing agreement (AVV) exists |
 | Cookies / consent | Consent Manager Provider, Jaohawi AB, Västerås (Sweden) |
 | Server log files, Kontaktformular, Anfrage per E-Mail/Telefon/Telefax | standard sections |
 | Google Web Fonts | "lokal installiert", no connection to Google |
@@ -196,7 +196,7 @@ confirms them, preferably with documents for the qualifications.
 | "Wir sind tagtäglich für Sie im Einsatz!" | Home |
 | "Unsere zertifizierten Baumkontrolleure …" | Leistung |
 | "Unser Team besteht aus qualifizierten European Treeworkern …" | Leistung, *Warum uns wählen?* |
-| "Bei Sturmschäden oder anderen Notfällen sind wir rund um die Uhr für Sie da." (24/7 emergency service) | Leistung |
+| "Bei, Sturmschäden oder anderen Notfällen sind wir rund um die Uhr für Sie da." [sic] (24/7 emergency service) | Leistung |
 | "Unsere Fachleute nutzen modernste Techniken und Ausrüstungen" | Leistung |
 | "Wir sind ein etabliertes Unternehmen …" | Jobs |
 | "Wir bieten: … feste Anstellung, moderne Arbeitsmittel, Fort- und Weiterbildungsmöglichkeiten …" | Jobs |
@@ -223,7 +223,7 @@ ich", "arbeite ich"); the other pages say "wir" and "unser Team".
 
 | # | Issue | Why it matters |
 |---|---|---|
-| L1 | The Impressum field "Umsatzsteuer-Identifikationsnummer gemäß § 27 a UStG" shows `048/287/07014`. That is the format of a **Steuernummer**; a USt-IdNr. looks like `DE` + 9 digits | Legal accuracy of the Impressum |
+| L1 | The Impressum field "Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz" shows `048/287/07014`. That is the format of a **Steuernummer**; a USt-IdNr. looks like `DE` + 9 digits | Legal accuracy of the Impressum |
 | L2 | The analytics script and the Webflow-CDN Lottie load on every page but are **not disclosed** in the Datenschutzerklärung | GDPR disclosure gap |
 | T1 | Contact form: recipient `info&hey@blfservice.de` is not a valid address, and `bad_url` is `FEHLERMEDLUNG.com.de.cz` | Inquiries may not be delivered. Not tested: we did not submit the form |
 | T2 | The message field `Ihr-Anliegen` is optional while phone is required | Conversion and data minimisation |
