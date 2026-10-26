@@ -1,149 +1,70 @@
-# A135 — 6286 203 Street, Langley BC
+# Handy Chirurg Potsdam
 
-A single-listing page for a commercial strata unit in the Township of
-Langley, British Columbia. Built as a portfolio piece for AIK Studio.
-
-## Direction
-
-The palette is taken off the building itself: charcoal cladding, white
-concrete, and the orange stripe that runs along the facade.
-
-| Token | Value | Role |
-|---|---|---|
-| `--char` | `#33363a` | Charcoal cladding. Type and the dark band |
-| `--bone` | `#f4f3f1` | White concrete. The page ground |
-| `--orange` | `#e4601f` | The facade stripe. Status, CTA, rules. Used sparingly |
-| `--grey` | `#6b7076` | Secondary text |
-
-Type: **Archivo** at 700 with a widened axis for headings, **Instrument
-Sans** for body. Figures use tabular numerals.
-
-## Stack
-
-Plain HTML, CSS and JavaScript. No framework, no build step. The only
-external resource is the Google Fonts stylesheet.
+Website for the Handy Chirurg repair shop at Dortustraße 23, 14467 Potsdam.
+Plain HTML, CSS and JavaScript. No framework, no build step.
 
 ```
 index.html
 css/style.css
 js/main.js
-img/           five photographs
-og.png
+img/           logo and two crops of the shop front
+references/    the client's screenshots and the brief
 ```
 
-## Filling in the listing
+## Direction
 
-**Every figure lives in one object.** Open `js/main.js` and edit `LISTING`
-at the top. A field left as `null` renders as a greyed dash instead of a
-made-up number.
+One idea: the red heartbeat line from the logo. It runs under the hero and
+spikes just before the photo of the shop door, and it runs through the four
+repair steps, spiking at "Reparatur". It is not used anywhere else.
 
-```js
-var LISTING = {
-  status:  'For lease',
-  size:    '2,412 sq ft',
-  height:  '24 ft clear',
-  loading: 'One grade-level door',
-  parking: '4 stalls',
-  agent:   'Nikolai Riabov',
-  ...
-};
-```
-
-Only four figures are shown on the page now: unit size, clear height,
-loading and parking. The full specification table was removed. Contact rows
-are built from the same object and a row with no value is not rendered at
-all, so the block never shows an empty line.
-
-## Interaction
-
-| What | How it behaves |
-|---|---|
-| Hero slideshow | Five shots crossfade every 5.2 s with a slow scale drift. Pauses on hover, on focus, and when the tab is hidden |
-| Thumbnail rail | Doubles as the control. Click to jump; the track slides to keep the active frame centred |
-| Headline | Splits into words and rises into place on load, 70 ms apart |
-| Buttons | Corners are rounded in a diagonal pair and swap on hover, an arrow slides right, and the fill sweeps up from the bottom |
-| Blocks | Rise into view as you scroll, staggered when several arrive together |
-| Gallery | Click any frame for the lightbox. Arrow keys move, Escape closes, focus returns to the frame you opened |
-| Location shot | Light parallax tied to scroll |
-
-All of it is plain CSS and JavaScript. No GSAP, no Framer Motion, no
-library of any kind.
-
-**Motion is opt-in.** A short script in `<head>` adds `.anim` to the root
-element only when scripting is on and the viewer has not asked for reduced
-motion. Every rule that hides an element sits behind that class, so with no
-script, or with reduced motion, the page simply renders at rest with
-nothing hidden.
-
-## Performance
-
-Measured in Chromium on a 375 x 812 viewport at 2x, with the CPU throttled
-4x and the network held to about 1.6 Mbps.
-
-| Metric | Before | After | |
-|---|---|---|---|
-| LCP | 2480 ms | **912 ms** | good |
-| CLS | 0.0038 | 0.0038 | good |
-| Transfer | 452 KB | **370 KB** | |
-| Images | 289 KB | **204 KB** | |
-| Requests | 11 | 14 | |
-| DOM nodes | 201 | 232 | |
-
-What moved the numbers:
-
-1. **WebP with a JPEG fallback.** About 40% smaller across the set. A
-   canvas probe picks the format, so no browser is left without an image.
-2. **Real thumbnails.** The rail used to load the full photographs to draw
-   them 240 px wide. `img/thumb/` holds 380 px copies: 57 KB instead of
-   288 KB.
-3. **Deferred slides.** Only the first hero shot is fetched up front and
-   preloaded. The other four are built after `load`, or on demand if the
-   viewer clicks ahead.
-
-Fonts are now the largest single item at 117 KB. They do not block first
-paint (`display=swap`), but dropping the width axis from the Archivo
-request would save about 21 KB at the cost of the widened headings.
-
-Touch targets were raised to 44 px on the footer links, the menu button,
-the header call to action and the address lockup.
-
-## Photographs
-
-Shot by the site owner. The five files in `img/` were cut out of three
-social-post composites: the baked-in title block and the brokerage
-watermark were cropped away.
-
-| File | Size | Shot |
+| Token | Value | Role |
 |---|---|---|
-| `aerial-wide.jpg` | 828 × 560 | The complex from above, valley behind |
-| `street-front.jpg` | 702 × 419 | Frontage across 203 Street |
-| `loading-bays.jpg` | 688 × 394 | Rear elevation, grade-level doors |
-| `aerial-corner.jpg` | 702 × 282 | Panorama from the south |
-| `aerial-context.jpg` | 688 × 288 | Overhead, yard and service access |
+| `--paper` | `#f7f7f4` | Page ground |
+| `--ink` | `#17201e` | Type, primary button, the dark band |
+| `--teal-d` | `#22604f` | Links. The logo's skyline teal, darkened for contrast |
+| `--pulse` | `#c13329` | The heartbeat line only. Taken from the logo |
 
-**These are low resolution.** The two panoramas are capped at 980px wide so
-nothing upscales past about 1.4×. Supply the originals from the camera and
-those caps in `css/style.css` can be removed.
+Type: IBM Plex Sans for text, IBM Plex Mono for labels, hours and numbers.
+One primary button (ink), one ghost button, one text link. 2px corners on
+controls, square photographs, hairline rules instead of cards.
 
-There is also a 5 MB MP4 of the site that could not be processed here:
-neither the bundled ffmpeg nor the bundled browser can decode H.264 in this
-environment. It is not in the repository.
+Sections, each laid out differently: hero (asymmetric, photo bleeds off the
+right edge), services as an index list, steps on the pulse line, prices and
+guarantee on a dark band with the two real figures, shop with hours table,
+request form.
 
-## What the page does not claim
+## Content sources
 
-No price, area, zoning, clear height, power, parking or availability is
-stated until the data is supplied. The footer says so. Nothing on the page
-is an offer.
+All copy comes from the client's current site and their WhatsApp Business
+profile (screenshots in `references/`). Nothing was invented: the figures
+"ab 25 €" and "ca. 60 Minuten" are the shop's own. The page uses "Sie"
+throughout; the old site mixed "Sie" and "Du".
+
+Left out on purpose:
+
+- The send-in service and "beiden Filialen in Berlin": that copy was taken
+  over from the Berlin site and may not apply to Potsdam.
+- The workshop photos and the cracked-screen hero from the old site. They
+  look like stock photography and must not stand in for this shop.
+- The cartoon doctor mascot.
 
 ## Behaviour
 
-- Sticky bar with the current section marked via `aria-current`
-- Menu collapses under 720px, closes on link click and on Escape
-- Viewing request form validates inline. **Demo only — it sends nothing**
-- `prefers-reduced-motion` disables the transitions
-- Nothing is hidden behind a scroll observer; the page reads at load
+- Opening status is computed in Europe/Berlin time: "Jetzt geöffnet" or when
+  the shop opens next. Today's row in the hours table is marked. Without
+  JavaScript the static hours show.
+- The request form builds an e-mail to potsdam@handy-chirurg.de and opens the
+  visitor's mail app. The page itself sends and stores nothing.
+- No map embed (no third-party requests before consent); a link opens
+  Google Maps instead.
+- LocalBusiness structured data in `<head>`.
 
-## Wiring the form
+## Still needed from the client
 
-In `js/main.js`, replace the block marked `Demo only: nothing is sent` with
-a `fetch()` to your endpoint.
+1. **Impressum and Datenschutzerklärung.** Required for a German business
+   site. Not on the page yet.
+2. **Real photographs** in full resolution. The shop photo is cut from a
+   phone screenshot (732 px wide). A bench or repair close-up of their own
+   would replace the second use of the shop front.
+3. The full text of repair steps 3 and 4 from the old site, and any price list.
+4. A WhatsApp number, if it differs from the landline.
