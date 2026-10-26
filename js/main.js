@@ -2,18 +2,87 @@
   'use strict';
 
   var root = document.documentElement;
+  var reduced = root.classList.contains('reduced');
 
-  /* ---------- intro: remove once it has played ---------- */
+  /* ---------- intro: the logo draws like a monitor sweep, then docks in the header ---------- */
 
-  var intro = document.getElementById('intro');
-  if (intro) setTimeout(function () { intro.remove(); }, 3000);
+  // The heartbeat line of the logo, in logo units (viewBox 574 × 365).
+  var LINE = [[20, 300], [214, 300], [222, 292], [231, 274], [239, 316], [247, 296], [415, 296], [505, 296], [552, 296]];
+  function lineY(x) {
+    for (var i = 1; i < LINE.length; i++) {
+      if (x <= LINE[i][0]) {
+        var a = LINE[i - 1], b = LINE[i], t = (x - a[0]) / (b[0] - a[0]);
+        return a[1] + (b[1] - a[1]) * t;
+      }
+    }
+    return 296;
+  }
+  var ease = function (t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; };
+  var clamp = function (v) { return Math.max(0, Math.min(1, v)); };
+
+  function runIntro() {
+    var intro = document.getElementById('intro');
+    if (!intro || reduced) { root.classList.add('intro-done'); return; }
+
+    var logo = document.getElementById('introLogo');
+    var sweep = intro.querySelector('.intro__sweep');
+    var dot = intro.querySelector('.intro__dot');
+    var word = intro.querySelector('.intro__word');
+    var tag = intro.querySelector('.intro__tag');
+    var sky = intro.querySelector('.intro__sky');
+    var navLogo = document.getElementById('navLogo');
+    var start = performance.now();
+    var SWEEP = 1500, WORD = 1050, TAG = 1500, DOCK = 2350, END = 3100;
+    var docked = false, done = false;
+
+    function finish() {
+      if (done) return;
+      done = true;
+      root.classList.add('intro-done');
+      intro.remove();
+    }
+    intro.addEventListener('click', finish);
+
+    function frame(now) {
+      if (done) return;
+      var t = now - start;
+
+      var s = ease(clamp(t / SWEEP));
+      var x = s * 574;
+      sweep.setAttribute('width', x.toFixed(1));
+      var inGap = x > 418 && x < 503;
+      dot.setAttribute('cx', x.toFixed(1));
+      dot.setAttribute('cy', lineY(x).toFixed(1));
+      dot.style.opacity = (s > 0.01 && s < 0.995 && !inGap) ? 1 : 0;
+      sky.style.opacity = 0.35 + 0.65 * clamp((t - 300) / 1400);
+
+      var w = ease(clamp((t - WORD) / 600));
+      word.style.opacity = w;
+      word.style.transform = 'translateY(' + (8 * (1 - w)).toFixed(2) + 'px)';
+      tag.style.opacity = ease(clamp((t - TAG) / 500)) * (1 - clamp((t - DOCK) / 250));
+
+      if (t >= DOCK && !docked) {
+        docked = true;
+        // move the drawn logo onto the header logo, then let the page through
+        var from = logo.getBoundingClientRect();
+        var to = navLogo.getBoundingClientRect();
+        var k = to.width / from.width;
+        logo.style.transition = 'transform .75s cubic-bezier(.65,0,.35,1)';
+        logo.style.transform = 'translate(' + (to.left - from.left) + 'px,' + (to.top - from.top) + 'px) scale(' + k + ')';
+        intro.classList.add('is-leaving');
+      }
+      if (t >= END) { finish(); return; }
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+  runIntro();
 
   /* ---------- nav ---------- */
 
   var nav = document.getElementById('nav');
   var btn = document.getElementById('menuBtn');
   var links = document.getElementById('navLinks');
-  var story = document.getElementById('story');
 
   function setMenu(open) {
     nav.classList.toggle('is-open', open);
@@ -26,28 +95,15 @@
     if (e.key === 'Escape' && nav.classList.contains('is-open')) { setMenu(false); btn.focus(); }
   });
 
-  // The bar turns light over light sections.
-  var darks = [].slice.call(document.querySelectorAll('.story, .dark'));
-  function navTone() {
-    var y = nav.offsetHeight / 2, dark = false;
-    darks.forEach(function (s) {
-      var r = s.getBoundingClientRect();
-      if (r.top <= y && r.bottom >= y) dark = true;
-    });
-    nav.classList.toggle('is-light', !dark);
-  }
-  addEventListener('scroll', navTone, { passive: true });
-  navTone();
-
-  /* ---------- 3D fallback: if the scene has not started, collapse the story ---------- */
+  /* ---------- 3D fallback ---------- */
 
   setTimeout(function () {
     if (!root.classList.contains('webgl-ready')) root.classList.add('no-webgl');
   }, 8000);
 
-  /* ---------- reveal on scroll ---------- */
+  /* ---------- reveal ---------- */
 
-  var targets = document.querySelectorAll('.reveal, .flow__pulse, .call__pulse');
+  var targets = document.querySelectorAll('.reveal, .path__line');
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
@@ -59,9 +115,10 @@
     [].forEach.call(targets, function (t) { t.classList.add('is-in'); });
   }
 
-  /* ---------- opening status, in Potsdam time ---------- */
+  /* ---------- opening state, in Potsdam time ---------- */
 
   var OPEN = 10 * 60, CLOSE = 18 * 60 + 30;
+  var isOpen = null;
   function potsdamNow() {
     try {
       var parts = new Intl.DateTimeFormat('en-GB', {
@@ -73,24 +130,104 @@
       return { day: days[m.weekday], min: (+m.hour % 24) * 60 + (+m.minute) };
     } catch (e) { return null; }
   }
-  var now = potsdamNow();
-  if (now) {
+  (function renderState() {
+    var now = potsdamNow();
+    if (!now) return;
     var row = document.querySelector('.hours tr[data-day="' + now.day + '"]');
     if (row) row.classList.add('is-today');
-    var el = document.querySelector('[data-status]');
+
     var openDay = now.day !== 0;
-    if (openDay && now.min >= OPEN && now.min < CLOSE) {
-      el.textContent = 'Jetzt geöffnet · bis 18:30 Uhr';
-      el.classList.add('is-open');
-    } else {
-      el.textContent = openDay && now.min < OPEN ? 'Geschlossen · öffnet heute um 10:00 Uhr'
-        : (now.day === 6 || now.day === 0) ? 'Geschlossen · öffnet Montag um 10:00 Uhr'
-        : 'Geschlossen · öffnet morgen um 10:00 Uhr';
-      el.classList.add('is-closed');
+    isOpen = openDay && now.min >= OPEN && now.min < CLOSE;
+    var next = openDay && now.min < OPEN ? 'heute 10:00' : (now.day === 6 || now.day === 0) ? 'Montag 10:00' : 'morgen 10:00';
+
+    var state = document.querySelector('[data-state]');
+    var hours = document.querySelector('[data-hours-today]');
+    var short = document.querySelector('[data-state-short]');
+    if (hours) hours.textContent = openDay ? '10:00–18:30' : 'geschlossen';
+    if (state) {
+      state.textContent = isOpen ? 'Jetzt geöffnet' : 'Geschlossen · ab ' + next;
+      state.classList.toggle('is-closed', !isOpen);
     }
+    if (short) {
+      short.textContent = isOpen ? 'Geöffnet bis 18:30' : 'Geschlossen · ab ' + next;
+      short.classList.add(isOpen ? 'is-open' : 'is-closed');
+    }
+  })();
+
+  /* ---------- heart monitors ---------- */
+
+  // One heartbeat as a function of phase 0..1: P wave, QRS spike, T wave.
+  function beat(p) {
+    var g = function (c, w, h) { var d = (p - c) / w; return h * Math.exp(-d * d); };
+    return g(.12, .035, .12) - g(.3, .012, .14) + g(.33, .014, 1) - g(.365, .014, .32) + g(.56, .06, .26);
   }
 
-  /* ---------- Ablauf: Im Laden / Per Post ---------- */
+  [].forEach.call(document.querySelectorAll('[data-ecg]'), function (cv) {
+    var ctx = cv.getContext('2d');
+    var wide = cv.hasAttribute('data-ecg-wide');
+    var visible = false, w = 0, h = 0, dpr = 1;
+    var color = wide ? '111,227,192' : '111,227,192';
+
+    function size() {
+      dpr = Math.min(devicePixelRatio || 1, 2);
+      w = cv.clientWidth; h = cv.clientHeight;
+      cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    size();
+    addEventListener('resize', size);
+
+    var period = wide ? 260 : 120;          // px per beat
+    var speed = wide ? 120 : 70;            // px per second
+
+    function draw(now) {
+      if (!w) return;
+      var shift = reduced ? 0 : (now / 1000) * speed;
+      var amp = isOpen === false ? 0.18 : 1;
+      ctx.clearRect(0, 0, w, h);
+
+      // faint monitor grid
+      ctx.strokeStyle = 'rgba(' + color + ',.07)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      for (var gx = 0; gx < w; gx += 16) { ctx.moveTo(gx + .5, 0); ctx.lineTo(gx + .5, h); }
+      for (var gy = 0; gy < h; gy += 16) { ctx.moveTo(0, gy + .5); ctx.lineTo(w, gy + .5); }
+      ctx.stroke();
+
+      var base = h * 0.62, scale = h * 0.5 * amp;
+      var grad = ctx.createLinearGradient(0, 0, w, 0);
+      grad.addColorStop(0, 'rgba(' + color + ',0)');
+      grad.addColorStop(0.25, 'rgba(' + color + ',.55)');
+      grad.addColorStop(1, 'rgba(' + color + ',1)');
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = wide ? 2.2 : 1.8;
+      ctx.lineJoin = 'round';
+      ctx.shadowColor = 'rgba(' + color + ',.7)';
+      ctx.shadowBlur = 8;
+      ctx.beginPath();
+      for (var x = 0; x <= w; x += 1) {
+        var ph = (((x + shift) % period) + period) % period / period;
+        var y = base - beat(ph) * scale;
+        if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+
+      // the bright head at the right edge
+      var hp = (((w + shift) % period) + period) % period / period;
+      ctx.fillStyle = 'rgba(' + color + ',1)';
+      ctx.beginPath(); ctx.arc(w - 2, base - beat(hp) * scale, 2.6, 0, 7); ctx.fill();
+    }
+
+    function loop(now) {
+      if (visible) draw(now);
+      if (!reduced) requestAnimationFrame(loop);
+    }
+    new IntersectionObserver(function (e) { visible = e[0].isIntersecting; if (reduced && visible) draw(0); }).observe(cv);
+    requestAnimationFrame(loop);
+  });
+
+  /* ---------- Behandlungsweg tabs ---------- */
 
   var tabs = [].slice.call(document.querySelectorAll('.switch [role="tab"]'));
   function select(tab) {

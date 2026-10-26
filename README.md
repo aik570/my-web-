@@ -7,26 +7,30 @@ Plain HTML, CSS and JavaScript. No framework, no build step.
 index.html
 css/style.css
 js/main.js
-img/           logo and two crops of the shop front
+img/           shop front photo; the logo is inline SVG in index.html
 references/    the client's screenshots and the brief
 ```
 
-## Direction (concept v2)
+## Direction (concept v3: a clinic for phones)
 
-The page tells one story with one object. A phone arrives with a cracked
-screen, opens into its layers as you scroll (display, logic board, battery,
-frame, back glass, each labelled with the repair it stands for) and closes
-again repaired, its screen drawing the heartbeat line from the logo. The
-same red line draws itself in the intro, under the wordmark in the bar, in
-the repair steps and under the phone number.
+The brand is "Handy Chirurg", so the page is presented like a clinic, in the
+brand's own colours: skyline teal `#2f7a68`, heartbeat red `#c8312a`, logo
+charcoal `#2a2a2a`, on clinical white and mint. Type is Archivo at its widest
+setting, echoing the spaced capitals of the logo, with IBM Plex Mono for
+monitor and chart labels.
 
-- 3D: Three.js 0.160 from jsDelivr via an import map, `js/phone.js`. The
-  phone is built from primitives, no downloaded model. Drag to rotate.
-- Scroll drives a `--p` custom property on `#story`; the text scenes fade
-  on it in CSS, the 3D pose reads it in JS.
-- Without WebGL, or if the CDN fails, the story collapses to its hero after
-  8 s. With reduced motion there is no intro and no reveal animation.
-- Dark for the story, light for the facts. Type: Geist and Geist Mono.
+- **Intro.** The real logo, traced to SVG (`lg-sky`, `lg-pulse`, `lg-word`
+  in the inline `<defs>`), is revealed by a monitor sweep with a glowing dot
+  riding the heartbeat line; lettering and stethoscope rise in, then the logo
+  flies into the header. Click skips it. Off with reduced motion.
+- **Hero.** "Notaufnahme für Ihr Handy." with a patient monitor that shows
+  the live opening state (Potsdam time) as a running ECG trace.
+- **3D story.** Aufnahme (cracked) → Im OP (exploded, each layer labelled
+  with its repair) → Entlassen (screen lit, heartbeat drawn).
+- **Sections.** Services as wayfinding signs, the 25 € diagnosis as a
+  findings form, the promises as "Patientenrechte" (§ 1–4), the process as a
+  treatment path, opening hours as a door board, FAQ as "Sprechstunde", a
+  full-width monitor under the phone number, franchise, footer Impressum.
 
 ## Content sources
 

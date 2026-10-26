@@ -21,7 +21,7 @@ try {
 renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1.05;
+renderer.toneMappingExposure = 0.95;
 
 const scene = new THREE.Scene();
 const pmrem = new THREE.PMREMGenerator(renderer);
@@ -31,10 +31,10 @@ const camera = new THREE.PerspectiveCamera(28, 1, 0.1, 100);
 camera.position.set(0, 0, 9);
 
 // Teal rim from behind, as in the logo; a soft key from the front left.
-const rim = new THREE.DirectionalLight(0x5fd1b4, 3.2);
+const rim = new THREE.DirectionalLight(0x6fd0b7, 1.8);
 rim.position.set(3, 2, -4);
 scene.add(rim);
-const key = new THREE.DirectionalLight(0xffffff, 1.2);
+const key = new THREE.DirectionalLight(0xffffff, 1.6);
 key.position.set(-3, 3, 5);
 scene.add(key);
 
@@ -211,7 +211,7 @@ function labelTexture(lines, bg, fg) {
 const titanium = new THREE.MeshPhysicalMaterial({ color: 0x8e9895, metalness: 1, roughness: 0.32 });
 const darkMetal = new THREE.MeshPhysicalMaterial({ color: 0x2b3130, metalness: 0.9, roughness: 0.4 });
 const glassBlack = new THREE.MeshPhysicalMaterial({ color: 0x050606, metalness: 0, roughness: 0.04, clearcoat: 1, clearcoatRoughness: 0.03 });
-const backGlass = new THREE.MeshPhysicalMaterial({ color: 0x1e3c35, metalness: 0.2, roughness: 0.42, clearcoat: 1, clearcoatRoughness: 0.25 });
+const backGlass = new THREE.MeshPhysicalMaterial({ color: 0x2f7a68, metalness: 0.2, roughness: 0.42, clearcoat: 1, clearcoatRoughness: 0.25 });
 const lensGlass = new THREE.MeshPhysicalMaterial({ color: 0x020303, metalness: 0.4, roughness: 0.05, clearcoat: 1 });
 
 /* ---------- parts ---------- */
@@ -389,19 +389,19 @@ function frameLoop(now) {
   const idle = reduced ? 0 : Math.sin(now / 2200) * 0.05;
   // pose: turned when broken, three-quarter when open, square when repaired
   const fix = smooth(0.7, 0.92, p);
-  const yawClosed = lerp(-0.38, -0.12, fix);
+  const yawClosed = lerp(-0.55, -0.15, fix);
   const yaw = lerp(yawClosed, portrait ? -0.3 : -0.92, open) + dragYaw + idle + hoverX * 0.06;
   const pitch = lerp(0.08, portrait ? 1.0 : 0.28, open) - hoverY * 0.04;
   phone.rotation.set(pitch, yaw, lerp(0.05, 0, fix) + (portrait ? 0 : open * 0.05));
   if (portrait) {
     phone.position.x = 0;
-    phone.position.y = lerp(-1.25, 0.2, smooth(0.04, 0.22, p)) + lerp(0, 1.2, smooth(0.8, 0.95, p)) - open * 0.4;
+    phone.position.y = lerp(-2.6, 0.2, smooth(0.03, 0.22, p)) + lerp(0, 1.2, smooth(0.8, 0.95, p)) - open * 1.0;
   } else {
     // right of the text when closed, centred-right when open
-    phone.position.x = lerp(1.35, 0.95, open);
+    phone.position.x = lerp(1.55, 1.0, open);
     phone.position.y = Math.sin(now / 1800) * 0.03;
   }
-  phone.scale.setScalar(lerp(portrait ? 0.78 : 0.86, portrait ? 0.7 : 0.78, open));
+  phone.scale.setScalar(lerp(portrait ? 0.78 : 0.8, portrait ? 0.62 : 0.76, open));
 
   for (const part of phone.children) {
     const L = LAYOUT[part.name];
@@ -413,16 +413,21 @@ function frameLoop(now) {
 
   // labels follow their parts
   const rect = canvas.getBoundingClientRect();
-  for (const el of labels) {
+  labels.forEach((el, i) => {
     const part = phone.getObjectByName(el.dataset.layer);
-    // anchor at the top edge of the part (landscape) or its right edge (portrait)
+    // landscape: alternate labels above and below the parts so they never stack;
+    // portrait: to the right of each part
     const b = part.userData.base;
-    tmp.set(portrait ? W / 2 + 0.15 - b.x : 0, portrait ? -b.y : H / 2 + 0.22 - b.y, 0);
+    const below = !portrait && i % 2 === 1;
+    tmp.set(portrait ? W / 2 + 0.15 - b.x : 0, portrait ? -b.y : (below ? -H / 2 - 0.12 : H / 2 + 0.22) - b.y, 0);
     part.localToWorld(tmp);
     tmp.project(camera);
-    el.style.transform = `translate(${((tmp.x + 1) / 2) * rect.width}px, ${((1 - tmp.y) / 2) * rect.height}px)`;
+    let x = ((tmp.x + 1) / 2) * rect.width;
+    const y = ((1 - tmp.y) / 2) * rect.height + (below ? 70 : 0);
+    x = Math.min(x, rect.width - el.offsetWidth - 12);
+    el.style.transform = `translate(${x}px, ${y}px)`;
     el.style.opacity = smooth(0.32, 0.42, p) * (1 - smooth(0.56, 0.64, p));
-  }
+  });
 }
 
 resize();
