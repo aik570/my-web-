@@ -98,7 +98,10 @@ h1, h2, h3 { font-stretch: 125%; font-weight: 700; letter-spacing: -.025em; text
   position: fixed; inset: 0; z-index: 90;
   background: var(--white);
   transition: background-color .6s var(--ease);
+  /* failsafe: if the script never runs to the end, the intro still goes */
+  animation: introGone .4s ease 5s forwards;
 }
+@keyframes introGone { to { opacity: 0; visibility: hidden; pointer-events: none; } }
 .intro.is-leaving { background: transparent; pointer-events: none; }
 .intro__logo { width: min(74vw, 560px); overflow: visible; transform-origin: 0 0; }
 .intro__sky { fill: var(--teal); }
@@ -106,7 +109,8 @@ h1, h2, h3 { font-stretch: 125%; font-weight: 700; letter-spacing: -.025em; text
 .intro__dot { fill: var(--red-l); filter: drop-shadow(0 0 6px rgba(255, 107, 94, .9)); }
 .intro__word { fill: var(--ink); opacity: 0; }
 .intro__tag { opacity: 0; }
-.js:not(.reduced) .nav__logo { opacity: 0; }
+.js:not(.reduced) .nav__logo { opacity: 0; animation: logoIn .3s ease 5s forwards; }
+@keyframes logoIn { to { opacity: 1; } }
 .js.intro-done .nav__logo, .reduced .nav__logo { opacity: 1; }
 
 /* ---------- nav ---------- */

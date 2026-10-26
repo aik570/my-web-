@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="css/style.css">
-<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js">
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js" crossorigin>
 
 <script>
   (function () {
@@ -23,12 +23,6 @@
     d.className += ' js';
     try { if (matchMedia('(prefers-reduced-motion: reduce)').matches) d.className += ' reduced'; } catch (e) {}
   })();
-</script>
-<script type="importmap">
-{ "imports": {
-  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
-} }
 </script>
 
 <script type="application/ld+json">
@@ -393,6 +387,5 @@
 </footer>
 
 <script src="js/main.js" defer></script>
-<script type="module" src="js/phone.js"></script>
 </body>
 </html>

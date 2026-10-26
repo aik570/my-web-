@@ -2,9 +2,49 @@
 // layers as you scroll, and closes again repaired. Built from primitives, no
 // downloaded model, so every part can be named and moved.
 
-import * as THREE from 'three';
-import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
-import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+// One file from the CDN and nothing else: no import map and no add-ons, so it
+// loads the same way in Safari, in-app browsers and embedded previews.
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js';
+
+// A box with rounded edges: a rounded rectangle extruded with a bevel.
+// Material group 0 is the front and back faces, group 1 the sides.
+function roundedBox(w, h, d, r) {
+  const b = Math.min(d / 2, r) * 0.9;
+  const hw = w / 2 - b, hh = h / 2 - b, rr = Math.max(0.001, r - b);
+  const s = new THREE.Shape();
+  s.moveTo(-hw + rr, -hh);
+  s.lineTo(hw - rr, -hh); s.quadraticCurveTo(hw, -hh, hw, -hh + rr);
+  s.lineTo(hw, hh - rr); s.quadraticCurveTo(hw, hh, hw - rr, hh);
+  s.lineTo(-hw + rr, hh); s.quadraticCurveTo(-hw, hh, -hw, hh - rr);
+  s.lineTo(-hw, -hh + rr); s.quadraticCurveTo(-hw, -hh, -hw + rr, -hh);
+  const g = new THREE.ExtrudeGeometry(s, {
+    depth: Math.max(0.0005, d - 2 * b), bevelEnabled: true,
+    bevelThickness: b, bevelSize: b, bevelSegments: 3, curveSegments: 10
+  });
+  g.translate(0, 0, -(d - 2 * b) / 2);
+  return g;
+}
+
+// Studio lighting for reflections, built in place of the RoomEnvironment add-on.
+function studio() {
+  const env = new THREE.Scene();
+  env.add(new THREE.Mesh(new THREE.BoxGeometry(12, 12, 12), new THREE.MeshBasicMaterial({ color: 0x6a706e, side: THREE.BackSide })));
+  [[0, 5.5, 0, -Math.PI / 2, 0, 5, 4, 7], [-5.5, 1, 1, 0, Math.PI / 2, 3, 5, 5], [5.5, 2, -2, 0, -Math.PI / 2, 2, 6, 4], [0, 1, 5.5, 0, Math.PI, 6, 2, 3]].forEach(([x, y, z, rx, ry, sw, sh, k]) => {
+    const m = new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide });
+    m.color.setScalar(k);
+    const p = new THREE.Mesh(new THREE.PlaneGeometry(sw, sh), m);
+    p.position.set(x, y, z); p.rotation.set(rx, ry, 0);
+    env.add(p);
+  });
+  return env;
+}
+
+// Cap faces get UVs in model units; scale a texture so it spans the face once.
+function fitCap(tex, w, h) {
+  tex.repeat.set(1 / w, 1 / h);
+  tex.offset.set(0.5, 0.5);
+  return tex;
+}
 
 const stage = document.getElementById('story');
 const canvas = document.getElementById('phoneCanvas');
@@ -25,7 +65,7 @@ renderer.toneMappingExposure = 0.95;
 
 const scene = new THREE.Scene();
 const pmrem = new THREE.PMREMGenerator(renderer);
-scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+scene.environment = pmrem.fromScene(studio(), 0.04).texture;
 
 const camera = new THREE.PerspectiveCamera(28, 1, 0.1, 100);
 camera.position.set(0, 0, 9);
@@ -228,7 +268,7 @@ function part(name) {
 
 // display: glass slab with the screen image laid on its face
 const display = part('display');
-display.add(new THREE.Mesh(new RoundedBoxGeometry(W, H, 0.04, 5, R), glassBlack));
+display.add(new THREE.Mesh(roundedBox(W, H, 0.04, R), glassBlack));
 const screen = new THREE.Mesh(
   new THREE.PlaneGeometry(W - 0.09, H - 0.09),
   new THREE.MeshBasicMaterial({ map: screenTex, transparent: true, toneMapped: false })
@@ -258,7 +298,7 @@ const frame = part('frame');
   geo.translate(0, 0, -0.05);
   frame.add(new THREE.Mesh(geo, titanium));
   // side buttons
-  const btnGeo = new RoundedBoxGeometry(0.03, 0.34, 0.05, 2, 0.012);
+  const btnGeo = roundedBox(0.03, 0.34, 0.05, 0.012);
   const b1 = new THREE.Mesh(btnGeo, titanium); b1.position.set(hw + 0.02, 0.6, 0); frame.add(b1);
   const b2 = new THREE.Mesh(btnGeo, titanium); b2.position.set(-hw - 0.02, 0.75, 0); frame.add(b2);
   const b3 = new THREE.Mesh(btnGeo, titanium); b3.position.set(-hw - 0.02, 0.3, 0); frame.add(b3);
@@ -267,8 +307,9 @@ const frame = part('frame');
 // battery
 const battery = part('battery');
 {
-  const m = new THREE.MeshPhysicalMaterial({ map: labelTexture(['Li-Ion', '3.87 V', '4.323 mAh'], '#1a1f1e', '#9fb3ad'), roughness: 0.55, metalness: 0.2 });
-  const mesh = new THREE.Mesh(new RoundedBoxGeometry(W * 0.74, H * 0.5, 0.05, 3, 0.05), [darkMetal, darkMetal, darkMetal, darkMetal, m, darkMetal]);
+  const bw = W * 0.74, bh = H * 0.5;
+  const m = new THREE.MeshPhysicalMaterial({ map: fitCap(labelTexture(['Li-Ion', '3.87 V', '4.323 mAh'], '#1a1f1e', '#9fb3ad'), bw, bh), roughness: 0.55, metalness: 0.2 });
+  const mesh = new THREE.Mesh(roundedBox(bw, bh, 0.05, 0.05), [m, darkMetal]);
   battery.add(mesh);
   battery.userData.base = new THREE.Vector3(0.02, -0.42, 0);
 }
@@ -276,13 +317,13 @@ const battery = part('battery');
 // logic board with chips
 const board = part('board');
 {
-  const tex = boardTexture();
-  const pcb = new THREE.MeshStandardMaterial({ map: tex, roughness: 0.6, metalness: 0.3 });
+  const pw = W * 0.84, ph = H * 0.3;
+  const pcb = new THREE.MeshStandardMaterial({ map: fitCap(boardTexture(), pw, ph), roughness: 0.6, metalness: 0.3 });
   const plain = new THREE.MeshStandardMaterial({ color: 0x0d2a22, roughness: 0.6 });
-  board.add(new THREE.Mesh(new RoundedBoxGeometry(W * 0.84, H * 0.3, 0.022, 2, 0.04), [plain, plain, plain, plain, pcb, plain]));
+  board.add(new THREE.Mesh(roundedBox(pw, ph, 0.022, 0.04), [pcb, plain]));
   const chip = new THREE.MeshPhysicalMaterial({ color: 0x111414, roughness: 0.3, metalness: 0.6 });
   [[-0.2, 0.08, 0.36, 0.3], [0.28, -0.12, 0.22, 0.2], [0.3, 0.22, 0.16, 0.12], [-0.38, -0.25, 0.14, 0.14]].forEach(([x, y, w, h]) => {
-    const c = new THREE.Mesh(new RoundedBoxGeometry(w, h, 0.03, 2, 0.01), chip);
+    const c = new THREE.Mesh(roundedBox(w, h, 0.03, 0.01), chip);
     c.position.set(x, y, 0.025);
     board.add(c);
   });
@@ -292,8 +333,8 @@ const board = part('board');
 // back glass with camera plateau
 const back = part('back');
 {
-  back.add(new THREE.Mesh(new RoundedBoxGeometry(W, H, 0.04, 5, R), backGlass));
-  const plateau = new THREE.Mesh(new RoundedBoxGeometry(0.66, 0.66, 0.05, 4, 0.16), backGlass);
+  back.add(new THREE.Mesh(roundedBox(W, H, 0.04, R), backGlass));
+  const plateau = new THREE.Mesh(roundedBox(0.66, 0.66, 0.05, 0.16), backGlass);
   plateau.position.set(-0.32, 1.08, -0.035);
   back.add(plateau);
   const ringGeo = new THREE.CylinderGeometry(0.125, 0.125, 0.05, 40);
@@ -335,8 +376,6 @@ function readScroll() {
   const r = stage.getBoundingClientRect();
   const total = r.height - innerHeight;
   progress = clamp(-r.top / total);
-  stage.style.setProperty('--p', progress.toFixed(4));
-  stage.dataset.scene = progress < 0.15 ? 'hero' : progress > 0.86 ? 'done' : 'mid';
 }
 addEventListener('scroll', readScroll, { passive: true });
 

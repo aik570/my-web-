@@ -43,10 +43,11 @@
     }
     intro.addEventListener('click', finish);
 
-    function frame(now) {
+    function frame() {
       if (done) return;
-      var t = now - start;
-
+      try { step(performance.now() - start); } catch (e) { finish(); }
+    }
+    function step(t) {
       var s = ease(clamp(t / SWEEP));
       var x = s * 574;
       sweep.setAttribute('width', x.toFixed(1));
@@ -75,6 +76,7 @@
       requestAnimationFrame(frame);
     }
     requestAnimationFrame(frame);
+    setTimeout(finish, END + 1500);   // in case frames never come (hidden tab, preview)
   }
   runIntro();
 
@@ -95,25 +97,52 @@
     if (e.key === 'Escape' && nav.classList.contains('is-open')) { setMenu(false); btn.focus(); }
   });
 
-  /* ---------- 3D fallback ---------- */
+  /* ---------- story: scroll progress drives the text scenes, with or without 3D ---------- */
 
-  setTimeout(function () {
-    if (!root.classList.contains('webgl-ready')) root.classList.add('no-webgl');
-  }, 8000);
-
-  /* ---------- reveal ---------- */
-
-  var targets = document.querySelectorAll('.reveal, .path__line');
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
-      });
-    }, { rootMargin: '0px 0px -12% 0px' });
-    [].forEach.call(targets, function (t) { io.observe(t); });
-  } else {
-    [].forEach.call(targets, function (t) { t.classList.add('is-in'); });
+  var story = document.getElementById('story');
+  function noWebgl() {
+    if (root.classList.contains('webgl-ready')) return;
+    root.classList.add('no-webgl');
+    onScroll();
   }
+  function storyProgress() {
+    if (root.classList.contains('no-webgl')) { story.style.setProperty('--p', 0); story.dataset.scene = 'hero'; return; }
+    var r = story.getBoundingClientRect();
+    var p = Math.max(0, Math.min(1, -r.top / Math.max(1, r.height - innerHeight)));
+    story.style.setProperty('--p', p.toFixed(4));
+    story.dataset.scene = p < 0.15 ? 'hero' : p > 0.86 ? 'done' : 'mid';
+  }
+
+  var canWebgl = (function () {
+    try { var c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); }
+    catch (e) { return false; }
+  })();
+  if (!canWebgl) noWebgl();
+  else {
+    import('./phone.js').catch(noWebgl);
+    setTimeout(noWebgl, 10000);   // the CDN never answered
+  }
+
+  /* ---------- reveal: checked on scroll, so it works wherever scrolling does ---------- */
+
+  var pending = [].slice.call(document.querySelectorAll('.reveal, .path__line'));
+  function reveal() {
+    var limit = innerHeight * 0.9;
+    pending = pending.filter(function (el) {
+      if (el.getBoundingClientRect().top < limit) { el.classList.add('is-in'); return false; }
+      return true;
+    });
+  }
+
+  var ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () { ticking = false; storyProgress(); reveal(); });
+  }
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll);
+  onScroll();
 
   /* ---------- opening state, in Potsdam time ---------- */
 
