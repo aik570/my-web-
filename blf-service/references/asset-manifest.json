@@ -174,8 +174,8 @@
       "role": "gallery",
       "gallery_tab": "Baufeldberäumung",
       "filename_matches_tab": false,
-      "target_dir": "public/assets/original/gallery/_unclassified",
-      "classification": "conflict: filename names a different service than the tab",
+      "target_dir": "public/assets/original/gallery/baufeldberaeumung",
+      "classification": "visual review 2026-10-26 confirms tab; approved by project owner 2026-10-26",
       "status": "retrieved",
       "status_note": "HTTP 200, no redirect; decoded and verified",
       "bytes": 684126,
@@ -183,7 +183,8 @@
       "format": "WEBP",
       "dimensions": "1125x1500",
       "final_url": "https://www.blfservice.de/images/673b3d5a14d72c9106ec7ac9_Baumkontrolle%20-%201.webp",
-      "retrieved_utc": "2026-10-26T17:37:34Z"
+      "retrieved_utc": "2026-10-26T17:37:34Z",
+      "classified_utc": "2026-10-26T17:47:23Z"
     },
     {
       "filename": "673b3d6037647f3dce18a179_Forstwirtschaftliche Pflege - 2.webp",
@@ -197,8 +198,8 @@
       "role": "gallery",
       "gallery_tab": "Baufeldberäumung",
       "filename_matches_tab": false,
-      "target_dir": "public/assets/original/gallery/_unclassified",
-      "classification": "conflict: filename names a different service than the tab",
+      "target_dir": "public/assets/original/gallery/baufeldberaeumung",
+      "classification": "visual review 2026-10-26 confirms tab; approved by project owner 2026-10-26",
       "status": "retrieved",
       "status_note": "HTTP 200, no redirect; decoded and verified",
       "bytes": 666394,
@@ -206,7 +207,8 @@
       "format": "WEBP",
       "dimensions": "1125x1500",
       "final_url": "https://www.blfservice.de/images/673b3d6037647f3dce18a179_Forstwirtschaftliche%20Pflege%20-%202.webp",
-      "retrieved_utc": "2026-10-26T17:37:36Z"
+      "retrieved_utc": "2026-10-26T17:37:36Z",
+      "classified_utc": "2026-10-26T17:47:23Z"
     },
     {
       "filename": "673b3d608ebfd674e626d7a2_Forstwirtschaftliche Pflege - 1.webp",
@@ -220,8 +222,8 @@
       "role": "gallery",
       "gallery_tab": "Baufeldberäumung",
       "filename_matches_tab": false,
-      "target_dir": "public/assets/original/gallery/_unclassified",
-      "classification": "conflict: filename names a different service than the tab",
+      "target_dir": "public/assets/original/gallery/baufeldberaeumung",
+      "classification": "visual review 2026-10-26 confirms tab; approved by project owner 2026-10-26",
       "status": "retrieved",
       "status_note": "HTTP 200, no redirect; decoded and verified",
       "bytes": 528514,
@@ -229,7 +231,8 @@
       "format": "WEBP",
       "dimensions": "1125x1500",
       "final_url": "https://www.blfservice.de/images/673b3d608ebfd674e626d7a2_Forstwirtschaftliche%20Pflege%20-%201.webp",
-      "retrieved_utc": "2026-10-26T17:37:38Z"
+      "retrieved_utc": "2026-10-26T17:37:38Z",
+      "classified_utc": "2026-10-26T17:47:23Z"
     },
     {
       "filename": "673b3da41b2059277c60918e_Baufeldberumung -1.webp",
@@ -243,8 +246,8 @@
       "role": "gallery",
       "gallery_tab": "Spielgeräteaufbau",
       "filename_matches_tab": false,
-      "target_dir": "public/assets/original/gallery/_unclassified",
-      "classification": "conflict: filename names a different service than the tab",
+      "target_dir": "public/assets/original/gallery/spielgeraeteaufbau",
+      "classification": "visual review 2026-10-26 confirms tab; approved by project owner 2026-10-26",
       "status": "retrieved",
       "status_note": "HTTP 200, no redirect; decoded and verified",
       "bytes": 590956,
@@ -252,7 +255,8 @@
       "format": "WEBP",
       "dimensions": "1125x1500",
       "final_url": "https://www.blfservice.de/images/673b3da41b2059277c60918e_Baufeldberumung%20-1.webp",
-      "retrieved_utc": "2026-10-26T17:37:39Z"
+      "retrieved_utc": "2026-10-26T17:37:39Z",
+      "classified_utc": "2026-10-26T17:47:23Z"
     },
     {
       "filename": "673b3da41f3fdb6a4fd756f7_Baufeldberumung - 3.webp",
@@ -266,8 +270,8 @@
       "role": "gallery",
       "gallery_tab": "Stubbenfräsen",
       "filename_matches_tab": false,
-      "target_dir": "public/assets/original/gallery/_unclassified",
-      "classification": "conflict: filename names a different service than the tab",
+      "target_dir": "public/assets/original/gallery/stubbenfraesen",
+      "classification": "visual review 2026-10-26 confirms tab; approved by project owner 2026-10-26",
       "status": "retrieved",
       "status_note": "HTTP 200, no redirect; decoded and verified",
       "bytes": 538744,
@@ -275,7 +279,8 @@
       "format": "WEBP",
       "dimensions": "1125x1500",
       "final_url": "https://www.blfservice.de/images/673b3da41f3fdb6a4fd756f7_Baufeldberumung%20-%203.webp",
-      "retrieved_utc": "2026-10-26T17:37:41Z"
+      "retrieved_utc": "2026-10-26T17:37:41Z",
+      "classified_utc": "2026-10-26T17:47:23Z"
     },
     {
       "filename": "673b3d5bea45ed2c55cb725f_Baumkontrolle - 2.webp",
@@ -289,8 +294,8 @@
       "role": "gallery",
       "gallery_tab": "Stubbenfräsen",
       "filename_matches_tab": false,
-      "target_dir": "public/assets/original/gallery/_unclassified",
-      "classification": "conflict: filename names a different service than the tab",
+      "target_dir": "public/assets/original/gallery/stubbenfraesen",
+      "classification": "visual review 2026-10-26 confirms tab; approved by project owner 2026-10-26",
       "status": "retrieved",
       "status_note": "HTTP 200, no redirect; decoded and verified",
       "bytes": 597742,
@@ -298,7 +303,8 @@
       "format": "WEBP",
       "dimensions": "1125x1500",
       "final_url": "https://www.blfservice.de/images/673b3d5bea45ed2c55cb725f_Baumkontrolle%20-%202.webp",
-      "retrieved_utc": "2026-10-26T17:37:43Z"
+      "retrieved_utc": "2026-10-26T17:37:43Z",
+      "classified_utc": "2026-10-26T17:47:23Z"
     },
     {
       "filename": "673b3d5a6fb605502c7cbad5_Baumfllung - 5.webp",
@@ -312,8 +318,8 @@
       "role": "gallery",
       "gallery_tab": "Baumpflege/ Kronensicherung",
       "filename_matches_tab": false,
-      "target_dir": "public/assets/original/gallery/_unclassified",
-      "classification": "conflict: filename names a different service than the tab",
+      "target_dir": "public/assets/original/gallery/baumpflege-kronensicherung",
+      "classification": "visual review 2026-10-26 confirms tab; approved by project owner 2026-10-26",
       "status": "retrieved",
       "status_note": "HTTP 200, no redirect; decoded and verified",
       "bytes": 532808,
@@ -321,7 +327,8 @@
       "format": "WEBP",
       "dimensions": "1125x1500",
       "final_url": "https://www.blfservice.de/images/673b3d5a6fb605502c7cbad5_Baumfllung%20-%205.webp",
-      "retrieved_utc": "2026-10-26T17:37:44Z"
+      "retrieved_utc": "2026-10-26T17:37:44Z",
+      "classified_utc": "2026-10-26T17:47:23Z"
     },
     {
       "filename": "673b3d185f8ae2cc7cc4d089_Winterdienst fr Privat.webp",
@@ -382,7 +389,7 @@
       "gallery_tab": "Baumkontrolle",
       "filename_matches_tab": false,
       "target_dir": "public/assets/original/gallery/_unclassified",
-      "classification": "conflict: filename names a different service than the tab",
+      "classification": "kept unclassified: plausible Baumkontrolle, not demonstrable from image; awaiting client confirmation",
       "status": "retrieved",
       "status_note": "HTTP 200, no redirect; decoded and verified",
       "bytes": 496092,
@@ -404,8 +411,8 @@
       "role": "gallery",
       "gallery_tab": "Hangbefestigung",
       "filename_matches_tab": false,
-      "target_dir": "public/assets/original/gallery/_unclassified",
-      "classification": "conflict: filename names a different service than the tab",
+      "target_dir": "public/assets/original/gallery/hangbefestigung",
+      "classification": "visual review 2026-10-26 confirms tab; approved by project owner 2026-10-26",
       "status": "retrieved",
       "status_note": "HTTP 200, no redirect; decoded and verified",
       "bytes": 368568,
@@ -413,7 +420,8 @@
       "format": "WEBP",
       "dimensions": "1125x1500",
       "final_url": "https://www.blfservice.de/images/673b3d169f797513d32da3d9_Straen-und%20Flchenreinigung%20-%202.webp",
-      "retrieved_utc": "2026-10-26T17:37:50Z"
+      "retrieved_utc": "2026-10-26T17:37:50Z",
+      "classified_utc": "2026-10-26T17:47:23Z"
     },
     {
       "filename": "673b3d121777a3a55a4d053a_Grnflchenpflege fr Kommunen.webp",
@@ -427,8 +435,8 @@
       "role": "gallery",
       "gallery_tab": "Hangbefestigung",
       "filename_matches_tab": false,
-      "target_dir": "public/assets/original/gallery/_unclassified",
-      "classification": "conflict: filename names a different service than the tab",
+      "target_dir": "public/assets/original/gallery/hangbefestigung",
+      "classification": "visual review 2026-10-26 confirms tab; approved by project owner 2026-10-26",
       "status": "retrieved",
       "status_note": "HTTP 200, no redirect; decoded and verified",
       "bytes": 400998,
@@ -436,7 +444,8 @@
       "format": "WEBP",
       "dimensions": "1125x1500",
       "final_url": "https://www.blfservice.de/images/673b3d121777a3a55a4d053a_Grnflchenpflege%20fr%20Kommunen.webp",
-      "retrieved_utc": "2026-10-26T17:37:51Z"
+      "retrieved_utc": "2026-10-26T17:37:51Z",
+      "classified_utc": "2026-10-26T17:47:23Z"
     },
     {
       "filename": "673b3d158a9d05ead665e4bf_Straen-und Flchenreinigung - 1.webp",
@@ -450,8 +459,8 @@
       "role": "gallery",
       "gallery_tab": "Pflasterarbeiten",
       "filename_matches_tab": false,
-      "target_dir": "public/assets/original/gallery/_unclassified",
-      "classification": "conflict: filename names a different service than the tab",
+      "target_dir": "public/assets/original/gallery/pflasterarbeiten",
+      "classification": "visual review 2026-10-26 confirms tab; approved by project owner 2026-10-26",
       "status": "retrieved",
       "status_note": "HTTP 200, no redirect; decoded and verified",
       "bytes": 295280,
@@ -459,7 +468,8 @@
       "format": "WEBP",
       "dimensions": "1125x1500",
       "final_url": "https://www.blfservice.de/images/673b3d158a9d05ead665e4bf_Straen-und%20Flchenreinigung%20-%201.webp",
-      "retrieved_utc": "2026-10-26T17:37:53Z"
+      "retrieved_utc": "2026-10-26T17:37:53Z",
+      "classified_utc": "2026-10-26T17:47:23Z"
     },
     {
       "filename": "671728166b73774eeddb0c46_Icon Standord weiss.svg",

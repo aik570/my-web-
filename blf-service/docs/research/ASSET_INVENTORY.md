@@ -15,6 +15,12 @@ Machine-readable versions:
 - `docs/research/asset-verification.tsv`: per-file verification record.
 - `docs/research/download-log-run1.tsv`: first run, 27 files.
 - `docs/research/download-log.tsv`: second run; ICO-08 added, 27 left untouched.
+- `docs/research/classification-log.tsv`: the 10 gallery moves, from/to path
+  and SHA-256 before and after.
+
+The two download logs are historical records: their `path` column shows
+where each file landed *at retrieval*, before classification. The manifest
+and `asset-verification.tsv` hold the current paths.
 
 ## Summary
 
@@ -73,19 +79,19 @@ Exact URLs and checksums are in the manifest.
 | GAL-04 | Baumfällung | `673b3d5a5f8ae2cc7cc51d2d_Baumfllung - 6.webp` | 1125×1500 | yes | `gallery/baumfaellung` |
 | GAL-05 | Baufeldberäumung | `673b3da41a43f80a57dfd39a_Baufeldberumung - 4.webp` | 1500×1125 | yes | `gallery/baufeldberaeumung` |
 | GAL-06 | Baufeldberäumung | `673b3da41e58a26c742897c5_Baufeldberumung - 2.webp` | 1125×1500 | yes | `gallery/baufeldberaeumung` |
-| GAL-07 | Baufeldberäumung | `673b3d5a14d72c9106ec7ac9_Baumkontrolle - 1.webp` | 1125×1500 | no | `gallery/_unclassified` |
-| GAL-08 | Baufeldberäumung | `673b3d6037647f3dce18a179_Forstwirtschaftliche Pflege - 2.webp` | 1125×1500 | no | `gallery/_unclassified` |
-| GAL-09 | Baufeldberäumung | `673b3d608ebfd674e626d7a2_Forstwirtschaftliche Pflege - 1.webp` | 1125×1500 | no | `gallery/_unclassified` |
-| GAL-10 | Spielgeräteaufbau | `673b3da41b2059277c60918e_Baufeldberumung -1.webp` | 1125×1500 | no | `gallery/_unclassified` |
-| GAL-11 | Stubbenfräsen | `673b3da41f3fdb6a4fd756f7_Baufeldberumung - 3.webp` | 1125×1500 | no | `gallery/_unclassified` |
-| GAL-12 | Stubbenfräsen | `673b3d5bea45ed2c55cb725f_Baumkontrolle - 2.webp` | 1125×1500 | no | `gallery/_unclassified` |
-| GAL-13 | Baumpflege/ Kronensicherung | `673b3d5a6fb605502c7cbad5_Baumfllung - 5.webp` | 1125×1500 | no | `gallery/_unclassified` |
+| GAL-07 | Baufeldberäumung | `673b3d5a14d72c9106ec7ac9_Baumkontrolle - 1.webp` | 1125×1500 | no | `gallery/baufeldberaeumung` |
+| GAL-08 | Baufeldberäumung | `673b3d6037647f3dce18a179_Forstwirtschaftliche Pflege - 2.webp` | 1125×1500 | no | `gallery/baufeldberaeumung` |
+| GAL-09 | Baufeldberäumung | `673b3d608ebfd674e626d7a2_Forstwirtschaftliche Pflege - 1.webp` | 1125×1500 | no | `gallery/baufeldberaeumung` |
+| GAL-10 | Spielgeräteaufbau | `673b3da41b2059277c60918e_Baufeldberumung -1.webp` | 1125×1500 | no | `gallery/spielgeraeteaufbau` |
+| GAL-11 | Stubbenfräsen | `673b3da41f3fdb6a4fd756f7_Baufeldberumung - 3.webp` | 1125×1500 | no | `gallery/stubbenfraesen` |
+| GAL-12 | Stubbenfräsen | `673b3d5bea45ed2c55cb725f_Baumkontrolle - 2.webp` | 1125×1500 | no | `gallery/stubbenfraesen` |
+| GAL-13 | Baumpflege/ Kronensicherung | `673b3d5a6fb605502c7cbad5_Baumfllung - 5.webp` | 1125×1500 | no | `gallery/baumpflege-kronensicherung` |
 | GAL-14 | Winterdienst | `673b3d185f8ae2cc7cc4d089_Winterdienst fr Privat.webp` | 1125×1500 | yes | `gallery/winterdienst` |
 | GAL-15 | Winterdienst | `673b3d181777a3a55a4d07c3_Winterdienst fr Privatd - 2.webp` | 1125×1500 | yes | `gallery/winterdienst` |
 | GAL-16 | Baumkontrolle | `673b3d18d6c3bb2aa59ced35_Neuanpflanzung & freistellen von Neuanpflanzung.webp` | 1125×1500 | no | `gallery/_unclassified` |
-| GAL-17 | Hangbefestigung | `673b3d169f797513d32da3d9_Straen-und Flchenreinigung - 2.webp` | 1125×1500 | no | `gallery/_unclassified` |
-| GAL-18 | Hangbefestigung | `673b3d121777a3a55a4d053a_Grnflchenpflege fr Kommunen.webp` | 1125×1500 | no | `gallery/_unclassified` |
-| GAL-19 | Pflasterarbeiten | `673b3d158a9d05ead665e4bf_Straen-und Flchenreinigung - 1.webp` | 1125×1500 | no | `gallery/_unclassified` |
+| GAL-17 | Hangbefestigung | `673b3d169f797513d32da3d9_Straen-und Flchenreinigung - 2.webp` | 1125×1500 | no | `gallery/hangbefestigung` |
+| GAL-18 | Hangbefestigung | `673b3d121777a3a55a4d053a_Grnflchenpflege fr Kommunen.webp` | 1125×1500 | no | `gallery/hangbefestigung` |
+| GAL-19 | Pflasterarbeiten | `673b3d158a9d05ead665e4bf_Straen-und Flchenreinigung - 1.webp` | 1125×1500 | no | `gallery/pflasterarbeiten` |
 
 Alt text on every gallery image is `"<Tab name> von Baum-Land-Forst "`. It
 is generated from the tab and is not independent evidence.
@@ -130,9 +136,20 @@ Each photo was viewed. The descriptions say only what is visible.
 
 Other photos should not be assumed to belong together.
 
-**Proposed action, awaiting human sign-off:** move the 11 `_unclassified`
-files into the folder of their tab. GAL-16 should go there only after the
-client confirms it. No file has been moved.
+**Classification applied (approved by the project owner, 2026-10-26).**
+- **Moved:** the 10 photos whose content visibly matches their tab were
+  moved from `_unclassified/` into that tab's folder with `git mv`. They
+  are GAL-07–09, 10, 11, 12, 13, 17, 18 and 19.
+  - Filenames are unchanged.
+  - Bytes are unchanged; SHA-256 before and after each move is in
+    `classification-log.tsv`.
+  - Git records each move as a pure rename.
+- **Still in `_unclassified/`:** GAL-16, until the client confirms that
+  it shows a tree inspection (Baumkontrolle).
+
+**Every category folder now holds exactly the photos the live site shows
+in that tab**, except Baumkontrolle, which is empty until GAL-16 is
+confirmed.
 
 **Privacy notes for later use:**
 - GAL-03 shows an identifiable face. On the Home page the same image has the
@@ -143,17 +160,17 @@ client confirms it. No file has been moved.
 
 ### Gallery categories
 
-| Tab | Photos | Upload filename agrees | Visually consistent |
-|---|---|---|---|
-| Baumfällung | GAL-01 – 04 | 4 / 4 | 4 / 4 |
-| Baufeldberäumung | GAL-05 – 09 | 2 / 5 | 5 / 5 |
-| Spielgeräteaufbau | GAL-10 | 0 / 1 | 1 / 1 |
-| Stubbenfräsen | GAL-11, 12 | 0 / 2 | 2 / 2 |
-| Baumpflege/ Kronensicherung | GAL-13 | 0 / 1 | 1 / 1 |
-| Winterdienst | GAL-14, 15 | 2 / 2 | 2 / 2 |
-| Baumkontrolle | GAL-16 | 0 / 1 | plausible |
-| Hangbefestigung | GAL-17, 18 | 0 / 2 | 2 / 2 |
-| Pflasterarbeiten | GAL-19 | 0 / 1 | 1 / 1 |
+| Tab | Photos | Upload filename agrees | Visually consistent | Folder (`original/gallery/…`) |
+|---|---|---|---|---|
+| Baumfällung | GAL-01 – 04 | 4 / 4 | 4 / 4 | `baumfaellung/` (4) |
+| Baufeldberäumung | GAL-05 – 09 | 2 / 5 | 5 / 5 | `baufeldberaeumung/` (5) |
+| Spielgeräteaufbau | GAL-10 | 0 / 1 | 1 / 1 | `spielgeraeteaufbau/` (1) |
+| Stubbenfräsen | GAL-11, 12 | 0 / 2 | 2 / 2 | `stubbenfraesen/` (2) |
+| Baumpflege/ Kronensicherung | GAL-13 | 0 / 1 | 1 / 1 | `baumpflege-kronensicherung/` (1) |
+| Winterdienst | GAL-14, 15 | 2 / 2 | 2 / 2 | `winterdienst/` (2) |
+| Baumkontrolle | GAL-16 | 0 / 1 | plausible | `_unclassified/` (1), pending client; `baumkontrolle/` empty |
+| Hangbefestigung | GAL-17, 18 | 0 / 2 | 2 / 2 | `hangbefestigung/` (2) |
+| Pflasterarbeiten | GAL-19 | 0 / 1 | 1 / 1 | `pflasterarbeiten/` (1) |
 
 Services listed on *Leistungen* with **no photo at all**: Notfällung,
 Straßen- und Flächenreinigung, Neuanpflanzung & Freistellen, Grünflächenpflege

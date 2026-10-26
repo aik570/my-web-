@@ -14,7 +14,7 @@ project stories. The site's existing claims are quoted in
 | Site assets not retrieved | 28 / 28 retrieved and verified |
 | Six pages not audited | All seven pages saved and audited |
 | Brand colours unknown | Live values found in CSS (`#023435`, `#e6f1eb`, `#3f8843`); whether they are a deliberate brand is still open (B1) |
-| Gallery classification unclear | Visual review done: the tabs fit the photos, the filenames do not. Human sign-off still needed (A4) |
+| Gallery classification unclear | Applied after owner approval: 18 of 19 photos are in their tab's folder; only GAL-16 is pending (A4) |
 
 ## A. Blocking — needed before design starts
 
@@ -23,7 +23,7 @@ project stories. The site's existing claims are quoted in
 | A1 | **Job content**: positions, requirements, conditions, location, how to apply, contact person | The live Jobs page has none of these, and recruitment is a primary goal | Client |
 | A2 | **Full-resolution photographs**, plus more of team, machinery and vehicles | All site photos are ≤ 1500 px web exports; upscaling is not allowed | Client |
 | A3 | **Logo as vector** (SVG/AI/PDF/EPS) | Only a 1966 px PNG exists | Client / previous agency |
-| A4 | **Sign-off on the gallery classification**: move the 11 `_unclassified` files into their tabs' folders? Confirm GAL-16 as Baumkontrolle? | See ASSET_INVENTORY → Visual review | Project owner, then client for GAL-16 |
+| A4 | **Confirm GAL-16** (large old tree, shown under Baumkontrolle): does it show a tree inspection? | Last photo still in `_unclassified/` | Client (question 2) |
 | A5 | **Ma'Loa reference material** | Named as the quality benchmark; nothing in the repo | Project owner |
 
 ## B. Content

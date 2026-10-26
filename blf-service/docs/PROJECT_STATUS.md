@@ -1,7 +1,8 @@
 # Project Status — BLF Service redesign
 
 Last update: 2026-10-26 · **Stage 01 complete.** Waiting for approval
-before Stage 02. One human decision is open: gallery sign-off (A4 in
+before Stage 02. Gallery classification is applied; only GAL-16 waits on
+the client (A4 in
 MISSING_INFORMATION).
 
 ## Stage 01 — Discovery, asset extraction, foundation
@@ -54,7 +55,12 @@ MISSING_INFORMATION).
 **Gallery and docs**
 - [x] Visually reviewed all 19 gallery photos. 18 visibly match their tab,
       and GAL-16 is plausible. The upload filenames are the misleading
-      signal, not the tabs. **No files moved**; that waits for sign-off.
+      signal, not the tabs.
+- [x] **Gallery classification applied** after owner approval: 10 photos
+      moved into their tab folders with `git mv`. Names and bytes are
+      unchanged; checksums before and after are in
+      `classification-log.tsv`. GAL-16 is kept in `_unclassified/` until
+      the client confirms it.
 - [x] Updated ASSET_INVENTORY, CONTENT_AUDIT, MISSING_INFORMATION (with 14
       German client questions) and this file.
 
@@ -64,7 +70,7 @@ MISSING_INFORMATION).
 |---|---|
 | Asset retrieval | none failed |
 | Page retrieval | none failed |
-| 11 gallery files still in `_unclassified/` | Waiting for human sign-off on the proposed classification. One command once approved |
+| GAL-16 still in `_unclassified/` | Waiting for the client to confirm it shows a Baumkontrolle (client question 2) |
 | Camera originals, vector logo, job content, Ma'Loa reference | Must come from the client or project owner. Not obtainable from the site |
 | Contact form | Not submitted on purpose (it would send a real message to the client); delivery problem inferred from the HTML only |
 
@@ -86,18 +92,23 @@ blf-service/
       brand/                   BRD-01 logo
       icons/                   ICO-01…08
       gallery/
-        baumfaellung/          GAL-01…04
-        baufeldberaeumung/     GAL-05, 06
-        winterdienst/          GAL-14, 15
-        _unclassified/         GAL-07…13, 16…19  (proposed categories in ASSET_INVENTORY)
-        spielgeraeteaufbau/ stubbenfraesen/ baumpflege-kronensicherung/
-        baumkontrolle/ hangbefestigung/ pflasterarbeiten/   (empty until sign-off)
+        baumfaellung/                GAL-01…04
+        baufeldberaeumung/           GAL-05…09
+        spielgeraeteaufbau/          GAL-10
+        stubbenfraesen/              GAL-11, 12
+        baumpflege-kronensicherung/  GAL-13
+        winterdienst/                GAL-14, 15
+        baumkontrolle/               (empty until GAL-16 is confirmed)
+        hangbefestigung/             GAL-17, 18
+        pflasterarbeiten/            GAL-19
+        _unclassified/               GAL-16  (pending client)
     optimized/                 Stage 02+
   src/                         Stage 02+
   docs/
     PROJECT_STATUS.md
     research/   ASSET_INVENTORY, CONTENT_AUDIT, MISSING_INFORMATION,
-                asset-verification.tsv, download-log(-run1).tsv, page-fetch-log.tsv
+                asset-verification.tsv, classification-log.tsv,
+                download-log(-run1).tsv, page-fetch-log.tsv
     design/                    Stage 02+
   references/
     source-html/galerie.html
@@ -109,7 +120,8 @@ blf-service/
 
 ## Before Stage 02
 
-1. Decide A4: approve moving the 11 gallery files into their tabs' folders.
+1. Get the client's answer on GAL-16, then `git mv` it to `baumkontrolle/`
+   (or wherever the client says).
 2. Send the German client questions (`MISSING_INFORMATION.md`).
 3. Supply the Ma'Loa reference material.
 4. Give explicit approval to start Stage 02.
