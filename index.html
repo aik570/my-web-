@@ -3,231 +3,229 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Handy Chirurg Potsdam – Handy-, Tablet- und Laptop-Reparatur</title>
-<meta name="description" content="Reparatur von Smartphones, Tablets und Laptops in der Potsdamer Innenstadt. Dortustraße 23, ohne Termin, Mo–Sa 10:00–18:30 Uhr. Telefon 0331 29080953.">
-
-<meta name="theme-color" content="#f7f7f4">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f7f7f4'/%3E%3Cpath d='M2 19h10l2.5-7 3.5 12 2.5-5H30' fill='none' stroke='%23c13329' stroke-width='2.4' stroke-linejoin='round'/%3E%3C/svg%3E">
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="Handy Chirurg Potsdam – Dortustraße 23">
-<meta property="og:description" content="Reparatur von Smartphones, Tablets und Laptops. Ohne Termin, Mo–Sa 10:00–18:30 Uhr.">
+<title>Handy Chirurg Potsdam – Handyreparatur ohne Termin</title>
+<meta name="description" content="Handyreparatur in Potsdam, meist in 60 Minuten. Display, Akku, Wasserschaden, Platine. Ohne Termin, mit Garantie. Dortustraße 23, Mo–Sa 10:00–18:30 Uhr.">
+<meta name="theme-color" content="#0a0d0c">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0d0c'/%3E%3Cpath d='M3 19h9l2.5-8 3.5 13 2.5-6H29' fill='none' stroke='%23ff5a4a' stroke-width='2.4' stroke-linejoin='round'/%3E%3C/svg%3E">
+<meta property="og:title" content="Handy Chirurg Potsdam">
+<meta property="og:description" content="Handyreparatur ohne Termin, meist in 60 Minuten. Dortustraße 23, Potsdam.">
 <meta property="og:image" content="img/laden-dortustrasse.jpg">
 
-<link rel="preload" as="image" href="img/laden-eingang.webp" type="image/webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="css/style.css">
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js">
+
+<script>
+  (function () {
+    var d = document.documentElement;
+    d.className += ' js';
+    try { if (matchMedia('(prefers-reduced-motion: reduce)').matches) d.className += ' reduced'; } catch (e) {}
+  })();
+</script>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "MobilePhoneStore",
   "name": "Handy Chirurg Potsdam",
-  "image": "img/laden-dortustrasse.jpg",
-  "telephone": "+49 331 29080953",
+  "telephone": "+49 163 2288224",
   "email": "potsdam@handy-chirurg.de",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Dortustraße 23",
-    "postalCode": "14467",
-    "addressLocality": "Potsdam",
-    "addressCountry": "DE"
-  },
-  "openingHoursSpecification": [{
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-    "opens": "10:00",
-    "closes": "18:30"
-  }]
+  "address": { "@type": "PostalAddress", "streetAddress": "Dortustraße 23", "postalCode": "14467", "addressLocality": "Potsdam", "addressCountry": "DE" },
+  "openingHoursSpecification": [{ "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "10:00", "closes": "18:30" }],
+  "vatID": "DE368877064"
 }
 </script>
 </head>
 <body>
 
+<!-- Intro: the heartbeat line from the logo draws itself, then lifts away -->
+<div class="intro" id="intro" aria-hidden="true">
+  <svg class="intro__svg" viewBox="0 0 600 160">
+    <path class="intro__line" pathLength="1" d="M0 112 H250 L262 112 L276 40 L294 150 L306 84 L316 112 H600" />
+    <text class="intro__word" x="300" y="70" text-anchor="middle">HANDY CHIRURG</text>
+  </svg>
+</div>
+
 <a class="skip" href="#main">Zum Inhalt springen</a>
 
-<header class="bar">
-  <div class="bar__in wrap">
-    <a class="bar__logo" href="#top" aria-label="Handy Chirurg Potsdam, zum Seitenanfang">
-      <img src="img/logo-handy-chirurg.png" alt="Handy Chirurg – Ihr zuverlässiger Partner" width="431" height="274">
+<header class="nav" id="nav">
+  <div class="nav__in">
+    <a class="mark" href="#top" aria-label="Handy Chirurg Potsdam, Startseite">
+      <svg viewBox="0 0 220 40" aria-hidden="true">
+        <text x="0" y="22">HANDY</text>
+        <text x="104" y="22">CHIRURG</text>
+        <path class="mark__line" pathLength="1" d="M0 33 H84 L89 33 L94 22 L100 39 L104 30 L108 33 H220" />
+      </svg>
     </a>
-
-    <nav class="bar__nav" id="nav" aria-label="Hauptnavigation">
-      <a href="#leistungen">Leistungen</a>
+    <nav class="nav__links" id="navLinks" aria-label="Hauptnavigation">
+      <a href="#leistungen">Reparaturen</a>
       <a href="#ablauf">Ablauf</a>
-      <a href="#konditionen">Preise &amp; Garantie</a>
       <a href="#laden">Laden</a>
-      <a href="#anfrage">Anfrage</a>
+      <a href="#faq">FAQ</a>
     </nav>
-
-    <a class="btn btn--small btn--ghost bar__call" href="tel:+4933129080953">
-      <span class="bar__call-long">0331 29080953</span>
-      <span class="bar__call-short">Anrufen</span>
-    </a>
-
-    <button class="bar__toggle" id="menuBtn" aria-expanded="false" aria-controls="nav" aria-label="Menü öffnen">
-      <span></span><span></span>
-    </button>
+    <a class="nav__call" href="tel:+491632288224"><span class="nav__call-long">0163 228 8224</span><span class="nav__call-short">Anrufen</span></a>
+    <button class="nav__menu" id="menuBtn" aria-expanded="false" aria-controls="navLinks" aria-label="Menü öffnen"><span></span><span></span></button>
   </div>
 </header>
 
 <main id="main">
 
-  <!-- ============ HERO ============ -->
-  <section class="hero" id="top">
-    <div class="hero__grid wrap">
-      <div class="hero__text">
-        <p class="label">Reparaturservice · Potsdam Innenstadt</p>
-        <h1>Handy kaputt?<br>Kommen Sie vorbei.</h1>
-        <p class="hero__lede">
-          Wir reparieren Smartphones, Tablets und Laptops in der Dortustraße&nbsp;23.
-          Ohne Termin, in der Regel in etwa 60&nbsp;Minuten, mit Garantie auf Arbeit und Ersatzteile.
-        </p>
-        <div class="hero__actions">
-          <a class="btn" href="tel:+4933129080953">Anrufen: 0331 29080953</a>
-          <a class="link" href="#laden">Adresse &amp; Öffnungszeiten</a>
+  <!-- ============ STORY: broken → opened → repaired ============ -->
+  <section class="story" id="story" aria-label="Handy kaputt? Wir reparieren es.">
+    <div class="story__sticky">
+      <canvas id="phoneCanvas" class="story__canvas" aria-hidden="true"></canvas>
+
+      <div class="scene scene--hero" id="top">
+        <p class="eyebrow">Handyreparatur in Potsdam</p>
+        <h1>Handy kaputt?</h1>
+        <p class="scene__lede">Wir reparieren es. Meist in 60&nbsp;Minuten, ohne Termin, in der Dortustraße&nbsp;23.</p>
+        <div class="actions">
+          <a class="btn btn--light" href="tel:+491632288224">Jetzt anrufen</a>
+          <a class="btn btn--line" href="https://www.google.com/maps/search/?api=1&amp;query=Handy+Chirurg+Dortustra%C3%9Fe+23+14467+Potsdam" target="_blank" rel="noopener">Route planen</a>
         </div>
-        <p class="status" data-status>Mo–Sa 10:00–18:30 Uhr · So geschlossen</p>
+        <p class="status" data-status>Mo–Sa 10:00–18:30 Uhr</p>
       </div>
 
-      <figure class="hero__photo">
-        <figcaption class="label">Unser Laden, Dortustraße 23</figcaption>
-        <picture>
-          <source srcset="img/laden-eingang.webp" type="image/webp">
-          <img src="img/laden-eingang.jpg" alt="Eingang und Schaufenster von Handy Chirurg in der Dortustraße 23, Potsdam" width="426" height="476" fetchpriority="high">
-        </picture>
-      </figure>
-    </div>
+      <div class="scene scene--open" aria-hidden="true">
+        <p class="eyebrow">Display · Akku · Platine</p>
+        <p class="scene__title">Wir öffnen es.<br>Mit ruhiger Hand.</p>
+        <p class="scene__lede">Jedes Teil wird geprüft. Den Preis erfahren Sie, bevor wir anfangen.</p>
+      </div>
 
-    <!-- The heartbeat line from the logo. It is the page's one graphic motif. -->
-    <svg class="pulse pulse--hero" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-      <path d="M0 28 H630 L640 28 L650 6 L664 38 L674 20 L682 28 H1200" />
-    </svg>
+      <div class="scene scene--done">
+        <p class="eyebrow">Meist in 60 Minuten</p>
+        <p class="scene__title">Repariert.<br>Und wieder Ihres.</p>
+        <p class="scene__lede">Mit Garantie auf Arbeit und Ersatzteile. Den Preis kennen Sie vorher.</p>
+        <div class="actions">
+          <a class="btn btn--light" href="tel:+491632288224">Jetzt anrufen</a>
+          <a class="btn btn--line" href="#leistungen">Reparaturen ansehen</a>
+        </div>
+      </div>
+
+      <div class="tags" aria-hidden="true">
+        <span class="tag" data-layer="display"><b>Display</b>Display-Reparatur</span>
+        <span class="tag" data-layer="board"><b>Platine</b>Platinen-Arbeiten · Wasserschaden</span>
+        <span class="tag" data-layer="battery"><b>Akku</b>Akku-Tausch</span>
+        <span class="tag" data-layer="frame"><b>Rahmen</b>Gehäuse</span>
+        <span class="tag" data-layer="back"><b>Rückglas</b>Kamera · Rückseite</span>
+      </div>
+
+      <p class="hint" aria-hidden="true"><span>Scrollen</span><span class="hint__drag">Ziehen zum Drehen</span></p>
+    </div>
   </section>
 
   <!-- ============ LEISTUNGEN ============ -->
-  <section class="section" id="leistungen" aria-labelledby="leistungen-h">
-    <div class="wrap split">
-      <div class="split__head">
-        <p class="label">01 · Leistungen</p>
-        <h2 id="leistungen-h">Was wir reparieren</h2>
-        <p class="muted">
-          Display-Reparatur, Akku-Wechsel oder komplexe Platinen-Arbeiten. Für die meisten gängigen
-          Hersteller haben wir die Ersatzteile direkt vor Ort.
-        </p>
-      </div>
-
-      <dl class="index">
-        <div class="index__row">
-          <dt>Smartphone</dt>
-          <dd>Display, Akku, Platine. Apple, Samsung und weitere Hersteller.</dd>
-        </div>
-        <div class="index__row">
-          <dt>Tablet &amp; iPad</dt>
-          <dd>Display, Akku, Platine.</dd>
-        </div>
-        <div class="index__row">
-          <dt>Laptop &amp; MacBook</dt>
-          <dd>Fehleranalyse und Reparatur.</dd>
-        </div>
-        <div class="index__row">
-          <dt>PC</dt>
-          <dd>Fehleranalyse und Reparatur.</dd>
-        </div>
-        <div class="index__row index__row--quiet">
-          <dt>Außerdem im Laden</dt>
-          <dd>An- und Verkauf, Zubehör, Prepaidkarten.</dd>
-        </div>
-      </dl>
-    </div>
-  </section>
-
-  <!-- ============ ABLAUF ============ -->
-  <section class="section section--tint" id="ablauf" aria-labelledby="ablauf-h">
+  <section class="light services" id="leistungen" aria-labelledby="leistungen-h">
     <div class="wrap">
-      <div class="section__head">
-        <p class="label">02 · Ablauf</p>
-        <h2 id="ablauf-h">Von der Annahme bis zur Abholung</h2>
+      <div class="head">
+        <p class="eyebrow">Reparaturen</p>
+        <h2 id="leistungen-h">Was wir reparieren.</h2>
+        <p class="head__lede">Smartphones, Tablets und Laptops. Ersatzteile für die gängigen Modelle haben wir im Laden auf Lager.</p>
       </div>
 
-      <svg class="pulse pulse--steps" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-        <path d="M0 28 H630 L644 28 L654 6 L668 38 L678 20 L686 28 H1200" />
-      </svg>
-      <ol class="steps">
-        <li class="step">
-          <span class="step__no">01</span>
-          <h3>Annahme</h3>
-          <p>Sie bringen Ihr Gerät in den Laden. Ein Termin ist nicht nötig.</p>
+      <ol class="svc">
+        <li class="svc__row reveal">
+          <span class="svc__name">Display</span>
+          <span class="svc__text">Gesprungenes Glas, Streifen, schwarzer Bildschirm, Touch reagiert nicht.</span>
+          <span class="svc__time">meist ca. 60&nbsp;Min.</span>
         </li>
-        <li class="step">
-          <span class="step__no">02</span>
-          <h3>Diagnose</h3>
-          <p>Wir prüfen das Gerät gründlich und sagen Ihnen, was defekt ist und was die Reparatur kostet.</p>
+        <li class="svc__row reveal">
+          <span class="svc__name">Akku</span>
+          <span class="svc__text">Das Gerät hält nicht mehr durch, geht plötzlich aus oder der Akku wölbt sich.</span>
+          <span class="svc__time">meist ca. 60&nbsp;Min.</span>
         </li>
-        <li class="step step--beat">
-          <span class="step__no">03</span>
-          <h3>Reparatur</h3>
-          <p>Erst nach Ihrer Zusage. Wir tauschen nur die Teile, die wirklich nötig sind.</p>
+        <li class="svc__row reveal">
+          <span class="svc__name">Wasserschaden</span>
+          <span class="svc__text">Ausschalten, nicht laden, schnell vorbeibringen. Wir reinigen, trocknen und prüfen jede Baugruppe.</span>
+          <span class="svc__time">Dauer nach Diagnose</span>
         </li>
-        <li class="step">
-          <span class="step__no">04</span>
-          <h3>Abholung</h3>
-          <p>Sie nehmen Ihr Gerät direkt mit, mit Garantie auf Arbeit und verbaute Teile.</p>
+        <li class="svc__row reveal">
+          <span class="svc__name">Platine</span>
+          <span class="svc__text">Komplexe Fehler auf der Hauptplatine, zum Beispiel wenn das Gerät nicht startet oder nicht lädt.</span>
+          <span class="svc__time">Dauer nach Diagnose</span>
         </li>
       </ol>
+
+      <div class="diag reveal">
+        <p class="diag__price">25&nbsp;€</p>
+        <div>
+          <p class="diag__name">Professionelle Fehleranalyse</p>
+          <p class="diag__note">Wir sagen Ihnen genau, was defekt ist. Lassen Sie bei uns reparieren, wird der Betrag verrechnet.</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ============ KONDITIONEN ============ -->
-  <section class="section section--ink" id="konditionen" aria-labelledby="konditionen-h">
+  <!-- ============ VERSPRECHEN ============ -->
+  <section class="dark promise" aria-labelledby="promise-h">
     <div class="wrap">
-      <div class="section__head">
-        <p class="label">03 · Preise &amp; Garantie</p>
-        <h2 id="konditionen-h">Was Sie vorher wissen sollten</h2>
-      </div>
-
-      <div class="figures">
-        <div class="figure">
-          <p class="figure__value">ab 25&nbsp;€</p>
-          <p class="figure__name">Fehleranalyse</p>
-          <p class="figure__note">Wird bei einer Reparatur verrechnet.</p>
-        </div>
-        <div class="figure">
-          <p class="figure__value">ca. 60&nbsp;Min.</p>
-          <p class="figure__name">Express-Reparatur</p>
-          <p class="figure__note">So lange dauert es in der Regel, bis Sie Ihr Gerät wieder mitnehmen.</p>
-        </div>
-      </div>
-
-      <ul class="terms">
-        <li><strong>Kosten vorab.</strong> Bevor wir anfangen, wissen Sie, was die Reparatur kostet.</li>
-        <li><strong>Garantie.</strong> Auf die durchgeführten Arbeiten und die verbauten Ersatzteile.</li>
-        <li><strong>Ihre Daten bleiben, wo sie sind.</strong> Wir greifen nicht auf persönliche Inhalte zu und löschen nichts.</li>
-        <li><strong>Ohne Termin.</strong> Kommen Sie während der Öffnungszeiten vorbei, wann es Ihnen passt.</li>
+      <p class="eyebrow">Darauf können Sie sich verlassen</p>
+      <h2 class="sr" id="promise-h">Unsere Zusagen</h2>
+      <ul class="promise__list">
+        <li class="reveal"><strong>Ohne Termin.</strong> <span>Kommen Sie vorbei, wann es Ihnen passt.</span></li>
+        <li class="reveal"><strong>Preis vorab.</strong> <span>Keine versteckten Kosten. Wir tauschen nur, was wirklich nötig ist.</span></li>
+        <li class="reveal"><strong>Ihre Daten bleiben unangetastet.</strong> <span>Wir greifen nicht auf persönliche Inhalte zu und löschen nichts.</span></li>
+        <li class="reveal"><strong>Garantie.</strong> <span>Auf die durchgeführten Arbeiten und die verbauten Ersatzteile.</span></li>
       </ul>
     </div>
   </section>
 
+  <!-- ============ ABLAUF ============ -->
+  <section class="light flow" id="ablauf" aria-labelledby="ablauf-h">
+    <div class="wrap">
+      <div class="head head--row">
+        <div>
+          <p class="eyebrow">Ablauf</p>
+          <h2 id="ablauf-h">So läuft Ihre Reparatur ab.</h2>
+        </div>
+        <div class="switch" role="tablist" aria-label="Art der Abgabe">
+          <button role="tab" id="tab-laden" aria-selected="true" aria-controls="panel-laden">Im Laden</button>
+          <button role="tab" id="tab-post" aria-selected="false" aria-controls="panel-post" tabindex="-1">Per Post</button>
+        </div>
+      </div>
+
+      <svg class="flow__pulse" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true">
+        <path pathLength="1" d="M0 28 H560 L574 28 L584 6 L598 38 L608 20 L616 28 H1200" />
+      </svg>
+
+      <ol class="steps" role="tabpanel" id="panel-laden" aria-labelledby="tab-laden">
+        <li><span class="steps__no">01</span><h3>Vorbeikommen</h3><p>Bringen Sie Ihr Gerät in die Dortustraße 23. Ein Termin ist nicht nötig.</p></li>
+        <li><span class="steps__no">02</span><h3>Diagnose</h3><p>Wir prüfen das Gerät, finden den Fehler und nennen Ihnen den Preis. Sie entscheiden.</p></li>
+        <li><span class="steps__no">03</span><h3>Reparatur &amp; Zahlung</h3><p>Nach Ihrer Zusage reparieren wir. Bezahlt wird per Karte oder Überweisung.</p></li>
+        <li><span class="steps__no">04</span><h3>Abholung</h3><p>In der Regel nach etwa 60 Minuten nehmen Sie Ihr Gerät wieder mit.</p></li>
+      </ol>
+      <ol class="steps" role="tabpanel" id="panel-post" aria-labelledby="tab-post" hidden>
+        <li><span class="steps__no">01</span><h3>Einsenden</h3><p>Versandaufkleber ausdrucken, aufs Paket kleben und bei der Post abgeben.</p></li>
+        <li><span class="steps__no">02</span><h3>Diagnose</h3><p>Wir prüfen Ihr Gerät und schicken Ihnen ein Angebot.</p></li>
+        <li><span class="steps__no">03</span><h3>Reparatur &amp; Zahlung</h3><p>Nach Ihrer Zusage per Überweisung oder Karte über Stripe.</p></li>
+        <li><span class="steps__no">04</span><h3>Rückversand</h3><p>Ihr Gerät kommt per Post zurück, oder Sie holen es im Laden ab.</p></li>
+      </ol>
+    </div>
+  </section>
+
   <!-- ============ LADEN ============ -->
-  <section class="section" id="laden" aria-labelledby="laden-h">
-    <div class="wrap visit">
-      <figure class="visit__photo">
+  <section class="light store" id="laden" aria-labelledby="laden-h">
+    <div class="wrap store__grid">
+      <figure class="store__photo reveal">
         <picture>
           <source srcset="img/laden-dortustrasse.webp" type="image/webp">
-          <img src="img/laden-dortustrasse.jpg" alt="Ladenfront von Handy Chirurg in der Dortustraße 23 mit Schaufenster und Kundenstopper" width="732" height="612" loading="lazy" decoding="async">
+          <img src="img/laden-dortustrasse.jpg" alt="Ladenfront von Handy Chirurg in der Dortustraße 23 in Potsdam" width="732" height="612" loading="lazy" decoding="async">
         </picture>
+        <figcaption>Dortustraße 23, Potsdamer Innenstadt</figcaption>
       </figure>
 
-      <div class="visit__info">
-        <p class="label">04 · Laden</p>
-        <h2 id="laden-h">Dortustraße 23</h2>
-        <address class="visit__addr">
-          Handy Chirurg Potsdam<br>
-          Dortustraße 23<br>
-          14467 Potsdam
-        </address>
+      <div class="store__info">
+        <p class="eyebrow">Laden</p>
+        <h2 id="laden-h">Kommen Sie vorbei.</h2>
+        <address>Handy Chirurg Potsdam<br>Dortustraße 23<br>14467 Potsdam</address>
 
         <table class="hours" aria-label="Öffnungszeiten">
           <tbody>
@@ -241,79 +239,101 @@
           </tbody>
         </table>
 
-        <ul class="contact">
-          <li><span class="label">Telefon</span><a href="tel:+4933129080953">0331 29080953</a></li>
-          <li><span class="label">E-Mail</span><a href="mailto:potsdam@handy-chirurg.de">potsdam@handy-chirurg.de</a></li>
-        </ul>
-
-        <a class="btn btn--ghost" href="https://www.google.com/maps/search/?api=1&amp;query=Handy+Chirurg+Dortustra%C3%9Fe+23+14467+Potsdam" target="_blank" rel="noopener">Route in Google Maps</a>
+        <div class="actions">
+          <a class="btn btn--dark" href="https://www.google.com/maps/search/?api=1&amp;query=Handy+Chirurg+Dortustra%C3%9Fe+23+14467+Potsdam" target="_blank" rel="noopener">Route planen</a>
+          <a class="btn btn--ghost" href="tel:+491632288224">Anrufen</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ ANFRAGE ============ -->
-  <section class="section section--tint" id="anfrage" aria-labelledby="anfrage-h">
-    <div class="wrap split">
-      <div class="split__head">
-        <p class="label">05 · Anfrage</p>
-        <h2 id="anfrage-h">Lieber vorher fragen?</h2>
-        <p class="muted">
-          Schreiben Sie uns Gerät und Problem. Wir melden uns mit einer Einschätzung.
-          Für eine schnelle Antwort rufen Sie am besten an.
-        </p>
+  <!-- ============ FAQ ============ -->
+  <section class="light faq" id="faq" aria-labelledby="faq-h">
+    <div class="wrap faq__grid">
+      <div>
+        <p class="eyebrow">FAQ</p>
+        <h2 id="faq-h">Häufige Fragen.</h2>
       </div>
-
-      <form class="form" id="form" novalidate>
-        <div class="field">
-          <label for="f-device">Gerät und Modell</label>
-          <input id="f-device" name="device" type="text" placeholder="z. B. iPhone 13, Galaxy S22, MacBook Air" autocomplete="off" required>
-        </div>
-        <div class="field">
-          <label for="f-issue">Was ist kaputt?</label>
-          <select id="f-issue" name="issue">
-            <option>Display</option>
-            <option>Akku</option>
-            <option>Gerät startet nicht</option>
-            <option>Etwas anderes</option>
-          </select>
-        </div>
-        <div class="field field--wide">
-          <label for="f-msg">Beschreibung <span class="opt">(optional)</span></label>
-          <textarea id="f-msg" name="message" rows="4" placeholder="Was ist passiert, seit wann tritt der Fehler auf?"></textarea>
-        </div>
-        <div class="field">
-          <label for="f-name">Ihr Name</label>
-          <input id="f-name" name="name" type="text" autocomplete="name" required>
-        </div>
-        <div class="form__foot field--wide">
-          <button class="btn" type="submit">E-Mail vorbereiten</button>
-          <p class="form__note">Öffnet Ihr E-Mail-Programm mit einer fertigen Nachricht an potsdam@handy-chirurg.de. Diese Seite speichert nichts.</p>
-        </div>
-        <p class="form__error" id="formError" role="alert" hidden></p>
-      </form>
+      <div class="faq__list">
+        <details><summary>Brauche ich einen Termin?</summary><p>Nein. Kommen Sie Montag bis Samstag zwischen 10:00 und 18:30 Uhr vorbei.</p></details>
+        <details><summary>Wie lange dauert eine Reparatur?</summary><p>Display- und Akkutausch meist etwa 60 Minuten, wenn das Ersatzteil auf Lager ist. Bei Wasserschäden und Platinenarbeiten nennen wir Ihnen die Dauer nach der Diagnose.</p></details>
+        <details><summary>Was kostet die Fehleranalyse?</summary><p>25 €. Lassen Sie das Gerät bei uns reparieren, verrechnen wir den Betrag.</p></details>
+        <details><summary>Was passiert mit meinen Daten?</summary><p>Wir greifen nicht auf Ihre persönlichen Daten zu und löschen nichts. Eine Sicherung vorab empfehlen wir trotzdem, wenn sie möglich ist.</p></details>
+        <details><summary>Welche Garantie bekomme ich?</summary><p>Sie erhalten eine Garantie auf die durchgeführten Arbeiten und die verbauten Ersatzteile.</p></details>
+        <details><summary>Kann ich mein Gerät einschicken?</summary><p>Ja. Mit unserem Send-in-Service drucken Sie einen Versandaufkleber aus und geben das Paket bei der Post ab. Bezahlt wird nach der Diagnose per Überweisung oder Karte über Stripe.</p></details>
+      </div>
     </div>
   </section>
 
+  <!-- ============ CALL ============ -->
+  <section class="dark call" aria-labelledby="call-h">
+    <div class="wrap">
+      <p class="eyebrow">Fragen oder gleich vorbeikommen?</p>
+      <h2 id="call-h" class="sr">Kontakt</h2>
+      <a class="call__number" href="tel:+491632288224">0163 228 8224</a>
+      <p class="call__meta"><a href="mailto:potsdam@handy-chirurg.de">potsdam@handy-chirurg.de</a><span>Dortustraße 23 · Mo–Sa 10:00–18:30</span></p>
+      <svg class="call__pulse" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true">
+        <path pathLength="1" d="M0 42 H700 L716 42 L730 8 L748 58 L762 28 L772 42 H1200" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- ============ FRANCHISE ============ -->
+  <section class="light franchise" id="franchise" aria-labelledby="franchise-h">
+    <div class="wrap franchise__grid">
+      <div>
+        <p class="eyebrow">Franchise</p>
+        <h2 id="franchise-h">Handy Chirurg in Ihrer Stadt.</h2>
+        <p class="head__lede">Eröffnen Sie eine Werkstatt mit einem erprobten Konzept und Unterstützung vom ersten Tag an.</p>
+        <a class="btn btn--dark" href="mailto:potsdam@handy-chirurg.de?subject=Franchise%20%E2%80%93%20Erstgespr%C3%A4ch">Erstgespräch vereinbaren</a>
+      </div>
+      <div class="franchise__cols">
+        <div>
+          <h3>Was Sie bekommen</h3>
+          <ul>
+            <li>Erprobtes Geschäftsmodell</li>
+            <li>Schulung und laufende Betreuung</li>
+            <li>Gebietsschutz</li>
+            <li>Unterstützung im Marketing</li>
+            <li>Günstige Ersatzteile</li>
+            <li>Eigene Software für die Reparaturverwaltung</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Was Sie mitbringen</h3>
+          <ul>
+            <li>Interesse an Technik und Service</li>
+            <li>Unternehmerisches Denken</li>
+            <li>Startkapital ab 25.000&nbsp;€</li>
+            <li>Bereitschaft, selbst mit anzupacken</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer class="foot">
-  <div class="wrap foot__in">
-    <img class="foot__logo" src="img/logo-handy-chirurg.png" alt="Handy Chirurg" width="431" height="274" loading="lazy">
-    <p>
-      Handy Chirurg Potsdam<br>
-      Dortustraße 23 · 14467 Potsdam
-    </p>
-    <p>
-      <a href="tel:+4933129080953">0331 29080953</a><br>
-      <a href="mailto:potsdam@handy-chirurg.de">potsdam@handy-chirurg.de</a>
-    </p>
-    <p>
-      Mo–Sa 10:00–18:30 Uhr<br>
-      So geschlossen
-    </p>
+  <div class="wrap foot__grid">
+    <img class="foot__logo" src="img/logo-handy-chirurg.png" alt="Handy Chirurg – Ihr zuverlässiger Partner" width="431" height="274" loading="lazy">
+    <div>
+      <h3>Kontakt</h3>
+      <p>Handy Chirurg Potsdam<br>Dortustraße 23, 14467 Potsdam<br><a href="tel:+491632288224">0163 228 8224</a><br><a href="mailto:potsdam@handy-chirurg.de">potsdam@handy-chirurg.de</a></p>
+    </div>
+    <div>
+      <h3>Öffnungszeiten</h3>
+      <p>Mo–Sa 10:00–18:30 Uhr<br>So geschlossen</p>
+    </div>
+    <div id="impressum">
+      <h3>Impressum</h3>
+      <p>Verantwortlich: Malake Mansour<br>Dortustraße 23, 14467 Potsdam<br>USt-IdNr.: DE368877064</p>
+      <p class="foot__small">Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+      <p><a href="https://www.handychirurg.de/datenschutz" target="_blank" rel="noopener">Datenschutz</a></p>
+    </div>
   </div>
 </footer>
 
 <script src="js/main.js" defer></script>
+<script type="module" src="js/phone.js"></script>
 </body>
 </html>

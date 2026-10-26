@@ -11,27 +11,22 @@ img/           logo and two crops of the shop front
 references/    the client's screenshots and the brief
 ```
 
-## Direction
+## Direction (concept v2)
 
-One idea: the red heartbeat line from the logo. It runs under the hero and
-spikes just before the photo of the shop door, and it runs through the four
-repair steps, spiking at "Reparatur". It is not used anywhere else.
+The page tells one story with one object. A phone arrives with a cracked
+screen, opens into its layers as you scroll (display, logic board, battery,
+frame, back glass, each labelled with the repair it stands for) and closes
+again repaired, its screen drawing the heartbeat line from the logo. The
+same red line draws itself in the intro, under the wordmark in the bar, in
+the repair steps and under the phone number.
 
-| Token | Value | Role |
-|---|---|---|
-| `--paper` | `#f7f7f4` | Page ground |
-| `--ink` | `#17201e` | Type, primary button, the dark band |
-| `--teal-d` | `#22604f` | Links. The logo's skyline teal, darkened for contrast |
-| `--pulse` | `#c13329` | The heartbeat line only. Taken from the logo |
-
-Type: IBM Plex Sans for text, IBM Plex Mono for labels, hours and numbers.
-One primary button (ink), one ghost button, one text link. 2px corners on
-controls, square photographs, hairline rules instead of cards.
-
-Sections, each laid out differently: hero (asymmetric, photo bleeds off the
-right edge), services as an index list, steps on the pulse line, prices and
-guarantee on a dark band with the two real figures, shop with hours table,
-request form.
+- 3D: Three.js 0.160 from jsDelivr via an import map, `js/phone.js`. The
+  phone is built from primitives, no downloaded model. Drag to rotate.
+- Scroll drives a `--p` custom property on `#story`; the text scenes fade
+  on it in CSS, the 3D pose reads it in JS.
+- Without WebGL, or if the CDN fails, the story collapses to its hero after
+  8 s. With reduced motion there is no intro and no reveal animation.
+- Dark for the story, light for the facts. Type: Geist and Geist Mono.
 
 ## Content sources
 
@@ -61,8 +56,9 @@ Left out on purpose:
 
 ## Still needed from the client
 
-1. **Impressum and Datenschutzerklärung.** Required for a German business
-   site. Not on the page yet.
+1. **Impressum.** A short version is in the footer (Malake Mansour,
+   USt-IdNr., VSBG statement). Legal form must be added. Datenschutz links to
+   the existing page on handychirurg.de.
 2. **Real photographs** in full resolution. The shop photo is cut from a
    phone screenshot (732 px wide). A bench or repair close-up of their own
    would replace the second use of the shop front.
