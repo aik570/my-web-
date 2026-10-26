@@ -19,3 +19,9 @@ Photo packs:
   WhatsApp Business profile (Mo–Sa 10:00–18:30, Dortustraße 23, 14467 Potsdam,
   potsdam@handy-chirurg.de; services: Handy, Tablet, Laptop, PC, MacBooks, iPads,
   Zubehör, Prepaidkarten)
+- pack-3: "Warum Du Dein Gerät zu Handy Chirurg bringen solltest" section — two workshop
+  photos (look like stock, not the actual shop) and benefit list:
+  Fehleranalyse ab 25 € (wird bei Reparatur verrechnet), Express-Reparatur ca. 60 Min,
+  ohne Termin, faire Preise (nur nötige Teile), Garantie auf Arbeit + Teile,
+  Datenschutz (kein Zugriff/keine Löschung), klare Preise vorab,
+  großer Ersatzteillagerbestand, erfahrene Techniker
