@@ -14,3 +14,8 @@ reviews A/B/C, final standard). Full text is in the chat message.
 Photo packs:
 - pack-1: 5 iPhone screenshots of the current handychirurg.de mobile site
   (hero/contact, Potsdam store info, "Unser Laden" shop photo, repair steps, benefits)
+- pack-2: repair-offer form + trust cards, official logo (Berlin skyline + stethoscope,
+  "Ihr zuverlässiger Partner"), hero "Handy Chirurg Potsdam – Ihre Handy-Reparatur Experten",
+  WhatsApp Business profile (Mo–Sa 10:00–18:30, Dortustraße 23, 14467 Potsdam,
+  potsdam@handy-chirurg.de; services: Handy, Tablet, Laptop, PC, MacBooks, iPads,
+  Zubehör, Prepaidkarten)
