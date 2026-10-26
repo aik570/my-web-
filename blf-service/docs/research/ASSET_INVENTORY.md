@@ -25,14 +25,16 @@ Machine-readable versions of this table: `references/asset-manifest.json`
 
 None of the 27 files could be retrieved. The build environment's network
 policy refuses connections to `www.blfservice.de`, so every request failed
-before it reached the site (proxy `CONNECT` refused, HTTP 000). That says
-nothing about whether the files exist on the live site. The per-file result
-is in `docs/research/download-log.tsv`.
+before it reached the site (`curl exit 56: CONNECT tunnel failed, response
+403`, HTTP 000). That says nothing about whether the files exist on the live
+site. The per-file result is in `docs/research/download-log.tsv`.
 
 To retrieve them, run `bash scripts/fetch-originals.sh` from `blf-service/`
-on a machine with normal internet access. The script fetches only the
-largest file per image, skips files already present, rejects non-image
-responses and rewrites the log with HTTP status, byte size and SHA-256.
+on a machine with normal internet access. The script requests only the
+manifest URLs and follows no redirects. It fetches only the largest file per
+image, never overwrites an existing path and rejects non-image or empty
+responses. It rewrites the log with HTTP status, byte size, SHA-256 and the
+reason for every failure.
 
 **"Original" here means the largest file the live site serves.** These are
 Webflow exports, mostly 1125 px wide WebP. They are not camera originals.

@@ -19,10 +19,16 @@ outstanding (blocked).** Waiting for approval before Stage 02.
       category, still marked *not visually verified*.
 - [x] Wrote the asset manifest (`references/asset-manifest.json` and
       `.tsv`).
-- [x] Wrote `scripts/fetch-originals.sh`: read-only, fetches only the
-      largest file per image, never overwrites, rejects non-image
-      responses, logs HTTP status, size and SHA-256. Its success, rejection
-      and skip paths were tested against a public test URL.
+- [x] Wrote `scripts/fetch-originals.sh`: read-only, requests only the
+      manifest URLs over https and follows no redirects, fetches only the
+      largest file per image, never overwrites (existing files and links
+      are left alone), rejects non-image or empty responses, and logs
+      HTTP status, size, SHA-256 and the reason for every failure.
+- [x] Stage 01 audit: re-derived the inventory from the committed HTML
+      and cross-checked it field by field against the JSON, the TSV, the
+      log and the inventory tables (all consistent). Tested the script
+      against success, non-image, 404, cross-host 301, blocked host,
+      existing file, dangling link and second-run cases.
 - [x] Created the folder structure (below).
 - [x] Wrote ASSET_INVENTORY, CONTENT_AUDIT, MISSING_INFORMATION (with
       German client questions) and this file.
