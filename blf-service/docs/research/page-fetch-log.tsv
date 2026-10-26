@@ -1,0 +1,7 @@
+page	url	http	content_type	redirect	bytes	sha256	path	utc
+home	https://www.blfservice.de/	200	text/html; charset=utf-8		19218	c0f20d46512d56f9e1a610d4516c8e287434a1f8a1ab2757ecbb4cb1259015ff	references/source-html/pages-2026-10-26/home.html	2026-10-26T17:38:41Z
+leistungen-preise	https://www.blfservice.de/leistungen-preise	200	text/html; charset=utf-8		23308	98e7d4098c4eef0d00cc1336ff5f0325250e63cc775412ed00f288438393fed3	references/source-html/pages-2026-10-26/leistungen-preise.html	2026-10-26T17:38:42Z
+jobs	https://www.blfservice.de/jobs	200	text/html; charset=utf-8		18185	dfb71d433fc5126001569046cf4a86fcc1237c38c492c2828c07cf702e592a39	references/source-html/pages-2026-10-26/jobs.html	2026-10-26T17:38:43Z
+kontakt	https://www.blfservice.de/kontakt	200	text/html; charset=utf-8		21740	6be25233d2a8f85b05d29806c1371786132498321939bb396559fa655c6049f2	references/source-html/pages-2026-10-26/kontakt.html	2026-10-26T17:38:45Z
+impressum	https://www.blfservice.de/impressum	200	text/html; charset=utf-8		17769	1df58190ea75664715c1717aea9f096ea841f7204ef55fc61eb2e7c6c65fc1ca	references/source-html/pages-2026-10-26/impressum.html	2026-10-26T17:38:46Z
+datenschutz	https://www.blfservice.de/datenschutz	200	text/html; charset=utf-8		37484	4af5bd1bf87aab78a7ae14fd1b505c5ce77ad6353a56c11d4336ca1669c1f6ce	references/source-html/pages-2026-10-26/datenschutz.html	2026-10-26T17:38:47Z

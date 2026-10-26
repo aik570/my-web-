@@ -1,76 +1,96 @@
 # Missing Information & Client Questions — BLF Service
 
-Stage 01 · 2026-10-26
+Stage 01 · updated 2026-10-26 (after retrieval and full page audit)
 
-Ordered by how much each item blocks the next stage. Nothing listed here
-may be filled with invented content: no placeholder benefits, testimonials,
-certifications, salaries, team sizes or project stories.
+Nothing listed here may be filled with invented content: no placeholder
+job titles, benefits, testimonials, certifications, salaries, team sizes or
+project stories. The site's existing claims are quoted in
+`CONTENT_AUDIT.md` §2. They need confirmation before reuse.
+
+## Resolved in Stage 01
+
+| Was | Now |
+|---|---|
+| Site assets not retrieved | 28 / 28 retrieved and verified |
+| Six pages not audited | All seven pages saved and audited |
+| Brand colours unknown | Live values found in CSS (`#023435`, `#e6f1eb`, `#3f8843`); whether they are a deliberate brand is still open (B1) |
+| Gallery classification unclear | Visual review done: the tabs fit the photos, the filenames do not. Human sign-off still needed (A4) |
 
 ## A. Blocking — needed before design starts
 
-| # | Missing | Why it matters | Who / how |
+| # | Missing | Why | From |
 |---|---|---|---|
-| A1 | **The 27 asset files** | Nothing retrieved: `www.blfservice.de` is blocked in the build environment | Us: run `scripts/fetch-originals.sh` on an unrestricted machine, or allow the domain in the environment's network settings |
-| A2 | **Remaining pages** (Home, Leistungen-Preise, Jobs, Kontakt, Impressum, Datenschutz) | Content audit only covers the gallery | Us: save each page as HTML into `references/source-html/` |
-| A3 | **Jobs content**: positions, requirements, conditions, application process | Recruitment is a primary objective; nothing is known yet | Client |
-| A4 | **Full-resolution photographs** | Site files are ~1125 px web exports. Too small for full-bleed hero use without upscaling, which is not allowed | Client |
-| A5 | **Logo as vector** (SVG/AI/PDF/EPS) and brand colours | Only a 1966 px PNG is referenced | Client / previous agency |
-| A6 | **Ma'Loa reference material** (URL, screenshots or repo) | The brief names it as the quality benchmark, but nothing from it is in this repository | Project owner |
+| A1 | **Job content**: positions, requirements, conditions, location, how to apply, contact person | The live Jobs page has none of these, and recruitment is a primary goal | Client |
+| A2 | **Full-resolution photographs**, plus more of team, machinery and vehicles | All site photos are ≤ 1500 px web exports; upscaling is not allowed | Client |
+| A3 | **Logo as vector** (SVG/AI/PDF/EPS) | Only a 1966 px PNG exists | Client / previous agency |
+| A4 | **Sign-off on the gallery classification**: move the 11 `_unclassified` files into their tabs' folders? Confirm GAL-16 as Baumkontrolle? | See ASSET_INVENTORY → Visual review | Project owner, then client for GAL-16 |
+| A5 | **Ma'Loa reference material** | Named as the quality benchmark; nothing in the repo | Project owner |
 
-## B. Needed for content
-
-| # | Missing | Note |
-|---|---|---|
-| B1 | Authoritative service list, grouped (private / municipal / commercial?) | Three different vocabularies exist (tabs, filenames, keywords), see CONTENT_AUDIT |
-| B2 | Prices / price model | Implied by the `leistungen-preise` slug, unverified |
-| B3 | Service area (towns, radius from Seddiner See) | — |
-| B4 | Company facts: founding year, team size, legal form, owner | Only if the client supplies them |
-| B5 | Equipment / machinery list | Strong visual and recruiting material, if it exists |
-| B6 | Qualifications or certifications (e.g. FLL, ZTV, SKT, insurance) | List only what the client confirms in writing |
-| B7 | Customer references / testimonials, with permission to publish | None exist on the site so far; none will be written for them |
-| B8 | Per-photo facts: what is shown, rough location, year, private or municipal job | Needed to caption and correctly classify the gallery |
-| B9 | Correct classification of the 11 conflicting gallery images | See `ASSET_INVENTORY.md` |
-
-## C. Technical / legal
+## B. Content
 
 | # | Missing | Note |
 |---|---|---|
-| C1 | Impressum data (legal name, address, register, VAT ID, responsible person) | Mandatory (§ 5 DDG) |
-| C2 | Analytics: who runs `analytics.platzhalterabcd.de`? Keep it? | The domain name means "placeholder" |
-| C3 | Consent manager: keep consentmanager.net or replace? | Contract owner? |
-| C4 | Where inquiry and application forms should deliver (e-mail, CRM, ATS) | — |
-| C5 | Domain, DNS and hosting access; who deploys | — |
-| C6 | Photo rights and consent of identifiable people (employees, clients, licence plates) | Needed before reuse in a more prominent design |
-| C7 | Preferred canonical host (www or non-www) | Both are in use |
+| B1 | Are `#023435` / Bellota Text / Roboto the brand, or template defaults? | Decides whether the redesign keeps them |
+| B2 | Confirmation of the site's claims: since 2001, European Treeworker, certified tree inspectors, 24/7 emergency felling, regular training | Quoted in CONTENT_AUDIT §2. Need evidence for qualifications |
+| B3 | Final service list | *Leistung* lists 10. The gallery adds Spielgeräteaufbau and Hangbefestigung. Are those current services? |
+| B4 | Winterdienst audience | *Leistung*: "Gewerblich und Kommunen"; filenames: "für Privat" |
+| B5 | Prices or price model, if any are to be shown | Slug says "preise", page has none |
+| B6 | Service area | Not stated anywhere |
+| B7 | Company facts to show: team size, legal form, founding | Only if supplied |
+| B8 | References and testimonials, with permission | None on the current site |
+| B9 | Per-photo facts: what the job was, rough location, year, client type | No EXIF on any photo |
+| B10 | Photos for the 5 services that have none | Notfällung, Straßenreinigung, Neuanpflanzung, Grünflächenpflege, Forstwirtschaftliche Pflege |
+| B11 | Person in GAL-03: who is it, and may they be shown prominently? | The site's alt text says "Daniel Witte" |
+
+## C. Legal / technical
+
+| # | Missing | Note |
+|---|---|---|
+| C1 | **Correct USt-IdNr.** | The Impressum shows `048/287/07014` under "Umsatzsteuer-ID", which is the format of a Steuernummer |
+| C2 | **Analytics**: who operates `analytics.platzhalterabcd.de`? | Loads on every page; not disclosed in the Datenschutz |
+| C3 | **Contact form delivery** | Recipient field is `info&hey@blfservice.de`; inquiries may be lost. Ask whether forms arrive |
+| C4 | Hosting provider (the Datenschutz doesn't name it), and domain/DNS access | Needed for launch and the new privacy policy |
+| C5 | Keep consentmanager.net? Who holds the contract? | — |
+| C6 | Where applications should go (e-mail, form, phone/WhatsApp) | — |
+| C7 | Photo rights and consent of the people shown (GAL-01–03, 09, 17) and the licence plate in GAL-15 | Before more prominent use |
+| C8 | Preferred canonical host (www or non-www) | `og:url` and canonical disagree |
 
 ## Client questions (German, ready to send)
 
 1. **Fotos:** Können Sie uns die Originalfotos in voller Auflösung (direkt
-   von Kamera/Handy) zur Verfügung stellen? Gibt es weitere Fotos von
-   Einsätzen, Team, Maschinen oder Fahrzeugen?
-2. **Galerie-Zuordnung:** Bei einigen Galeriebildern passt der Dateiname
-   nicht zur Kategorie (z. B. heißt das Bild unter „Baumkontrolle“
-   „Neuanpflanzung & Freistellen“). Können Sie für jedes Bild kurz sagen,
-   was zu sehen ist und zu welcher Leistung es gehört? Wir schicken dazu
-   eine Übersicht.
-3. **Logo:** Haben Sie das Logo als Vektordatei (SVG, AI, PDF oder EPS)
-   und feste Firmenfarben?
-4. **Leistungen:** Welche Leistungen bieten Sie aktuell an, und für wen
-   (Privatkunden, Kommunen, Gewerbe/Bauträger)? Welche sind Ihnen am
-   wichtigsten?
-5. **Einsatzgebiet:** In welchen Orten bzw. in welchem Umkreis sind Sie
-   tätig?
-6. **Jobs:** Welche Stellen sind offen bzw. werden regelmäßig gesucht? Was
-   bieten Sie Mitarbeitern konkret (nur was wir veröffentlichen dürfen)?
-   Wie sollen Bewerbungen ankommen (E-Mail, Formular, Telefon/WhatsApp)?
-7. **Nachweise:** Gibt es Qualifikationen, Zertifikate oder
-   Mitgliedschaften, die wir nennen dürfen? Bitte nur mit Nachweis.
-8. **Referenzen:** Gibt es Kunden oder Projekte, die namentlich genannt
-   werden dürfen, und Kundenstimmen mit Freigabe?
-9. **Firmendaten:** Gründungsjahr, Teamgröße, Rechtsform und Inhaber, falls
-   Sie diese zeigen möchten.
-10. **Technik:** Wer betreibt die Statistik unter
-    „analytics.platzhalterabcd.de“, und wer hat Zugriff auf Domain und
-    Hosting?
-11. **Bildrechte:** Sind alle Personen auf den Fotos mit einer
-    Veröffentlichung einverstanden?
+   von Kamera/Handy) schicken? Gibt es weitere Fotos von Einsätzen, Team,
+   Maschinen und Fahrzeugen, besonders zu Notfällung, Straßenreinigung,
+   Neuanpflanzung, Grünflächenpflege und Forstpflege?
+2. **Galerie:** Wir haben alle Galeriebilder geprüft; die Kategorien passen.
+   Nur beim Bild unter „Baumkontrolle“ (großer alter Baum im Wald): Zeigt es
+   eine Baumkontrolle? Und können Sie zu den Bildern kurz sagen, was für ein
+   Auftrag es war (Ort, Jahr, privat/gewerblich/kommunal)?
+3. **Logo und Farben:** Haben Sie das Logo als Vektordatei (SVG, AI, PDF
+   oder EPS)? Sind das Dunkelgrün `#023435` und die Schriften der jetzigen
+   Seite Ihre festen Firmenfarben bzw. -schriften?
+4. **Leistungen:** Sind die zehn Leistungen auf der Seite „Leistung“ noch
+   aktuell? Bieten Sie Spielgeräteaufbau und Hangbefestigung (aus der
+   Galerie) ebenfalls an? Wird Winterdienst auch für Privatkunden angeboten?
+5. **Einsatzgebiet:** In welchen Orten bzw. in welchem Umkreis arbeiten Sie?
+6. **Jobs:** Welche Stellen suchen Sie konkret (z. B. Baumpfleger/in,
+   Forstwirt/in, Fahrer/in Winterdienst)? Welche Voraussetzungen, Arbeitszeit,
+   Arbeitsort? Wer ist Ansprechpartner? Wie sollen Bewerbungen ankommen?
+7. **Nachweise:** Die Seite nennt „European Treeworker“, „zertifizierte
+   Baumkontrolleure“ und „seit 2001“. Dürfen wir das weiter verwenden, und
+   können Sie uns die Nachweise zeigen?
+8. **Notdienst:** Die Seite sagt „rund um die Uhr“ bei Sturmschäden. Gilt
+   das, und unter welcher Nummer?
+9. **Referenzen:** Gibt es Kunden oder Projekte, die wir nennen dürfen, und
+   Kundenstimmen mit Freigabe?
+10. **Impressum:** Unter „Umsatzsteuer-ID“ steht 048/287/07014. Das sieht
+    nach einer Steuernummer aus. Haben Sie eine USt-IdNr. (beginnt mit „DE“)?
+11. **Kontaktformular:** Kommen Anfragen über das Formular bei Ihnen an? Im
+    Formular ist als Empfänger „info&hey@blfservice.de“ eingetragen.
+12. **Statistik:** Wer betreibt die Besucherstatistik unter
+    „analytics.platzhalterabcd.de“? Sie steht nicht in der
+    Datenschutzerklärung.
+13. **Hosting/Domain:** Bei welchem Anbieter liegt die Seite, und wer hat
+    Zugriff auf Domain und Hosting?
+14. **Bildrechte:** Sind die Personen auf den Fotos (auch Mitarbeiter) mit
+    einer größeren Darstellung auf der neuen Seite einverstanden? Ist auf
+    dem Foto mit dem Mann auf dem Baumstumpf Herr Witte zu sehen?
