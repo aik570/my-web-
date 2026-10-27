@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Konzept D · Wald-Monument × Lebendes System</title>
+  <meta name="robots" content="noindex">
+  <link rel="preload" href="../../public/fonts/newsreader/Newsreader-Variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../shared/concept.css">
+  <style>
+    /*
+     * Stage 04D. One sequence: monument → emergence → growth (intro, ~2.8 s),
+     * then scroll: system → interaction → real work → paper.
+     * Proposed dark ground (not yet a token): --ground-990 #0d160c, darker than forest-950.
+     */
+    :root { --ground-990: #0d160c; --ground-1000: #080e07; }
+    body { background: var(--paper-50); color: var(--forest-950); }
+
+    .brand { position: fixed; left: 20px; top: 14px; z-index: 70; display: block; width: 60px; height: 60px; border-radius: 50%; background: var(--paper-50); padding: 3px; }
+    .brand img { width: 54px; height: 54px; }
+    .nav { position: fixed; right: 20px; top: 26px; z-index: 70; display: flex; gap: 22px; font-weight: 600; font-size: 15px; color: var(--paper-50); transition: color .3s; }
+    .nav a { text-decoration: none; }
+    html.paper .nav { color: var(--forest-950); }
+    @media (max-width: 767px), (max-width: 1023px) and (orientation: portrait) { .nav { display: none; } }
+
+    .skip { position: fixed; left: 16px; bottom: 16px; z-index: 85; min-height: 48px; padding: 0 16px; border: 1px solid rgba(244, 241, 233, .5); border-radius: 2px;
+            background: rgba(8, 14, 7, .6); color: var(--paper-50); font: 600 14px var(--font-text); cursor: pointer; }
+    .skip[hidden] { display: none; }
+
+    .contact-dock .call { background: var(--paper-50); color: var(--forest-950); border: 1.5px solid var(--forest-950); }
+    .contact-dock .ask { background: var(--harz-500); color: var(--forest-950); }
+
+    /* ---------- stage ---------- */
+    .stage { position: relative; height: 560vh; }
+    .sticky { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; color: var(--paper-50); }
+    .ground { position: absolute; inset: 0; opacity: var(--ground, 1);
+              background: radial-gradient(ellipse 70% 80% at var(--gx, 65%) 42%, #18291a 0%, var(--ground-990) 58%, var(--ground-1000) 100%); }
+    .hero-h { position: absolute; inset: 0 0 auto 0; height: 100vh; height: 100svh; overflow: hidden; }   /* everything sized to the first viewport */
+
+    /* light: B's slit becomes the beam that finds the tree */
+    .slit { position: absolute; top: 0; width: 120px; margin-left: -60px; height: var(--baseY, 90%); transform-origin: 50% 0;
+            transform: scaleY(var(--slit, 0)); opacity: var(--slitA, 0);
+            background: linear-gradient(90deg, rgba(233, 227, 214, 0), rgba(233, 227, 214, .28) 46%, rgba(244, 241, 233, .55) 50%, rgba(233, 227, 214, .28) 54%, rgba(233, 227, 214, 0)); }
+    .glow { position: absolute; border-radius: 50%; opacity: var(--glow, 0);
+            background: radial-gradient(closest-side, rgba(139, 187, 35, .16), rgba(139, 187, 35, .05) 60%, rgba(139, 187, 35, 0)); }
+    .tree { position: absolute; inset: 0; transform-origin: var(--ox, 50%) var(--oy, 50%); will-change: transform, opacity; }
+    .tree canvas { position: absolute; }   /* sized to the tree's box by system.js */
+    .beam { position: absolute; width: 220px; margin-left: -110px; height: 150vh; transform-origin: 50% 100%;
+            transform: rotate(24deg) scaleX(var(--beamW, .1)); opacity: var(--beam, 0); pointer-events: none;
+            background: linear-gradient(to top, rgba(244, 241, 233, 0) 0%, rgba(244, 241, 233, .28) 22%, rgba(244, 241, 233, .08) 100%);
+            -webkit-mask-image: linear-gradient(90deg, transparent, #000 38%, #000 62%, transparent); mask-image: linear-gradient(90deg, transparent, #000 38%, #000 62%, transparent); }
+
+    /* monumental type: solid, legible fill; light and a restrained grain ride on top */
+    .hero-copy { position: absolute; left: clamp(20px, 5vw, 80px); top: 50%; transform: translateY(-50%); width: min(36vw, 34rem); z-index: 3; }
+    .label { display: flex; gap: 10px; align-items: center; font: 600 12px/1.3 var(--font-text); letter-spacing: .1em; text-transform: uppercase; color: var(--mist-200); opacity: var(--copy, 1); }
+    .marker { width: 24px; height: 6px; background: var(--harz-500); border-radius: 45% 60% 55% 40% / 60% 45% 55% 40%; transform: rotate(-3deg); display: inline-block; }
+    .monument { margin-top: 14px; font-family: var(--font-display); font-weight: 560; font-variation-settings: "opsz" 30;   /* sturdier hairlines at display size */
+                text-transform: uppercase; letter-spacing: -.012em;
+                font-size: min(15.5vh, 9.4vw); line-height: .88; opacity: var(--words, 1); }
+    .monument .w { display: block; width: max-content; color: var(--mist-200);
+                   background-image: var(--grain, none), linear-gradient(100deg, #1c2a19 0%, #1c2a19 33%, #f4f1e9 45%, #ddd6c6 52%, var(--mist-200) 66%, var(--mist-200) 100%);
+                   background-size: 160px 160px, 300% 100%;
+                   background-position: 0 0, calc(var(--wl, 1) * 100%) 0;
+                   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .lead { margin-top: 22px; max-width: 30rem; font-size: 1.08rem; line-height: 1.55; color: var(--paper-100); opacity: var(--copy, 1); }
+    .lead b { color: var(--paper-50); font-weight: 600; }
+    .discover { display: inline-flex; margin-top: 18px; align-items: center; gap: 10px; min-height: 44px; color: var(--paper-50); font-weight: 600; text-underline-offset: 4px; opacity: var(--copy, 1); }
+
+    /* ---------- system: rings and contours ---------- */
+    svg.sys { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; overflow: visible; will-change: transform, opacity; }
+    .sys .ring { fill: none; stroke: var(--lime-400); stroke-opacity: .46; transition: stroke .25s, stroke-opacity .25s; }
+    .sys .contour { fill: none; stroke: var(--mist-200); stroke-opacity: .26; }
+    .sys.show-sel .ring.on { stroke: var(--harz-500); stroke-opacity: 1; stroke-width: var(--onw, 2.4px) !important; }
+    .sys text { font: 600 21px var(--font-text); letter-spacing: .12em; text-transform: uppercase; fill: var(--paper-100); fill-opacity: .72; transition: fill .25s, fill-opacity .25s; }
+    .sys.show-sel text.on { fill: var(--harz-500); fill-opacity: 1; }
+    .sys .hit { fill: none; stroke: transparent; pointer-events: none; cursor: pointer; }
+    .stage.interactive .sys .hit, .stage.interactive .sys text { pointer-events: auto; }
+    .sys text { cursor: pointer; }
+    html.paper .sys .ring { stroke: var(--forest-600); }
+    html.paper .sys .contour { stroke: var(--bark-500); }
+
+    /* the core window: service photos, then the real-work frame */
+    .window { position: absolute; z-index: 3; overflow: hidden; border-radius: 50%; width: 0; height: 0; box-shadow: 0 0 0 1px rgba(221, 158, 9, .7); }
+    .window img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .35s; }
+    .window .g img.on { opacity: 1; }
+    .window .g { position: absolute; inset: 0; opacity: var(--gi, 1); }
+    .window .work { opacity: var(--wi, 0); }
+
+    /* ---------- interaction panel ---------- */
+    .panel { position: absolute; z-index: 4; left: clamp(20px, 5vw, 80px); top: 50%; transform: translateY(-50%); width: min(30vw, 25rem); opacity: var(--panel, 0); }
+    .panel h2 { margin-top: 12px; font-family: var(--font-display); font-size: clamp(2rem, 1.3rem + 1.8vw, 3rem); line-height: 1.05; }
+    .groups { margin-top: 24px; display: grid; gap: 4px; }
+    .groups button { display: flex; align-items: baseline; gap: 14px; width: 100%; min-height: 48px; padding: 10px 12px; text-align: left; cursor: pointer;
+                     background: transparent; color: var(--paper-100); border: 0; border-left: 2px solid rgba(201, 194, 180, .3); font: 500 1.15rem/1.2 var(--font-text); }
+    .groups button .n { font: 600 12px var(--font-text); letter-spacing: .08em; color: var(--mist-200); }
+    .groups button:hover { color: var(--paper-50); border-left-color: var(--mist-200); }
+    .groups button[aria-pressed="true"] { color: var(--paper-50); border-left-color: var(--harz-500); background: rgba(221, 158, 9, .1); }
+    .groups button[aria-pressed="true"] .n { color: var(--harz-500); }
+    .groups button:focus-visible { outline: 2px solid var(--harz-500); outline-offset: 2px; }
+    .detail { margin-top: 18px; min-height: 6.5em; }
+    .detail .svc { color: var(--paper-50); line-height: 1.5; }
+    .detail .cap { margin-top: 8px; font-size: 13px; color: var(--mist-200); }
+    .stage:not(.interactive) .panel { pointer-events: none; }
+
+    /* ---------- real work ---------- */
+    .work-copy { position: absolute; z-index: 4; left: clamp(20px, 5vw, 80px); top: 50%; transform: translateY(-50%); width: min(30vw, 26rem); opacity: var(--work, 0); color: var(--paper-50); }
+    .work-copy h2 { margin-top: 12px; font-family: var(--font-display); font-size: clamp(2rem, 1.3rem + 1.8vw, 3rem); line-height: 1.05; }
+    .work-copy p.txt { margin-top: 16px; color: var(--paper-100); }
+    html.paper .work-copy { color: var(--forest-950); }
+    html.paper .work-copy p.txt { color: var(--bark-600); }
+    html.paper .work-copy .label { color: var(--bark-600); }
+    .rm-only { display: none; }
+
+    /* ---------- paper sections after the stage ---------- */
+    .gallery { padding: 72px clamp(20px, 5vw, 80px) 40px; }
+    .gallery h2, .contact h2 { font-family: var(--font-display); font-size: var(--type-h2); max-width: 22ch; }
+    .spread { margin-top: 32px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+    .spread figure { margin: 0; }
+    .spread figure:nth-of-type(2n) { margin-top: 48px; }
+    .spread img { width: 100%; max-width: 281px; }
+    .spread figcaption { margin-top: 8px; font-size: 13px; color: var(--bark-600); }
+    .spread figcaption b { display: block; color: var(--forest-950); letter-spacing: .08em; text-transform: uppercase; font-size: 11px; }
+    .contact { padding: 96px clamp(20px, 5vw, 80px) 140px; border-top: 1px solid rgba(122, 113, 102, .4); margin-top: 56px; }
+    .contact p { margin-top: 16px; color: var(--bark-600); }
+    .contact a { color: var(--forest-600); }
+
+    /* ---------- mobile ---------- */
+    @media (max-width: 767px), (max-width: 1023px) and (orientation: portrait) {
+      .stage { height: 600vh; }
+      .hero-copy { top: 84px; transform: none; left: 16px; right: 16px; width: auto; }
+      .monument { font-size: min(23vw, 12vh); margin-top: 10px; }
+      .lead { font-size: .95rem; margin-top: 14px; }
+      .discover { display: none; }
+      .panel { top: auto; bottom: 84px; transform: none; left: 16px; right: 16px; width: auto; }
+      .panel .label, .panel h2 { display: none; }
+      .groups { grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 0; }
+      .groups button { font-size: .98rem; min-height: 48px; padding: 8px 10px; border-left-width: 2px; }
+      .groups button .n { display: none; }
+      .detail { margin-top: 10px; min-height: 5.6em; font-size: .9rem; }
+      .work-copy { top: auto; bottom: 84px; transform: none; left: 16px; right: 16px; width: auto; }
+      .work-copy h2 { font-size: 1.7rem; }
+      .work-copy p.txt { font-size: .92rem; margin-top: 10px; }
+      .spread { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+      .spread figure:nth-of-type(2n) { margin-top: 24px; }
+      .skip { bottom: 84px; }
+    }
+
+    /* ---------- reduced motion / no JS: a calm stacked page ---------- */
+    html.rm .stage, html:not(.js) .stage { height: auto; }
+    html.rm .sticky, html:not(.js) .sticky { position: relative; height: auto; overflow: visible; padding: calc(100vh + 24px) clamp(20px, 5vw, 80px) 64px; }
+    html.rm svg.sys, html:not(.js) svg.sys, html.rm .beam, html:not(.js) .beam, html.rm .skip, html:not(.js) .skip { display: none; }
+    html.rm .panel, html.rm .work-copy, html:not(.js) .panel, html:not(.js) .work-copy { position: relative; left: auto; right: auto; top: auto; bottom: auto; transform: none; width: auto; max-width: 40rem; opacity: 1; margin-top: 56px; }
+    html.rm .panel .label, html.rm .panel h2 { display: block; }
+    html.rm .window, html:not(.js) .window { position: relative; left: auto !important; top: auto !important; width: min(320px, 100%) !important; height: 320px !important; border-radius: 50% !important; margin-top: 24px; }
+    html:not(.js) .window .g img[data-g="0"] { opacity: 1; }
+    html.rm .rm-only, html:not(.js) .rm-only { display: block; margin-top: 20px; width: 100%; max-width: min(420px, 100%); }
+    html.rm .monument .w { --wl: 1; }
+    html.rm .hero-copy, html:not(.js) .hero-copy { top: 50vh; }
+    @media (max-width: 767px), (max-width: 1023px) and (orientation: portrait) { html.rm .hero-copy, html:not(.js) .hero-copy { top: 84px; } }
+  </style>
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+  <p class="concept-tag">Konzept D · Wald-Monument × Lebendes System · Prototyp, nicht final</p>
+  <a class="brand" href="#top" id="top"><img src="../../public/assets/optimized/home/logo-192.webp" srcset="../../public/assets/optimized/home/logo-192.webp 192w, ../../public/assets/optimized/home/logo-384.webp 384w" sizes="54px" width="192" height="192" alt="Baum-Land-Forst Service"></a>
+  <nav class="nav" aria-label="Hauptnavigation"><a href="#leistungen" data-goto="leistungen">Leistungen</a><a href="#arbeit">Arbeit</a><a href="#kontakt">Kontakt</a></nav>
+  <button class="skip" id="skip" type="button" hidden>Intro überspringen</button>
+
+  <main>
+    <section class="stage" id="stage" aria-label="Einführung und Leistungen">
+      <div class="sticky">
+        <div class="ground"></div>
+        <div class="hero-h" aria-hidden="true">
+          <div class="slit" id="slit"></div>
+          <div class="glow" id="glow"></div>
+        </div>
+        <div class="tree hero-h" id="tree" aria-hidden="true"><canvas id="back"></canvas><canvas id="front"></canvas></div>
+        <div class="hero-h" aria-hidden="true" style="pointer-events:none"><div class="beam" id="beam"></div></div>
+        <svg class="sys hero-h" id="sys" aria-hidden="true"></svg>
+
+        <div class="hero-copy" id="hero">
+          <p class="label"><span class="marker" aria-hidden="true"></span>Baum-Land-Forst Service · Seddiner See</p>
+          <h1 class="monument"><span class="w">Baum</span> <span class="w">Land</span> <span class="w">Forst</span></h1>
+          <p class="lead">Wir bieten Ihnen: <b>Baumfällung, Baumpflege, Baumkontrolle</b>, Winterdienst, Pflasterarbeiten, Neuanpflanzung, Grünflächenpflege und mehr.</p>
+          <a class="discover" href="#leistungen" data-goto="leistungen">Leistungen entdecken <span aria-hidden="true">↓</span></a>
+        </div>
+
+        <div class="panel" id="leistungen" role="region" aria-labelledby="lt">
+          <p class="label"><span class="marker" aria-hidden="true"></span>Leistungen</p>
+          <h2 id="lt">Vom Baum bis zur Fläche</h2>
+          <div class="groups" id="groups" role="group" aria-label="Leistungsbereich wählen">
+            <button type="button" data-g="0" aria-pressed="true"><span class="n">01</span>Baumarbeiten</button>
+            <button type="button" data-g="1" aria-pressed="false"><span class="n">02</span>Grün &amp; Forst</button>
+            <button type="button" data-g="2" aria-pressed="false"><span class="n">03</span>Bau &amp; Fläche</button>
+            <button type="button" data-g="3" aria-pressed="false"><span class="n">04</span>Winter &amp; Reinigung</button>
+          </div>
+          <div class="detail" id="detail" aria-live="polite">
+            <p class="svc">Baumfällung · Stubbenentfernung · Notfällung · Baumpflege · Kronensicherung · Baumkontrolle</p>
+            <p class="cap">Foto: Baumkletterer mit Motorsäge am Stamm einer Kiefer</p>
+          </div>
+        </div>
+
+        <div class="window" id="window">
+          <div class="g">
+            <img data-g="0" class="on" src="../../public/assets/optimized/home/GAL-02-480.webp" srcset="../../public/assets/optimized/home/GAL-02-480.webp 480w, ../../public/assets/optimized/home/GAL-02-800.webp 800w, ../../public/assets/optimized/home/GAL-02-844.webp 844w" sizes="(max-width: 767px) 240px, (max-width: 1023px) and (orientation: portrait) 240px, 330px" width="844" height="1500" alt="Baumkletterer mit Motorsäge am Stamm einer Kiefer." style="object-position:50% 28%">
+            <img data-g="2" src="../../public/assets/optimized/home/GAL-06-480.webp" srcset="../../public/assets/optimized/home/GAL-06-480.webp 480w, ../../public/assets/optimized/home/GAL-06-800.webp 800w" sizes="(max-width: 767px) 240px, (max-width: 1023px) and (orientation: portrait) 240px, 330px" width="1125" height="1500" alt="Minibagger auf einem geräumten Grundstück." loading="lazy">
+            <img data-g="3" src="../../public/assets/optimized/home/GAL-14-480.webp" srcset="../../public/assets/optimized/home/GAL-14-480.webp 480w, ../../public/assets/optimized/home/GAL-14-800.webp 800w" sizes="(max-width: 767px) 240px, (max-width: 1023px) and (orientation: portrait) 240px, 330px" width="1125" height="1500" alt="Räumfahrzeug mit Schneeschild bei Nacht." style="object-position:30% 70%" loading="lazy">
+          </div>
+          <img class="work" src="../../public/assets/optimized/home/GAL-13-800.webp" srcset="../../public/assets/optimized/home/GAL-13-480.webp 480w, ../../public/assets/optimized/home/GAL-13-800.webp 800w, ../../public/assets/optimized/home/GAL-13-1125.webp 1125w" sizes="(max-width: 767px) 250px, (max-width: 1023px) and (orientation: portrait) 250px, 520px" width="1125" height="1500" alt="Blick in die Kronen mehrerer Kiefern, die mit einem Seilsystem zur Kronensicherung verbunden sind." loading="lazy">
+        </div>
+
+        <div class="work-copy" id="work">
+          <p class="label"><span class="marker" aria-hidden="true"></span>Echte Arbeit · Baumpflege / Kronensicherung</p>
+          <h2>Echte Arbeit am Baum.</h2>
+          <p class="txt">Zur Baumpflege zählen auch die Entfernung von Totholz, Kroneneinkürzung, sowie Lichtraumprofilschnitte und auch der Einbau einer Kronensicherung.</p>
+          <img class="rm-only" src="../../public/assets/optimized/home/GAL-13-480.webp" srcset="../../public/assets/optimized/home/GAL-13-480.webp 480w, ../../public/assets/optimized/home/GAL-13-800.webp 800w" sizes="(max-width: 767px) 90vw, 420px" width="1125" height="1500" alt="Blick in die Kronen mehrerer Kiefern, die mit einem Seilsystem zur Kronensicherung verbunden sind." loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery" id="arbeit" aria-labelledby="arbeit-t">
+      <h2 id="arbeit-t">Echte Arbeit, echte Fotos</h2>
+      <div class="spread">
+        <figure><img src="../../public/assets/optimized/home/GAL-04-480.webp" srcset="../../public/assets/optimized/home/GAL-04-480.webp 480w, ../../public/assets/optimized/home/GAL-04-800.webp 800w" sizes="281px" width="1125" height="1500" alt="Arbeitsbühne neben einem stark eingekürzten Baum." loading="lazy"><figcaption><b>Baumfällung</b>Arbeitsbühne am Baum</figcaption></figure>
+        <figure><img src="../../public/assets/optimized/home/GAL-11-480.webp" srcset="../../public/assets/optimized/home/GAL-11-480.webp 480w, ../../public/assets/optimized/home/GAL-11-800.webp 800w" sizes="281px" width="1125" height="1500" alt="Stubbenfräse an einem Baumstumpf." loading="lazy"><figcaption><b>Stubbenfräsen</b>Fräse am Baumstumpf</figcaption></figure>
+        <figure><img src="../../public/assets/optimized/home/GAL-18-480.webp" srcset="../../public/assets/optimized/home/GAL-18-480.webp 480w, ../../public/assets/optimized/home/GAL-18-800.webp 800w" sizes="281px" width="1125" height="1500" alt="Böschung mit Erosionsschutzmatte." loading="lazy"><figcaption><b>Hangbefestigung</b>Böschung mit Schutzmatte</figcaption></figure>
+        <figure><img src="../../public/assets/optimized/home/GAL-19-480.webp" srcset="../../public/assets/optimized/home/GAL-19-480.webp 480w, ../../public/assets/optimized/home/GAL-19-800.webp 800w" sizes="281px" width="1125" height="1500" alt="Rasengittersteine entlang einer Straße." loading="lazy"><figcaption><b>Pflasterarbeiten</b>Rasengitter am Straßenrand</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="contact" id="kontakt" aria-labelledby="kontakt-t">
+      <h2 id="kontakt-t">Haben Sie Fragen oder benötigen Sie ein unverbindliches Angebot?</h2>
+      <p>Telefon <a class="tnum" href="tel:+491723841620">0172 3841620</a> · <a href="mailto:info@blfservice.de">info@blfservice.de</a> · Am Seehügel 1c, 14554 Seddiner See</p>
+    </section>
+  </main>
+
+  <div class="contact-dock"><a class="call tnum" href="tel:+491723841620">0172 3841620</a><a class="ask" href="mailto:info@blfservice.de?subject=Anfrage">Anfrage</a></div>
+
+  <script src="../shared/concept.js"></script>
+  <script src="growth.js"></script>
+  <script src="system.js"></script>
+</body>
+</html>

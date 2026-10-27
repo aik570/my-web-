@@ -214,6 +214,40 @@ Corrections (DESIGN_DECISIONS §8):
 - New **DQ-12** (Markierung colour on light grounds).
 - Details: DESIGN_DECISIONS §3 and §8.
 
+## Stage 04D — Concept D: Forest Monument × Living System (2026-10-27)
+
+### Done
+
+- [x] New isolated prototype `concepts/d-monument-system/` that unifies B
+      (dark monument), A (growing tree) and C (rings as service navigation).
+      Concepts A, B, C and `src/` are untouched.
+- [x] Intro 2.8 s (monument → slit → tree growth → beam), once per session,
+      skippable; scroll scenes: system → interaction → real work (GAL-13)
+      → paper.
+- [x] Working ring/service interaction: hover/click on ring bands, four
+      keyboard buttons (`aria-pressed`, live region), real photos GAL-02,
+      06, 14; Grün & Forst shows the drawn tree labelled "Illustration"
+      (no photo, D-19).
+- [x] A's tree performance problem fixed (incremental drawing, cropped and
+      merged canvases): intro p95 at 4× CPU 617 ms → 83 ms.
+- [x] Checks: 0 console errors; 0 px overflow at 320–1440 px (JS, reduced
+      motion, no JS); no visible image upscaled (max 0.92); keyboard order
+      and focus; contrast ≥ 6.18:1 for all text; skip and session replay.
+- [x] Review boards in `concepts/review/` (`D-*.jpg`,
+      `comparison-B-C-D.jpg`); write-up and decisions:
+      [`docs/design/CONCEPT_D_MONUMENT_SYSTEM.md`](design/CONCEPT_D_MONUMENT_SYSTEM.md).
+- [x] No dependencies added; no logo reconstruction; no generated images.
+
+### Open
+
+| Item | Status |
+|---|---|
+| Direction | Owner: adopt D, or keep C |
+| Dark ground tokens | `--ground-990` / `--ground-1000` need approval |
+| Tree artwork, new copy, Grün & Forst illustration | Owner approval (§9 of the D document) |
+| Scroll at 4× CPU | ≈ 30 fps in headless software rendering; not measured on devices |
+| Browsers | Chromium only |
+
 ## Stage 04B — Creative reset: three directions (2026-10-27)
 
 ### Done
