@@ -200,6 +200,21 @@ Corrections (DESIGN_DECISIONS §8):
 - No changes to source HTML, assets, production systems or anything
   outside `blf-service/`.
 
+### Stage 03 review (2026-10-27)
+
+- Checked: the approved UX decisions UX-01 – UX-03 are consistent across
+  Stage 02 and 03 documents.
+- Corrected:
+  - **GAL-15** made conditional on D-12 everywhere (licence plate legible
+    at gallery size, and on 2×/3× screens even when small);
+  - two self-descriptions gated behind D-08 (k, l).
+- Measured:
+  - logo lettering at header sizes → new **DQ-11**;
+  - real-font widths of German compound words;
+  - font licences (OFL 1.1).
+- New **DQ-12** (Markierung colour on light grounds).
+- Details: DESIGN_DECISIONS §3 and §8.
+
 ## Before Stage 04
 
 1. Project owner: approve or adjust Direction A (DQ-01). Then present it to

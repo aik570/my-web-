@@ -52,7 +52,7 @@ supplied, before the design stage.
 | Hangbefestigung | GAL-17, 18 | 1125×1500 each | portrait 3:4 |
 | Pflasterarbeiten | GAL-19 | 1125×1500 | portrait 3:4 |
 | Spielgeräteaufbau | GAL-10 | 1125×1500 | portrait 3:4 |
-| Winterdienst | GAL-14, 15 | 1125×1500 each | portrait 3:4 |
+| Winterdienst | GAL-14, 15 (15 only with D-12: licence plate) | 1125×1500 each | portrait 3:4 |
 
 That is **18 photos in 8 chapters**:
 - 15 are ≈ 3:4 portrait: 14 exactly 1125×1500, plus GAL-01 at 1169×1500;
@@ -75,13 +75,13 @@ work and to all-season services. It mirrors the Leistungen grouping
 | 5 | Hangbefestigung | GAL-17 → 18 | Detail with people, then the long embankment. Captions describe each image on its own (M2/M3) |
 | 6 | Pflasterarbeiten | GAL-19 | — |
 | 7 | Spielgeräteaufbau | GAL-10 | Lighter tone near the end |
-| 8 | Winterdienst | GAL-14 → 15 | Ends on the night/snow images: a strong, different atmosphere as the finale |
+| 8 | Winterdienst | GAL-14 → 15 | Ends on the night/snow images: a strong, different atmosphere as the finale. **GAL-15 only with D-12** (its licence plate is legible at frame size); otherwise GAL-14 alone |
 
 If D-09 removes Spielgeräteaufbau or Hangbefestigung as services, they stay
 in the gallery as photo chapters; D-09 only affects Leistungen.
 
 **Home teaser** (PAGE_ARCHITECTURE §1.4): five photos, one per distinct
-service, e.g. GAL-13, 11, 18, 10, 15. No pinning: a single horizontal
+service, e.g. GAL-13, 11, 18, 10, 14. No pinning: a single horizontal
 reveal row.
 
 ## 3. Desktop: pinned stage [P]

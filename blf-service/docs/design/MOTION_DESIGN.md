@@ -57,16 +57,16 @@ chapter shows only its label.
 
 | # | Chapter label | Photos, in order | Chapter line (verbatim from the site; typos fixed only in the copy stage) |
 |---|---|---|---|
-| 01 | Baumfällung | GAL-01 → 02 → 04 → (03 only with D-12) | "Wir bieten sichere und effiziente Baumfällungen an, egal ob es sich um einen einzelnen Baum oder eine größere Fläche handelt." |
+| 01 | Baumfällung | GAL-01 → 02 → 04 → (03 only with D-12) | "Wir bieten sichere und effiziente Baumfällungen an, egal ob es sich um einen einzelnen Baum oder eine größere Fläche handelt." Contains a quality claim ("sichere und effiziente"): **only with D-08 l**, otherwise no chapter line |
 | 02 | Baumpflege / Kronensicherung | GAL-13 | "Zur Baumpflege zählen auch die Entfernung von Totholz, Kroneneinkürzung, sowie Lichtraumprofilschnitte und auch der Einbau einer Kronensicherung." |
 | 03 | Stubbenfräsen | GAL-11 → 12 | "Nach der Fällung kümmern wir uns auch gerne um die Entfernung des Baumstumpfes, damit Sie den Platz für neue Pflanzen oder andere Projekte nutzen können." |
 | 04 | Baufeldberäumung | GAL-05 → 06 → 07 → 09 → 08 | "Wir entfernen Pflanzen, Bäume, Sträucher und bereiten das Gelände optimal für Ihre Projekte vor." |
 | 05 | Hangbefestigung | GAL-17 → 18 | none: a gallery-only category with no text on the site [D-09] |
 | 06 | Pflasterarbeiten | GAL-19 | "Ob Neubau oder Reparatur-wir übernehmen sämtliche Pflasterarbeiten Ihre Wege, Einfahrten, Terrassen und mehr." [sic] |
 | 07 | Spielgeräteaufbau | GAL-10 | none: a gallery-only category [D-09] |
-| 08 | Winterdienst | GAL-14 → 15 | "Im Winter sorgen wir für eine sichere Umgebung, indem wir Schnee räumen und Gehwege sowie Straßenenteisungen durchführen." |
+| 08 | Winterdienst | GAL-14 → (15 only with D-12: licence plate) | "Im Winter sorgen wir für eine sichere Umgebung, indem wir Schnee räumen und Gehwege sowie Straßenenteisungen durchführen." |
 
-Without D-12, chapter 01 has 3 photos and the gallery 17. The sequence
+Without D-12, chapter 01 has 3 photos (no GAL-03), chapter 08 has 1 (no GAL-15), and the gallery 16. The sequence
 follows **service scope**, not time.
 
 ---
@@ -167,7 +167,8 @@ long they look.
 
 ### 3.5 The Winterdienst finale (chapter 08)
 
-The last chapter's photos were taken in snow, one of them at night. During
+The last chapter's photos were taken in snow, one of them at night. Without
+D-12 the finale is GAL-14 alone (no plate visible). During
 the chapter 08 intro rest (40 vh), the stage ground cross-fades
 **`paper-50` → `forest-950`** [P].
 
@@ -340,7 +341,7 @@ Applies when `prefers-reduced-motion: reduce` is set, on any device.
 
 ## 9. Home teaser motion [P]
 
-Five photos, one per service (GAL-13, 11, 18, 10, 15), in a framed row.
+Five photos, one per service (GAL-13, 11, 18, 10, 14), in a framed row. GAL-15 is not used here: even a small CSS size shows its plate legibly on 2×/3× screens.
 - **Desktop:** a single staggered fade-up (≤ 16 px, 400 ms, 80 ms stagger)
   when the row enters, played once.
 - **Mobile:** a horizontal swipe row within the caps.

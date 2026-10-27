@@ -64,7 +64,7 @@ proposals; the service names and texts are verified.**
 | Baumarbeiten | Baumfällung (incl. Stubbenentfernung, Notfällung) · Baumpflege (incl. Kronensicherung) · Baumkontrolle | GAL-01–04 · GAL-13 · GAL-11, 12 (Stubbenfräsen) · Baumkontrolle: none until D-14 |
 | Grün & Forst | Neuanpflanzung & Freistellen · Grünflächenpflege für Kommunen · Forstwirtschaftliche Pflege | none [D-19] |
 | Bau & Fläche | Baufeldberäumung · Pflasterarbeiten | GAL-05–09 · GAL-19 |
-| Winter & Reinigung | Winterdienst · Straßen- und Flächenreinigung | GAL-14, 15 · none |
+| Winter & Reinigung | Winterdienst · Straßen- und Flächenreinigung | GAL-14 (GAL-15 only with D-12) · none |
 
 **Gallery-only categories.** *Spielgeräteaufbau* (GAL-10) and
 *Hangbefestigung* (GAL-17, 18) appear only as gallery categories. They

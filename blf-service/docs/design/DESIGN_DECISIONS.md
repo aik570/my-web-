@@ -59,13 +59,15 @@ feasibility.
 | DQ-01 | Approve Direction A for presentation to the client? | Yes | OPEN |
 | DQ-02 | Keep the Winterdienst dark finale in the gallery (MOTION_DESIGN §3.5)? | Keep; drop if user testing finds it distracting | OPEN |
 | DQ-03 | Home hero photo: GAL-01 (climber; worker not identifiable at this size) or GAL-13 (no people)? | GAL-13 until D-12 is answered, then GAL-01. The prominent use of any person photo waits for consent | OPEN |
-| DQ-04 | Final fonts: confirm Newsreader + Hanken Grotesk after the German specimen and 360 px tests (VISUAL_REFERENCE_BRIEF §4) and licence review | Test first | OPEN |
+| DQ-04 | Final fonts: confirm Newsreader + Hanken Grotesk | **Partly done (Stage 03 review):** both are OFL 1.1; German glyphs present; compound-word widths measured (ART_DIRECTION §6). Still open: tabular figures, and a visual specimen review by a person | OPEN (partly checked) |
 | DQ-05 | Icon set: an open-source set (licence check) or custom-drawn to the 24 px / 1.5 px spec? | Open-source set, licence filed | OPEN |
 | DQ-06 | Logo on dark grounds: its green ring has only 2.06:1 against `forest-950` | Paper plate behind the PNG now; a light variant only from a vector **with client authorisation** [D-11] | OPEN |
 | DQ-07 | Social share image: today's og:image is a 1.4 MB crop of the GAL-16 photograph | Replace with a crop of **GAL-05** (1500 px wide, so a 1200×630 crop needs no upscaling), or a new wide photo [D-10]. 1200 px exceeds the 1125 px portraits, so they don't qualify | OPEN |
 | DQ-08 | How much extra energy on Karriere (dark hero band, larger type) without a second brand? | As ART_DIRECTION §11; review in mockups | OPEN |
 | DQ-09 | Long German words in headings: confirm the line-break estimate with real fonts | Test in Stage 04 mockups | OPEN |
 | DQ-10 | Should the Home gallery teaser animate on desktop (staggered fade) or stay static? | Single staggered fade, played once | OPEN |
+| DQ-11 | **Logo legibility in the header.** Measured: the "SERVICE" lettering is 10.2 % of the logo's height, so at the proposed 72/56 px header it is 7.4/5.7 px tall and unreadable. The amber lettering is also only 2.07:1 on paper | Options: (a) a taller logo area, ≈ 96–120 px, giving 9.8–12.3 px lettering; (b) the badge plus the company name set in type beside it, a **new lockup, which needs client approval** [D-20/D-11]; (c) accept the badge as a symbol and rely on the visible page text. Recommendation: test (a) and (b) in Stage 04 mockups; no change to the logo itself | OPEN |
+| DQ-12 | **Markierung on light grounds:** `harz-700` `#8A5F04` (needed for ≥ 3:1) is 2.41× darker than the logo amber `#DD9E09` and may read as brown ochre rather than "logo amber" | Review side by side on paper in Stage 04. If it reads wrong, use the Markierung mainly on dark grounds and a forest-green underline for state on light | OPEN |
 
 ---
 
@@ -81,7 +83,7 @@ Full wording, fallbacks and German questions are in CLIENT_DECISIONS.
 | **D-12** | Consent for identifiable people; licence plate (GAL-15) | Hero, Über uns and Karriere imagery |
 | **D-14** | GAL-16 purpose | Baumkontrolle chapter; og:image source |
 | **D-19** | Additional photos | 5 services without images; team; green season |
-| **D-08** (a–j) | Confirmation of the site's claims | Über uns 5b/5d, Warum BLF, Notfall wording |
+| **D-08** (a–l) | Confirmation of the site's claims | Über uns 5b/5d, Warum BLF, Notfall wording |
 | **D-15** | Per-photo context | Richer captions; "Projekte" naming (D-26) |
 | **D-01 / D-02 / D-03 / D-27** | Positions, conditions, application channel, applicant-data workflow | Karriere state II, Kurzbewerbung form, upload |
 | **D-24** | Consent manager | Styling of the consent dialog |
@@ -97,7 +99,7 @@ Full wording, fallbacks and German questions are in CLIENT_DECISIONS.
 | Only one landscape photo (GAL-05) | manifest | It opens chapter 04; it is the only og:image candidate without upscaling |
 | The photo set is winter-heavy (≈ 1 % green pixels) | pixel analysis, ART_DIRECTION §1.3 | Earth palette, not "eco green"; green-season photos requested [D-19] |
 | 5 services have no photos | ASSET_INVENTORY | Text-only service blocks designed to look intentional |
-| Identifiable people (GAL-03) and a partly legible plate (GAL-15) | visual review | No prominent use without consent [D-12] |
+| Identifiable people (GAL-03) and a licence plate legible at gallery size (GAL-15) | visual review; renders at 562 px and 280 px (Stage 03 review) | No prominent use of GAL-03 without consent; **GAL-15 not used at all** without approval, because small CSS sizes still show the plate on 2×/3× screens. Fallback: GAL-14 [D-12] |
 | Logo only as a PNG; dark ring weak on dark grounds | logo file, contrast 2.06:1 | Paper plate on dark; no redraw without authorisation [D-11] |
 | og:image is a GAL-16 crop, 1200×634, 1.4 MB | visual comparison, manifest | Replace (DQ-07) |
 | Footer and contact icons are template assets (ICO-08 made in Photoshop in 2019) | XMP metadata, ASSET_INVENTORY | New icon set (DQ-05) |
@@ -127,7 +129,7 @@ Full wording, fallbacks and German questions are in CLIENT_DECISIONS.
 | 1 | DQ-01 and **D-20**: the visual direction approved by the project owner **and** the client | design + client |
 | 2 | DQ-04: fonts confirmed (specimens, licences) | design |
 | 3 | DQ-03 / D-12: hero photo and consent status known | design + client |
-| 4 | DQ-06 / D-11: logo usage on dark grounds settled | design + client |
+| 4 | DQ-06, DQ-11 / D-11: logo usage on dark grounds and legibility in the header settled | design + client |
 | 5 | Ma'Loa comparison done, or explicitly waived by the project owner | project owner |
 
 **Launch gates** (needed before go-live, not before mockups): D-04, D-05,
@@ -146,3 +148,7 @@ Recorded so the changes to earlier documents are traceable.
 | CLIENT_DECISIONS | Added **D-27** (applicant-data workflow). The current Datenschutzerklärung has no applicant section [V] |
 | MOTION_SPEC §6 | Fixed a size error: the Stage 02 mobile rule ("85 vw ≈ 957 px, within 1125 px") ignored the 843–844 px wide GAL-02/03, which would have been upscaled on 3× phones. They are now capped at 281 CSS px |
 | PAGE_ARCHITECTURE | Über uns page → Home §5 (UX-01); Karriere rewritten for the Initiativbewerbung state and privacy requirements (UX-03); Galerie mobile → cards (UX-02); R2 now applies the narrow-photo cap site-wide |
+| Stage 03 review (2026-10-27) | **GAL-15** is now conditional on D-12 wherever it appeared unconditionally (gallery sequence and finale, Home teaser, Leistungen, SITEMAP); the fallback is GAL-14. ART_DIRECTION §8 rule 5 and the D-12 fallback corrected: "use it small" did not hide the plate on 2×/3× screens |
+| Stage 03 review | D-08 extended with (k) the tagline "Ihre Experten für Baumfällung und Baumpflege" (hero subline) and (l) "sichere und effiziente Baumfällungen" (gallery chapter 01). Both were presented as verified content although they are self-descriptions |
+| Stage 03 review | ART_DIRECTION §6: the line-break estimate replaced by measurements with the real fonts; licences confirmed as OFL 1.1; tabular figures still unverified |
+| Stage 03 review | New DQ-11 (logo legibility in the header) and DQ-12 (Markierung colour on light grounds) |

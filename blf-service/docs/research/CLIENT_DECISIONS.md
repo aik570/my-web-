@@ -49,7 +49,7 @@ Each entry has:
 
 | ID | Decision | Verified today | Fallback if unanswered |
 |---|---|---|---|
-| **D-08** | **Confirm each claim the current site makes, with evidence for qualifications:** (a) "Seit 2001"; (b) "European Treeworker"; (c) "zertifizierten Baumkontrolleure"; (d) "rund um die Uhr" for Notfällung/Sturmschäden; (e) "Regelmäßige Weiterbildungen und Zertifizierungen"; (f) "etabliertes Unternehmen"; (g) "modernste Techniken und Ausrüstungen"; (h) "Durch die Anschaffungen verschiedenster Technik …"; (i) "Mit jahrelanger Erfahrung und einem engagiertem Team …"; (j) "Wir sind tagtäglich für Sie im Einsatz!" | All quoted in CONTENT_AUDIT §2; none independently verified | An unconfirmed claim is **left out**: no "since" year, no named certification, no 24/7 promise |
+| **D-08** | **Confirm each claim the current site makes, with evidence for qualifications:** (a) "Seit 2001"; (b) "European Treeworker"; (c) "zertifizierten Baumkontrolleure"; (d) "rund um die Uhr" for Notfällung/Sturmschäden; (e) "Regelmäßige Weiterbildungen und Zertifizierungen"; (f) "etabliertes Unternehmen"; (g) "modernste Techniken und Ausrüstungen"; (h) "Durch die Anschaffungen verschiedenster Technik …"; (i) "Mit jahrelanger Erfahrung und einem engagiertem Team …"; (j) "Wir sind tagtäglich für Sie im Einsatz!"; (k) the tagline "Ihre Experten für Baumfällung und Baumpflege"; (l) "sichere und effiziente Baumfällungen" | All quoted in CONTENT_AUDIT §2; none independently verified | An unconfirmed claim is **left out**: no "since" year, no named certification, no 24/7 promise |
 | **D-09** | **Final service list and audiences.** Are all 10 services on *Leistung* current? Are Spielgeräteaufbau and Hangbefestigung (gallery only) offered? Is Winterdienst also for private customers? | *Leistung*: 10 services, Winterdienst "Gewerblich und Kommunen"; gallery adds 2 more; two upload filenames say `Winterdienst fr Privat` | The 10 listed services with their current wording; the 2 gallery-only categories appear only as photo categories; Winterdienst audience as on *Leistung* |
 | **D-10** | **Full-resolution photographs** (straight from camera or phone) of the 19 gallery images, and of anything else available | All photos are web exports, ≤ 1500 px on the long side | Layouts are capped at the native resolution (see MOTION_SPEC §5): no full-bleed photo hero on large screens. **No upscaling, no AI substitutes** |
 | **D-11** | **Logo as a vector file** (SVG/AI/PDF/EPS) | Only a 1966×1966 PNG exists | PNG used at small sizes only; the large logo treatments are dropped |
@@ -60,7 +60,7 @@ Each entry has:
 
 | ID | Decision | Verified today | Fallback |
 |---|---|---|---|
-| **D-12** | **Consent of the people shown** (GAL-01, 02, 03, 09, 17) to more prominent use, and approval for the partly legible licence plate in GAL-15. Is the man in GAL-03 Daniel Witte? | The Home page shows GAL-03 with alt text "Daniel Witte" | People photos at the current prominence only; GAL-15 cropped or blurred **only with approval**, otherwise not used large; GAL-03 is not captioned with a name |
+| **D-12** | **Consent of the people shown** (GAL-01, 02, 03, 09, 17) to more prominent use, and approval for the partly legible licence plate in GAL-15. Is the man in GAL-03 Daniel Witte? | The Home page shows GAL-03 with alt text "Daniel Witte" | People photos at the current prominence only; GAL-15 not used at all (its plate is legible at frame size and, on 2×/3× screens, even at small sizes); cropped or blurred only with approval; GAL-03 is not captioned with a name |
 | **D-13** | **Service area**: towns or radius around Seddiner See | Not stated anywhere; only the address | Show the address and map only; no area claims |
 | **D-14** | **GAL-16**: the large old multi-stemmed tree under "Baumkontrolle". Does it show a tree inspection? | Plausible but not visible in the image; kept in `_unclassified/` | Excluded from the gallery sequence; Baumkontrolle shown without a photo |
 | **D-15** | **Per-photo context**: kind of job, rough place, year, client type (private / commercial / municipal) | Nothing; the photos have no EXIF | Captions name the service and what is visible only. The section is called "Galerie" or "Einblicke", **not "Projekte"** (see SITEMAP §4) |
@@ -117,8 +117,9 @@ Grouped for one conversation with Daniel Witte. IDs in brackets.
 8. **Angaben auf der Seite [D-08]:** Ihre Seite nennt „seit 2001“,
    „European Treeworker“, „zertifizierte Baumkontrolleure“, Notfalleinsatz
    „rund um die Uhr“, regelmäßige Zertifizierungen, „jahrelange Erfahrung
-   und ein engagiertes Team“, „verschiedenste Technik“ und „tagtäglich im
-   Einsatz“. Stimmt das heute noch? Können Sie uns die Nachweise zeigen?
+   und ein engagiertes Team“, „verschiedenste Technik“, „tagtäglich im
+   Einsatz“, „Ihre Experten für Baumfällung und Baumpflege“ und „sichere und
+   effiziente Baumfällungen“. Stimmt das heute noch? Können Sie uns die Nachweise zeigen?
 9. **Leistungen [D-09]:** Sind die zehn Leistungen auf Ihrer Seite
    aktuell? Bieten Sie auch Spielgeräteaufbau und Hangbefestigung an? Gibt
    es Winterdienst auch für Privatkunden?

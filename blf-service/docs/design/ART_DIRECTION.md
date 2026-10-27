@@ -288,7 +288,9 @@ All contrast ratios were measured (WCAG 2.x formula). Token names are in
 | forest-600 on forest-950 | 2.06 |
 
 **Consequence for the logo [A, D-11]:** the logo's dark green ring has only
-2.06:1 against `forest-950`. **On dark grounds the PNG logo needs a paper
+2.06:1 against `forest-950`. On light grounds the amber lettering is the
+weak part: 2.07:1 on `paper-50` (1.83:1 on `paper-100`). Logos are exempt
+from WCAG contrast rules, but the name still has to be legible (DQ-11). **On dark grounds the PNG logo needs a paper
 plate** behind it, or a light variant. A light variant may only be
 produced from a vector file *with the client's authorisation*.
 
@@ -325,11 +327,20 @@ Directions B and C have measured palettes too; see `DESIGN_TOKENS.md` §9.
 - **Test words:** Forstwirtschaftliche, Grünflächenpflege,
   Baufeldberäumung, Lichtraumprofilschnitt, Straßen- und
   Flächenreinigung.
-- **Estimate [A]:** at about 0.5 em average glyph width, a 22-character
-  word set at 28 px needs ≈ 308 px, which fits the 328–343 px mobile text
-  width. Set at 40 px it does **not** fit, which is why mobile H1 sizes
-  are capped and long service names are H2/H3 on mobile. **Verify with the
-  real fonts.**
+- **Measured with the real fonts** (Stage 03 review; PIL text layout, so
+  ±a few px):
+  - Average width per character: Newsreader 0.457 em, Hanken Grotesk 600
+    0.48 em. The earlier 0.5 em estimate was conservative.
+  - Against a 328 px mobile text width (360 px viewport):
+    - **Display 40 px:** Forstwirtschaftliche 348 px, Baufeldberäumung 331,
+      Lichtraumprofilschnitt 396 and Initiativbewerbung 333 **do not
+      fit**; Grünflächenpflege 321 fits.
+    - **H1 34 px:** only Lichtraumprofilschnitt (333) does not fit.
+    - **H2 28 px and H3 22 px:** all test words fit.
+  - **Rule:** these words never appear in a mobile display/hero H1; long
+    service names are H2/H3 on mobile.
+  - Uppercase labels (12 px, +0.08 em) such as "STRASSEN- UND
+    FLÄCHENREINIGUNG" measure ≤ 235 px.
 - Measure (line length): 60–70 characters.
 - Phone numbers per DIN 5008 style: `0172 3841620`; figures tabular in
   contact blocks.
@@ -337,7 +348,12 @@ Directions B and C have measured palettes too; see `DESIGN_TOKENS.md` §9.
 **Licensing and hosting.**
 - Self-host all fonts; no font CDN. The current Datenschutz already states
   that fonts are "lokal installiert" [V].
-- Confirm each licence before use [P].
+- **Licences checked** (Stage 03 review): Newsreader and Hanken Grotesk are
+  both under the **SIL Open Font License 1.1** (licence files in the
+  google/fonts repository). Store the licence texts with the project when
+  the fonts are added.
+- Glyph coverage: Ä Ö Ü ä ö ü ß ẞ – „ “ present in both.
+- **Tabular figures: not yet verified.**
 
 ---
 
@@ -382,8 +398,9 @@ Directions B and C have measured palettes too; see `DESIGN_TOKENS.md` §9.
    a crop of the same photograph (see DESIGN_DECISIONS §5).
 5. **Identifiable people** (GAL-03 especially) never get prominent use
    (hero, large Über uns image, Karriere hero) without consent [D-12].
-   GAL-15 shows a partly legible licence plate: use it small, or blurred
-   **only with approval** [D-12].
+   GAL-15 shows a licence plate that is legible at gallery size. A small
+   CSS size does not hide it on 2×/3× screens, so **GAL-15 is used only
+   with approval** (as is, or blurred) [D-12]; the fallback is GAL-14.
 6. **No chronology or same-project framing** in layout or captions
    (MOTION_SPEC M2/M3).
 
@@ -469,7 +486,7 @@ VISUAL_REFERENCE_BRIEF §1):
 | **Secondary button** | Transparent, 1.5 px `forest-950` border, `forest-950` text; hover: `paper-100` fill |
 | **Call button** | Phone icon + `0172 3841620` with tabular figures; on mobile also in the header and the bottom bar |
 | **Text links** | `forest-600`, underline 1 px with 3 px offset; hover underline 2 px. External links get an icon |
-| **Header** | `paper-50`, 72 px tall (56 px when compact on scroll), hairline bottom border. Nav links `forest-950`; **current item: harz-700 Markierung** under the label plus `aria-current` |
+| **Header** | `paper-50`, 72 px tall (56 px when compact on scroll), hairline bottom border. Nav links `forest-950`; **current item: harz-700 Markierung** under the label plus `aria-current`. **Open (DQ-11):** at 72/56 px header height the logo's lettering is only 7.4/5.7 px tall and unreadable |
 | **Mobile menu** | Full-screen `forest-950`: links in Newsreader 32 px in `paper-50`; current item with a `harz-500` Markierung; large call button; Impressum and Datenschutz at the bottom (SITEMAP §5) |
 | **Bottom action bar** (mobile) | `paper-50` with a top hairline; two equal buttons (call + form, or call + apply); hidden while a form field or the lightbox is focused (PAGE_ARCHITECTURE R3) |
 | **Forms** | Visible labels above fields; 48 px inputs; `bark-500` border (≥ 3:1); focus border 2 px `forest-600`; errors in `error-700` with icon and text below the field, never colour alone; the required marker explained once at the top |
