@@ -48,7 +48,7 @@ directions build a system *around* it.
 
 | Attribute | Value | Note |
 |---|---|---|
-| Main colour `--green` / `.hauptfarbe` | **`#023435`** (dark teal) | **Does not appear in the logo.** The logo was uploaded about a year after the site was created; the teal may be a template default that was never aligned [A] |
+| Main colour `--green` / `.hauptfarbe` | **`#023435`** (dark teal) | **Does not appear in the logo.** The logo was uploaded about a year after the site was created; the teal may be a template default that was never aligned [A] **Stage 04 note:** the printed business card uses a dark teal ground close to this colour (`references/client-supplied/`), so the "template default" reading is weaker than stated. The approved direction stands |
 | Hero tint `.zweitfarbe` | `#e6f1eb` | |
 | Accent | `#3f8843` | **Fails WCAG AA for normal text** on white: 4.36:1 |
 | Scrollbar | `#007A41` | |
@@ -353,7 +353,12 @@ Directions B and C have measured palettes too; see `DESIGN_TOKENS.md` §9.
   google/fonts repository). Store the licence texts with the project when
   the fonts are added.
 - Glyph coverage: Ä Ö Ü ä ö ü ß ẞ – „ “ present in both.
-- **Tabular figures: not yet verified.**
+- **Tabular figures, verified in Stage 04 with fontTools:**
+  - Newsreader has an OpenType `tnum` feature; its default digits are equal
+    width anyway.
+  - Hanken Grotesk has **no** `tnum` feature, but its default digits are
+    equal width (560 units) at wght 400. Other weights are not checked.
+  - Details: `public/fonts/README.md`.
 
 ---
 
@@ -486,7 +491,7 @@ VISUAL_REFERENCE_BRIEF §1):
 | **Secondary button** | Transparent, 1.5 px `forest-950` border, `forest-950` text; hover: `paper-100` fill |
 | **Call button** | Phone icon + `0172 3841620` with tabular figures; on mobile also in the header and the bottom bar |
 | **Text links** | `forest-600`, underline 1 px with 3 px offset; hover underline 2 px. External links get an icon |
-| **Header** | `paper-50`, 72 px tall (56 px when compact on scroll), hairline bottom border. Nav links `forest-950`; **current item: harz-700 Markierung** under the label plus `aria-current`. **Open (DQ-11):** at 72/56 px header height the logo's lettering is only 7.4/5.7 px tall and unreadable |
+| **Header** | `paper-50`, 72 px tall (56 px when compact on scroll). **Stage 04 prototype, per DQ-11 option (a):** 112 px with an 88 px logo on desktop (72/56 px compact), 72 px with a 56 px logo below 1024 px; hairline bottom border. Nav links `forest-950`; **current item: harz-700 Markierung** under the label plus `aria-current`. **Open (DQ-11):** at 72/56 px header height the logo's lettering is only 7.4/5.7 px tall and unreadable |
 | **Mobile menu** | Full-screen `forest-950`: links in Newsreader 32 px in `paper-50`; current item with a `harz-500` Markierung; large call button; Impressum and Datenschutz at the bottom (SITEMAP §5) |
 | **Bottom action bar** (mobile) | `paper-50` with a top hairline; two equal buttons (call + form, or call + apply); hidden while a form field or the lightbox is focused (PAGE_ARCHITECTURE R3) |
 | **Forms** | Visible labels above fields; 48 px inputs; `bark-500` border (≥ 3:1); focus border 2 px `forest-600`; errors in `error-700` with icon and text below the field, never colour alone; the required marker explained once at the top |

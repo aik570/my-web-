@@ -31,7 +31,7 @@ company fact; every D-item still applies.
 
 ---
 
-## 2. Recommended visual direction: **RECOMMENDED**
+## 2. Visual direction: **APPROVED** (2026-10-27)
 
 **Direction A "Revier"** (`ART_DIRECTION.md` §3):
 - palette from the client's **logo** (green `#32642A`, lime `#8BBB23`,
@@ -45,10 +45,18 @@ It scored 28/30 against B "Einsatz" (24) and C "Jahresring" (19), on
 authenticity, memorability, usability, trust, recruitment appeal and
 feasibility.
 
-**Not approved.** It needs:
-1. the project owner's approval (DQ-01);
-2. the client's approval, because it moves the main colour from the
-   site's teal `#023435` to the logo's green [D-20].
+**Approved.** On 2026-10-27 the project owner confirmed that "Revier" and
+its colours are approved for the project. This closes DQ-01 and D-20 as
+reported by the project owner; no separate written client approval is in
+the repository. The colour direction is not reopened unless a technical or
+accessibility problem requires a specific adjustment.
+
+**Evidence note (Stage 04).** The printed business card
+(`references/client-supplied/`) uses a dark teal ground close to `#023435`.
+The Stage 03 assumption that the teal was "probably a template default" is
+therefore **weaker than stated**: the teal also appears in the client's
+print. This is recorded for accuracy only and does not reopen the
+approved direction.
 
 ---
 
@@ -56,18 +64,18 @@ feasibility.
 
 | ID | Question | Recommendation | Status |
 |---|---|---|---|
-| DQ-01 | Approve Direction A for presentation to the client? | Yes | OPEN |
+| DQ-01 | Approve Direction A for presentation to the client? | Yes | **CLOSED**: approved 2026-10-27 |
 | DQ-02 | Keep the Winterdienst dark finale in the gallery (MOTION_DESIGN §3.5)? | Keep; drop if user testing finds it distracting | OPEN |
-| DQ-03 | Home hero photo: GAL-01 (climber; worker not identifiable at this size) or GAL-13 (no people)? | GAL-13 until D-12 is answered, then GAL-01. The prominent use of any person photo waits for consent | OPEN |
-| DQ-04 | Final fonts: confirm Newsreader + Hanken Grotesk | **Partly done (Stage 03 review):** both are OFL 1.1; German glyphs present; compound-word widths measured (ART_DIRECTION §6). Still open: tabular figures, and a visual specimen review by a person | OPEN (partly checked) |
+| DQ-03 | Home hero photo: GAL-01 (climber; worker not identifiable at this size) or GAL-13 (no people)? | GAL-13 until D-12 is answered, then GAL-01. The prominent use of any person photo waits for consent | **Applied in the Stage 04 prototype:** GAL-13 |
+| DQ-04 | Final fonts: confirm Newsreader + Hanken Grotesk | **Partly done (Stage 03 review):** both are OFL 1.1; German glyphs present; compound-word widths measured (ART_DIRECTION §6). **Stage 04:** tabular figures verified with fontTools (Newsreader has `tnum`; Hanken Grotesk has none, but its default digits are equal width at wght 400). Fonts self-hosted with licences in `public/fonts/`. Still open: a visual specimen review by a person | OPEN (technically checked) |
 | DQ-05 | Icon set: an open-source set (licence check) or custom-drawn to the 24 px / 1.5 px spec? | Open-source set, licence filed | OPEN |
-| DQ-06 | Logo on dark grounds: its green ring has only 2.06:1 against `forest-950` | Paper plate behind the PNG now; a light variant only from a vector **with client authorisation** [D-11] | OPEN |
+| DQ-06 | Logo on dark grounds: its green ring has only 2.06:1 against `forest-950` | Paper plate behind the PNG now; a light variant only from a vector **with client authorisation** [D-11] | **Applied in the prototype** (footer, intro). A light variant is still open [D-11] |
 | DQ-07 | Social share image: today's og:image is a 1.4 MB crop of the GAL-16 photograph | Replace with a crop of **GAL-05** (1500 px wide, so a 1200×630 crop needs no upscaling), or a new wide photo [D-10]. 1200 px exceeds the 1125 px portraits, so they don't qualify | OPEN |
 | DQ-08 | How much extra energy on Karriere (dark hero band, larger type) without a second brand? | As ART_DIRECTION §11; review in mockups | OPEN |
-| DQ-09 | Long German words in headings: confirm the line-break estimate with real fonts | Test in Stage 04 mockups | OPEN |
-| DQ-10 | Should the Home gallery teaser animate on desktop (staggered fade) or stay static? | Single staggered fade, played once | OPEN |
-| DQ-11 | **Logo legibility in the header.** Measured: the "SERVICE" lettering is 10.2 % of the logo's height, so at the proposed 72/56 px header it is 7.4/5.7 px tall and unreadable. The amber lettering is also only 2.07:1 on paper | Options: (a) a taller logo area, ≈ 96–120 px, giving 9.8–12.3 px lettering; (b) the badge plus the company name set in type beside it, a **new lockup, which needs client approval** [D-20/D-11]; (c) accept the badge as a symbol and rely on the visible page text. Recommendation: test (a) and (b) in Stage 04 mockups; no change to the logo itself | OPEN |
-| DQ-12 | **Markierung on light grounds:** `harz-700` `#8A5F04` (needed for ≥ 3:1) is 2.41× darker than the logo amber `#DD9E09` and may read as brown ochre rather than "logo amber" | Review side by side on paper in Stage 04. If it reads wrong, use the Markierung mainly on dark grounds and a forest-green underline for state on light | OPEN |
+| DQ-09 | Long German words in headings: confirm the line-break estimate with real fonts | Test in Stage 04 mockups | **Applied:** soft hyphens in the hero H1, H1 size below 360 px, hyphenation in service lists. QA: no overflow at 320–1440 px | CLOSED for Home |
+| DQ-10 | Should the Home gallery teaser animate on desktop (staggered fade) or stay static? | Single staggered fade, played once | **Applied** (desktop only; none with reduced motion) |
+| DQ-11 | **Logo legibility in the header.** Measured: the "SERVICE" lettering is 10.2 % of the logo's height, so at the proposed 72/56 px header it is 7.4/5.7 px tall and unreadable. The amber lettering is also only 2.07:1 on paper | Options: (a) a taller logo area, ≈ 96–120 px, giving 9.8–12.3 px lettering; (b) the badge plus the company name set in type beside it, a **new lockup, which needs client approval** [D-20/D-11]; (c) accept the badge as a symbol and rely on the visible page text. Recommendation: test (a) and (b) in Stage 04 mockups; no change to the logo itself | **Prototype uses (a):** 112 px header, 88 px logo on desktop, giving ≈ 9 px lettering, barely legible; mobile 56 px → 5.7 px, not legible. The accessible name is set ("Baum-Land-Forst Service"). Option (b) not built (needs client approval). OPEN |
+| DQ-12 | **Markierung on light grounds:** `harz-700` `#8A5F04` (needed for ≥ 3:1) is 2.41× darker than the logo amber `#DD9E09` and may read as brown ochre rather than "logo amber" | Review side by side on paper in Stage 04. If it reads wrong, use the Markierung mainly on dark grounds and a forest-green underline for state on light | **Stage 04 screenshot:** on paper it reads as a brown stroke, as predicted. Decision needed. OPEN |
 
 ---
 
@@ -152,3 +160,18 @@ Recorded so the changes to earlier documents are traceable.
 | Stage 03 review | D-08 extended with (k) the tagline "Ihre Experten für Baumfällung und Baumpflege" (hero subline) and (l) "sichere und effiziente Baumfällungen" (gallery chapter 01). Both were presented as verified content although they are self-descriptions |
 | Stage 03 review | ART_DIRECTION §6: the line-break estimate replaced by measurements with the real fonts; licences confirmed as OFL 1.1; tabular figures still unverified |
 | Stage 03 review | New DQ-11 (logo legibility in the header) and DQ-12 (Markierung colour on light grounds) |
+
+---
+
+## 9. Stage 04 prototype (2026-10-27)
+
+| Item | Decision / result |
+|---|---|
+| Stack | Plain HTML, CSS and JS, no build step, no dependencies (as the A135 page). Files in `src/`. No framework existed in `blf-service/` |
+| Fonts | Self-hosted, subset WOFF2 with OFL 1.1 licence files: `public/fonts/` (see `public/fonts/README.md`) |
+| Images | Derivatives in `public/assets/optimized/home/`: 480 / 800 / native, never wider than the source; native WebP = byte copy of the original. Record: `public/assets/optimized/derivatives.json` |
+| No upscaling | CSS caps per DPR step (`--portrait-cap`). QA measured device px per source px ≤ 1.0 in 9 viewport/DPR combinations |
+| Intro | Masked reveal of the authentic logo PNG, not separate parts (`INTRO_PROTOTYPE.md`). Lettering not final (D-28) |
+| AI restoration of the business-card photo | **Not done**, with reasons in `INTRO_PROTOTYPE.md` §5 |
+| Owner name | Not used anywhere in the UI (D-28) |
+| Content | Only verified text; all D-08 claims omitted; internal notes only with `?review` |

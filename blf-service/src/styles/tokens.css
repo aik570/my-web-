@@ -1,0 +1,136 @@
+/*
+ * Design tokens, direction "Revier".
+ * Source of truth: docs/design/DESIGN_TOKENS.md. Values are copied, not invented;
+ * change them there first.
+ */
+
+@font-face {
+  font-family: "Newsreader";
+  src: url("../../public/fonts/newsreader/Newsreader-Variable-latin.woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Hanken Grotesk";
+  src: url("../../public/fonts/hanken-grotesk/HankenGrotesk-Variable-latin.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Colour: base palette (DESIGN_TOKENS §1.1) */
+  --forest-950: #1b2e1a;
+  --forest-700: #264d20;
+  --forest-600: #32642a; /* logo */
+  --lime-400: #8bbb23;   /* logo, dark grounds only */
+  --harz-500: #dd9e09;   /* logo, dark grounds only */
+  --harz-700: #8a5f04;   /* amber for light grounds */
+  --paper-50: #f4f1e9;
+  --paper-100: #e9e3d6;
+  --bark-600: #5f574d;
+  --bark-500: #7a7166;
+  --mist-200: #c9c2b4;
+  --error-700: #a3261c;
+
+  /* Colour: semantic, light context (DESIGN_TOKENS §1.2) */
+  --text-primary: var(--forest-950);
+  --text-secondary: var(--bark-600);
+  --text-link: var(--forest-600);
+  --surface-page: var(--paper-50);
+  --surface-alt: var(--paper-100);
+  --action-primary-bg: var(--forest-600);
+  --action-primary-fg: var(--paper-50);
+  --action-primary-bg-hover: var(--forest-700);
+  --border-control: var(--bark-500);
+  --focus-ring: var(--forest-950);
+  --marker: var(--harz-700);
+
+  /* Typography (DESIGN_TOKENS §2), fluid between 360 and 1440 px */
+  --font-display: "Newsreader", Georgia, "Times New Roman", serif;
+  --font-text: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --type-display: clamp(2.5rem, 1.833rem + 2.963vw, 4.5rem);
+  --type-h1: clamp(2.125rem, 1.667rem + 2.037vw, 3.5rem);
+  --type-h2: clamp(1.75rem, 1.5rem + 1.111vw, 2.5rem);
+  --type-h3: clamp(1.375rem, 1.292rem + 0.3704vw, 1.625rem);
+  --type-h4: clamp(1.188rem, 1.167rem + 0.09259vw, 1.25rem);
+  --type-body-lg: clamp(1.125rem, 1.104rem + 0.09259vw, 1.188rem);
+  --type-body: clamp(1rem, 0.9792rem + 0.09259vw, 1.062rem);
+  --type-small: 0.875rem;
+  --type-label: clamp(0.75rem, 0.7292rem + 0.09259vw, 0.8125rem);
+  --label-tracking: 0.08em;
+  --measure-text: 65ch;
+
+  /* Spacing (DESIGN_TOKENS §3) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+  --space-11: 160px;
+  --space-section: clamp(64px, 40px + 6.667vw, 136px);
+  --space-margin: 16px;
+  --space-gutter: 16px;
+
+  /* Widths (DESIGN_TOKENS §4) */
+  --width-text: 680px;
+  --width-container: 1280px;
+  --width-wide: 1440px;
+
+  /* Image caps: CSS px = native / DPR (MOTION_SPEC §5–6) */
+  --image-max-portrait-2x: 562px;
+  --image-max-portrait-3x: 375px;
+  --image-max-tall-3x: 281px;
+
+  /* Radii and shadows (DESIGN_TOKENS §5–6) */
+  --radius-none: 0;
+  --radius-control: 2px;
+  --radius-pill: 999px;
+  --shadow-header: 0 1px 0 rgba(27, 46, 26, 0.12);
+  --shadow-overlay: 0 12px 32px rgba(27, 46, 26, 0.24);
+
+  /* Motion (DESIGN_TOKENS §7) */
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+  --duration-enter: 400ms;
+  --duration-slow: 450ms;
+  --distance-enter: 16px;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+
+  /* Header */
+  --header-height: 72px;
+  --header-logo: 56px;
+}
+
+@media (min-width: 600px) {
+  :root {
+    --space-margin: 32px;
+    --space-gutter: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --space-margin: clamp(32px, 5vw, 80px);
+    --space-gutter: 24px;
+    --header-height: 112px;
+    --header-logo: 88px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-base: 0ms;
+    --duration-enter: 0ms;
+    --duration-slow: 0ms;
+    --distance-enter: 0px;
+  }
+}

@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Baum-Land-Forst | Baumpflege | Seddiner See</title>
+  <!-- Stage 04 prototype: not for publication. -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Wir bieten Ihnen: Baumfällung, Baumpflege, Baumkontrolle, Winterdienst, Pflasterarbeiten, Neuanpflanzung, Grünflächenpflege und mehr.">
+  <meta name="theme-color" content="#1b2e1a">
+  <link rel="icon" type="image/png" sizes="32x32" href="../public/assets/original/icons/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../public/assets/original/icons/apple-touch-icon.png">
+
+  <link rel="preload" href="../public/fonts/newsreader/Newsreader-Variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../public/fonts/hanken-grotesk/HankenGrotesk-Variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/site.css">
+  <link rel="stylesheet" href="styles/intro.css">
+
+  <script>
+    /* Decide before first paint whether the intro will run, so the page never
+       flashes before the intro starts. Without JavaScript none of this
+       happens and the page is shown immediately. */
+    (function () {
+      var d = document.documentElement;
+      d.classList.add("js");
+      try {
+        var q = location.search;
+        if (/[?&]review\b/.test(q)) d.classList.add("review");
+        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var seen = false;
+        try { seen = sessionStorage.getItem("blf-intro") === "1"; } catch (e) {}
+        var force = /[?&]intro=1\b/.test(q);
+        var off = /[?&]intro=0\b/.test(q);
+        if (!off && (force || (!reduce && !seen))) {
+          d.classList.add("intro-pending");
+          window.__blfIntroRequestedAt = Date.now();
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <script src="scripts/intro.js" defer></script>
+  <script src="scripts/site.js" defer></script>
+</head>
+<body id="top">
+  <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
+  <aside class="review-banner" data-review hidden>
+    <strong>Prototyp Stage 04.</strong> Interne Hinweise sind nur mit <code>?review</code> sichtbar und gehören nicht in die Produktion.
+    Intro erneut: <code>?intro=1</code> · ohne Intro: <code>?intro=0</code>
+  </aside>
+
+  <header class="site-header" data-header>
+    <div class="site-header__inner">
+      <a class="site-logo" href="#top">
+        <img src="../public/assets/optimized/home/logo-192.webp"
+             srcset="../public/assets/optimized/home/logo-192.webp 192w, ../public/assets/optimized/home/logo-384.webp 384w"
+             sizes="(min-width: 1024px) 88px, 56px"
+             width="192" height="192" alt="Baum-Land-Forst Service – zur Startseite">
+      </a>
+
+      <nav class="site-nav" aria-label="Hauptnavigation">
+        <ul class="site-nav__list">
+          <li><a href="#leistungen">Leistungen</a></li>
+          <li><a href="#galerie">Galerie</a></li>
+          <li><a href="#ueber-uns">Über uns</a></li>
+          <li><a href="#karriere">Karriere</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
+
+      <div class="site-header__actions">
+        <a class="header-phone" href="tel:+491723841620">
+          <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M6.6 3.5h2.6l1.3 4.1-1.9 1.3a12 12 0 0 0 6.5 6.5l1.3-1.9 4.1 1.3v2.6a2 2 0 0 1-2.2 2A16.8 16.8 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2Z"/></svg>
+          <span class="tnum">0172 3841620</span>
+        </a>
+        <a class="button button--primary header-cta" href="#kontakt">Anfrage</a>
+        <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-menu" data-menu-open>
+          <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          <span class="visually-hidden">Menü öffnen</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" hidden data-menu>
+    <div class="mobile-menu__top">
+      <span class="mobile-menu__title">Menü</span>
+      <button class="menu-close" type="button" data-menu-close>
+        <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        <span class="visually-hidden">Menü schließen</span>
+      </button>
+    </div>
+    <nav aria-label="Mobile Navigation">
+      <ul class="mobile-menu__list">
+        <li><a href="#leistungen">Leistungen</a></li>
+        <li><a href="#galerie">Galerie</a></li>
+        <li><a href="#ueber-uns">Über uns</a></li>
+        <li><a href="#karriere">Karriere</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+    <a class="button button--on-dark mobile-menu__call" href="tel:+491723841620">Anrufen: <span class="tnum">0172 3841620</span></a>
+    <a class="mobile-menu__mail" href="mailto:info@blfservice.de">info@blfservice.de</a>
+    <p class="mobile-menu__legal">
+      <a href="https://www.blfservice.de/impressum" rel="noopener">Impressum</a>
+      <a href="https://www.blfservice.de/datenschutz" rel="noopener">Datenschutz</a>
+    </p>
+  </div>
+
+  <main id="inhalt" tabindex="-1">
+
+    <!-- 1 · Hero (PAGE_ARCHITECTURE §1.1) -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero__grid">
+        <div class="hero__text">
+          <p class="label marker-label"><span class="marker" aria-hidden="true"></span>Baum-Land-Forst · Seddiner See</p>
+          <h1 class="hero__title" id="hero-title">Baumfällung, Baumpflege und Grün&shy;flächen&shy;pflege aus Seddiner See</h1>
+          <p class="hero__lead">Wir bieten Ihnen: Baumfällung, Baumpflege, Baumkontrolle, Winterdienst, Pflasterarbeiten, Neuanpflanzung, Grünflächenpflege und mehr.</p>
+          <div class="hero__actions">
+            <a class="button button--primary" href="#kontakt">Anfrage stellen</a>
+            <a class="button button--secondary" href="tel:+491723841620">
+              <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M6.6 3.5h2.6l1.3 4.1-1.9 1.3a12 12 0 0 0 6.5 6.5l1.3-1.9 4.1 1.3v2.6a2 2 0 0 1-2.2 2A16.8 16.8 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2Z"/></svg>
+              <span class="tnum">0172 3841620</span>
+            </a>
+          </div>
+          <a class="text-link hero__more" href="#leistungen">Alle Leistungen ansehen</a>
+          <aside class="review-note" data-review hidden>
+            Subline „Ihre Experten für Baumfällung und Baumpflege“ bewusst weggelassen (D-08 k). Einsatzgebiet offen (D-13).
+          </aside>
+        </div>
+        <figure class="hero__media frame">
+          <picture>
+            <source type="image/avif"
+                    srcset="../public/assets/optimized/home/GAL-13-480.avif 480w, ../public/assets/optimized/home/GAL-13-800.avif 800w, ../public/assets/optimized/home/GAL-13-1125.avif 1125w"
+                    sizes="(min-width: 1024px) 562px, 375px">
+            <img src="../public/assets/optimized/home/GAL-13-800.webp"
+                 srcset="../public/assets/optimized/home/GAL-13-480.webp 480w, ../public/assets/optimized/home/GAL-13-800.webp 800w, ../public/assets/optimized/home/GAL-13-1125.webp 1125w"
+                 sizes="(min-width: 1024px) 562px, 375px"
+                 width="1125" height="1500" fetchpriority="high" decoding="async"
+                 alt="Blick in die Kronen mehrerer Kiefern, die mit einem Seilsystem zur Kronensicherung verbunden sind.">
+          </picture>
+          <figcaption class="caption"><span class="caption__service">Baumpflege / Kronensicherung</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 2 · Notfall strip (wording without availability promise: D-08 d, D-17) -->
+    <section class="notice" aria-label="Sturmschaden">
+      <div class="container notice__inner">
+        <p class="notice__text"><strong>Sturmschaden?</strong> Rufen Sie an.</p>
+        <a class="button button--primary notice__call" href="tel:+491723841620"><span class="tnum">0172 3841620</span></a>
+      </div>
+    </section>
+
+    <!-- 3 · Leistungen overview (PAGE_ARCHITECTURE §1.3; groups per SITEMAP §2) -->
+    <section class="section" id="leistungen" aria-labelledby="leistungen-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="label marker-label"><span class="marker" aria-hidden="true"></span>Leistungen</p>
+          <h2 id="leistungen-title">Was wir für Sie übernehmen</h2>
+        </header>
+        <ul class="services" role="list">
+          <li class="service service--tall">
+            <div class="service__media">
+              <picture>
+                <source type="image/avif" srcset="../public/assets/optimized/home/GAL-02-480.avif 480w, ../public/assets/optimized/home/GAL-02-800.avif 800w, ../public/assets/optimized/home/GAL-02-844.avif 844w" sizes="(min-width: 1024px) 296px, 120px">
+                <img src="../public/assets/optimized/home/GAL-02-480.webp" srcset="../public/assets/optimized/home/GAL-02-480.webp 480w, ../public/assets/optimized/home/GAL-02-800.webp 800w, ../public/assets/optimized/home/GAL-02-844.webp 844w" sizes="(min-width: 1024px) 296px, 120px" width="844" height="1500" loading="lazy" decoding="async" style="object-position: 50% 22%"
+                     alt="Baumkletterer mit Motorsäge hoch am Stamm einer Kiefer.">
+              </picture>
+            </div>
+            <div class="service__body">
+              <h3 class="service__title">Baumarbeiten</h3>
+              <ul class="service__list">
+                <li>Baumfällung, auch Stubbenentfernung und Notfällung</li>
+                <li>Baumpflege, auch Kronensicherung</li>
+                <li>Baumkontrolle</li>
+              </ul>
+            </div>
+          </li>
+          <li class="service service--text">
+            <div class="service__media service__media--text" aria-hidden="true">
+              <span class="service__index">02</span>
+            </div>
+            <div class="service__body">
+              <h3 class="service__title">Grün &amp; Forst</h3>
+              <ul class="service__list">
+                <li>Neuanpflanzung &amp; Freistellen von Neuanpflanzung</li>
+                <li>Grünflächenpflege für Kommunen</li>
+                <li>Forstwirtschaftliche Pflege</li>
+              </ul>
+            </div>
+          </li>
+          <li class="service">
+            <div class="service__media">
+              <picture>
+                <source type="image/avif" srcset="../public/assets/optimized/home/GAL-06-480.avif 480w, ../public/assets/optimized/home/GAL-06-800.avif 800w, ../public/assets/optimized/home/GAL-06-1125.avif 1125w" sizes="(min-width: 1024px) 296px, 120px">
+                <img src="../public/assets/optimized/home/GAL-06-480.webp" srcset="../public/assets/optimized/home/GAL-06-480.webp 480w, ../public/assets/optimized/home/GAL-06-800.webp 800w, ../public/assets/optimized/home/GAL-06-1125.webp 1125w" sizes="(min-width: 1024px) 296px, 120px" width="1125" height="1500" loading="lazy" decoding="async"
+                     alt="Minibagger auf einem geräumten Grundstück vor einem Wohnhaus.">
+              </picture>
+            </div>
+            <div class="service__body">
+              <h3 class="service__title">Bau &amp; Fläche</h3>
+              <ul class="service__list">
+                <li>Baufeldberäumung</li>
+                <li>Pflasterarbeiten</li>
+              </ul>
+            </div>
+          </li>
+          <li class="service">
+            <div class="service__media">
+              <picture>
+                <source type="image/avif" srcset="../public/assets/optimized/home/GAL-14-480.avif 480w, ../public/assets/optimized/home/GAL-14-800.avif 800w, ../public/assets/optimized/home/GAL-14-1125.avif 1125w" sizes="(min-width: 1024px) 296px, 120px">
+                <img src="../public/assets/optimized/home/GAL-14-480.webp" srcset="../public/assets/optimized/home/GAL-14-480.webp 480w, ../public/assets/optimized/home/GAL-14-800.webp 800w, ../public/assets/optimized/home/GAL-14-1125.webp 1125w" sizes="(min-width: 1024px) 296px, 120px" width="1125" height="1500" loading="lazy" decoding="async" style="object-position: 30% 70%"
+                     alt="Orangefarbenes Räumfahrzeug mit Schneeschild bei Nacht im Schnee.">
+              </picture>
+            </div>
+            <div class="service__body">
+              <h3 class="service__title">Winter &amp; Reinigung</h3>
+              <ul class="service__list">
+                <li>Winterdienst</li>
+                <li>Straßen- und Flächenreinigung</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+        <div class="section-actions">
+          <a class="button button--primary" href="#kontakt">Leistung anfragen</a>
+        </div>
+        <aside class="review-note" data-review hidden>
+          Die Karten verlinken ab Stage 05 auf <code>/leistungen#…</code>. Endgültige Leistungsliste: D-09. Gruppen-Namen sind Vorschläge (SITEMAP §2).
+        </aside>
+      </div>
+    </section>
+
+    <!-- 4 · Galerie preview (PAGE_ARCHITECTURE §1.4, MOTION_DESIGN §9) -->
+    <section class="section section--alt" id="galerie" aria-labelledby="galerie-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="label marker-label"><span class="marker" aria-hidden="true"></span>Galerie</p>
+          <h2 id="galerie-title">Einblicke in unsere Arbeit</h2>
+        </header>
+        <div class="teaser-scroll" role="region" aria-label="Galerie-Vorschau, horizontal scrollbar" tabindex="0">
+        <ul class="teaser" role="list" data-teaser>
+          <li class="teaser__item">
+            <figure class="frame">
+              <picture>
+                <source type="image/avif" srcset="../public/assets/optimized/home/GAL-04-480.avif 480w, ../public/assets/optimized/home/GAL-04-800.avif 800w, ../public/assets/optimized/home/GAL-04-1125.avif 1125w" sizes="(min-width: 1024px) 232px, 300px">
+                <img src="../public/assets/optimized/home/GAL-04-480.webp" srcset="../public/assets/optimized/home/GAL-04-480.webp 480w, ../public/assets/optimized/home/GAL-04-800.webp 800w, ../public/assets/optimized/home/GAL-04-1125.webp 1125w" sizes="(min-width: 1024px) 232px, 300px" width="1125" height="1500" loading="lazy" decoding="async"
+                     alt="Arbeitsbühne neben einem stark eingekürzten Baum.">
+              </picture>
+              <figcaption class="caption"><span class="caption__service">Baumfällung</span> Arbeitsbühne am Baum</figcaption>
+            </figure>
+          </li>
+          <li class="teaser__item">
+            <figure class="frame">
+              <picture>
+                <source type="image/avif" srcset="../public/assets/optimized/home/GAL-11-480.avif 480w, ../public/assets/optimized/home/GAL-11-800.avif 800w, ../public/assets/optimized/home/GAL-11-1125.avif 1125w" sizes="(min-width: 1024px) 232px, 300px">
+                <img src="../public/assets/optimized/home/GAL-11-480.webp" srcset="../public/assets/optimized/home/GAL-11-480.webp 480w, ../public/assets/optimized/home/GAL-11-800.webp 800w, ../public/assets/optimized/home/GAL-11-1125.webp 1125w" sizes="(min-width: 1024px) 232px, 300px" width="1125" height="1500" loading="lazy" decoding="async"
+                     alt="Stubbenfräse an einem Baumstumpf, ringsum Holzspäne.">
+              </picture>
+              <figcaption class="caption"><span class="caption__service">Stubbenfräsen</span> Fräse am Baumstumpf</figcaption>
+            </figure>
+          </li>
+          <li class="teaser__item">
+            <figure class="frame">
+              <picture>
+                <source type="image/avif" srcset="../public/assets/optimized/home/GAL-18-480.avif 480w, ../public/assets/optimized/home/GAL-18-800.avif 800w, ../public/assets/optimized/home/GAL-18-1125.avif 1125w" sizes="(min-width: 1024px) 232px, 300px">
+                <img src="../public/assets/optimized/home/GAL-18-480.webp" srcset="../public/assets/optimized/home/GAL-18-480.webp 480w, ../public/assets/optimized/home/GAL-18-800.webp 800w, ../public/assets/optimized/home/GAL-18-1125.webp 1125w" sizes="(min-width: 1024px) 232px, 300px" width="1125" height="1500" loading="lazy" decoding="async"
+                     alt="Lange Böschung, vollständig mit Erosionsschutzmatte belegt.">
+              </picture>
+              <figcaption class="caption"><span class="caption__service">Hangbefestigung</span> Böschung mit Schutzmatte</figcaption>
+            </figure>
+          </li>
+          <li class="teaser__item">
+            <figure class="frame">
+              <picture>
+                <source type="image/avif" srcset="../public/assets/optimized/home/GAL-10-480.avif 480w, ../public/assets/optimized/home/GAL-10-800.avif 800w, ../public/assets/optimized/home/GAL-10-1125.avif 1125w" sizes="(min-width: 1024px) 232px, 300px">
+                <img src="../public/assets/optimized/home/GAL-10-480.webp" srcset="../public/assets/optimized/home/GAL-10-480.webp 480w, ../public/assets/optimized/home/GAL-10-800.webp 800w, ../public/assets/optimized/home/GAL-10-1125.webp 1125w" sizes="(min-width: 1024px) 232px, 300px" width="1125" height="1500" loading="lazy" decoding="async"
+                     alt="Neues Klettergerüst aus Holz mit Rutsche auf einem Sandbett.">
+              </picture>
+              <figcaption class="caption"><span class="caption__service">Spielgeräteaufbau</span> Klettergerüst mit Rutsche</figcaption>
+            </figure>
+          </li>
+          <li class="teaser__item">
+            <figure class="frame">
+              <picture>
+                <source type="image/avif" srcset="../public/assets/optimized/home/GAL-19-480.avif 480w, ../public/assets/optimized/home/GAL-19-800.avif 800w, ../public/assets/optimized/home/GAL-19-1125.avif 1125w" sizes="(min-width: 1024px) 232px, 300px">
+                <img src="../public/assets/optimized/home/GAL-19-480.webp" srcset="../public/assets/optimized/home/GAL-19-480.webp 480w, ../public/assets/optimized/home/GAL-19-800.webp 800w, ../public/assets/optimized/home/GAL-19-1125.webp 1125w" sizes="(min-width: 1024px) 232px, 300px" width="1125" height="1500" loading="lazy" decoding="async"
+                     alt="Rasengittersteine entlang einer Straße, daneben ein Halteverbotsschild.">
+              </picture>
+              <figcaption class="caption"><span class="caption__service">Pflasterarbeiten</span> Rasengitter am Straßenrand</figcaption>
+            </figure>
+          </li>
+        </ul>
+        </div>
+        <aside class="review-note" data-review hidden>
+          „Zur Galerie“-Link folgt mit der Galerie-Seite (Stage 05). Teaser ohne GAL-03, GAL-15, GAL-16 (D-12, D-14). Hero-Foto GAL-13 hier nicht doppelt.
+        </aside>
+      </div>
+    </section>
+
+    <!-- 5 · Über uns (UX-01, PAGE_ARCHITECTURE Home §5). Only blocks with verified, non-claim content are shown. -->
+    <section class="section" id="ueber-uns" aria-labelledby="ueber-uns-title">
+      <div class="container about">
+        <header class="section-head about__head">
+          <p class="label marker-label"><span class="marker" aria-hidden="true"></span>Über uns</p>
+          <h2 id="ueber-uns-title">Baum-Land-Forst aus Seddiner See</h2>
+          <aside class="review-note" data-review hidden>
+            5a „Das bin ich“ fehlt bewusst: fast jeder Satz ist eine unbestätigte Angabe (D-08 a, e, h, i, j). Inhabername ungeklärt (D-28). 5c Team und 5d Qualifikationen erscheinen erst mit D-16/D-08.
+          </aside>
+        </header>
+
+        <div class="about__value">
+          <h3 class="about__value-title">Sicherheit an erster Stelle</h3>
+          <p>Wir legen großen Wert auf Sicherheit – sowohl für unsere Mitarbeiter als auch für Ihre Umgebung. Unsere Arbeitsmethoden sind darauf ausgelegt, Risiken zu minimieren.</p>
+          <p class="about__address">
+            <span class="label">Standort</span>
+            Am Seehügel 1c, 14554 Seddiner See
+          </p>
+        </div>
+
+        <div class="about__tech">
+          <h3 class="label about__tech-title">Technik im Einsatz</h3>
+          <ul class="tech" role="list">
+            <li>
+              <figure class="frame">
+                <picture>
+                  <source type="image/avif" srcset="../public/assets/optimized/home/GAL-12-480.avif 480w, ../public/assets/optimized/home/GAL-12-800.avif 800w, ../public/assets/optimized/home/GAL-12-1125.avif 1125w" sizes="(min-width: 1024px) 260px, 45vw">
+                  <img src="../public/assets/optimized/home/GAL-12-480.webp" srcset="../public/assets/optimized/home/GAL-12-480.webp 480w, ../public/assets/optimized/home/GAL-12-800.webp 800w, ../public/assets/optimized/home/GAL-12-1125.webp 1125w" sizes="(min-width: 1024px) 260px, 45vw" width="1125" height="1500" loading="lazy" decoding="async"
+                       alt="Gelber Minibagger mit Stubbenfräse als Anbaugerät, ringsum Holzspäne.">
+                </picture>
+                <figcaption class="caption">Minibagger mit Stubbenfräse</figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure class="frame">
+                <picture>
+                  <source type="image/avif" srcset="../public/assets/optimized/home/GAL-07-480.avif 480w, ../public/assets/optimized/home/GAL-07-800.avif 800w, ../public/assets/optimized/home/GAL-07-1125.avif 1125w" sizes="(min-width: 1024px) 260px, 45vw">
+                  <img src="../public/assets/optimized/home/GAL-07-480.webp" srcset="../public/assets/optimized/home/GAL-07-480.webp 480w, ../public/assets/optimized/home/GAL-07-800.webp 800w, ../public/assets/optimized/home/GAL-07-1125.webp 1125w" sizes="(min-width: 1024px) 260px, 45vw" width="1125" height="1500" loading="lazy" decoding="async"
+                       alt="Roter Kompaktlader mit Stammholz auf einem geräumten Grundstück.">
+                </picture>
+                <figcaption class="caption">Kompaktlader mit Stammholz</figcaption>
+              </figure>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 · Karriere teaser, Initiativ state (UX-03). Channels per D-03 fallback: phone + e-mail. -->
+    <section class="section section--dark" id="karriere" aria-labelledby="karriere-title">
+      <div class="container career">
+        <div class="career__text">
+          <p class="label marker-label marker-label--dark"><span class="marker" aria-hidden="true"></span>Karriere</p>
+          <h2 id="karriere-title">Wir suchen motivierte und engagierte Mitarbeiter, die unser Team verstärken.</h2>
+          <p class="career__lead">Interessiert? Dann rufen Sie uns gerne an oder senden uns Ihre Bewerbungsunterlagen.</p>
+          <div class="career__actions">
+            <a class="button button--on-dark" href="tel:+491723841620">Anrufen: <span class="tnum">0172 3841620</span></a>
+            <a class="button button--secondary-dark" href="mailto:info@blfservice.de?subject=Bewerbung">Bewerbung per E-Mail</a>
+          </div>
+          <aside class="review-note review-note--dark" data-review hidden>
+            Keine Stellen, Bedingungen oder Benefits (D-01, D-02). Kurzbewerbungs-Formular erst mit D-03 + D-27. Karriere-Seite folgt in Stage 05.
+          </aside>
+        </div>
+        <figure class="career__media frame">
+          <picture>
+            <source type="image/avif" srcset="../public/assets/optimized/home/GAL-09-480.avif 480w, ../public/assets/optimized/home/GAL-09-800.avif 800w, ../public/assets/optimized/home/GAL-09-1125.avif 1125w" sizes="(min-width: 1024px) 400px, 375px">
+            <img src="../public/assets/optimized/home/GAL-09-480.webp" srcset="../public/assets/optimized/home/GAL-09-480.webp 480w, ../public/assets/optimized/home/GAL-09-800.webp 800w, ../public/assets/optimized/home/GAL-09-1125.webp 1125w" sizes="(min-width: 1024px) 400px, 375px" width="1125" height="1500" loading="lazy" decoding="async"
+                 alt="Kompaktlader und ein Arbeiter mit Stammholz auf einem Grundstück hinter einem Bauzaun.">
+          </picture>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 7 · Kontakt band (PAGE_ARCHITECTURE §1.7). No form until delivery is confirmed (D-04). -->
+    <section class="section contact" id="kontakt" aria-labelledby="kontakt-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="label marker-label"><span class="marker" aria-hidden="true"></span>Kontakt</p>
+          <h2 id="kontakt-title">Haben Sie Fragen oder benötigen Sie ein unverbindliches Angebot?</h2>
+          <p class="section-lead">Zögern Sie nicht, uns zu kontaktieren!</p>
+        </header>
+        <ul class="contact__cards" role="list">
+          <li class="contact-card">
+            <span class="label">Telefon</span>
+            <a class="contact-card__value tnum" href="tel:+491723841620">0172 3841620</a>
+          </li>
+          <li class="contact-card">
+            <span class="label">E-Mail</span>
+            <a class="contact-card__value" href="mailto:info@blfservice.de?subject=Anfrage">info@blfservice.de</a>
+          </li>
+          <li class="contact-card">
+            <span class="label">Adresse</span>
+            <address class="contact-card__value">Am Seehügel 1c<br>14554 Seddiner See</address>
+          </li>
+        </ul>
+        <aside class="review-note" data-review hidden>
+          Anfrageformular erst nach bestätigter Zustellung (D-04): Der heutige Empfänger <code>info&amp;hey@blfservice.de</code> ist ungültig. Karte nur mit Einwilligung (Kontakt-Seite).
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__grid">
+      <div class="site-footer__brand">
+        <img src="../public/assets/optimized/home/logo-192.webp" srcset="../public/assets/optimized/home/logo-192.webp 192w, ../public/assets/optimized/home/logo-384.webp 384w" sizes="96px" width="192" height="192" loading="lazy" alt="Baum-Land-Forst Service" class="site-footer__logo">
+      </div>
+      <div>
+        <p class="label">Kontakt</p>
+        <address>Am Seehügel 1c<br>14554 Seddiner See</address>
+        <p><a href="tel:+491723841620" class="tnum">0172 3841620</a><br><a href="mailto:info@blfservice.de">info@blfservice.de</a></p>
+      </div>
+      <div>
+        <p class="label">Seite</p>
+        <ul class="site-footer__links" role="list">
+          <li><a href="#leistungen">Leistungen</a></li>
+          <li><a href="#galerie">Galerie</a></li>
+          <li><a href="#ueber-uns">Über uns</a></li>
+          <li><a href="#karriere">Karriere</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="label">Rechtliches</p>
+        <ul class="site-footer__links" role="list">
+          <li><a href="https://www.blfservice.de/impressum" rel="noopener">Impressum</a></li>
+          <li><a href="https://www.blfservice.de/datenschutz" rel="noopener">Datenschutz</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <nav class="action-bar" aria-label="Schnellkontakt">
+    <a class="button button--secondary" href="tel:+491723841620">Anrufen</a>
+    <a class="button button--primary" href="#kontakt">Anfrage</a>
+  </nav>
+</body>
+</html>

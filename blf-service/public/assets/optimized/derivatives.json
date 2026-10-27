@@ -1,0 +1,641 @@
+{
+ "note": "Derivatives for the Stage 04 Home prototype. Never wider than the source. Originals in public/assets/original are untouched.",
+ "items": [
+  {
+   "id": "GAL-13",
+   "source": "public/assets/original/gallery/baumpflege-kronensicherung/673b3d5a6fb605502c7cbad5_Baumfllung - 5.webp",
+   "source_sha256": "1a154a860f59f025ccf7c06352b827fa899044afeabc2703ff9af33e99c371c3",
+   "source_px": "1125x1500",
+   "outputs": [
+    {
+     "file": "public/assets/optimized/home/GAL-13-480.avif",
+     "width": 480,
+     "height": 640,
+     "bytes": 66590,
+     "method": "resize Lanczos, avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-13-480.webp",
+     "width": 480,
+     "height": 640,
+     "bytes": 102280,
+     "method": "resize Lanczos, webp q80"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-13-800.avif",
+     "width": 800,
+     "height": 1067,
+     "bytes": 169148,
+     "method": "resize Lanczos, avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-13-800.webp",
+     "width": 800,
+     "height": 1067,
+     "bytes": 255210,
+     "method": "resize Lanczos, webp q80"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-13-1125.avif",
+     "width": 1125,
+     "height": 1500,
+     "bytes": 298085,
+     "method": "avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-13-1125.webp",
+     "width": 1125,
+     "height": 1500,
+     "bytes": 532808,
+     "method": "byte copy of original (no re-encode)"
+    }
+   ]
+  },
+  {
+   "id": "GAL-02",
+   "source": "public/assets/original/gallery/baumfaellung/673b3da4e8e7df7899dc6d1f_Baumfllung - 1.webp",
+   "source_sha256": "d8e518746802e206bd9b40c2bff1736611a4ffa0ab9cf42d48cc25a0ca14b31a",
+   "source_px": "844x1500",
+   "outputs": [
+    {
+     "file": "public/assets/optimized/home/GAL-02-480.avif",
+     "width": 480,
+     "height": 853,
+     "bytes": 60785,
+     "method": "resize Lanczos, avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-02-480.webp",
+     "width": 480,
+     "height": 853,
+     "bytes": 92260,
+     "method": "resize Lanczos, webp q80"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-02-800.avif",
+     "width": 800,
+     "height": 1422,
+     "bytes": 117844,
+     "method": "resize Lanczos, avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-02-800.webp",
+     "width": 800,
+     "height": 1422,
+     "bytes": 169650,
+     "method": "resize Lanczos, webp q80"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-02-844.avif",
+     "width": 844,
+     "height": 1500,
+     "bytes": 127958,
+     "method": "avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-02-844.webp",
+     "width": 844,
+     "height": 1500,
+     "bytes": 221208,
+     "method": "byte copy of original (no re-encode)"
+    }
+   ]
+  },
+  {
+   "id": "GAL-06",
+   "source": "public/assets/original/gallery/baufeldberaeumung/673b3da41e58a26c742897c5_Baufeldberumung - 2.webp",
+   "source_sha256": "b90735a222c5fa85de64a98c0d1d58599b753d4d9a1603b3787e1fc159aa42fe",
+   "source_px": "1125x1500",
+   "outputs": [
+    {
+     "file": "public/assets/optimized/home/GAL-06-480.avif",
+     "width": 480,
+     "height": 640,
+     "bytes": 70634,
+     "method": "resize Lanczos, avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-06-480.webp",
+     "width": 480,
+     "height": 640,
+     "bytes": 111222,
+     "method": "resize Lanczos, webp q80"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-06-800.avif",
+     "width": 800,
+     "height": 1067,
+     "bytes": 185004,
+     "method": "resize Lanczos, avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-06-800.webp",
+     "width": 800,
+     "height": 1067,
+     "bytes": 297946,
+     "method": "resize Lanczos, webp q80"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-06-1125.avif",
+     "width": 1125,
+     "height": 1500,
+     "bytes": 336646,
+     "method": "avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-06-1125.webp",
+     "width": 1125,
+     "height": 1500,
+     "bytes": 633516,
+     "method": "byte copy of original (no re-encode)"
+    }
+   ]
+  },
+  {
+   "id": "GAL-14",
+   "source": "public/assets/original/gallery/winterdienst/673b3d185f8ae2cc7cc4d089_Winterdienst fr Privat.webp",
+   "source_sha256": "2db1da30532efd167a5fbdcb340fa54c0abf05689d6f9a59ebb7f90334b7cfec",
+   "source_px": "1125x1500",
+   "outputs": [
+    {
+     "file": "public/assets/optimized/home/GAL-14-480.avif",
+     "width": 480,
+     "height": 640,
+     "bytes": 27302,
+     "method": "resize Lanczos, avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-14-480.webp",
+     "width": 480,
+     "height": 640,
+     "bytes": 35386,
+     "method": "resize Lanczos, webp q80"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-14-800.avif",
+     "width": 800,
+     "height": 1067,
+     "bytes": 58286,
+     "method": "resize Lanczos, avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-14-800.webp",
+     "width": 800,
+     "height": 1067,
+     "bytes": 71292,
+     "method": "resize Lanczos, webp q80"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-14-1125.avif",
+     "width": 1125,
+     "height": 1500,
+     "bytes": 93300,
+     "method": "avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-14-1125.webp",
+     "width": 1125,
+     "height": 1500,
+     "bytes": 143406,
+     "method": "byte copy of original (no re-encode)"
+    }
+   ]
+  },
+  {
+   "id": "GAL-04",
+   "source": "public/assets/original/gallery/baumfaellung/673b3d5a5f8ae2cc7cc51d2d_Baumfllung - 6.webp",
+   "source_sha256": "40a1a14c1c262ccb666eb9e5188dd3b251c4e68a1ee0ea6d29aa783cf1b19558",
+   "source_px": "1125x1500",
+   "outputs": [
+    {
+     "file": "public/assets/optimized/home/GAL-04-480.avif",
+     "width": 480,
+     "height": 640,
+     "bytes": 31376,
+     "method": "resize Lanczos, avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-04-480.webp",
+     "width": 480,
+     "height": 640,
+     "bytes": 40404,
+     "method": "resize Lanczos, webp q80"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-04-800.avif",
+     "width": 800,
+     "height": 1067,
+     "bytes": 76753,
+     "method": "resize Lanczos, avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-04-800.webp",
+     "width": 800,
+     "height": 1067,
+     "bytes": 101682,
+     "method": "resize Lanczos, webp q80"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-04-1125.avif",
+     "width": 1125,
+     "height": 1500,
+     "bytes": 136305,
+     "method": "avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-04-1125.webp",
+     "width": 1125,
+     "height": 1500,
+     "bytes": 215842,
+     "method": "byte copy of original (no re-encode)"
+    }
+   ]
+  },
+  {
+   "id": "GAL-11",
+   "source": "public/assets/original/gallery/stubbenfraesen/673b3da41f3fdb6a4fd756f7_Baufeldberumung - 3.webp",
+   "source_sha256": "1592db8e9a6e74867df3a2b3ffb0cfd406e6644b960e4870a1c232045deb28e6",
+   "source_px": "1125x1500",
+   "outputs": [
+    {
+     "file": "public/assets/optimized/home/GAL-11-480.avif",
+     "width": 480,
+     "height": 640,
+     "bytes": 76163,
+     "method": "resize Lanczos, avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-11-480.webp",
+     "width": 480,
+     "height": 640,
+     "bytes": 119412,
+     "method": "resize Lanczos, webp q80"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-11-800.avif",
+     "width": 800,
+     "height": 1067,
+     "bytes": 174454,
+     "method": "resize Lanczos, avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-11-800.webp",
+     "width": 800,
+     "height": 1067,
+     "bytes": 285688,
+     "method": "resize Lanczos, webp q80"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-11-1125.avif",
+     "width": 1125,
+     "height": 1500,
+     "bytes": 279544,
+     "method": "avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-11-1125.webp",
+     "width": 1125,
+     "height": 1500,
+     "bytes": 538744,
+     "method": "byte copy of original (no re-encode)"
+    }
+   ]
+  },
+  {
+   "id": "GAL-18",
+   "source": "public/assets/original/gallery/hangbefestigung/673b3d121777a3a55a4d053a_Grnflchenpflege fr Kommunen.webp",
+   "source_sha256": "0d0072a10befb81aeaa8126eb1a428555da7f261b774c1cfa703694f08b7be96",
+   "source_px": "1125x1500",
+   "outputs": [
+    {
+     "file": "public/assets/optimized/home/GAL-18-480.avif",
+     "width": 480,
+     "height": 640,
+     "bytes": 47179,
+     "method": "resize Lanczos, avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-18-480.webp",
+     "width": 480,
+     "height": 640,
+     "bytes": 68932,
+     "method": "resize Lanczos, webp q80"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-18-800.avif",
+     "width": 800,
+     "height": 1067,
+     "bytes": 124683,
+     "method": "resize Lanczos, avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-18-800.webp",
+     "width": 800,
+     "height": 1067,
+     "bytes": 183640,
+     "method": "resize Lanczos, webp q80"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-18-1125.avif",
+     "width": 1125,
+     "height": 1500,
+     "bytes": 229688,
+     "method": "avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-18-1125.webp",
+     "width": 1125,
+     "height": 1500,
+     "bytes": 400998,
+     "method": "byte copy of original (no re-encode)"
+    }
+   ]
+  },
+  {
+   "id": "GAL-10",
+   "source": "public/assets/original/gallery/spielgeraeteaufbau/673b3da41b2059277c60918e_Baufeldberumung -1.webp",
+   "source_sha256": "91983887abb6b65b65bc06ed6318d9837d1df8a04391b5a352da2585709121f6",
+   "source_px": "1125x1500",
+   "outputs": [
+    {
+     "file": "public/assets/optimized/home/GAL-10-480.avif",
+     "width": 480,
+     "height": 640,
+     "bytes": 68993,
+     "method": "resize Lanczos, avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-10-480.webp",
+     "width": 480,
+     "height": 640,
+     "bytes": 105182,
+     "method": "resize Lanczos, webp q80"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-10-800.avif",
+     "width": 800,
+     "height": 1067,
+     "bytes": 176627,
+     "method": "resize Lanczos, avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-10-800.webp",
+     "width": 800,
+     "height": 1067,
+     "bytes": 277560,
+     "method": "resize Lanczos, webp q80"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-10-1125.avif",
+     "width": 1125,
+     "height": 1500,
+     "bytes": 327569,
+     "method": "avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-10-1125.webp",
+     "width": 1125,
+     "height": 1500,
+     "bytes": 590956,
+     "method": "byte copy of original (no re-encode)"
+    }
+   ]
+  },
+  {
+   "id": "GAL-19",
+   "source": "public/assets/original/gallery/pflasterarbeiten/673b3d158a9d05ead665e4bf_Straen-und Flchenreinigung - 1.webp",
+   "source_sha256": "d65eacb807be385bebe2f345a462aafbc77f910f2f2534b127292c36e56ee6de",
+   "source_px": "1125x1500",
+   "outputs": [
+    {
+     "file": "public/assets/optimized/home/GAL-19-480.avif",
+     "width": 480,
+     "height": 640,
+     "bytes": 39049,
+     "method": "resize Lanczos, avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-19-480.webp",
+     "width": 480,
+     "height": 640,
+     "bytes": 59058,
+     "method": "resize Lanczos, webp q80"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-19-800.avif",
+     "width": 800,
+     "height": 1067,
+     "bytes": 97662,
+     "method": "resize Lanczos, avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-19-800.webp",
+     "width": 800,
+     "height": 1067,
+     "bytes": 142696,
+     "method": "resize Lanczos, webp q80"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-19-1125.avif",
+     "width": 1125,
+     "height": 1500,
+     "bytes": 170369,
+     "method": "avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-19-1125.webp",
+     "width": 1125,
+     "height": 1500,
+     "bytes": 295280,
+     "method": "byte copy of original (no re-encode)"
+    }
+   ]
+  },
+  {
+   "id": "GAL-12",
+   "source": "public/assets/original/gallery/stubbenfraesen/673b3d5bea45ed2c55cb725f_Baumkontrolle - 2.webp",
+   "source_sha256": "b2edf5c10075b098ba254282747ec0e32310d8b5007c92b37994b911be78ce6e",
+   "source_px": "1125x1500",
+   "outputs": [
+    {
+     "file": "public/assets/optimized/home/GAL-12-480.avif",
+     "width": 480,
+     "height": 640,
+     "bytes": 70171,
+     "method": "resize Lanczos, avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-12-480.webp",
+     "width": 480,
+     "height": 640,
+     "bytes": 109840,
+     "method": "resize Lanczos, webp q80"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-12-800.avif",
+     "width": 800,
+     "height": 1067,
+     "bytes": 178030,
+     "method": "resize Lanczos, avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-12-800.webp",
+     "width": 800,
+     "height": 1067,
+     "bytes": 281528,
+     "method": "resize Lanczos, webp q80"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-12-1125.avif",
+     "width": 1125,
+     "height": 1500,
+     "bytes": 322639,
+     "method": "avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-12-1125.webp",
+     "width": 1125,
+     "height": 1500,
+     "bytes": 597742,
+     "method": "byte copy of original (no re-encode)"
+    }
+   ]
+  },
+  {
+   "id": "GAL-07",
+   "source": "public/assets/original/gallery/baufeldberaeumung/673b3d5a14d72c9106ec7ac9_Baumkontrolle - 1.webp",
+   "source_sha256": "35094d8cbe98d27a20ee637da042b35350428af25eab0cf67ab111da26f3989e",
+   "source_px": "1125x1500",
+   "outputs": [
+    {
+     "file": "public/assets/optimized/home/GAL-07-480.avif",
+     "width": 480,
+     "height": 640,
+     "bytes": 81389,
+     "method": "resize Lanczos, avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-07-480.webp",
+     "width": 480,
+     "height": 640,
+     "bytes": 125716,
+     "method": "resize Lanczos, webp q80"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-07-800.avif",
+     "width": 800,
+     "height": 1067,
+     "bytes": 208171,
+     "method": "resize Lanczos, avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-07-800.webp",
+     "width": 800,
+     "height": 1067,
+     "bytes": 329246,
+     "method": "resize Lanczos, webp q80"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-07-1125.avif",
+     "width": 1125,
+     "height": 1500,
+     "bytes": 370996,
+     "method": "avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-07-1125.webp",
+     "width": 1125,
+     "height": 1500,
+     "bytes": 684126,
+     "method": "byte copy of original (no re-encode)"
+    }
+   ]
+  },
+  {
+   "id": "GAL-09",
+   "source": "public/assets/original/gallery/baufeldberaeumung/673b3d608ebfd674e626d7a2_Forstwirtschaftliche Pflege - 1.webp",
+   "source_sha256": "e6b5bc7a38d3ed63ffef1b603901d0cb87be1df3f9845550ea8590985a12e504",
+   "source_px": "1125x1500",
+   "outputs": [
+    {
+     "file": "public/assets/optimized/home/GAL-09-480.avif",
+     "width": 480,
+     "height": 640,
+     "bytes": 61410,
+     "method": "resize Lanczos, avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-09-480.webp",
+     "width": 480,
+     "height": 640,
+     "bytes": 94792,
+     "method": "resize Lanczos, webp q80"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-09-800.avif",
+     "width": 800,
+     "height": 1067,
+     "bytes": 156817,
+     "method": "resize Lanczos, avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-09-800.webp",
+     "width": 800,
+     "height": 1067,
+     "bytes": 243686,
+     "method": "resize Lanczos, webp q80"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-09-1125.avif",
+     "width": 1125,
+     "height": 1500,
+     "bytes": 286744,
+     "method": "avif q60"
+    },
+    {
+     "file": "public/assets/optimized/home/GAL-09-1125.webp",
+     "width": 1125,
+     "height": 1500,
+     "bytes": 528514,
+     "method": "byte copy of original (no re-encode)"
+    }
+   ]
+  },
+  {
+   "id": "BRD-01",
+   "source": "public/assets/original/brand/68d4a4d8f70ae14d90397b58_Logo_273806.png",
+   "source_sha256": "84716ca25500e35eb721c5ccc995bb67531a7fed1a09d633acb32cee5295d0fc",
+   "source_px": "1966x1966",
+   "outputs": [
+    {
+     "file": "public/assets/optimized/home/logo-192.webp",
+     "width": 192,
+     "height": 192,
+     "bytes": 26286,
+     "method": "resize Lanczos, lossless webp"
+    },
+    {
+     "file": "public/assets/optimized/home/logo-384.webp",
+     "width": 384,
+     "height": 384,
+     "bytes": 64136,
+     "method": "resize Lanczos, lossless webp"
+    },
+    {
+     "file": "public/assets/optimized/home/logo-1200.webp",
+     "width": 1200,
+     "height": 1200,
+     "bytes": 225164,
+     "method": "resize Lanczos, lossless webp"
+    },
+    {
+     "file": "public/assets/optimized/home/logo-384.png",
+     "width": 384,
+     "height": 384,
+     "bytes": 125364,
+     "method": "resize Lanczos, png"
+    }
+   ]
+  }
+ ]
+}

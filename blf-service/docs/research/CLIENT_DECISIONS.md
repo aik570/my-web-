@@ -1,7 +1,14 @@
 # Client Decisions — BLF Service
 
-Stage 02 · 2026-10-26, updated 2026-10-27 (Stage 03: D-08 h–j, D-27) · decision owner: **Daniel Witte** (named in the
-Impressum as owner and editorially responsible)
+Stage 02 · 2026-10-26, updated 2026-10-27 (Stage 03: D-08 h–l, D-27; Stage 04: D-28)
+
+**Decision owner: the business owner. The name is unresolved (D-28).**
+- The Impressum (saved 2026-10-26) and the printed business card name
+  **Daniel Witte** [V].
+- On 2026-10-27 the project owner gave the current owner's name as **Daniel
+  Trautmann** [unverified].
+- Historical sources are left unchanged. **No personal name is used in
+  public-facing design** until D-28 is confirmed.
 
 This is the **master list** of everything the redesign needs from the
 client. The other Stage 02 documents refer to items here by ID (`D-01` …).
@@ -19,7 +26,7 @@ Each entry has:
 
 | Tier | Meaning | Items |
 |---|---|---|
-| **A — Critical blockers** | The site cannot launch, or a primary goal (recruitment, inquiries) cannot work, without an answer | D-01 – D-11, D-27 |
+| **A — Critical blockers** | The site cannot launch, or a primary goal (recruitment, inquiries) cannot work, without an answer | D-01 – D-11, D-27, D-28 |
 | **B — Needed for quality** | The site can launch with the fallback, but the result is clearly weaker | D-12 – D-20 |
 | **C — Optional improvements** | Nice to have | D-21 – D-26 |
 
@@ -41,6 +48,7 @@ Each entry has:
 |---|---|---|---|
 | **D-27** | **Applicant-data workflow** (needed for any application form): where applications are delivered or stored, who has access, the deletion period, and an applicant section in the Datenschutzerklärung. For the optional upload: allowed file types, size limit, storage outside the public web, malware check. Requirements in PAGE_ARCHITECTURE §5 | No application form exists; the Datenschutzerklärung has **no applicant section** [V] | No application form; Karriere uses phone + e-mail. No upload under any fallback |
 | **D-04** | **Do contact-form messages arrive today, and which address should receive them?** | The form's hidden recipient is `info&hey@blfservice.de` (not a valid address), and the error URL is `FEHLERMEDLUNG.com.de.cz` | The new form sends to `info@blfservice.de` only after a successful test delivery the client confirms. Until then phone and e-mail are the primary CTAs |
+| **D-28** | **Exact legal and business name, and the current owner.** Who is the owner today (Daniel Witte or Daniel Trautmann)? What is the exact business name for the Impressum, and which lettering should the public logo carry ("SERVICE" as on the website, or a name as on the business card)? | Impressum and business card: "Daniel Witte" [V]; website logo lower arc "SERVICE" [V]; project owner (2026-10-27): "Daniel Trautmann" [unverified] | No personal name anywhere in the design; the logo used is the website version ("SERVICE"). The Impressum cannot be finalised. **Launch blocker** |
 | **D-05** | **Correct USt-IdNr.** | The Impressum shows `048/287/07014` under "Umsatzsteuer-ID", which is the format of a Steuernummer | The new Impressum cannot be finalised. Launch blocker |
 | **D-06** | **Analytics: who operates `analytics.platzhalterabcd.de`? Keep it, replace it, or drop it?** | Loads on all 7 pages; not mentioned in the Datenschutzerklärung | No analytics in the new site until decided and disclosed |
 | **D-07** | **Hosting provider, domain/DNS access, who deploys** | The Datenschutz says an external host is used (with AVV) but doesn't name it | Cannot launch, and the new privacy policy cannot be written |
@@ -107,6 +115,10 @@ Grouped for one conversation with Daniel Witte. IDs in brackets.
 4. **Kontaktformular [D-04]:** Kommen Anfragen über das Formular heute bei
    Ihnen an? Als Empfänger ist „info&hey@blfservice.de“ eingetragen. An
    welche Adresse sollen Anfragen gehen?
+4a. **Name und Inhaber [D-28]:** Wer ist heute Inhaber, und wie lautet der
+   genaue Firmenname für das Impressum? Auf Ihrer Visitenkarte steht im Logo
+   „Daniel Witte“, im Logo der Website „Service“. Welche Version soll die
+   neue Website zeigen?
 5. **USt-IdNr. [D-05]:** Im Impressum steht unter „Umsatzsteuer-ID“
    048/287/07014. Das sieht nach einer Steuernummer aus. Wie lautet Ihre
    USt-IdNr. (beginnt mit „DE“)?

@@ -1,9 +1,8 @@
 # Project Status — BLF Service redesign
 
-Last update: 2026-10-27 · Stages 01 and 02 **approved**. **Stage 03 (art
-direction) documentation complete.** Waiting for approval before Stage 04.
-GAL-16 still waits on the client (D-14).
-
+Last update: 2026-10-27 · Stages 01–03 approved; the "Revier" direction was
+approved by the project owner. **Stage 04 Home prototype and tree intro
+ready for review.** Not started: secondary pages (Stage 05).
 ## Stage 01 — Discovery, asset extraction, foundation
 
 ### Done
@@ -215,7 +214,81 @@ Corrections (DESIGN_DECISIONS §8):
 - New **DQ-12** (Markierung colour on light grounds).
 - Details: DESIGN_DECISIONS §3 and §8.
 
-## Before Stage 04
+## Stage 04 — Home prototype and tree intro (2026-10-27)
+
+### Done
+
+- [x] **Stack:** plain HTML, CSS and JS (no framework existed; no build
+      step; no dependencies). Files:
+      - `src/index.html`;
+      - `src/styles/{tokens,site,intro}.css`;
+      - `src/scripts/{intro,site}.js`.
+- [x] **Fonts:** self-hosted, subset WOFF2 with OFL 1.1 licence files in
+      `public/fonts/` (details in `public/fonts/README.md`).
+      - Tabular figures verified: Newsreader has `tnum`; Hanken Grotesk has
+        equal-width default digits at wght 400 but no `tnum`.
+- [x] **Images:** derivatives in `public/assets/optimized/home/`, recorded in
+      `derivatives.json`.
+      - Never wider than the original; the native WebP is a byte copy.
+      - Originals untouched (checksums verified).
+- [x] **Home sections per PAGE_ARCHITECTURE §1:** header; hero with GAL-13;
+      Notfall strip; services; gallery preview; Über uns (Home section,
+      UX-01); Karriere teaser (Initiativ state, UX-03); contact; footer;
+      mobile action bar.
+- [x] **Content:** only verified text; all D-08 claims omitted; no personal
+      name (D-28); internal notes only with `?review`.
+- [x] **Tree intro:** a masked reveal of the authentic logo PNG
+      (`docs/design/INTRO_PROTOTYPE.md`).
+      - Full version ≈ 2.95 s; lite version on mobile ≈ 1.65 s.
+      - Once per session; skippable; off under reduced motion.
+      - CSS fail-safe if the script fails.
+- [x] **Business-card photo** preserved in `references/client-supplied/`.
+      No AI restoration (reasons in INTRO_PROTOTYPE §5).
+- [x] **QA** (`scripts/qa/home-prototype-qa.js`, Playwright/Chromium,
+      9 viewport/DPR combinations):
+
+      | Check | Result |
+      |---|---|
+      | Horizontal overflow | 0 px at all widths 320–1440 |
+      | Upscaling | ≤ 1.0 device px per source px everywhere |
+      | Console errors | 0 |
+      | Contrast | 165 text nodes, 0 below WCAG AA, minimum 5.49:1 |
+      | Keyboard | 30 tab stops, visible focus on all |
+      | Mobile menu | focus moves in, and back on Esc |
+      | Intro | ends cleanly; no replay after reload; skip with Esc works |
+      | Reduced motion | no intro; content visible |
+      | No JavaScript | content visible; review notes hidden |
+      | Logo fails to load | intro abandoned, page visible |
+      | `intro.js` blocked | cover fades after 2.8 s and never blocks clicks |
+      | Forbidden claims or names | none in the visible text |
+
+- [x] **Bugs found and fixed during QA:**
+      - the fail-safe cover could block clicks;
+      - 320 px overflow (hero H1, service rows);
+      - upscaling of the hero/Karriere photos on DPR ≥ 2.6 and the GAL-02
+        card at DPR 3;
+      - the gallery preview could stay hidden if `site.js` failed;
+      - two QA-script bugs: a density-corrected `naturalWidth`, and lazy
+        images in a horizontal scroller.
+
+### Not available
+
+- **No lint, build or test tooling exists in the project**; nothing like
+  that was run. The checks above are the custom QA script plus
+  `node --check` on all scripts.
+
+### Known limitations / open
+
+| Item | Status |
+|---|---|
+| DQ-11 | Header logo lettering ≈ 9 px on desktop and 5.7 px on mobile: barely legible / not legible |
+| DQ-12 | Markierung reads brown on paper |
+| D-28 | Owner name and logo lettering unresolved |
+| Secondary pages | Leistungen, Galerie, Karriere, Kontakt, Impressum and Datenschutz not built. The navigation uses Home anchors; the legal links point to the current live pages |
+| Contact form | None until D-04 |
+| Browsers | Tested only in Chromium (Playwright). Safari and Firefox not tested; the intro uses SMIL and WAAPI, which both support, but this is not verified here |
+
+## Before Stage 04 (historical)
 
 1. Project owner: approve or adjust Direction A (DQ-01). Then present it to
    the client [D-20].

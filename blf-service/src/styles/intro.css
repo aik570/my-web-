@@ -1,0 +1,81 @@
+/*
+ * Tree-logo intro. See scripts/intro.js and docs/design/INTRO_PROTOTYPE.md.
+ * Without JavaScript none of these classes are ever set.
+ */
+
+/* Before intro.js has started: a calm forest-green cover, so the page does not
+   flash first. Fail-safe: if intro.js never runs (blocked, failed to load), the
+   cover removes itself after 2.8 s and the page is fully usable. */
+html.intro-pending body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: var(--forest-950);
+  /* Never intercepts clicks or taps, even while visible. */
+  pointer-events: none;
+  animation: intro-failsafe 1ms linear 2.8s forwards;
+}
+@keyframes intro-failsafe {
+  from { visibility: visible; opacity: 1; }
+  to { visibility: hidden; opacity: 0; }
+}
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  background: var(--forest-950);
+  cursor: pointer;
+}
+
+.intro__emblem {
+  /* <= 380 CSS px: at 3x that is 1140 px, inside the 1200 px logo derivative. */
+  width: min(70vmin, 380px);
+  height: min(70vmin, 380px);
+  overflow: visible;
+  transform-origin: 50% 50%;
+}
+.intro--lite .intro__emblem { width: min(64vmin, 300px); height: min(64vmin, 300px); }
+
+.intro__skip {
+  position: absolute;
+  right: var(--space-margin);
+  bottom: calc(var(--space-5) + env(safe-area-inset-bottom));
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1.5px solid rgba(244, 241, 233, 0.6);
+  border-radius: var(--radius-control);
+  background: transparent;
+  color: var(--paper-50);
+  font: 600 0.875rem/1.2 var(--font-text);
+  cursor: pointer;
+}
+.intro__skip:hover { border-color: var(--paper-50); }
+.intro__skip:focus-visible { outline: 2px solid var(--paper-50); outline-offset: 2px; }
+
+/* The header logo is hidden while the emblem is on stage, so the emblem can
+   land in its place without a double image. */
+html.intro-running .site-logo img,
+html.intro-leaving .site-logo img { opacity: 0; }
+
+/* Hero text arrives after the intro (only when the intro actually ran). */
+.hero__text {
+  transition: opacity var(--duration-slow) var(--ease-standard),
+              transform var(--duration-slow) var(--ease-standard);
+}
+/* Only while intro.js is actually running: if it never runs, the fail-safe above
+   removes the cover and the hero text must already be visible. */
+html.intro-running .hero__text {
+  opacity: 0;
+  transform: translateY(var(--distance-enter));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* The inline head script never requests the intro under reduced motion;
+     this is a second guard in case the preference changes mid-visit. */
+  .intro { display: none; }
+  html.intro-pending body::before { display: none; }
+}

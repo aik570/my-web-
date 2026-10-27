@@ -89,7 +89,7 @@ The full table is in `MOTION_DESIGN.md` §7.
 | `font.weight.regular / medium / semibold` | 400 / 500 / 600 | proposed |
 | `font.label.tracking` | 0.08 em, uppercase | proposed |
 
-Fonts are self-hosted; licences to be confirmed. The existing families,
+Fonts are self-hosted from `public/fonts/` (OFL 1.1; licence files and sources in `public/fonts/README.md`). The existing families,
 Bellota Text and Roboto [site], are documented for Direction C only.
 
 **Type scale.** Fluid between viewport 360 px (min) and 1440 px (max).
@@ -201,6 +201,19 @@ The values match `docs/research/MOTION_SPEC.md` and `MOTION_DESIGN.md`.
 ≤ 150 ms (`motion.duration.fast`); no translate or scale; scrubbing off.
 
 ---
+
+## 7a. Header (Stage 04 prototype)
+
+Added for DQ-11 option (a), the taller logo area.
+
+| Token | < 1024 px | ≥ 1024 px | Compact on scroll (≥ 1024 px) |
+|---|---|---|---|
+| `header.height` | 72 px | 112 px | 72 px |
+| `header.logo` | 56 px (lettering ≈ 5.7 px) | 88 px (lettering ≈ 9 px) | 56 px |
+
+The DPR-dependent image caps `--portrait-cap` (562 → 281 px for DPR ≤ 2 → 4)
+are defined in `src/styles/site.css`. They implement §4 for DPR values
+between the documented 2× and 3×.
 
 ## 8. Responsive breakpoints
 
