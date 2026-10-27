@@ -1,11 +1,15 @@
 # Page Architecture — BLF Service
 
-Stage 02 · 2026-10-26 · labels: **[V]** verified existing content ·
-**[P]** proposal · **[D-xx]** needs client decision (`CLIENT_DECISIONS.md`)
+Stage 02 · 2026-10-26, decisions recorded 2026-10-27 · labels: **[V]**
+verified existing content · **[P]** proposal · **[D-xx]** needs client
+decision (`CLIENT_DECISIONS.md`) · **[UX-0x]** approved UX decision
+(SITEMAP §0)
 
-Section-by-section outlines for the six main pages. This is structure, not
-visual design: layouts are described only as far as they affect content and
-behaviour.
+Section-by-section outlines for the five main pages. Über uns is a Home
+section (UX-01), so §4 is kept only as a pointer and section numbers stay
+stable for cross-references. This is structure, not visual design: layouts
+are described only as far as they affect content and behaviour. The visual
+layer is in `docs/design/`.
 
 ## 0. Rules for every page
 
@@ -28,6 +32,9 @@ behaviour.
   - full-bleed photo heroes on desktop are **not possible** until D-10
     brings full-resolution originals.
   - Layouts below are designed within that limit and can grow later.
+  - On 3× phones the narrow photos **GAL-02 and GAL-03 (843–844 px wide)**
+    must stay ≤ 281 CSS px wide, wherever they appear (gallery cards,
+    service rows, teasers). The full cap table is in MOTION_SPEC §6.
 - GAL-16 is not used until D-14. Photos with people are used prominently
   only after D-12.
 
@@ -54,18 +61,31 @@ behaviour.
 
 | # | Section | Goal | Content | Primary CTA | Assets |
 |---|---|---|---|---|---|
-| 1 | **Hero** | Say *what* and *where* in one look | H1 with the core services and the area: built from verified service names plus "Seddiner See" [V]; the wider area per D-13. Short subline from the verified tagline "Ihre Experten für Baumfällung und Baumpflege" [V]. Phone number visible | "Anfrage stellen"; secondary "0172 3841620" (call) | GAL-01 (climber, blue sky; worker not identifiable). Alternative without people: GAL-13 |
+| 1 | **Hero** | Say *what* and *where* in one look | H1 with the core services and the area: built from verified service names plus "Seddiner See" [V]; the wider area per D-13. Short subline from the verified tagline "Ihre Experten für Baumfällung und Baumpflege" [V]. Phone number visible | "Anfrage stellen"; secondary "0172 3841620" (call) | **GAL-13** (no people) by default; GAL-01 (climber, blue sky) once D-12 is answered (DQ-03 in `docs/design/DESIGN_DECISIONS.md`) |
 | 2 | **Notfall strip** | Serve storm-damage callers immediately | "Sturmschaden?" + call button. Availability wording only per D-08 d / D-17 | Call | none |
 | 3 | **Leistungen overview** | Route each audience to its service group | 4 group cards [P] (SITEMAP §2): group name, the verified service names inside it, a link to the anchor | Card → `/leistungen#…` | Baumarbeiten GAL-02 · Bau & Fläche GAL-06 · Winter & Reinigung GAL-14 · Grün & Forst: **no photo** → typographic card [D-19] |
 | 4 | **Galerie teaser** | Show real work; lead into the gallery | 4–5 photos from different services, one line each naming the service | "Zur Galerie" | e.g. GAL-13, GAL-11, GAL-18, GAL-10, GAL-15 |
-| 5 | **Über uns teaser** | Put a person and a story behind the name | Shortened "Das bin ich" text [V]. The "Seit 2001" sentence only with D-08 a | "Mehr über uns" | GAL-03 (owner photo per the site's alt text) only with D-12; otherwise GAL-04 |
-| 6 | **Karriere teaser** | Recruit: make hiring visible | "Wir stellen ein" + up to 3 position titles [D-01]. **Shown only while positions exist**; otherwise hidden, not replaced | "Offene Stellen ansehen" | GAL-09 or GAL-12 (machines; people small) [D-12] |
-| 7 | **Qualifikationen** | Trust for municipal and commercial clients | Only claims confirmed in D-08 (e.g. European Treeworker, certified tree inspectors). **Omitted entirely** if none are confirmed | — | Certificate logos only if supplied and licensed |
-| 8 | **Kontakt band** | Last chance to convert | Phone, e-mail, address [V]; short form link | "Anfrage stellen" | none |
+| 5 | **Über uns** `#ueber-uns` (UX-01) | Identity, way of working, team, qualifications: all verified only | Sub-blocks 5a–5e below. Blocks without verified content are **omitted, not filled** | "Kontakt aufnehmen"; secondary "Karriere" | see 5a–5e |
+| 6 | **Karriere teaser** (UX-03) | Recruit: make hiring visible | **Always shown**, in one of two states. *Positions state* (after D-01): "Wir stellen ein" + up to 3 position titles. *Initiativ state* (default now): the verified sentence "Wir suchen motivierte und engagierte Mitarbeiter, die unser Team verstärken." [V] + invitation to an Initiativbewerbung. No job titles | "Zur Karriere-Seite" | GAL-09 or GAL-12 (machines; people small) [D-12] |
+| 7 | **Kontakt band** | Last chance to convert | Phone, e-mail, address [V]; short form link | "Anfrage stellen" | none |
+
+### Home §5 — Über uns section (UX-01)
+
+| Block | Goal | Content | Assets | Shown when |
+|---|---|---|---|---|
+| **5a Wer wir sind** | A person and a story behind the name | The "Das bin ich" text [V], shortened if needed. The "Ich" or "Wir" voice per D-16. The "Seit 2001" and "Regelmäßige Weiterbildungen und Zertifizierungen" sentences only with D-08 a/e | GAL-03 (alt text on the site: "Daniel Witte") only with D-12; otherwise GAL-04 (no people) | always |
+| **5b Wie wir arbeiten** | Values with substance | "Sicherheit an erster Stelle" [V], a value statement usable as is. These sentences are site **claims** (CONTENT_AUDIT §2), used only once confirmed: "Egal ob heißer Sommer-, nasser Herbst- oder kalter Wintertag: Wir sind tagtäglich für Sie im Einsatz!" [V, D-08 j] and "Durch die Anschaffungen verschiedenster Technik bin ich flexibel und vielseitig einsatzbereit." [V, D-08 h] | GAL-14 (winter, night) and GAL-13 (crown securing). They show the range the quote describes, **not a timeline** | always |
+| **5c Team** | Faces for trust and recruiting | Team size, roles, photo **only with D-16 + D-12** | team photo [D-16] | only with D-16 |
+| **5d Qualifikationen** | Evidence for municipal and commercial clients | Only claims confirmed in D-08 (e.g. European Treeworker, certified tree inspectors), ideally with the certificate | certificates if supplied and licensed | only with D-08 |
+| **5e Technik** | Show capability | Machinery **visible** in the photos: aerial platform (GAL-04), mini excavators (GAL-06, 12), compact loader (GAL-07, 09), stump grinder (GAL-11), winter vehicles (GAL-14, 15). Brands and ownership are not stated | a compact strip of 3–4 of those photos | optional; drop if the page gets long |
+
+**Length budget:** with only 5a + 5b + 5e the section is about 1.5 screen
+heights on desktop and 3 on mobile. Each confirmed block adds about one.
+The address and map stay on Kontakt and in the footer, not here.
 
 **Desktop.** The hero is a split layout: text on one side, and the photo in
-a column of at most ~40 % of the width. At 1440 px that is ~576 CSS px,
-sharp on 2× screens with GAL-01's 1169 px (R2). The service cards form a
+a column of at most ~40 % of the width, capped at the photo's 2× width:
+562 CSS px for GAL-13, 584 for GAL-01 (R2). The service cards form a
 2×2 or 4-up row.
 
 **Mobile.**
@@ -110,51 +130,85 @@ holes.
 | 4 | **Lightbox** | Look closer | Tap or click opens the photo at native size, never upscaled | — | same |
 | 5 | **Abschluss CTA** | Convert after browsing | "Ihr Projekt besprechen" + call | "Anfrage stellen" | none |
 
-**Desktop.** A pinned stage with chapter text and images (MOTION_SPEC §3).
-**Mobile.** No pinning: per-chapter swipe rows or a vertical stack
-(MOTION_SPEC §6).
+**Hybrid (UX-02).**
+- **Desktop:** a pinned stage with chapter text and images (MOTION_SPEC §3,
+  MOTION_DESIGN).
+- **Mobile:** no pinning. A straightforward, touch-friendly **card layout**
+  grouped by service, with filter chips and the lightbox (MOTION_SPEC §6).
+- **Reduced motion:** the static chapter layout (MOTION_SPEC §4) on every
+  device.
 
 ---
 
-## 4. Über uns `/ueber-uns`
+## 4. Über uns: merged into Home (UX-01)
 
-| # | Section | Goal | Content | Primary CTA | Assets |
-|---|---|---|---|---|---|
-| 1 | **Intro** | Who is behind BLF | The "Das bin ich" text [V]: owner's voice, "ich" or "wir" per D-16. The "Seit 2001" and "Weiterbildungen und Zertifizierungen" sentences only with D-08 a/e | — | GAL-03 with D-12; otherwise none |
-| 2 | **Wie wir arbeiten** | Values with substance | "Sicherheit an erster Stelle" [V]; "Egal ob heißer Sommer-, nasser Herbst- oder kalter Wintertag: Wir sind tagtäglich für Sie im Einsatz!" [V]; "Durch die Anschaffungen verschiedenster Technik…" (D-08 g wording) | — | GAL-14 (winter, at night) and GAL-04 (platform). These show the year-round work the quote describes; they are **not** a timeline |
-| 3 | **Team** (conditional) | Faces for trust and recruiting | Team size, roles, photo: **only with D-16 / D-12**; otherwise omitted | "Karriere" | team photo [D-16] |
-| 4 | **Qualifikationen** (conditional) | Evidence | Only D-08-confirmed items | — | certificates if supplied |
-| 5 | **Technik** (conditional) | Show capability | Machinery seen in the photos: aerial platform (GAL-04), mini excavators (GAL-06, 12), compact loader (GAL-07, 09), stump grinder (GAL-11), winter vehicles (GAL-14, 15). These are **visible facts; brands and ownership are not stated** | — | those photos |
-| 6 | **Standort & Einsatzgebiet** | Where | Address [V]; area per D-13; map (consent-gated) | "Kontakt aufnehmen" | map |
-
-**Thin-page fallback:** see SITEMAP §4. If sections 3–5 stay empty, the
-page is folded into a Home section.
-
-**Desktop:** alternating text and image rows. **Mobile:** single column;
-the map is a static preview with "Karte laden" (consent).
+There is no separate page. The content blocks are in **Home §5** (5a–5e).
+This heading is kept so section numbers stay stable for cross-references.
 
 ---
 
-## 5. Karriere `/karriere` (label: D-23)
+## 5. Karriere `/karriere` (label: D-23; dedicated page per UX-03)
+
+The page has **two states**. Today only state I is possible.
+
+| State | When | Section 2 shows |
+|---|---|---|
+| **I — Initiativbewerbung** (default) | until D-01/D-02 are answered | the Initiativbewerbung block. No position cards, no job titles, conditions, hours, salaries or guarantees |
+| **II — Offene Stellen** | after D-01 (and D-02 for conditions) | position cards; the Initiativbewerbung block moves below them |
 
 | # | Section | Goal | Content | Primary CTA | Assets |
 |---|---|---|---|---|---|
-| 1 | **Hero for candidates** | Speak to candidates, not customers | H1 inviting applications. Verified basis: "Wir suchen motivierte und engagierte Mitarbeiter, die unser Team verstärken." [V]. **Not** the customer hero used today | "Jetzt bewerben" (anchor to form) | GAL-02 or GAL-12 [D-12] |
-| 2 | **Offene Stellen** | Show what is actually open | One card per position: title, tasks, requirements, hours, location, start [D-01], linking to `/karriere/<stelle>`. **Fallback without D-01:** no cards, only "Initiativbewerbung willkommen" | "Bewerben" per card | none |
-| 3 | **Was wir bieten** | Reasons to join, verified only | The five verified items as a list: abwechslungsreiche Tätigkeiten, feste Anstellung, moderne Arbeitsmittel, Fort- und Weiterbildungsmöglichkeiten, angenehmes Arbeitsklima [V, D-02]. **Nothing added** | — | none |
+| 1 | **Hero for candidates** | Speak to candidates, not customers | Built on the verified sentences "Wir suchen motivierte und engagierte Mitarbeiter, die unser Team verstärken." and "Sind Sie auf der Suche nach einer abwechslungsreichen Tätigkeit im Bereich der Baum-Land-Forstwirtschaft?" [V]. **Not** the customer hero used today | "Jetzt bewerben" (anchor to form) | GAL-02 or GAL-12 [D-12] |
+| 2 | **State I: Initiativbewerbung** | Let people apply without a vacancy | Short explanation that applications without a specific opening are welcome. The candidate picks the **area of work** they are interested in. The list uses only verified service fields: Baumarbeiten (Baumfällung, Baumpflege, Baumkontrolle), Grün & Forst, Bau & Fläche, Winter & Reinigung, plus "Sonstiges". These are fields of work, **not job titles** | "Initiativ bewerben" | none |
+| 2 | **State II: Offene Stellen** | Show what is actually open | One card per position: title, tasks, requirements, hours, location, start [D-01], linking to `/karriere/<stelle>` | "Bewerben" per card | none |
+| 3 | **Was wir bieten** | Reasons to join, verified only | The five items the current site states: abwechslungsreiche Tätigkeiten, feste Anstellung, moderne Arbeitsmittel, Fort- und Weiterbildungsmöglichkeiten, angenehmes Arbeitsklima [V]. Shown as the client's own statements, with **D-02 confirmation before launch**. **Nothing added** | — | none |
 | 4 | **Einblicke** | Show the real work environment | 3–5 photos of crews and machines | — | GAL-01, 07, 09, 14, 15 [D-12] |
-| 5 | **So bewerben Sie sich** | Lower the barrier | 3 steps [P]: get in touch (form, phone or e-mail) → conversation → trial day or start. **Steps 2–3 need D-03 confirmation**; if unconfirmed, only "Melden Sie sich" with the channels | — | none |
-| 6 | **Kurzbewerbung** | Convert on mobile | Form [P, D-03]: Name\*, Telefon\*, E-Mail, Stelle (select: positions + "Initiativ"), Nachricht, Lebenslauf (optional upload). Privacy note with the retention period [D-03] | "Bewerbung senden" | none |
-| 7 | **Ansprechpartner** | A person, not a mailbox | Name, photo, phone, e-mail [D-03, D-12]; fallback: the verified phone and e-mail | "Anrufen" | photo [D-12] |
+| 5 | **So bewerben Sie sich** | Lower the barrier | Only what is confirmed. Default: "Melden Sie sich per Formular, Telefon oder E-Mail." Further steps (interview, trial day) only with D-03 | — | none |
+| 6 | **Kurzbewerbung** | Convert on mobile | Form, see the field list and data-protection requirements below. **Goes live only with D-03 + D-27.** Until then this section shows the application channels: phone and e-mail [V] | "Bewerbung senden" (fallback: "Anrufen" / "E-Mail schreiben") | none |
+| 7 | **Ansprechpartner** | A person, not a mailbox | Name, photo, phone, e-mail [D-03, D-12]. Fallback: the verified phone and e-mail | "Anrufen" | photo [D-12] |
 
-**Position detail `/karriere/<stelle>`** (only with D-01): title, tasks,
+**Position detail `/karriere/<stelle>`** (state II only): title, tasks,
 requirements, conditions [D-02], the short form with this position
 preselected, and the contact person.
 
-**Desktop:** the form sits beside the "So bewerben Sie sich" steps.
-**Mobile:** the form is reachable within one screen-swipe from the hero via
-an anchor. The bottom bar: "Anrufen | Bewerben". Inputs use the right
-keyboard (`type=tel`, `type=email`).
+### Kurzbewerbung: fields [P, D-03]
+
+| Field | Required | Note |
+|---|---|---|
+| Name | yes | |
+| Telefon **or** E-Mail | at least one | Many candidates prefer a call back [H] |
+| Bereich / Stelle | yes | State I: area of work (see above); state II: position or "Initiativ" |
+| Nachricht | no | Free text: experience, licences, availability, **in the candidate's own words** |
+| Unterlagen | no | Upload, **only once the upload part of the workflow below is approved (D-27)**. Until then the form, if live, has no upload field |
+| Datenschutz-Hinweis | acknowledgement | Links to the applicant section of the new Datenschutzerklärung |
+
+**Deliberately not asked:** photo, date of birth, nationality, marital
+status, gender/Anrede. They are not needed for a first contact, and asking
+for them creates discrimination risks under the AGG and needless personal
+data. This is a recommendation for legal review, not legal advice.
+
+### Application data: privacy and security requirements [P, D-03, D-27]
+
+These must be agreed and checked by whoever is responsible for data
+protection **before** the form goes live. They are design requirements,
+not a legal assessment.
+
+| Area | Requirement |
+|---|---|
+| Transport | HTTPS only; no third-party form services without a processing agreement (AVV) |
+| Spam protection | Honeypot and rate limiting. **No reCAPTCHA or similar third-party challenge** without consent and disclosure |
+| Upload | Optional. PDF, JPG and PNG only, checked server-side by content, not file name. Size limit (e.g. ≤ 10 MB in total, to be set). Files renamed on receipt and stored **outside the public web root**, never reachable by URL. Malware scan if the host offers one |
+| Delivery and storage | Either (a) a dedicated, access-restricted mailbox, or (b) protected storage with notification only (no attachments in the notification). The choice depends on D-03 and D-07. **Not** the general info mailbox if several people read it |
+| Access | Only named persons responsible for hiring |
+| Retention | A fixed deletion period after the process ends, set with legal review. Keeping applications longer (talent pool) only with separate, explicit consent |
+| Transparency | An applicant section in the Datenschutzerklärung (purpose, legal basis, recipients, retention, rights), linked from the form |
+| Confirmation | The on-screen confirmation names the next step from D-03. A confirmation e-mail, if any, **never contains the uploaded files** |
+| Contact-form reuse | The application form must not reuse today's `formmail.php` setup, whose recipient is invalid [V, D-04] |
+
+**Desktop:** the form sits beside "So bewerben Sie sich". **Mobile:** the
+form is reachable within one screen-swipe from the hero via an anchor. The
+bottom bar: "Anrufen | Bewerben". Inputs use the right keyboard
+(`type=tel`, `type=email`).
 
 ---
 
@@ -183,9 +237,8 @@ in German. The submit button stays visible above the keyboard.
 
 | Page | Can be built with verified content now | Blocked or weakened without |
 |---|---|---|
-| Home | Hero, Leistungen overview, Galerie teaser, Kontakt band | Karriere teaser (D-01), Qualifikationen (D-08), owner photo (D-12), area (D-13) |
+| Home | Hero, Leistungen overview, Galerie teaser, Über uns 5a/5b/5e, Karriere teaser (Initiativ state), Kontakt band | Karriere positions state (D-01), Über uns 5c Team (D-16), 5d Qualifikationen (D-08), owner photo (D-12), area (D-13) |
 | Leistungen | All 10 services with text; 7 with photos | 5 services with no photos (D-19), final list (D-09) |
 | Galerie | 18 photos in 8 chapters | Context captions (D-15), GAL-16 (D-14) |
-| Über uns | Intro, values, location | Team, qualifications, technology framing (D-16, D-08, D-12) |
-| Karriere | General text, five offer items, Initiativ route | **Positions and application channel (D-01, D-03)** |
+| Karriere | State I: candidate hero, Initiativbewerbung via phone and e-mail, Einblicke | Positions (D-01), confirmation of the five offer items (D-02), **application form (D-03 + D-27)**, upload (D-27) |
 | Kontakt | Channels, intro, map | **Form delivery (D-04)**, fields (D-18) |

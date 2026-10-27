@@ -1,6 +1,11 @@
 # User Journeys — BLF Service
 
-Stage 02 · 2026-10-26
+Stage 02 · 2026-10-26, decisions recorded 2026-10-27
+
+**Approved UX decisions** (SITEMAP §0): **UX-01** Über uns is a Home
+section · **UX-02** hybrid Galerie (scroll-driven desktop, cards on
+mobile) · **UX-03** dedicated Karriere page with an Initiativbewerbung
+until vacancies are confirmed.
 
 **Sources:** the seven saved pages (`references/source-html/`),
 `CONTENT_AUDIT.md`, `ASSET_INVENTORY.md`. Client questions are referenced
@@ -128,45 +133,46 @@ The label and promise depend on **D-08 d** and **D-17**:
 ### 3.2 Proposed journey [P]
 
 ```
-Home "Wir stellen ein" teaser ─┐   (only while vacancies exist, D-01)
-Header nav "Karriere" ─────────┼─► Karriere page
+Home Karriere teaser ──────────┐   (always: Initiativ state now, positions after D-01)
+Header nav "Karriere" ─────────┼─► Karriere page (UX-03)
 Search "Baumpfleger Job …" ────┘     │
-                                     ├─ Why work here (D-02, verified items only)
-                                     ├─ Open positions (D-01) ──► position detail
-                                     │                                 │
-                                     ├─ How applying works (3 steps)   │
-                                     └─ Quick application ◄────────────┘
-                                         (D-03: form / phone / e-mail)
+                                     ├─ State I (now): Initiativbewerbung, pick an area of work
+                                     ├─ State II (after D-01): open positions ──► position detail
+                                     ├─ Why work here (verified items only, D-02)  │
+                                     └─ Apply ◄────────────────────────────────────┘
+                                         now: phone / e-mail
+                                         later: Kurzbewerbung form (D-03 + D-27)
                                                    │
                                                    ▼
-                                Confirmation: who calls back (no time promise)
+                                Confirmation: who gets in touch (no time promise)
 ```
 
 | Step | Proposal | Depends on |
 |---|---|---|
-| Discover | "Karriere" in the main nav; a Home teaser **only while positions are open**; a short line in the footer | D-01, D-23 |
-| Understand | One card per position: title, tasks, requirements, hours, location. Each position is a detail section or page so it can be shared and found by search | D-01 |
+| Discover | "Karriere" in the main nav; a Home teaser that is **always shown**: an Initiativbewerbung invitation now, position titles after D-01; a short line in the footer | D-01, D-23 |
+| Understand | **Now:** the verified general text and a choice of *areas of work* taken from the verified services (not job titles). **After D-01:** one card per position (title, tasks, requirements, hours, location), each with its own page so it can be shared and found by search | D-01 |
 | Evaluate | "Was wir bieten": the five verified items. Photos of real work (gallery images with people only after D-12). No invented perks | D-02, D-12 |
-| Apply | **Short application**: name, phone, position (or "Initiativ"), message, CV optional. Plus tap-to-call and e-mail. Mobile-first: completable in under 2 minutes [H] | D-03 |
+| Apply | **Now:** tap-to-call and e-mail. **Once D-03 + D-27 are settled:** a Kurzbewerbung form (name, phone or e-mail, area or position, message; upload optional and only with the D-27 upload workflow), completable on a phone in under 2 minutes [H]. No photo, birth date, nationality or marital status asked | D-03, D-27 |
 | After | Confirmation page naming who will get in touch, from D-03 | D-03 |
 
-**Fallback while D-01 is unanswered:** the Karriere page shows the
-verified general text, the verified "Wir bieten" items, and an
-Initiativbewerbung route (phone + e-mail). No position cards and no Home
-teaser.
+**Default until D-01 is answered (UX-03):** the Karriere page is in its
+Initiativbewerbung state. It shows the verified general text, the verified
+"Wir bieten" items (confirmation requested, D-02), and the application
+channels phone + e-mail. No position cards and no job titles. The Home
+teaser invites Initiativbewerbungen instead of being hidden.
 
 ### 3.3 Friction points and conversion opportunities (candidate)
 
 | # | Friction [V] | Opportunity [P] | Priority |
 |---|---|---|---|
 | K1 | No positions listed | Position cards from D-01 | **Critical** [D-01] |
-| K2 | No clear application channel | Short mobile form plus call/e-mail; no mandatory CV | **Critical** [D-03] |
+| K2 | No clear application channel | Now: phone and e-mail stated clearly. Later: a short mobile form, no mandatory CV | **Critical** [D-03, D-27] |
 | K3 | Customer hero and CTA reused on Jobs | Own hero for candidates, with the CTA "Jetzt bewerben" | High |
-| K4 | Hiring not visible outside the Jobs page | Nav item, Home teaser and footer line (conditional) | High [D-01] |
+| K4 | Hiring not visible outside the Jobs page | Nav item, an always-on Home teaser (Initiativ or positions state) and a footer line | High [D-01] |
 | K5 | No visual proof of the work environment | Real photos of crews and machines (GAL-01, 02, 07, 09, 12, 14, 15) | Medium [D-12] |
 | K6 | Benefits buried in one sentence | Same five items as a scannable list; no additions | Medium [D-02] |
 | K7 | No contact person | Name and photo of the person who answers | Medium [D-03, D-12] |
-| K8 | Applicant data handling is undefined | Retention period and privacy note on the form | High (legal) [D-03] |
+| K8 | Applicant data handling is undefined; the Datenschutz has no applicant section [V] | Applicant-data workflow and privacy section before any form goes live (PAGE_ARCHITECTURE §5) | **Critical** for the form [D-27] |
 
 ---
 

@@ -1,11 +1,19 @@
 # Motion Spec — Scroll-driven Gallery
 
-Stage 02 · 2026-10-26 · labels: **[V]** verified · **[P]** proposal ·
+Stage 02 · 2026-10-26, updated 2026-10-27 (UX-02) · labels: **[V]** verified · **[P]** proposal ·
 **[D-xx]** client decision (`CLIENT_DECISIONS.md`)
 
 The interaction specification for `/galerie` (PAGE_ARCHITECTURE §3) and the
 smaller teaser on Home. No code; implementation technology is decided in a
 later stage.
+
+**Approved 2026-10-27 (UX-02):** hybrid gallery. Desktop is scroll-driven
+(§3); mobile is a card layout (§6); reduced motion is respected everywhere
+(§4); **performance and image quality take priority over animation
+complexity.** This document stays the behavioural spec. The creative layer
+(look, typography, timing, failure states) is in
+`docs/design/MOTION_DESIGN.md`. Where the two differ, MOTION_DESIGN is the
+newer source.
 
 ## 0. Benchmark and boundaries
 
@@ -173,26 +181,40 @@ pixels**, at least at 1× and ideally at 2×.
 When full-resolution originals arrive (D-10), only these caps change; the
 choreography stays.
 
-## 6. Mobile and tablet fallback [P]
+## 6. Mobile and tablet: card layout [P, UX-02]
 
 **Applies when** the width is < 1024 px, the height is < 700 px, or the
-pointer is coarse.
-- **No pinning.** Pinned sections on phones fight browser chrome resizing
-  and touch momentum.
-- Each chapter is: heading + verified line → a **horizontal scroll-snap
-  row**.
-  - Each photo is ~85 vw wide in its own aspect ratio. At 375 px that is
-    ≈ 319 CSS px × 3 DPR ≈ 957 px, within the 1125 px native width.
-  - Captions sit below each photo.
-  - A counter ("2 / 5") and a peek of the next photo show that the row
-    swipes.
-- Rows are separated by normal vertical scroll, so vertical scroll never
-  gets trapped inside a row.
-- **Entry motion:** a single fade/translate (≤ 16 px, ≤ 400 ms) as a
-  chapter enters the viewport, played once. None with reduced motion.
-- Tap opens the lightbox (swipe between photos, swipe down or ✕ to close).
-- Chapter chips at the top are a horizontal scroll row; tapping one jumps
-  to the chapter.
+pointer is coarse. Per UX-02 the mobile gallery is a **straightforward,
+touch-friendly card layout**, not a reduced copy of the desktop stage.
+
+- **No pinning, no scroll-linked animation.** Pinned sections on phones
+  fight browser chrome resizing and touch momentum.
+- **Structure:** filter chips at the top (one per chapter, plus "Alle"),
+  then each chapter as a heading with its verified line, followed by its
+  cards. Order as in §2.
+- **Cards:** the photo in its **own aspect ratio, never cropped**, with the
+  caption below (service + what is visible). One column below 600 px; two
+  columns from 600 to 1023 px.
+- **Size caps.** CSS width × DPR must stay ≤ native width:
+
+| Photos | Native width | Max card width at 3× DPR | Max at 2× DPR |
+|---|---|---|---|
+| 3:4 portraits (1125 px) | 1125 | 375 CSS px → full width on phones fits | 562 |
+| GAL-01 | 1169 | 389 | 584 |
+| **GAL-02, GAL-03** | **843–844** | **281 CSS px**: narrower than full width on 3× phones, centred with the caption below | 421 |
+| GAL-05 (landscape) | 1500 | 500 → full width fits; **not** cropped to portrait (a 3:4 slice would be only 844 px wide) | 750 |
+
+  On the current files this cap shows GAL-02/03 slightly smaller rather
+  than softer. Full-resolution originals (D-10) remove the cap.
+- **Filter chips** scroll horizontally. A tap shows that chapter only and
+  scrolls to it; "Alle" restores the list. The URL hash reflects the chip
+  for sharing.
+- **Entry motion:** at most a single fade/translate (≤ 16 px, ≤ 400 ms) as
+  a card enters the viewport, played once. None with reduced motion.
+- **Lightbox:** tap opens it; swipe between photos within the active
+  filter; swipe down or ✕ closes it.
+- **Per-chapter CTA** "Ähnliche Arbeit anfragen" after each chapter's
+  cards (as on desktop, §3).
 - The bottom action bar (PAGE_ARCHITECTURE R3) hides while the lightbox is
   open.
 

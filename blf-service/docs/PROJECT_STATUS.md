@@ -1,7 +1,7 @@
 # Project Status — BLF Service redesign
 
-Last update: 2026-10-26 · **Stage 01 complete and approved.** **Stage 02
-(UX architecture) complete.** Waiting for approval before Stage 03.
+Last update: 2026-10-27 · Stages 01 and 02 **approved**. **Stage 03 (art
+direction) documentation complete.** Waiting for approval before Stage 04.
 GAL-16 still waits on the client (D-14).
 
 ## Stage 01 — Discovery, asset extraction, foundation
@@ -152,11 +152,61 @@ blf-service/
   example microcopy.
 - No changes to source HTML, assets or anything outside `blf-service/`.
 
-## Before Stage 03
+### Stage 02 finalisation (2026-10-27)
 
-1. Send the client questions in `CLIENT_DECISIONS.md` (**critical:
-   D-01 – D-11**).
-2. Supply the Ma'Loa reference material (MOTION_SPEC §0 checkpoint).
-3. Decide whether Über uns is a page or a Home section (SITEMAP §4).
-4. When the client answers D-14, `git mv` GAL-16 accordingly.
-5. Give explicit approval to start Stage 03.
+Approved UX decisions recorded (SITEMAP §0; DESIGN_DECISIONS §1):
+- **UX-01** Über uns → Home section `#ueber-uns`. PAGE_ARCHITECTURE Home
+  §5 has blocks 5a–5e; §4 is kept as a pointer.
+- **UX-02** Hybrid Galerie. MOTION_SPEC §6 is now a card layout on mobile.
+- **UX-03** Dedicated Karriere page, with an Initiativbewerbung state, form
+  fields, and privacy and security requirements.
+
+Updated: SITEMAP, PAGE_ARCHITECTURE, USER_JOURNEYS, MOTION_SPEC,
+CLIENT_DECISIONS.
+
+Corrections (DESIGN_DECISIONS §8):
+- D-08 extended with (h)–(j);
+- new **D-27** (applicant-data workflow);
+- D-20 moved to tier B as an implementation gate;
+- the GAL-02/03 mobile size error fixed.
+
+## Stage 03 — Art direction (documentation only)
+
+### Done
+
+- [x] Evidence gathered:
+      - logo colours measured (`#32642A`, `#8BBB23`, `#DD9E09`); the site
+        teal `#023435` is not in the logo;
+      - photo palette measured (≈ 1 % green, earth tones dominate);
+      - placeholder colour per photo computed;
+      - all palette pairs measured for WCAG contrast;
+      - og:image identified as a crop of the GAL-16 photograph.
+- [x] `docs/design/ART_DIRECTION.md`: three directions, scored. The
+      recommendation is **A "Revier"**, with the full system: palette,
+      type, grid, image rules, icons, interface, accessibility,
+      breakpoints.
+- [x] `docs/design/DESIGN_TOKENS.md`: tokens with their source (logo,
+      site, derived, proposed); alternative palettes measured.
+- [x] `docs/design/MOTION_DESIGN.md`: hybrid gallery creative spec,
+      including failure and fallback states.
+- [x] `docs/design/VISUAL_REFERENCE_BRIEF.md`: references needed (none
+      collected, no URLs), a photography shot list, the Ma'Loa checklist.
+- [x] `docs/design/DESIGN_DECISIONS.md`: approvals, open questions
+      DQ-01 – DQ-10, risks, the Stage 04 gate.
+
+### Not done on purpose
+
+- No CSS, JavaScript, components, mockups or new logo.
+- No changes to source HTML, assets, production systems or anything
+  outside `blf-service/`.
+
+## Before Stage 04
+
+1. Project owner: approve or adjust Direction A (DQ-01). Then present it to
+   the client [D-20].
+2. Send the client questions (`CLIENT_DECISIONS.md`). Critical: D-01 –
+   D-11 and D-27; for design also D-10, D-11, D-12, D-20.
+3. Supply the Ma'Loa material, or waive the comparison.
+4. Font specimen and licence check (DQ-04).
+5. When the client answers D-14, `git mv` GAL-16 accordingly.
+6. Give explicit approval to start Stage 04.
