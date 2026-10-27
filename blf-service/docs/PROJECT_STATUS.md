@@ -214,6 +214,42 @@ Corrections (DESIGN_DECISIONS §8):
 - New **DQ-12** (Markierung colour on light grounds).
 - Details: DESIGN_DECISIONS §3 and §8.
 
+## Stage 04B — Creative reset: three directions (2026-10-27)
+
+### Done
+
+- [x] Three directions, each a working prototype of hero, intro and first
+      three scroll scenes, in `concepts/`:
+      - A · Lebender Baum (Canvas 2D generative tree);
+      - B · Wald-Monument (canvas bark lettering, raking light);
+      - C · Wald als System (SVG tree rings, contours, service names on
+        the rings, photo window).
+- [x] Full write-up, scores, recommendation (**C**) and decisions needed:
+      [`docs/design/CREATIVE_DIRECTIONS.md`](design/CREATIVE_DIRECTIONS.md).
+- [x] Real screenshot boards in `concepts/review/`: hero comparison,
+      intro keyframes, scroll scenes. Review page: `concepts/index.html`.
+- [x] Checks: 0 console errors; 0 px horizontal overflow at 320–1440 px;
+      no upscaling at 1×/2×/3×; reduced-motion and no-JS fallbacks render
+      a stacked page.
+- [x] Logo: the authentic PNG only, unchanged. Category-B proposals (B
+      relief, C tree-mark lockup) are labelled "Vorschlag B" on the page.
+- [x] No dependencies added. Higgsfield not used (credits, and no generated
+      imagery wanted next to real work).
+
+### Not done on purpose
+
+- No full website, no secondary pages; `src/` (the Stage 04 baseline)
+  untouched.
+
+### Open
+
+| Item | Status |
+|---|---|
+| Direction | Owner to choose (recommended C) |
+| Category-B logo proposals | Owner approval needed; until then only the unchanged emblem |
+| A performance | Intro drops frames under CPU throttling; fix described, not built |
+| Browsers | Chromium only |
+
 ## Stage 04 — Home prototype and tree intro (2026-10-27)
 
 ### Done

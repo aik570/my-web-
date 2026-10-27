@@ -1,0 +1,56 @@
+/* Shared base for the Stage 04B concept prototypes. Tokens come from the
+   approved "Revier" system (src/styles/tokens.css). */
+@import url("../../src/styles/tokens.css");
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { margin: 0; font-family: var(--font-text); font-size: var(--type-body); line-height: 1.6; }
+img { display: block; max-width: 100%; height: auto; }
+h1, h2, h3 { margin: 0; font-weight: 500; }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+.tnum { font-variant-numeric: tabular-nums; }
+.visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Concept label: always visible, so screenshots can never be mistaken for the final site. */
+.concept-tag {
+  position: fixed; left: 50%; top: 10px; z-index: 90;
+  transform: translateX(-50%);
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(20, 20, 20, 0.72);
+  color: #f4f1e9;
+  font: 600 11px/1.4 var(--font-text);
+  letter-spacing: 0.08em; text-transform: uppercase;
+  pointer-events: none;
+  white-space: nowrap;
+}
+@media (max-width: 600px) {
+  .concept-tag { left: auto; right: 12px; transform: none; top: 14px; max-width: calc(100% - 100px);
+                 overflow: hidden; text-overflow: ellipsis; font-size: 10px; letter-spacing: .04em; }
+}
+
+/* Contact access: present from the first second, in every scene. */
+.contact-dock {
+  position: fixed; right: 16px; bottom: 16px; z-index: 80;
+  display: flex; gap: 8px;
+}
+.contact-dock a {
+  display: inline-flex; align-items: center; gap: 8px;
+  min-height: 48px; padding: 0 18px;
+  border-radius: 2px;
+  font-weight: 600; text-decoration: none;
+}
+
+/* Marks every logo treatment that is NOT the official artwork (category B). */
+.proposal-label {
+  display: inline-block;
+  padding: 3px 8px;
+  border: 1px dashed currentColor;
+  font: 600 11px/1.4 var(--font-text);
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+
+/* Reduced motion and frozen keyframes: no transitions anywhere. */
+html.rm *, html.frozen * { transition: none !important; animation: none !important; }

@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Konzept C – Wald als System | Baum-Land-Forst</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="../shared/concept.css">
+  <style>
+    body { background: var(--paper-50); color: var(--forest-950); }
+    .brand { position: fixed; left: 20px; top: 16px; z-index: 70; display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--forest-950); }
+    .brand img { width: 56px; height: 56px; }
+    .nav { position: fixed; right: 20px; top: 24px; z-index: 70; display: flex; gap: 22px; font-weight: 600; font-size: 15px; }
+    .nav a { text-decoration: none; }
+    @media (max-width: 767px) { .nav { display: none; } }
+
+    .stage { position: relative; height: 300vh; }
+    .stage__sticky { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+    svg.rings { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .rings path { fill: none; }
+    .rings .ring { stroke: var(--forest-600); stroke-width: 1; }
+    .rings .ring.major { stroke-width: 1.6; }
+    .rings .contour { stroke: var(--bark-500); stroke-width: .8; opacity: .55; }
+    .rings text { font: 600 12px var(--font-text); letter-spacing: .1em; text-transform: uppercase; fill: var(--forest-950); }
+    .rings text.group { fill: var(--harz-700); }
+
+    .window { position: absolute; border-radius: 50%; overflow: hidden; }
+    .window img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* paper scrim: rings and contours fade out behind the copy so every line stays legible */
+    .stage__sticky::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background: linear-gradient(90deg, var(--paper-50) 0, var(--paper-50) 34%, rgba(244, 241, 233, 0) 48%);
+      opacity: calc(var(--intro, 1) * var(--hero, 1)); }
+    @media (max-width: 767px) { .stage__sticky::after { background: linear-gradient(0deg, var(--paper-50) 0, var(--paper-50) 36%, rgba(244, 241, 233, 0) 46%); } }
+    .copy { z-index: 2; }
+    .copy { position: absolute; left: clamp(20px, 5vw, 80px); top: 50%; transform: translateY(-50%); width: min(30vw, 27rem); opacity: calc(var(--intro, 1) * var(--hero, 1)); }
+    .copy .label { display: flex; gap: 10px; align-items: center; font: 600 12px/1.3 var(--font-text); letter-spacing: .08em; text-transform: uppercase; }
+    .marker { width: 24px; height: 6px; background: var(--harz-700); border-radius: 45% 60% 55% 40% / 60% 45% 55% 40%; transform: rotate(-3deg); display: inline-block; }
+    .copy h1 { margin-top: 16px; font-family: var(--font-display); font-size: clamp(2.25rem, 1.4rem + 2.6vw, 4rem); line-height: 1.04; letter-spacing: -0.01em; }
+    .copy p { margin-top: 16px; color: var(--bark-600); }
+    .copy .lockup { margin-top: 28px; display: flex; align-items: center; gap: 14px; }
+    .copy .lockup img { width: 56px; height: 56px; }
+    .copy .lockup span { font-family: var(--font-display); font-size: 1.35rem; }
+    .copy .lockup .proposal-label { color: var(--harz-700); font-size: 10px; }
+    @media (max-width: 767px) { .copy { top: auto; bottom: 86px; transform: none; width: auto; right: 20px; } .copy h1 { font-size: 2rem; } .copy p { display: none; } }
+
+    /* scene 2: node map of the four service groups */
+    .nodes { position: absolute; inset: 0; opacity: var(--s2, 0); pointer-events: none; }
+    .node { position: absolute; width: 190px; transform: translate(-50%, -50%) scale(calc(.9 + .1 * var(--s2, 0))); text-align: center; }
+    .node .disc { width: 120px; height: 120px; margin: 0 auto; border-radius: 50%; overflow: hidden; border: 1px solid var(--forest-600); background: var(--paper-100); display: grid; place-items: center; font-family: var(--font-display); font-size: 1.6rem; color: var(--harz-700); }
+    .node .disc img { width: 100%; height: 100%; object-fit: cover; }
+    .node b { display: block; margin-top: 12px; font-weight: 600; }
+    .node small { display: block; color: var(--bark-600); font-size: 13px; line-height: 1.4; }
+    @media (max-width: 767px) { .node { width: 140px; } .node .disc { width: 78px; height: 78px; } .node small { display: none; } }
+
+    /* scene 3: editorial cross-section of real work */
+    .spread { position: absolute; inset: 0; padding: 110px clamp(20px, 5vw, 80px) 90px; background: var(--paper-50); opacity: var(--s3, 0); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; align-content: center; }
+    .spread h2 { grid-column: 1 / -1; font-family: var(--font-display); font-size: var(--type-h2); }
+    .spread figure { margin: 0; transform: translateY(calc((1 - var(--s3, 0)) * 40px)); }
+    .spread figure:nth-of-type(2n) { margin-top: 48px; }
+    .spread img { width: 100%; max-width: 281px; }
+    .spread figcaption { margin-top: 8px; font-size: 13px; color: var(--bark-600); }
+    .spread figcaption b { display: block; color: var(--forest-950); letter-spacing: .08em; text-transform: uppercase; font-size: 11px; }
+    @media (max-width: 767px) { .spread { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; } .spread figure:nth-of-type(2n) { margin-top: 24px; } }
+
+    .contact { padding: 96px clamp(20px, 5vw, 80px) 140px; border-top: 1px solid rgba(122,113,102,.4); }
+    .contact h2 { font-family: var(--font-display); font-size: var(--type-h2); max-width: 22ch; }
+    .contact p { margin-top: 16px; color: var(--bark-600); }
+    .contact a { color: var(--forest-600); }
+    .contact-dock .call { background: var(--paper-50); color: var(--forest-950); border: 1.5px solid var(--forest-950); }
+    .contact-dock .ask { background: var(--forest-600); color: var(--paper-50); }
+
+    html.rm .stage, html:not(.js) .stage { height: auto; }
+    html.rm .stage__sticky, html:not(.js) .stage__sticky { position: relative; height: auto; overflow: visible; }
+    html.rm svg.rings, html:not(.js) svg.rings { position: relative; height: 80vh; }
+    html.rm .copy, html.rm .nodes, html.rm .spread, html:not(.js) .copy, html:not(.js) .nodes, html:not(.js) .spread { position: relative; inset: auto; left: auto; top: auto; bottom: auto; transform: none; opacity: 1; width: auto; margin: 40px 20px; }
+    html.rm .node, html:not(.js) .node { position: relative; left: auto !important; top: auto !important; transform: none; display: inline-block; margin: 12px; }
+    html.rm .spread figure, html:not(.js) .spread figure { transform: none; }
+    html.rm .stage__sticky::after, html:not(.js) .stage__sticky::after { display: none; }
+    html.rm .copy, html:not(.js) .copy { max-width: 40rem; }
+  </style>
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+  <p class="concept-tag">Konzept C · Wald als System · Prototyp, nicht final</p>
+  <a class="brand" href="#top" id="top"><img src="../../public/assets/optimized/home/logo-192.webp" srcset="../../public/assets/optimized/home/logo-192.webp 192w, ../../public/assets/optimized/home/logo-384.webp 384w" sizes="56px" width="192" height="192" alt="Baum-Land-Forst Service"></a>
+  <nav class="nav" aria-label="Hauptnavigation"><a href="#leistungen">Leistungen</a><a href="#arbeit">Arbeit</a><a href="#kontakt">Kontakt</a></nav>
+
+  <section class="stage" aria-label="Einführung">
+    <div class="stage__sticky">
+      <svg class="rings" id="rings" aria-hidden="true"></svg>
+      <div class="window" id="window">
+        <picture>
+          <source type="image/avif" srcset="../../public/assets/optimized/home/GAL-13-480.avif 480w, ../../public/assets/optimized/home/GAL-13-800.avif 800w, ../../public/assets/optimized/home/GAL-13-1125.avif 1125w" sizes="380px">
+          <img src="../../public/assets/optimized/home/GAL-13-800.webp" width="1125" height="1500" alt="Blick in die Kronen mehrerer Kiefern, die mit einem Seilsystem zur Kronensicherung verbunden sind.">
+        </picture>
+      </div>
+
+      <div class="copy">
+        <p class="label"><span class="marker" aria-hidden="true"></span>Seddiner See · Brandenburg</p>
+        <h1>Baum, Land, Forst. Zehn Leistungen, ein Betrieb.</h1>
+        <p>Wir bieten Ihnen: Baumfällung, Baumpflege, Baumkontrolle, Winterdienst, Pflasterarbeiten, Neuanpflanzung, Grünflächenpflege und mehr.</p>
+        <div class="lockup">
+          <img src="../shared/assets/proposal-tree-mark-600.webp" width="600" height="600" alt="">
+          <div><span>Baum-Land-Forst</span><br><span class="proposal-label">Vorschlag B · Baum-Zeichen aus dem Original-Emblem</span></div>
+        </div>
+      </div>
+
+      <div class="nodes" id="leistungen" aria-label="Leistungsgruppen">
+        <div class="node" style="left:30%;top:38%"><div class="disc"><img src="../../public/assets/optimized/home/GAL-02-480.webp" width="844" height="1500" alt="Baumkletterer mit Motorsäge am Stamm einer Kiefer." style="object-position:50% 25%"></div><b>Baumarbeiten</b><small>Fällung · Pflege · Kontrolle</small></div>
+        <div class="node" style="left:56%;top:30%"><div class="disc">02</div><b>Grün &amp; Forst</b><small>Neuanpflanzung · Grünflächenpflege · Forstpflege</small></div>
+        <div class="node" style="left:44%;top:68%"><div class="disc"><img src="../../public/assets/optimized/home/GAL-06-480.webp" width="1125" height="1500" alt="Minibagger auf einem geräumten Grundstück."></div><b>Bau &amp; Fläche</b><small>Baufeldberäumung · Pflasterarbeiten</small></div>
+        <div class="node" style="left:74%;top:62%"><div class="disc"><img src="../../public/assets/optimized/home/GAL-14-480.webp" width="1125" height="1500" alt="Räumfahrzeug mit Schneeschild bei Nacht." style="object-position:30% 70%"></div><b>Winter &amp; Reinigung</b><small>Winterdienst · Straßen- und Flächenreinigung</small></div>
+      </div>
+
+      <div class="spread" id="arbeit">
+        <h2>Querschnitt: echte Arbeit</h2>
+        <figure><img src="../../public/assets/optimized/home/GAL-04-480.webp" srcset="../../public/assets/optimized/home/GAL-04-480.webp 480w, ../../public/assets/optimized/home/GAL-04-800.webp 800w" sizes="281px" width="1125" height="1500" alt="Arbeitsbühne neben einem stark eingekürzten Baum."><figcaption><b>Baumfällung</b>Arbeitsbühne am Baum</figcaption></figure>
+        <figure><img src="../../public/assets/optimized/home/GAL-11-480.webp" srcset="../../public/assets/optimized/home/GAL-11-480.webp 480w, ../../public/assets/optimized/home/GAL-11-800.webp 800w" sizes="281px" width="1125" height="1500" alt="Stubbenfräse an einem Baumstumpf."><figcaption><b>Stubbenfräsen</b>Fräse am Baumstumpf</figcaption></figure>
+        <figure><img src="../../public/assets/optimized/home/GAL-18-480.webp" srcset="../../public/assets/optimized/home/GAL-18-480.webp 480w, ../../public/assets/optimized/home/GAL-18-800.webp 800w" sizes="281px" width="1125" height="1500" alt="Böschung mit Erosionsschutzmatte."><figcaption><b>Hangbefestigung</b>Böschung mit Schutzmatte</figcaption></figure>
+        <figure><img src="../../public/assets/optimized/home/GAL-19-480.webp" srcset="../../public/assets/optimized/home/GAL-19-480.webp 480w, ../../public/assets/optimized/home/GAL-19-800.webp 800w" sizes="281px" width="1125" height="1500" alt="Rasengittersteine entlang einer Straße."><figcaption><b>Pflasterarbeiten</b>Rasengitter am Straßenrand</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="kontakt" aria-labelledby="kontakt-t">
+    <h2 id="kontakt-t">Haben Sie Fragen oder benötigen Sie ein unverbindliches Angebot?</h2>
+    <p>Telefon <a class="tnum" href="tel:+491723841620">0172 3841620</a> · <a href="mailto:info@blfservice.de">info@blfservice.de</a> · Am Seehügel 1c, 14554 Seddiner See</p>
+  </section>
+
+  <div class="contact-dock"><a class="call tnum" href="tel:+491723841620">0172 3841620</a><a class="ask" href="mailto:info@blfservice.de?subject=Anfrage">Anfrage</a></div>
+
+  <script src="../shared/concept.js"></script>
+  <script>
+  (function () {
+    var C = window.Concept, NS = "http://www.w3.org/2000/svg";
+    var svg = document.getElementById("rings"), win = document.getElementById("window");
+    var stage = document.querySelector(".stage"), copy = document.querySelector(".copy");
+    var SERVICES = ["Baumfällung", "Baumpflege", "Baumkontrolle", "Baufeldberäumung", "Straßen- und Flächenreinigung",
+                    "Winterdienst", "Pflasterarbeiten", "Neuanpflanzung & Freistellen", "Grünflächenpflege für Kommunen", "Forstwirtschaftliche Pflege"];
+    var rings = [], labels = [], marker, geo;
+
+    // A ring: a circle whose radius is modulated by a few seeded sine waves (growth irregularity).
+    function ringPath(cx, cy, r, wob, seed) {
+      var rnd = C.rng(seed), k = [rnd() * 6, rnd() * 6, rnd() * 6], a = [wob, wob * 0.6, wob * 0.35], d = "";
+      for (var i = 0; i <= 180; i++) {
+        var t = i / 180 * Math.PI * 2;
+        var rr = r * (1 + a[0] * Math.sin(2 * t + k[0]) + a[1] * Math.sin(3 * t + k[1]) + a[2] * Math.sin(5 * t + k[2]));
+        d += (i ? "L" : "M") + (cx + Math.cos(t) * rr).toFixed(1) + " " + (cy + Math.sin(t) * rr).toFixed(1);
+      }
+      return d + "Z";
+    }
+
+    function build() {
+      svg.innerHTML = "";
+      var w = window.innerWidth, h = window.innerHeight, small = w < 768;
+      var cx = small ? w * 0.5 : w * 0.64, cy = small ? h * 0.34 : h * 0.5;
+      var r0 = small ? w * 0.2 : h * 0.19;                              // photo window radius
+      geo = { cx: cx, cy: cy, r0: r0 };
+      svg.setAttribute("viewBox", "0 0 " + w + " " + h);
+      var defs = document.createElementNS(NS, "defs"); svg.appendChild(defs);
+      rings = []; labels = [];
+      var n = small ? 9 : 14, step = (small ? w * 0.045 : h * 0.032);
+      for (var i = 0; i < n + 12; i++) {                                 // tree rings, then contour lines
+        var contour = i >= n, r = r0 + 10 + i * step * (contour ? 1.6 : 1);
+        var p = document.createElementNS(NS, "path");
+        p.setAttribute("d", ringPath(cx, cy, r, contour ? 0.05 + (i - n) * 0.012 : 0.012 + i * 0.002, 100 + i));
+        p.setAttribute("class", contour ? "contour" : "ring" + (i % 4 === 3 ? " major" : ""));
+        p.setAttribute("id", "ring" + i);
+        p.setAttribute("pathLength", "1");
+        p.style.strokeDasharray = "1 1";
+        p.style.strokeDashoffset = "1";
+        svg.appendChild(p);
+        rings.push({ el: p, i: i, contour: contour });
+      }
+      // service names set along the rings (spatial typography)
+      var list = small ? ["Baumarbeiten", "Grün & Forst", "Bau & Fläche", "Winter & Reinigung"] : SERVICES;
+      list.forEach(function (name, j) {
+        var ringIdx = small ? [1, 3, 5, 7][j] : 2 + (j % 6) * 2;       // mobile: short arcs near the top, never past the edge
+        var text = document.createElementNS(NS, "text");
+        text.setAttribute("class", small ? "group" : (j < 3 ? "group" : ""));
+        var tp = document.createElementNS(NS, "textPath");
+        tp.setAttribute("href", "#ring" + ringIdx);
+        if (small) { tp.setAttribute("startOffset", [70, 79, 68, 77][j] + "%"); text.setAttribute("text-anchor", "middle"); }
+        else tp.setAttribute("startOffset", (((j * 0.137) + 0.55) % 1 * 100).toFixed(1) + "%");
+        tp.textContent = name;
+        text.appendChild(tp); svg.appendChild(text);
+        labels.push(text);
+      });
+      marker = document.createElementNS(NS, "ellipse");
+      marker.setAttribute("cx", cx); marker.setAttribute("cy", cy); marker.setAttribute("rx", 9); marker.setAttribute("ry", 5);
+      marker.setAttribute("fill", "#dd9e09"); marker.setAttribute("transform", "rotate(-12 " + cx + " " + cy + ")");
+      svg.appendChild(marker);
+      var size = r0 * 2;                                                 // <= 380 CSS px: 2x = 760 px of a 1125 px photo
+      Object.assign(win.style, { left: (cx - r0) + "px", top: (cy - r0) + "px", width: size + "px", height: size + "px" });
+    }
+
+    var introT = 0;
+    function render(t) {
+      introT = t;
+      marker.style.opacity = C.ease(C.seg(t, 0.2, 0.3)) * (1 - C.seg(t, 2.2, 0.4));
+      rings.forEach(function (R) {
+        var start = R.contour ? 1.2 + (R.i - 14) * 0.05 : 0.5 + R.i * 0.07;
+        R.el.style.strokeDashoffset = (1 - C.ease(C.seg(t, start, R.contour ? 0.9 : 0.7))).toFixed(4);
+      });
+      labels.forEach(function (L, j) { L.style.opacity = C.ease(C.seg(t, 1.8 + j * 0.06, 0.4)); });
+      var open = C.ease(C.seg(t, 2.2, 0.6));
+      win.style.clipPath = "circle(" + (open * 50).toFixed(2) + "% at 50% 50%)";
+      copy.style.setProperty("--intro", C.ease(C.seg(t, 2.6, 0.6)).toFixed(3));
+    }
+
+    build();
+    C.timeline(3.2, render);
+    window.addEventListener("resize", function () { build(); render(introT); });
+
+    if (!C.reduced && !C.frozen) {
+      C.scrollScene(stage, function (p) {
+        var s1 = C.easeInOut(C.seg(p, 0.02, 0.3));
+        // scene 1: the ring system turns slowly and steps back; scene 2: nodes; scene 3: spread
+        svg.style.transform = "rotate(" + (s1 * -14) + "deg) scale(" + (1 - 0.35 * s1) + ")";
+        svg.style.transformOrigin = geo.cx + "px " + geo.cy + "px";
+        svg.style.opacity = 1 - 0.75 * C.seg(p, 0.3, 0.1);
+        win.style.transform = "scale(" + (1 - 0.6 * s1) + ")";
+        win.style.opacity = 1 - C.seg(p, 0.28, 0.08);
+        stage.style.setProperty("--hero", (1 - C.seg(p, 0.04, 0.12)).toFixed(3));
+        stage.style.setProperty("--s2", (C.seg(p, 0.34, 0.1) * (1 - C.seg(p, 0.62, 0.08))).toFixed(3));
+        stage.style.setProperty("--s3", C.seg(p, 0.68, 0.12).toFixed(3));
+      });
+    }
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Konzept A – Lebender Baum | Baum-Land-Forst</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="../shared/concept.css">
+  <style>
+    body { background: #0f1c0f; color: var(--paper-50); }
+    .brand { position: fixed; left: 20px; top: 16px; z-index: 70; display: flex; align-items: center; gap: 14px; text-decoration: none; }
+    /* Authentic emblem (category A): unaltered PNG on a paper plate (ring is 2.06:1 on dark). */
+    .brand img { width: 64px; height: 64px; padding: 3px; border-radius: 50%; background: var(--paper-50); }
+    .nav { position: fixed; right: 20px; top: 26px; z-index: 70; display: flex; gap: 22px; font-weight: 600; font-size: 15px; }
+    .nav a { text-decoration: none; color: var(--paper-50); }
+    @media (max-width: 767px) { .nav { display: none; } .brand img { width: 52px; height: 52px; } }
+
+    /* --- Stage: 300 vh of scroll, one sticky viewport ---------------------- */
+    .stage { position: relative; height: 300vh; }
+    .stage__sticky { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+    .stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; transform-origin: var(--fx, 60%) var(--fy, 40%); }
+    .atmo { position: absolute; inset: 0; background: radial-gradient(120% 90% at 65% 30%, #1c331a 0%, #0f1c0f 55%, #0a130a 100%); opacity: var(--atmo, 1); }
+
+    .hero-copy { position: absolute; left: clamp(20px, 6vw, 96px); bottom: clamp(96px, 14vh, 160px); max-width: 34rem; opacity: calc(var(--intro, 1) * var(--hero, 1)); transform: translateY(var(--rise, 0px)); }
+    .hero-copy .label { font: 600 12px/1.3 var(--font-text); letter-spacing: .08em; text-transform: uppercase; color: var(--harz-500); display: flex; gap: 10px; align-items: center; }
+    .marker { width: 24px; height: 6px; background: var(--harz-500); border-radius: 45% 60% 55% 40% / 60% 45% 55% 40%; transform: rotate(-3deg); display: inline-block; }
+    .hero-copy h1 { margin-top: 16px; font-family: var(--font-display); font-size: clamp(2.5rem, 1.6rem + 3.6vw, 5.25rem); line-height: 1.02; letter-spacing: -0.015em; }
+    .hero-copy p { margin-top: 18px; color: var(--mist-200); font-size: var(--type-body-lg); max-width: 30rem; }
+
+    /* scene 2: inside the canopy, a real photograph */
+    .canopy-photo { position: absolute; left: 50%; top: 50%; width: min(78vw, 375px); transform: translate(-50%, -50%) scale(calc(.94 + .06 * var(--s2, 0))); opacity: var(--s2, 0); }
+    @media (min-width: 1024px) { .canopy-photo { width: min(34vw, 450px, calc((100svh - 220px) * .75)); } }
+    .canopy-photo img { width: 100%; box-shadow: 0 30px 80px rgba(0,0,0,.45); }
+    .canopy-photo figcaption { margin-top: 14px; font-size: 14px; color: var(--mist-200); }
+    .canopy-photo figcaption strong { display: block; color: var(--paper-50); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+
+    /* scene 3: from the tree to the services */
+    .branches { position: absolute; right: clamp(20px, 6vw, 96px); top: 50%; transform: translateY(-50%); width: min(560px, 88vw); opacity: var(--s3, 0); }
+    .branches h2 { font-family: var(--font-display); font-size: var(--type-h2); line-height: 1.1; }
+    .branches ol { list-style: none; margin: 22px 0 0; padding: 0; counter-reset: g; }
+    .branches li { padding: 14px 0; border-top: 1px solid rgba(244,241,233,.18); display: grid; grid-template-columns: 2.2rem 1fr; gap: 6px 12px; transform: translateX(calc((1 - var(--s3, 0)) * 40px)); }
+    .branches li::before { counter-increment: g; content: "0" counter(g); font-family: var(--font-display); color: var(--harz-500); }
+    .branches b { font-weight: 600; }
+    .branches span { grid-column: 2; color: var(--mist-200); font-size: 15px; }
+    @media (max-width: 767px) { .branches { left: 20px; right: 20px; width: auto; top: auto; bottom: 90px; transform: none; } .branches li { padding: 9px 0; } .branches span { font-size: 13px; } }
+
+    /* --- Normal-flow sections after the stage ------------------------------ */
+    .work { background: var(--paper-50); color: var(--forest-950); padding: 96px clamp(20px, 6vw, 96px); }
+    .work h2 { font-family: var(--font-display); font-size: var(--type-h2); }
+    .work ul { list-style: none; padding: 0; margin: 40px 0 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(220px, 70vw), 1fr)); gap: 24px; max-width: 1280px; }
+    .work figure { margin: 0; max-width: 300px; }
+    .work figcaption { margin-top: 10px; font-size: 14px; color: var(--bark-600); }
+    .work figcaption b { display: block; color: var(--forest-950); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+    .contact { background: var(--forest-950); padding: 96px clamp(20px, 6vw, 96px) 140px; }
+    .contact h2 { font-family: var(--font-display); font-size: var(--type-h2); max-width: 22ch; }
+    .contact p { margin-top: 16px; color: var(--mist-200); }
+    .contact a { color: var(--harz-500); }
+    .contact-dock .call { background: var(--paper-50); color: var(--forest-950); }
+    .contact-dock .ask { background: var(--harz-500); color: var(--forest-950); }
+
+    /* Reduced motion / no JS: no sticky stage; everything stacked and visible. */
+    html.rm .stage, html:not(.js) .stage { height: auto; }
+    html.rm .stage__sticky, html:not(.js) .stage__sticky { position: relative; height: auto; overflow: visible; padding-bottom: 48px; }
+    html.rm .stage canvas, html:not(.js) .stage canvas { position: relative; height: 80vh; }
+    html.rm .hero-copy, html:not(.js) .hero-copy { position: relative; left: auto; bottom: auto; padding: 0 20px; opacity: 1; }
+    html.rm .canopy-photo, html:not(.js) .canopy-photo, html.rm .branches, html:not(.js) .branches { position: relative; left: auto; right: auto; top: auto; bottom: auto; transform: none; opacity: 1; margin: 64px auto 0; padding: 0 20px; }
+    html.rm .branches li, html:not(.js) .branches li { transform: none; }
+  </style>
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+  <p class="concept-tag">Konzept A · Lebender Baum · Prototyp, nicht final</p>
+
+  <a class="brand" href="#top" id="top" aria-label="Baum-Land-Forst Service – Start">
+    <img src="../../public/assets/optimized/home/logo-192.webp" srcset="../../public/assets/optimized/home/logo-192.webp 192w, ../../public/assets/optimized/home/logo-384.webp 384w" sizes="64px" width="192" height="192" alt="Baum-Land-Forst Service">
+  </a>
+  <nav class="nav" aria-label="Hauptnavigation">
+    <a href="#leistungen">Leistungen</a><a href="#arbeit">Arbeit</a><a href="#kontakt">Kontakt</a>
+  </nav>
+
+  <section class="stage" aria-label="Einführung">
+    <div class="stage__sticky">
+      <div class="atmo" aria-hidden="true"></div>
+      <canvas id="tree" aria-hidden="true"></canvas>
+
+      <div class="hero-copy">
+        <p class="label"><span class="marker" aria-hidden="true"></span>Baum-Land-Forst · Seddiner See</p>
+        <h1>Baumfällung, Baumpflege, Baumkontrolle.</h1>
+        <p>Wir bieten Ihnen: Baumfällung, Baumpflege, Baumkontrolle, Winterdienst, Pflasterarbeiten, Neuanpflanzung, Grünflächenpflege und mehr.</p>
+      </div>
+
+      <figure class="canopy-photo">
+        <picture>
+          <source type="image/avif" srcset="../../public/assets/optimized/home/GAL-13-480.avif 480w, ../../public/assets/optimized/home/GAL-13-800.avif 800w, ../../public/assets/optimized/home/GAL-13-1125.avif 1125w" sizes="(min-width: 1024px) 450px, 375px">
+          <img src="../../public/assets/optimized/home/GAL-13-800.webp" width="1125" height="1500" alt="Blick in die Kronen mehrerer Kiefern, die mit einem Seilsystem zur Kronensicherung verbunden sind.">
+        </picture>
+        <figcaption><strong>Baumpflege / Kronensicherung</strong>Zur Baumpflege zählen auch die Entfernung von Totholz, Kroneneinkürzung, sowie Lichtraumprofilschnitte und auch der Einbau einer Kronensicherung.</figcaption>
+      </figure>
+
+      <div class="branches" id="leistungen">
+        <h2>Vom Baum bis zur Fläche</h2>
+        <ol>
+          <li><b>Baumarbeiten</b><span>Baumfällung · Stubbenentfernung · Notfällung · Baumpflege · Kronensicherung · Baumkontrolle</span></li>
+          <li><b>Grün &amp; Forst</b><span>Neuanpflanzung &amp; Freistellen · Grünflächenpflege für Kommunen · Forstwirtschaftliche Pflege</span></li>
+          <li><b>Bau &amp; Fläche</b><span>Baufeldberäumung · Pflasterarbeiten</span></li>
+          <li><b>Winter &amp; Reinigung</b><span>Winterdienst · Straßen- und Flächenreinigung</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="work" id="arbeit" aria-labelledby="arbeit-t">
+    <h2 id="arbeit-t">Echte Arbeit, echte Fotos</h2>
+    <ul>
+      <li><figure><img src="../../public/assets/optimized/home/GAL-04-480.webp" srcset="../../public/assets/optimized/home/GAL-04-480.webp 480w, ../../public/assets/optimized/home/GAL-04-800.webp 800w, ../../public/assets/optimized/home/GAL-04-1125.webp 1125w" sizes="300px" width="1125" height="1500" loading="lazy" alt="Arbeitsbühne neben einem stark eingekürzten Baum."><figcaption><b>Baumfällung</b>Arbeitsbühne am Baum</figcaption></figure></li>
+      <li><figure><img src="../../public/assets/optimized/home/GAL-11-480.webp" srcset="../../public/assets/optimized/home/GAL-11-480.webp 480w, ../../public/assets/optimized/home/GAL-11-800.webp 800w, ../../public/assets/optimized/home/GAL-11-1125.webp 1125w" sizes="300px" width="1125" height="1500" loading="lazy" alt="Stubbenfräse an einem Baumstumpf, ringsum Holzspäne."><figcaption><b>Stubbenfräsen</b>Fräse am Baumstumpf</figcaption></figure></li>
+      <li><figure><img src="../../public/assets/optimized/home/GAL-18-480.webp" srcset="../../public/assets/optimized/home/GAL-18-480.webp 480w, ../../public/assets/optimized/home/GAL-18-800.webp 800w, ../../public/assets/optimized/home/GAL-18-1125.webp 1125w" sizes="300px" width="1125" height="1500" loading="lazy" alt="Lange Böschung, vollständig mit Erosionsschutzmatte belegt."><figcaption><b>Hangbefestigung</b>Böschung mit Schutzmatte</figcaption></figure></li>
+      <li><figure><img src="../../public/assets/optimized/home/GAL-14-480.webp" srcset="../../public/assets/optimized/home/GAL-14-480.webp 480w, ../../public/assets/optimized/home/GAL-14-800.webp 800w, ../../public/assets/optimized/home/GAL-14-1125.webp 1125w" sizes="300px" width="1125" height="1500" loading="lazy" alt="Orangefarbenes Räumfahrzeug mit Schneeschild bei Nacht im Schnee."><figcaption><b>Winterdienst</b>Räumfahrzeug bei Nacht</figcaption></figure></li>
+    </ul>
+  </section>
+
+  <section class="contact" id="kontakt" aria-labelledby="kontakt-t">
+    <h2 id="kontakt-t">Haben Sie Fragen oder benötigen Sie ein unverbindliches Angebot?</h2>
+    <p>Telefon <a class="tnum" href="tel:+491723841620">0172 3841620</a> · <a href="mailto:info@blfservice.de">info@blfservice.de</a> · Am Seehügel 1c, 14554 Seddiner See</p>
+  </section>
+
+  <div class="contact-dock">
+    <a class="call tnum" href="tel:+491723841620">0172 3841620</a>
+    <a class="ask" href="mailto:info@blfservice.de?subject=Anfrage">Anfrage</a>
+  </div>
+
+  <script src="../shared/concept.js"></script>
+  <script src="tree.js"></script>
+  <script>
+  (function () {
+    var C = window.Concept, LT = window.LivingTree;
+    var canvas = document.getElementById("tree");
+    var stage = document.querySelector(".stage");
+    var small = C.isSmall;
+    var trees = [
+      { tree: LT.generate(20261027, small ? 7 : 9), x: small ? 0.5 : 0.66, base: 0.95, h: small ? 0.6 : 0.74, delay: 0.25, alpha: 1, rim: true },
+      { tree: LT.generate(7, 7), x: 0.16, base: 0.97, h: 0.42, delay: 0.05, alpha: 0.22 },   // depth: distant trees
+      { tree: LT.generate(31, 7), x: 0.95, base: 0.99, h: 0.5, delay: 0.15, alpha: 0.18 }
+    ];
+    if (small) trees = trees.slice(0, 1);
+    var view, introT = 0, parallax = 0;
+
+    function layout() {
+      view = C.fitCanvas(canvas);
+      var main = trees[0];
+      stage.style.setProperty("--fx", (main.x * 100) + "%");
+      stage.style.setProperty("--fy", ((main.base - main.h * 0.7) * 100) + "%");
+    }
+    function render() {
+      var ctx = view.ctx, w = view.w, h = view.h, t = introT;
+      ctx.clearRect(0, 0, w, h);
+      // light: a soft glow arrives from the upper right (1.7-2.6 s) and reveals the structure
+      var light = C.ease(C.seg(t, 1.7, 0.9));
+      if (light > 0) {
+        var gx = w * (0.82 - 0.12 * light), gy = h * (0.12 + 0.1 * light);
+        var g = ctx.createRadialGradient(gx, gy, 0, gx, gy, h * 0.9);
+        g.addColorStop(0, "rgba(176,214,90," + (0.14 * light) + ")");
+        g.addColorStop(1, "rgba(176,214,90,0)");
+        ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+      }
+      trees.forEach(function (T) {
+        LT.draw(ctx, T.tree, { ox: w * T.x, oy: h * T.base, scale: h * T.h, t: Math.max(0, t - T.delay),
+                               alpha: T.alpha, parallax: parallax * T.alpha, light: light, rim: T.rim });
+      });
+      // ground haze
+      var hz = ctx.createLinearGradient(0, h * 0.78, 0, h);
+      hz.addColorStop(0, "rgba(15,28,15,0)"); hz.addColorStop(1, "rgba(10,19,10,0.9)");
+      ctx.fillStyle = hz; ctx.fillRect(0, h * 0.78, w, h * 0.22);
+    }
+    layout();
+
+    // Intro: tree grows 0.25–1.6 s, leaves 1.6–2.1 s, light 1.7–2.6 s, words 2.3–3.0 s.
+    var hero = document.querySelector(".hero-copy");
+    C.timeline(3.2, function (t) {
+      introT = t;
+      hero.style.setProperty("--intro", C.ease(C.seg(t, 2.3, 0.7)).toFixed(3));
+      hero.style.setProperty("--rise", ((1 - C.ease(C.seg(t, 2.3, 0.7))) * 16).toFixed(1) + "px");
+      render();
+    });
+
+    window.addEventListener("resize", function () { layout(); render(); });
+
+    if (!C.reduced && !C.frozen) {
+      // Depth: three layers drift slightly with the pointer (desktop only).
+      if (!C.isSmall) window.addEventListener("pointermove", function (e) {
+        parallax = (e.clientX / window.innerWidth - 0.5) * 2; requestAnimationFrame(render);
+      }, { passive: true });
+
+      // Scroll narrative: 0–.33 into the canopy, .33–.66 real photo, .66–1 services.
+      C.scrollScene(stage, function (p) {
+        var s1 = C.seg(p, 0, 0.33), s2 = C.seg(p, 0.33, 0.12) * (1 - C.seg(p, 0.6, 0.08)), s3 = C.seg(p, 0.7, 0.15);
+        canvas.style.transform = "scale(" + (1 + 1.6 * C.easeInOut(s1) - 1.2 * C.easeInOut(C.seg(p, 0.62, 0.2))) + ")";
+        canvas.style.opacity = 1 - 0.55 * C.seg(p, 0.3, 0.1) + 0.3 * C.seg(p, 0.66, 0.1);
+        stage.style.setProperty("--hero", (1 - C.seg(p, 0.05, 0.12)).toFixed(3));
+        stage.style.setProperty("--s2", s2.toFixed(3));
+        stage.style.setProperty("--s3", s3.toFixed(3));
+      });
+    }
+  })();
+  </script>
+</body>
+</html>

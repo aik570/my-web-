@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Konzept B – Wald-Monument | Baum-Land-Forst</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="../shared/concept.css">
+  <style>
+    body { background: #0b0d0a; color: var(--paper-50); }
+    .brand { position: fixed; left: 20px; top: 16px; z-index: 70; }
+    .brand img { width: 56px; height: 56px; padding: 3px; border-radius: 50%; background: var(--paper-50); }
+    .nav { position: fixed; right: 20px; top: 24px; z-index: 70; display: flex; gap: 22px; font-weight: 600; font-size: 14px; letter-spacing: .06em; text-transform: uppercase; }
+    .nav a { text-decoration: none; color: var(--mist-200); }
+    @media (max-width: 767px) { .nav { display: none; } }
+
+    .stage { position: relative; height: 300vh; }
+    .stage__sticky { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+    .stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+    .hero-copy { position: absolute; right: clamp(20px, 5vw, 80px); bottom: clamp(88px, 11vh, 120px); width: min(24vw, 22rem); opacity: calc(var(--intro, 1) * var(--hero, 1)); }
+    .hero-copy .label { font: 600 12px/1.3 var(--font-text); letter-spacing: .1em; text-transform: uppercase; color: var(--harz-500); }
+    .hero-copy h1 { margin-top: 12px; font-family: var(--font-text); font-weight: 600; font-size: clamp(1.25rem, 1rem + 1vw, 1.75rem); line-height: 1.25; }
+    .hero-copy p { margin-top: 10px; color: var(--mist-200); font-size: 15px; }
+
+    /* Category B proposal: relief treatment of the original emblem, labelled */
+    .relief { position: absolute; right: clamp(20px, 5vw, 80px); top: clamp(84px, 12vh, 130px); width: clamp(150px, 15vw, 210px); text-align: center; opacity: calc(var(--relief, 1) * var(--hero, 1)); }
+    .relief canvas { position: static; width: 100%; height: auto; aspect-ratio: 1; }
+    .relief .proposal-label { margin-top: 10px; color: var(--harz-500); }
+    @media (max-width: 767px) { .relief { width: 104px; top: 84px; right: 16px; } .relief .proposal-label { font-size: 9px; } .hero-copy { left: 20px; right: 20px; width: auto; bottom: 84px; } }
+
+    /* Scene 2: real photographs on dark plinths, side-lit */
+    .plinths { position: absolute; inset: 0; display: grid; place-items: center; opacity: var(--s2, 0); pointer-events: none; }
+    .plinths__row { display: flex; gap: clamp(16px, 4vw, 64px); align-items: flex-end; transform: translateY(calc((1 - var(--s2, 0)) * 60px)); }
+    .plinth { width: min(36vw, 300px); position: relative; }
+    .plinth img { width: 100%; }
+    .plinth::after { content: ""; position: absolute; inset: 0 0 auto 0; aspect-ratio: 3/4; background: linear-gradient(100deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,0) 45%); }
+    .plinth figcaption { margin-top: 12px; font-size: 13px; color: var(--mist-200); }
+    .plinth figcaption b { display: block; color: var(--paper-50); letter-spacing: .08em; text-transform: uppercase; font-size: 11px; }
+
+    /* Scene 3: monumental service register */
+    .register { position: absolute; inset: 0; padding: 120px clamp(20px, 5vw, 80px) 90px; opacity: var(--s3, 0); background: rgba(11,13,10, calc(var(--s3, 0) * .92)); overflow: hidden; }
+    .register h2 { font: 600 12px/1.3 var(--font-text); letter-spacing: .1em; text-transform: uppercase; color: var(--harz-500); }
+    .register ol { list-style: none; margin: 18px 0 0; padding: 0; columns: 2; column-gap: 48px; }
+    .register li { break-inside: avoid; display: flex; gap: 16px; align-items: baseline; padding: 6px 0; border-bottom: 1px solid rgba(244,241,233,.12); font-family: var(--font-display); font-size: clamp(1.25rem, .8rem + 1.6vw, 2.4rem); line-height: 1.15; transform: translateY(calc((1 - var(--s3, 0)) * 30px)); }
+    .register li span { font-family: var(--font-text); font-size: 13px; color: var(--harz-500); font-variant-numeric: tabular-nums; min-width: 2ch; }
+    @media (max-width: 767px) { .register ol { columns: 1; } .register li { font-size: 1.15rem; padding: 4px 0; } }
+
+    .contact { padding: 96px clamp(20px, 5vw, 80px) 140px; border-top: 1px solid rgba(244,241,233,.12); }
+    .contact h2 { font-family: var(--font-display); font-size: var(--type-h2); max-width: 22ch; }
+    .contact p { margin-top: 16px; color: var(--mist-200); }
+    .contact a { color: var(--harz-500); }
+    .contact-dock .call { background: var(--paper-50); color: #0b0d0a; }
+    .contact-dock .ask { background: var(--harz-500); color: #0b0d0a; }
+
+    html.rm .stage, html:not(.js) .stage { height: auto; }
+    html.rm .stage__sticky, html:not(.js) .stage__sticky { position: relative; height: auto; overflow: visible; }
+    html.rm #mono, html:not(.js) #mono { position: relative; height: 70vh; }
+    html.rm .hero-copy, html.rm .relief, html.rm .plinths, html.rm .register,
+    html:not(.js) .hero-copy, html:not(.js) .relief, html:not(.js) .plinths, html:not(.js) .register { position: relative; inset: auto; left: auto; right: auto; bottom: auto; top: auto; opacity: 1; margin: 48px 20px; background: none; }
+    html.rm .plinths__row, html.rm .register li, html:not(.js) .plinths__row, html:not(.js) .register li { transform: none; }
+  </style>
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+  <p class="concept-tag">Konzept B · Wald-Monument · Prototyp, nicht final</p>
+  <a class="brand" href="#top" id="top"><img src="../../public/assets/optimized/home/logo-192.webp" srcset="../../public/assets/optimized/home/logo-192.webp 192w, ../../public/assets/optimized/home/logo-384.webp 384w" sizes="56px" width="192" height="192" alt="Baum-Land-Forst Service"></a>
+  <nav class="nav" aria-label="Hauptnavigation"><a href="#leistungen">Leistungen</a><a href="#kontakt">Kontakt</a></nav>
+
+  <section class="stage" aria-label="Einführung">
+    <div class="stage__sticky">
+      <canvas id="mono" role="img" aria-label="Monumentale Schrift: Baum, Land, Forst"></canvas>
+
+      <div class="hero-copy">
+        <p class="label">Baum-Land-Forst · Seddiner See</p>
+        <h1>Baumarbeiten, Grün &amp; Forst, Bau &amp; Fläche, Winterdienst.</h1>
+        <p>Wir bieten Ihnen: Baumfällung, Baumpflege, Baumkontrolle, Winterdienst, Pflasterarbeiten, Neuanpflanzung, Grünflächenpflege und mehr.</p>
+      </div>
+
+      <figure class="relief" aria-label="Vorschlag: Relief-Behandlung des Original-Emblems, nicht das offizielle Logo">
+        <canvas id="relief" width="460" height="460" aria-hidden="true"></canvas>
+        <figcaption class="proposal-label">Vorschlag B · nicht das offizielle Logo</figcaption>
+      </figure>
+
+      <div class="plinths" aria-label="Echte Arbeit">
+        <div class="plinths__row">
+          <figure class="plinth"><img src="../../public/assets/optimized/home/GAL-04-800.webp" srcset="../../public/assets/optimized/home/GAL-04-480.webp 480w, ../../public/assets/optimized/home/GAL-04-800.webp 800w" sizes="300px" width="1125" height="1500" alt="Arbeitsbühne neben einem stark eingekürzten Baum."><figcaption><b>Baumfällung</b>Arbeitsbühne am Baum</figcaption></figure>
+          <figure class="plinth"><img src="../../public/assets/optimized/home/GAL-11-800.webp" srcset="../../public/assets/optimized/home/GAL-11-480.webp 480w, ../../public/assets/optimized/home/GAL-11-800.webp 800w" sizes="300px" width="1125" height="1500" alt="Stubbenfräse an einem Baumstumpf, ringsum Holzspäne."><figcaption><b>Stubbenfräsen</b>Fräse am Baumstumpf</figcaption></figure>
+        </div>
+      </div>
+
+      <div class="register" id="leistungen">
+        <h2>Leistungsregister</h2>
+        <ol>
+          <li><span>01</span>Baumfällung</li><li><span>02</span>Baumpflege</li><li><span>03</span>Baumkontrolle</li>
+          <li><span>04</span>Baufeldberäumung</li><li><span>05</span>Straßen- und Flächenreinigung</li><li><span>06</span>Winterdienst</li>
+          <li><span>07</span>Pflasterarbeiten</li><li><span>08</span>Neuanpflanzung &amp; Freistellen</li><li><span>09</span>Grünflächenpflege für Kommunen</li>
+          <li><span>10</span>Forstwirtschaftliche Pflege</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="kontakt" aria-labelledby="kontakt-t">
+    <h2 id="kontakt-t">Haben Sie Fragen oder benötigen Sie ein unverbindliches Angebot?</h2>
+    <p>Telefon <a class="tnum" href="tel:+491723841620">0172 3841620</a> · <a href="mailto:info@blfservice.de">info@blfservice.de</a> · Am Seehügel 1c, 14554 Seddiner See</p>
+  </section>
+
+  <div class="contact-dock"><a class="call tnum" href="tel:+491723841620">0172 3841620</a><a class="ask" href="mailto:info@blfservice.de?subject=Anfrage">Anfrage</a></div>
+
+  <script src="../shared/concept.js"></script>
+  <script>
+  (function () {
+    var C = window.Concept;
+    var canvas = document.getElementById("mono"), stage = document.querySelector(".stage");
+    var hero = document.querySelector(".hero-copy"), relief = document.querySelector(".relief");
+    var WORDS = ["BAUM", "LAND", "FORST"];
+    var bark, view, off, introT = 0, split = 0;
+
+    // Procedural bark: value noise stretched vertically (grain), dark wood tones. Not a photo.
+    function makeBark(w, h, seed) {
+      var r = C.rng(seed), gw = 96, gh = 24, grid = [];
+      for (var i = 0; i < gw * gh; i++) grid.push(r());
+      var c = document.createElement("canvas"); c.width = w; c.height = h;
+      var ctx = c.getContext("2d"), img = ctx.createImageData(w, h);
+      function n(x, y) {
+        var gx = x / w * (gw - 1), gy = y / h * (gh - 1), x0 = Math.floor(gx), y0 = Math.floor(gy);
+        var fx = gx - x0, fy = gy - y0, i0 = y0 * gw + x0;
+        var a = grid[i0], b = grid[i0 + 1] || a, c2 = grid[i0 + gw] || a, d = grid[i0 + gw + 1] || a;
+        return (a * (1 - fx) + b * fx) * (1 - fy) + (c2 * (1 - fx) + d * fx) * fy;
+      }
+      for (var y = 0; y < h; y++) for (var x = 0; x < w; x++) {
+        var v = 0.6 * n(x, y) + 0.3 * n((x * 3) % w, (y * 2) % h) + 0.1 * n((x * 9) % w, (y * 5) % h);
+        var furrow = Math.pow(Math.abs(Math.sin(x / w * 70 + v * 6)), 6);   // vertical furrows
+        var k = 0.35 + 0.65 * v - 0.35 * furrow;
+        var p = (y * w + x) * 4;
+        img.data[p] = 120 * k + 34; img.data[p + 1] = 104 * k + 30; img.data[p + 2] = 76 * k + 22; img.data[p + 3] = 255;
+      }
+      ctx.putImageData(img, 0, 0);
+      return c;
+    }
+
+    function layout() {
+      view = C.fitCanvas(canvas);
+      bark = makeBark(Math.min(900, Math.round(view.w)), Math.min(700, Math.round(view.h)), 11);
+      off = document.createElement("canvas"); off.width = Math.round(view.w); off.height = Math.round(view.h);   // reused every frame
+    }
+
+    function render() {
+      var ctx = view.ctx, w = view.w, h = view.h, t = introT;
+      ctx.fillStyle = "#0b0d0a"; ctx.fillRect(0, 0, w, h);
+      // 0.4-0.9 s: a vertical light slit; 0.9-1.6 s: it opens into a column; then fully open
+      var slit = C.ease(C.seg(t, 0.4, 0.5)), open = C.easeInOut(C.seg(t, 0.9, 0.8));
+      var colW = Math.max(2, open * w);
+      var cx0 = (w - colW) / 2;
+      if (slit > 0 && open < 1) {
+        var gl = ctx.createLinearGradient(w / 2 - 40, 0, w / 2 + 40, 0);
+        gl.addColorStop(0, "rgba(233,227,214,0)"); gl.addColorStop(0.5, "rgba(233,227,214," + (0.55 * slit * (1 - open)) + ")"); gl.addColorStop(1, "rgba(233,227,214,0)");
+        ctx.fillStyle = gl; ctx.fillRect(w / 2 - 40, h * (0.5 - 0.5 * slit), 80, h * slit);
+      }
+      if (open <= 0) return;
+      // monumental words, filled with bark, revealed through the column
+      var size = Math.min(h * 0.31, w * (w < 768 ? 0.3 : 0.2));
+      var lineH = size * 0.86, top = h * 0.5 - lineH * 1.5 + lineH * 0.82;
+      var o = off.getContext("2d");
+      o.globalCompositeOperation = "source-over"; o.clearRect(0, 0, w, h);
+      o.fillStyle = "#000";                                         // opaque mask (state is reused across frames)
+      // measured fit: the widest word must end before the copy column (68 % desktop, 94 % mobile)
+      var xLast = w < 768 ? w * 0.06 : w * 0.05 + 2 * w * 0.045, maxRight = w * (w < 768 ? 0.94 : 0.68);
+      o.font = "500 " + size + "px Newsreader, Georgia, serif";
+      var wide = Math.max.apply(null, WORDS.map(function (wd) { return o.measureText(wd).width; }));
+      if (xLast + wide > maxRight) { size *= (maxRight - xLast) / wide; lineH = size * 0.86; top = h * 0.5 - lineH * 1.5 + lineH * 0.82; }
+      o.font = "500 " + size + "px Newsreader, Georgia, serif";
+      o.textBaseline = "alphabetic";
+      WORDS.forEach(function (word, i) {
+        var dy = (i - 1) * split * h * 0.25;                         // scroll scene 1: the words part
+        var x = w < 768 ? w * 0.06 : w * 0.05 + i * w * 0.045;
+        o.fillText(word, x, top + i * lineH + dy);
+      });
+      o.globalCompositeOperation = "source-in";
+      o.drawImage(bark, 0, 0, w, h);
+      // raking light: a band sweeps across the letters (1.6-2.4 s)
+      var rake = C.seg(t, 1.6, 0.8);
+      o.globalCompositeOperation = "source-atop";
+      var bx = -0.3 * w + rake * 1.6 * w;
+      var lg = o.createLinearGradient(bx - w * 0.25, 0, bx + w * 0.25, h);
+      lg.addColorStop(0, "rgba(255,240,200,0)"); lg.addColorStop(0.5, "rgba(255,236,190," + (rake > 0 && rake < 1 ? 0.55 : 0.2) + ")"); lg.addColorStop(1, "rgba(255,240,200,0)");
+      o.fillStyle = lg; o.fillRect(0, 0, w, h);
+      ctx.save();
+      ctx.beginPath(); ctx.rect(cx0, 0, colW, h); ctx.clip();
+      ctx.drawImage(off, 0, 0, w, h);
+      ctx.restore();
+    }
+
+    // Relief treatment of the ORIGINAL emblem (category B proposal): height from the
+    // artwork's alpha, lit from the upper left. Colours stay the original pixels.
+    function buildRelief() {
+      var rc = document.getElementById("relief"), rctx = rc.getContext("2d"), S = rc.width;
+      return C.loadImage("../../public/assets/optimized/home/logo-1200.webp").then(function (img) {
+        var tmp = document.createElement("canvas"); tmp.width = S; tmp.height = S;
+        var t2 = tmp.getContext("2d"); t2.drawImage(img, 0, 0, S, S);
+        var src = t2.getImageData(0, 0, S, S), d = src.data;
+        var hgt = new Float32Array(S * S);
+        for (var i = 0; i < S * S; i++) hgt[i] = d[i * 4 + 3] / 255;
+        // blur height a little so edges become bevels
+        for (var pass = 0; pass < 2; pass++) {
+          var nh = new Float32Array(S * S);
+          for (var y = 1; y < S - 1; y++) for (var x = 1; x < S - 1; x++) {
+            var k = y * S + x; nh[k] = (hgt[k] * 4 + hgt[k - 1] + hgt[k + 1] + hgt[k - S] + hgt[k + S]) / 8;
+          }
+          hgt = nh;
+        }
+        var out = rctx.createImageData(S, S), o = out.data;
+        var L = [-0.6, -0.6, 0.53];
+        for (var y2 = 1; y2 < S - 1; y2++) for (var x2 = 1; x2 < S - 1; x2++) {
+          var k2 = y2 * S + x2, a = d[k2 * 4 + 3];
+          var plate = Math.hypot(x2 - S / 2, y2 - S / 2) < S * 0.5;
+          var nx = (hgt[k2 - 1] - hgt[k2 + 1]) * 6, ny = (hgt[k2 - S] - hgt[k2 + S]) * 6, nz = 1;
+          var nl = Math.hypot(nx, ny, nz), lam = Math.max(0, (nx * L[0] + ny * L[1] + nz * L[2]) / nl);
+          var spec = Math.pow(lam, 24) * 0.5;
+          var base = a > 10 ? [d[k2 * 4], d[k2 * 4 + 1], d[k2 * 4 + 2]] : (plate ? [36, 34, 27] : null);
+          if (!base) continue;
+          var f = 0.5 + 0.75 * lam;
+          o[k2 * 4] = Math.min(255, base[0] * f + 255 * spec);
+          o[k2 * 4 + 1] = Math.min(255, base[1] * f + 240 * spec);
+          o[k2 * 4 + 2] = Math.min(255, base[2] * f + 210 * spec);
+          o[k2 * 4 + 3] = 255;
+        }
+        rctx.putImageData(out, 0, 0);
+      });
+    }
+
+    layout();
+    var reliefReady = buildRelief().catch(function () { relief.hidden = true; });
+    document.fonts.load("500 100px Newsreader").then(function () {
+      C.timeline(3.0, function (t) {
+        introT = t;
+        hero.style.setProperty("--intro", C.ease(C.seg(t, 2.5, 0.5)).toFixed(3));
+        relief.style.setProperty("--relief", C.ease(C.seg(t, 2.2, 0.5)).toFixed(3));
+        render();
+      });
+    });
+    window.addEventListener("resize", function () { layout(); render(); });
+
+    if (!C.reduced && !C.frozen) {
+      C.scrollScene(stage, function (p) {
+        split = C.easeInOut(C.seg(p, 0.05, 0.3));
+        stage.style.setProperty("--hero", (1 - C.seg(p, 0.03, 0.1)).toFixed(3));
+        stage.style.setProperty("--s2", (C.seg(p, 0.3, 0.1) * (1 - C.seg(p, 0.6, 0.08))).toFixed(3));
+        stage.style.setProperty("--s3", C.seg(p, 0.68, 0.14).toFixed(3));
+        render();
+      });
+    }
+  })();
+  </script>
+</body>
+</html>
