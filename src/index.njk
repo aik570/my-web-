@@ -7,18 +7,12 @@ bodyClass: is-home
 {% block intro %}
 <!-- Intro: the logo draws itself like a monitor sweep, then moves into the header. Once per session. -->
 <div class="intro" id="intro" aria-hidden="true">
-  <svg class="intro__logo" id="introLogo" viewBox="0 0 574 365">
-    <defs>
-      <clipPath id="sweep"><rect class="intro__sweep" x="0" y="0" width="574" height="365" /></clipPath>
-    </defs>
-    <g clip-path="url(#sweep)">
-      <use class="intro__sky" href="#lg-sky" />
-      <use class="intro__pulse" href="#lg-pulse" />
-    </g>
-    <circle class="intro__dot" r="5" cx="0" cy="289" />
-    <use class="intro__word" href="#lg-word" />
-    <text class="logo__tag intro__tag" x="22" y="331">{{ site.tagline }}</text>
-  </svg>
+  <div class="intro__logo" id="introLogo">
+    <img class="intro__sky" src="/assets/img/logo-sky.svg" alt="" width="574" height="365" decoding="sync">
+    <img class="intro__word" src="/assets/img/logo-word.svg" alt="" width="574" height="365" decoding="sync">
+    <span class="intro__dot"></span>
+    <span class="intro__tag">{{ site.tagline }}</span>
+  </div>
 </div>
 {% endblock %}
 
@@ -30,6 +24,7 @@ bodyClass: is-home
     <div class="story__sticky">
       <div class="story__lamp" aria-hidden="true"></div>
       <canvas id="phoneCanvas" class="story__canvas" aria-hidden="true"></canvas>
+      <img class="story__poster" src="/assets/img/phone-poster.webp" alt="" width="533" height="1072" aria-hidden="true" fetchpriority="low">
 
       <div class="scene scene--hero" id="top">
         <p class="kicker"><span class="kicker__cross" aria-hidden="true"></span>{{ h.hero.kicker }}</p>
@@ -161,11 +156,13 @@ bodyClass: is-home
           <path pathLength="1" d="M0 40 H130 M170 40 H430 M470 40 H600 L612 40 L622 10 L636 56 L646 28 L654 40 H730 M770 40 H1030 M1070 40 H1200" />
         </svg>
         {%- for track in [['laden', h.process.store, false], ['post', h.process.post, true]] %}
-        <ol class="steps" role="tabpanel" id="panel-{{ track[0] }}" aria-labelledby="tab-{{ track[0] }}"{% if track[2] %} hidden{% endif %}>
-          {%- for st in track[1].steps %}
-          <li><span class="steps__station">{{ loop.index }}</span><h3>{{ st.title }}</h3><p>{{ st.text }}</p></li>
-          {%- endfor %}
-        </ol>
+        <div role="tabpanel" id="panel-{{ track[0] }}" aria-labelledby="tab-{{ track[0] }}"{% if track[2] %} hidden{% endif %}>
+          <ol class="steps">
+            {%- for st in track[1].steps %}
+            <li><span class="steps__station">{{ loop.index }}</span><h3>{{ st.title }}</h3><p>{{ st.text }}</p></li>
+            {%- endfor %}
+          </ol>
+        </div>
         {%- endfor %}
       </div>
     </div>
@@ -183,7 +180,7 @@ bodyClass: is-home
 
       <div class="board reveal">
         <div class="board__head">
-          <svg class="board__logo" viewBox="0 0 574 365" aria-hidden="true"><use href="#lg-sky" fill="currentColor"/><use href="#lg-pulse" fill="var(--red-l)"/><use href="#lg-word" fill="currentColor"/></svg>
+          <img class="board__logo" src="/assets/img/logo-white.svg" alt="" width="574" height="365" loading="lazy">
           <div>
             <h2 id="laden-h">{{ h.visit.title }}</h2>
             <p>{{ site.name }} · {{ site.street }} · {{ site.postcode }} {{ site.city }}</p>

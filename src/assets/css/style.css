@@ -113,12 +113,20 @@ h1, h2, h3 { font-stretch: 125%; font-weight: 700; letter-spacing: -.025em; text
 }
 @keyframes introGone { to { opacity: 0; visibility: hidden; pointer-events: none; } }
 .intro.is-leaving { background: transparent; pointer-events: none; }
-.intro__logo { width: min(74vw, 560px); overflow: visible; transform-origin: 0 0; }
-.intro__sky { fill: var(--teal); }
-.intro__pulse { fill: var(--red); }
-.intro__dot { fill: var(--red-l); filter: drop-shadow(0 0 6px rgba(255, 107, 94, .9)); }
-.intro__word { fill: var(--ink); opacity: 0; }
-.intro__tag { opacity: 0; }
+/* Logo layers are images: rasterised once, so the sweep only clips a bitmap */
+.intro__logo { position: relative; width: min(74vw, 560px); aspect-ratio: 574 / 365; transform-origin: 0 0; will-change: transform; }
+.intro__logo img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.intro__sky { clip-path: inset(0 100% 0 0); opacity: .35; }
+.intro__word { opacity: 0; }
+.intro__dot {
+  position: absolute; left: 0; top: 82%; width: 1.8%; aspect-ratio: 1; translate: -50% -50%;
+  border-radius: 50%; background: var(--red-l); box-shadow: 0 0 10px 2px rgba(255, 107, 94, .8); opacity: 0;
+}
+.intro__tag {
+  position: absolute; left: 3.8%; top: 90.7%; translate: 0 -78%;
+  font: 500 calc(min(74vw, 560px) * .0296)/1 var(--sans); font-stretch: 112%; font-variant: small-caps; letter-spacing: .16em;
+  color: var(--teal); white-space: nowrap; opacity: 0;
+}
 .js:not(.reduced):not(.intro-seen):not(.intro-done) .is-home .nav__logo { opacity: 0; animation: logoIn .3s ease 5s forwards; }
 @keyframes logoIn { to { opacity: 1; } }
 .js.intro-done .nav__logo, .reduced .nav__logo { opacity: 1; }
@@ -135,7 +143,7 @@ h1, h2, h3 { font-stretch: 125%; font-weight: 700; letter-spacing: -.025em; text
 }
 .nav__in { display: flex; align-items: center; gap: 2rem; height: 5rem; max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
 .nav__logo { display: block; width: 112px; flex: none; }
-.nav__logo svg { display: block; width: 100%; }
+.nav__logo img { display: block; width: 100%; height: auto; }
 .nav__links { display: flex; gap: 1.75rem; margin-left: auto; font-size: .9375rem; font-weight: 500; }
 .nav__links a { text-decoration: none; color: var(--grey); transition: color .2s; }
 .nav__links a:hover { color: var(--ink); }
@@ -191,6 +199,15 @@ h1, h2, h3 { font-stretch: 125%; font-weight: 700; letter-spacing: -.025em; text
   border-radius: 50%;
   background: radial-gradient(closest-side, rgba(255, 255, 255, 1) 0%, rgba(240, 247, 244, .9) 55%, rgba(228, 240, 236, 0) 100%);
 }
+.story__poster {
+  /* Still of the 3D phone in its first pose: shown while the scene loads and when WebGL is unavailable */
+  position: absolute; z-index: 1; pointer-events: none;
+  height: 57.3%; width: auto; top: 50.1%; left: calc(50% + 34.5vh); translate: -50% -50%;
+  transition: opacity .4s ease;
+}
+.webgl-ready .story__poster { opacity: 0; }
+.no-webgl .story__poster { position: absolute; height: min(70vh, 640px); top: 50%; left: auto; right: 6vw; translate: 0 -50%; }
+@media (max-width: 760px), (max-aspect-ratio: 3/4) { .story__poster { display: none; } }
 .story__canvas { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; touch-action: pan-y; cursor: grab; }
 .story__canvas:active { cursor: grabbing; }
 
@@ -274,6 +291,7 @@ h1, h2, h3 { font-stretch: 125%; font-weight: 700; letter-spacing: -.025em; text
 .no-webgl .story__sticky { position: relative; height: auto; min-height: 92vh; padding: 7rem 0 4rem; }
 .no-webgl .scene--hero { position: relative; top: auto; transform: none; opacity: 1; translate: none; }
 .no-webgl .scene--open, .no-webgl .scene--done, .no-webgl .tags, .no-webgl .hint, .no-webgl .story__canvas { display: none; }
+@media (min-width: 761px) and (min-aspect-ratio: 3/4) { .no-webgl .scene--hero { max-width: min(40rem, 52vw); } }
 
 /* ---------- sections ---------- */
 
@@ -356,7 +374,7 @@ h1, h2, h3 { font-stretch: 125%; font-weight: 700; letter-spacing: -.025em; text
 .js:not(.reduced) .path__line path { stroke-dashoffset: 1; transition: stroke-dashoffset 2s cubic-bezier(.6, .05, .3, 1); }
 .js:not(.reduced) .path__line.is-in path { stroke-dashoffset: 0; }
 .steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2rem; text-align: center; }
-.steps[hidden] { display: none; }
+[hidden] { display: none !important; }
 .steps li { padding-top: 20px; }
 .steps__station {
   display: grid; place-items: center; width: 40px; height: 40px; margin: 0 auto 1.4rem;
@@ -384,7 +402,7 @@ h1, h2, h3 { font-stretch: 125%; font-weight: 700; letter-spacing: -.025em; text
 .visit__photo img { width: 100%; height: 100%; object-fit: cover; }
 .board { padding: clamp(1.5rem, 1rem + 2vw, 2.75rem); border-radius: var(--r); background: var(--teal-800); color: var(--white); }
 .board__head { display: flex; gap: 1.25rem; align-items: center; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, .18); }
-.board__logo { width: 84px; flex: none; color: var(--white); }
+.board__logo { width: 84px; height: auto; flex: none; }
 .board h2 { font-size: var(--t-2); }
 .board__head p { margin-top: .2rem; font-size: .875rem; color: rgba(255, 255, 255, .7); }
 .hours { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-variant-numeric: tabular-nums; }
@@ -441,10 +459,11 @@ h1, h2, h3 { font-stretch: 125%; font-weight: 700; letter-spacing: -.025em; text
 /* footer */
 .foot { padding: 4.5rem 0 calc(3rem + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--rule); font-size: .9375rem; color: var(--grey); }
 .foot__grid { display: grid; grid-template-columns: minmax(0, 4fr) repeat(3, minmax(0, 3fr)); gap: 2.5rem 3rem; }
-.foot__brand svg { width: 200px; display: block; }
+.foot__brand img { width: 200px; display: block; }
+.foot__tag { margin-top: .4rem; font-variant: small-caps; font-stretch: 112%; letter-spacing: .14em; color: var(--teal); font-weight: 500; }
 .foot__h { font-size: .875rem; color: var(--ink); margin-bottom: .6rem; letter-spacing: 0; }
 .foot p + p { margin-top: .75rem; }
-.foot a { color: var(--ink); text-decoration: none; }
+.foot a { color: var(--ink); text-decoration: none; display: inline-block; padding-block: .2rem; }
 .foot a:hover { color: var(--teal); }
 .foot__small { font-size: .8125rem; max-width: 36ch; }
 @media (max-width: 860px) { .foot__grid { grid-template-columns: 1fr 1fr; } .foot__brand { grid-column: 1 / -1; } }

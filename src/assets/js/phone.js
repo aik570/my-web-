@@ -203,6 +203,11 @@ function drawScreen(crack, lit, beat) {
     sx.globalAlpha = 1;
   }
 
+  // camera cut-out at the top of the screen
+  sx.fillStyle = '#000';
+  roundedRectPath(sx, w / 2 - 70, 34, 140, 40, 20);
+  sx.fill();
+
   // a faint glass reflection across the top
   const r = sx.createLinearGradient(0, 0, w, h * 0.6);
   r.addColorStop(0, 'rgba(255,255,255,.07)');
@@ -408,10 +413,26 @@ const tmp = new THREE.Vector3();
 let visible = true;
 new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(stage);
 
+// Phones render at most 30 fps while the scene is at rest; dragging and
+// scrolling always get full frame rate. Nothing renders off screen.
+const lowPower = matchMedia('(max-width: 760px)').matches;
+let lastInput = 0;
+addEventListener('scroll', () => { lastInput = performance.now(); }, { passive: true });
+canvas.addEventListener('pointermove', () => { lastInput = performance.now(); });
+
 let t0 = performance.now();
+let lastFrame = 0;
+let needsFrame = true;
+addEventListener('resize', () => { needsFrame = true; });
 function frameLoop(now) {
   requestAnimationFrame(frameLoop);
-  if (!visible) return;
+  if (!visible || document.hidden) return;
+  const busy = dragging || now - lastInput < 600 || Math.abs(shown - progress) > 0.0005 || Math.abs(dragYaw - dragTarget) > 0.0005;
+  // At rest: phones draw nothing (no idle motion); larger screens keep a slow idle sway at 30 fps.
+  if (!busy && !needsFrame && (lowPower || reduced)) return;
+  if (!busy && !needsFrame && now - lastFrame < 33) return;
+  needsFrame = false;
+  lastFrame = now;
   const dt = Math.min(0.05, (now - t0) / 1000); t0 = now;
 
   shown = reduced ? progress : lerp(shown, progress, 1 - Math.pow(0.0015, dt));
@@ -426,7 +447,7 @@ function frameLoop(now) {
   if (!dragging) dragTarget *= Math.pow(0.08, dt);         // drift back to the story pose
   dragYaw = lerp(dragYaw, dragTarget, 1 - Math.pow(0.0005, dt));
 
-  const idle = reduced ? 0 : Math.sin(now / 2200) * 0.05;
+  const idle = reduced || lowPower ? 0 : Math.sin(now / 2200) * 0.05;
   // pose: turned when broken, three-quarter when open, square when repaired
   const fix = smooth(0.7, 0.92, p);
   const yawClosed = lerp(-0.55, -0.15, fix);

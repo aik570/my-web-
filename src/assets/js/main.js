@@ -30,14 +30,13 @@
     try { sessionStorage.setItem('hc-intro', '1'); } catch (e) {}
 
     var logo = document.getElementById('introLogo');
-    var sweep = intro.querySelector('.intro__sweep');
     var dot = intro.querySelector('.intro__dot');
     var word = intro.querySelector('.intro__word');
     var tag = intro.querySelector('.intro__tag');
     var sky = intro.querySelector('.intro__sky');
     var navLogo = document.getElementById('navLogo');
     var start = performance.now();
-    var SWEEP = 1500, WORD = 1050, TAG = 1500, DOCK = 2350, END = 3100;
+    var SWEEP = 1300, WORD = 900, TAG = 1250, DOCK = 2000, END = 2700;
     var docked = false, done = false;
 
     function finish() {
@@ -53,19 +52,19 @@
       try { step(performance.now() - start); } catch (e) { finish(); }
     }
     function step(t) {
-      var s = ease(clamp(t / SWEEP));
-      var x = s * 574;
-      sweep.setAttribute('width', x.toFixed(1));
+      var p = ease(clamp(t / SWEEP));
+      var x = p * 574;
+      sky.style.clipPath = 'inset(0 ' + (100 - p * 100).toFixed(2) + '% 0 0)';
+      sky.style.opacity = (0.35 + 0.65 * clamp((t - 300) / 1100)).toFixed(3);
       var inGap = x > 418 && x < 503;
-      dot.setAttribute('cx', x.toFixed(1));
-      dot.setAttribute('cy', lineY(x).toFixed(1));
-      dot.style.opacity = (s > 0.01 && s < 0.995 && !inGap) ? 1 : 0;
-      sky.style.opacity = 0.35 + 0.65 * clamp((t - 300) / 1400);
+      dot.style.left = (x / 5.74).toFixed(2) + '%';
+      dot.style.top = (lineY(x) / 3.65).toFixed(2) + '%';
+      dot.style.opacity = (p > 0.01 && p < 0.995 && !inGap) ? 1 : 0;
 
-      var w = ease(clamp((t - WORD) / 600));
+      var w = ease(clamp((t - WORD) / 500));
       word.style.opacity = w;
       word.style.transform = 'translateY(' + (8 * (1 - w)).toFixed(2) + 'px)';
-      tag.style.opacity = ease(clamp((t - TAG) / 500)) * (1 - clamp((t - DOCK) / 250));
+      tag.style.opacity = ease(clamp((t - TAG) / 400)) * (1 - clamp((t - DOCK) / 200));
 
       if (t >= DOCK && !docked) {
         docked = true;
@@ -73,7 +72,7 @@
         var from = logo.getBoundingClientRect();
         var to = navLogo.getBoundingClientRect();
         var k = to.width / from.width;
-        logo.style.transition = 'transform .75s cubic-bezier(.65,0,.35,1)';
+        logo.style.transition = 'transform .65s cubic-bezier(.65,0,.35,1)';
         logo.style.transform = 'translate(' + (to.left - from.left) + 'px,' + (to.top - from.top) + 'px) scale(' + k + ')';
         intro.classList.add('is-leaving');
       }
@@ -129,9 +128,19 @@
     if (!canWebgl) noWebgl();
     else {
       // Load the 3D scene after the first paint so it never delays the headline.
-      var load = function () { import('./phone.js').catch(noWebgl); };
-      if ('requestIdleCallback' in window) requestIdleCallback(load, { timeout: 1500 }); else setTimeout(load, 200);
-      setTimeout(noWebgl, 12000);   // the scene never started
+      var started = false;
+      var load = function () {
+        if (started) return;
+        started = true;
+        import('./phone.js').catch(noWebgl);
+        setTimeout(noWebgl, 12000);   // the scene never started
+      };
+      // Phones: the phone sits below the first screen, so start 3D on the first scroll or touch.
+      // Larger screens: start once the page is idle.
+      if (matchMedia('(max-width: 760px), (max-aspect-ratio: 3/4)').matches) {
+        ['scroll', 'touchstart', 'pointerdown'].forEach(function (ev) { addEventListener(ev, load, { once: true, passive: true }); });
+      } else if ('requestIdleCallback' in window) requestIdleCallback(load, { timeout: 1500 });
+      else setTimeout(load, 200);
     }
   }
 
@@ -305,16 +314,13 @@
       ctx.strokeStyle = grad;
       ctx.lineWidth = wide ? 2.2 : 1.8;
       ctx.lineJoin = 'round';
-      ctx.shadowColor = 'rgba(' + color + ',.7)';
-      ctx.shadowBlur = 8;
       ctx.beginPath();
-      for (var x = 0; x <= w; x += 1) {
+      for (var x = 0; x <= w; x += 2) {
         var ph = (((x + shift) % period) + period) % period / period;
         var y = base - beat(ph) * scale;
         if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
       }
       ctx.stroke();
-      ctx.shadowBlur = 0;
 
       // the bright head at the right edge
       var hp = (((w + shift) % period) + period) % period / period;
@@ -322,8 +328,9 @@
       ctx.beginPath(); ctx.arc(w - 2, base - beat(hp) * scale, 2.6, 0, 7); ctx.fill();
     }
 
+    var last = 0;
     function loop(now) {
-      if (visible) draw(now);
+      if (visible && !document.hidden && now - last >= 32) { last = now; draw(now); }   // ~30 fps is plenty for a trace
       if (!reduced) requestAnimationFrame(loop);
     }
     new IntersectionObserver(function (e) { visible = e[0].isIntersecting; if (reduced && visible) draw(0); }).observe(cv);

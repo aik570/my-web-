@@ -126,6 +126,31 @@ console.log('\nprice list');
   await page.close();
 }
 
+// 3D scene: deferred on phones until the first scroll, then starts; desktop starts on idle
+console.log('\n3D scene');
+{
+  const mob = await browser.newPage({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+  await mob.goto(BASE + '/');
+  await mob.waitForTimeout(2500);
+  ok(!(await mob.evaluate(() => document.documentElement.classList.contains('webgl-ready'))), 'phone: 3D not started before interaction');
+  await mob.mouse.wheel(0, 600);
+  await mob.waitForFunction(() => document.documentElement.classList.contains('webgl-ready'), null, { timeout: 15000 }).catch(() => {});
+  ok(await mob.evaluate(() => document.documentElement.classList.contains('webgl-ready')), 'phone: 3D starts after scrolling');
+  await mob.close();
+  const desk = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+  await desk.goto(BASE + '/');
+  await desk.waitForFunction(() => document.documentElement.classList.contains('webgl-ready'), null, { timeout: 15000 }).catch(() => {});
+  ok(await desk.evaluate(() => document.documentElement.classList.contains('webgl-ready')), 'desktop: 3D starts without interaction');
+  await desk.close();
+  const nogl = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+  await nogl.route('**/vendor/three.module.min.js', (r) => r.abort());
+  await nogl.goto(BASE + '/');
+  await nogl.waitForTimeout(2500);
+  const fb = await nogl.evaluate(() => [document.documentElement.classList.contains('no-webgl'), getComputedStyle(document.querySelector('.story__poster')).display !== 'none', document.getElementById('story').offsetHeight < innerHeight * 1.5]);
+  ok(fb.every(Boolean), `no WebGL: fallback poster shown and story collapsed ${JSON.stringify(fb)}`);
+  await nogl.close();
+}
+
 // Opening state at fixed times (Europe/Berlin)
 console.log('\nopening state');
 for (const [iso, expect] of [
