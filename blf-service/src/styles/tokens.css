@@ -33,6 +33,9 @@
   --bark-600: #5f574d;
   --bark-500: #7a7166;
   --mist-200: #c9c2b4;
+  /* Opening stage ground (D2, approved 2026-10-28): darker than forest-950; only behind the stage. */
+  --ground-990: #0d160c;
+  --ground-1000: #080e07;
   --error-700: #a3261c;
 
   /* Colour: semantic, light context (DESIGN_TOKENS §1.2) */

@@ -7,7 +7,7 @@
   <!-- Stage 04 prototype: not for publication. -->
   <meta name="robots" content="noindex, nofollow">
   <meta name="description" content="Wir bieten Ihnen: Baumfällung, Baumpflege, Baumkontrolle, Winterdienst, Pflasterarbeiten, Neuanpflanzung, Grünflächenpflege und mehr.">
-  <meta name="theme-color" content="#1b2e1a">
+  <meta name="theme-color" content="#0d160c">
   <link rel="icon" type="image/png" sizes="32x32" href="../public/assets/original/icons/favicon-32x32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../public/assets/original/icons/apple-touch-icon.png">
 
@@ -15,39 +15,38 @@
   <link rel="preload" href="../public/fonts/hanken-grotesk/HankenGrotesk-Variable-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles/tokens.css">
   <link rel="stylesheet" href="styles/site.css">
-  <link rel="stylesheet" href="styles/intro.css">
+  <link rel="stylesheet" href="styles/stage.css">
 
   <script>
-    /* Decide before first paint whether the intro will run, so the page never
-       flashes before the intro starts. Without JavaScript none of this
-       happens and the page is shown immediately. */
+    /* Decide before first paint whether the opening intro will run, so the page never
+       flashes before it starts. Without JavaScript none of this happens and the page
+       is shown as a calm stacked layout. */
     (function () {
       var d = document.documentElement;
       d.classList.add("js");
       try {
         var q = location.search;
         if (/[?&]review\b/.test(q)) d.classList.add("review");
-        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var reduce = /[?&]rm=1\b/.test(q) || window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         var seen = false;
         try { seen = sessionStorage.getItem("blf-intro") === "1"; } catch (e) {}
         var force = /[?&]intro=1\b/.test(q);
-        var off = /[?&]intro=0\b/.test(q);
-        if (!off && (force || (!reduce && !seen))) {
-          d.classList.add("intro-pending");
-          window.__blfIntroRequestedAt = Date.now();
-        }
+        var off = /[?&]intro=0\b/.test(q) || /[?&]t=/.test(q);
+        if (!off && !reduce && (force || !seen)) d.classList.add("stage-intro");
       } catch (e) {}
     })();
   </script>
-  <script src="scripts/intro.js" defer></script>
+  <script src="scripts/motion.js" defer></script>
+  <script src="scripts/growth.js" defer></script>
+  <script src="scripts/stage.js" defer></script>
   <script src="scripts/site.js" defer></script>
 </head>
 <body id="top">
   <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
 
   <aside class="review-banner" data-review hidden>
-    <strong>Prototyp Stage 04.</strong> Interne Hinweise sind nur mit <code>?review</code> sichtbar und gehören nicht in die Produktion.
-    Intro erneut: <code>?intro=1</code> · ohne Intro: <code>?intro=0</code>
+    <strong>Prototyp, nicht veröffentlicht.</strong> Interne Hinweise sind nur mit <code>?review</code> sichtbar und gehören nicht in die Produktion.
+    Intro erneut: <code>?intro=1</code> · ohne Intro: <code>?intro=0</code> · reduzierte Bewegung: <code>?rm=1</code>
   </aside>
 
   <header class="site-header" data-header>
@@ -110,38 +109,73 @@
 
   <main id="inhalt" tabindex="-1">
 
-    <!-- 1 · Hero (PAGE_ARCHITECTURE §1.1) -->
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="container hero__grid">
-        <div class="hero__text">
-          <p class="label marker-label"><span class="marker" aria-hidden="true"></span>Baum-Land-Forst · Seddiner See</p>
-          <h1 class="hero__title" id="hero-title">Baumfällung, Baumpflege und Grün&shy;flächen&shy;pflege aus Seddiner See</h1>
-          <p class="hero__lead">Wir bieten Ihnen: Baumfällung, Baumpflege, Baumkontrolle, Winterdienst, Pflasterarbeiten, Neuanpflanzung, Grünflächenpflege und mehr.</p>
-          <div class="hero__actions">
-            <a class="button button--primary" href="#kontakt">Anfrage stellen</a>
-            <a class="button button--secondary" href="tel:+491723841620">
-              <svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M6.6 3.5h2.6l1.3 4.1-1.9 1.3a12 12 0 0 0 6.5 6.5l1.3-1.9 4.1 1.3v2.6a2 2 0 0 1-2.2 2A16.8 16.8 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2Z"/></svg>
-              <span class="tnum">0172 3841620</span>
-            </a>
+    <!-- 1 · Opening stage (approved direction D2): monument → living tree → service rings → real work → paper.
+         Without JavaScript or with reduced motion this is a calm stacked block. -->
+    <section class="stage" id="stage" aria-labelledby="stage-title">
+      <div class="stage__sticky">
+        <div class="stage__ground"></div>
+        <div class="stage__layer" aria-hidden="true">
+          <div class="stage__slit" id="stage-slit"></div>
+          <div class="stage__glow" id="stage-glow"></div>
+        </div>
+        <div class="stage__layer" aria-hidden="true"><div class="stage__beam" id="stage-beam"></div></div>
+        <!-- A drawn tree related to the emblem's tree. It is artwork, not the logo. -->
+        <div class="stage__tree stage__layer" id="stage-tree" aria-hidden="true"><canvas id="stage-back"></canvas><canvas id="stage-front"></canvas></div>
+        <svg class="stage__rings" id="stage-rings" aria-hidden="true" focusable="false"></svg>
+
+        <div class="stage__hero" id="stage-hero">
+          <p class="stage__label"><span class="marker" aria-hidden="true"></span>Baum-Land-Forst Service · Seddiner See</p>
+          <h1 class="stage__monument" id="stage-title"><span class="w">Baum</span> <span class="w">Land</span> <span class="w">Forst</span></h1>
+          <p class="stage__lead">Wir bieten Ihnen: <b>Baumfällung, Baumpflege, Baumkontrolle</b>, Winterdienst, Pflasterarbeiten, Neuanpflanzung, Grünflächenpflege und mehr.</p>
+          <div class="stage__actions">
+            <a class="button button--on-dark" href="#kontakt">Anfrage stellen</a>
+            <a class="stage__discover" href="#leistungsbereiche" data-stage-goto>Leistungen entdecken <span aria-hidden="true">↓</span></a>
           </div>
-          <a class="text-link hero__more" href="#leistungen">Alle Leistungen ansehen</a>
-          <aside class="review-note" data-review hidden>
-            Subline „Ihre Experten für Baumfällung und Baumpflege“ bewusst weggelassen (D-08 k). Einsatzgebiet offen (D-13).
+          <aside class="review-note review-note--dark" data-review hidden>
+            Subline „Ihre Experten für Baumfällung und Baumpflege“ bewusst weggelassen (D-08 k). Einsatzgebiet offen (D-13). Der gezeichnete Baum ist Illustration, nicht das Logo.
           </aside>
         </div>
-        <figure class="hero__media frame">
-          <picture>
-            <source type="image/avif"
-                    srcset="../public/assets/optimized/home/GAL-13-480.avif 480w, ../public/assets/optimized/home/GAL-13-800.avif 800w, ../public/assets/optimized/home/GAL-13-1125.avif 1125w"
-                    sizes="(min-width: 1024px) 562px, 375px">
-            <img src="../public/assets/optimized/home/GAL-13-800.webp"
-                 srcset="../public/assets/optimized/home/GAL-13-480.webp 480w, ../public/assets/optimized/home/GAL-13-800.webp 800w, ../public/assets/optimized/home/GAL-13-1125.webp 1125w"
-                 sizes="(min-width: 1024px) 562px, 375px"
-                 width="1125" height="1500" fetchpriority="high" decoding="async"
-                 alt="Blick in die Kronen mehrerer Kiefern, die mit einem Seilsystem zur Kronensicherung verbunden sind.">
-          </picture>
-          <figcaption class="caption"><span class="caption__service">Baumpflege / Kronensicherung</span></figcaption>
-        </figure>
+
+        <div class="stage__panel" id="leistungsbereiche" role="region" aria-labelledby="leistungsbereiche-title">
+          <p class="label marker-label"><span class="marker" aria-hidden="true"></span>Leistungsbereiche</p>
+          <h2 id="leistungsbereiche-title">Vom Baum bis zur Fläche</h2>
+          <div class="stage__groups" id="stage-groups" role="group" aria-label="Leistungsbereich wählen">
+            <button type="button" data-g="0" aria-pressed="true"><span class="n">01</span>Baumarbeiten</button>
+            <button type="button" data-g="1" aria-pressed="false"><span class="n">02</span>Grün &amp; Forst</button>
+            <button type="button" data-g="2" aria-pressed="false"><span class="n">03</span>Bau &amp; Fläche</button>
+            <button type="button" data-g="3" aria-pressed="false"><span class="n">04</span>Winter &amp; Reinigung</button>
+          </div>
+          <div class="stage__detail" id="stage-detail" aria-live="polite">
+            <p class="stage__svc">Baumfällung · Stubbenentfernung · Notfällung · Baumpflege · Kronensicherung · Baumkontrolle</p>
+            <p class="stage__cap">Foto: Baumkletterer mit Motorsäge am Stamm einer Kiefer</p>
+          </div>
+        </div>
+
+        <div class="stage__window" id="stage-window">
+          <div class="stage__photos">
+            <img data-g="0" class="on" src="../public/assets/optimized/home/GAL-02-480.webp" srcset="../public/assets/optimized/home/GAL-02-480.webp 480w, ../public/assets/optimized/home/GAL-02-800.webp 800w, ../public/assets/optimized/home/GAL-02-844.webp 844w" sizes="(max-width: 767px) 280px, (max-width: 1023px) and (orientation: portrait) 280px, 330px" width="844" height="1500" decoding="async" alt="Baumkletterer mit Motorsäge am Stamm einer Kiefer." style="object-position:50% 28%">
+            <img data-g="2" src="../public/assets/optimized/home/GAL-06-480.webp" srcset="../public/assets/optimized/home/GAL-06-480.webp 480w, ../public/assets/optimized/home/GAL-06-800.webp 800w" sizes="(max-width: 767px) 280px, (max-width: 1023px) and (orientation: portrait) 280px, 330px" width="1125" height="1500" loading="lazy" decoding="async" alt="Minibagger auf einem geräumten Grundstück vor einem Wohnhaus.">
+            <img data-g="3" src="../public/assets/optimized/home/GAL-14-480.webp" srcset="../public/assets/optimized/home/GAL-14-480.webp 480w, ../public/assets/optimized/home/GAL-14-800.webp 800w" sizes="(max-width: 767px) 280px, (max-width: 1023px) and (orientation: portrait) 280px, 330px" width="1125" height="1500" loading="lazy" decoding="async" alt="Orangefarbenes Räumfahrzeug mit Schneeschild bei Nacht im Schnee." style="object-position:30% 70%">
+          </div>
+          <img class="stage__frame-photo" src="../public/assets/optimized/home/GAL-13-800.webp" srcset="../public/assets/optimized/home/GAL-13-480.webp 480w, ../public/assets/optimized/home/GAL-13-800.webp 800w, ../public/assets/optimized/home/GAL-13-1125.webp 1125w" sizes="(max-width: 767px) 250px, (max-width: 1023px) and (orientation: portrait) 250px, 520px" width="1125" height="1500" loading="lazy" decoding="async" alt="Blick in die Kronen mehrerer Kiefern, die mit einem Seilsystem zur Kronensicherung verbunden sind.">
+        </div>
+
+        <div class="stage__work" id="stage-work">
+          <p class="label marker-label"><span class="marker" aria-hidden="true"></span>Echte Arbeit · Baumpflege / Kronensicherung</p>
+          <h2>Echte Arbeit am Baum.</h2>
+          <p class="stage__txt">Zur Baumpflege zählen auch die Entfernung von Totholz, Kroneneinkürzung, sowie Lichtraumprofilschnitte und auch der Einbau einer Kronensicherung.</p>
+          <img class="stage__work-photo" src="../public/assets/optimized/home/GAL-13-480.webp" srcset="../public/assets/optimized/home/GAL-13-480.webp 480w, ../public/assets/optimized/home/GAL-13-800.webp 800w, ../public/assets/optimized/home/GAL-13-1125.webp 1125w" sizes="(max-width: 767px) calc(100vw - 32px), 420px" width="1125" height="1500" loading="lazy" decoding="async" alt="Blick in die Kronen mehrerer Kiefern, die mit einem Seilsystem zur Kronensicherung verbunden sind.">
+        </div>
+
+        <!-- Paper reveal: the dark copy is a visual duplicate, hidden from assistive technology. -->
+        <div class="stage__paper" id="stage-paper" aria-hidden="true">
+          <div class="stage__work">
+            <p class="label marker-label"><span class="marker"></span>Echte Arbeit · Baumpflege / Kronensicherung</p>
+            <h2>Echte Arbeit am Baum.</h2>
+            <p class="stage__txt">Zur Baumpflege zählen auch die Entfernung von Totholz, Kroneneinkürzung, sowie Lichtraumprofilschnitte und auch der Einbau einer Kronensicherung.</p>
+          </div>
+        </div>
+        <div class="stage__edge" id="stage-edge" aria-hidden="true"></div>
       </div>
     </section>
 
@@ -430,6 +464,8 @@
       </div>
     </div>
   </footer>
+
+  <button class="stage__skip" id="stage-skip" type="button" hidden>Intro überspringen</button>
 
   <nav class="action-bar" aria-label="Schnellkontakt">
     <a class="button button--secondary" href="tel:+491723841620">Anrufen</a>

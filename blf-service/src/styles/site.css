@@ -1,4 +1,4 @@
-/* Home prototype, direction "Revier". Tokens live in tokens.css. */
+/* Home page, direction "Revier" with the D2 opening stage (stage.css). Tokens live in tokens.css. */
 
 *,
 *::before,
@@ -153,13 +153,25 @@ a:hover { text-decoration-thickness: 2px; }
 
 /* ---------- Header ---------- */
 
+/* Fixed, so the opening stage can run full-bleed underneath. Light-on-dark while the dark
+   stage is under it (html.header-dark, set by stage.js), paper everywhere else. */
 .site-header {
-  position: sticky;
-  top: 0;
+  position: fixed;
+  top: 0; left: 0; right: 0;
   z-index: 50;
   background: var(--surface-page);
   box-shadow: var(--shadow-header);
+  transition: background-color var(--duration-base) var(--ease-standard),
+              box-shadow var(--duration-base) var(--ease-standard);
 }
+html.header-dark .site-header { background: transparent; box-shadow: none; }
+html.header-dark .site-header.is-compact { background: rgba(13, 22, 12, 0.92); }
+html.header-dark .site-nav a,
+html.header-dark .header-phone,
+html.header-dark .menu-button { color: var(--paper-50); }
+html.header-dark .site-nav a::after { background: var(--harz-500); }
+html.header-dark .header-cta { background: var(--harz-500); color: var(--forest-950); }
+html.header-dark .site-header :focus-visible { outline-color: var(--paper-50); }
 
 .site-header__inner {
   display: flex;
@@ -173,6 +185,9 @@ a:hover { text-decoration-thickness: 2px; }
 }
 
 .site-logo { display: block; flex: none; border-radius: 50%; }
+/* The emblem sits on a paper plate: its green ring has only 2.06:1 against the dark stage (DQ-06).
+   On paper the plate is invisible. The artwork itself is unchanged. */
+.site-logo img { padding: 3px; border-radius: 50%; background: var(--paper-50); }
 .site-logo img {
   width: var(--header-logo);
   height: var(--header-logo);
@@ -284,25 +299,7 @@ html.menu-open { overflow: hidden; }
 .section-lead { font-size: var(--type-body-lg); color: var(--text-secondary); }
 .section-actions { margin-top: var(--space-7); }
 
-/* ---------- Hero ---------- */
-
-.hero { padding-block: var(--space-7) var(--space-section); }
-.hero__grid { display: grid; gap: var(--space-7); align-items: center; }
-.hero__grid > * { min-width: 0; }
-.hero__text { display: grid; gap: var(--space-5); justify-items: start; }
-.hero__title {
-  font-size: var(--type-display);
-  line-height: 1.05;
-  max-width: 15ch;
-  overflow-wrap: break-word;
-}
-/* Below 360 px the 40 px display size cannot hold "Grünflächenpflege"
-   (measured 321 px vs 288 px available at 320 px). */
-@media (max-width: 359px) {
-  .hero__title { font-size: var(--type-h1); }
-}
-.hero__lead { font-size: var(--type-body-lg); color: var(--text-secondary); max-width: 46ch; }
-.hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+/* ---------- Image size caps ---------- */
 
 /* No upscaling (MOTION_SPEC §5–6). Portrait photos are 1125 px wide, so the
    largest allowed CSS width is 1125 / DPR. Each step uses the UPPER bound of its
@@ -315,16 +312,6 @@ html.menu-open { overflow: hidden; }
 @media (min-resolution: 3.01dppx) { :root { --portrait-cap: 321px; } }                  /* 3 – 3.5     */
 @media (min-resolution: 3.51dppx) { :root { --portrait-cap: 281px; } }                  /* 3.5 – 4     */
 
-.hero__media { width: 100%; max-width: min(var(--image-max-portrait-3x), var(--portrait-cap)); justify-self: center; }
-
-@media (min-width: 1024px) {
-  .hero { padding-block: var(--space-8) var(--space-section); }
-  .hero__grid { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: var(--space-8); }
-  .hero__media {
-    max-width: min(var(--portrait-cap), calc((100svh - var(--header-height) - 120px) * 0.75));
-    justify-self: end;
-  }
-}
 
 /* ---------- Frames and captions ---------- */
 
@@ -546,6 +533,7 @@ html.menu-open .action-bar { display: none; }
 
 html.review [data-review][hidden] { display: block; }
 .review-banner {
+  position: fixed; left: 0; right: 0; bottom: calc(64px + env(safe-area-inset-bottom)); z-index: 45;
   padding: var(--space-3) var(--space-margin);
   background: var(--harz-500);
   color: var(--forest-950);

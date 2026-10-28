@@ -309,3 +309,180 @@ Open `http://127.0.0.1:8765/concepts/d-monument-system/index.html`.
 | `?t=end` | shows the end state |
 | `?rm=1` | reduced motion |
 | `?seed=<n>` | review only: shows another tree shape |
+
+---
+
+## 11. Revision D2 (2026-10-27): the three biggest weaknesses fixed
+
+D2 is a separate copy, `concepts/d2-monument-system/`. Concept D,
+concepts A–C and `src/` are unchanged, so D and D2 can be compared side by
+side. Board: `concepts/review/D-vs-D2.jpg`.
+
+| # | Weakness in D (from its screenshots) | Fix in D2 | Files |
+|---|---|---|---|
+| 1 | **Tree silhouette:** the crown was a hollow umbrella whose sides drooped below mid-trunk. It read as a weeping willow, not the emblem's round tree | Branches grow inside a slightly lobed oval crown envelope and steer outward from its centre; shoots that reach the edge stop (no wire outline). Leaf groups fill the whole oval with a minimum spacing, so they stay distinct with small gaps; inner groups sit in the darker back layer. The trunk is a little sturdier. Same seed 42, still drawn by code, still not the logo | `growth.js` |
+| 2 | **Dark → paper transition:** a cross-fade passed through a flat olive-grey frame with faded copy (it looked like a dimmed or broken screen) | Paper grows out of the photo frame as a widening "growth ring" (CSS `clip-path: circle()` with a thin amber edge). The real-work copy exists twice: light on the dark side, and dark inside the paper layer (`aria-hidden`, no focusable content). As the edge passes, each half is fully legible; there is no grey state. The navigation turns dark the moment the paper reaches it | `index.html`, `system.js` |
+| 3 | **Lighting:** the beam was a flat grey stripe that stopped above the crown, and the crown had no lit side | The beam is a soft cone, narrow at the source and wide where it lands, fading at both ends, and it lands on the upper right of the crown. A faint sheen sits there. Leaves facing the light take a lit tint of lime-400 (`#c6e18a` front, `#86ad2e` back); the far side takes a shade (`#5f8a1a` / `#3a5716`) | `index.html`, `system.js`, `growth.js` |
+
+**Not changed on purpose:**
+
+- **Monumental type:** it already works (10.4:1, crisp after the Stage 04D
+  optical-size fix).
+- **Mobile ring labels:** about 13 px, harz-500 (fourth on the list). The
+  next candidate is a dark halo (`paint-order: stroke`) behind each curved
+  label.
+- **Interaction, intro timing, contact dock, image limits and fallbacks:**
+  unchanged.
+
+**A bug found and fixed while building D2.** The `paper` class that the page
+sets on `<html>` (to darken the navigation) also matched the new paper
+layer's CSS rule. That clipped the whole document to a circle and left a
+white screen from 84 % scroll on. The layer class is now `paper-reveal`.
+
+**Checks run for D2** (Playwright with Chromium only; no other browsers, no
+real devices):
+
+| Check | Result |
+|---|---|
+| Console errors | 0 in every run |
+| Horizontal overflow | 0 px at 320, 390, 768, 1024 and 1440 px, with JS, reduced motion and without JS |
+| Upscaling | Every visible image ≤ 0.92 device px per source px, at 1440@1, 1440@2, 1920@2, 1024@2, 768@2, 390@3 and 320@3 |
+| Keyboard | 12 tab stops, all with a solid focus outline; Tab + Enter selects a group |
+| Interaction | Hovering the outer ring selects Winter & Reinigung |
+| Skip and session | Skip works; the second visit plays no intro |
+| Fallbacks | Reduced motion and no-JS give the stacked page; the paper layer is not used |
+
+**Frame times** (headless, software rendering), p95 in ms:
+
+| | D | D2 |
+|---|---|---|
+| Intro, 1440 px, CPU 4× | 66.6 | 50 |
+| Intro, 390 px @3x, CPU 4× | 50 | 33.4 |
+| Scroll, 1440 px, CPU 4× | 49.9 | 50 |
+
+D2 is equal or better despite the fuller crown (about 1,600 leaves), because
+leaves are still drawn incrementally.
+
+**The existing QA script for the Home baseline**
+(`scripts/qa/home-prototype-qa.js`) was re-run:
+
+| Check | Result |
+|---|---|
+| Horizontal overflow | 0 px in all 9 layouts |
+| Upscaling | Worst file 1.0 |
+| Contrast | 165 text nodes, 0 below AA, minimum 5.49:1 |
+| Keyboard | Visible focus on every stop. One recorded entry is `BODY` (focus leaving the page at the end of the tab cycle) |
+| Intro | Ends on desktop and mobile; Esc skips |
+| Reduced motion / no JS / logo failure / `intro.js` blocked | Page usable |
+| Forbidden claims or names | None |
+
+---
+
+## 12. D2 refinement pass (2026-10-27, uncommitted, awaiting review)
+
+Only `concepts/d2-monument-system/` changed. D, A–C, `src/` and all assets
+are untouched. Before/after board: `concepts/review/D2-refinement-before-after.jpg`.
+
+### Defects found in the D2 screenshots, and the fix for each
+
+| # | Defect (seen in the screenshots) | Change | Why it was necessary |
+|---|---|---|---|
+| 1 | Leaves read as scattered confetti, especially the pale lit leaves on the upper rim; a few floated loose below the mass | A soft, darker, irregular foliage mass under each front-layer leaf group, growing together with its leaves (`growth.js`) | Groups now read as connected clumps with leaves as texture; depth runs from shaded masses to branches to lit outer leaves |
+| 2 | Twig ends traced the crown outline like wire (upper left and upper right) | Branch tips stop at 86 % of the crown radius, and shoots that reach it stop branching (from depth 2) | The foliage always covers the wood at the edge |
+| 3 | Transient "brooms" of fine twigs at 1.4–1.9 s | One branch level fewer (8 desktop, 7 phones) | Leaf groups fill the crown on their own; the extra level only added clutter |
+| 4 | Heart-shaped notch on top of the crown at 768–1440 px | The main lobe of the crown oval is phased so the top always bulges | A random dip at the top read as a heart |
+| 5 | Any branch change reshuffled the whole crown; random gaps appeared | Leaf-group centres come from their own random stream and use best-candidate sampling | Even coverage with no holes, still irregular; the crown layout is stable |
+| 6 | The beam had a hard straight edge (`clip-path` polygon), and a grey plane at the top | Elongated radial glow tinted towards the forest palette, a fade at the lower end, no clip-path | No edges, no stripe |
+| 7 | Where the beam landed it washed grey haze over the leaves; the sheen overlay showed as a flat grey disc | Beam moved behind the tree, landing on the upper-right crown; sheen removed | The light is carried by the lit/shaded leaf tones; no extra effect needed |
+| 8 | At 1024 px the crown came within about 30 px of the lead text | Desktop tree scale is capped so the crown keeps ≥ 40 px from the right edge of the measured text lines | Measured gaps after: 62 / 67 / 83 / 244 px at 1024 / 1280 / 1440 / 1920 |
+| 9 | At 320 × 640 the tree was about 130 px tall | On short phones (≤ 700 px tall) the words and lead are slightly smaller | Tree now about 190 px; still fully visible |
+| 10 | Mobile ring label small, with ring lines running through the letters | Label 15 px on phones (was 13), plus a dark halo (`paint-order: stroke`) on all ring labels | Legible over the rings |
+
+### Not changed
+
+- The intro timing and the slit.
+- The ring interaction, the photos and their size limits.
+- The growth-ring paper transition, which was already correct. It was
+  re-verified as below.
+
+### QA (Playwright with Chromium only; no other browsers, no real devices)
+
+**Widths 320, 390, 768, 1024 and 1440:**
+
+| Check | Result |
+|---|---|
+| Crown framing | Tree canvas fully inside the viewport at every width; no overlap with the copy (measured in pixels) |
+| Service buttons | ≥ 48 px tall |
+| Ring labels | All 4 on desktop, the selected one on phones, all in view |
+| Contact dock and navigation | Hittable at every sampled scroll position before, during and after the transition (72–97 %) |
+| Document clipping | None |
+| Errors | 0 |
+
+**Transition:**
+
+| Check | Result |
+|---|---|
+| Edge crossing the heading | Captured at p = 0.827 (390 px) and 0.828 (1440 px). Each side is fully legible; no grey frame |
+| Doubled text for screen readers | The ARIA tree contains the real-work heading and sentence exactly once (the dark copy is `aria-hidden`) |
+
+**Interaction and fallbacks:**
+
+| Check | Result |
+|---|---|
+| Hovering the outer ring | Selects Winter & Reinigung |
+| Keyboard | Tab + Enter selects; 12 tab stops, all with a solid focus outline |
+| Skip | Works; no replay in the same session |
+| Overflow | 0 px in 15 runs (5 widths × JS, reduced motion, no JS) |
+| Upscaling | Every visible image ≤ 0.92 device px per source px (7 viewport/DPR combinations) |
+
+**Performance** against a frozen copy of the pre-refinement D2, same
+machine, alternating runs, headless software rendering. Intro p95 under 4×
+CPU throttling:
+
+| | Baseline | Refined |
+|---|---|---|
+| 390 px @3x | 50 / 50 / 66.7 ms | 50 / 50 / 50 ms |
+| 1440 px | 50 / 50 / 50 ms | 50 / 50 / 50 ms |
+
+Isolated scroll runs are equal within run-to-run noise: medians 16.7–33 ms
+for both versions.
+
+**Baseline QA** (`scripts/qa/home-prototype-qa.js`, `src/`):
+
+| Check | Result |
+|---|---|
+| Overflow / upscaling | 0 px overflow and worst upscale ≤ 1.0 in all 9 layouts |
+| Contrast | 165 text nodes, 0 below AA, minimum 5.49:1 |
+| Keyboard | Visible focus on all stops (the one `BODY` entry is focus leaving the page) |
+| Intro, skip, reduced motion, no JS, logo failure, blocked `intro.js` | All pass |
+| Forbidden claims | None |
+
+### Still open
+
+- On phones the paper edge cuts horizontally through the heading for a
+  moment. Both halves stay legible, but it is visually busy for about a
+  tenth of a scroll step.
+- The thin bright line in the 0.7–2.1 s keyframes is the intended slit from
+  D. It fades by 2.5 s.
+- At 320 × 640 the tree is still modest (about 190 px); very short phones
+  have little room below the copy.
+- Not measured on real devices, and not tested in Safari or Firefox.
+
+---
+
+## 13. Production implementation (2026-10-28)
+
+D2 was approved and is now the opening of the real Home page in `src/`
+(see `docs/PROJECT_STATUS.md`, Stage 05). Differences from the concept page:
+
+- The concept's own brand/nav/contact dock is replaced by the site header (fixed,
+  light-on-dark over the stage) and the mobile action bar.
+- The stacked static layout is the CSS default; the cinematic stage needs
+  `stage.js` (`html.stage-on`). This is more robust than the concept's
+  `html.rm` / `:not(.js)` overrides.
+- **Mobile paper reveal:** the real-work copy rests while the edge passes over
+  it (it no longer cuts through the heading). Desktop is unchanged.
+- Photo sizes in the stage are capped by the device pixel ratio (found by the
+  QA at 1440 px @3x).
+- The intro session key is the site's `blf-intro`; `?intro=0/1`, `?rm=1`,
+  `?t=` work as before.

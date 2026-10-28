@@ -1,5 +1,7 @@
 # Tree-logo Intro: Prototype Notes
 
+> **Superseded (2026-10-28):** the tree-logo intro was replaced in `src/` by the D2 opening stage (`docs/design/CONCEPT_D_MONUMENT_SYSTEM.md` §13). The files remain in Git history.
+
 Stage 04 · 2026-10-27 · status: **prototype for review**
 
 Implementation:

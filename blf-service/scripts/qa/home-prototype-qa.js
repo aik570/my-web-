@@ -1,4 +1,4 @@
-// QA for the BLF Stage 04 Home prototype.
+// QA for the BLF Home page (src/): D2 opening stage + paper sections.
 // Usage (from blf-service/): node scripts/qa/home-prototype-qa.js <outdir>
 // Needs Playwright with Chromium (pre-installed in the build environment; not a project dependency).
 // Results: <outdir>/qa-results.json plus screenshots.
@@ -52,6 +52,9 @@ async function upscaleReport(page, dpr) {
       const r = img.getBoundingClientRect();
       if (r.width === 0) continue;
       const cs = getComputedStyle(img);
+      if (cs.visibility === 'hidden' || cs.display === 'none') continue;
+      let op = 1; for (let e = img; e; e = e.parentElement) op *= parseFloat(getComputedStyle(e).opacity);
+      if (op < 0.01) continue;                       // not shown
       const [nW, nH] = await trueSize(img.currentSrc);   // real pixels of the chosen file
       const file = img.currentSrc.split('/').pop();
       const id = (file.match(/GAL-\d\d|logo/) || ['?'])[0];
@@ -82,9 +85,18 @@ async function contrastReport(page) {
       if (!el || el.closest('[hidden], .visually-hidden, script, style, .skip-link')) continue;
       const r = el.getBoundingClientRect(); if (r.width === 0 || r.height === 0) continue;
       const cs = getComputedStyle(el);
-      if (cs.visibility === 'hidden' || parseFloat(cs.opacity) === 0) continue;
+      if (cs.visibility === 'hidden') continue;
+      let op = 1; for (let x = el; x; x = x.parentElement) op *= parseFloat(getComputedStyle(x).opacity);
+      if (op < 0.01) continue;
       let bg = null, e = el;
-      while (e) { const b = parse(getComputedStyle(e).backgroundColor); if (b && b.a > 0.5) { bg = b.rgb; break; } e = e.parentElement; }
+      while (e && e !== document.body) { const b = parse(getComputedStyle(e).backgroundColor); if (b && b.a > 0.5) { bg = b.rgb; break; } e = e.parentElement; }
+      if (!bg && r.top < innerHeight && r.bottom > 0) {
+        // e.g. the transparent fixed header over the dark stage: use what is painted underneath
+        for (const u of document.elementsFromPoint(r.left + r.width / 2, r.top + r.height / 2)) {
+          if (u === el || u.contains(el) || el.contains(u)) continue;
+          const b = parse(getComputedStyle(u).backgroundColor); if (b && b.a > 0.5) { bg = b.rgb; break; }
+        }
+      }
       res.push({ text: n.textContent.trim().slice(0, 40), fg: parse(cs.color).rgb, bg: bg || [244, 241, 233], size: parseFloat(cs.fontSize), weight: parseInt(cs.fontWeight, 10) });
     }
     return res;
@@ -124,7 +136,18 @@ async function contrastReport(page) {
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
     const ups = await upscaleReport(page, L.dpr);
     const logo = await page.evaluate(() => { const r = document.querySelector('.site-logo img').getBoundingClientRect(); return Math.round(r.height); });
-    const hero = await page.evaluate(() => { const i = document.querySelector('.hero__media img'); const r = i.getBoundingClientRect(); return { cssW: Math.round(r.width), cssH: Math.round(r.height), file: i.currentSrc.split('/').pop(), natural: i.naturalWidth + 'x' + i.naturalHeight }; });
+    const hero = await page.evaluate(() => {
+      const h = document.querySelector('#stage-title').getBoundingClientRect(), c = document.querySelector('#stage-back').getBoundingClientRect();
+      return { title: document.querySelector('#stage-title').textContent.trim(), titleRight: Math.round(h.right), treeBox: [Math.round(c.left), Math.round(c.top), Math.round(c.right), Math.round(c.bottom)],
+               treeInView: c.left >= 0 && c.top >= 0 && c.right <= innerWidth && c.bottom <= innerHeight, mode: ['stage-on', 'stage-static'].filter((k) => document.documentElement.classList.contains(k)).join() };
+    });
+    // the stage scenes that show photos: services window and real-work frame
+    for (const f of [0.38, 0.7]) {
+      await page.evaluate((f) => { const s = document.getElementById('stage'); scrollTo({ top: s.offsetTop + f * (s.offsetHeight - innerHeight), behavior: 'instant' }); }, f);
+      await page.waitForTimeout(500);
+      (await upscaleReport(page, L.dpr)).forEach((u) => ups.push({ ...u, stage: f }));
+    }
+    await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' })); await page.waitForTimeout(300);
     results.layouts[L.name] = { horizontalOverflowPx: overflow, headerLogoPx: logoTop, lettering_px: +(logoTop * 0.102).toFixed(1), headerLogoAfterScrollBack: logo, hero, worstFileUpscale: Math.max(...ups.map((u) => u.fileUpscale)), worstOriginalUpscale: Math.max(...ups.map((u) => u.originalUpscale)), over1: ups.filter((u) => u.originalUpscale > 1.0 || u.fileUpscale > 1.0), errors };
     await page.screenshot({ path: path.join(OUT, `layout-${L.name}.png`), fullPage: true });
     if (L.name === 'desktop-1440') {
@@ -162,83 +185,148 @@ async function contrastReport(page) {
     await ctx.close();
   }
 
-  // 3. Intro, full (desktop) and lite (mobile): frames + end state.
-  for (const v of [{ name: 'intro-desktop', viewport: { width: 1440, height: 900 }, dpr: 1, times: [150, 600, 1000, 1400, 1800, 2200, 2550, 3200] },
-                   { name: 'intro-mobile', viewport: { width: 390, height: 844 }, dpr: 2, mobile: true, times: [150, 500, 900, 1250, 1500, 2100] }]) {
+  // 3. Opening intro (desktop and mobile): frames + end state, no replay in the same session.
+  for (const v of [{ name: 'intro-desktop', viewport: { width: 1440, height: 900 }, dpr: 1, times: [150, 700, 1200, 1700, 2300, 3200] },
+                   { name: 'intro-mobile', viewport: { width: 390, height: 844 }, dpr: 2, mobile: true, times: [150, 700, 1700, 3200] }]) {
     const { ctx, page, errors } = await newPage(browser, v);
     const t0 = Date.now();
     await page.goto(BASE + '?intro=1', { waitUntil: 'domcontentloaded' });
     const frames = [];
     for (const t of v.times) {
       const wait = t - (Date.now() - t0); if (wait > 0) await sleep(wait);
-      const state = await page.evaluate(() => ({ cls: document.documentElement.className, overlay: !!document.querySelector('.intro') }));
+      const state = await page.evaluate(() => ({ cls: document.documentElement.className, skipVisible: !document.getElementById('stage-skip').hidden, copy: getComputedStyle(document.getElementById('stage-hero')).getPropertyValue('--copy') || '(unset)' }));
       await page.screenshot({ path: path.join(OUT, `${v.name}-${String(t).padStart(4, '0')}ms.png`) });
       frames.push({ t, ...state });
     }
-    await sleep(1500);
-    const end = await page.evaluate(() => ({ cls: document.documentElement.className, overlay: !!document.querySelector('.intro'), heroOpacity: getComputedStyle(document.querySelector('.hero__text')).opacity, logoOpacity: getComputedStyle(document.querySelector('.site-logo img')).opacity, session: sessionStorage.getItem('blf-intro') }));
-    // reload in the same session: the intro must not replay
+    await sleep(800);
+    const end = await page.evaluate(() => ({ cls: document.documentElement.className, skipVisible: !document.getElementById('stage-skip').hidden, copy: getComputedStyle(document.getElementById('stage-hero')).getPropertyValue('--copy'), session: sessionStorage.getItem('blf-intro') }));
     await page.goto(BASE, { waitUntil: 'load' });
     await sleep(300);
-    const replay = await page.evaluate(() => ({ cls: document.documentElement.className, overlay: !!document.querySelector('.intro') }));
+    const replay = await page.evaluate(() => ({ cls: document.documentElement.className, skipVisible: !document.getElementById('stage-skip').hidden, copy: getComputedStyle(document.getElementById('stage-hero')).getPropertyValue('--copy') }));
     results[v.name] = { frames, end, replayAfterReload: replay, errors };
     await ctx.close();
   }
 
-  // 4. Skip by key during the intro.
+  // 4. Skip during the intro: by key and by the skip button.
   {
     const { ctx, page } = await newPage(browser, { viewport: { width: 1440, height: 900 } });
     await page.goto(BASE + '?intro=1', { waitUntil: 'domcontentloaded' });
     await sleep(700);
-    const before = await page.evaluate(() => !!document.querySelector('.intro'));
+    const before = await page.evaluate(() => !document.getElementById('stage-skip').hidden);
     await page.keyboard.press('Escape');
-    await sleep(400);
-    results.skipByKey = { overlayBefore: before, overlayAfter: await page.evaluate(() => !!document.querySelector('.intro')), cls: await page.evaluate(() => document.documentElement.className) };
+    await sleep(300);
+    const afterKey = await page.evaluate(() => ({ skipVisible: !document.getElementById('stage-skip').hidden, copy: getComputedStyle(document.getElementById('stage-hero')).getPropertyValue('--copy') }));
+    await page.goto(BASE + '?intro=1', { waitUntil: 'domcontentloaded' });
+    await sleep(700);
+    await page.click('#stage-skip');
+    await sleep(300);
+    const afterButton = await page.evaluate(() => ({ skipVisible: !document.getElementById('stage-skip').hidden, copy: getComputedStyle(document.getElementById('stage-hero')).getPropertyValue('--copy') }));
+    results.skip = { skipVisibleBefore: before, afterKey, afterButton };
     await ctx.close();
   }
 
-  // 5. Reduced motion: no intro, teaser visible.
-  {
-    const { ctx, page, errors } = await newPage(browser, { viewport: { width: 1440, height: 900 }, reducedMotion: 'reduce' });
+  // 5. Reduced motion: static stacked page, no intro, everything visible.
+  for (const v of [{ name: 'reducedMotion', viewport: { width: 1440, height: 900 } }, { name: 'reducedMotionMobile', viewport: { width: 390, height: 844 }, dpr: 2, mobile: true }]) {
+    const { ctx, page, errors } = await newPage(browser, { ...v, reducedMotion: 'reduce' });
     await page.goto(BASE, { waitUntil: 'load' });
-    await sleep(500);
-    results.reducedMotion = await page.evaluate(() => ({ cls: document.documentElement.className, overlay: !!document.querySelector('.intro'), teaserOpacity: getComputedStyle(document.querySelector('.teaser__item')).opacity }));
-    results.reducedMotion.errors = errors;
-    await page.screenshot({ path: path.join(OUT, 'view-reduced-motion.png') });
+    await sleep(600);
+    results[v.name] = await page.evaluate(() => ({ cls: document.documentElement.className, skipVisible: !document.getElementById('stage-skip').hidden,
+      panelOpacity: getComputedStyle(document.getElementById('leistungsbereiche')).opacity, workOpacity: getComputedStyle(document.getElementById('stage-work')).opacity,
+      teaserOpacity: getComputedStyle(document.querySelector('.teaser__item')).opacity, overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth }));
+    results[v.name].errors = errors;
+    await page.screenshot({ path: path.join(OUT, `view-${v.name}.png`), fullPage: true });
     await ctx.close();
   }
 
-  // 6. JavaScript disabled.
+  // 6. JavaScript disabled (synchronous evaluation only: timers do not run in this page).
   {
     const { ctx, page, errors } = await newPage(browser, { viewport: { width: 1440, height: 900 }, js: false });
     await page.goto(BASE + '?review', { waitUntil: 'load' });
-    results.noJs = await page.evaluate(() => ({ cls: document.documentElement.className, reviewNotesVisible: Array.from(document.querySelectorAll('[data-review]')).filter((e) => e.offsetParent !== null).length, heroOpacity: getComputedStyle(document.querySelector('.hero__text')).opacity, teaserOpacity: getComputedStyle(document.querySelector('.teaser__item')).opacity }));
+    results.noJs = await page.evaluate(() => ({ cls: document.documentElement.className, reviewNotesVisible: Array.from(document.querySelectorAll('[data-review]')).filter((e) => e.offsetParent !== null).length,
+      heroOpacity: getComputedStyle(document.getElementById('stage-hero')).opacity, panelOpacity: getComputedStyle(document.getElementById('leistungsbereiche')).opacity,
+      workOpacity: getComputedStyle(document.getElementById('stage-work')).opacity, teaserOpacity: getComputedStyle(document.querySelector('.teaser__item')).opacity,
+      overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth }));
     results.noJs.errors = errors;
-    await page.screenshot({ path: path.join(OUT, 'view-no-js.png') });
+    await page.screenshot({ path: path.join(OUT, 'view-no-js.png'), fullPage: true });
     await ctx.close();
   }
 
-  // 7. Logo asset fails: intro must give up, content visible.
+  // 7. growth.js fails to load: stage.js must give up and the stacked page must show.
   {
-    const { ctx, page, errors } = await newPage(browser, { viewport: { width: 1440, height: 900 }, route: (p) => p.route('**/logo-1200.webp', (r) => r.abort()) });
+    const { ctx, page, errors } = await newPage(browser, { viewport: { width: 1440, height: 900 }, route: (p) => p.route('**/growth.js', (r) => r.abort()) });
     await page.goto(BASE + '?intro=1', { waitUntil: 'domcontentloaded' });
-    await sleep(600);
-    results.logoFails = await page.evaluate(() => ({ cls: document.documentElement.className, overlay: !!document.querySelector('.intro'), heroOpacity: getComputedStyle(document.querySelector('.hero__text')).opacity }));
-    results.logoFails.errors = errors;
+    await sleep(3600);
+    results.growthFails = await page.evaluate(() => ({ cls: document.documentElement.className, heroOpacity: getComputedStyle(document.getElementById('stage-hero')).opacity,
+      panelOpacity: getComputedStyle(document.getElementById('leistungsbereiche')).opacity }));
+    results.growthFails.errors = errors;
     await ctx.close();
   }
 
-  // 8. intro.js blocked: CSS fail-safe must remove the cover.
+  // 8. stage.js blocked: the CSS fail-safe must reveal the copy and never block clicks.
   {
-    const { ctx, page } = await newPage(browser, { viewport: { width: 1440, height: 900 }, route: (p) => p.route('**/intro.js', (r) => r.abort()) });
+    const { ctx, page } = await newPage(browser, { viewport: { width: 1440, height: 900 }, route: (p) => p.route('**/stage.js', (r) => r.abort()) });
     const t0 = Date.now();
     await page.goto(BASE + '?intro=1', { waitUntil: 'domcontentloaded' });
-    const coverAt = async () => page.evaluate(() => { const s = getComputedStyle(document.body, '::before'); return { visibility: s.visibility, opacity: s.opacity }; });
-    await sleep(1000); const early = await coverAt();
-    await sleep(2200); const late = await coverAt();
-    const pe = await page.evaluate(() => getComputedStyle(document.body, '::before').pointerEvents);
-    const hit = await page.evaluate(() => { const r = document.querySelector('.hero .button--primary').getBoundingClientRect(); const e = document.elementFromPoint(r.left + 5, r.top + 5); return e && e.className; });
-    results.introJsBlocked = { at1s: early, at3_2s: late, pointerEvents: pe, elementAtHeroButton: hit, heroOpacity: await page.evaluate(() => getComputedStyle(document.querySelector('.hero__text')).opacity), ms: Date.now() - t0 };
+    const heroOp = async () => page.evaluate(() => getComputedStyle(document.getElementById('stage-hero')).opacity);
+    await sleep(1000); const early = await heroOp();
+    await sleep(2600); const late = await heroOp();
+    const hit = await page.evaluate(() => { const r = document.querySelector('.stage__actions .button').getBoundingClientRect(); const e = document.elementFromPoint(r.left + 5, r.top + 5); return e && e.className; });
+    results.stageJsBlocked = { heroOpacityAt1s: early, heroOpacityAt3_6s: late, elementAtHeroButton: hit, ms: Date.now() - t0 };
+    await ctx.close();
+  }
+
+  // 8b. Stage scenes: service interaction, keyboard, transition, header mode, mobile copy rest.
+  for (const v of [{ name: 'stage-desktop', viewport: { width: 1440, height: 900 }, dpr: 1 }, { name: 'stage-mobile', viewport: { width: 390, height: 844 }, dpr: 2, mobile: true }]) {
+    const { ctx, page, errors } = await newPage(browser, v);
+    await page.goto(BASE + '?intro=0', { waitUntil: 'load' });
+    await page.evaluate(() => document.fonts.ready); await sleep(400);
+    const toP = async (f) => { await page.evaluate((f) => { const s = document.getElementById('stage'); scrollTo({ top: s.offsetTop + f * (s.offsetHeight - innerHeight), behavior: 'instant' }); }, f); await sleep(350); };
+    const r = { headerDarkAtTop: await page.evaluate(() => document.documentElement.classList.contains('header-dark')) };
+    await toP(0.38);
+    await page.screenshot({ path: path.join(OUT, `${v.name}-services.png`) });
+    r.interaction = {};
+    for (const g of [2, 1, 3]) {
+      await page.click(`#stage-groups button[data-g="${g}"]`);
+      await sleep(250);
+      r.interaction['g' + g] = await page.evaluate(() => ({ pressed: document.querySelector('#stage-groups [aria-pressed=true]').textContent.trim(), detail: document.getElementById('stage-detail').innerText.split('\n')[0] }));
+    }
+    if (!v.mobile) {
+      const pt = await page.evaluate(() => { const hp = document.querySelectorAll('#stage-rings .hit')[0]; const bb = hp.getBBox(); const s = document.getElementById('stage-rings').createSVGPoint(); s.x = bb.x; s.y = bb.y + bb.height / 2; const q = s.matrixTransform(hp.getScreenCTM()); return { x: q.x + 3, y: q.y }; });
+      await page.mouse.move(pt.x, pt.y); await sleep(300);
+      r.interaction.hoverInnerRing = await page.evaluate(() => document.querySelector('#stage-groups [aria-pressed=true]').textContent.trim());
+    }
+    r.transition = [];
+    for (const f of [0.7, 0.76, 0.78, 0.8, 0.82, 0.84, 0.86, 0.88, 0.9, 0.97]) {
+      await toP(f);
+      r.transition.push(await page.evaluate((f) => {
+        const hit = (el) => { if (!el) return null; const q = el.getBoundingClientRect(); if (!q.width) return 'not shown'; const e = document.elementFromPoint(q.left + q.width / 2, q.top + q.height / 2); return !!e && (el === e || el.contains(e)); };
+        const pe = document.getElementById('stage-paper'), pr = parseFloat(pe.style.getPropertyValue('--pr')) || 0, cx = parseFloat(pe.style.getPropertyValue('--pcx')), cy = parseFloat(pe.style.getPropertyValue('--pcy'));
+        const work = document.getElementById('stage-work'), q = work.getBoundingClientRect();
+        const near = Math.hypot(Math.max(q.left - cx, 0, cx - q.right), Math.max(q.top - cy, 0, cy - q.bottom));
+        const far = Math.max(...[[q.left, q.top], [q.right, q.top], [q.left, q.bottom], [q.right, q.bottom]].map(([x, y]) => Math.hypot(x - cx, y - cy)));
+        const shown = parseFloat(getComputedStyle(work).opacity) > 0.05 && getComputedStyle(work).visibility !== 'hidden';
+        return { p: f, edgeRadius: Math.round(pr), edgeInsideCopyWhileShown: shown && pr > near && pr < far,
+                 contactReachable: hit(document.querySelector(innerWidth >= 1024 ? '.header-cta' : '.action-bar .button--primary')),
+                 headerControl: hit(document.querySelector(innerWidth >= 1024 ? '.site-nav a' : '.menu-button')),
+                 headerDark: document.documentElement.classList.contains('header-dark'), htmlClip: getComputedStyle(document.documentElement).clipPath };
+      }, f));
+      if (f === 0.84) await page.screenshot({ path: path.join(OUT, `${v.name}-transition-084.png`) });
+    }
+    const aria = await page.locator('body').ariaSnapshot();
+    r.ariaRealWorkHeadingCount = aria.split('Echte Arbeit am Baum').length - 1;
+    await page.evaluate(() => scrollTo({ top: document.getElementById('stage').offsetHeight + 40, behavior: 'instant' })); await sleep(300);
+    r.headerDarkAfterStage = await page.evaluate(() => document.documentElement.classList.contains('header-dark'));
+    // keyboard: from the top, tab into the service buttons; the scene must come into view
+    await page.evaluate(() => { document.activeElement && document.activeElement.blur(); scrollTo({ top: 0, behavior: 'instant' }); }); await sleep(200);
+    await page.focus('.skip-link');                    // start the Tab path at the top of the document
+    let reached = false;
+    for (let i = 0; i < 25 && !reached; i++) { await page.keyboard.press('Tab'); reached = await page.evaluate(() => !!document.activeElement.closest('#stage-groups')); }
+    await sleep(400);
+    r.keyboardServices = { reached, panelOpacity: await page.evaluate(() => getComputedStyle(document.getElementById('leistungsbereiche')).opacity) };
+    await page.keyboard.press('Enter'); await sleep(200);
+    r.keyboardServices.selected = await page.evaluate(() => document.querySelector('#stage-groups [aria-pressed=true]').textContent.trim());
+    r.errors = errors;
+    results[v.name] = r;
     await ctx.close();
   }
 

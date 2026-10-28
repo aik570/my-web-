@@ -1,0 +1,269 @@
+/*
+ * Home opening stage (approved direction D2, "Forest Monument — Living System").
+ * Ported from concepts/d2-monument-system.
+ *
+ * Base rules = a calm stacked page (no JavaScript, reduced motion, or stage.js failed).
+ * html.stage-on = the cinematic sticky stage, switched on by stage.js only.
+ */
+
+/* Phones and portrait tablets share one layout; keep in sync with SMALL_MQ in stage.js. */
+
+.stage {
+  position: relative;
+  color: var(--paper-50);
+  background-color: var(--ground-990);
+}
+.stage :focus-visible { outline-color: var(--harz-500); }
+
+.stage__sticky {
+  position: relative;
+  padding: calc(100vh + var(--space-5)) var(--space-margin) var(--space-8);
+  padding-top: calc(100svh + var(--space-5));
+}
+.stage__ground {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 80% at var(--gx, 65%) 42%, #18291a 0%, var(--ground-990) 58%, var(--ground-1000) 100%);
+}
+/* Everything that belongs to the first screen is sized to it. */
+.stage__layer { position: absolute; inset: 0 0 auto 0; height: 100vh; height: 100svh; overflow: hidden; }
+
+/* ---------- light: the slit becomes the beam that finds the tree ---------- */
+.stage__slit {
+  position: absolute; top: 0;
+  width: 120px; margin-left: -60px;
+  height: var(--baseY, 90%);
+  transform-origin: 50% 0;
+  transform: scaleY(var(--slit, 0));
+  opacity: var(--slitA, 0);
+  background: linear-gradient(90deg, rgba(233, 227, 214, 0), rgba(233, 227, 214, .28) 46%, rgba(244, 241, 233, .55) 50%, rgba(233, 227, 214, .28) 54%, rgba(233, 227, 214, 0));
+}
+.stage__glow {
+  position: absolute; border-radius: 50%;
+  opacity: var(--glow, 0);
+  background: radial-gradient(closest-side, rgba(139, 187, 35, .16), rgba(139, 187, 35, .05) 60%, rgba(139, 187, 35, 0));
+}
+/* An elongated radial glow (no hard edge), behind the tree, fading out upward. */
+.stage__beam {
+  position: absolute;
+  width: 520px; margin-left: -260px; height: 150vh;
+  transform-origin: 50% 100%;
+  transform: rotate(24deg) scaleX(var(--beamW, .1));
+  opacity: var(--beam, 0);
+  pointer-events: none;
+  background: radial-gradient(ellipse 30% 64% at 50% 90%, rgba(226, 236, 196, .26), rgba(226, 236, 196, .11) 42%, rgba(226, 236, 196, .035) 68%, rgba(226, 236, 196, 0) 100%);
+  -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 16%);
+  mask-image: linear-gradient(to top, transparent 0%, #000 16%);
+}
+.stage__tree { transform-origin: var(--ox, 50%) var(--oy, 50%); }
+.stage__tree canvas { position: absolute; }                     /* sized to the tree's box by stage.js */
+
+/* ---------- first screen: monumental name and the service proposition ---------- */
+.stage__hero {
+  position: absolute; z-index: 3;
+  left: var(--space-margin);
+  top: 50vh; top: 50svh;
+  transform: translateY(-50%);
+  width: min(40vw, 34rem);
+}
+.stage__label {
+  display: flex; gap: 10px; align-items: center;
+  font: 600 12px/1.3 var(--font-text);
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--mist-200);
+  opacity: var(--copy, 1);
+}
+.stage .marker { background: var(--harz-500); }
+.stage__monument {
+  margin-top: 14px;
+  font-family: var(--font-display);
+  font-weight: 560;
+  font-variation-settings: "opsz" 30;                            /* sturdier hairlines at display size */
+  text-transform: uppercase;
+  letter-spacing: -.012em;
+  font-size: min(15.5vh, 9.4vw);
+  line-height: .88;
+  opacity: var(--words, 1);
+  text-wrap: nowrap;
+}
+/* Solid, legible fill; light and a restrained grain ride on top. */
+.stage__monument .w {
+  display: block; width: max-content;
+  color: var(--mist-200);
+  background-image: var(--grain, none), linear-gradient(100deg, #1c2a19 0%, #1c2a19 33%, #f4f1e9 45%, #ddd6c6 52%, var(--mist-200) 66%, var(--mist-200) 100%);
+  background-size: 160px 160px, 300% 100%;
+  background-position: 0 0, calc(var(--wl, 1) * 100%) 0;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.stage__lead {
+  margin-top: 22px; max-width: 30rem;
+  font-size: 1.08rem; line-height: 1.55;
+  color: var(--paper-100);
+  opacity: var(--copy, 1);
+}
+.stage__lead b { color: var(--paper-50); font-weight: 600; }
+.stage__actions {
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-5);
+  margin-top: var(--space-5);
+  opacity: var(--copy, 1);
+}
+.stage__discover { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; color: var(--paper-50); font-weight: 600; text-underline-offset: 4px; }
+
+/* ---------- rings and contours (cinematic only) ---------- */
+.stage__rings { display: none; }
+.stage__rings .ring { fill: none; stroke: var(--lime-400); stroke-opacity: .46; transition: stroke .25s, stroke-opacity .25s; }
+.stage__rings .contour { fill: none; stroke: var(--mist-200); stroke-opacity: .26; }
+.stage__rings.show-sel .ring.on { stroke: var(--harz-500); stroke-opacity: 1; stroke-width: var(--onw, 2.4px) !important; }
+.stage__rings text {
+  font: 600 21px var(--font-text); letter-spacing: .12em; text-transform: uppercase;
+  fill: var(--paper-100); fill-opacity: .72;
+  cursor: pointer;
+  paint-order: stroke; stroke: var(--ground-990); stroke-linejoin: round;
+  transition: fill .25s, fill-opacity .25s;
+}
+.stage__rings.show-sel text.on { fill: var(--harz-500); fill-opacity: 1; }
+.stage__rings .hit { fill: none; stroke: transparent; pointer-events: none; cursor: pointer; }
+.stage.interactive .stage__rings .hit,
+.stage.interactive .stage__rings text { pointer-events: auto; }
+
+/* ---------- services panel ---------- */
+.stage__panel { position: relative; z-index: 4; max-width: 40rem; }
+.stage__panel .marker-label { color: var(--paper-50); }
+.stage__panel h2,
+.stage__work h2 { margin-top: var(--space-3); font-size: clamp(2rem, 1.3rem + 1.8vw, 3rem); line-height: 1.05; }
+.stage__groups { margin-top: var(--space-5); display: grid; gap: 4px; }
+.stage__groups button {
+  display: flex; align-items: baseline; gap: 14px;
+  width: 100%; min-height: 48px; padding: 10px 12px;
+  text-align: left; cursor: pointer;
+  background: transparent; color: var(--paper-100);
+  border: 0; border-left: 2px solid rgba(201, 194, 180, .3);
+  font: 500 1.15rem/1.2 var(--font-text);
+}
+.stage__groups .n { font: 600 12px var(--font-text); letter-spacing: .08em; color: var(--mist-200); }
+.stage__groups button:hover { color: var(--paper-50); border-left-color: var(--mist-200); }
+.stage__groups button[aria-pressed="true"] { color: var(--paper-50); border-left-color: var(--harz-500); background: rgba(221, 158, 9, .1); }
+.stage__groups button[aria-pressed="true"] .n { color: var(--harz-500); }
+.stage__groups button:focus-visible { outline: 2px solid var(--harz-500); outline-offset: 2px; }
+.stage__detail { margin-top: 18px; min-height: 6.5em; }
+.stage__svc { color: var(--paper-50); line-height: 1.5; }
+.stage__cap { margin-top: var(--space-2); font-size: 13px; color: var(--mist-200); }
+
+/* ---------- the core window: service photos, then the real-work frame ---------- */
+/* Static size: GAL-02 is only 844 px wide, so the circle stays <= 844 / DPR CSS px. */
+.stage__window {
+  position: relative; z-index: 3;
+  width: min(280px, 100%); aspect-ratio: 1;
+  margin-top: var(--space-5);
+  overflow: hidden; border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(221, 158, 9, .7);
+}
+@media (min-resolution: 3.01dppx) { .stage__window { width: min(240px, 100%); } }
+.stage__window img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .35s; }
+.stage__photos { position: absolute; inset: 0; opacity: var(--gi, 1); }
+.stage__photos img.on { opacity: 1; }
+.stage__window .stage__frame-photo { opacity: var(--wi, 0); }
+.stage__window.is-illustration { display: none; }                /* static page: no photo exists for Grün & Forst */
+
+/* ---------- real work ---------- */
+.stage__work { position: relative; z-index: 4; max-width: 40rem; margin-top: var(--space-8); color: var(--paper-50); }
+.stage__work .marker-label { color: var(--mist-200); }
+.stage__work .stage__txt { margin-top: var(--space-4); color: var(--paper-100); }
+.stage__work-photo { margin-top: var(--space-5); width: 100%; max-width: min(420px, 100%, var(--portrait-cap)); }
+
+/* Paper growing out of the frame (cinematic only). The copy exists twice: light on the dark side,
+   dark inside the paper (aria-hidden), so the text is legible on both sides of the edge. */
+.stage__paper, .stage__edge { display: none; }
+
+.stage__skip {
+  position: fixed; left: 16px; bottom: 16px; z-index: 85;
+  min-height: 48px; padding: 0 16px;
+  border: 1px solid rgba(244, 241, 233, .5); border-radius: var(--radius-control);
+  background: rgba(8, 14, 7, .6); color: var(--paper-50);
+  font: 600 14px var(--font-text); cursor: pointer;
+}
+.stage__skip[hidden] { display: none; }
+.stage__skip:focus-visible { outline: 2px solid var(--harz-500); outline-offset: 2px; }
+
+@media (min-width: 1024px) {
+  .stage__sticky { padding-inline: clamp(32px, 5vw, 80px); }
+  .stage__hero { left: clamp(32px, 5vw, 80px); width: min(36vw, 34rem); }
+}
+
+/* ---------- phones and portrait tablets ---------- */
+@media (max-width: 767px), (max-width: 1023px) and (orientation: portrait) {
+  .stage__hero { top: calc(var(--header-height) + var(--space-3)); transform: none; right: var(--space-margin); width: auto; }
+  .stage__monument { font-size: min(23vw, 12vh); margin-top: 10px; }
+  .stage__lead { font-size: .95rem; margin-top: 14px; }
+  .stage__actions { display: none; }                             /* the action bar carries call + request on small screens */
+  .stage__skip { bottom: 84px; }
+}
+@media (max-width: 767px) and (max-height: 700px), (max-width: 1023px) and (orientation: portrait) and (max-height: 700px) {
+  /* short phones: the words and lead give the tree more room */
+  .stage__monument { font-size: min(23vw, 10vh); }
+  .stage__lead { font-size: .86rem; margin-top: 10px; }
+}
+
+/* =====================================================================
+   Cinematic stage: only while stage.js runs with motion allowed
+   ===================================================================== */
+html.stage-on .stage { height: 560vh; }
+html.stage-on .stage__sticky { position: sticky; top: 0; height: 100vh; height: 100svh; padding: 0; overflow: hidden; }
+html.stage-on .stage__tree { will-change: transform, opacity; }
+html.stage-on .stage__rings { display: block; position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; overflow: visible; will-change: transform, opacity; }
+html.stage-on .stage__hero { top: 50%; }
+
+html.stage-on .stage__panel {
+  position: absolute; left: clamp(20px, 5vw, 80px); top: 50%; transform: translateY(-50%);
+  width: min(30vw, 25rem); opacity: var(--panel, 0);
+}
+html.stage-on .stage:not(.interactive) .stage__panel { pointer-events: none; }
+html.stage-on .stage__window {
+  position: absolute; width: 0; height: 0; aspect-ratio: auto; margin: 0;
+}
+html.stage-on .stage__window.is-illustration { display: block; }
+html.stage-on .stage__work {
+  position: absolute; left: clamp(20px, 5vw, 80px); top: 50%; transform: translateY(-50%);
+  width: min(30vw, 26rem); margin: 0; opacity: var(--work, 0);
+}
+html.stage-on .stage__work-photo { display: none; }
+
+html.stage-on .stage__paper {
+  display: block; position: absolute; inset: 0; z-index: 5;
+  background: var(--paper-50); pointer-events: none;
+  clip-path: circle(var(--pr, 0px) at var(--pcx, 50%) var(--pcy, 50%));
+  visibility: hidden;
+}
+html.stage-on .stage__paper .stage__work { opacity: 1; color: var(--forest-950); }
+html.stage-on .stage__paper .stage__txt { color: var(--bark-600); }
+html.stage-on .stage__paper .marker-label { color: var(--bark-600); }
+html.stage-on .stage__paper .marker { background: var(--harz-700); }
+html.stage-on .stage__edge {
+  display: block; position: absolute; z-index: 5;
+  border-radius: 50%; border: 1.5px solid rgba(221, 158, 9, .75);
+  pointer-events: none; visibility: hidden;
+}
+html.stage-on .stage__window.over-paper { z-index: 6; }
+
+@media (max-width: 767px), (max-width: 1023px) and (orientation: portrait) {
+  html.stage-on .stage { height: 600vh; }
+  html.stage-on .stage__hero { top: calc(var(--header-height) + var(--space-3)); }
+  html.stage-on .stage__panel { top: auto; bottom: 84px; transform: none; left: var(--space-margin); right: var(--space-margin); width: auto; }
+  html.stage-on .stage__panel .marker-label,
+  html.stage-on .stage__panel h2 { display: none; }
+  html.stage-on .stage__groups { grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 0; }
+  html.stage-on .stage__groups button { font-size: .98rem; padding: 8px 10px; }
+  html.stage-on .stage__groups .n { display: none; }
+  html.stage-on .stage__detail { margin-top: 10px; min-height: 5.6em; font-size: .9rem; }
+  html.stage-on .stage__work { top: auto; bottom: 84px; transform: none; left: var(--space-margin); right: var(--space-margin); width: auto; }
+  html.stage-on .stage__work h2 { font-size: 1.7rem; }
+  html.stage-on .stage__work .stage__txt { font-size: .92rem; margin-top: 10px; }
+}
+
+/* Pre-paint state while the intro is about to run; stage.js removes it immediately.
+   Fail-safe: if stage.js never runs, the copy appears after 3.2 s anyway. */
+html.stage-intro .stage__hero { opacity: 0; animation: stage-failsafe 0s linear 3.2s forwards; }
+@keyframes stage-failsafe { to { opacity: 1; } }
+
+/* Frozen QA keyframes: no transitions. */
+html.frozen .stage * { transition: none !important; }

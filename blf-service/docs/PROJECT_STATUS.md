@@ -214,6 +214,103 @@ Corrections (DESIGN_DECISIONS §8):
 - New **DQ-12** (Markierung colour on light grounds).
 - Details: DESIGN_DECISIONS §3 and §8.
 
+## Stage 05 — Home page implemented with the D2 opening (2026-10-28)
+
+The owner approved D2 and asked for the real implementation. The Home page in
+`src/` now opens with the D2 stage and continues with all planned Home sections.
+Not published (`noindex`); no deployment, no DNS or external system changed.
+
+### Done
+
+- [x] **Opening stage in `src/`** (ported from `concepts/d2-monument-system/`):
+      `styles/stage.css`, `scripts/motion.js`, `scripts/growth.js`,
+      `scripts/stage.js`. Monument words → light slit → growing tree → service
+      rings with a working interaction (pointer on the rings, four keyboard
+      buttons, live region) → real-work frame (GAL-13) → paper growing out of
+      the frame. No dependencies.
+- [x] **Robust by construction:** the stacked static layout is the CSS default;
+      the cinematic stage switches on only when `stage.js` runs (`html.stage-on`).
+      Reduced motion draws the grown tree once (`html.stage-static`). No JS or a
+      failing script still gives the full page; a CSS fail-safe reveals the hero
+      copy after 3.2 s if `stage.js` never runs.
+- [x] **Mobile transition fix:** on phones and portrait tablets the real-work
+      copy rests while the paper edge passes over it and returns dark on paper,
+      so the edge never cuts through the heading. Desktop keeps the split-text
+      reveal (both halves legible).
+- [x] **Header and contact:** the site header is fixed; light-on-dark over the
+      stage, paper elsewhere; the emblem sits on a paper plate (unchanged
+      artwork). Phone + "Anfrage" stay in the header (desktop) and in the
+      mobile action bar at every scroll position.
+- [x] **All Home sections** after the stage: Notfall strip, Leistungen,
+      Galerie preview, Über uns, Karriere (Initiativ), Kontakt, footer.
+      Content unchanged from Stage 04 (verified text only).
+- [x] **Images:** no visible image above 1.0 device px per source px
+      (cinematic and static, DPR 1–3). Photo sizes in the stage are capped by
+      the device pixel ratio (GAL-02 844 px, GAL-13 1125 px).
+- [x] **Dark ground tokens** `--ground-990` / `--ground-1000` added to
+      `tokens.css` (approved with D2).
+- [x] **Old tree-logo intro removed** (`intro.js`, `intro.css`; still in Git
+      history and documented in `docs/design/INTRO_PROTOTYPE.md`).
+- [x] **QA script updated** for the new opening; results below.
+- [x] **Screenshots:** `docs/screenshots/home-desktop-hero.jpg`,
+      `home-mobile-hero.jpg`, `home-intro-keyframes.jpg`,
+      `home-desktop-sequence.jpg`, `home-mobile-sequence.jpg`.
+
+### QA (Playwright + Chromium only; no Safari/Firefox, no real devices)
+
+`node scripts/qa/home-prototype-qa.js <outdir>`:
+
+| Check | Result |
+|---|---|
+| Horizontal overflow | 0 px in 9 layouts (320–1440 px, DPR 1–3) |
+| Upscaling | worst 1.0 device px per source px, incl. the stage scenes with photos |
+| Console errors | 0 |
+| Contrast | 158 text nodes (dark stage + paper), 0 below WCAG AA, minimum 5.49:1 |
+| Keyboard | 30 stops with visible focus; tabbing into the service buttons brings the scene into view; Enter selects |
+| Mobile menu | focus moves in, back on Esc |
+| Intro | runs once per session, ends cleanly, no replay; skip by key and button |
+| Service interaction | buttons, pointer on the rings, live detail text (desktop and mobile) |
+| Transition | contact action and header controls reachable at every sampled position; document never clipped; screen readers get the real-work heading once; on mobile the edge never crosses visible copy |
+| Reduced motion | static page, all content visible, 0 overflow (desktop + mobile) |
+| No JavaScript | all content visible, review notes hidden |
+| `growth.js` / `stage.js` failing | stacked page; hero copy visible after the 3.2 s fail-safe; buttons clickable |
+| Review mode | notes only with `?review`; no forbidden claims or owner names |
+
+Performance (headless, software rendering, CPU 4× slower): intro median
+16.7 ms / p95 50–67 ms per frame, scroll median 16.7 ms — the same range as the
+D2 concept.
+
+### Still blocked / open (not resolvable in code)
+
+| Item | Status |
+|---|---|
+| D-28 | Owner name unresolved (Daniel Trautmann vs. Daniel Witte); no name used anywhere |
+| D-04 | No contact form: the live form's recipient is invalid; contact is phone + e-mail only until delivery is verified |
+| Impressum / Datenschutz | Links point to the current live pages; legal texts need the owner (and D-28) before launch |
+| D-12 / D-14 | GAL-03 and GAL-15 not used (permission/plate); GAL-16 excluded |
+| D-08 | Unverified claims stay out (years, certificates, 24/7, etc.) |
+| D-19 | No photo for Grün & Forst: the drawn tree is shown, labelled "Illustration" |
+| Secondary pages | Leistungen, Galerie, Karriere, Kontakt pages not built (navigation uses Home anchors) |
+| Publication | Not deployed; `noindex`; no DNS change |
+| Browsers | Chromium only |
+
+## Stage 04D revision — D2 (2026-10-27)
+
+- [x] Isolated copy `concepts/d2-monument-system/` fixes D's three biggest
+      visual weaknesses: drooping umbrella crown → round crown with distinct
+      leaf groups; grey dark→paper cross-fade → paper grows as a ring out of
+      the photo with legible copy on both sides; flat beam → light cone and
+      lit/shaded leaves. D, A–C and `src/` unchanged.
+- [x] Boards: `concepts/review/D2-hero-desktop.jpg`, `D2-hero-mobile.jpg`,
+      `D2-intro-keyframes.jpg`, `D-vs-D2.jpg`. Details and QA:
+      `docs/design/CONCEPT_D_MONUMENT_SYSTEM.md` §11.
+- [x] Refinement pass: foliage masses, edge-stopped branches, bulging crown
+      top, soft beam behind the tree (sheen removed), crown/copy clearance,
+      short-phone sizing, mobile ring-label size + halo. Details and QA:
+      `CONCEPT_D_MONUMENT_SYSTEM.md` §12; board
+      `concepts/review/D2-refinement-before-after.jpg`.
+- [x] Approved by the owner on 2026-10-28 ("proceed to final implementation").
+
 ## Stage 04D — Concept D: Forest Monument × Living System (2026-10-27)
 
 ### Done
