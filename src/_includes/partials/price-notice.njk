@@ -1,0 +1,6 @@
+{#- Shown whenever prices are not the verified official list. Production builds cannot pass `npm run check` in that state. -#}
+{%- if prices.isDemo %}
+<p class="selector__demo" role="note"><strong>Testdaten – keine echten Preise.</strong> Die offizielle Preisliste wird gerade eingepflegt. Den Preis nennen wir Ihnen gern am Telefon: <a href="tel:{{ site.phone.dial }}">{{ site.phone.display }}</a>.</p>
+{%- elif prices.brands.length and pricesMeta.status != 'verified' %}
+<p class="selector__demo" role="note"><strong>Preise in Prüfung.</strong> Verbindlich ist der Preis, den wir Ihnen vor der Reparatur nennen.</p>
+{%- endif %}

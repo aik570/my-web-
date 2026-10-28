@@ -9,9 +9,22 @@ const blockers = [];
 const warnings = [];
 const read = (f) => JSON.parse(fs.readFileSync(f, 'utf8'));
 
-// 1. Prices must come from the official list
+// 1. Prices must come from the official list, imported and verified
 const meta = read('src/_data/pricesMeta.json');
-if (meta.status !== 'verified') blockers.push(`Preisliste: Status „${meta.status}" – offizielle Preisliste importieren (npm run import:prices) und als geprüft markieren`);
+const official = fs.existsSync('src/content/prices') ? fs.readdirSync('src/content/prices').filter((f) => f.endsWith('.json')) : [];
+if (!official.length) blockers.push('Preisliste: keine offiziellen Preise in src/content/prices – Datei vom Kunden importieren (npm run import:prices)');
+else if (meta.status !== 'verified') blockers.push(`Preisliste: Status „${meta.status}" – Stichproben gegen die Vorlage prüfen, dann im CMS auf „Geprüft" setzen`);
+
+// 1b. CMS must point to the client's production repository and an existing branch
+const cms = fs.readFileSync('src/admin/config.yml', 'utf8');
+const repo = (cms.match(/^\s+repo:\s*([^\s#]+)/m) || [])[1];
+const branch = (cms.match(/^\s+branch:\s*([^\s#]+)/m) || [])[1];
+if (repo === 'aik570/my-web-') blockers.push(`CMS: backend.repo ist das gemeinsame Arbeits-Repository „${repo}" – Produktions-Repository des Kunden eintragen (src/admin/config.yml)`);
+try {
+  const { execSync } = await import('node:child_process');
+  const out = execSync(`git ls-remote --heads https://github.com/${repo}.git ${branch}`, { stdio: ['ignore', 'pipe', 'ignore'], timeout: 15000 }).toString();
+  if (!out.trim()) blockers.push(`CMS: Branch „${branch}" existiert nicht in ${repo}`);
+} catch (e) { warnings.push(`CMS: Branch „${branch}" in ${repo} nicht prüfbar (${e.message.split('\n')[0]})`); }
 
 // 2. No open [[KLÄREN: …]] markers in content
 const files = [];

@@ -165,8 +165,9 @@ collections:
             label: Status
             widget: select
             options:
-              - { label: 'Testdaten (Hinweis wird angezeigt)', value: demo }
-              - { label: 'Geprüft – offizielle Preisliste', value: verified }
+              - { label: 'Offizielle Preisliste fehlt noch', value: pending }
+              - { label: 'Importiert – Stichproben noch nicht geprüft', value: imported }
+              - { label: 'Geprüft – Preise stimmen mit der Vorlage überein', value: verified }
           - { name: source, label: Quelle, widget: string, hint: 'z. B. Dateiname der offiziellen Preisliste' }
           - { name: updated, label: Stand, widget: datetime, format: YYYY-MM-DD, date_format: DD.MM.YYYY, time_format: false, required: false }
           - { name: vatNote, label: Hinweis zur Umsatzsteuer, widget: string, required: false, hint: 'z. B. „Alle Preise inkl. MwSt." – nur wenn bestätigt' }

@@ -4,7 +4,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-export const PRICE_DIR = 'src/content/prices';
+export const PRICE_DIR = 'src/content/prices';          // official data only
+export const DEMO_DIR = 'data-import/demo/prices';        // development data, never used in production
 export const TYPES_FILE = 'src/_data/repairTypes.json';
 export const META_FILE = 'src/_data/pricesMeta.json';
 

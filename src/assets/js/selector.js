@@ -11,7 +11,7 @@
   var modelSel = document.getElementById('sel-model');
   var search = document.getElementById('sel-search');
   var out = document.getElementById('sel-result');
-  var demo = D.meta && D.meta.status !== 'verified';
+  var demo = D.isDemo || !D.meta || D.meta.status !== 'verified';
   var typeLabel = {};
   D.types.forEach(function (t) { typeLabel[t.id] = t.label; });
 

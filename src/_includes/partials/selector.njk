@@ -1,10 +1,8 @@
 {#- Price selector: Hersteller → Modell → Reparatur → Preis. Data is embedded at build time from the CMS price files. -#}
 <div class="selector" data-selector>
-  <script type="application/json" id="price-data">{{ { brands: prices.brands, types: prices.types, meta: pricesMeta, phone: site.phone, email: site.email, whatsapp: site.whatsapp } | json | safe }}</script>
+  <script type="application/json" id="price-data">{{ { brands: prices.brands, types: prices.types, isDemo: prices.isDemo, meta: pricesMeta, phone: site.phone, email: site.email, whatsapp: site.whatsapp } | json | safe }}</script>
 
-  {%- if pricesMeta.status != 'verified' %}
-  <p class="selector__demo" role="note"><strong>Testdaten.</strong> Die offizielle Preisliste wird gerade eingepflegt. Bis dahin nennen wir Ihnen den Preis gern am Telefon.</p>
-  {%- endif %}
+  {%- include "partials/price-notice.njk" %}
 
   {%- if prices.brands.length %}
   <div class="selector__controls">

@@ -567,3 +567,10 @@ mark.todo { background: #fff1c2; color: #6b4b00; padding: .1rem .35rem; border-r
 .pricelist__none { color: var(--grey); }
 .pricelist__foot { margin-top: 2rem; color: var(--grey); display: grid; gap: .3rem; }
 @media (max-width: 760px) { .pricelist__tools { grid-template-columns: 1fr; } }
+
+/* Preview builds: visible marker so a preview can never be mistaken for the live site */
+.preview-flag {
+  position: fixed; left: 50%; bottom: calc(10px + env(safe-area-inset-bottom, 0px)); translate: -50% 0; z-index: 80; margin: 0;
+  padding: .4rem .8rem; border-radius: 999px; background: #6b4b00; color: #fff6d8;
+  font: 500 .75rem/1.2 var(--mono); letter-spacing: .04em; pointer-events: none; white-space: nowrap;
+}

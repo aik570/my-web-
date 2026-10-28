@@ -12,9 +12,7 @@ seo:
     <p class="kicker"><span class="kicker__cross" aria-hidden="true"></span>Preisliste</p>
     <h1 class="page-title">Reparaturpreise</h1>
     <p class="head__lede">Alle Preise nach Hersteller und Modell. Den endgültigen Preis bestätigen wir Ihnen vor jeder Reparatur.</p>
-    {%- if pricesMeta.status != 'verified' %}
-    <p class="selector__demo" role="note"><strong>Testdaten.</strong> Die offizielle Preisliste wird gerade eingepflegt. Bis dahin nennen wir Ihnen den Preis gern am Telefon: <a href="tel:{{ site.phone.dial }}">{{ site.phone.display }}</a>.</p>
-    {%- endif %}
+    {%- include "partials/price-notice.njk" %}
   </div>
 </section>
 

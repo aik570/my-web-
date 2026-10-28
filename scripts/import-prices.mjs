@@ -12,7 +12,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { PRICE_DIR, TYPES_FILE, META_FILE, readJson, validateCatalogue, countRows } from './lib/prices.mjs';
+import { PRICE_DIR, DEMO_DIR, TYPES_FILE, META_FILE, readJson, validateCatalogue, countRows } from './lib/prices.mjs';
 
 const args = process.argv.slice(2);
 const file = args.find((a) => !a.startsWith('--'));
@@ -96,15 +96,21 @@ if (all.length) {
 if (dryRun) { console.log('\nProbelauf OK, nichts geschrieben.'); process.exit(0); }
 
 const slug = (s) => s.toLowerCase().normalize('NFKD').replace(/[^\w]+/g, '-').replace(/^-|-$/g, '');
-fs.mkdirSync(PRICE_DIR, { recursive: true });
-for (const f of fs.readdirSync(PRICE_DIR)) if (f.endsWith('.json')) fs.unlinkSync(path.join(PRICE_DIR, f));
+// Development data goes to data-import/demo and never touches the official folder.
+const target = demo ? DEMO_DIR : PRICE_DIR;
+fs.mkdirSync(target, { recursive: true });
+for (const f of fs.readdirSync(target)) if (f.endsWith('.json')) fs.unlinkSync(path.join(target, f));
 for (const b of catalogue) {
   const out = { brand: b.brand, order: b.order, models: b.models.map((m) => ({ ...m, repairs: m.repairs.map(({ _line, ...r }) => r) })) };
-  fs.writeFileSync(path.join(PRICE_DIR, `${slug(b.brand)}.json`), JSON.stringify(out, null, 2) + '\n');
+  fs.writeFileSync(path.join(target, `${slug(b.brand)}.json`), JSON.stringify(out, null, 2) + '\n');
 }
-const meta = readJson(META_FILE);
-meta.status = demo ? 'demo' : 'verified';
-meta.source = demo ? 'Entwicklungsdaten. Die offizielle Preisliste von Handy Chirurg liegt noch nicht vor.' : path.basename(file);
-meta.updated = new Date().toISOString().slice(0, 10);
-fs.writeFileSync(META_FILE, JSON.stringify(meta, null, 2) + '\n');
-console.log(`\nGeschrieben: ${catalogue.length} Dateien in ${PRICE_DIR}, Status „${meta.status}".`);
+if (!demo) {
+  // Imported from the official file, but not yet verified: a person confirms
+  // spot checks against the source and then sets the status to "verified" (CMS).
+  const meta = readJson(META_FILE);
+  meta.status = 'imported';
+  meta.source = path.basename(file);
+  meta.updated = new Date().toISOString().slice(0, 10);
+  fs.writeFileSync(META_FILE, JSON.stringify(meta, null, 2) + '\n');
+}
+console.log(`\nGeschrieben: ${catalogue.length} Dateien in ${target}.` + (demo ? ' (Entwicklungsdaten)' : ' Status „imported" – nach Stichprobenprüfung im CMS auf „Geprüft" setzen.'));

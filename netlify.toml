@@ -8,6 +8,18 @@
 [build.environment]
   NODE_VERSION = "22"
 
+# Production may only publish when every launch blocker is resolved:
+# official verified prices, complete legal pages, correct CMS repository.
+[context.production]
+  command = "npm ci && npm run build && npm run check"
+
+# Previews (pull requests, branch deploys) build normally. They are marked
+# "Vorschau", set noindex and may show the labelled development prices.
+[context.deploy-preview]
+  command = "npm ci && npm run build"
+[context.branch-deploy]
+  command = "npm ci && npm run build"
+
 # Security headers for the public site
 [[headers]]
   for = "/*"

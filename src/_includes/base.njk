@@ -11,8 +11,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{{ pageTitle }}</title>
 <meta name="description" content="{{ pageDesc }}">
-{%- if noindex %}
-<meta name="robots" content="noindex">
+{%- if noindex or not env.isProduction %}
+<meta name="robots" content="noindex, nofollow">
 {%- else %}
 <link rel="canonical" href="{{ canonical }}">
 {%- endif %}
@@ -63,6 +63,9 @@
 {%- block intro %}{% endblock %}
 
 <a class="skip" href="#main">Zum Inhalt springen</a>
+{%- if not env.isProduction %}
+<p class="preview-flag" role="note">Vorschau · nicht veröffentlicht{% if prices.isDemo %} · Testpreise{% endif %}</p>
+{%- endif %}
 
 {% include "partials/header.njk" %}
 
