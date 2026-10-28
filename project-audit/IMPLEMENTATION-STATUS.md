@@ -1,6 +1,26 @@
 # Implementation status
 
-Updated: 28.10.2026, Phase 2 (preview, pricing, QA) · Branch `claude/zealous-bohr-71wesv`
+Updated: 28.10.2026, Phase 3 (recovery of the original site) · earlier: Phase 2 · Branch `claude/zealous-bohr-71wesv`
+
+## 0. Phase 3 — recovery of the original website: **blocked by network access**
+
+Attempted on 28.10.2026 from this cloud session:
+
+| URL / method | Result |
+|---|---|
+| `https://www.handychirurg.de/` (WebFetch) | `getaddrinfo ENOTFOUND www.handychirurg.de` — host is outside the session's allowed network domains |
+| `https://web.archive.org/web/2025/https://www.handychirurg.de/` | "unable to fetch from web.archive.org" |
+| Direct shell requests (curl) to the site and mirrors | Refused by the session's permission policy |
+| Web search "handychirurg.de Impressum Potsdam Dortustraße", "\"Handy Chirurg\" Potsdam Reparatur Preise" | No page of handychirurg.de indexed in the results |
+| Repository, all branches, history, `references/` | Only the 15 screenshots + brief; their content (benefits, process, hours, diagnosis fee, contact) is already integrated. No Impressum/Datenschutz text, no `/services` page, no price data |
+
+Not inspected because unreachable (contents **unknown, not missing**): `/`, `/services`, `/franchise`, Impressum, Datenschutz, price calculator and its data requests.
+
+To unblock: allow `www.handychirurg.de` and `handychirurg.de` (and `handy-chirurg.de`) under *Network access → Allowed domains* in the cloud environment settings, then re-run the recovery (crawl pages, capture the calculator's network requests, import the catalogue with `npm run import:prices`, migrate Impressum/Datenschutz text marked "übernommen von der bisherigen Website, vor Start prüfen").
+
+Done in Phase 3 without the original site:
+- Calculator: repair types carry optional **Dauer** and **Garantie** (CMS → Laden & Kontakt → Reparaturarten); shown only when filled in, so nothing unverified appears. Empty states for a model without prices and for repairs not listed (call link); explicit enquiry text when a repair has no fixed price.
+- Test added (missing-repair hint; no duration/warranty without CMS data).
 
 ## 1. Verification results
 
@@ -8,7 +28,7 @@ Updated: 28.10.2026, Phase 2 (preview, pricing, QA) · Branch `claude/zealous-bo
 |---|---|
 | `npm ci` (clean) | OK |
 | `npm run build` | OK — 9 pages (`/`, `/preise/`, `/franchise/`, `/impressum/`, `/datenschutz/`, 404, admin, sitemap, robots) |
-| `npm test` | **90 checks, all pass**: 6 pages × 2 viewports (no console errors, no third-party requests, no failed assets, no overflow, logo visible), internal links, price selector (8), price list (4), 3D start/fallback (4), reduced motion (2), opening state (6), **production build guard (4)** |
+| `npm test` | **all checks pass** (incl. 2 new selector checks): 6 pages × 2 viewports (no console errors, no third-party requests, no failed assets, no overflow, logo visible), internal links, price selector (8), price list (4), 3D start/fallback (4), reduced motion (2), opening state (6), **production build guard (4)** |
 | `npm run check` | **Exit 1 — 10 blockers, 4 warnings** (list in section 3) |
 
 ### Fixed in this phase (found during verification)
@@ -86,6 +106,7 @@ Environment limits vs. real devices: Lighthouse and the frame-time probe here ru
 8. Original photos (shop front ≥ 1200 px).
 
 ## 8. Next three actions
+0. **Allow the original domain in the session network settings** and run the recovery (section 0). This replaces most of the client questions on prices and legal text.
 1. **Get the price file and legal data** from the client using `docs/PREISLISTE.md` and the question list; import, spot-check 10 rows, set status `verified`.
 2. **Create the Netlify branch preview** (`docs/DEPLOY.md` B) — needs a Netlify account; then set up the GitHub OAuth provider and run the real login → edit price → publish → redeploy test.
 3. **Real-device QA** on iPhone Safari and Android Chrome against the preview URL; record results here.

@@ -95,6 +95,9 @@ console.log('\nprice selector');
     const name1 = m.repairs[1].label || data.types.find((t) => t.id === m.repairs[1].service).label;
     ok(cta.includes(name1), `CTA follows selected repair (${name1})`);
   }
+  ok(/nicht dabei/.test(await page.$eval('.selector__model', (e) => e.textContent)), 'missing repair hint with call link');
+  const ctaTxt = await page.$eval('#sel-cta', (e) => e.textContent);
+  ok(!/Dauer:|Garantie:/.test(ctaTxt) || data.types.some((t) => t.duration || t.warranty), 'no duration/warranty shown unless set in the CMS');
   const tel = await page.$eval('#sel-cta a[href^="tel:"]', (a) => a.getAttribute('href'));
   ok(tel === `tel:${data.phone.dial}`, 'CTA phone link');
   const last = data.brands[data.brands.length - 1]; const lm = last.models[last.models.length - 1];

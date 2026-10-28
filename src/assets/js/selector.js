@@ -12,8 +12,8 @@
   var search = document.getElementById('sel-search');
   var out = document.getElementById('sel-result');
   var demo = D.isDemo || !D.meta || D.meta.status !== 'verified';
-  var typeLabel = {};
-  D.types.forEach(function (t) { typeLabel[t.id] = t.label; });
+  var typeLabel = {}, typeOf = {};
+  D.types.forEach(function (t) { typeLabel[t.id] = t.label; typeOf[t.id] = t; });
 
   var esc = function (s) {
     return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; });
@@ -26,6 +26,15 @@
     return (r.from ? 'ab ' : '') + euro(r.price);
   };
   var repairName = function (r) { return r.label || typeLabel[r.service] || r.service; };
+  // Duration and warranty come from the repair type (CMS); shown only when filled in.
+  var facts = function (r) {
+    var t = typeOf[r.service] || {};
+    var f = [];
+    if (t.duration) f.push('Dauer: ' + t.duration);
+    if (t.warranty) f.push('Garantie: ' + t.warranty);
+    return f.length ? '<p class="selector__hint">' + esc(f.join(' · ')) + '</p>' : '';
+  };
+  var callLink = function () { return '<a href="tel:' + esc(D.phone.dial) + '">' + esc(D.phone.display) + '</a>'; };
   var brandOf = function (name) { return D.brands.filter(function (b) { return b.brand === name; })[0]; };
   var modelOf = function (b, name) { return b && b.models.filter(function (m) { return m.name === name; })[0]; };
 
@@ -61,7 +70,9 @@
     }
     links += '<a class="btn btn--quiet" href="mailto:' + esc(D.email) + '?subject=' + encodeURIComponent('Reparaturanfrage: ' + what) +
       '&body=' + encodeURIComponent('Hallo,\n\nich interessiere mich für folgende Reparatur:\n' + what + '\n\nViele Grüße\n') + '">E-Mail</a>';
-    return '<div class="selector__cta"><p><span>Ausgewählt</span>' + esc(what) + '</p><div class="actions">' + links + '</div>' +
+    return '<div class="selector__cta"><p><span>Ausgewählt</span>' + esc(what) + '</p>' + facts(r) +
+      (r.onRequest ? '<p class="selector__hint">Für diese Reparatur gibt es keinen festen Preis. Fragen Sie an, wir nennen ihn nach kurzer Prüfung.</p>' : '') +
+      '<div class="actions">' + links + '</div>' +
       '<p class="selector__hint">' + esc(D.meta && D.meta.vatNote ? D.meta.vatNote + ' · ' : '') + 'Den Preis bestätigen wir Ihnen vor der Reparatur.</p></div>';
   }
 
@@ -73,6 +84,11 @@
         (b ? 'Jetzt das Modell wählen.' : 'Wählen Sie Hersteller und Modell. Dann sehen Sie alle Reparaturen mit Preis.') + '</p>';
       return;
     }
+    if (!m.repairs.length) {
+      out.innerHTML = '<p class="selector__empty"><span class="field__no">3</span>Für ' + esc(b.brand + ' ' + m.name) +
+        ' ist noch kein Preis hinterlegt. Rufen Sie an, wir nennen Ihnen den Preis: ' + callLink() + '.</p>';
+      return;
+    }
     var rows = m.repairs.map(function (r, i) {
       return '<li><label class="repair"><input type="radio" name="repair" value="' + i + '"' + (i === 0 ? ' checked' : '') + '>' +
         '<span class="repair__name">' + esc(repairName(r)) + (r.note ? '<small>' + esc(r.note) + '</small>' : '') + '</span>' +
@@ -80,7 +96,8 @@
         (demo && !r.onRequest ? '<small>Testwert</small>' : '') + '</span></label></li>';
     }).join('');
     out.innerHTML = '<div class="selector__model"><p class="selector__name"><span class="field__no">3</span>' + esc(b.brand + ' ' + m.name) + '</p>' +
-      '<fieldset><legend class="sr">Reparatur wählen</legend><ul class="repairs">' + rows + '</ul></fieldset></div>' +
+      '<fieldset><legend class="sr">Reparatur wählen</legend><ul class="repairs">' + rows + '</ul></fieldset>' +
+      '<p class="selector__hint">Ihre Reparatur ist nicht dabei? Rufen Sie an: ' + callLink() + '.</p></div>' +
       '<div id="sel-cta">' + enquiry(b, m, m.repairs[0]) + '</div>';
     out.querySelectorAll('input[name="repair"]').forEach(function (inp) {
       inp.addEventListener('change', function () {
@@ -114,8 +131,7 @@
         });
       }
       if (!hit) {
-        out.innerHTML = '<p class="selector__empty">Kein Modell zu „' + esc(search.value) + '" gefunden. Rufen Sie an, wir helfen Ihnen weiter: <a href="tel:' +
-          esc(D.phone.dial) + '">' + esc(D.phone.display) + '</a>.</p>';
+        out.innerHTML = '<p class="selector__empty">Kein Modell zu „' + esc(search.value) + '" gefunden. Rufen Sie an, wir helfen Ihnen weiter: ' + callLink() + '.</p>';
         return;
       }
       brandSel.value = hit[0].brand;

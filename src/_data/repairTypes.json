@@ -1,8 +1,8 @@
 {
   "items": [
-    { "id": "display", "label": "Display" },
-    { "id": "akku", "label": "Akku" },
-    { "id": "wasserschaden", "label": "Wasserschaden" },
-    { "id": "platine", "label": "Platine" }
+    {"id": "display", "label": "Display", "duration": "", "warranty": ""},
+    {"id": "akku", "label": "Akku", "duration": "", "warranty": ""},
+    {"id": "wasserschaden", "label": "Wasserschaden", "duration": "", "warranty": ""},
+    {"id": "platine", "label": "Platine", "duration": "", "warranty": ""}
   ]
 }

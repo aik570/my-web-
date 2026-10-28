@@ -158,6 +158,8 @@ collections:
             fields:
               - { name: id, label: Kürzel, widget: string, pattern: ['^[a-z0-9-]+$', 'Nur Kleinbuchstaben, Ziffern, Bindestrich'], hint: 'Nicht ändern, wenn schon Preise darauf verweisen' }
               - { name: label, label: Name, widget: string }
+              - { name: duration, label: Dauer, widget: string, required: false, hint: 'Nur eintragen, wenn bestätigt, z. B. „ca. 60 Minuten". Leer = wird nicht angezeigt' }
+              - { name: warranty, label: Garantie, widget: string, required: false, hint: 'Nur eintragen, wenn bestätigt, z. B. „6 Monate auf Teil und Arbeit". Leer = wird nicht angezeigt' }
 
       - name: preisliste
         label: Preisliste – Status und Hinweise
