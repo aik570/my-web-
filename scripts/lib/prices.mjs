@@ -53,8 +53,9 @@ export function validateCatalogue(brands, repairTypes) {
         if (seenRows.has(rowKey)) errors.push(`${rWhere}: Reparatur ist doppelt`);
         seenRows.add(rowKey);
         const hasPrice = r.price !== null && r.price !== undefined && r.price !== '';
-        if (r.onRequest && hasPrice) errors.push(`${rWhere}: Preis und „auf Anfrage" gleichzeitig gesetzt`);
-        if (!r.onRequest && !hasPrice) errors.push(`${rWhere}: Preis fehlt (oder „auf Anfrage" setzen)`);
+        // Contradictory or missing price: show "auf Anfrage" rather than block the whole site.
+        if (r.onRequest && hasPrice) warnings.push(`${rWhere}: Preis und „auf Anfrage" gleichzeitig gesetzt – angezeigt wird „auf Anfrage"`);
+        if (!r.onRequest && !hasPrice) warnings.push(`${rWhere}: kein Preis eingetragen – angezeigt wird „auf Anfrage"`);
         if (hasPrice && !isPrice(Number(r.price))) errors.push(`${rWhere}: ungültiger Preis „${r.price}"`);
         if (hasPrice && Number(r.price) > 2000) warnings.push(`${rWhere}: ungewöhnlich hoher Preis ${r.price} €`);
       }
@@ -74,9 +75,9 @@ export function validateCatalogue(brands, repairTypes) {
           repairs: (m.repairs || []).map((r) => ({
             service: r.service,
             label: (r.label || '').trim(),
-            price: r.onRequest ? null : Number(r.price),
+            price: r.onRequest || r.price === null || r.price === undefined || r.price === '' ? null : Number(r.price),
             from: Boolean(r.from),
-            onRequest: Boolean(r.onRequest),
+            onRequest: Boolean(r.onRequest) || r.price === null || r.price === undefined || r.price === '',
             note: (r.note || '').trim()
           }))
         }))

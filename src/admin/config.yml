@@ -1,0 +1,329 @@
+# Decap CMS configuration for Handy Chirurg Potsdam.
+# Every save is a commit to the repository; the host rebuilds the site from it.
+# Local development: `npm run cms` + `npm run dev`, then open http://localhost:8080/admin/
+
+backend:
+  name: github
+  repo: aik570/my-web-
+  branch: main            # production branch: confirm before launch
+  # base_url / auth_endpoint: only needed when not hosted on Netlify (see docs/CMS.md)
+  commit_messages:
+    create: 'CMS: {{collection}} „{{slug}}" angelegt'
+    update: 'CMS: {{collection}} „{{slug}}" geändert'
+    delete: 'CMS: {{collection}} „{{slug}}" gelöscht'
+    uploadMedia: 'CMS: Bild „{{path}}" hochgeladen'
+    deleteMedia: 'CMS: Bild „{{path}}" gelöscht'
+
+local_backend: true       # only used on localhost together with `npm run cms`
+publish_mode: simple      # Speichern = Veröffentlichen
+locale: de
+site_url: https://www.handychirurg.de
+display_url: https://www.handychirurg.de
+logo_url: /assets/img/favicon.svg
+
+media_folder: src/assets/img/uploads
+public_folder: /assets/img/uploads
+
+collections:
+
+  # ---------------------------------------------------------------- Preise
+  - name: preise
+    label: Preise
+    label_singular: Hersteller
+    description: Ein Eintrag pro Hersteller. Darin Modelle und deren Reparaturen mit Preis. Ungültige Preise verhindern die Veröffentlichung.
+    folder: src/content/prices
+    extension: json
+    format: json
+    create: true
+    delete: true
+    identifier_field: brand
+    slug: '{{brand}}'
+    editor: { preview: false }
+    summary: '{{brand}}'
+    sortable_fields: ['brand', 'order']
+    fields:
+      - { name: brand, label: Hersteller, widget: string, hint: 'z. B. Apple' }
+      - { name: order, label: Reihenfolge, widget: number, value_type: int, min: 1, default: 10, hint: 'Kleinere Zahl = weiter oben' }
+      - name: models
+        label: Modelle
+        label_singular: Modell
+        widget: list
+        summary: '{{fields.name}}'
+        collapsed: true
+        fields:
+          - { name: name, label: Modell, widget: string }
+          - { name: category, label: Gerätetyp, widget: select, options: [Smartphone, Tablet, Laptop, PC, Sonstiges], default: Smartphone, required: false }
+          - name: repairs
+            label: Reparaturen
+            label_singular: Reparatur
+            widget: list
+            summary: '{{fields.service}} {{fields.label}}: {{fields.price}} €'
+            fields:
+              - name: service
+                label: Reparaturart
+                widget: relation
+                collection: einstellungen
+                file: reparaturarten
+                search_fields: ['items.*.label']
+                value_field: 'items.*.id'
+                display_fields: ['items.*.label']
+              - { name: label, label: Bezeichnung, widget: string, required: false, hint: 'z. B. „Original" oder „Kompatibel". Leer = Name der Reparaturart' }
+              - { name: price, label: Preis in €, widget: number, value_type: float, min: 0, max: 5000, step: 0.01, required: false, hint: 'Leer lassen, wenn „auf Anfrage"' }
+              - { name: from, label: „ab"-Preis, widget: boolean, default: false, required: false }
+              - { name: onRequest, label: Preis auf Anfrage, widget: boolean, default: false, required: false }
+              - { name: note, label: Hinweis, widget: string, required: false }
+
+  # ---------------------------------------------------------------- Einstellungen
+  - name: einstellungen
+    label: Laden & Kontakt
+    delete: false
+    editor: { preview: false }
+    files:
+      - name: kontakt
+        label: Kontakt, Öffnungszeiten, Schließtage
+        file: src/_data/site.json
+        format: json
+        fields:
+          - { name: name, label: Name, widget: string }
+          - { name: tagline, label: Slogan, widget: string }
+          - { name: url, label: Website-Adresse, widget: string, pattern: ['^https://', 'Muss mit https:// beginnen'] }
+          - { name: street, label: Straße und Hausnummer, widget: string }
+          - { name: postcode, label: PLZ, widget: string, pattern: ['^\d{5}$', '5 Ziffern'] }
+          - { name: city, label: Ort, widget: string }
+          - name: phone
+            label: Telefon
+            widget: object
+            fields:
+              - { name: display, label: Anzeige, widget: string, hint: 'So wie es auf der Seite steht, z. B. 0163 228 8224' }
+              - { name: dial, label: Zum Wählen, widget: string, pattern: ['^\+49\d{6,13}$', 'Format +49…, ohne Leerzeichen, z. B. +491632288224'] }
+          - { name: whatsapp, label: WhatsApp-Nummer, widget: string, required: false, pattern: ['^(\+\d{8,15})?$', 'Format +49…, ohne Leerzeichen. Leer = kein WhatsApp-Knopf'], hint: 'Leer lassen, solange nicht bestätigt' }
+          - { name: email, label: E-Mail, widget: string, pattern: ['^[^@\s]+@[^@\s]+\.[a-z]{2,}$', 'Gültige E-Mail-Adresse'] }
+          - { name: mapsUrl, label: Link „Route planen", widget: string, pattern: ['^https://', 'Muss mit https:// beginnen'] }
+          - name: hours
+            label: Öffnungszeiten
+            widget: list
+            allow_add: false
+            summary: '{{fields.day}}: {{fields.from}}–{{fields.to}}'
+            fields:
+              - { name: day, label: Tag, widget: select, options: [Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag, Sonntag] }
+              - { name: dayIndex, label: Tag-Nummer, widget: hidden }
+              - { name: open, label: Geöffnet, widget: boolean }
+              - { name: from, label: Von, widget: string, required: false, pattern: ['^([01]\d|2[0-3]):[0-5]\d$|^$', 'Format HH:MM, z. B. 10:00'] }
+              - { name: to, label: Bis, widget: string, required: false, pattern: ['^([01]\d|2[0-3]):[0-5]\d$|^$', 'Format HH:MM, z. B. 18:30'] }
+          - name: publicHolidays
+            label: An gesetzlichen Feiertagen (Brandenburg)
+            widget: select
+            options:
+              - { label: 'Noch nicht festgelegt – „bitte vorher anrufen" anzeigen', value: unknown }
+              - { label: Geschlossen, value: closed }
+              - { label: Normal geöffnet, value: open }
+          - name: closures
+            label: Besondere Schließtage / Sonderzeiten
+            label_singular: Schließtag
+            widget: list
+            required: false
+            summary: '{{fields.date}} {{fields.label}}'
+            fields:
+              - { name: date, label: Datum, widget: datetime, format: YYYY-MM-DD, date_format: DD.MM.YYYY, time_format: false }
+              - { name: label, label: Bezeichnung, widget: string, hint: 'z. B. Betriebsurlaub' }
+              - { name: closed, label: Ganztägig geschlossen, widget: boolean, default: true }
+              - { name: from, label: Sonderöffnung von, widget: string, required: false, pattern: ['^([01]\d|2[0-3]):[0-5]\d$|^$', 'Format HH:MM'] }
+              - { name: to, label: Sonderöffnung bis, widget: string, required: false, pattern: ['^([01]\d|2[0-3]):[0-5]\d$|^$', 'Format HH:MM'] }
+          - name: diagnosisFee
+            label: Fehleranalyse
+            widget: object
+            fields:
+              - { name: amount, label: Preis in €, widget: number, value_type: float, min: 0 }
+              - { name: text, label: Text, widget: text }
+          - name: seo
+            label: Startseite – Suchmaschinen
+            widget: object
+            fields:
+              - { name: title, label: Seitentitel, widget: string, pattern: ['^.{10,65}$', '10 bis 65 Zeichen'] }
+              - { name: description, label: Beschreibung, widget: text, pattern: ['^[\s\S]{70,170}$', '70 bis 170 Zeichen'] }
+              - { name: image, label: Vorschaubild (Teilen), widget: image, hint: 'Mindestens 1200 × 630 Pixel' }
+
+      - name: reparaturarten
+        label: Reparaturarten
+        file: src/_data/repairTypes.json
+        format: json
+        fields:
+          - name: items
+            label: Reparaturarten
+            widget: list
+            summary: '{{fields.label}}'
+            fields:
+              - { name: id, label: Kürzel, widget: string, pattern: ['^[a-z0-9-]+$', 'Nur Kleinbuchstaben, Ziffern, Bindestrich'], hint: 'Nicht ändern, wenn schon Preise darauf verweisen' }
+              - { name: label, label: Name, widget: string }
+
+      - name: preisliste
+        label: Preisliste – Status und Hinweise
+        file: src/_data/pricesMeta.json
+        format: json
+        fields:
+          - name: status
+            label: Status
+            widget: select
+            options:
+              - { label: 'Testdaten (Hinweis wird angezeigt)', value: demo }
+              - { label: 'Geprüft – offizielle Preisliste', value: verified }
+          - { name: source, label: Quelle, widget: string, hint: 'z. B. Dateiname der offiziellen Preisliste' }
+          - { name: updated, label: Stand, widget: datetime, format: YYYY-MM-DD, date_format: DD.MM.YYYY, time_format: false, required: false }
+          - { name: vatNote, label: Hinweis zur Umsatzsteuer, widget: string, required: false, hint: 'z. B. „Alle Preise inkl. MwSt." – nur wenn bestätigt' }
+          - { name: footnote, label: Fußnote, widget: string, required: false }
+
+  # ---------------------------------------------------------------- Inhalte
+  - name: inhalte
+    label: Inhalte
+    delete: false
+    editor: { preview: false }
+    files:
+      - name: startseite
+        label: Startseite – Texte
+        file: src/_data/home.json
+        format: json
+        fields:
+          - name: hero
+            label: Erster Bildschirm
+            widget: object
+            fields:
+              - { name: kicker, label: Überzeile, widget: string }
+              - { name: title, label: Überschrift (H1), widget: string, pattern: ['^.{5,60}$', '5 bis 60 Zeichen'] }
+              - { name: lede, label: Text, widget: text, pattern: ['^[\s\S]{10,180}$', '10 bis 180 Zeichen'] }
+              - { name: ctaPrimary, label: Knopf Anrufen, widget: string }
+              - { name: ctaPrice, label: Knopf Preis, widget: string }
+          - name: sceneOpen
+            label: 3D-Szene „Im OP"
+            widget: object
+            fields: [{ name: kicker, label: Überzeile, widget: string }, { name: title, label: Überschrift, widget: string }, { name: lede, label: Text, widget: text }]
+          - name: sceneDone
+            label: 3D-Szene „Entlassen"
+            widget: object
+            fields: [{ name: kicker, label: Überzeile, widget: string }, { name: title, label: Überschrift, widget: string }, { name: lede, label: Text, widget: text }]
+          - name: tags
+            label: 3D-Beschriftungen
+            widget: object
+            collapsed: true
+            fields:
+              - { name: display, label: Display, widget: object, fields: [{ name: title, label: Titel, widget: string }, { name: text, label: Text, widget: string }] }
+              - { name: board, label: Platine, widget: object, fields: [{ name: title, label: Titel, widget: string }, { name: text, label: Text, widget: string }] }
+              - { name: battery, label: Akku, widget: object, fields: [{ name: title, label: Titel, widget: string }, { name: text, label: Text, widget: string }] }
+              - { name: frame, label: Rahmen, widget: object, fields: [{ name: title, label: Titel, widget: string }, { name: text, label: Text, widget: string }] }
+              - { name: back, label: Rückseite, widget: object, fields: [{ name: title, label: Titel, widget: string }, { name: text, label: Text, widget: string }] }
+          - name: selector
+            label: Preisrechner
+            widget: object
+            fields: [{ name: kicker, label: Überzeile, widget: string }, { name: title, label: Überschrift, widget: string }, { name: lede, label: Text, widget: text }]
+          - name: services
+            label: Fachbereiche
+            widget: object
+            fields: [{ name: kicker, label: Überzeile, widget: string }, { name: title, label: Überschrift, widget: string }, { name: lede, label: Text, widget: text }]
+          - name: charter
+            label: Zusagen
+            widget: object
+            fields:
+              - { name: kicker, label: Überzeile, widget: string }
+              - { name: title, label: Überschrift, widget: string }
+              - { name: items, label: Punkte, widget: list, max: 6, summary: '{{fields.title}}', fields: [{ name: title, label: Titel, widget: string }, { name: text, label: Text, widget: text }] }
+          - name: process
+            label: Ablauf
+            widget: object
+            fields:
+              - { name: kicker, label: Überzeile, widget: string }
+              - { name: title, label: Überschrift, widget: string }
+              - name: store
+                label: Im Laden
+                widget: object
+                fields:
+                  - { name: label, label: Reiter, widget: string }
+                  - { name: steps, label: Schritte, widget: list, min: 2, max: 5, summary: '{{fields.title}}', fields: [{ name: title, label: Titel, widget: string }, { name: text, label: Text, widget: text }] }
+              - name: post
+                label: Per Post
+                widget: object
+                fields:
+                  - { name: label, label: Reiter, widget: string }
+                  - { name: steps, label: Schritte, widget: list, min: 2, max: 5, summary: '{{fields.title}}', fields: [{ name: title, label: Titel, widget: string }, { name: text, label: Text, widget: text }] }
+          - name: visit
+            label: Sprechzeiten-Tafel
+            widget: object
+            fields:
+              - { name: title, label: Überschrift, widget: string }
+              - { name: note, label: Hinweis, widget: string }
+              - { name: photoAlt, label: Bildbeschreibung (Ladenfoto), widget: string }
+          - name: faqIntro
+            label: Fragen – Überschrift
+            widget: object
+            fields: [{ name: kicker, label: Überzeile, widget: string }, { name: title, label: Überschrift, widget: string }]
+          - name: call
+            label: Anruf-Bereich
+            widget: object
+            fields: [{ name: kicker, label: Überzeile, widget: string }, { name: title, label: Überschrift, widget: string }]
+
+      - name: fachbereiche
+        label: Fachbereiche (Leistungen)
+        file: src/_data/services.json
+        format: json
+        fields:
+          - name: items
+            label: Fachbereiche
+            widget: list
+            summary: '{{fields.title}}'
+            fields:
+              - { name: id, label: Kürzel, widget: string, pattern: ['^[a-z0-9-]+$', 'Nur Kleinbuchstaben'], hint: 'Gleich wie die Reparaturart, damit „Preise →" filtert' }
+              - { name: title, label: Titel, widget: string, pattern: ['^.{2,30}$', 'Höchstens 30 Zeichen'] }
+              - { name: text, label: Text, widget: text, pattern: ['^[\s\S]{10,160}$', '10 bis 160 Zeichen'] }
+              - { name: duration, label: Dauer, widget: string }
+              - { name: icon, label: Piktogramm, widget: select, options: [{ label: Display, value: display }, { label: Akku, value: battery }, { label: Wasser, value: water }, { label: Platine, value: chip }] }
+
+      - name: fragen
+        label: Häufige Fragen
+        file: src/_data/faq.json
+        format: json
+        fields:
+          - name: items
+            label: Fragen
+            label_singular: Frage
+            widget: list
+            summary: '{{fields.q}}'
+            fields:
+              - { name: q, label: Frage, widget: string }
+              - { name: a, label: Antwort, widget: text }
+
+      - name: franchise
+        label: Franchise
+        file: src/_data/franchise.json
+        format: json
+        fields:
+          - { name: kicker, label: Überzeile, widget: string }
+          - { name: title, label: Überschrift, widget: string }
+          - { name: lede, label: Text, widget: text }
+          - { name: offers, label: Was Sie bekommen, widget: list, field: { name: item, label: Punkt, widget: string } }
+          - { name: requirements, label: Was Sie mitbringen, widget: list, field: { name: item, label: Punkt, widget: string } }
+          - { name: contactEmail, label: E-Mail für Anfragen, widget: string, required: false, pattern: ['^$|^[^@\s]+@[^@\s]+\.[a-z]{2,}$', 'Gültige E-Mail-Adresse'], hint: 'Leer = Knopf ruft die Ladennummer an' }
+          - { name: ctaLabel, label: Knopftext, widget: string }
+          - name: seo
+            label: Suchmaschinen
+            widget: object
+            fields:
+              - { name: title, label: Seitentitel, widget: string, pattern: ['^.{10,65}$', '10 bis 65 Zeichen'] }
+              - { name: description, label: Beschreibung, widget: text, pattern: ['^[\s\S]{70,170}$', '70 bis 170 Zeichen'] }
+
+  # ---------------------------------------------------------------- Rechtliches
+  - name: rechtliches
+    label: Rechtliches
+    delete: false
+    files:
+      - name: impressum
+        label: Impressum
+        file: src/content/legal/impressum.md
+        fields:
+          - { name: title, label: Titel, widget: string }
+          - { name: description, label: Beschreibung, widget: string }
+          - { name: body, label: Text, widget: markdown, buttons: [bold, italic, link, heading-two, bulleted-list], editor_components: [] }
+      - name: datenschutz
+        label: Datenschutzerklärung
+        file: src/content/legal/datenschutz.md
+        fields:
+          - { name: title, label: Titel, widget: string }
+          - { name: description, label: Beschreibung, widget: string }
+          - { name: body, label: Text, widget: markdown, buttons: [bold, italic, link, heading-two, bulleted-list], editor_components: [] }

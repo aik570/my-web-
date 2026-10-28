@@ -9,7 +9,9 @@ const TODO = /\[\[KLÄREN:\s*([^\]]+)\]\]/g;
 const markTodos = (html) => html.replace(TODO, '<mark class="todo" title="Vom Kunden zu bestätigen">⚠ $1</mark>');
 
 export default function (eleventyConfig) {
+  // Content files are read by data files (prices, legal), not rendered as pages.
   eleventyConfig.ignores.add('src/content/**');
+  eleventyConfig.addWatchTarget('src/content/');
   eleventyConfig.addPassthroughCopy({ 'src/assets': 'assets' });
   eleventyConfig.addPassthroughCopy({ 'src/admin/config.yml': 'admin/config.yml' });
 
