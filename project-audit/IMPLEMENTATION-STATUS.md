@@ -33,9 +33,10 @@ The site, price catalogue, price selector, CMS and 3D hero are built and tested 
 |---|---|---|---|---|---|---|
 | `/` mobile | 72 | 100 | 100 | 100 | 2.9 s | 1.05 s |
 | `/` desktop | 61 | 100 | 100 | 100 | 0.6 s | 1.76 s |
-| `/preise/` mobile | 98 | 96* | 100 | 100 | 2.3 s | 0 ms |
+| `/preise/` mobile | 98 | 100 | 100 | 100 | 2.3 s | 0 ms |
+| `/franchise/`, `/impressum/` mobile | 99 | 100 | 100 | 100 | — | — |
 
-  *before the footer link fix. Start of day: homepage mobile performance was 28.
+  Start of day: homepage mobile performance was 28.
   The remaining TBT comes from WebGL and canvas drawing on a **software GPU** in this environment; a real phone will be faster, but this has **not been measured on a real device**.
 
 ## Decisions and trade-offs
