@@ -28,7 +28,9 @@ npm run import:prices -- data-import/preisliste.csv --dry-run   # nur prüfen
 npm run import:prices -- data-import/preisliste.csv             # schreiben
 ```
 
-Der Import bricht bei unlesbaren Preisen, doppelten Zeilen und unbekannten Reparaturarten ab und schreibt dann nichts. Danach Stichproben gegen das Original prüfen und committen.
+Der Import bricht bei unlesbaren Preisen, doppelten Zeilen und unbekannten Reparaturarten ab und schreibt dann nichts. Nach dem Import steht der Status auf „Importiert". Erst nach Stichproben gegen das Original im CMS unter **Laden & Kontakt → Preisliste – Status** auf „Geprüft" setzen; vorher lässt sich die Website nicht in Produktion veröffentlichen.
+
+Die Entwicklungsdaten liegen getrennt in `data-import/demo/` und werden nur in Vorschau-Builds gezeigt, solange keine offizielle Preisliste vorhanden ist. Format und Lieferwege für den Kunden: `docs/PREISLISTE.md`.
 
 ## Technik (Entwickler)
 
@@ -50,6 +52,8 @@ npm run dev    # Terminal 2: Website + Admin auf http://localhost:8080 (/admin/)
 Im lokalen Modus schreibt das CMS direkt in die Dateien dieses Repositorys.
 
 ### Anmeldung in Produktion (vor dem Start einrichten)
+Schritt für Schritt mit Zuständigkeiten: `docs/DEPLOY.md`.
+
 Das CMS nutzt das GitHub-Backend (`backend.name: github`). Der Inhaber braucht ein GitHub-Konto mit Schreibrechten auf das Repository.
 
 - **Netlify (empfohlen):** Website mit dem Repository verbinden. Unter *Site configuration → Access & security → OAuth* den Anbieter **GitHub** mit Client-ID und Secret einer GitHub-OAuth-App hinterlegen (Callback-URL `https://api.netlify.com/auth/done`). Das Secret liegt nur bei Netlify, nicht im Repository. Netlify Identity wird **nicht** benötigt.

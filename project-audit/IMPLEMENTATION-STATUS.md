@@ -1,82 +1,91 @@
 # Implementation status
 
-Updated: 28.10.2026, end of day 1 · Branch `claude/zealous-bohr-71wesv`
+Updated: 28.10.2026, Phase 2 (preview, pricing, QA) · Branch `claude/zealous-bohr-71wesv`
 
-## Summary
-The site, price catalogue, price selector, CMS and 3D hero are built and tested locally. **Launch is blocked by client inputs**, not by code: the official price list and the legal data are missing (`npm run check` lists 9 blockers). Nothing is deployed yet — no hosting or domain access exists.
+## 1. Verification results
 
-## Completed and tested
-
-| Plan ID | Deliverable | Evidence |
-|---|---|---|
-| T02 | Eleventy 3 project; concept ported to templates; all content in data files | `npm run build` OK (9 pages) |
-| T02 | Fonts and three.js self-hosted | `npm test`: 0 third-party requests on all 6 pages × 2 viewports |
-| T03 | Decap CMS at `/admin/`, self-hosted (6.2 MB); collections: prices, contact/hours/closures/holiday rule, repair types, price-list status, homepage texts, services, FAQ, franchise, Impressum, Datenschutz | Local end-to-end run: login → edit iPhone 13 display price → Veröffentlichen → `src/content/prices/apple.json` changed → rebuild → `/preise/` shows 149 € (test edit reverted afterwards) |
-| T03 | Field validation in the CMS | Invalid phone `0163 228` rejected, file unchanged |
-| T04 | Homepage, header, footer, JSON-LD read from data | 7 phone links rendered from `site.json` |
-| T05 | Price importer (CSV) + build-time validation | Demo CSV imported; broken CSV (unreadable price, duplicate, unknown repair type) rejected with 4 messages, nothing written |
-| T06 | Price selector on the homepage | `npm test`: brand → models, repairs, CTA follows selection, search, unknown-model fallback |
-| T07 | `/preise/` with search, type filter, `#type` deep links | `npm test` |
-| T08 | `/impressum/`, `/datenschutz/` (Markdown via CMS) | Rendered; open points marked visibly, see below |
-| T09 | `/franchise/` page | Rendered; CTA falls back to shop phone until an e-mail is confirmed |
-| T10 | H1 with "Potsdam"; intro once per session; service signs link to price filter; WhatsApp only when a number is set; Brandenburg holidays + closures in opening state | `npm test`: 6 fixed-time cases incl. Reformationstag and 1. Weihnachtstag |
-| T12 | Canonical, absolute OG image, `sitemap.xml`, `robots.txt`, 404 page, redirects for known old URLs | Build output |
-| T13 | Performance and accessibility pass | See results below |
-| — | 3D: still poster for loading and no-WebGL; phones start 3D on first scroll; no re-render at rest on phones; 30 fps cap on ECG traces | `npm test`: 3D checks (4) |
-| — | Launch gate `npm run check` | Lists 9 blockers, 4 warnings |
-
-## Test results (local, Chromium)
-- `npm test`: **all checks pass** — 6 pages × 2 viewports (no console errors, no third-party requests, no failed assets, no horizontal overflow, header logo visible), internal links, price selector (8), price list (4), 3D scene (4), opening state (6).
-- Lighthouse, mobile profile (4× CPU, slow 4G), headless Chromium with **software WebGL**:
-
-| Page | Performance | Accessibility | Best practices | SEO | LCP | TBT |
-|---|---|---|---|---|---|---|
-| `/` mobile | 72 | 100 | 100 | 100 | 2.9 s | 1.05 s |
-| `/` desktop | 61 | 100 | 100 | 100 | 0.6 s | 1.76 s |
-| `/preise/` mobile | 98 | 100 | 100 | 100 | 2.3 s | 0 ms |
-| `/franchise/`, `/impressum/` mobile | 99 | 100 | 100 | 100 | — | — |
-
-  Start of day: homepage mobile performance was 28.
-  The remaining TBT comes from WebGL and canvas drawing on a **software GPU** in this environment; a real phone will be faster, but this has **not been measured on a real device**.
-
-## Decisions and trade-offs
-| Decision | Reason |
+| Command | Result |
 |---|---|
-| Eleventy + Decap CMS (Git-based) instead of WordPress or a custom admin | Static, no server to patch; every change is a commit (backup, rollback); validated in a full local run |
-| Decap served from the site, not unpkg | No CDN dependency; works where CDNs are blocked |
-| Production login via GitHub OAuth (Netlify provider or own OAuth proxy) | Netlify Identity is deprecated; secrets stay with the host, never in the repo |
-| Procedural 3D phone instead of a downloaded model | No licence risk, small, every part labelled; poster image as static fallback |
-| Missing/contradictory price → "auf Anfrage" (warning) instead of failing the build | The owner never sees a broken site; a price is never invented |
-| Demo price dataset with "auf Anfrage" only, plus visible "Testdaten" notice | Development data must not look like real prices |
-| Legal gaps as visible `[[KLÄREN: …]]` markers + launch gate | Nothing is fabricated; impossible to launch by accident |
-| No contact form | None confirmed on the old site; avoids data processing and consent work. Enquiries via phone, WhatsApp, e-mail with prefilled text |
-| Store-process step "Zahlung per Karte oder Überweisung" removed | Not confirmed for in-store payment |
+| `npm ci` (clean) | OK |
+| `npm run build` | OK — 9 pages (`/`, `/preise/`, `/franchise/`, `/impressum/`, `/datenschutz/`, 404, admin, sitemap, robots) |
+| `npm test` | **90 checks, all pass**: 6 pages × 2 viewports (no console errors, no third-party requests, no failed assets, no overflow, logo visible), internal links, price selector (8), price list (4), 3D start/fallback (4), reduced motion (2), opening state (6), **production build guard (4)** |
+| `npm run check` | **Exit 1 — 10 blockers, 4 warnings** (list in section 3) |
 
-## Still needed from the client (blocks launch)
-1. **Official price list** (file). The live site with its embedded price list could not be accessed from this environment (`www.handychirurg.de` blocked by the network policy). Either allow the host in the environment's network settings or send the file.
-2. **Impressum:** legal form, address for service of process, register/chamber data if applicable.
-3. **Datenschutz:** hosting provider, log retention, Stripe use for send-in; legal review.
-4. **Domain and hosting access**; decision on host (Netlify recommended); canonical domain (handychirurg.de vs handy-chirurg.de).
-5. **CMS user:** GitHub account (e-mail) for the owner.
+### Fixed in this phase (found during verification)
+| Problem | Fix |
+|---|---|
+| Test prices lived in the same folder as official prices; a production build would have shown them | Moved to `data-import/demo/`. Production builds never load them and show "Preisliste wird gerade aktualisiert" + call button |
+| Production builds were not blocked by open legal placeholders | Netlify `production` context now runs `npm run check`; the deploy fails while blockers exist |
+| Preview builds could be indexed or mistaken for the live site | Non-production builds: `noindex, nofollow` and a fixed "Vorschau · nicht veröffentlicht · Testpreise" marker |
+| CMS pointed to branch `main`, which **does not exist** in `aik570/my-web-` (its default branch belongs to another project) | CMS now targets the working branch for preview; launch gate blocks production while the CMS points to the shared work repository |
+| Price status "demo"/"verified" could be set wrongly by a re-import | Status flow `pending → imported → verified`; importer sets `imported`, a person sets `verified` after spot checks |
+| `pricesMeta.json` regressed to the old "Entwicklungsdaten" text in a commit | Caught by the new production test; corrected |
 
-Not blocking, but open: WhatsApp number · public-holiday rule · franchise contact e-mail · guarantee duration · original photos (shop photo is a 732 px screenshot crop) · full list of old URLs for redirects · whether a contact form existed.
+Verified in the production build (`CONTEXT=production`): no "Testdaten/Entwicklungsdaten/Testwert", no preview marker, pages indexable, selector shows the call fallback.
 
-## Deployment status
-Not deployed. `netlify.toml` is ready (build, headers, CSP, redirects). Steps: connect repo → set branch `main` → add GitHub OAuth provider → point domain. See `docs/CMS.md`.
+## 2. Real pricing source — status: **not available**
+Searched: all branches and full git history (no PDF/CSV/XLSX for Handy Chirurg — only files of other projects), disk, docs, references (the screenshots show the old selector's dropdowns but no prices). The live site `www.handychirurg.de` is still blocked by this environment's network policy (`connect_rejected`), so the embedded price data cannot be read from here.
 
-## Remaining work (days 2–6)
-| ID | Task | Est. h | Depends on |
-|---|---|---|---|
-| T05/T06 | Import and verify the official price list (spot checks vs. source) | 2–4 | Client price list |
-| T08 | Fill legal pages, remove markers | 1 | Client legal data |
-| T16 | Hosting setup, CMS OAuth, domain, redirects for all old URLs, Search Console | 3 | Access |
-| T14 | Real-device QA (iPhone Safari, Android Chrome) incl. 3D and CMS login in production | 3 | Deployment |
-| T15 | Client review round and fixes | 4–5 | Preview link |
-| T17 | Owner walkthrough of the CMS | 1 | CMS live |
-| P2 | Optional: more realistic phone materials; label spacing on very small screens; Apple Maps link on iOS | — | Time |
+What the client must deliver: see `docs/PREISLISTE.md` — preferably the Excel/Sheets file they maintain (columns *Hersteller, Modell, Gerätetyp, Reparatur, Bezeichnung, Preis, Ab, Hinweis*), otherwise the PDF (we transcribe and send back for approval) or access to the system behind the old site's selector. Empty template: `data-import/VORLAGE-preisliste.csv`. Also needed: VAT included? Diagnosis fee in addition or included?
 
-## Risks to the deadline
-- Price list arrives late → selector stays on "Testdaten"; launch impossible without it.
-- No domain/hosting access by day 4 → no launch on day 6.
-- Real-device 3D performance unknown until a preview URL exists.
-- Client review changes after day 5.
+Import path tested: `npm run import:prices -- <file>` writes only to `src/content/prices/`, sets status `imported`; broken files are rejected with line numbers and nothing is written.
+
+## 3. Launch blockers (`npm run check`)
+1. No official prices in `src/content/prices`.
+2. CMS `backend.repo` is the shared work repository `aik570/my-web-` → client-owned repository needed.
+3. Impressum: legal form.
+4. Impressum: address for service of process.
+5. Impressum: register / profession / chamber data if applicable.
+6. Datenschutz: legal review of the draft.
+7. Datenschutz: controller address.
+8. Datenschutz: hosting provider.
+9. Datenschutz: log retention.
+10. Datenschutz: Stripe for send-in (if used).
+
+Warnings: WhatsApp number · public-holiday rule · franchise e-mail · social image only 732 px wide.
+
+## 4. Preview
+| Preview | Status |
+|---|---|
+| Local | `npm run build && npx http-server _site -p 8080` — verified |
+| **Hosted preview (claude.ai)** | https://claude.ai/artifact/MKnvHQdRfoKvSRqyntbA2E — private until shared. Same build with relative paths, pages: home, Preise, Franchise, Impressum, Datenschutz. Verified locally from the same bundle (0 errors, 0 failed files, 3D starts). **Not verified inside the claude.ai viewer, no CMS** |
+| Netlify branch preview | **Blocked: no Netlify account/site.** Exact steps in `docs/DEPLOY.md` section B (production branch `main` = never deployed; branch deploy of `claude/zealous-bohr-71wesv`). No DNS touched |
+
+## 5. CMS authentication and deployment
+- Production flow: Decap CMS (self-hosted at `/admin/`) → GitHub backend → editor logs in with **their own GitHub account** via the GitHub OAuth provider built into Netlify (Netlify Identity is not used). The OAuth secret is stored only in Netlify.
+- Every *Veröffentlichen* is a commit to the configured branch → Netlify builds → site updated (~1 min). Production builds run the launch gate.
+- Permissions: editors need **Write** access to the repository; branch protection on the production branch must allow them to push (or use `editorial_workflow`).
+- Ownership: client owns the GitHub organisation/repository, Netlify team, OAuth App and domain; the developer is a removable collaborator (`docs/DEPLOY.md` C). No personal credentials are used as permanent access.
+- **Verified:** login → edit price → publish → file commit → rebuild → new price, using the local backend (decap-server). **Not yet verified:** real GitHub OAuth login and Netlify rebuild — requires the Netlify site and an OAuth App.
+- **Client account editing: not verified** (no client GitHub account yet).
+
+## 6. 3D and performance
+Implementation (`src/assets/js/phone.js`, three.js 0.160, self-hosted):
+- Delayed start: desktop after `requestIdleCallback`; phones/portrait only on first scroll/touch; still poster shown while loading and when WebGL is missing (tested).
+- Idle rendering: phones render nothing at rest; desktop idle sway capped at 30 fps; nothing renders off-screen or in hidden tabs; ECG traces ~30 fps.
+- Reduced motion: no intro, no reveal animation, no idle motion (tested).
+
+| Cost | Size / effect | Assessment |
+|---|---|---|
+| three.js module | 670 KB raw / **166 KB gzip**, parsed when 3D starts | Largest remaining cost; only loaded after first paint (desktop) or first scroll (phones) |
+| Scene init (procedural geometry, PMREM environment, 3 canvas textures) | One-off | Not measurable meaningfully here (software GPU) |
+| Screen texture redraw (600×1240 canvas) | During crack→repair transition and heartbeat | Only while scrolling through that phase |
+| ECG canvases | ~30 fps while visible | Small |
+| Intro | 2.7 s, image layers | Once per session |
+
+Environment limits vs. real devices: Lighthouse and the frame-time probe here run with **software WebGL (SwiftShader)** — measured 3D frame time median 89 ms at 1440×900, which is a CPU emulation figure, not device performance. Lighthouse homepage: mobile 72 / desktop 61 performance, 100 accessibility; sub-pages 98–99. **Real-device testing has not been performed.** It needs a preview URL on an iPhone (Safari) and a mid-range Android (Chrome): check 3D smoothness while scrolling, battery/heat over 1 minute, and the no-WebGL fallback in low-power mode.
+
+## 7. Client questions (must be answered)
+1. Price list file (see `docs/PREISLISTE.md`); prices incl. VAT? diagnosis fee separate?
+2. Impressum: legal form, address for service, register/chamber data.
+3. Datenschutz: hosting decision (Netlify proposed), Stripe used for send-in?
+4. GitHub: organisation/account to own the repository; e-mail(s) of CMS editors.
+5. Netlify: client team (or approval to create one in the client's name).
+6. Canonical domain: handychirurg.de or handy-chirurg.de? Who controls DNS?
+7. WhatsApp number · closed on public holidays? · franchise contact e-mail · guarantee duration.
+8. Original photos (shop front ≥ 1200 px).
+
+## 8. Next three actions
+1. **Get the price file and legal data** from the client using `docs/PREISLISTE.md` and the question list; import, spot-check 10 rows, set status `verified`.
+2. **Create the Netlify branch preview** (`docs/DEPLOY.md` B) — needs a Netlify account; then set up the GitHub OAuth provider and run the real login → edit price → publish → redeploy test.
+3. **Real-device QA** on iPhone Safari and Android Chrome against the preview URL; record results here.

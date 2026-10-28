@@ -4,8 +4,11 @@
 
 backend:
   name: github
+  # PREVIEW SETUP: work repository and working branch, so CMS saves trigger
+  # Netlify branch deploys of the preview. Before launch: client-owned repository
+  # and its production branch (npm run check blocks launch until then).
   repo: aik570/my-web-
-  branch: main            # production branch: confirm before launch
+  branch: claude/zealous-bohr-71wesv
   # base_url / auth_endpoint: only needed when not hosted on Netlify (see docs/CMS.md)
   commit_messages:
     create: 'CMS: {{collection}} „{{slug}}" angelegt'

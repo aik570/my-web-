@@ -151,6 +151,23 @@ console.log('\n3D scene');
   await nogl.close();
 }
 
+// Reduced motion: no intro, no reveal animation, 3D follows scroll without idle motion
+console.log('\nreduced motion');
+{
+  const ctx = await browser.newContext({ reducedMotion: 'reduce', viewport: { width: 1440, height: 900 } });
+  const p = await ctx.newPage();
+  await p.goto(BASE + '/');
+  await p.waitForTimeout(1500);
+  const r = await p.evaluate(() => ({
+    reduced: document.documentElement.classList.contains('reduced'),
+    intro: !!document.getElementById('intro'),
+    revealHidden: [...document.querySelectorAll('.reveal')].some((e) => getComputedStyle(e).opacity !== '1')
+  }));
+  ok(r.reduced && !r.intro, 'reduced motion: intro skipped');
+  ok(!r.revealHidden, 'reduced motion: content visible without reveal animation');
+  await ctx.close();
+}
+
 // Opening state at fixed times (Europe/Berlin)
 console.log('\nopening state');
 for (const [iso, expect] of [
