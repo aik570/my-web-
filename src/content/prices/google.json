@@ -1,0 +1,2046 @@
+{
+  "brand": "Google",
+  "order": 5,
+  "models": [
+    {
+      "name": "Pixel 9",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "Display – Standardqualität",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "display",
+          "label": "Display – Originalqualität",
+          "price": 349,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": 119,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": 319,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": 169,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 88,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "Pixel 9 Pro",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "Display – Standardqualität",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "display",
+          "label": "Display – Originalqualität",
+          "price": 349,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": 119,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": 349,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": 169,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 111,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 32,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "Pixel 9 Pro XL",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "Display – Standardqualität",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "display",
+          "label": "Display – Originalqualität",
+          "price": 429,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": 119,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": 349,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": 169,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 111,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 32,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "Pixel 8",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "Display – Standardqualität",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "display",
+          "label": "Display – Originalqualität",
+          "price": 349,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": 149,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": 299,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": 149,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 83,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "Pixel 8 Pro",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "Display – Standardqualität",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "display",
+          "label": "Display – Originalqualität",
+          "price": 399,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": 149,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": 349,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": 149,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 104,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 32,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "Pixel 7",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "Display – Standardqualität",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "display",
+          "label": "Display – Originalqualität",
+          "price": 299,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": 149,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": 299,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": 149,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 75,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "Pixel 7 Pro",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "Display – Standardqualität",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "display",
+          "label": "Display – Originalqualität",
+          "price": 399,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": 149,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": 349,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": 149,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 94,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 32,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "Pixel 6",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "Display – Standardqualität",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "display",
+          "label": "Display – Originalqualität",
+          "price": 299,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": 149,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": 249,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": 149,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 67,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "Pixel 6 Pro",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "Display – Standardqualität",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "display",
+          "label": "Display – Originalqualität",
+          "price": 299,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": 149,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": 249,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": 149,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 84,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 32,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "Pixel 6a",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "Display – Standardqualität",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "display",
+          "label": "Display – Originalqualität",
+          "price": 199,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": 119,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": 249,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": 149,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 50,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 19,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "Pixel 5",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "Display – Standardqualität",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "display",
+          "label": "Display – Originalqualität",
+          "price": 299,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": 119,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": 249,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": 149,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 59,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "Pixel 5a",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "Display – Standardqualität",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "display",
+          "label": "Display – Originalqualität",
+          "price": 249,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": 119,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": 199,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": 149,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 44,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 19,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "Pixel 4",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "Display – Standardqualität",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "display",
+          "label": "Display – Originalqualität",
+          "price": 199,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": 89,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": 139,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": 119,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 51,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "Pixel 4 XL",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "Display – Standardqualität",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "display",
+          "label": "Display – Originalqualität",
+          "price": 329,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": 89,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": 199,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": 129,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 58,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 29,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "Pixel 4a 4G",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "Display – Standardqualität",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "display",
+          "label": "Display – Originalqualität",
+          "price": 229,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": 89,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": 179,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": 99,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 38,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 19,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "Pixel 4a 5G",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "Display – Standardqualität",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "display",
+          "label": "Display – Originalqualität",
+          "price": 229,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": 89,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": 179,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": 99,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 38,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 19,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "Pixel 3",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "Display – Standardqualität",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "display",
+          "label": "Display – Originalqualität",
+          "price": 179,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": 79,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": 119,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": 79,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 51,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "Pixel 3 XL",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "Display – Standardqualität",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "display",
+          "label": "Display – Originalqualität",
+          "price": 299,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": 99,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": 119,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": 99,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 58,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 29,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "Pixel 3a",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "Display – Standardqualität",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "display",
+          "label": "Display – Originalqualität",
+          "price": 179,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": 79,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": 79,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": 79,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 38,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 19,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "Pixel 3a XL",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "Display – Standardqualität",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "display",
+          "label": "Display – Originalqualität",
+          "price": 299,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": 89,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": 129,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 38,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 19,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    }
+  ]
+}

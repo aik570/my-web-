@@ -173,8 +173,8 @@ bodyClass: is-home
     <div class="wrap visit">
       <figure class="visit__photo reveal">
         <picture>
-          <source srcset="/assets/img/laden-dortustrasse.webp" type="image/webp">
-          <img src="/assets/img/laden-dortustrasse.jpg" alt="{{ h.visit.photoAlt }}" width="732" height="612" loading="lazy" decoding="async">
+          <source srcset="/assets/img/laden-dortustrasse-800.webp 800w, /assets/img/laden-dortustrasse.webp 1200w" sizes="(max-width: 860px) 100vw, 50vw" type="image/webp">
+          <img src="/assets/img/laden-dortustrasse-800.jpg" srcset="/assets/img/laden-dortustrasse-800.jpg 800w, /assets/img/laden-dortustrasse.jpg 1200w" sizes="(max-width: 860px) 100vw, 50vw" alt="{{ h.visit.photoAlt }}" width="1200" height="676" loading="lazy" decoding="async">
         </picture>
       </figure>
 

@@ -1,5 +1,6 @@
 // Price selector: Hersteller → Modell → Reparatur → Preis.
-// Reads the catalogue embedded at build time; no requests at runtime.
+// Brands are in the HTML; the catalogue (/preise/katalog.json, same origin)
+// loads when the selector comes near the viewport or is used.
 (function () {
   'use strict';
 
@@ -8,24 +9,30 @@
   if (!dataEl || !brandSel) return;
 
   var D = JSON.parse(dataEl.textContent);
+  var root = brandSel.closest('[data-selector]');
   var modelSel = document.getElementById('sel-model');
   var search = document.getElementById('sel-search');
+  var list = document.getElementById('sel-models');
   var out = document.getElementById('sel-result');
   var demo = D.isDemo || !D.meta || D.meta.status !== 'verified';
-  var typeLabel = {}, typeOf = {};
-  D.types.forEach(function (t) { typeLabel[t.id] = t.label; typeOf[t.id] = t; });
+  var typeOf = {};
+  D.types.forEach(function (t) { typeOf[t.id] = t; });
+  var brands = null;
+  var loading = null;
 
   var esc = function (s) {
     return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; });
   };
   var euro = function (n) {
-    return n.toLocaleString('de-DE', { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 }) + ' €';
+    return n.toLocaleString('de-DE', { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 }) + ' €';
   };
+  // Repair rows from katalog.json: [type, label, price|null, from, note]
+  var repair = function (a) { return { service: a[0], label: a[1], price: a[2], from: a[3], note: a[4], onRequest: a[2] === null }; };
   var priceText = function (r) {
     if (r.onRequest) return 'auf Anfrage';
     return (r.from ? 'ab ' : '') + euro(r.price);
   };
-  var repairName = function (r) { return r.label || typeLabel[r.service] || r.service; };
+  var repairName = function (r) { return r.label || (typeOf[r.service] || {}).label || r.service; };
   // Duration and warranty come from the repair type (CMS); shown only when filled in.
   var facts = function (r) {
     var t = typeOf[r.service] || {};
@@ -35,8 +42,33 @@
     return f.length ? '<p class="selector__hint">' + esc(f.join(' · ')) + '</p>' : '';
   };
   var callLink = function () { return '<a href="tel:' + esc(D.phone.dial) + '">' + esc(D.phone.display) + '</a>'; };
-  var brandOf = function (name) { return D.brands.filter(function (b) { return b.brand === name; })[0]; };
+  var brandOf = function (name) { return (brands || []).filter(function (b) { return b.brand === name; })[0]; };
   var modelOf = function (b, name) { return b && b.models.filter(function (m) { return m.name === name; })[0]; };
+
+  function load() {
+    if (!loading) {
+      loading = fetch(D.catalogue).then(function (res) {
+        if (!res.ok) throw new Error(res.status);
+        return res.json();
+      }).then(function (cat) {
+        brands = cat.brands;
+        var frag = document.createDocumentFragment();
+        brands.forEach(function (b) {
+          b.models.forEach(function (m) {
+            var o = document.createElement('option');
+            o.value = b.brand + ' ' + m.name;
+            frag.appendChild(o);
+          });
+        });
+        if (list) list.appendChild(frag);
+      }).catch(function () {
+        loading = null;
+        out.innerHTML = '<p class="selector__empty">Die Preise konnten nicht geladen werden. Rufen Sie an, wir nennen Ihnen den Preis: ' + callLink() + '.</p>';
+        throw new Error('catalogue');
+      });
+    }
+    return loading;
+  }
 
   function fillModels(b) {
     modelSel.innerHTML = '';
@@ -47,8 +79,12 @@
     if (!b) { modelSel.disabled = true; return; }
     // group by device type when the list has more than one
     var groups = {};
-    b.models.forEach(function (m) { (groups[m.category || ''] = groups[m.category || ''] || []).push(m); });
-    var keys = Object.keys(groups);
+    var keys = [];
+    b.models.forEach(function (m) {
+      var k = m.category || '';
+      if (!groups[k]) { groups[k] = []; keys.push(k); }
+      groups[k].push(m);
+    });
     keys.forEach(function (k) {
       var parent = modelSel;
       if (keys.length > 1 && k) { parent = document.createElement('optgroup'); parent.label = k; modelSel.appendChild(parent); }
@@ -89,55 +125,70 @@
         ' ist noch kein Preis hinterlegt. Rufen Sie an, wir nennen Ihnen den Preis: ' + callLink() + '.</p>';
       return;
     }
-    var rows = m.repairs.map(function (r, i) {
+    var repairs = m.repairs.map(repair);
+    var rows = repairs.map(function (r, i) {
       return '<li><label class="repair"><input type="radio" name="repair" value="' + i + '"' + (i === 0 ? ' checked' : '') + '>' +
         '<span class="repair__name">' + esc(repairName(r)) + (r.note ? '<small>' + esc(r.note) + '</small>' : '') + '</span>' +
         '<span class="repair__price' + (r.onRequest ? ' is-request' : '') + '">' + esc(priceText(r)) +
-        (demo && !r.onRequest ? '<small>Testwert</small>' : '') + '</span></label></li>';
+        (demo && !r.onRequest ? '<small>' + (D.isDemo ? 'Testwert' : 'in Prüfung') + '</small>' : '') + '</span></label></li>';
     }).join('');
     out.innerHTML = '<div class="selector__model"><p class="selector__name"><span class="field__no">3</span>' + esc(b.brand + ' ' + m.name) + '</p>' +
       '<fieldset><legend class="sr">Reparatur wählen</legend><ul class="repairs">' + rows + '</ul></fieldset>' +
       '<p class="selector__hint">Ihre Reparatur ist nicht dabei? Rufen Sie an: ' + callLink() + '.</p></div>' +
-      '<div id="sel-cta">' + enquiry(b, m, m.repairs[0]) + '</div>';
+      '<div id="sel-cta">' + enquiry(b, m, repairs[0]) + '</div>';
     out.querySelectorAll('input[name="repair"]').forEach(function (inp) {
       inp.addEventListener('change', function () {
-        document.getElementById('sel-cta').innerHTML = enquiry(b, m, m.repairs[+inp.value]);
+        document.getElementById('sel-cta').innerHTML = enquiry(b, m, repairs[+inp.value]);
       });
     });
   }
 
-  brandSel.addEventListener('change', function () { fillModels(brandOf(brandSel.value)); render(); });
+  function find(q) {
+    var hit = null;
+    var match = function (test) {
+      brands.some(function (b) {
+        return b.models.some(function (m) {
+          if (test(b, m, (b.brand + ' ' + m.name).toLowerCase())) { hit = [b, m]; return true; }
+          return false;
+        });
+      });
+    };
+    match(function (b, m, full) { return full === q || m.name.toLowerCase() === q; });
+    if (!hit) match(function (b, m, full) { return full.indexOf(q) >= 0; });
+    return hit;
+  }
+
+  brandSel.addEventListener('change', function () {
+    load().then(function () { fillModels(brandOf(brandSel.value)); render(); }, function () {});
+  });
   modelSel.addEventListener('change', render);
 
   // Free-text search: "Apple iPhone 13" or just "iPhone 13" selects brand and model.
   if (search) {
     search.addEventListener('change', function () {
-      var q = search.value.trim().toLowerCase();
-      if (!q) return;
-      var hit = null;
-      D.brands.some(function (b) {
-        return b.models.some(function (m) {
-          var full = (b.brand + ' ' + m.name).toLowerCase();
-          if (full === q || m.name.toLowerCase() === q) { hit = [b, m]; return true; }
-          return false;
-        });
-      });
-      if (!hit) {
-        D.brands.some(function (b) {
-          return b.models.some(function (m) {
-            if ((b.brand + ' ' + m.name).toLowerCase().indexOf(q) >= 0) { hit = [b, m]; return true; }
-            return false;
-          });
-        });
-      }
-      if (!hit) {
-        out.innerHTML = '<p class="selector__empty">Kein Modell zu „' + esc(search.value) + '" gefunden. Rufen Sie an, wir helfen Ihnen weiter: ' + callLink() + '.</p>';
-        return;
-      }
-      brandSel.value = hit[0].brand;
-      fillModels(hit[0]);
-      modelSel.value = hit[1].name;
-      render();
+      var raw = search.value.trim();
+      if (!raw) return;
+      load().then(function () {
+        var hit = find(raw.toLowerCase());
+        if (!hit) {
+          out.innerHTML = '<p class="selector__empty">Kein Modell zu „' + esc(raw) + '" gefunden. Rufen Sie an, wir helfen Ihnen weiter: ' + callLink() + '.</p>';
+          return;
+        }
+        brandSel.value = hit[0].brand;
+        fillModels(hit[0]);
+        modelSel.value = hit[1].name;
+        render();
+      }, function () {});
     });
+  }
+
+  // Start loading early enough that the first choice feels instant.
+  var start = function () { load().catch(function () {}); };
+  ['focusin', 'pointerdown', 'touchstart'].forEach(function (ev) { root.addEventListener(ev, start, { once: true, passive: true }); });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      if (entries.some(function (e) { return e.isIntersecting; })) { io.disconnect(); start(); }
+    }, { rootMargin: '600px 0px' });
+    io.observe(root);
   }
 })();

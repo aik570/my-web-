@@ -44,6 +44,43 @@
 
 # Old URLs of the current site. Extend this list once the full URL list of the
 # live site is known (see project-audit/07-risks-and-seo.md).
+# Former URLs of the previous website
+[[redirects]]
+  from = "/services"
+  to = "/leistungen/"
+  status = 301
+[[redirects]]
+  from = "/ablauf"
+  to = "/#ablauf"
+  status = 301
+[[redirects]]
+  from = "/apple"
+  to = "/preise/apple/"
+  status = 301
+[[redirects]]
+  from = "/samsung"
+  to = "/preise/samsung/"
+  status = 301
+[[redirects]]
+  from = "/huawei"
+  to = "/preise/huawei/"
+  status = 301
+[[redirects]]
+  from = "/xiaomi"
+  to = "/preise/xiaomi/"
+  status = 301
+[[redirects]]
+  from = "/google"
+  to = "/preise/google/"
+  status = 301
+[[redirects]]
+  from = "/sony"
+  to = "/preise/sony/"
+  status = 301
+[[redirects]]
+  from = "/oneplus"
+  to = "/preise/oneplus/"
+  status = 301
 [[redirects]]
   from = "/franchise"
   to = "/franchise/"

@@ -1,7 +1,7 @@
 {
-  "status": "pending",
-  "source": "Offizielle Preisliste liegt noch nicht vor.",
-  "updated": "",
+  "status": "imported",
+  "source": "Übernommen aus dem Preisrechner der bisherigen Website handychirurg.de (Datenstand 09.07.2026, abgerufen 28.10.2026). Vor Veröffentlichung vom Inhaber zu bestätigen.",
+  "updated": "2026-10-28",
   "vatNote": "",
   "footnote": ""
 }

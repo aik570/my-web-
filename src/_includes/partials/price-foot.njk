@@ -1,0 +1,6 @@
+<div class="pricelist__foot">
+  <p>Fehleranalyse ab <strong>{{ site.diagnosisFee.amount | euro }}</strong>, wird bei einer Reparatur verrechnet.</p>
+  {%- if pricesMeta.vatNote %}<p>{{ pricesMeta.vatNote }}</p>{% endif %}
+  {%- if pricesMeta.footnote %}<p>{{ pricesMeta.footnote }}</p>{% endif %}
+  {%- if pricesMeta.updated and pricesMeta.status == 'verified' %}<p>Stand: {{ pricesMeta.updated }}</p>{% endif %}
+</div>

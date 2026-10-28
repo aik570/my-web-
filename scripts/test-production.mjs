@@ -25,6 +25,7 @@ ok(!/Entwicklungsdaten|Testdaten|Testwert|kein echter Preis/.test(all), 'no deve
 ok(!/preview-flag|Vorschau · nicht veröffentlicht/.test(all), 'no preview marker');
 ok(!pages.filter((p) => !p.endsWith('404.html')).some((p) => /name="robots" content="noindex/.test(fs.readFileSync(p, 'utf8'))), 'indexable (except 404)');
 const official = fs.readdirSync('src/content/prices').filter((f) => f.endsWith('.json'));
+if (official.length) ok(/Preise in Prüfung|keine echten/.test(fs.readFileSync(path.join(OUT, 'preise', 'index.html'), 'utf8')) || JSON.parse(fs.readFileSync('src/_data/pricesMeta.json', 'utf8')).status === 'verified', 'unverified official prices are labelled "in Prüfung"');
 if (!official.length) ok(/Preisliste wird gerade aktualisiert/.test(fs.readFileSync(path.join(OUT, 'index.html'), 'utf8')), 'without official prices the selector shows the call fallback');
 
 const gate = spawnSync('node', ['scripts/check-launch.mjs'], { encoding: 'utf8' });

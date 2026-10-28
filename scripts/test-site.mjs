@@ -31,7 +31,7 @@ let failed = 0;
 const ok = (cond, msg) => { console.log(`${cond ? '  ✓' : '  ✗'} ${msg}`); if (!cond) failed++; };
 
 const browser = await chromium.launch({ args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
-const PAGES = ['/', '/preise/', '/franchise/', '/impressum/', '/datenschutz/', '/404.html'];
+const PAGES = ['/', '/leistungen/', '/preise/', '/preise/samsung/', '/franchise/', '/impressum/', '/datenschutz/', '/404.html'];
 const VIEWPORTS = [[390, 844, 'mobile'], [1440, 900, 'desktop']];
 
 for (const [w, h, label] of VIEWPORTS) {
@@ -77,9 +77,14 @@ console.log('\nprice selector');
 {
   const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
   await page.goto(BASE + '/');
-  const data = await page.evaluate(() => JSON.parse(document.getElementById('price-data').textContent));
+  const data = await page.evaluate(async () => {
+    const d = JSON.parse(document.getElementById('price-data').textContent);
+    return { ...d, ...(await (await fetch(d.catalogue)).json()) };
+  });
+  ok(data.brands.length > 0, `catalogue loads from ${data.catalogue} (${data.brands.length} brands)`);
   const b = data.brands[0]; const m = b.models[0];
   await page.selectOption('#sel-brand', b.brand);
+  await page.waitForFunction(() => !document.getElementById('sel-model').disabled, null, { timeout: 5000 }).catch(() => {});
   ok(await page.$eval('#sel-model', (s) => !s.disabled), 'model select enabled after brand');
   const optCount = await page.$$eval('#sel-model option', (o) => o.length - 1);
   ok(optCount === b.models.length, `model options = ${b.models.length} (got ${optCount})`);
@@ -88,16 +93,26 @@ console.log('\nprice selector');
   ok(rows === m.repairs.length, `repairs shown = ${m.repairs.length} (got ${rows})`);
   const priceTxt = await page.$eval('.repair__price', (e) => e.textContent);
   const r0 = m.repairs[0];
-  ok(r0.onRequest ? /auf Anfrage/.test(priceTxt) : priceTxt.includes(String(r0.price).replace('.', ',')), `first price matches data (${priceTxt.trim()})`);
+  ok(r0[2] === null ? /auf Anfrage/.test(priceTxt) : priceTxt.includes(String(r0[2]).replace('.', ',')), `first price matches data (${priceTxt.trim()})`);
   if (m.repairs.length > 1) {
     await page.click('.repair >> nth=1');
     const cta = await page.$eval('#sel-cta', (e) => e.textContent);
-    const name1 = m.repairs[1].label || data.types.find((t) => t.id === m.repairs[1].service).label;
+    const name1 = m.repairs[1][1] || data.types.find((t) => t.id === m.repairs[1][0]).label;
     ok(cta.includes(name1), `CTA follows selected repair (${name1})`);
   }
   ok(/nicht dabei/.test(await page.$eval('.selector__model', (e) => e.textContent)), 'missing repair hint with call link');
+  const withFacts = data.types.filter((t) => t.duration || t.warranty).map((t) => t.id);
   const ctaTxt = await page.$eval('#sel-cta', (e) => e.textContent);
-  ok(!/Dauer:|Garantie:/.test(ctaTxt) || data.types.some((t) => t.duration || t.warranty), 'no duration/warranty shown unless set in the CMS');
+  ok(/Dauer:|Garantie:/.test(ctaTxt) === withFacts.includes(m.repairs[1] ? m.repairs[1][0] : r0[0]), 'duration/warranty shown only when set in the CMS');
+  const onReq = data.brands.flatMap((x) => x.models.map((y) => [x, y])).find(([, y]) => y.repairs.some((r) => r[2] === null));
+  if (onReq) {
+    await page.selectOption('#sel-brand', onReq[0].brand); await page.waitForTimeout(100);
+    await page.selectOption('#sel-model', onReq[1].name);
+    const i = onReq[1].repairs.findIndex((r) => r[2] === null);
+    await page.click(`.repair >> nth=${i}`);
+    ok(/keinen festen Preis/.test(await page.$eval('#sel-cta', (e) => e.textContent)), `no price → enquiry state (${onReq[1].name})`);
+    await page.selectOption('#sel-brand', b.brand); await page.waitForTimeout(100); await page.selectOption('#sel-model', m.name);
+  }
   const tel = await page.$eval('#sel-cta a[href^="tel:"]', (a) => a.getAttribute('href'));
   ok(tel === `tel:${data.phone.dial}`, 'CTA phone link');
   const last = data.brands[data.brands.length - 1]; const lm = last.models[last.models.length - 1];
@@ -112,20 +127,25 @@ console.log('\nprice selector');
 console.log('\nprice list');
 {
   const page = await browser.newPage();
-  await page.goto(BASE + '/preise/');
-  const rowsOk = await page.$$eval('[data-row]', (rows) => rows.every((r) => {
-    const label = { display: 'Display', akku: 'Akku', wasserschaden: 'Wasserschaden', platine: 'Platine' }[r.dataset.type];
-    return !label || r.querySelector('td').textContent.trim().startsWith(label) || r.querySelector('td').textContent.trim().length > 0;
-  }));
-  ok(rowsOk, 'every price row shows a repair name');
+  await page.goto(BASE + '/preise/apple/');
   const typeCheck = await page.$$eval('[data-row]', (rows) => rows.filter((r) => r.dataset.type === 'akku').every((r) => /Akku/.test(r.querySelector('td').textContent)));
   ok(typeCheck, 'repair name matches its type (no fallback to the first type)');
-  await page.goto(BASE + '/preise/#akku');
-  const visible = await page.$$eval('[data-row]', (r) => r.filter((x) => !x.hidden).map((x) => x.dataset.type));
+  ok(await page.$$eval('[data-row]', (rows) => rows.every((r) => r.querySelector('td').textContent.trim().length > 0)), 'every price row shows a repair name');
+  await page.goto(BASE + '/preise/apple/#akku');
+  const visible = await page.$$eval('[data-row]', (r) => r.filter((x) => !x.hidden && !x.closest('[hidden]')).map((x) => x.dataset.type));
   ok(visible.length > 0 && visible.every((t) => t === 'akku'), `#akku filters to Akku rows (${visible.length})`);
   await page.click('.chip[data-type=""]');
   await page.fill('#pl-search', 'zzz');
   ok(!(await page.$eval('#pl-none', (e) => e.hidden)), 'no-match message appears');
+  const slug = await page.$eval('[data-model]', (d) => d.id);
+  await page.goto(BASE + '/preise/apple/#' + slug);
+  ok(await page.$eval('#' + slug, (d) => d.open), `#${slug} opens that model`);
+  await page.goto(BASE + '/preise/');
+  await page.fill('#pl-find', 'galaxy s23');
+  const hits = await page.$$eval('#pl-hits a', (a) => a.map((x) => x.getAttribute('href')));
+  ok(hits.length > 0 && hits.every((h) => h.startsWith('/preise/samsung/#')), `overview search finds models (${hits.length})`);
+  await page.goto(BASE + '/preise/#display');
+  ok(await page.$eval('[data-brand-link]', (a) => a.getAttribute('href').endsWith('#display')), '#display carries the repair type to the brand pages');
   await page.close();
 }
 

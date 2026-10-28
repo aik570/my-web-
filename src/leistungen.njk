@@ -1,0 +1,61 @@
+---
+permalink: /leistungen/
+seo:
+  title: Reparaturleistungen – Handy Chirurg Potsdam
+  description: Display, Akku, Kamera, Ladebuchse, Wasserschaden, Home Button, Lautsprecher und Mikrofon. Dauer und Garantie je Reparatur. Handy Chirurg, Dortustraße 23, Potsdam.
+---
+{% extends "base.njk" %}
+{%- set L = leistungen %}
+
+{% block main %}
+<section class="sec sec--white page-head">
+  <div class="wrap">
+    <p class="kicker"><span class="kicker__cross" aria-hidden="true"></span>{{ L.kicker }}</p>
+    <h1 class="page-title">{{ L.title }}</h1>
+    <p class="head__lede">{{ L.lede }}</p>
+  </div>
+</section>
+
+<section class="sec sec--white services-list" aria-label="{{ L.title }}">
+  <div class="wrap">
+    <ul class="svc">
+      {%- for s in L.items %}
+      <li class="svc__item" id="{{ s.id }}">
+        <h2 class="svc__title">{{ s.title }}</h2>
+        <dl class="svc__facts">
+          {%- if s.duration %}<div><dt>Dauer</dt><dd>{{ s.duration }}</dd></div>{% endif %}
+          {%- if s.warranty %}<div><dt>Garantie</dt><dd>{{ s.warranty }}</dd></div>{% endif %}
+        </dl>
+        <p>{{ s.text }}</p>
+        {%- if s.priceType %}
+        <a class="link-arrow" href="/preise/#{{ s.priceType }}">Preise nach Modell</a>
+        {%- else %}
+        <a class="link-arrow" href="tel:{{ site.phone.dial }}">Preis telefonisch: {{ site.phone.display }}</a>
+        {%- endif %}
+      </li>
+      {%- endfor %}
+    </ul>
+    <p class="svc__note">Den endgültigen Preis bestätigen wir Ihnen vor jeder Reparatur. Fehleranalyse ab {{ site.diagnosisFee.amount | euro }}, wird bei einer Reparatur verrechnet.</p>
+  </div>
+</section>
+
+<section class="sec sec--mint" aria-labelledby="besuch-h">
+  <div class="wrap svc-visit">
+    <div>
+      <h2 class="h2" id="besuch-h">{{ L.visit.title }}</h2>
+      <p class="head__lede">{{ L.visit.text }}</p>
+      <p>{{ site.street }} · {{ site.postcode }} {{ site.city }}<br>
+        <a href="tel:{{ site.phone.dial }}">{{ site.phone.display }}</a> · <a href="mailto:{{ site.email }}">{{ site.email }}</a><br>
+        {% include "partials/hours-text.njk" %}</p>
+      <div class="actions">
+        <a class="btn btn--primary" href="tel:{{ site.phone.dial }}">Jetzt anrufen</a>
+        <a class="btn btn--quiet" href="{{ site.mapsUrl }}" target="_blank" rel="noopener">Route planen</a>
+      </div>
+    </div>
+    <div class="svc-visit__photos">
+      <picture><source srcset="/assets/img/laden-empfang.webp" type="image/webp"><img src="/assets/img/laden-empfang.jpg" alt="Empfangsbereich im Laden von Handy Chirurg in Potsdam" width="1000" height="563" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="/assets/img/laden-theke.webp" type="image/webp"><img src="/assets/img/laden-theke.jpg" alt="Theke mit Zubehör im Laden von Handy Chirurg in Potsdam" width="1000" height="563" loading="lazy" decoding="async"></picture>
+    </div>
+  </div>
+</section>
+{% endblock %}

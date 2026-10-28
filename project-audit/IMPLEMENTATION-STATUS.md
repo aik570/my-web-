@@ -1,112 +1,123 @@
 # Implementation status
 
-Updated: 28.10.2026, Phase 3 (recovery of the original site) · earlier: Phase 2 · Branch `claude/zealous-bohr-71wesv`
+Updated: 28.10.2026, Phase 3 (recovery of the original website) · Branch `claude/zealous-bohr-71wesv`
 
-## 0. Phase 3 — recovery of the original website: **blocked by network access**
+## 1. Access to the original website
 
-Attempted on 28.10.2026 from this cloud session:
-
-| URL / method | Result |
+| Check | Result |
 |---|---|
-| `https://www.handychirurg.de/` (WebFetch) | `getaddrinfo ENOTFOUND www.handychirurg.de` — host is outside the session's allowed network domains |
-| `https://web.archive.org/web/2025/https://www.handychirurg.de/` | "unable to fetch from web.archive.org" |
-| Direct shell requests (curl) to the site and mirrors | Refused by the session's permission policy |
-| Web search "handychirurg.de Impressum Potsdam Dortustraße", "\"Handy Chirurg\" Potsdam Reparatur Preise" | No page of handychirurg.de indexed in the results |
-| Repository, all branches, history, `references/` | Only the 15 screenshots + brief; their content (benefits, process, hours, diagnosis fee, contact) is already integrated. No Impressum/Datenschutz text, no `/services` page, no price data |
+| First attempt (before the network change) | `getaddrinfo ENOTFOUND www.handychirurg.de` (host not in allowed domains); web.archive.org not reachable |
+| After "allow all domains" — `curl https://www.handychirurg.de/` | **HTTP 200, 65 792 bytes** (via the environment proxy). The WebFetch tool still fails with ENOTFOUND, so shell + headless Chromium were used |
+| Technology of the old site | Single-page app (Lovable / Vite / React). Catalogue loaded at runtime from a public Supabase REST API (`pzdgfkubugbpqqwgetxy.supabase.co/rest/v1/…`) with the site's public key; contact form via a Supabase function |
 
-Not inspected because unreachable (contents **unknown, not missing**): `/`, `/services`, `/franchise`, Impressum, Datenschutz, price calculator and its data requests.
+Pages inspected in a real browser (rendered text + DOM + network requests):
 
-To unblock: allow `www.handychirurg.de` and `handychirurg.de` (and `handy-chirurg.de`) under *Network access → Allowed domains* in the cloud environment settings, then re-run the recovery (crawl pages, capture the calculator's network requests, import the catalogue with `npm run import:prices`, migrate Impressum/Datenschutz text marked "übernommen von der bisherigen Website, vor Start prüfen").
+| URL (discovered from navigation/footer/bundle) | Status | Used for |
+|---|---|---|
+| `/` | 200 | Hero, benefits, process, shop, FAQ (answers from the JS bundle), contact |
+| `/services` | 200 | 8 services with duration, warranty, description; visit block |
+| `/impressum` | 200 | Impressum |
+| `/datenschutz` | 200 | Datenschutzerklärung |
+| `/franchise` | 200 | Franchise offers and requirements, contact |
+| `/apple`, `/samsung` (also routes `/huawei`, `/xiaomi`, `/google`, `/sony`, `/oneplus`) | 200 | Brand model lists (show "ab -1€" for models without price — bug of the old site) |
+| `/ablauf` | 200 | Same process text as the homepage |
+| `/admin`, `/auth`, `/csv-import` | not inspected | Admin routes of the old site; not public content |
 
-Done in Phase 3 without the original site:
-- Calculator: repair types carry optional **Dauer** and **Garantie** (CMS → Laden & Kontakt → Reparaturarten); shown only when filled in, so nothing unverified appears. Empty states for a model without prices and for repairs not listed (call link); explicit enquiry text when a repair has no fixed price.
-- Test added (missing-repair hint; no duration/warranty without CMS data).
+## 2. Recovered content and where it went
 
-## 1. Verification results
+| Content | Source | New location | Status |
+|---|---|---|---|
+| **Price catalogue** | Calculator's own data requests (`repair_brands`, `repair_models`, `repair_services`, `model_accessories`), snapshot `data-import/original/snapshot.json` (`scripts/fetch-original.mjs`) | `src/content/prices/*.json` via `scripts/convert-original.mjs` → `npm run import:prices` | Imported, status **`imported`** (not yet confirmed by the owner) |
+| Impressum | `/impressum` | `src/content/legal/impressum.md` | Copied verbatim; review marker |
+| Datenschutz | `/datenschutz` | `src/content/legal/datenschutz.md` | Copied; hosting section and form/Supabase/Resend sections adapted (see 4) |
+| Reparaturleistungen (8 services: duration, warranty, description) | `/services` | New page `/leistungen/`, data `src/_data/leistungen.json`, CMS "Inhalte → Reparaturleistungen" | Copied verbatim |
+| Repair durations | `/services` | Calculator (repair types in CMS) and homepage cards | Display 60 Min., Akku 30 Min., Kamera/Ladebuchse/Lautsprecher 45 Min., Wasserschaden 2–3 Std. |
+| FAQ (7 questions with answers) | homepage (answers from bundle) | `src/_data/faq.json` | Copied, converted from "Du" to "Sie" (site tone); meaning unchanged |
+| Franchise | `/franchise` | `src/_data/franchise.json` | Offers/requirements aligned to original wording ("Eigenkapital ab 25.000 €"); contact e-mail `potsdam@handy-chirurg.de` from original |
+| Photos | `/assets/store-exterior…`, `store-interior-1/2…` (2000×1126) | `laden-dortustrasse` (1200 + 800 w), `laden-empfang`, `laden-theke` | Real shop photos; also fixes the social-image size warning |
+| Service photos (display, battery, camera …), mascot, team/technician photos | `/services`, `/` | **Not used** | Visibly stock/AI-generated; contradict the art direction and could be mistaken for this shop |
+| Old URLs | navigation | `netlify.toml` 301: `/services`, `/ablauf`, `/apple` … `/oneplus` | Done |
+
+## 3. Price catalogue — numbers
+
+| | Count |
+|---|---|
+| Manufacturers | **7** (Apple, Samsung, Huawei, Xiaomi, Google, Sony, OnePlus) |
+| Models | **493** (Samsung 147, Apple 129 incl. iPads, Apple Watch, MacBooks; Xiaomi 92, Huawei 49, Sony 31, OnePlus 25, Google 20) |
+| Repair types with prices | **12** (Display, Akkuwechsel, Backcover, Ladebuchse, Hauptkamera, Frontkamera, Lautsprecher, WiFi & Bluetooth, Wasserschaden, Fehleranalyse, Panzerglas, Zubehör) + Platine (no prices) |
+| Price rows on the new site | **5 882** = 5 423 repair rows + 285 "Display – Originalqualität" rows + 174 accessory rows |
+| Rows with a fixed price | **3 038** |
+| Rows "auf Anfrage" | **2 844** (2 801 marked -1 in the source = the old site's own "auf Anfrage" + 43 below) |
+| Reconciliation | All 5 882 rows compared with the snapshot by script: **0 mismatches** |
+
+Missing or ambiguous (not invented, shown as "auf Anfrage" or left out, listed here for the owner):
+1. **43 × 0 €** — "Panzerglas" for MacBooks in the source. Shown as "auf Anfrage".
+2. **"Premiumqualität"** exists for every display (493) but only with -1 → not shown as its own row. **"Originalqualität"** with -1 (208) likewise; with a real price (285) shown as an extra row.
+3. **Panzerglas twice**: repair-type price (e.g. 25 €) and accessory "Panzerglas – Premium Displayschutz aus Panzerglas" (40/50 €) for 58 models. Both kept as in the source (the old calculator offered both); confirm.
+4. **Fehleranalyse** is 25 € for 450 models and 35 € for 43 (MacBooks); the site text says "ab 25 €".
+5. **Duration/warranty per row** in the database are the same default for all 5 423 rows ("30-60 Minuten", "12 Monate Garantie") — not used per row. Per-service durations come from `/services`.
+6. **Warranty conflict**: `/services` says 12 months (water damage 6 months); FAQ says 5 years on original parts, 12 months on third-party parts; schema.org text says "5 Jahre Garantie auf Originalteile". Calculator shows **no** warranty until the owner confirms (CMS field "Garantie" per repair type); `/leistungen/` and FAQ show the original wording.
+7. Database last changed **09.07.2026**; whether prices are still current must be confirmed by the owner.
+8. VAT note: none on the old site.
+
+## 4. Legal pages — what is copied, what is changed
+
+**Impressum** — copied from the original: Malake Mansour, Dortustraße 23, 14467 Potsdam, Vertreten durch Malake Mansour, Telefon 0163 228 8224, E-Mail, USt-IdNr. DE368877064, Verbraucherstreitbeilegung statement. Not on the original (so not added): legal form, register entry. One review marker remains (launch blocker) asking the owner to confirm the data is current and complete.
+
+**Datenschutz** — copied from the original: sections 1 (Datenschutz auf einen Blick), 3 (Pflichtinformationen incl. verantwortliche Stelle, rights, SSL, Werbe-E-Mails), 4 (Anfrage per E-Mail/Telefon, WhatsApp link incl. links), 5 (Bewerberdaten).
+Changed because the facts differ for the new site (flagged, launch blocker until legal review):
+- Hosting: original names Lovable Labs Inc. (USA) — the new site will not run there; new provider still open → marker.
+- Removed: Kontaktformular, Supabase Edge Functions, Resend — the new site has no form.
+- Added: no cookies/tracking statement, Google Maps "Route planen" link.
+
+Contradictions found on the original (not resolved by us):
+- Phone: Impressum and Datenschutz use 0163 228 8224; everywhere else the old site shows the landline **0331 29080953**. New site uses 0163 228 8224 (confirmed by Коля 26.10.).
+- Process text on the old site speaks of "unsere beiden Filialen in Berlin" and payment "per Vorkasse (Stripe)" vs FAQ "vor Ort bar oder EC-/Kreditkarte". Not copied into the process; Send-in FAQ keeps the original Vorkasse wording.
+- FAQ "1–2 Stunden" vs homepage "etwa 60 Minuten" — both are the owner's statements; homepage keeps 60 minutes.
+
+## 5. Calculator and price pages
+
+| Feature | Before Phase 3 | Now |
+|---|---|---|
+| Journey Hersteller → Modell → Reparatur → Preis | Yes (demo data) | Yes, 7 brands / 493 models, models grouped by device type (Smartphone, Tablet, Smartwatch, Laptop) |
+| Search | Datalist | Datalist with all 493 models ("Galaxy S23" or "Samsung Galaxy S23") |
+| Duration / warranty | — | Per repair type from CMS, shown only when filled |
+| Quality tiers | — | "Display – Standardqualität" / "Display – Originalqualität" where the source has both prices |
+| Enquiry action | Call / e-mail / WhatsApp | Same, plus explicit text when there is no fixed price |
+| Empty states | Unknown search | + model without prices, + "Ihre Reparatur ist nicht dabei?", + catalogue load failure |
+| Test prices | Labelled "Testwert" | Never in production; official-but-unconfirmed prices labelled "in Prüfung" |
+| Loading | Catalogue inline in the homepage | Homepage HTML 25 KB; catalogue `/preise/katalog.json` (226 KB raw / 8 KB gzip) loads when the selector nears the viewport or is used |
+| Price list | One page | `/preise/` (brand cards + model search across brands; `#akku` carries the type) and `/preise/<marke>/` (≈300 KB raw / 10 KB gzip; collapsible models, type filter, `#model` opens a model) |
+| Keyboard / mobile | Native selects, radio group | Same; price list uses `<details>`; tested at 390 px and 1440 px |
+
+## 6. CMS
+
+- Same architecture (Decap, GitHub backend, local backend for development). Editable without code: manufacturers/models/repairs/prices (`Preise`), repair types incl. **Dauer** and **Garantie** (`Laden & Kontakt → Reparaturarten`), price status, services page (`Inhalte → Reparaturleistungen`), FAQ, franchise, legal texts.
+- Validation before publication: CMS field formats; build-time catalogue validation (unknown repair type, duplicate model/URL, invalid price → build fails, live site unchanged).
+- **Full workflow tested locally on the real catalogue** (decap-server + Eleventy dev server, headless Chromium): opened Samsung (147 models), Galaxy S23 → Akkuwechsel 119 → 129 €, *Veröffentlichen* → only that value changed in `src/content/prices/samsung.json` → rebuild → `/preise/samsung/` and `/preise/katalog.json` showed 129 €. Test change reverted.
+- Observation: the Samsung entry took ~22 s to open and ~40 s to save in this environment (software rendering). On a normal laptop it will be faster, but if editors find it slow the price files can be split by series (e.g. Galaxy S, A, Tab) without code changes to the site.
+- Not yet verified: real GitHub OAuth login on a Netlify preview (needs the Netlify site; see `docs/DEPLOY.md` B).
+
+## 7. Verification results
 
 | Command | Result |
 |---|---|
-| `npm ci` (clean) | OK |
-| `npm run build` | OK — 9 pages (`/`, `/preise/`, `/franchise/`, `/impressum/`, `/datenschutz/`, 404, admin, sitemap, robots) |
-| `npm test` | **all checks pass** (incl. 2 new selector checks): 6 pages × 2 viewports (no console errors, no third-party requests, no failed assets, no overflow, logo visible), internal links, price selector (8), price list (4), 3D start/fallback (4), reduced motion (2), opening state (6), **production build guard (4)** |
-| `npm run check` | **Exit 1 — 10 blockers, 4 warnings** (list in section 3) |
+| `npm run build` (preview) | OK — 18 files incl. 7 brand pages, `/leistungen/`, `/preise/katalog.json` |
+| `npm test` | **all checks pass (117)**: 8 pages × 2 viewports (console errors, third-party requests, failed assets, overflow, logo), internal links, selector (catalogue load, models, prices, CTA, enquiry state, missing-repair hint, duration/warranty rule, search), price list (type names, `#akku`, no-match, `#model`, overview search, type carry-over), 3D start/fallback, reduced motion, opening state, production build guard (no test data, "in Prüfung" label, noindex/preview marker) |
+| `npm run check` | **Exit 1 — 5 blockers, 2 warnings** (was 10 blockers, 4 warnings) |
 
-### Fixed in this phase (found during verification)
-| Problem | Fix |
-|---|---|
-| Test prices lived in the same folder as official prices; a production build would have shown them | Moved to `data-import/demo/`. Production builds never load them and show "Preisliste wird gerade aktualisiert" + call button |
-| Production builds were not blocked by open legal placeholders | Netlify `production` context now runs `npm run check`; the deploy fails while blockers exist |
-| Preview builds could be indexed or mistaken for the live site | Non-production builds: `noindex, nofollow` and a fixed "Vorschau · nicht veröffentlicht · Testpreise" marker |
-| CMS pointed to branch `main`, which **does not exist** in `aik570/my-web-` (its default branch belongs to another project) | CMS now targets the working branch for preview; launch gate blocks production while the CMS points to the shared work repository |
-| Price status "demo"/"verified" could be set wrongly by a re-import | Status flow `pending → imported → verified`; importer sets `imported`, a person sets `verified` after spot checks |
-| `pricesMeta.json` regressed to the old "Entwicklungsdaten" text in a commit | Caught by the new production test; corrected |
+Launch blockers:
+1. Price list status `imported` → owner spot-checks and sets "Geprüft" in the CMS.
+2. CMS repository is the shared work repository → client-owned repository needed.
+3. Datenschutz: legal review of the adapted text.
+4. Datenschutz: new hosting provider details.
+5. Impressum: owner confirms the copied data is current and complete.
 
-Verified in the production build (`CONTEXT=production`): no "Testdaten/Entwicklungsdaten/Testwert", no preview marker, pages indexable, selector shows the call fallback.
+Warnings: WhatsApp number not set · public-holiday rule open.
 
-## 2. Real pricing source — status: **not available**
-Searched: all branches and full git history (no PDF/CSV/XLSX for Handy Chirurg — only files of other projects), disk, docs, references (the screenshots show the old selector's dropdowns but no prices). The live site `www.handychirurg.de` is still blocked by this environment's network policy (`connect_rejected`), so the embedded price data cannot be read from here.
-
-What the client must deliver: see `docs/PREISLISTE.md` — preferably the Excel/Sheets file they maintain (columns *Hersteller, Modell, Gerätetyp, Reparatur, Bezeichnung, Preis, Ab, Hinweis*), otherwise the PDF (we transcribe and send back for approval) or access to the system behind the old site's selector. Empty template: `data-import/VORLAGE-preisliste.csv`. Also needed: VAT included? Diagnosis fee in addition or included?
-
-Import path tested: `npm run import:prices -- <file>` writes only to `src/content/prices/`, sets status `imported`; broken files are rejected with line numbers and nothing is written.
-
-## 3. Launch blockers (`npm run check`)
-1. No official prices in `src/content/prices`.
-2. CMS `backend.repo` is the shared work repository `aik570/my-web-` → client-owned repository needed.
-3. Impressum: legal form.
-4. Impressum: address for service of process.
-5. Impressum: register / profession / chamber data if applicable.
-6. Datenschutz: legal review of the draft.
-7. Datenschutz: controller address.
-8. Datenschutz: hosting provider.
-9. Datenschutz: log retention.
-10. Datenschutz: Stripe for send-in (if used).
-
-Warnings: WhatsApp number · public-holiday rule · franchise e-mail · social image only 732 px wide.
-
-## 4. Preview
-| Preview | Status |
-|---|---|
-| Local | `npm run build && npx http-server _site -p 8080` — verified |
-| **Hosted preview (claude.ai)** | https://claude.ai/artifact/MKnvHQdRfoKvSRqyntbA2E — private until shared. Same build with relative paths, pages: home, Preise, Franchise, Impressum, Datenschutz. Verified locally from the same bundle (0 errors, 0 failed files, 3D starts). **Not verified inside the claude.ai viewer, no CMS** |
-| Netlify branch preview | **Blocked: no Netlify account/site.** Exact steps in `docs/DEPLOY.md` section B (production branch `main` = never deployed; branch deploy of `claude/zealous-bohr-71wesv`). No DNS touched |
-
-## 5. CMS authentication and deployment
-- Production flow: Decap CMS (self-hosted at `/admin/`) → GitHub backend → editor logs in with **their own GitHub account** via the GitHub OAuth provider built into Netlify (Netlify Identity is not used). The OAuth secret is stored only in Netlify.
-- Every *Veröffentlichen* is a commit to the configured branch → Netlify builds → site updated (~1 min). Production builds run the launch gate.
-- Permissions: editors need **Write** access to the repository; branch protection on the production branch must allow them to push (or use `editorial_workflow`).
-- Ownership: client owns the GitHub organisation/repository, Netlify team, OAuth App and domain; the developer is a removable collaborator (`docs/DEPLOY.md` C). No personal credentials are used as permanent access.
-- **Verified:** login → edit price → publish → file commit → rebuild → new price, using the local backend (decap-server). **Not yet verified:** real GitHub OAuth login and Netlify rebuild — requires the Netlify site and an OAuth App.
-- **Client account editing: not verified** (no client GitHub account yet).
-
-## 6. 3D and performance
-Implementation (`src/assets/js/phone.js`, three.js 0.160, self-hosted):
-- Delayed start: desktop after `requestIdleCallback`; phones/portrait only on first scroll/touch; still poster shown while loading and when WebGL is missing (tested).
-- Idle rendering: phones render nothing at rest; desktop idle sway capped at 30 fps; nothing renders off-screen or in hidden tabs; ECG traces ~30 fps.
-- Reduced motion: no intro, no reveal animation, no idle motion (tested).
-
-| Cost | Size / effect | Assessment |
-|---|---|---|
-| three.js module | 670 KB raw / **166 KB gzip**, parsed when 3D starts | Largest remaining cost; only loaded after first paint (desktop) or first scroll (phones) |
-| Scene init (procedural geometry, PMREM environment, 3 canvas textures) | One-off | Not measurable meaningfully here (software GPU) |
-| Screen texture redraw (600×1240 canvas) | During crack→repair transition and heartbeat | Only while scrolling through that phase |
-| ECG canvases | ~30 fps while visible | Small |
-| Intro | 2.7 s, image layers | Once per session |
-
-Environment limits vs. real devices: Lighthouse and the frame-time probe here run with **software WebGL (SwiftShader)** — measured 3D frame time median 89 ms at 1440×900, which is a CPU emulation figure, not device performance. Lighthouse homepage: mobile 72 / desktop 61 performance, 100 accessibility; sub-pages 98–99. **Real-device testing has not been performed.** It needs a preview URL on an iPhone (Safari) and a mid-range Android (Chrome): check 3D smoothness while scrolling, battery/heat over 1 minute, and the no-WebGL fallback in low-power mode.
-
-## 7. Client questions (must be answered)
-1. Price list file (see `docs/PREISLISTE.md`); prices incl. VAT? diagnosis fee separate?
-2. Impressum: legal form, address for service, register/chamber data.
-3. Datenschutz: hosting decision (Netlify proposed), Stripe used for send-in?
-4. GitHub: organisation/account to own the repository; e-mail(s) of CMS editors.
-5. Netlify: client team (or approval to create one in the client's name).
-6. Canonical domain: handychirurg.de or handy-chirurg.de? Who controls DNS?
-7. WhatsApp number · closed on public holidays? · franchise contact e-mail · guarantee duration.
-8. Original photos (shop front ≥ 1200 px).
+Real-device testing has **not** been performed.
 
 ## 8. Next three actions
-0. **Allow the original domain in the session network settings** and run the recovery (section 0). This replaces most of the client questions on prices and legal text.
-1. **Get the price file and legal data** from the client using `docs/PREISLISTE.md` and the question list; import, spot-check 10 rows, set status `verified`.
-2. **Create the Netlify branch preview** (`docs/DEPLOY.md` B) — needs a Netlify account; then set up the GitHub OAuth provider and run the real login → edit price → publish → redeploy test.
-3. **Real-device QA** on iPhone Safari and Android Chrome against the preview URL; record results here.
+1. **Owner review (one call):** confirm prices are current (database from 09.07.2026), the warranty rule (12 months vs 5 years original parts), Panzerglas double price, phone number (mobile vs landline), Impressum data. Then set price status to "Geprüft".
+2. **Netlify branch preview + GitHub OAuth** (`docs/DEPLOY.md` B), repeat the CMS edit → publish → rebuild test there; decide hosting and complete the Datenschutz hosting section.
+3. **Real-device QA** on iPhone Safari and Android Chrome against the preview (3D, calculator, brand pages).

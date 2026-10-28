@@ -2,7 +2,7 @@
 permalink: /preise/
 seo:
   title: Preise für Handyreparatur in Potsdam – Handy Chirurg
-  description: Reparaturpreise für Display, Akku, Wasserschaden und Platine nach Hersteller und Modell. Handy Chirurg, Dortustraße 23, Potsdam.
+  description: Reparaturpreise für Smartphones, Tablets, Laptops und Smartwatches von Apple, Samsung, Huawei, Xiaomi, Google, Sony und OnePlus. Handy Chirurg, Dortustraße 23, Potsdam.
 ---
 {% extends "base.njk" %}
 
@@ -11,89 +11,71 @@ seo:
   <div class="wrap">
     <p class="kicker"><span class="kicker__cross" aria-hidden="true"></span>Preisliste</p>
     <h1 class="page-title">Reparaturpreise</h1>
-    <p class="head__lede">Alle Preise nach Hersteller und Modell. Den endgültigen Preis bestätigen wir Ihnen vor jeder Reparatur.</p>
+    <p class="head__lede">Wählen Sie den Hersteller oder suchen Sie direkt nach Ihrem Modell. Den endgültigen Preis bestätigen wir Ihnen vor jeder Reparatur.</p>
     {%- include "partials/price-notice.njk" %}
   </div>
 </section>
 
 <section class="sec sec--white pricelist" aria-label="Preisliste">
   <div class="wrap">
-    <div class="pricelist__tools">
+    {%- if prices.brands.length %}
+    <script type="application/json" id="model-index">{{ prices.brands | modelIndex | json | safe }}</script>
+    <div class="pricelist__tools pricelist__tools--single">
       <div class="field field--search">
-        <label for="pl-search">Modell suchen</label>
-        <input id="pl-search" type="search" placeholder="z. B. {{ prices.brands[0].models[0].name if prices.brands.length else 'iPhone' }}" autocomplete="off">
-      </div>
-      <div class="chips" role="group" aria-label="Nach Reparatur filtern">
-        <button type="button" class="chip" aria-pressed="true" data-type="">Alle</button>
-        {%- for t in prices.types %}
-        <button type="button" class="chip" aria-pressed="false" data-type="{{ t.id }}">{{ t.label }}</button>
-        {%- endfor %}
+        <label for="pl-find">Modell suchen</label>
+        <input id="pl-find" type="search" placeholder="z. B. {{ prices.brands[0].models[0].name }}" autocomplete="off" aria-controls="pl-hits">
       </div>
     </div>
+    <ul class="hits" id="pl-hits" aria-live="polite"></ul>
+    <p class="pricelist__type" id="pl-type" hidden></p>
 
-    {%- for b in prices.brands %}
-    <div class="pricelist__brand" data-brand>
-      <h2 id="{{ b.brand | slugify }}">{{ b.brand }}</h2>
-      <div class="table-wrap">
-        <table class="ptable">
-          <thead><tr><th scope="col">Modell</th><th scope="col">Reparatur</th><th scope="col" class="num">Preis</th></tr></thead>
-          <tbody>
-            {%- for m in b.models %}{% for r in m.repairs %}
-            <tr data-row data-type="{{ r.service }}" data-search="{{ (b.brand ~ ' ' ~ m.name) | lower }}">
-              <th scope="row">{{ m.name }}{% if m.category %}<small>{{ m.category }}</small>{% endif %}</th>
-              <td>{{ r | repairName(prices.types) }}{% if r.note %}<small>{{ r.note }}</small>{% endif %}</td>
-              <td class="num">{% if r.onRequest %}auf Anfrage{% else %}{% if r.from %}ab {% endif %}{{ r.price | euro }}{% endif %}</td>
-            </tr>
-            {%- endfor %}{% endfor %}
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <ul class="brandgrid">
+      {%- for b in prices.brands %}
+      <li><a class="brandcard" href="/preise/{{ b.slug }}/" data-brand-link>
+        <span class="brandcard__name">{{ b.brand }}</span>
+        <span class="brandcard__meta">{{ b.models.length }} Modelle · {{ b.models | categories | join(', ') }}</span>
+      </a></li>
+      {%- endfor %}
+    </ul>
     {%- else %}
     <p class="selector__empty">Die Preisliste wird gerade aktualisiert. Rufen Sie uns an: <a href="tel:{{ site.phone.dial }}">{{ site.phone.display }}</a>.</p>
-    {%- endfor %}
-    <p class="pricelist__none" id="pl-none" hidden>Kein Treffer. Rufen Sie an, wir nennen Ihnen den Preis: <a href="tel:{{ site.phone.dial }}">{{ site.phone.display }}</a>.</p>
+    {%- endif %}
 
-    <div class="pricelist__foot">
-      <p>Fehleranalyse: <strong>{{ site.diagnosisFee.amount | euro }}</strong>, wird bei einer Reparatur verrechnet.</p>
-      {%- if pricesMeta.vatNote %}<p>{{ pricesMeta.vatNote }}</p>{% endif %}
-      {%- if pricesMeta.footnote %}<p>{{ pricesMeta.footnote }}</p>{% endif %}
-      {%- if pricesMeta.updated and pricesMeta.status == 'verified' %}<p>Stand: {{ pricesMeta.updated }}</p>{% endif %}
-    </div>
+    {%- include "partials/price-foot.njk" %}
   </div>
 </section>
 {% endblock %}
 
 {% block scripts %}
 <script>
-  // Filter the price list by text and repair type; #display etc. preselects a type.
+  // Model search across all brands; #akku etc. (from the homepage) carries the repair type to the brand pages.
   (function () {
-    var rows = [].slice.call(document.querySelectorAll('[data-row]'));
-    var brands = [].slice.call(document.querySelectorAll('[data-brand]'));
-    var input = document.getElementById('pl-search');
-    var chips = [].slice.call(document.querySelectorAll('.chip'));
-    var none = document.getElementById('pl-none');
-    var type = '';
-    function apply() {
-      var q = (input.value || '').trim().toLowerCase(), shown = 0;
-      rows.forEach(function (r) {
-        var ok = (!type || r.dataset.type === type) && (!q || r.dataset.search.indexOf(q) >= 0);
-        r.hidden = !ok; if (ok) shown++;
-      });
-      brands.forEach(function (b) { b.hidden = !b.querySelector('[data-row]:not([hidden])'); });
-      none.hidden = shown > 0 || !rows.length;
+    var idx = document.getElementById('model-index');
+    if (!idx) return;
+    var models = JSON.parse(idx.textContent);
+    var input = document.getElementById('pl-find');
+    var hits = document.getElementById('pl-hits');
+    var typeNote = document.getElementById('pl-type');
+    var types = {{ prices.types | json | safe }};
+    var hash = '';
+    var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+    function search() {
+      var q = input.value.trim().toLowerCase();
+      if (q.length < 2) { hits.innerHTML = ''; return; }
+      var found = models.filter(function (m) { return (m[0] + ' ' + m[2]).toLowerCase().indexOf(q) >= 0; }).slice(0, 12);
+      hits.innerHTML = found.length
+        ? found.map(function (m) { return '<li><a href="' + '/preise/' + m[1] + '/#' + m[3] + '">' + esc(m[0] + ' ' + m[2]) + '</a></li>'; }).join('')
+        : '<li class="hits__none">Kein Modell gefunden. Rufen Sie an, wir helfen Ihnen weiter: <a href="tel:{{ site.phone.dial }}">{{ site.phone.display }}</a>.</li>';
     }
-    function setType(t) {
-      type = t;
-      chips.forEach(function (c) { c.setAttribute('aria-pressed', c.dataset.type === t ? 'true' : 'false'); });
-      apply();
-    }
-    chips.forEach(function (c) { c.addEventListener('click', function () { setType(c.dataset.type); }); });
-    if (input) input.addEventListener('input', apply);
     function fromHash() {
       var h = location.hash.slice(1);
-      if (h && chips.some(function (c) { return c.dataset.type === h; })) setType(h);
+      var t = types.filter(function (x) { return x.id === h; })[0];
+      hash = t ? '#' + t.id : '';
+      typeNote.hidden = !t;
+      if (t) typeNote.textContent = 'Preise für ' + t.label + ': Wählen Sie den Hersteller.';
+      [].forEach.call(document.querySelectorAll('[data-brand-link]'), function (a) { a.hash = hash; });
     }
+    input.addEventListener('input', search);
     addEventListener('hashchange', fromHash);
     fromHash();
   })();

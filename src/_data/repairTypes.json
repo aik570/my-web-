@@ -1,8 +1,17 @@
 {
   "items": [
-    {"id": "display", "label": "Display", "duration": "", "warranty": ""},
-    {"id": "akku", "label": "Akku", "duration": "", "warranty": ""},
-    {"id": "wasserschaden", "label": "Wasserschaden", "duration": "", "warranty": ""},
-    {"id": "platine", "label": "Platine", "duration": "", "warranty": ""}
+    {"id": "display", "label": "Display", "duration": "60 Minuten", "warranty": ""},
+    {"id": "akku", "label": "Akkuwechsel", "duration": "30 Minuten", "warranty": ""},
+    {"id": "backcover", "label": "Backcover", "duration": "", "warranty": ""},
+    {"id": "ladebuchse", "label": "Ladebuchse", "duration": "45 Minuten", "warranty": ""},
+    {"id": "hauptkamera", "label": "Hauptkamera", "duration": "45 Minuten", "warranty": ""},
+    {"id": "frontkamera", "label": "Frontkamera", "duration": "45 Minuten", "warranty": ""},
+    {"id": "lautsprecher", "label": "Lautsprecher", "duration": "45 Minuten", "warranty": ""},
+    {"id": "wifi-bluetooth", "label": "WiFi & Bluetooth", "duration": "", "warranty": ""},
+    {"id": "wasserschaden", "label": "Wasserschaden", "duration": "2–3 Stunden", "warranty": ""},
+    {"id": "platine", "label": "Platine", "duration": "", "warranty": ""},
+    {"id": "fehleranalyse", "label": "Fehleranalyse", "duration": "", "warranty": ""},
+    {"id": "panzerglas", "label": "Panzerglas", "duration": "", "warranty": ""},
+    {"id": "zubehoer", "label": "Zubehör", "duration": "", "warranty": ""}
   ]
 }

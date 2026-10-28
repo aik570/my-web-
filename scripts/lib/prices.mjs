@@ -20,6 +20,11 @@ export function loadBrands(dir = PRICE_DIR) {
     .map((f) => ({ file: path.join(dir, f), ...readJson(path.join(dir, f)) }));
 }
 
+// URL-safe id for brands and models (/preise/apple/#iphone-13).
+export const slug = (s) => String(s).toLowerCase()
+  .replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue').replace(/ß/g, 'ss')
+  .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
 const isPrice = (v) => typeof v === 'number' && Number.isFinite(v) && v >= 0 && Math.round(v * 100) === v * 100;
 
 // Returns { brands, errors, warnings }. Brands come back sorted and normalised.
@@ -41,8 +46,8 @@ export function validateCatalogue(brands, repairTypes) {
     for (const m of b.models) {
       const mWhere = `${b.brand} › ${m.name || '?'}`;
       if (!m.name || !String(m.name).trim()) { errors.push(`${b.brand}: Modell ohne Namen`); continue; }
-      const mKey = String(m.name).trim().toLowerCase();
-      if (seenModels.has(mKey)) errors.push(`${mWhere}: Modell ist doppelt`);
+      const mKey = slug(m.name);
+      if (seenModels.has(mKey)) errors.push(`${mWhere}: Modell ist doppelt (oder gleiche Adresse wie ein anderes Modell)`);
       seenModels.add(mKey);
       if (!Array.isArray(m.repairs) || m.repairs.length === 0) { warnings.push(`${mWhere}: keine Reparaturen`); continue; }
 
@@ -67,11 +72,13 @@ export function validateCatalogue(brands, repairTypes) {
     .filter((b) => b.brand)
     .map((b) => ({
       brand: b.brand.trim(),
+      slug: slug(b.brand),
       order: Number.isFinite(b.order) ? b.order : 999,
       models: (b.models || [])
         .filter((m) => m.name)
         .map((m) => ({
           name: String(m.name).trim(),
+          slug: slug(m.name),
           category: m.category || '',
           repairs: (m.repairs || []).map((r) => ({
             service: r.service,

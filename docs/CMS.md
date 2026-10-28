@@ -6,7 +6,7 @@
 2. Links wählen Sie den Bereich:
    - **Preise** – ein Eintrag pro Hersteller, darin Modelle und Reparaturen.
    - **Laden & Kontakt** – Telefon, WhatsApp, E-Mail, Öffnungszeiten, Schließtage, Fehleranalyse, Reparaturarten, Status der Preisliste.
-   - **Inhalte** – Texte der Startseite, Fachbereiche, häufige Fragen, Franchise.
+   - **Inhalte** – Texte der Startseite, Fachbereiche, Reparaturleistungen (Seite /leistungen/), häufige Fragen, Franchise.
    - **Rechtliches** – Impressum und Datenschutzerklärung.
 3. Ändern Sie die Felder und klicken Sie oben auf **Veröffentlichen** → **Jetzt veröffentlichen**.
 4. Nach etwa einer Minute ist die Änderung auf der Website sichtbar.
@@ -30,6 +30,18 @@ npm run import:prices -- data-import/preisliste.csv             # schreiben
 
 Der Import bricht bei unlesbaren Preisen, doppelten Zeilen und unbekannten Reparaturarten ab und schreibt dann nichts. Nach dem Import steht der Status auf „Importiert". Erst nach Stichproben gegen das Original im CMS unter **Laden & Kontakt → Preisliste – Status** auf „Geprüft" setzen; vorher lässt sich die Website nicht in Produktion veröffentlichen.
 
+### Preise der bisherigen Website übernehmen
+
+Die aktuelle Preisliste stammt aus dem Preisrechner der bisherigen Website (handychirurg.de). Erneut abrufen und einspielen:
+
+```
+node scripts/fetch-original.mjs     # Momentaufnahme → data-import/original/snapshot.json
+node scripts/convert-original.mjs   # → data-import/original/preisliste-handychirurg.csv
+npm run import:prices -- data-import/original/preisliste-handychirurg.csv
+```
+
+Regeln der Umwandlung (z. B. -1 → „auf Anfrage") stehen oben in `scripts/convert-original.mjs`. Achtung: Ein erneuter Import überschreibt im CMS geänderte Preise.
+
 Die Entwicklungsdaten liegen getrennt in `data-import/demo/` und werden nur in Vorschau-Builds gezeigt, solange keine offizielle Preisliste vorhanden ist. Format und Lieferwege für den Kunden: `docs/PREISLISTE.md`.
 
 ## Technik (Entwickler)
@@ -39,7 +51,7 @@ Die Entwicklungsdaten liegen getrennt in `data-import/demo/` und werden nur in V
 | Website | Eleventy 3, statisch, Ausgabe `_site/` |
 | Inhalte | JSON in `src/_data/`, Preise in `src/content/prices/`, Rechtstexte in `src/content/legal/` |
 | CMS | Decap CMS 3.x, selbst gehostet unter `/admin/` (kein CDN), Konfiguration `src/admin/config.yml` |
-| Speichern | Jede Veröffentlichung ist ein Git-Commit auf `main`; der Host baut neu |
+| Speichern | Jede Veröffentlichung ist ein Git-Commit auf den konfigurierten Branch; der Host baut neu |
 | Prüfung | Feldformate im CMS; Preise zusätzlich beim Build (`src/_data/prices.js`) – ungültige Daten stoppen den Build, die Live-Seite bleibt dann unverändert |
 | Backup / Rückgängig | Git-Historie |
 

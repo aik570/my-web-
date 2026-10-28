@@ -40,13 +40,17 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter('json', (v) => JSON.stringify(v).replace(/</g, '\\u003c'));
   eleventyConfig.addFilter('euro', (n) => `${Number(n).toLocaleString('de-DE', { minimumFractionDigits: Number.isInteger(n) ? 0 : 2, maximumFractionDigits: 2 })} €`);
   eleventyConfig.addFilter('repairName', (r, types = []) => r.label || (types.find((t) => t.id === r.service) || {}).label || r.service);
+  // Price list helpers: [brand, brandSlug, model, modelSlug] for the search; device types; repair types in use.
+  eleventyConfig.addFilter('modelIndex', (brands = []) => brands.flatMap((b) => b.models.map((m) => [b.brand, b.slug, m.name, m.slug])));
+  eleventyConfig.addFilter('categories', (models = []) => [...new Set(models.map((m) => m.category).filter(Boolean))]);
+  eleventyConfig.addFilter('usedTypes', (models = []) => [...new Set(models.flatMap((m) => m.repairs.map((r) => r.service)))]);
   eleventyConfig.addFilter('nbsp', (s = '') => String(s).replace(/ (\S+)$/, ' $1'));
   eleventyConfig.addFilter('absolute', (p, base) => new URL(p, base).href);
   eleventyConfig.addShortcode('year', () => String(new Date().getFullYear()));
 
   return {
     dir: { input: 'src', output: '_site', includes: '_includes', data: '_data' },
-    templateFormats: ['njk', 'md'],
+    templateFormats: ['njk', 'md', '11ty.js'],
     htmlTemplateEngine: 'njk',
     markdownTemplateEngine: false
   };

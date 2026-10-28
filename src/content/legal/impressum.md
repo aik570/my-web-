@@ -2,12 +2,14 @@
 title: Impressum
 description: Impressum von Handy Chirurg Potsdam.
 ---
-## Angaben gemäß § 5 DDG
+[[KLÄREN: Angaben übernommen von der bisherigen Website handychirurg.de/impressum (Stand 28.10.2026). Vor Veröffentlichung bestätigen, dass sie aktuell und vollständig sind (z. B. Handelsregister, falls eingetragen).]]
 
-Handy Chirurg Potsdam
-Vertreten durch: Malake Mansour
-[[KLÄREN: Rechtsform, z. B. Einzelunternehmen]]
-[[KLÄREN: Ladungsfähige Anschrift für das Impressum (Straße, PLZ, Ort)]]
+Malake Mansour
+Dortustraße 23
+14467 Potsdam
+
+Vertreten durch:
+Malake Mansour
 
 ## Kontakt
 
@@ -19,8 +21,6 @@ E-Mail: potsdam@handy-chirurg.de
 Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:
 DE368877064
 
-## Verbraucherstreitbeilegung
+## Verbraucherstreitbeilegung/Universalschlichtungsstelle
 
-Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
-
-[[KLÄREN: Weitere Pflichtangaben, falls zutreffend: Handelsregister, Berufsbezeichnung, zuständige Kammer]]
+Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
