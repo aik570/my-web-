@@ -1,0 +1,10 @@
+{
+  "items": [
+    { "q": "Brauche ich einen Termin?", "a": "Nein. Kommen Sie während unserer Öffnungszeiten vorbei." },
+    { "q": "Wie lange dauert eine Reparatur?", "a": "Display- und Akkutausch meist etwa 60 Minuten, wenn das Ersatzteil auf Lager ist. Bei Wasserschäden und Platinenarbeiten nennen wir Ihnen die Dauer nach der Diagnose." },
+    { "q": "Was kostet die Fehleranalyse?", "a": "25 €. Lassen Sie das Gerät bei uns reparieren, verrechnen wir den Betrag." },
+    { "q": "Was passiert mit meinen Daten?", "a": "Wir greifen nicht auf Ihre persönlichen Daten zu und löschen nichts. Eine Sicherung vorab empfehlen wir trotzdem, wenn sie möglich ist." },
+    { "q": "Welche Garantie bekomme ich?", "a": "Sie erhalten eine Garantie auf die durchgeführten Arbeiten und die verbauten Ersatzteile." },
+    { "q": "Kann ich mein Gerät einschicken?", "a": "Ja. Mit unserem Send-in-Service drucken Sie einen Versandaufkleber aus und geben das Paket bei der Post ab. Bezahlt wird nach der Diagnose per Überweisung oder Karte über Stripe." }
+  ]
+}

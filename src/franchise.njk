@@ -1,0 +1,49 @@
+---
+permalink: /franchise/
+eleventyComputed:
+  seo:
+    title: "{{ franchise.seo.title }}"
+    description: "{{ franchise.seo.description }}"
+---
+{% extends "base.njk" %}
+
+{% block main %}
+<section class="sec sec--deep page-hero">
+  <div class="wrap">
+    <p class="kicker kicker--light"><span class="kicker__cross" aria-hidden="true"></span>{{ franchise.kicker }}</p>
+    <h1 class="page-title page-title--light">{{ franchise.title }}</h1>
+    <p class="head__lede head__lede--light">{{ franchise.lede }}</p>
+    <div class="actions">
+      {%- if franchise.contactEmail %}
+      <a class="btn btn--signal" href="mailto:{{ franchise.contactEmail }}?subject={{ ('Franchise – ' ~ franchise.ctaLabel) | urlencode }}">{{ franchise.ctaLabel }}</a>
+      {%- else %}
+      <a class="btn btn--signal" href="tel:{{ site.phone.dial }}">{{ franchise.ctaLabel }}: {{ site.phone.display }}</a>
+      {%- endif %}
+    </div>
+  </div>
+  <canvas class="ecg ecg--wide" data-ecg data-ecg-wide height="90" aria-hidden="true"></canvas>
+</section>
+
+<section class="sec sec--mint franchise">
+  <div class="wrap franchise__grid">
+    <div>
+      <h2 class="h2">Das Konzept.</h2>
+      <p class="head__lede">Handy Chirurg steht für Reparaturen ohne Termin, transparente Preise und eine Werkstatt, in der Kunden zusehen können. Als Partner übernehmen Sie dieses Konzept für Ihren Standort.</p>
+    </div>
+    {% include "partials/franchise-cards.njk" %}
+  </div>
+</section>
+
+<section class="sec sec--white">
+  <div class="wrap narrow center">
+    <h2 class="h2">Interesse?</h2>
+    <p class="head__lede center">Sprechen Sie mit uns über Ihren Standort.</p>
+    <div class="actions actions--center">
+      {%- if franchise.contactEmail %}
+      <a class="btn btn--primary" href="mailto:{{ franchise.contactEmail }}">{{ franchise.contactEmail }}</a>
+      {%- endif %}
+      <a class="btn btn--quiet" href="tel:{{ site.phone.dial }}">{{ site.phone.display }}</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

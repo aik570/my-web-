@@ -1,0 +1,8 @@
+{
+  "items": [
+    { "id": "display", "label": "Display" },
+    { "id": "akku", "label": "Akku" },
+    { "id": "wasserschaden", "label": "Wasserschaden" },
+    { "id": "platine", "label": "Platine" }
+  ]
+}

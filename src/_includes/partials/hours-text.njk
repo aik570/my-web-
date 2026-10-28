@@ -1,0 +1,15 @@
+{#- Compact opening hours: groups consecutive days with the same times, e.g. "Mo–Sa 10:00–18:30 Uhr" -#}
+{%- set short = { 'Montag':'Mo','Dienstag':'Di','Mittwoch':'Mi','Donnerstag':'Do','Freitag':'Fr','Samstag':'Sa','Sonntag':'So' } -%}
+{%- set groups = [] -%}
+{%- for h in site.hours -%}
+  {%- set sig = (h.from ~ '–' ~ h.to ~ ' Uhr') if h.open else 'geschlossen' -%}
+  {%- set last = groups | last -%}
+  {%- if last and last.sig == sig -%}
+    {%- set _ = last.days.push(short[h.day]) -%}
+  {%- else -%}
+    {%- set _ = groups.push({ sig: sig, days: [short[h.day]] }) -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- for g in groups -%}
+{{ g.days[0] }}{% if g.days.length > 1 %}–{{ g.days | last }}{% endif %} {{ g.sig }}{% if not loop.last %}<br>{% endif %}
+{%- endfor -%}

@@ -1,0 +1,12 @@
+{%- set icon = s.icon if s and s.icon else 'display' -%}
+<svg class="sign__pict" viewBox="0 0 48 48" aria-hidden="true">
+{%- if icon == 'battery' -%}
+<rect x="9" y="14" width="27" height="20" rx="3"/><path d="M36 20h3v8h-3M15 20v8M21 20v8"/>
+{%- elif icon == 'water' -%}
+<path d="M24 5c6 9 12 15 12 23a12 12 0 0 1-24 0c0-8 6-14 12-23z"/><path d="M18 30a6 6 0 0 0 6 6"/>
+{%- elif icon == 'chip' -%}
+<rect x="14" y="14" width="20" height="20" rx="2"/><path d="M19 14V8M24 14V8M29 14V8M19 40v-6M24 40v-6M29 40v-6M14 19H8M14 24H8M14 29H8M40 19h-6M40 24h-6M40 29h-6"/>
+{%- else -%}
+<rect x="13" y="4" width="22" height="40" rx="4"/><path d="M24 30l-4-6 5-3-3-7M24 30l5 4 4-2"/>
+{%- endif -%}
+</svg>

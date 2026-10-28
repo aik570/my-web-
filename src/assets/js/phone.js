@@ -2,9 +2,9 @@
 // layers as you scroll, and closes again repaired. Built from primitives, no
 // downloaded model, so every part can be named and moved.
 
-// One file from the CDN and nothing else: no import map and no add-ons, so it
+// One self-hosted file and nothing else: no import map and no add-ons, so it
 // loads the same way in Safari, in-app browsers and embedded previews.
-import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js';
+import * as THREE from '../vendor/three.module.min.js';
 
 // A box with rounded edges: a rounded rectangle extruded with a bevel.
 // Material group 0 is the front and back faces, group 1 the sides.
@@ -58,7 +58,8 @@ try {
   document.documentElement.classList.add('no-webgl');
   throw e;
 }
-renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+// Phones get a lower pixel ratio: the scene stays sharp enough and the GPU stays cool.
+renderer.setPixelRatio(Math.min(devicePixelRatio, matchMedia('(max-width: 760px)').matches ? 1.5 : 2));
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 0.95;

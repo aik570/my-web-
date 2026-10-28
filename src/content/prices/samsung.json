@@ -1,0 +1,50 @@
+{
+  "brand": "Samsung",
+  "order": 2,
+  "models": [
+    {
+      "name": "Galaxy S24",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": "Entwicklungsdaten – kein echter Preis"
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": "Entwicklungsdaten – kein echter Preis"
+        }
+      ]
+    },
+    {
+      "name": "Galaxy A54",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": "Entwicklungsdaten – kein echter Preis"
+        },
+        {
+          "service": "platine",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": "Entwicklungsdaten – kein echter Preis"
+        }
+      ]
+    }
+  ]
+}

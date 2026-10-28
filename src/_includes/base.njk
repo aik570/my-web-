@@ -1,0 +1,80 @@
+{%- set pageTitle = seo.title if seo and seo.title else site.seo.title -%}
+{%- set pageDesc = seo.description if seo and seo.description else site.seo.description -%}
+{%- set pageImage = (seo.image if seo and seo.image else site.seo.image) | absolute(site.url) -%}
+{%- set canonical = page.url | absolute(site.url) -%}
+{%- set isHome = page.url == '/' -%}
+{%- set base = '' if isHome else '/' -%}
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{ pageTitle }}</title>
+<meta name="description" content="{{ pageDesc }}">
+{%- if noindex %}
+<meta name="robots" content="noindex">
+{%- else %}
+<link rel="canonical" href="{{ canonical }}">
+{%- endif %}
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<meta property="og:site_name" content="{{ site.name }}">
+<meta property="og:title" content="{{ pageTitle }}">
+<meta property="og:description" content="{{ pageDesc }}">
+<meta property="og:url" content="{{ canonical }}">
+<meta property="og:image" content="{{ pageImage }}">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preload" href="/assets/fonts/archivo-latin-wdth.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/style.css">
+
+<script>
+  (function () {
+    var d = document.documentElement;
+    d.className += ' js';
+    try { if (matchMedia('(prefers-reduced-motion: reduce)').matches) d.className += ' reduced'; } catch (e) {}
+    try { if (sessionStorage.getItem('hc-intro')) d.className += ' intro-seen'; } catch (e) {}
+  })();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobilePhoneStore",
+  "name": {{ site.name | json | safe }},
+  "url": {{ site.url | json | safe }},
+  "image": {{ (site.seo.image | absolute(site.url)) | json | safe }},
+  "telephone": {{ site.phone.dial | json | safe }},
+  "email": {{ site.email | json | safe }},
+  "address": { "@type": "PostalAddress", "streetAddress": {{ site.street | json | safe }}, "postalCode": {{ site.postcode | json | safe }}, "addressLocality": {{ site.city | json | safe }}, "addressCountry": "DE" },
+  "openingHoursSpecification": [
+    {%- for h in site.hours | selectattr("open") %}
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "https://schema.org/{{ ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][h.dayIndex] }}", "opens": "{{ h.from }}", "closes": "{{ h.to }}" }{{ "," if not loop.last }}
+    {%- endfor %}
+  ]
+}
+</script>
+{%- block head %}{% endblock %}
+</head>
+<body class="{{ bodyClass }}">
+
+{% include "partials/logo-defs.njk" %}
+{%- block intro %}{% endblock %}
+
+<a class="skip" href="#main">Zum Inhalt springen</a>
+
+{% include "partials/header.njk" %}
+
+<main id="main">
+{%- block main %}{{ content | safe }}{% endblock %}
+</main>
+
+{% include "partials/footer.njk" %}
+
+<script type="application/json" id="hc-data">{{ { hours: site.hours, closures: site.closures, publicHolidays: site.publicHolidays } | json | safe }}</script>
+<script src="/assets/js/main.js" defer></script>
+{%- block scripts %}{% endblock %}
+</body>
+</html>

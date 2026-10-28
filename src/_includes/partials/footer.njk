@@ -1,0 +1,27 @@
+<footer class="foot">
+  <div class="wrap foot__grid">
+    <div class="foot__brand">
+      <svg viewBox="0 0 574 365" role="img" aria-label="{{ site.name }} – {{ site.tagline }}">
+        <use href="#lg-sky" fill="var(--teal)" />
+        <use href="#lg-pulse" fill="var(--red)" />
+        <use href="#lg-word" fill="var(--ink)" />
+        <text class="logo__tag" x="22" y="331">{{ site.tagline }}</text>
+      </svg>
+    </div>
+    <div>
+      <h2 class="foot__h">Kontakt</h2>
+      <p>{{ site.name }}<br>{{ site.street }}, {{ site.postcode }} {{ site.city }}<br>
+        <a href="tel:{{ site.phone.dial }}">{{ site.phone.display }}</a><br>
+        {%- if site.whatsapp %}<a href="https://wa.me/{{ site.whatsapp | replace('+', '') }}" target="_blank" rel="noopener">WhatsApp</a><br>{% endif %}
+        <a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+    </div>
+    <div>
+      <h2 class="foot__h">Sprechzeiten</h2>
+      <p>{% include "partials/hours-text.njk" %}</p>
+    </div>
+    <div>
+      <h2 class="foot__h">Rechtliches</h2>
+      <p><a href="/impressum/">Impressum</a><br><a href="/datenschutz/">Datenschutz</a><br><a href="/franchise/">Franchise</a></p>
+    </div>
+  </div>
+</footer>

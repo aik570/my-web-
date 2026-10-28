@@ -1,0 +1,20 @@
+{
+  "brand": "Xiaomi",
+  "order": 3,
+  "models": [
+    {
+      "name": "Redmi Note 13",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": "Entwicklungsdaten – kein echter Preis"
+        }
+      ]
+    }
+  ]
+}

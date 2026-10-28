@@ -1,0 +1,81 @@
+{
+  "hero": {
+    "kicker": "Handyreparatur · Potsdam",
+    "title": "Notaufnahme für Ihr Handy in Potsdam.",
+    "lede": "Display, Akku, Wasserschaden, Platine. Ohne Termin und meist in 60 Minuten wieder einsatzbereit.",
+    "ctaPrimary": "Jetzt anrufen",
+    "ctaPrice": "Reparaturpreis finden"
+  },
+  "sceneOpen": {
+    "kicker": "Im OP",
+    "title": "Wir öffnen es. Mit ruhiger Hand.",
+    "lede": "Jedes Teil wird geprüft. Den Preis erfahren Sie, bevor wir anfangen."
+  },
+  "sceneDone": {
+    "kicker": "Entlassen",
+    "title": "Repariert. Und wieder gesund.",
+    "lede": "Mit Garantie auf Arbeit und Ersatzteile. Meist nach etwa 60 Minuten."
+  },
+  "tags": {
+    "display": { "title": "Display", "text": "Glas, Touch, Bild" },
+    "board": { "title": "Platine", "text": "Mikrolöten, Wasserschaden" },
+    "battery": { "title": "Akku", "text": "Akku-Tausch" },
+    "frame": { "title": "Rahmen", "text": "Gehäuse, Tasten" },
+    "back": { "title": "Rückseite", "text": "Rückglas, Kamera" }
+  },
+  "selector": {
+    "kicker": "Preisrechner",
+    "title": "Was kostet Ihre Reparatur?",
+    "lede": "Hersteller, Modell und Reparatur wählen. Sie sehen sofort den Preis aus unserer aktuellen Preisliste."
+  },
+  "services": {
+    "kicker": "Fachbereiche",
+    "title": "Wohin mit Ihrem Gerät?",
+    "lede": "Smartphones, Tablets und Laptops. Ersatzteile für die gängigen Modelle haben wir im Laden auf Lager."
+  },
+  "charter": {
+    "kicker": "Unsere Zusagen",
+    "title": "Ihre Rechte als Patient.",
+    "items": [
+      { "title": "Ohne Termin.", "text": "Kommen Sie vorbei, wann es Ihnen passt." },
+      { "title": "Preis vorab.", "text": "Keine versteckten Kosten. Wir tauschen nur, was wirklich nötig ist." },
+      { "title": "Schweigepflicht.", "text": "Wir greifen nicht auf Ihre persönlichen Daten zu und löschen nichts." },
+      { "title": "Garantie.", "text": "Auf die durchgeführten Arbeiten und die verbauten Ersatzteile." }
+    ]
+  },
+  "process": {
+    "kicker": "Behandlungsweg",
+    "title": "So läuft Ihre Reparatur ab.",
+    "store": {
+      "label": "Im Laden",
+      "steps": [
+        { "title": "Aufnahme", "text": "Sie bringen Ihr Gerät in die Dortustraße 23. Ein Termin ist nicht nötig." },
+        { "title": "Diagnose", "text": "Wir finden den Fehler und nennen Ihnen den Preis. Sie entscheiden." },
+        { "title": "Eingriff", "text": "Nach Ihrer Zusage reparieren wir Ihr Gerät." },
+        { "title": "Entlassung", "text": "In der Regel nach etwa 60 Minuten nehmen Sie Ihr Gerät wieder mit." }
+      ]
+    },
+    "post": {
+      "label": "Per Post",
+      "steps": [
+        { "title": "Einsenden", "text": "Versandaufkleber ausdrucken, aufs Paket kleben, bei der Post abgeben." },
+        { "title": "Diagnose", "text": "Wir prüfen Ihr Gerät und schicken Ihnen ein Angebot." },
+        { "title": "Eingriff", "text": "Nach Ihrer Zusage. Zahlung per Überweisung oder Karte über Stripe." },
+        { "title": "Rückversand", "text": "Ihr Gerät kommt per Post zurück." }
+      ]
+    }
+  },
+  "visit": {
+    "title": "Sprechzeiten",
+    "note": "Ohne Termin. Kommen Sie einfach vorbei.",
+    "photoAlt": "Ladenfront von Handy Chirurg in der Dortustraße 23 in Potsdam"
+  },
+  "faqIntro": {
+    "kicker": "Sprechstunde",
+    "title": "Häufige Fragen."
+  },
+  "call": {
+    "kicker": "Direkter Draht",
+    "title": "Ihr Handy braucht Hilfe?"
+  }
+}

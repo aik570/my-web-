@@ -1,0 +1,35 @@
+{
+  "name": "Handy Chirurg Potsdam",
+  "tagline": "Ihr zuverlässiger Partner",
+  "url": "https://www.handychirurg.de",
+  "street": "Dortustraße 23",
+  "postcode": "14467",
+  "city": "Potsdam",
+  "phone": {
+    "display": "0163 228 8224",
+    "dial": "+491632288224"
+  },
+  "whatsapp": "",
+  "email": "potsdam@handy-chirurg.de",
+  "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Handy+Chirurg+Dortustra%C3%9Fe+23+14467+Potsdam",
+  "hours": [
+    { "day": "Montag", "dayIndex": 1, "open": true, "from": "10:00", "to": "18:30" },
+    { "day": "Dienstag", "dayIndex": 2, "open": true, "from": "10:00", "to": "18:30" },
+    { "day": "Mittwoch", "dayIndex": 3, "open": true, "from": "10:00", "to": "18:30" },
+    { "day": "Donnerstag", "dayIndex": 4, "open": true, "from": "10:00", "to": "18:30" },
+    { "day": "Freitag", "dayIndex": 5, "open": true, "from": "10:00", "to": "18:30" },
+    { "day": "Samstag", "dayIndex": 6, "open": true, "from": "10:00", "to": "18:30" },
+    { "day": "Sonntag", "dayIndex": 0, "open": false, "from": "", "to": "" }
+  ],
+  "publicHolidays": "unknown",
+  "closures": [],
+  "diagnosisFee": {
+    "amount": 25,
+    "text": "Wir prüfen Ihr Gerät gründlich und sagen Ihnen genau, was defekt ist. Lassen Sie bei uns reparieren, wird der Betrag vollständig verrechnet."
+  },
+  "seo": {
+    "title": "Handyreparatur Potsdam ohne Termin – Handy Chirurg",
+    "description": "Handyreparatur in Potsdam, meist in 60 Minuten. Display, Akku, Wasserschaden, Platine. Ohne Termin. Dortustraße 23, Mo–Sa 10:00–18:30 Uhr.",
+    "image": "/assets/img/laden-dortustrasse.jpg"
+  }
+}

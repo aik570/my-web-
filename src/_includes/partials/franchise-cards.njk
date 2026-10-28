@@ -1,0 +1,14 @@
+<div class="franchise__cards">
+  <div class="fcard">
+    <h3>Was Sie bekommen</h3>
+    <ul>
+      {%- for o in franchise.offers %}<li>{{ o }}</li>{% endfor %}
+    </ul>
+  </div>
+  <div class="fcard">
+    <h3>Was Sie mitbringen</h3>
+    <ul>
+      {%- for r in franchise.requirements %}<li>{{ r }}</li>{% endfor %}
+    </ul>
+  </div>
+</div>

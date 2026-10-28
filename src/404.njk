@@ -1,0 +1,24 @@
+---
+permalink: /404.html
+noindex: true
+seo:
+  title: Seite nicht gefunden – Handy Chirurg Potsdam
+  description: Diese Seite gibt es nicht.
+eleventyExcludeFromCollections: true
+---
+{% extends "base.njk" %}
+
+{% block main %}
+<section class="sec sec--white notfound">
+  <div class="wrap narrow center">
+    <p class="kicker"><span class="kicker__cross" aria-hidden="true"></span>Fehler 404</p>
+    <h1 class="page-title">Diese Seite ist nicht zu retten.</h1>
+    <p class="head__lede center">Aber Ihr Handy vielleicht. Die Seite, die Sie suchen, gibt es nicht oder nicht mehr.</p>
+    <div class="actions actions--center">
+      <a class="btn btn--primary" href="/">Zur Startseite</a>
+      <a class="btn btn--quiet" href="/preise/">Preise ansehen</a>
+      <a class="btn btn--quiet" href="tel:{{ site.phone.dial }}">Anrufen</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

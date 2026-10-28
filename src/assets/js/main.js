@@ -22,7 +22,12 @@
 
   function runIntro() {
     var intro = document.getElementById('intro');
-    if (!intro || reduced) { root.classList.add('intro-done'); return; }
+    if (!intro || reduced || root.classList.contains('intro-seen')) {
+      if (intro) intro.remove();
+      root.classList.add('intro-done');
+      return;
+    }
+    try { sessionStorage.setItem('hc-intro', '1'); } catch (e) {}
 
     var logo = document.getElementById('introLogo');
     var sweep = intro.querySelector('.intro__sweep');
@@ -91,8 +96,10 @@
     btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     btn.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
   }
-  btn.addEventListener('click', function () { setMenu(btn.getAttribute('aria-expanded') !== 'true'); });
-  links.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
+  if (btn && links) {
+    btn.addEventListener('click', function () { setMenu(btn.getAttribute('aria-expanded') !== 'true'); });
+    links.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
+  }
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && nav.classList.contains('is-open')) { setMenu(false); btn.focus(); }
   });
@@ -101,11 +108,12 @@
 
   var story = document.getElementById('story');
   function noWebgl() {
-    if (root.classList.contains('webgl-ready')) return;
+    if (!story || root.classList.contains('webgl-ready')) return;
     root.classList.add('no-webgl');
     onScroll();
   }
   function storyProgress() {
+    if (!story) return;
     if (root.classList.contains('no-webgl')) { story.style.setProperty('--p', 0); story.dataset.scene = 'hero'; return; }
     var r = story.getBoundingClientRect();
     var p = Math.max(0, Math.min(1, -r.top / Math.max(1, r.height - innerHeight)));
@@ -117,10 +125,14 @@
     try { var c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); }
     catch (e) { return false; }
   })();
-  if (!canWebgl) noWebgl();
-  else {
-    import('./phone.js').catch(noWebgl);
-    setTimeout(noWebgl, 10000);   // the CDN never answered
+  if (story) {
+    if (!canWebgl) noWebgl();
+    else {
+      // Load the 3D scene after the first paint so it never delays the headline.
+      var load = function () { import('./phone.js').catch(noWebgl); };
+      if ('requestIdleCallback' in window) requestIdleCallback(load, { timeout: 1500 }); else setTimeout(load, 200);
+      setTimeout(noWebgl, 12000);   // the scene never started
+    }
   }
 
   /* ---------- reveal: checked on scroll, so it works wherever scrolling does ---------- */
@@ -144,43 +156,105 @@
   addEventListener('resize', onScroll);
   onScroll();
 
-  /* ---------- opening state, in Potsdam time ---------- */
+  /* ---------- opening state, in Potsdam time, from the CMS data ---------- */
 
-  var OPEN = 10 * 60, CLOSE = 18 * 60 + 30;
+  var DATA = {};
+  try { DATA = JSON.parse(document.getElementById('hc-data').textContent); } catch (e) {}
+  var HOURS = DATA.hours || [];
   var isOpen = null;
-  function potsdamNow() {
+
+  var toMin = function (hhmm) { var p = String(hhmm || '').split(':'); return p.length === 2 ? +p[0] * 60 + +p[1] : null; };
+  var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+  var iso = function (d) { return d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate()); };
+
+  // Public holidays in Brandenburg (incl. Easter and Whit Sunday, Reformationstag).
+  function holidays(year) {
+    var a = year % 19, b = Math.floor(year / 100), c = year % 100, d = Math.floor(b / 4), e = b % 4,
+      f = Math.floor((b + 8) / 25), g = Math.floor((b - f + 1) / 3), h = (19 * a + b - d - g + 15) % 30,
+      i = Math.floor(c / 4), k = c % 4, l = (32 + 2 * e + 2 * i - h - k) % 7, m = Math.floor((a + 11 * h + 22 * l) / 451),
+      month = Math.floor((h + l - 7 * m + 114) / 31), day = ((h + l - 7 * m + 114) % 31) + 1;
+    var easter = Date.UTC(year, month - 1, day), DAY = 864e5;
+    var rel = function (n, name) { return [iso(new Date(easter + n * DAY)), name]; };
+    var fix = function (mm, dd, name) { return [year + '-' + pad(mm) + '-' + pad(dd), name]; };
+    var list = [fix(1, 1, 'Neujahr'), rel(-2, 'Karfreitag'), rel(0, 'Ostersonntag'), rel(1, 'Ostermontag'),
+      fix(5, 1, 'Tag der Arbeit'), rel(39, 'Christi Himmelfahrt'), rel(49, 'Pfingstsonntag'), rel(50, 'Pfingstmontag'),
+      fix(10, 3, 'Tag der Deutschen Einheit'), fix(10, 31, 'Reformationstag'), fix(12, 25, '1. Weihnachtstag'), fix(12, 26, '2. Weihnachtstag')];
+    var map = {};
+    list.forEach(function (x) { map[x[0]] = x[1]; });
+    return map;
+  }
+
+  function berlinNow() {
     try {
       var parts = new Intl.DateTimeFormat('en-GB', {
-        timeZone: 'Europe/Berlin', weekday: 'short', hour: '2-digit', minute: '2-digit', hour12: false
+        timeZone: 'Europe/Berlin', year: 'numeric', month: '2-digit', day: '2-digit',
+        weekday: 'short', hour: '2-digit', minute: '2-digit', hour12: false
       }).formatToParts(new Date());
       var m = {};
       parts.forEach(function (p) { m[p.type] = p.value; });
-      var days = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
-      return { day: days[m.weekday], min: (+m.hour % 24) * 60 + (+m.minute) };
+      return { date: Date.UTC(+m.year, +m.month - 1, +m.day), min: (+m.hour % 24) * 60 + (+m.minute) };
     } catch (e) { return null; }
   }
+
+  // What the shop does on a given day: { from, to } in minutes, closed, or unknown.
+  function dayPlan(utcMidnight) {
+    var d = new Date(utcMidnight), key = iso(d);
+    var closure = (DATA.closures || []).filter(function (c) { return c.date === key; })[0];
+    if (closure) {
+      return closure.closed ? { closed: true, label: closure.label }
+        : { from: toMin(closure.from), to: toMin(closure.to), label: closure.label };
+    }
+    var hol = holidays(d.getUTCFullYear())[key];
+    if (hol && DATA.publicHolidays === 'closed') return { closed: true, label: hol };
+    if (hol && DATA.publicHolidays !== 'open') return { unknown: true, label: hol };
+    var h = HOURS.filter(function (x) { return x.dayIndex === d.getUTCDay(); })[0];
+    if (!h || !h.open) return { closed: true };
+    return { from: toMin(h.from), to: toMin(h.to) };
+  }
+
+  var WEEKDAY = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
+  var fmt = function (min) { return pad(Math.floor(min / 60)) + ':' + pad(min % 60); };
+
   (function renderState() {
-    var now = potsdamNow();
-    if (!now) return;
-    var row = document.querySelector('.hours tr[data-day="' + now.day + '"]');
+    var now = berlinNow();
+    if (!now || !HOURS.length) return;
+    var today = new Date(now.date).getUTCDay();
+    var row = document.querySelector('.hours tr[data-day="' + today + '"]');
     if (row) row.classList.add('is-today');
 
-    var openDay = now.day !== 0;
-    isOpen = openDay && now.min >= OPEN && now.min < CLOSE;
-    var next = openDay && now.min < OPEN ? 'heute 10:00' : (now.day === 6 || now.day === 0) ? 'Montag 10:00' : 'morgen 10:00';
+    var plan = dayPlan(now.date);
+    var text, short, todayHours;
+    if (plan.unknown) {
+      isOpen = null;
+      text = plan.label + ' · bitte vorher anrufen';
+      short = plan.label;
+      todayHours = 'Feiertag';
+    } else {
+      isOpen = !plan.closed && now.min >= plan.from && now.min < plan.to;
+      todayHours = plan.closed ? 'geschlossen' : fmt(plan.from) + '–' + fmt(plan.to);
+      if (isOpen) {
+        text = 'Jetzt geöffnet';
+        short = 'Geöffnet bis ' + fmt(plan.to);
+      } else {
+        // next opening within two weeks
+        var next = '';
+        for (var i = 0; i < 14 && !next; i++) {
+          var p = dayPlan(now.date + i * 864e5);
+          if (p.closed || p.unknown) continue;
+          if (i === 0 && now.min >= p.from) continue;
+          next = (i === 0 ? 'heute' : i === 1 ? 'morgen' : WEEKDAY[new Date(now.date + i * 864e5).getUTCDay()]) + ' ' + fmt(p.from);
+        }
+        text = (plan.label ? plan.label + ' · ' : 'Geschlossen · ') + (next ? 'ab ' + next : 'Öffnungszeiten folgen');
+        short = 'Geschlossen' + (next ? ' · ab ' + next : '');
+      }
+    }
 
     var state = document.querySelector('[data-state]');
     var hours = document.querySelector('[data-hours-today]');
-    var short = document.querySelector('[data-state-short]');
-    if (hours) hours.textContent = openDay ? '10:00–18:30' : 'geschlossen';
-    if (state) {
-      state.textContent = isOpen ? 'Jetzt geöffnet' : 'Geschlossen · ab ' + next;
-      state.classList.toggle('is-closed', !isOpen);
-    }
-    if (short) {
-      short.textContent = isOpen ? 'Geöffnet bis 18:30' : 'Geschlossen · ab ' + next;
-      short.classList.add(isOpen ? 'is-open' : 'is-closed');
-    }
+    var chip = document.querySelector('[data-state-short]');
+    if (hours) hours.textContent = todayHours;
+    if (state) { state.textContent = text; state.classList.toggle('is-closed', isOpen === false); }
+    if (chip) { chip.textContent = short; chip.classList.add(isOpen ? 'is-open' : 'is-closed'); }
   })();
 
   /* ---------- heart monitors ---------- */

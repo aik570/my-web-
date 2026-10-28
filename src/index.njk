@@ -1,0 +1,258 @@
+---
+permalink: /
+bodyClass: is-home
+---
+{% extends "base.njk" %}
+
+{% block intro %}
+<!-- Intro: the logo draws itself like a monitor sweep, then moves into the header. Once per session. -->
+<div class="intro" id="intro" aria-hidden="true">
+  <svg class="intro__logo" id="introLogo" viewBox="0 0 574 365">
+    <defs>
+      <clipPath id="sweep"><rect class="intro__sweep" x="0" y="0" width="574" height="365" /></clipPath>
+    </defs>
+    <g clip-path="url(#sweep)">
+      <use class="intro__sky" href="#lg-sky" />
+      <use class="intro__pulse" href="#lg-pulse" />
+    </g>
+    <circle class="intro__dot" r="5" cx="0" cy="289" />
+    <use class="intro__word" href="#lg-word" />
+    <text class="logo__tag intro__tag" x="22" y="331">{{ site.tagline }}</text>
+  </svg>
+</div>
+{% endblock %}
+
+{% block main %}
+  {%- set h = home -%}
+
+  <!-- ============ STORY: Aufnahme → OP → Entlassen ============ -->
+  <section class="story" id="story" aria-label="{{ h.hero.title }}">
+    <div class="story__sticky">
+      <div class="story__lamp" aria-hidden="true"></div>
+      <canvas id="phoneCanvas" class="story__canvas" aria-hidden="true"></canvas>
+
+      <div class="scene scene--hero" id="top">
+        <p class="kicker"><span class="kicker__cross" aria-hidden="true"></span>{{ h.hero.kicker }}</p>
+        <h1>{{ h.hero.title | nbsp }}</h1>
+        <p class="scene__lede">{{ h.hero.lede }}</p>
+        <div class="actions">
+          <a class="btn btn--primary" href="tel:{{ site.phone.dial }}">{{ h.hero.ctaPrimary }}</a>
+          <a class="btn btn--quiet" href="#preisrechner">{{ h.hero.ctaPrice }}</a>
+        </div>
+
+        <div class="monitor" data-monitor>
+          <div class="monitor__top">
+            <span class="monitor__label">Sprechzeiten heute</span>
+            <span class="monitor__hours" data-hours-today>{{ site.hours[0].from }}–{{ site.hours[0].to }}</span>
+          </div>
+          <p class="monitor__state" data-state>{% include "partials/hours-text.njk" %}</p>
+          <canvas class="ecg" data-ecg height="56" aria-hidden="true"></canvas>
+          <div class="monitor__bottom">
+            <span>{{ site.street }}</span>
+            <span>Ohne Termin</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="scene scene--open" aria-hidden="true">
+        <p class="kicker"><span class="kicker__cross" aria-hidden="true"></span>{{ h.sceneOpen.kicker }}</p>
+        <p class="scene__title">{{ h.sceneOpen.title | nbsp }}</p>
+        <p class="scene__lede">{{ h.sceneOpen.lede }}</p>
+      </div>
+
+      <div class="scene scene--done">
+        <p class="kicker"><span class="kicker__cross" aria-hidden="true"></span>{{ h.sceneDone.kicker }}</p>
+        <p class="scene__title">{{ h.sceneDone.title | nbsp }}</p>
+        <p class="scene__lede">{{ h.sceneDone.lede }}</p>
+        <div class="actions">
+          <a class="btn btn--primary" href="#preisrechner">{{ h.hero.ctaPrice }}</a>
+          <a class="btn btn--quiet" href="tel:{{ site.phone.dial }}">{{ h.hero.ctaPrimary }}</a>
+        </div>
+      </div>
+
+      <div class="tags" aria-hidden="true">
+        {%- for key in ['display', 'board', 'battery', 'frame', 'back'] %}
+        <span class="tag" data-layer="{{ key }}"><b>{{ h.tags[key].title }}</b>{{ h.tags[key].text }}</span>
+        {%- endfor %}
+      </div>
+
+      <p class="hint" aria-hidden="true">Scrollen, um den Eingriff zu sehen <span>· Ziehen zum Drehen</span></p>
+    </div>
+  </section>
+
+  <!-- ============ PREISRECHNER ============ -->
+  <section class="sec sec--mint" id="preisrechner" aria-labelledby="preisrechner-h">
+    <div class="wrap">
+      <div class="head head--row">
+        <div>
+          <p class="kicker"><span class="kicker__cross" aria-hidden="true"></span>{{ h.selector.kicker }}</p>
+          <h2 id="preisrechner-h">{{ h.selector.title }}</h2>
+          <p class="head__lede">{{ h.selector.lede }}</p>
+        </div>
+        <a class="link-arrow" href="/preise/">Komplette Preisliste</a>
+      </div>
+      {% include "partials/selector.njk" %}
+    </div>
+  </section>
+
+  <!-- ============ FACHBEREICHE ============ -->
+  <section class="sec sec--white" id="leistungen" aria-labelledby="leistungen-h">
+    <div class="wrap">
+      <div class="head">
+        <p class="kicker"><span class="kicker__cross" aria-hidden="true"></span>{{ h.services.kicker }}</p>
+        <h2 id="leistungen-h">{{ h.services.title }}</h2>
+        <p class="head__lede">{{ h.services.lede }}</p>
+      </div>
+
+      <ul class="signs">
+        {%- for s in services.items %}
+        <li class="sign reveal">
+          {% include "partials/pictogram.njk" %}
+          <div class="sign__body">
+            <h3>{{ s.title }}</h3>
+            <p>{{ s.text }}</p>
+          </div>
+          <a class="sign__time" href="/preise/#{{ s.id }}">{{ s.duration }}<span class="sr"> – Preise für {{ s.title }}</span></a>
+        </li>
+        {%- endfor %}
+      </ul>
+
+      <div class="rx reveal">
+        <div class="rx__head"><span>Befund</span><span>Fehleranalyse</span></div>
+        <div class="rx__body">
+          <p class="rx__price">{{ site.diagnosisFee.amount | euro }}</p>
+          <p class="rx__text">{{ site.diagnosisFee.text }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ZUSAGEN ============ -->
+  <section class="sec sec--deep charter" aria-labelledby="charter-h">
+    <div class="wrap charter__grid">
+      <div class="charter__head">
+        <p class="kicker kicker--light"><span class="kicker__cross" aria-hidden="true"></span>{{ h.charter.kicker }}</p>
+        <h2 id="charter-h">{{ h.charter.title }}</h2>
+      </div>
+      <ol class="charter__list">
+        {%- for c in h.charter.items %}
+        <li class="reveal"><span class="charter__no">§ {{ loop.index }}</span><h3>{{ c.title }}</h3><p>{{ c.text }}</p></li>
+        {%- endfor %}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ BEHANDLUNGSWEG ============ -->
+  <section class="sec sec--mint" id="ablauf" aria-labelledby="ablauf-h">
+    <div class="wrap">
+      <div class="head head--row">
+        <div>
+          <p class="kicker"><span class="kicker__cross" aria-hidden="true"></span>{{ h.process.kicker }}</p>
+          <h2 id="ablauf-h">{{ h.process.title }}</h2>
+        </div>
+        <div class="switch" role="tablist" aria-label="Art der Abgabe">
+          <button role="tab" id="tab-laden" aria-selected="true" aria-controls="panel-laden">{{ h.process.store.label }}</button>
+          <button role="tab" id="tab-post" aria-selected="false" aria-controls="panel-post" tabindex="-1">{{ h.process.post.label }}</button>
+        </div>
+      </div>
+
+      <div class="path">
+        <svg class="path__line" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true">
+          <path pathLength="1" d="M0 40 H130 M170 40 H430 M470 40 H600 L612 40 L622 10 L636 56 L646 28 L654 40 H730 M770 40 H1030 M1070 40 H1200" />
+        </svg>
+        {%- for track in [['laden', h.process.store, false], ['post', h.process.post, true]] %}
+        <ol class="steps" role="tabpanel" id="panel-{{ track[0] }}" aria-labelledby="tab-{{ track[0] }}"{% if track[2] %} hidden{% endif %}>
+          {%- for st in track[1].steps %}
+          <li><span class="steps__station">{{ loop.index }}</span><h3>{{ st.title }}</h3><p>{{ st.text }}</p></li>
+          {%- endfor %}
+        </ol>
+        {%- endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SPRECHZEITEN & ANFAHRT ============ -->
+  <section class="sec sec--white" id="laden" aria-labelledby="laden-h">
+    <div class="wrap visit">
+      <figure class="visit__photo reveal">
+        <picture>
+          <source srcset="/assets/img/laden-dortustrasse.webp" type="image/webp">
+          <img src="/assets/img/laden-dortustrasse.jpg" alt="{{ h.visit.photoAlt }}" width="732" height="612" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+
+      <div class="board reveal">
+        <div class="board__head">
+          <svg class="board__logo" viewBox="0 0 574 365" aria-hidden="true"><use href="#lg-sky" fill="currentColor"/><use href="#lg-pulse" fill="var(--red-l)"/><use href="#lg-word" fill="currentColor"/></svg>
+          <div>
+            <h2 id="laden-h">{{ h.visit.title }}</h2>
+            <p>{{ site.name }} · {{ site.street }} · {{ site.postcode }} {{ site.city }}</p>
+          </div>
+        </div>
+        <table class="hours" aria-label="Öffnungszeiten">
+          <tbody>
+            {%- for d in site.hours %}
+            <tr data-day="{{ d.dayIndex }}"><th scope="row">{{ d.day }}</th><td>{% if d.open %}{{ d.from }} – {{ d.to }}{% else %}geschlossen{% endif %}</td></tr>
+            {%- endfor %}
+          </tbody>
+        </table>
+        <p class="board__note">{{ h.visit.note }}</p>
+        <div class="actions">
+          <a class="btn btn--white" href="{{ site.mapsUrl }}" target="_blank" rel="noopener">Route planen</a>
+          <a class="btn btn--outline-light" href="tel:{{ site.phone.dial }}">Anrufen</a>
+          {%- if site.whatsapp %}
+          <a class="btn btn--outline-light" href="https://wa.me/{{ site.whatsapp | replace('+', '') }}" target="_blank" rel="noopener">WhatsApp</a>
+          {%- endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="sec sec--white faq" id="faq" aria-labelledby="faq-h">
+    <div class="wrap faq__grid">
+      <div>
+        <p class="kicker"><span class="kicker__cross" aria-hidden="true"></span>{{ h.faqIntro.kicker }}</p>
+        <h2 id="faq-h">{{ h.faqIntro.title }}</h2>
+        <p class="head__lede">Ihre Frage ist nicht dabei? Rufen Sie an: <a href="tel:{{ site.phone.dial }}">{{ site.phone.display }}</a>.</p>
+      </div>
+      <div class="faq__list">
+        {%- for f in faq.items %}
+        <details><summary>{{ f.q }}</summary><p>{{ f.a }}</p></details>
+        {%- endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CALL ============ -->
+  <section class="sec sec--deep call" aria-labelledby="call-h">
+    <div class="wrap">
+      <p class="kicker kicker--light"><span class="kicker__cross" aria-hidden="true"></span>{{ h.call.kicker }}</p>
+      <h2 id="call-h" class="call__title">{{ h.call.title }}</h2>
+      <a class="call__number" href="tel:{{ site.phone.dial }}">{{ site.phone.display }}</a>
+      <p class="call__meta">
+        <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+        {%- if site.whatsapp %}<a href="https://wa.me/{{ site.whatsapp | replace('+', '') }}" target="_blank" rel="noopener">WhatsApp</a>{% endif %}
+        <span>{{ site.street }}, {{ site.city }}</span>
+      </p>
+    </div>
+    <canvas class="ecg ecg--wide" data-ecg data-ecg-wide height="120" aria-hidden="true"></canvas>
+  </section>
+
+  <!-- ============ FRANCHISE TEASER ============ -->
+  <section class="sec sec--mint franchise" aria-labelledby="franchise-h">
+    <div class="wrap franchise__grid">
+      <div>
+        <p class="kicker"><span class="kicker__cross" aria-hidden="true"></span>{{ franchise.kicker }}</p>
+        <h2 id="franchise-h">{{ franchise.title }}</h2>
+        <p class="head__lede">{{ franchise.lede }}</p>
+        <a class="btn btn--primary" href="/franchise/">Mehr zum Franchise</a>
+      </div>
+      {% include "partials/franchise-cards.njk" %}
+    </div>
+  </section>
+{% endblock %}
+
+{% block scripts %}
+<script src="/assets/js/selector.js" defer></script>
+{% endblock %}

@@ -1,0 +1,8 @@
+{
+  "items": [
+    { "id": "display", "title": "Display", "text": "Gesprungenes Glas, Streifen, schwarzer Bildschirm, Touch reagiert nicht.", "duration": "meist ca. 60 Min.", "icon": "display" },
+    { "id": "akku", "title": "Akku", "text": "Hält nicht mehr durch, geht plötzlich aus oder wölbt sich.", "duration": "meist ca. 60 Min.", "icon": "battery" },
+    { "id": "wasserschaden", "title": "Wasserschaden", "text": "Ausschalten, nicht laden, schnell vorbeibringen. Wir reinigen, trocknen und prüfen jede Baugruppe.", "duration": "Dauer nach Diagnose", "icon": "water" },
+    { "id": "platine", "title": "Platine", "text": "Komplexe Fehler auf der Hauptplatine, zum Beispiel wenn das Gerät nicht startet oder nicht lädt.", "duration": "Dauer nach Diagnose", "icon": "chip" }
+  ]
+}

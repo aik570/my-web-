@@ -1,0 +1,94 @@
+{
+  "brand": "Apple",
+  "order": 1,
+  "models": [
+    {
+      "name": "iPhone 15",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": "Entwicklungsdaten – kein echter Preis"
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": "Entwicklungsdaten – kein echter Preis"
+        }
+      ]
+    },
+    {
+      "name": "iPhone 14",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": "Entwicklungsdaten – kein echter Preis"
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": "Entwicklungsdaten – kein echter Preis"
+        }
+      ]
+    },
+    {
+      "name": "iPhone 13",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": "Entwicklungsdaten – kein echter Preis"
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": "Entwicklungsdaten – kein echter Preis"
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": "Entwicklungsdaten – kein echter Preis"
+        }
+      ]
+    },
+    {
+      "name": "iPad (9. Generation)",
+      "category": "Tablet",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": "Entwicklungsdaten – kein echter Preis"
+        }
+      ]
+    }
+  ]
+}

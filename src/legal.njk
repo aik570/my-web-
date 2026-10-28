@@ -1,0 +1,27 @@
+---
+pagination:
+  data: legal
+  size: 1
+  alias: doc
+  addAllPagesToCollections: true
+permalink: "/{{ pagination.items[0] }}/"
+eleventyComputed:
+  seo:
+    title: "{{ doc.title }} – Handy Chirurg Potsdam"
+    description: "{{ doc.description }}"
+---
+{% extends "base.njk" %}
+
+{% block main %}
+<section class="sec sec--white page-head">
+  <div class="wrap narrow">
+    <p class="kicker"><span class="kicker__cross" aria-hidden="true"></span>Rechtliches</p>
+    <h1 class="page-title">{{ doc.title }}</h1>
+  </div>
+</section>
+<section class="sec sec--white legal">
+  <div class="wrap narrow prose">
+    {{ doc.body | md | safe }}
+  </div>
+</section>
+{% endblock %}
