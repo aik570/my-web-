@@ -15,6 +15,7 @@ Tick a box when the answer is received; record the answer and date next to it.
 | 8 | Client-owned GitHub and Netlify accounts | **Yes** |
 | 9 | Final preview approval and domain | **Yes** |
 | 10 | Public holidays | No (sensible default in place) |
+| 11 | Franchise images: mascot rights, reception photo | **Yes** |
 
 ---
 
@@ -86,3 +87,9 @@ Tick a box when the answer is received; record the answer and date next to it.
 ### 10. Public holidays — [ ] (not blocking)
 **Why:** The "Jetzt geöffnet" status needs to know whether the shop is open on Brandenburg public holidays. Until answered, on a public holiday the site shows the holiday name with "bitte vorher anrufen" instead of open/closed.
 - [ ] Closed on public holidays? Exceptions?
+
+### 11. Franchise images — [ ]
+- The doctor mascot on `/franchise/` was taken from the current franchise page (handychirurg.de/franchise). Confirm that Handy Chirurg owns the rights to use it on the new site.
+- The reception photo (sofa, illuminated logo) carried the label "Вміст, згенерований ШІ" (AI-generated content) on the original site; the label was cropped. Confirm the photo shows the shop as it really is, or send an unedited photo.
+- Phone number on the franchise page: the old page shows 0331 29080953, the redesign uses 0163 228 8224 everywhere (see item 2). Not changed until confirmed.
+
