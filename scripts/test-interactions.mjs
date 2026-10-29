@@ -186,7 +186,8 @@ async function exercise(page, el, url, isMobile) {
       }
       // Real hit test first (nothing may cover the link), then click without
       // Playwright's "stable" wait, which never settles on animated elements.
-      await loc.scrollIntoViewIfNeeded();
+      // instant scroll (the site uses smooth scrolling), then hit-test the link's own position
+      await loc.evaluate((a) => a.scrollIntoView({ block: 'center', behavior: 'instant' })); await page.waitForTimeout(60);
       const hit = await loc.evaluate((a) => { const r = a.getBoundingClientRect(); const t = document.elementFromPoint(r.left + r.width / 2, r.top + Math.min(r.height / 2, 20)); return t === a || a.contains(t) ? '' : (t ? t.tagName + '.' + t.className : 'nothing'); });
       if (hit) { await page.goto(BASE + url); return ['fail', 'covered by ' + hit]; }
       await loc.click({ force: true, timeout: 4000 });
