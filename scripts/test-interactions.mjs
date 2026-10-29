@@ -131,6 +131,8 @@ const PAGES = [
   ['MODEL', '/preise/apple/iphone-13/'], ['MODEL-REQUEST', '/preise/samsung/galaxy-s23/'], ['FRANCHISE', '/franchise/'],
   ['IMPRESSUM', '/impressum/'], ['DATENSCHUTZ', '/datenschutz/'], ['404', '/gibt-es-nicht']
 ];
+const ONLY = (process.argv.find((a) => a.startsWith('--only=')) || '').slice(7);   // e.g. --only=HOME for a quick rerun
+if (ONLY) PAGES.splice(0, PAGES.length, ...PAGES.filter(([c]) => c === ONLY));
 const browser = await chromium.launch({ args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
 const inventory = [];   // { id, page, url, area, kind, label, target, expected, desktop, mobile, note }
 
@@ -193,7 +195,10 @@ async function exercise(page, el, url, isMobile) {
       // instant scroll (the site uses smooth scrolling), then hit-test the link's own position
       await loc.evaluate((a) => a.scrollIntoView({ block: 'center', behavior: 'instant' })); await page.waitForTimeout(60);
       const hit = await loc.evaluate((a) => { const r = a.getBoundingClientRect(); const t = document.elementFromPoint(r.left + r.width / 2, r.top + Math.min(r.height / 2, 20)); return t === a || a.contains(t) ? '' : (t ? t.tagName + '.' + t.className : 'nothing'); });
-      if (hit) { await page.goto(BASE + url); return ['fail', 'covered by ' + hit]; }
+      if (hit) {
+        const where = await loc.evaluate((a) => { const r = a.getBoundingClientRect(); return `${Math.round(r.left)},${Math.round(r.top)} ${Math.round(r.width)}×${Math.round(r.height)} at scrollY ${Math.round(scrollY)}`; });
+        await page.goto(BASE + url); return ['fail', 'covered by ' + hit + ' (' + where + ')'];
+      }
       await loc.click({ force: true, timeout: 4000 });
       await page.waitForLoadState('load'); await page.waitForTimeout(300);
       const after = page.url();
@@ -319,8 +324,12 @@ for (const [code, url] of PAGES) {
     await page.goto(BASE + url); await page.waitForTimeout(400);
     await page.evaluate(() => document.documentElement.classList.add('intro-done'));
     const els = await collect(page);
+    let dirty = false;
     for (const el of els) {
+      // controls that change the DOM (calculator, filters, forms) shift element indexes: start each check from a fresh page
+      if (dirty) { await page.goto(BASE + url); await page.waitForTimeout(300); await page.evaluate(() => document.documentElement.classList.add('intro-done')); dirty = false; }
       const [res, note] = await exercise(page, el, url, vp === 'mobile');
+      if (el.kind !== 'link' && el.kind !== 'tel' && el.kind !== 'mailto' && el.kind !== 'external') dirty = true;
       const key = `${el.area}|${el.kind}|${el.label}|${el.href || ''}`;
       results[key] = results[key] || { ...el, desktop: '—', mobile: '—', note: '' };
       results[key][vp] = res;
