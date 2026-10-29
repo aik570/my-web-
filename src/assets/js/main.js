@@ -6,8 +6,8 @@
 
   /* ---------- intro: the logo draws like a monitor sweep, then docks in the header ---------- */
 
-  // The heartbeat line of the logo, in logo units (viewBox 574 × 365).
-  var LINE = [[20, 300], [214, 300], [222, 292], [231, 274], [239, 316], [247, 296], [415, 296], [505, 296], [552, 296]];
+  // The heartbeat line of the logo, in logo units (viewBox 756 × 366).
+  var LINE = [[18, 285.5], [280, 284.5], [288, 276], [294, 284], [302, 250], [315, 302], [319, 298], [327, 281], [332, 279.5], [552, 279.5], [672, 279.5], [732, 279.5]];
   function lineY(x) {
     for (var i = 1; i < LINE.length; i++) {
       if (x <= LINE[i][0]) {
@@ -15,7 +15,7 @@
         return a[1] + (b[1] - a[1]) * t;
       }
     }
-    return 296;
+    return 279.5;
   }
   var ease = function (t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; };
   var clamp = function (v) { return Math.max(0, Math.min(1, v)); };
@@ -32,11 +32,10 @@
     var logo = document.getElementById('introLogo');
     var dot = intro.querySelector('.intro__dot');
     var word = intro.querySelector('.intro__word');
-    var tag = intro.querySelector('.intro__tag');
     var sky = intro.querySelector('.intro__sky');
     var navLogo = document.getElementById('navLogo');
     var start = performance.now();
-    var SWEEP = 1300, WORD = 900, TAG = 1250, DOCK = 2000, END = 2700;
+    var SWEEP = 1300, WORD = 900, DOCK = 2000, END = 2700;
     var docked = false, done = false;
 
     function finish() {
@@ -53,18 +52,17 @@
     }
     function step(t) {
       var p = ease(clamp(t / SWEEP));
-      var x = p * 574;
+      var x = p * 756;
       sky.style.clipPath = 'inset(0 ' + (100 - p * 100).toFixed(2) + '% 0 0)';
       sky.style.opacity = (0.35 + 0.65 * clamp((t - 300) / 1100)).toFixed(3);
-      var inGap = x > 418 && x < 503;
-      dot.style.left = (x / 5.74).toFixed(2) + '%';
-      dot.style.top = (lineY(x) / 3.65).toFixed(2) + '%';
+      var inGap = x > 552 && x < 672;   // behind the stethoscope
+      dot.style.left = (x / 7.56).toFixed(2) + '%';
+      dot.style.top = (lineY(x) / 3.66).toFixed(2) + '%';
       dot.style.opacity = (p > 0.01 && p < 0.995 && !inGap) ? 1 : 0;
 
       var w = ease(clamp((t - WORD) / 500));
       word.style.opacity = w;
       word.style.transform = 'translateY(' + (8 * (1 - w)).toFixed(2) + 'px)';
-      tag.style.opacity = ease(clamp((t - TAG) / 400)) * (1 - clamp((t - DOCK) / 200));
 
       if (t >= DOCK && !docked) {
         docked = true;

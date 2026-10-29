@@ -6,14 +6,15 @@ Updated: 29.10.2026, Potsdam logo + dedicated Preisrechner · Branch `claude/zea
 
 **Preview (for review):** https://claude.ai/artifact/MKnvHQdRfoKvSRqyntbA2E (version 11) — private until shared via its Share menu. Open the link; the start page is the home page, every other page is reached through the normal navigation (flat file names, e.g. `reparatur-finden.html`, `preise-apple-iphone-13.html`). Rebuilt with `npm run preview:bundle` from the current branch. The identical bundle was checked **locally** from a deep sub-path with the uploaded asset copies (0 failed requests, 0 script errors, 3D starts, home → calculator → model page, search). Read back from the artifact after publishing: published pages are byte-identical in content to the local bundle. **Not visually inspected inside the claude.ai viewer** (it cannot be opened from this environment).
 
-### Logo
+### Logo (replaced 29.10.2026 with the client's logo)
 | Item | Result |
 |---|---|
-| Change | Berlin skyline replaced by a Potsdam line-art skyline, left to right: Schloss Sanssouci, Brandenburger Tor (Potsdam), St. Nikolaikirche, Altes Rathaus (Atlas with globe), Landtag / Fortunaportal, Garnisonkirche tower, Neues Palais (crown of the Three Graces) |
-| Kept | HANDY CHIRURG wordmark, stethoscope with cross, red ECG line, composition, colours (teal `#2f7a68`, red `#c8312a`) — the original vector tracings, only tiny tracing specks removed |
-| Reference | The attached 22.jpg (thin-line concept) was used for composition and line weight; the buildings were drawn after photographs, because the concept's buildings were not identifiable. Generated images were not used as assets |
-| Assets | `src/assets/img/logo.svg` (header, footer), `logo-white.svg` (dark backgrounds), `logo-sky.svg` + `logo-word.svg` (intro animation). All SVG, scalable. Source: `scripts/logo/build-logo.py` (run `python3 scripts/logo/build-logo.py`), original tracing in `scripts/logo/source-berlin-logo.svg` |
-| Favicon / social | Favicon is the ECG mark only (no skyline) — unchanged. Social image is the shop photo — unchanged |
+| Source | The logo supplied by the client on 29.10.2026 (23.jpg: Potsdam skyline, HANDY CHIRURG, stethoscope with cross, red ECG line, "Ihr zuverlässiger Partner"), kept as `scripts/logo/source-potsdam-logo.jpg`. This replaces the skyline drawn earlier the same day |
+| Vectorisation | `scripts/logo/trace-logo.py` (`pip install potracer pillow numpy`, then `python3 scripts/logo/trace-logo.py`): splits the image into its three colours and traces each with potrace at 4× resolution — faithful to the supplied artwork, nothing redrawn. Colours normalised to the site palette (teal `#2f7a68`, red `#c8312a`, ink `#2a2a2a`) |
+| Assets | `src/assets/img/logo.svg` (header, footer; viewBox 756 × 366), `logo-white.svg` (dark board on the home page), `logo-sky.svg` (skyline + ECG) and `logo-word.svg` (wordmark, stethoscope, tagline) for the intro animation. Header logo 140 px (phones 100 px), footer 240 px; the separate footer tagline text was removed because the logo contains it (kept in the image's alt text) |
+| Intro | ECG polyline and the stethoscope gap recomputed for the new artwork; the separate intro tagline element removed (part of the logo now). Checked in Chromium: sweep follows the line, logo docks into the header |
+| Favicon / social | Unchanged (favicon = ECG mark, social image = shop photo) |
+| Note | Traced from a 800 × 513 JPEG; at very large sizes the skyline line shows slight unevenness from the source. A higher-resolution original or the designer's vector file would give a sharper result — please send it if it exists |
 
 ### Preisrechner `/reparatur-finden/`
 | Step | Behaviour |

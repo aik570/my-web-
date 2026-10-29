@@ -114,18 +114,13 @@ h1, h2, h3 { font-stretch: 125%; font-weight: 700; letter-spacing: -.025em; text
 @keyframes introGone { to { opacity: 0; visibility: hidden; pointer-events: none; } }
 .intro.is-leaving { background: transparent; pointer-events: none; }
 /* Logo layers are images: rasterised once, so the sweep only clips a bitmap */
-.intro__logo { position: relative; width: min(74vw, 560px); aspect-ratio: 574 / 365; transform-origin: 0 0; will-change: transform; }
+.intro__logo { position: relative; width: min(74vw, 560px); aspect-ratio: 756 / 366; transform-origin: 0 0; will-change: transform; }
 .intro__logo img { position: absolute; inset: 0; width: 100%; height: 100%; }
 .intro__sky { clip-path: inset(0 100% 0 0); opacity: .35; }
 .intro__word { opacity: 0; }
 .intro__dot {
   position: absolute; left: 0; top: 82%; width: 1.8%; aspect-ratio: 1; translate: -50% -50%;
   border-radius: 50%; background: var(--red-l); box-shadow: 0 0 10px 2px rgba(255, 107, 94, .8); opacity: 0;
-}
-.intro__tag {
-  position: absolute; left: 3.8%; top: 90.7%; translate: 0 -78%;
-  font: 500 calc(min(74vw, 560px) * .0296)/1 var(--sans); font-stretch: 112%; font-variant: small-caps; letter-spacing: .16em;
-  color: var(--teal); white-space: nowrap; opacity: 0;
 }
 .js:not(.reduced):not(.intro-seen):not(.intro-done) .is-home .nav__logo { opacity: 0; animation: logoIn .3s ease 5s forwards; }
 @keyframes logoIn { to { opacity: 1; } }
@@ -142,7 +137,7 @@ h1, h2, h3 { font-stretch: 125%; font-weight: 700; letter-spacing: -.025em; text
   border-bottom: 1px solid var(--rule);
 }
 .nav__in { display: flex; align-items: center; gap: 2rem; height: 5rem; max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
-.nav__logo { display: block; width: 112px; flex: none; }
+.nav__logo { display: block; width: 140px; flex: none; }
 .nav__logo img { display: block; width: 100%; height: auto; }
 .nav__links { display: flex; gap: 1.75rem; margin-left: auto; font-size: .9375rem; font-weight: 500; }
 .nav__links a { text-decoration: none; color: var(--grey); transition: color .2s; }
@@ -165,7 +160,7 @@ h1, h2, h3 { font-stretch: 125%; font-weight: 700; letter-spacing: -.025em; text
 @media (max-width: 960px) { .nav__state { display: none; } }
 @media (max-width: 760px) {
   .nav__in { gap: .75rem; height: 4rem; }
-  .nav__logo { width: 78px; }
+  .nav__logo { width: 100px; }
   .nav__call { margin-left: auto; }
   .nav__call-long { display: none; }
   .nav__call-short { display: inline; }
@@ -459,8 +454,7 @@ h1, h2, h3 { font-stretch: 125%; font-weight: 700; letter-spacing: -.025em; text
 /* footer */
 .foot { padding: 4.5rem 0 calc(3rem + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--rule); font-size: .9375rem; color: var(--grey); }
 .foot__grid { display: grid; grid-template-columns: minmax(0, 4fr) repeat(3, minmax(0, 3fr)); gap: 2.5rem 3rem; }
-.foot__brand img { width: 200px; display: block; }
-.foot__tag { margin-top: .4rem; font-variant: small-caps; font-stretch: 112%; letter-spacing: .14em; color: var(--teal); font-weight: 500; }
+.foot__brand img { width: 240px; display: block; }
 .foot__h { font-size: .875rem; color: var(--ink); margin-bottom: .6rem; letter-spacing: 0; }
 .foot p + p { margin-top: .75rem; }
 .foot a { color: var(--ink); text-decoration: none; display: inline-block; padding-block: .2rem; }
