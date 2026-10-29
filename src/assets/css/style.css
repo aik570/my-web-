@@ -954,3 +954,16 @@ mark.todo { background: #fff1c2; color: #6b4b00; padding: .1rem .35rem; border-r
 .fback:hover { color: var(--ink); }
 .reduced :is(.brandcard, .fbrand, .fmodel, .frepair, .entry__brands a, .entry__main, .chip, .hits a, .ftile, .nav__call):is(:hover, :active),
 .reduced .link-arrow:hover::after, .reduced .fstores__item:hover img { transform: none; }
+
+/* ---------- narrow screens: long words, prices and URLs never get cut off ---------- */
+.repairs { grid-template-columns: repeat(auto-fill, minmax(min(15rem, 100%), 1fr)); }
+.repair__name { min-width: 0; overflow-wrap: anywhere; }
+.link-arrow { white-space: normal; }
+.prose a { overflow-wrap: anywhere; }
+@media (max-width: 900px) { .offer__grid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 860px) { .visit { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 760px), (max-aspect-ratio: 3/4) { .scene--hero h1 { font-size: clamp(2rem, 10.2vw, 4.5rem); } }
+.board, .visit__photo { min-width: 0; }
+.offer__sum { min-width: 0; }
+.offer__lines dt { min-width: 0; overflow-wrap: anywhere; }
+@media (max-width: 360px) { .offer__bar > span:first-child { display: none; } }

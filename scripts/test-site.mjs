@@ -52,6 +52,12 @@ for (const [w, h, label] of VIEWPORTS) {
     ok(external.length === 0, `${url} no third-party requests ${external.length ? JSON.stringify(external.slice(0, 3)) : ''}`);
     ok(missing.length === 0, `${url} no failed assets ${missing.length ? JSON.stringify(missing.slice(0, 3)) : ''}`);
     ok(overflow <= 0, `${url} no horizontal overflow (${overflow}px)`);
+    // html/body clip overflow-x, so also look for content cut off at the right edge
+    const clipped = await page.evaluate(() => [...document.querySelectorAll('main *, footer *, .nav__in > *')].filter((e) => {
+      const r = e.getBoundingClientRect();
+      return r.width && (r.right > innerWidth + 1 || r.left < -1) && getComputedStyle(e).position !== 'fixed' && !e.closest('[aria-hidden="true"], .story, canvas, dialog');
+    }).slice(0, 3).map((e) => e.tagName + '.' + String(e.className).split(' ')[0] + ' "' + e.textContent.trim().slice(0, 30) + '"'));
+    ok(clipped.length === 0, `${url} no content cut off at the edge ${clipped.length ? JSON.stringify(clipped) : ''}`);
     if (SHOTS) await page.screenshot({ path: `${SHOTS}/${label}-${url.replace(/\W+/g, '_') || 'home'}.png`, fullPage: url !== '/' });
     await page.close();
   }
