@@ -2,7 +2,7 @@
 title: Datenschutzerklärung
 description: Datenschutzerklärung von Handy Chirurg Potsdam.
 ---
-[[KLÄREN: Text übernommen von der bisherigen Website handychirurg.de/datenschutz (Stand 28.10.2026) und an die neue Website angepasst: Abschnitt Hosting neu (bisher Lovable), Abschnitte Kontaktformular, Supabase und Resend entfallen, weil die neue Website kein Formular hat. Vor Veröffentlichung rechtlich prüfen lassen.]]
+[[KLÄREN: Text übernommen von der bisherigen Website handychirurg.de/datenschutz (Stand 28.10.2026) und an die neue Website angepasst: Hosting jetzt Netlify statt Lovable; Abschnitte Kontaktformular, Supabase und Resend entfallen (kein Formular mehr); in Abschnitt 1 und bei den Bewerberdaten Verweise auf ein Kontaktformular sowie in Abschnitt 1 der Satz zur Analyse des Nutzerverhaltens entfernt (keine Analyse-Werkzeuge). Vor Veröffentlichung rechtlich prüfen lassen.]]
 
 ## 1. Datenschutz auf einen Blick
 
@@ -18,13 +18,13 @@ Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Des
 
 #### Wie erfassen wir Ihre Daten?
 
-Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z. B. um Daten handeln, die Sie in ein Kontaktformular eingeben.
+Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z. B. um Daten handeln, die Sie uns per E-Mail, Telefon oder WhatsApp mitteilen.
 
 Andere Daten werden automatisch oder nach Ihrer Einwilligung beim Besuch der Website durch unsere IT-Systeme erfasst. Das sind vor allem technische Daten (z. B. Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs). Die Erfassung dieser Daten erfolgt automatisch, sobald Sie diese Website betreten.
 
 #### Wofür nutzen wir Ihre Daten?
 
-Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten. Andere Daten können zur Analyse Ihres Nutzerverhaltens verwendet werden. Sofern über die Website Verträge geschlossen oder angebahnt werden können, werden die übermittelten Daten auch für Vertragsangebote, Bestellungen oder sonstige Auftragsanfragen verarbeitet.
+Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten. Sofern über die Website Verträge geschlossen oder angebahnt werden können, werden die übermittelten Daten auch für Vertragsangebote, Bestellungen oder sonstige Auftragsanfragen verarbeitet.
 
 #### Welche Rechte haben Sie bezüglich Ihrer Daten?
 
@@ -36,9 +36,17 @@ Hierzu sowie zu weiteren Fragen zum Thema Datenschutz können Sie sich jederzeit
 
 Wir hosten die Inhalte unserer Website bei folgendem Anbieter:
 
-[[KLÄREN: Name und Anschrift des neuen Hosting-Anbieters, Verarbeitungsorte, Auftragsverarbeitungsvertrag, Speicherdauer der Server-Logfiles]]
+### Netlify
 
-Beim Aufruf der Website verarbeitet der Hosting-Anbieter technisch notwendige Daten, insbesondere IP-Adresse, Datum und Uhrzeit des Abrufs, aufgerufene Seite, übertragene Datenmenge, Browsertyp und Betriebssystem. Die Verarbeitung ist erforderlich, um die Website sicher, schnell und effizient bereitzustellen (Art. 6 Abs. 1 lit. f DSGVO).
+Anbieter ist die Netlify, Inc., 101 2nd Street, San Francisco, CA 94105, USA.
+
+Beim Aufruf der Website verarbeitet Netlify technisch notwendige Daten, insbesondere IP-Adresse, Datum und Uhrzeit des Abrufs, aufgerufene Seite, übertragene Datenmenge, Browsertyp und Betriebssystem. Die Verarbeitung ist erforderlich, um die Website sicher, schnell und effizient bereitzustellen (Art. 6 Abs. 1 lit. f DSGVO).
+
+Netlify, Inc. ist nach dem EU-US Data Privacy Framework (DPF) zertifiziert. Soweit Daten in die USA übermittelt werden, stützt sich die Übermittlung auf diese Zertifizierung bzw. auf die EU-Standardvertragsklauseln. Weitere Informationen: https://www.netlify.com/privacy/ und https://www.netlify.com/gdpr-ccpa/
+
+Auftragsverarbeitung: Netlify stellt eine Vereinbarung zur Auftragsverarbeitung (Data Processing Agreement) bereit, die Bestandteil der Nutzungsbedingungen ist. Eine Liste der Unterauftragsverarbeiter stellt Netlify unter https://www.netlify.com/legal/subprocessors/ bereit.
+
+[[KLÄREN: Speicherdauer der Server-Logfiles bei Netlify (in den öffentlichen Netlify-Seiten nicht angegeben) und Bestätigung, dass die Website im Netlify-Konto des Inhabers betrieben wird]]
 
 Diese Website setzt keine Cookies und keine Analyse- oder Tracking-Werkzeuge ein. Schriften, Bilder und Skripte werden vom Server dieser Website geladen.
 
@@ -151,7 +159,7 @@ Der Link „Route planen" öffnet Google Maps in einem neuen Fenster. Erst dann 
 
 ### Umgang mit Bewerberdaten
 
-Wir bieten Ihnen die Möglichkeit, sich bei uns zu bewerben (z. B. per E-Mail, postalisch oder Kontaktformular). Im Folgenden informieren wir Sie über Umfang, Zweck und Verwendung Ihrer im Rahmen des Bewerbungsprozesses erhobenen personenbezogenen Daten. Wir versichern, dass die Erhebung, Verarbeitung und Nutzung Ihrer Daten in Übereinstimmung mit geltendem Datenschutzrecht und allen weiteren gesetzlichen Bestimmungen erfolgt und Ihre Daten streng vertraulich behandelt werden.
+Wir bieten Ihnen die Möglichkeit, sich bei uns zu bewerben (z. B. per E-Mail oder postalisch). Im Folgenden informieren wir Sie über Umfang, Zweck und Verwendung Ihrer im Rahmen des Bewerbungsprozesses erhobenen personenbezogenen Daten. Wir versichern, dass die Erhebung, Verarbeitung und Nutzung Ihrer Daten in Übereinstimmung mit geltendem Datenschutzrecht und allen weiteren gesetzlichen Bestimmungen erfolgt und Ihre Daten streng vertraulich behandelt werden.
 
 #### Umfang und Zweck der Datenerhebung
 

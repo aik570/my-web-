@@ -3,8 +3,9 @@ pagination:
   data: legal
   size: 1
   alias: doc
+  resolve: values
   addAllPagesToCollections: true
-permalink: "/{{ pagination.items[0] }}/"
+permalink: "/{{ doc.slug }}/"
 eleventyComputed:
   seo:
     title: "{{ doc.title }} – Handy Chirurg Potsdam"

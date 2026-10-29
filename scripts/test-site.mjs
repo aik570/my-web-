@@ -72,6 +72,23 @@ for (const f of htmlFiles) {
 }
 ok(bad.size === 0, `all internal links resolve ${bad.size ? JSON.stringify([...bad]) : ''}`);
 
+// Content and SEO basics on every built page
+console.log('\ncontent & seo');
+{
+  const read = (u) => fs.readFileSync(path.join(ROOT, u), 'utf8');
+  const titles = htmlFiles.filter((f) => !f.includes('/admin/')).map((f) => [path.relative(ROOT, f), (read(path.relative(ROOT, f)).match(/<title>([^<]*)<\/title>/) || [])[1] || '']);
+  const badTitles = titles.filter(([, t]) => !t || /^\s*[–-]/.test(t));
+  ok(badTitles.length === 0, `every page has a title ${badTitles.length ? JSON.stringify(badTitles) : ''}`);
+  const imp = read('impressum/index.html'); const ds = read('datenschutz/index.html');
+  ok(/<h1[^>]*>\s*Impressum/.test(imp) && /Malake Mansour/.test(imp) && /DE368877064/.test(imp), 'Impressum renders heading, owner and VAT id');
+  ok(/<h1[^>]*>\s*Datenschutzerkl/.test(ds) && /verantwortliche Stelle/.test(ds) && /WhatsApp/.test(ds), 'Datenschutz renders heading and sections');
+  const sm = read('sitemap.xml');
+  const brandDirs = fs.readdirSync(path.join(ROOT, 'preise'), { withFileTypes: true }).filter((e) => e.isDirectory()).map((e) => e.name);
+  const missingSm = ['/', '/leistungen/', '/preise/', '/franchise/', '/impressum/', '/datenschutz/', ...brandDirs.map((b) => `/preise/${b}/`)].filter((u) => !sm.includes(`/${u.replace(/^\//, '')}<`.replace('/<', '/<')) && !sm.includes(`${u}</loc>`));
+  ok(missingSm.length === 0, `sitemap lists all public pages (${brandDirs.length} brand pages) ${missingSm.length ? JSON.stringify(missingSm) : ''}`);
+  ok(!/404|admin|katalog/.test(sm), 'sitemap excludes 404, admin and data files');
+}
+
 // Price selector
 console.log('\nprice selector');
 {

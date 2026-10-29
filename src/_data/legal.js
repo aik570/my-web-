@@ -21,6 +21,6 @@ function parse(file) {
 
 export default function () {
   const out = {};
-  for (const f of fs.readdirSync(DIR)) if (f.endsWith('.md')) out[path.basename(f, '.md')] = parse(path.join(DIR, f));
+  for (const f of fs.readdirSync(DIR)) if (f.endsWith('.md')) out[path.basename(f, '.md')] = { slug: path.basename(f, '.md'), ...parse(path.join(DIR, f)) };
   return out;
 }
