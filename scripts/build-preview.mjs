@@ -62,8 +62,9 @@ function rewriteJs(js, rel) {
   const dir = path.posix.dirname(rel);
   js = js.replace(/import\((['"])(\.{1,2}\/[^'"]+)\1\)/g, (m, q, spec) => `import(${q}${MAP[path.posix.join(dir, spec)] || spec}${q})`);
   js = js.replace(/from\s*(['"])(\.{1,2}\/[^'"]+)\1/g, (m, q, spec) => `from ${q}${MAP[path.posix.join(dir, spec)] || spec}${q}`);
-  // selector.js: link to the model offer page
-  js = js.replace(`href="/preise/' + b.slug + '/' + m.slug + '/#'`, `href="preise-' + b.slug + '-' + m.slug + '.html#'`);
+  // finder.js: links built in the script
+  js = js.replace(`'/preise/' + b.slug + '/' + m.slug + '/#' + r.key`, `'preise-' + b.slug + '-' + m.slug + '.html#' + r.key`);
+  js = js.replace(`<a href="/preise/">Preisliste</a>`, `<a href="preise.html">Preisliste</a>`);
   return js;
 }
 
@@ -72,7 +73,7 @@ for (const rel of pages) {
   let html = fs.readFileSync(path.join(SRC, rel), 'utf8');
   html = html.replace(/\s(href|src|action)="([^"]*)"/g, (m, a, u) => ` ${a}="${rewriteUrl(u)}"`);
   html = html.replace(/\ssrcset="([^"]*)"/g, (m, s) => ` srcset="${s.split(',').map((part) => { const [u, w] = part.trim().split(/\s+/); return rewriteUrl(u) + (w ? ' ' + w : ''); }).join(', ')}"`);
-  html = html.replace(/"catalogue":"\/preise\/katalog\.json"/, `"catalogue":"${assetRef('/preise/katalog.json', '')}"`);
+  html = html.replace(/"catalogue":"\/preise\/katalog\.json"/g, `"catalogue":"${assetRef('/preise/katalog.json', '')}"`);
   // price overview search builds model links in an inline script
   html = html.replace(`'/preise/' + m[1] + '/#' + m[3]`, `'preise-' + m[1] + '.html#' + m[3]`);
   html = html.replace(/<link rel="canonical"[^>]*>/, '');

@@ -32,7 +32,7 @@ bodyClass: is-home
         <p class="scene__lede">{{ h.hero.lede }}</p>
         <div class="actions">
           <a class="btn btn--primary" href="tel:{{ site.phone.dial }}">{{ h.hero.ctaPrimary }}</a>
-          <a class="btn btn--quiet" href="#preisrechner">{{ h.hero.ctaPrice }}</a>
+          <a class="btn btn--quiet" href="/reparatur-finden/">{{ h.hero.ctaPrice }}</a>
         </div>
 
         <div class="monitor" data-monitor>
@@ -60,7 +60,7 @@ bodyClass: is-home
         <p class="scene__title">{{ h.sceneDone.title | nbsp }}</p>
         <p class="scene__lede">{{ h.sceneDone.lede }}</p>
         <div class="actions">
-          <a class="btn btn--primary" href="#preisrechner">{{ h.hero.ctaPrice }}</a>
+          <a class="btn btn--primary" href="/reparatur-finden/">{{ h.hero.ctaPrice }}</a>
           <a class="btn btn--quiet" href="tel:{{ site.phone.dial }}">{{ h.hero.ctaPrimary }}</a>
         </div>
       </div>
@@ -84,9 +84,19 @@ bodyClass: is-home
           <h2 id="preisrechner-h">{{ h.selector.title }}</h2>
           <p class="head__lede">{{ h.selector.lede }}</p>
         </div>
-        <a class="link-arrow" href="/preise/">Komplette Preisliste</a>
+        
       </div>
-      {% include "partials/selector.njk" %}
+      <div class="entry">
+        <a class="entry__main" href="/reparatur-finden/">
+          <span class="entry__steps"><span class="field__no">1</span> Gerät <span class="field__no">2</span> Reparatur <span class="field__no">3</span> Preis</span>
+          <span class="entry__title">{{ h.selector.cta }}</span>
+          <span class="entry__meta">{{ prices.models.length }} Modelle · {{ prices.rows }} Preise</span>
+        </a>
+        <ul class="entry__brands" aria-label="Direkt zum Hersteller">
+          {%- for b in prices.brands %}<li><a href="/reparatur-finden/#{{ b.slug }}">{{ b.brand }}</a></li>{% endfor %}
+          <li><a class="entry__all" href="/preise/">Komplette Preisliste</a></li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -281,6 +291,5 @@ bodyClass: is-home
 {% endblock %}
 
 {% block scripts %}
-<script src="/assets/js/selector.js" defer></script>
 <script src="/assets/js/contact.js" defer></script>
 {% endblock %}

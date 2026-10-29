@@ -1,0 +1,140 @@
+---
+permalink: /reparatur-finden/
+bodyClass: is-finder
+seo:
+  title: Reparatur finden – Preisrechner | Handy Chirurg Potsdam
+  description: In drei Schritten zum Reparaturpreis für 493 Geräte von Apple, Samsung, Huawei, Xiaomi, Google, Sony und OnePlus. Handy Chirurg, Dortustraße 23, Potsdam.
+---
+{% extends "base.njk" %}
+
+{% block main %}
+<section class="sec sec--mint finder-head">
+  <div class="wrap">
+    <p class="kicker"><span class="kicker__cross" aria-hidden="true"></span>Preisrechner</p>
+    <h1 class="page-title">Reparatur finden</h1>
+    <p class="head__lede">Gerät wählen, Reparatur wählen, Preis sehen. Ohne Termin in der Dortustraße 23.</p>
+    {%- include "partials/price-notice.njk" %}
+  </div>
+</section>
+
+<section class="finder" id="finder" data-finder aria-label="Preisrechner">
+  <nav class="finder__progress" aria-label="Schritte">
+    <ol class="wrap">
+      <li><button type="button" data-goto="1" aria-current="step"><span class="field__no">1</span><span>Gerät</span><small data-progress="1">noch offen</small></button></li>
+      <li><button type="button" data-goto="2" disabled><span class="field__no">2</span><span>Reparatur</span><small data-progress="2">noch offen</small></button></li>
+      <li><button type="button" data-goto="3" disabled><span class="field__no">3</span><span>Ergebnis</span><small data-progress="3">&nbsp;</small></button></li>
+    </ol>
+  </nav>
+
+  <div class="wrap finder__grid">
+    <div class="finder__main">
+      <p class="finder__status" id="f-status" role="status" aria-live="polite"></p>
+
+      {#- STEP 1: device -#}
+      <div class="fstep" id="f-step1" data-step="1">
+        <h2 class="fstep__h" tabindex="-1">Welches Gerät soll repariert werden?</h2>
+        <div class="fsearch" role="search">
+          <label for="f-search">Modell suchen</label>
+          <input id="f-search" type="search" autocomplete="off" inputmode="search" placeholder="z. B. iPhone 13 oder Galaxy S23"
+            role="combobox" aria-expanded="false" aria-controls="f-hits" aria-autocomplete="list">
+          <ul class="fsearch__hits" id="f-hits" role="listbox" aria-label="Suchergebnisse" hidden></ul>
+        </div>
+
+        <p class="fstep__sub">oder Hersteller wählen</p>
+        <ul class="fbrands">
+          {%- for b in prices.brands %}
+          <li><button type="button" class="fbrand" data-brand="{{ b.slug }}" aria-pressed="false">
+            <span class="fbrand__name">{{ b.brand }}</span>
+            <span class="fbrand__meta">{{ b.models.length }} Modelle</span>
+          </button></li>
+          {%- endfor %}
+        </ul>
+
+        <div class="fmodels" id="f-models" hidden>
+          <div class="fmodels__tools">
+            <div class="chips" id="f-cats" role="group" aria-label="Gerätetyp"></div>
+            <label class="sr" for="f-filter">Modelle filtern</label>
+            <input id="f-filter" type="search" autocomplete="off" placeholder="Modelle filtern">
+          </div>
+          <ul class="fmodels__list" id="f-model-list"></ul>
+          <p class="fempty" id="f-models-none" hidden>Kein passendes Modell. Ihr Gerät fehlt? Rufen Sie an: <a href="tel:{{ site.phone.dial }}">{{ site.phone.display }}</a>.</p>
+        </div>
+      </div>
+
+      {#- STEP 2: repair -#}
+      <div class="fstep" id="f-step2" data-step="2" hidden>
+        <h2 class="fstep__h" tabindex="-1"><span id="f-model-name"></span>: Was ist kaputt?</h2>
+        <button type="button" class="fback" data-goto="1">Anderes Gerät wählen</button>
+        <ul class="frepairs" id="f-repairs"></ul>
+        <p class="fempty" id="f-repairs-none" hidden>Für dieses Modell ist noch kein Preis hinterlegt. Rufen Sie an, wir nennen Ihnen den Preis: <a href="tel:{{ site.phone.dial }}">{{ site.phone.display }}</a>.</p>
+        <p class="selector__hint">Ihre Reparatur ist nicht dabei? Rufen Sie an: <a href="tel:{{ site.phone.dial }}">{{ site.phone.display }}</a>.</p>
+      </div>
+
+      {#- STEP 3: result -#}
+      <div class="fstep" id="f-step3" data-step="3" hidden>
+        <h2 class="fstep__h" tabindex="-1">Ihr Reparaturangebot</h2>
+        <div class="fback-row">
+          <button type="button" class="fback" data-goto="2">Andere Reparatur</button>
+          <button type="button" class="fback" data-goto="1">Anderes Gerät</button>
+        </div>
+        <div class="fresult">
+          <dl class="fresult__facts">
+            <div><dt>Gerät</dt><dd id="r-device"></dd></div>
+            <div><dt>Reparatur</dt><dd id="r-repair"></dd></div>
+          </dl>
+          <fieldset class="fresult__quality" id="r-quality" hidden>
+            <legend>Ersatzteil</legend>
+            <div class="segmented" id="r-quality-options"></div>
+          </fieldset>
+          <fieldset class="fresult__extras" id="r-extras" hidden>
+            <legend>Zubehör dazu <small>(optional)</small></legend>
+            <ul class="extras" id="r-extras-list"></ul>
+          </fieldset>
+          <div class="fresult__price">
+            <span>Preis</span>
+            <strong id="r-total">–</strong>
+          </div>
+          <p class="selector__hint" id="r-facts" hidden></p>
+          <p class="selector__hint" id="r-request" hidden>Für diese Auswahl gibt es keinen festen Preis. Fragen Sie an, wir nennen ihn nach kurzer Prüfung.</p>
+          <div class="actions">
+            <a class="btn btn--primary" href="tel:{{ site.phone.dial }}">Jetzt anrufen: {{ site.phone.display }}</a>
+            <a class="btn btn--quiet" id="r-mail" href="mailto:{{ site.email }}">Per E-Mail anfragen</a>
+            {%- if site.whatsapp %}<a class="btn btn--quiet" id="r-wa" target="_blank" rel="noopener" href="https://wa.me/{{ site.whatsapp | replace('+', '') }}">WhatsApp</a>{% endif %}
+          </div>
+          <p class="selector__hint">{% if pricesMeta.vatNote %}{{ pricesMeta.vatNote }} · {% endif %}Den Preis bestätigen wir Ihnen vor der Reparatur. Fehleranalyse ab {{ site.diagnosisFee.amount | euro }}, wird bei einer Reparatur verrechnet.</p>
+          <a class="link-arrow" id="r-offer" href="/preise/">Alle Preise für dieses Modell</a>
+        </div>
+      </div>
+    </div>
+
+    {#- Device visual: shows the chosen device type and highlights the part concerned -#}
+    <aside class="fdevice" aria-hidden="true">
+      <svg class="fdevice__svg" viewBox="0 0 220 300" data-cat="Smartphone">
+        <g class="dv dv--phone">
+          <rect class="dv__body" x="60" y="20" width="100" height="200" rx="16"/>
+          <rect class="part part--display part--panzerglas" x="67" y="34" width="86" height="172" rx="8"/>
+          <rect class="part part--akku" x="80" y="70" width="60" height="96" rx="6"/>
+          <circle class="part part--frontkamera" cx="110" cy="28" r="3"/>
+          <rect class="part part--lautsprecher" x="96" y="25" width="10" height="3" rx="1.5"/>
+          <rect class="part part--ladebuchse" x="98" y="216" width="24" height="6" rx="3"/>
+          <rect class="part part--hauptkamera" x="132" y="40" width="20" height="30" rx="6"/>
+          <path class="part part--wifi-bluetooth" d="M90 56 q20 -16 40 0 M96 62 q14 -10 28 0 M103 68 q7 -5 14 0"/>
+          <path class="part part--wasserschaden" d="M110 96 c10 14 16 22 16 30 a16 16 0 0 1 -32 0 c0 -8 6 -16 16 -30z"/>
+          <rect class="part part--backcover" x="60" y="20" width="100" height="200" rx="16"/>
+          <path class="part part--fehleranalyse" d="M104 112 a14 14 0 1 0 0.1 0 M114 122 l14 14"/>
+        </g>
+        <g class="dv dv--tablet"><rect class="dv__body" x="30" y="30" width="160" height="220" rx="14"/><rect class="dv__screen" x="40" y="42" width="140" height="196" rx="6"/></g>
+        <g class="dv dv--watch"><rect class="dv__body" x="70" y="80" width="80" height="96" rx="22"/><rect class="dv__screen" x="80" y="92" width="60" height="72" rx="14"/><path class="dv__strap" d="M84 80 L90 30 H130 L136 80 M84 176 L90 226 H130 L136 176"/></g>
+        <g class="dv dv--laptop"><rect class="dv__body" x="40" y="70" width="140" height="96" rx="6"/><rect class="dv__screen" x="50" y="80" width="120" height="78" rx="3"/><path class="dv__base" d="M22 176 H198 L188 188 H32 Z"/></g>
+      </svg>
+      <p class="fdevice__name" id="f-device-name">Kein Gerät gewählt</p>
+      <p class="fdevice__part" id="f-device-part"></p>
+    </aside>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script type="application/json" id="finder-data">{{ { types: prices.types, phone: site.phone, email: site.email, whatsapp: site.whatsapp, status: pricesMeta.status, isDemo: prices.isDemo, catalogue: '/preise/katalog.json' } | json | safe }}</script>
+<script src="/assets/js/finder.js" defer></script>
+{% endblock %}

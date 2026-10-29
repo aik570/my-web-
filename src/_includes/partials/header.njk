@@ -4,6 +4,7 @@
       <img src="/assets/img/logo.svg" alt="" width="574" height="365">
     </a>
     <nav class="nav__links" id="navLinks" aria-label="Hauptnavigation">
+      <a href="/reparatur-finden/"{% if page.url == '/reparatur-finden/' %} aria-current="page"{% endif %}>Preisrechner</a>
       <a href="/leistungen/"{% if page.url == '/leistungen/' %} aria-current="page"{% endif %}>Leistungen</a>
       <a href="/preise/"{% if page.url.startsWith('/preise/') %} aria-current="page"{% endif %}>Preise</a>
       <a href="/#ablauf">Ablauf</a>

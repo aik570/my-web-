@@ -41,7 +41,8 @@
   "selector": {
     "kicker": "Preisrechner",
     "title": "Was kostet Ihre Reparatur?",
-    "lede": "Hersteller, Modell und Reparatur wählen. Sie sehen sofort den Preis aus unserer aktuellen Preisliste."
+    "lede": "Hersteller, Modell und Reparatur wählen. Sie sehen sofort den Preis aus unserer Preisliste.",
+    "cta": "Preisrechner öffnen"
   },
   "services": {
     "kicker": "Fachbereiche",

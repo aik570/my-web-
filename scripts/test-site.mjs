@@ -31,7 +31,7 @@ let failed = 0;
 const ok = (cond, msg) => { console.log(`${cond ? '  ✓' : '  ✗'} ${msg}`); if (!cond) failed++; };
 
 const browser = await chromium.launch({ args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
-const PAGES = ['/', '/leistungen/', '/preise/', '/preise/samsung/', '/preise/apple/iphone-13/', '/franchise/', '/impressum/', '/datenschutz/', '/404.html'];
+const PAGES = ['/', '/reparatur-finden/', '/leistungen/', '/preise/', '/preise/samsung/', '/preise/apple/iphone-13/', '/franchise/', '/impressum/', '/datenschutz/', '/404.html'];
 const VIEWPORTS = [[390, 844, 'mobile'], [1440, 900, 'desktop']];
 
 for (const [w, h, label] of VIEWPORTS) {
@@ -89,55 +89,67 @@ console.log('\ncontent & seo');
   ok(!/404|admin|katalog/.test(sm), 'sitemap excludes 404, admin and data files');
 }
 
-// Price selector
-console.log('\nprice selector');
+// Preisrechner (/reparatur-finden/)
+console.log('\nPreisrechner');
 {
   const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
-  await page.goto(BASE + '/');
+  await page.goto(BASE + '/reparatur-finden/');
   const data = await page.evaluate(async () => {
-    const d = JSON.parse(document.getElementById('price-data').textContent);
+    const d = JSON.parse(document.getElementById('finder-data').textContent);
     return { ...d, ...(await (await fetch(d.catalogue)).json()) };
   });
-  ok(data.brands.length > 0, `catalogue loads from ${data.catalogue} (${data.brands.length} brands)`);
-  const b = data.brands[0]; const m = b.models[0];
-  await page.selectOption('#sel-brand', b.brand);
-  await page.waitForFunction(() => !document.getElementById('sel-model').disabled, null, { timeout: 5000 }).catch(() => {});
-  ok(await page.$eval('#sel-model', (s) => !s.disabled), 'model select enabled after brand');
-  const optCount = await page.$$eval('#sel-model option', (o) => o.length - 1);
-  ok(optCount === b.models.length, `model options = ${b.models.length} (got ${optCount})`);
-  await page.selectOption('#sel-model', m.name);
-  const rows = await page.$$eval('.repair', (r) => r.length);
-  ok(rows === m.repairs.length, `repairs shown = ${m.repairs.length} (got ${rows})`);
-  const priceTxt = await page.$eval('.repair__price', (e) => e.textContent);
-  const r0 = m.repairs[0];
-  ok(r0[2] === null ? /auf Anfrage/.test(priceTxt) : priceTxt.includes(String(r0[2]).replace('.', ',')), `first price matches data (${priceTxt.trim()})`);
-  if (m.repairs.length > 1) {
-    await page.click('.repair >> nth=1');
-    const cta = await page.$eval('#sel-cta', (e) => e.textContent);
-    const name1 = m.repairs[1][1] || data.types.find((t) => t.id === m.repairs[1][0]).label;
-    ok(cta.includes(name1), `CTA follows selected repair (${name1})`);
-  }
-  ok(/nicht dabei/.test(await page.$eval('.selector__model', (e) => e.textContent)), 'missing repair hint with call link');
-  const withFacts = data.types.filter((t) => t.duration || t.warranty).map((t) => t.id);
-  const ctaTxt = await page.$eval('#sel-cta', (e) => e.textContent);
-  ok(/Dauer:|Garantie:/.test(ctaTxt) === withFacts.includes(m.repairs[1] ? m.repairs[1][0] : r0[0]), 'duration/warranty shown only when set in the CMS');
-  const onReq = data.brands.flatMap((x) => x.models.map((y) => [x, y])).find(([, y]) => y.repairs.some((r) => r[2] === null));
-  if (onReq) {
-    await page.selectOption('#sel-brand', onReq[0].brand); await page.waitForTimeout(100);
-    await page.selectOption('#sel-model', onReq[1].name);
-    const i = onReq[1].repairs.findIndex((r) => r[2] === null);
-    await page.click(`.repair >> nth=${i}`);
-    ok(/keinen festen Preis/.test(await page.$eval('#sel-cta', (e) => e.textContent)), `no price → enquiry state (${onReq[1].name})`);
-    await page.selectOption('#sel-brand', b.brand); await page.waitForTimeout(100); await page.selectOption('#sel-model', m.name);
-  }
-  const tel = await page.$eval('#sel-cta a[href^="tel:"]', (a) => a.getAttribute('href'));
-  ok(tel === `tel:${data.phone.dial}`, 'CTA phone link');
-  const last = data.brands[data.brands.length - 1]; const lm = last.models[last.models.length - 1];
-  await page.fill('#sel-search', lm.name); await page.dispatchEvent('#sel-search', 'change');
-  ok((await page.$eval('#sel-brand', (s) => s.value)) === last.brand && (await page.$eval('#sel-model', (s) => s.value)) === lm.name, `search "${lm.name}" selects ${last.brand} ${lm.name}`);
-  await page.fill('#sel-search', 'xyz-gibt-es-nicht'); await page.dispatchEvent('#sel-search', 'change');
-  ok(/Kein Modell/.test(await page.$eval('#sel-result', (e) => e.textContent)), 'unknown search shows a call fallback');
+  await page.waitForSelector('#finder.is-ready', { timeout: 8000 }).catch(() => {});
+  ok(data.brands.length > 0 && await page.$eval('#finder', (f) => f.classList.contains('is-ready')), `catalogue loads (${data.brands.length} brands)`);
+  const apple = data.brands.find((x) => x.slug === 'apple');
+  await page.click('.fbrand[data-brand="apple"]');
+  ok((await page.$$eval('.fmodel', (e) => e.length)) === apple.models.length, `brand → ${apple.models.length} models`);
+  await page.click('#f-cats .chip[data-cat="Tablet"]');
+  const tablets = apple.models.filter((m) => m.category === 'Tablet').length;
+  ok((await page.$$eval('.fmodel', (e) => e.length)) === tablets, `device type filter → ${tablets} tablets`);
+  await page.click('#f-cats .chip[data-cat=""]');
+  await page.fill('#f-filter', 'iphone 13'); await page.waitForTimeout(50);
+  ok((await page.$$eval('.fmodel', (e) => e.length)) === apple.models.filter((m) => m.name.toLowerCase().includes('iphone 13')).length, 'model filter by text');
+  await page.click('.fmodel[data-model="iphone-13"]');
+  await page.waitForFunction(() => location.hash === '#apple--iphone-13' && !document.getElementById('f-step2').hidden);
+  const m13 = apple.models.find((m) => m.slug === 'iphone-13');
+  const services = [...new Set(m13.repairs.filter((r) => r[0] !== 'zubehoer').map((r) => r[0]))];
+  ok(page.url().endsWith('#apple--iphone-13') && (await page.$$eval('.frepair', (e) => e.length)) === services.length, `model → ${services.length} repair cards, address #apple--iphone-13`);
+  const akku = m13.repairs.find((r) => r[0] === 'akku');
+  ok((await page.$eval('.frepair[data-service="akku"] .frepair__price', (e) => e.textContent)).includes(String(akku[2])), `card price = data (Akku ${akku[2]} €)`);
+  await page.click('.frepair[data-service="display"]');
+  ok(!(await page.$eval('#f-step3', (e) => e.hidden)) && (await page.$$eval('#r-quality-options input', (e) => e.length)) === 2, 'result step with two part qualities (Standard / Original)');
+  const orig = m13.repairs.find((r) => r[1] === 'Display – Originalqualität')[2];
+  await page.click('#r-quality-options label >> nth=1');
+  ok((await page.$eval('#r-total', (e) => e.textContent)).includes(String(orig)), `quality switch → ${orig} €`);
+  const foil = m13.repairs.find((r) => r[0] === 'zubehoer' && r[1] === 'Schutzfolie')[2];
+  await page.click('#r-extras-list label >> nth=0');
+  ok((await page.$eval('#r-total', (e) => e.textContent)).includes(String(orig + foil)), `accessory added → ${orig + foil} €`);
+  ok((await page.$eval('#r-mail', (a) => decodeURIComponent(a.href))).includes('Schutzfolie'), 'e-mail enquiry contains the selection');
+  ok(await page.$eval('#r-offer', (a) => a.getAttribute('href') === '/preise/apple/iphone-13/#display-originalqualitaet'), 'link to the model page keeps the choice');
+  await page.goBack(); await page.waitForTimeout(150);
+  ok(!(await page.$eval('#f-step2', (e) => e.hidden)), 'browser back → step 2');
+  await page.goBack(); await page.waitForTimeout(150);
+  ok(!(await page.$eval('#f-step1', (e) => e.hidden)) && await page.$eval('.fbrand[data-brand="apple"]', (b) => b.getAttribute('aria-pressed') === 'true'), 'browser back → step 1, brand kept');
+  // deep links, enquiry state, invalid links
+  await page.goto(BASE + '/reparatur-finden/#samsung--galaxy-s23--hauptkamera'); await page.waitForSelector('#finder.is-ready');
+  ok(/auf Anfrage/.test(await page.$eval('#r-total', (e) => e.textContent)) && !(await page.$eval('#r-request', (e) => e.hidden)), 'deep link to a repair without price → "Preis auf Anfrage" + enquiry text');
+  await page.goto(BASE + '/reparatur-finden/#apple--gibt-es-nicht'); await page.waitForSelector('#finder.is-ready');
+  ok(/nicht in der Preisliste/.test(await page.$eval('#f-status', (e) => e.textContent)) && !(await page.$eval('#f-step1', (e) => e.hidden)), 'unknown model → message, back at step 1');
+  // search with keyboard
+  await page.goto(BASE + '/reparatur-finden/'); await page.waitForSelector('#finder.is-ready');
+  await page.fill('#f-search', 'pixel 8'); await page.keyboard.press('ArrowDown'); await page.keyboard.press('Enter'); await page.waitForTimeout(150);
+  ok(page.url().endsWith('#google--pixel-8'), `search "pixel 8" + ↓ + Enter → ${decodeURIComponent(page.url().split('#')[1] || '')}`);
+  await page.goto(BASE + '/reparatur-finden/'); await page.waitForSelector('#finder.is-ready');
+  await page.fill('#f-search', 'xyz-gibt-es-nicht'); await page.waitForTimeout(50);
+  ok(/Kein Modell gefunden/.test(await page.$eval('#f-hits', (e) => e.textContent)), 'search without result → message with phone');
+  ok((await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)) <= 0, 'no horizontal overflow at 390 px');
   await page.close();
+  // failed catalogue
+  const fail = await browser.newPage();
+  await fail.route('**/katalog.json', (r) => r.abort());
+  await fail.goto(BASE + '/reparatur-finden/'); await fail.waitForTimeout(600);
+  ok(/nicht geladen/.test(await fail.$eval('#f-status', (e) => e.textContent)) && await fail.$('#f-status a[href^="tel:"]') !== null, 'catalogue fails → message with phone link');
+  await fail.close();
 }
 
 // Price list filter

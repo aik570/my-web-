@@ -18,6 +18,7 @@ eleventyComputed:
     <p class="kicker"><span class="kicker__cross" aria-hidden="true"></span><a href="/preise/">Preisliste</a></p>
     <h1 class="page-title">{{ brand.brand }}</h1>
     <p class="head__lede">{{ brand.models.length }} Modelle. Den endgültigen Preis bestätigen wir Ihnen vor jeder Reparatur.</p>
+    <p class="head__cta"><a class="btn btn--primary" href="/reparatur-finden/#{{ brand.slug }}">{{ brand.brand }} im Preisrechner</a></p>
     <nav class="brandnav" aria-label="Andere Hersteller">
       {%- for b in prices.brands %}<a href="/preise/{{ b.slug }}/"{% if b.slug == brand.slug %} aria-current="page"{% endif %}>{{ b.brand }}</a>{% endfor %}
     </nav>

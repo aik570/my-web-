@@ -72,6 +72,16 @@ const ids = (rel) => {
 };
 // Hashes handled by scripts instead of element ids (repair types, option keys)
 const typeIds = new Set(JSON.parse(fs.readFileSync('src/_data/repairTypes.json', 'utf8')).items.map((t) => t.id));
+// Preisrechner routes (#brand--model--key) are resolved by finder.js against the catalogue
+const slugKey = (s) => String(s).toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue').replace(/ß/g, 'ss').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const finderRoutes = new Set();
+for (const b of JSON.parse(fs.readFileSync(path.join(ROOT, 'preise/katalog.json'), 'utf8')).brands) {
+  finderRoutes.add(b.slug);
+  for (const m of b.models) {
+    finderRoutes.add(`${b.slug}--${m.slug}`);
+    for (const r of m.repairs) finderRoutes.add(`${b.slug}--${m.slug}--${r[1] ? slugKey(r[1]) : r[0]}`);
+  }
+}
 const stat = { pages: htmlFiles.length, links: 0, internal: 0, tel: 0, mailto: 0, external: 0, bad: [] };
 for (const f of htmlFiles) {
   const rel = '/' + path.relative(ROOT, f).replace(/index\.html$/, '');
@@ -87,6 +97,7 @@ for (const f of htmlFiles) {
     const target = p === '' ? rel : p;
     const set = ids(target);
     if (!set) { stat.bad.push(`${rel} → ${href} (page missing)`); continue; }
+    if (hash && target === '/reparatur-finden/' && !set.has(hash)) { if (!finderRoutes.has(hash)) stat.bad.push(`${rel} → ${href} (no such Preisrechner route)`); continue; }
     if (hash && !set.has(hash) && !typeIds.has(hash) && !/^[a-z0-9-]+$/.test(hash)) stat.bad.push(`${rel} → ${href} (anchor missing)`);
     if (hash && !set.has(hash) && !typeIds.has(hash) && /^[a-z0-9-]+$/.test(hash)) {
       // option keys on model pages (#display-originalqualitaet) must exist as data-key
@@ -127,7 +138,7 @@ ok(oldBad.length === 0, `all ${snap.models.length} old model URLs (/modell/…) 
 
 // ---------------------------------------------------------------- browser inventory + behaviour
 const PAGES = [
-  ['HOME', '/'], ['LEISTUNGEN', '/leistungen/'], ['PREISE', '/preise/'], ['BRAND', '/preise/apple/'],
+  ['HOME', '/'], ['FINDER', '/reparatur-finden/'], ['LEISTUNGEN', '/leistungen/'], ['PREISE', '/preise/'], ['BRAND', '/preise/apple/'],
   ['MODEL', '/preise/apple/iphone-13/'], ['MODEL-REQUEST', '/preise/samsung/galaxy-s23/'], ['FRANCHISE', '/franchise/'],
   ['IMPRESSUM', '/impressum/'], ['DATENSCHUTZ', '/datenschutz/'], ['404', '/gibt-es-nicht']
 ];
@@ -245,6 +256,16 @@ async function exercise(page, el, url, isMobile) {
         await page.locator('[role="tab"]').first().click();
         return [sel === 'true' && !hidden ? 'pass' : 'fail', 'shows ' + panel];
       }
+      if (await loc.evaluate((b) => !!b.closest('[data-finder]'))) {
+        // Preisrechner controls: each one must change the step, the address or its pressed state
+        if (await loc.isDisabled()) return ['pass', 'disabled until the earlier step is chosen'];
+        const before = await page.evaluate(() => location.hash + '|' + document.getElementById('finder').getAttribute('data-step'));
+        const pressed = await loc.getAttribute('aria-pressed');
+        await loc.click(); await page.waitForTimeout(250);
+        const after = await page.evaluate(() => location.hash + '|' + document.getElementById('finder').getAttribute('data-step'));
+        const changed = after !== before || (await loc.getAttribute('aria-pressed')) !== pressed;
+        return [changed ? 'pass' : (/data-goto/.test(await loc.evaluate((b) => b.outerHTML)) ? 'pass' : 'fail'), `${before.split('|')[0] || '#'} → ${after.split('|')[0] || '#'} (step ${after.split('|')[1]})`];
+      }
       if (await loc.evaluate((b) => b.classList.contains('chip'))) {
         await loc.click(); const pressed = await loc.getAttribute('aria-pressed');
         const t = await loc.getAttribute('data-type');
@@ -275,14 +296,16 @@ async function exercise(page, el, url, isMobile) {
       return [models > 0 ? 'pass' : 'fail', `${opts.length} brands; "${opts[0]}" → ${models} models`];
     }
     if (el.kind === 'input:search') {
-      await loc.fill('galaxy s23'); await loc.dispatchEvent('change'); await page.waitForTimeout(400);
+      // brand pages search their own models; site-wide searches look for a Samsung model
+      const query = (await page.$eval('[data-model] summary span', (e) => e.textContent).catch(() => null)) || 'galaxy s23';
+      await loc.fill(query); await loc.dispatchEvent('change'); await loc.dispatchEvent('input'); await page.waitForTimeout(400);
       const res = await page.evaluate(() => {
-        const hits = document.querySelectorAll('#pl-hits a').length;
+        const hits = document.querySelectorAll('#pl-hits a, #f-hits li[role="option"]').length;
         const sel = document.getElementById('sel-model'); const shown = document.querySelectorAll('[data-model]:not([hidden])').length;
         return { hits, sel: sel && sel.value, shown };
       });
       await loc.fill(''); await loc.dispatchEvent('input');
-      const pass = res.hits > 0 || res.sel === 'Galaxy S23' || res.shown >= 0;
+      const pass = res.hits > 0 || res.shown > 0;
       return [pass ? 'pass' : 'fail', res.hits ? `${res.hits} results` : res.sel ? `selects ${res.sel}` : `${res.shown} models shown`];
     }
     if (el.kind === 'input:radio') {
