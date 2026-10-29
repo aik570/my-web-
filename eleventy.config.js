@@ -2,6 +2,12 @@ import fs from 'node:fs';
 import markdownIt from 'markdown-it';
 
 const md = markdownIt({ html: false, linkify: true, typographer: true, breaks: true });
+// External links in legal texts open in a new tab without passing the opener
+const defaultLinkOpen = md.renderer.rules.link_open || ((t, i, o, e, self) => self.renderToken(t, i, o));
+md.renderer.rules.link_open = (tokens, idx, options, env, self) => {
+  if (/^https?:/.test(tokens[idx].attrGet('href') || '')) { tokens[idx].attrSet('target', '_blank'); tokens[idx].attrSet('rel', 'noopener'); }
+  return defaultLinkOpen(tokens, idx, options, env, self);
+};
 
 // Text the client still has to confirm is written as [[KLÄREN: …]] in content
 // files. It renders as a visible marker, and `npm run check` blocks launch.
