@@ -967,3 +967,5 @@ mark.todo { background: #fff1c2; color: #6b4b00; padding: .1rem .35rem; border-r
 .offer__sum { min-width: 0; }
 .offer__lines dt { min-width: 0; overflow-wrap: anywhere; }
 @media (max-width: 360px) { .offer__bar > span:first-child { display: none; } }
+/* no WebGL on phones: the hero text sits in normal flow, inset by margins instead of `left` */
+@media (max-width: 760px), (max-aspect-ratio: 3/4) { .no-webgl .scene--hero { left: auto; right: auto; margin-inline: var(--gutter); } }

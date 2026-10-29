@@ -207,6 +207,13 @@ console.log('\n3D scene');
   await nogl.waitForFunction(() => document.documentElement.classList.contains('no-webgl'), null, { timeout: 8000 }).catch(() => {});
   await nogl.waitForTimeout(300);
   const fb = await nogl.evaluate(() => [document.documentElement.classList.contains('no-webgl'), getComputedStyle(document.querySelector('.story__poster')).display !== 'none', document.getElementById('story').offsetHeight < innerHeight * 1.5]);
+  const nm = await browser.newPage({ viewport: { width: 390, height: 844 } });
+  await nm.route('**/vendor/three.module.min.js', (r) => r.abort());
+  await nm.goto(BASE + '/'); await nm.mouse.wheel(0, 40);
+  await nm.waitForFunction(() => document.documentElement.classList.contains('no-webgl'), null, { timeout: 8000 }).catch(() => {});
+  const cut = await nm.evaluate(() => [...document.querySelectorAll('.scene--hero *')].filter((e) => { const r = e.getBoundingClientRect(); return r.width && r.right > innerWidth + 1; }).length);
+  ok(cut === 0, `no WebGL on a phone: hero text and buttons fit the screen (${cut} cut off)`);
+  await nm.close();
   ok(fb.every(Boolean), `no WebGL: fallback poster shown and story collapsed ${JSON.stringify(fb)}`);
   await nogl.close();
 }
