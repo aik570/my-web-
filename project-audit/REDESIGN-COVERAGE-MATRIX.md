@@ -98,12 +98,12 @@ No linked PDFs or other documents exist on the original site. External destinati
 | ID | Original | New | Functional | Visual | Notes |
 |---|---|---|---|---|---|
 | FRANCHISE-01 | Hero + "Jetzt Kontakt aufnehmen" (mailto) | Hero + button (mailto potsdam@handy-chirurg.de) | ✓ | ✓ | — |
-| FRANCHISE-02 | "Unsere Stores – Modern & Einladend" (2 interior photos) | Same 2 photos | ✓ | ✓ | — |
+| FRANCHISE-02 | "Unsere Stores – Modern & Einladend" (2 interior photos) | Same 2 photos from the 2000 px originals (1000/1600 px), click to enlarge | ✓ | ✓ | "AI content" label cropped from the reception photo |
 | FRANCHISE-03 | "Ihre Vorteile als Franchise-Partner" (text + 6 points) | Concept text + "Was Sie bekommen" (6) | ✓ | ✓ | Original text restored (an earlier invented sentence removed) |
 | FRANCHISE-04 | 4 tiles: Wachstumsmarkt, Starke Community, Know-how, Gebietsschutz | 4 highlights | ✓ | ✓ | — |
 | FRANCHISE-05 | "Was wir von Ihnen erwarten" (4) | "Was Sie mitbringen" (4) | ✓ | ✓ | — |
 | FRANCHISE-06 | "Interessiert? Kontaktieren Sie uns!" + e-mail, phone | Same text + e-mail and phone buttons | ✓ | ✓ | — |
-| FRANCHISE-07 | Mascot image | — | ✗ | n/a | Mascot rights unknown; not part of the visual system |
+| FRANCHISE-07 | Mascot image | Mascot in the hero (taken from the original franchise page, 29.10.) | ✓ | ✓ | Client sent the original page as reference; rights assumed with the owner — confirm (CLIENT-APPROVAL) |
 
 ## 8. Legal pages
 
@@ -118,9 +118,9 @@ No linked PDFs or other documents exist on the original site. External destinati
 |---|---|
 | Original routes | 21 router patterns in the bundle; 18 inspected with 18 URLs (all except the staff tools `/admin`, `/auth`, `/csv-import`) |
 | Rows in sections 2–8 | 50 (46 original sections/elements + 4 new-only rows) |
-| Functional ✓ | 30 |
+| Functional ✓ | 31 |
 | Functional ◐ (documented difference) | 12 |
-| Not carried over ✗ | 3 (MODEL-08 unconfirmed guarantee claims, MODEL-12 product images, FRANCHISE-07 mascot) |
+| Not carried over ✗ | 2 (MODEL-08 unconfirmed guarantee claims, MODEL-12 product images) |
 | n/a | 1 (MODEL-11 "Häufige Probleme": empty in the source data) |
 | New on the redesign | 4 (NAV-07 opening state, BRAND-04 overview search, MODEL-13 enquiry actions, SERVICES-05 benefits placement) |
 | Original photos reused | 3 (shop exterior, reception, counter) |

@@ -2,7 +2,22 @@
 
 Updated: 29.10.2026, Potsdam logo + dedicated Preisrechner · Branch `claude/zealous-bohr-71wesv`
 
-## S. Potsdam logo and dedicated Preisrechner (29.10.2026, latest)
+## T. Franchise page (29.10.2026, latest)
+
+**Preview:** https://claude.ai/artifact/MKnvHQdRfoKvSRqyntbA2E (version 17) → "Franchise" in the footer.
+
+| Item | Result |
+|---|---|
+| Structure | As the original page (client screenshots 29.10.): hero with mascot and "Jetzt Kontakt aufnehmen" → "Unsere Stores – Modern & Einladend" → "Ihre Vorteile als Franchise-Partner" (text, 6 points, 4 tiles) → "Was wir von Ihnen erwarten" (4 numbered cards over the original background illustration) → "Interessiert? Kontaktieren Sie uns!" with e-mail and phone |
+| Images | Store photos from the 2000 px originals (1000 + 1600 px, WebP/JPEG, click opens the large photo in a dialog); mascot and background downloaded from the original franchise page. The reception photo carried a visible "Вміст, згенерований ШІ" (AI-generated content) label bottom left — cropped |
+| Motion | Scroll reveal with stagger, gentle mascot float, photo hover zoom, tile lift; all off with reduced motion |
+| CMS | All texts editable; new fields benefitsTitle, requirementsTitle, requirementsText |
+| Tests | `npm test` 149 pass; interaction test FRANCHISE 34 elements, 0 failures (zoom links checked as dialog); static links 18 767, 0 broken; preview bundle checked locally, 0 errors |
+| Open | Phone number on the franchise page (0331 29080953 on the old site vs 0163 228 8224 now); confirm mascot rights; the reception photo is marked as AI-edited — a plain photo would be better |
+
+---
+
+## S. Potsdam logo and dedicated Preisrechner (29.10.2026)
 
 **Preview (for review):** https://claude.ai/artifact/MKnvHQdRfoKvSRqyntbA2E (version 14, with the client logo) — private until shared via its Share menu. Open the link; the start page is the home page, every other page is reached through the normal navigation (flat file names, e.g. `reparatur-finden.html`, `preise-apple-iphone-13.html`). Rebuilt with `npm run preview:bundle` from the current branch. The identical bundle was checked **locally** from a deep sub-path with the uploaded asset copies (0 failed requests, 0 script errors, 3D starts, home → calculator → model page, search). Read back from the artifact after publishing: published pages are byte-identical in content to the local bundle. **Not visually inspected inside the claude.ai viewer** (it cannot be opened from this environment).
 
