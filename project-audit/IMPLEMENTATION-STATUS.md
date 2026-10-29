@@ -33,7 +33,7 @@ Updated: 29.10.2026, Potsdam logo + dedicated Preisrechner · Branch `claude/zea
 | `npm test` (includes the new calculator tests: brand → models, category filter, search + keyboard, repair → result, quality switch, accessories, mailto, offer link, back/forward, deep link "auf Anfrage", unknown model, failed catalogue, no overflow) | 149 checks, all pass |
 | Production build | OK; no test data |
 | `npm run check` | 5 blockers (unchanged, all need the owner), 3 warnings |
-| Interaction test (`npm run test:interactions -- --write`) | INTERACTION_RESULT |
+| Interaction test (`npm run test:interactions -- --write`) | 718 elements on 11 representative pages (incl. `/reparatur-finden/`), desktop + mobile: 707 passed, 0 failed, 11 only present in a later state (covered by `test-site.mjs`); 18 764 links on 508 pages, 0 broken (calculator deep links validated against the catalogue); 12/12 redirect samples, 493/493 old model URLs |
 | Physical devices | **Not tested** — `DEVICE-QA-CHECKLIST.md` |
 
 ### Known issues / open
