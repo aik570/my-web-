@@ -18,5 +18,7 @@ export default function () {
     throw new Error(`Preisliste ungültig (${errors.length} Fehler):\n- ${errors.join('\n- ')}`);
   }
   if (isDemo) console.warn('[prices] Keine offizielle Preisliste – Entwicklungsdaten werden angezeigt (nur Vorschau).');
-  return { brands, types, rows: countRows(brands), isDemo };
+  // One entry per model for the model offer pages (/preise/<marke>/<modell>/).
+  const models = brands.flatMap((b) => b.models.map((m) => ({ ...m, brand: b.brand, brandSlug: b.slug })));
+  return { brands, models, types, rows: countRows(brands), isDemo };
 }

@@ -1,0 +1,105 @@
+---
+pagination:
+  data: prices.models
+  size: 1
+  alias: m
+  addAllPagesToCollections: true
+permalink: "/preise/{{ m.brandSlug }}/{{ m.slug }}/"
+eleventyComputed:
+  seo:
+    title: "{{ m.name }} Reparatur in Potsdam – Preise | Handy Chirurg"
+    description: "{{ m.brand }} {{ m.name }}: Reparaturpreise für Display, Akku, Ladebuchse, Kamera und mehr. Handy Chirurg, Dortustraße 23, Potsdam, ohne Termin."
+---
+{% extends "base.njk" %}
+{%- set repairs = m.repairs | repairsOnly %}
+{%- set extras = m.repairs | extrasOnly %}
+
+{% block main %}
+<section class="sec sec--white page-head offer-head">
+  <div class="wrap">
+    <p class="kicker"><span class="kicker__cross" aria-hidden="true"></span><a href="/preise/">Preisliste</a> / <a href="/preise/{{ m.brandSlug }}/">{{ m.brand }}</a></p>
+    <h1 class="page-title">{{ m.name }}</h1>
+    <p class="head__lede">Reparatur wählen{% if extras.length %}, Zubehör dazu{% endif %} – den Preis sehen Sie sofort. Ohne Termin in der Dortustraße 23.</p>
+    {%- include "partials/price-notice.njk" %}
+  </div>
+</section>
+
+<section class="sec sec--white offer" aria-label="Reparaturangebot {{ m.brand }} {{ m.name }}">
+  <div class="wrap offer__grid">
+    <form class="offer__form" id="offer" data-offer data-model="{{ m.brand }} {{ m.name }}" onsubmit="return false">
+      <fieldset class="offer__block">
+        <legend class="offer__legend"><span class="field__no">1</span>Reparatur wählen</legend>
+        {%- if repairs.length %}
+        <ul class="repairs">
+          {%- for r in repairs %}
+          <li><label class="repair">
+            <input type="radio" name="repair" value="{{ loop.index0 }}" data-type="{{ r.service }}" data-key="{{ (r.label | slugify) if r.label else r.service }}" data-label="{{ r | repairName(prices.types) }}" data-price="{{ '' if r.onRequest else r.price }}" data-from="{{ 1 if r.from else '' }}"{% if loop.first %} checked{% endif %}>
+            <span class="repair__name">{{ r | repairName(prices.types) }}{% if r.note %}<small>{{ r.note }}</small>{% endif %}</span>
+            <span class="repair__price{% if r.onRequest %} is-request{% endif %}">{% if r.onRequest %}auf Anfrage{% else %}{% if r.from %}ab {% endif %}{{ r.price | euro }}{% endif %}</span>
+          </label></li>
+          {%- endfor %}
+        </ul>
+        {%- else %}
+        <p class="selector__empty">Für dieses Modell ist noch kein Preis hinterlegt. Rufen Sie an: <a href="tel:{{ site.phone.dial }}">{{ site.phone.display }}</a>.</p>
+        {%- endif %}
+      </fieldset>
+
+      {%- if extras.length %}
+      <fieldset class="offer__block">
+        <legend class="offer__legend"><span class="field__no">2</span>Zubehör dazu <small>(optional)</small></legend>
+        <ul class="extras">
+          {%- for x in extras %}
+          <li><label class="extra">
+            <input type="checkbox" name="extra" value="{{ loop.index0 }}" data-label="{{ x.label }}" data-price="{{ '' if x.onRequest else x.price }}">
+            <span class="extra__box" aria-hidden="true"></span>
+            <span class="repair__name">{{ x.label }}{% if x.note %}<small>{{ x.note }}</small>{% endif %}</span>
+            <span class="extra__price">{% if x.onRequest %}auf Anfrage{% else %}{{ x.price | euro }}{% endif %}</span>
+          </label></li>
+          {%- endfor %}
+        </ul>
+      </fieldset>
+      {%- endif %}
+    </form>
+
+    <a class="offer__bar" href="#sum-h" id="sum-bar"><span>Gesamtpreis</span><strong id="sum-bar-total">–</strong><span class="offer__bar-go">Angebot <span aria-hidden="true">↓</span></span></a>
+    <aside class="offer__sum" aria-labelledby="sum-h">
+      <h2 class="offer__sum-h" id="sum-h">Ihr Reparaturangebot</h2>
+      <dl class="offer__lines" aria-live="polite">
+        <div><dt id="sum-repair-label">Reparatur</dt><dd id="sum-repair">–</dd></div>
+        {%- if extras.length %}<div><dt>Zubehör</dt><dd id="sum-extras">0 €</dd></div>{% endif %}
+        <div class="offer__total"><dt>Gesamtpreis</dt><dd id="sum-total">–</dd></div>
+      </dl>
+      <p class="selector__hint" id="sum-facts" hidden></p>
+      <p class="selector__hint" id="sum-request" hidden>Für diese Auswahl gibt es keinen festen Preis. Fragen Sie an, wir nennen ihn nach kurzer Prüfung.</p>
+      <div class="actions offer__actions">
+        <a class="btn btn--primary" href="tel:{{ site.phone.dial }}">Jetzt anrufen</a>
+        <a class="btn btn--quiet" id="sum-mail" href="mailto:{{ site.email }}?subject={{ ('Reparaturanfrage: ' ~ m.brand ~ ' ' ~ m.name) | urlencode }}">Per E-Mail anfragen</a>
+        {%- if site.whatsapp %}<a class="btn btn--quiet" id="sum-wa" target="_blank" rel="noopener" href="https://wa.me/{{ site.whatsapp | replace('+', '') }}">WhatsApp</a>{% endif %}
+      </div>
+      <p class="selector__hint">{% if pricesMeta.vatNote %}{{ pricesMeta.vatNote }} · {% endif %}Den Preis bestätigen wir Ihnen vor der Reparatur. Fehleranalyse ab {{ site.diagnosisFee.amount | euro }}, wird bei einer Reparatur verrechnet.</p>
+    </aside>
+  </div>
+</section>
+
+<section class="sec sec--mint offer-visit" aria-labelledby="visit-h">
+  <div class="wrap offer-visit__grid">
+    <div>
+      <h2 id="visit-h">Besuchen Sie uns in Potsdam</h2>
+      <p class="head__lede">{{ leistungen.visit.text }}</p>
+    </div>
+    <div class="offer-visit__info">
+      <p>{{ site.street }} · {{ site.postcode }} {{ site.city }}<br>{% include "partials/hours-text.njk" %}</p>
+      <div class="actions">
+        <a class="btn btn--quiet" href="{{ site.mapsUrl }}" target="_blank" rel="noopener">Route planen</a>
+        <a class="btn btn--quiet" href="/#ablauf">So läuft die Reparatur ab</a>
+      </div>
+      <p class="offer-visit__more"><a class="link-arrow" href="/preise/{{ m.brandSlug }}/">Alle {{ m.brand }}-Modelle</a> <a class="link-arrow" href="/leistungen/">Reparaturleistungen</a></p>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script type="application/json" id="offer-data">{{ { types: prices.types, phone: site.phone, email: site.email, whatsapp: site.whatsapp, status: pricesMeta.status, isDemo: prices.isDemo } | json | safe }}</script>
+<script src="/assets/js/offer.js" defer></script>
+{% endblock %}

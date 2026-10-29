@@ -40,7 +40,7 @@ const snapshot = {
   retrieved: new Date().toISOString(),
   note: 'Public catalogue data loaded by the previous website\'s price calculator. Values unchanged; -1 means "auf Anfrage" on the old site.',
   brands: byId(tables.repair_brands).map((b) => pick(b, ['id', 'name'])),
-  models: byId(tables.repair_models).map((m) => pick(m, ['id', 'brand_id', 'display_name', 'sort_order'])),
+  models: byId(tables.repair_models).map((m) => pick(m, ['id', 'brand_id', 'name', 'display_name', 'sort_order'])),
   services: byId(tables.repair_services).map((s) => pick(s, ['id', 'model_id', 'service_name', 'price', 'standard_price', 'premium_price', 'original_price', 'duration', 'warranty', 'updated_at'])),
   accessories: byId(tables.model_accessories).map((a) => pick(a, ['id', 'model_id', 'name', 'price', 'description']))
 };

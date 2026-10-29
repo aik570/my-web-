@@ -13,7 +13,9 @@
     "test": "node scripts/test-site.mjs && node scripts/test-production.mjs",
     "test:site": "node scripts/test-site.mjs",
     "test:prod": "node scripts/test-production.mjs",
-    "preview": "eleventy && npx --yes http-server _site -p 8080 -c-1"
+    "preview": "eleventy && npx --yes http-server _site -p 8080 -c-1",
+    "test:interactions": "node scripts/test-interactions.mjs",
+    "preview:bundle": "SITE_CONTEXT=branch-deploy eleventy --output=.cache/preview-site && node scripts/build-preview.mjs"
   },
   "engines": {
     "node": ">=20"

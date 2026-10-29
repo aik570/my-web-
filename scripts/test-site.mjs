@@ -31,7 +31,7 @@ let failed = 0;
 const ok = (cond, msg) => { console.log(`${cond ? '  ✓' : '  ✗'} ${msg}`); if (!cond) failed++; };
 
 const browser = await chromium.launch({ args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
-const PAGES = ['/', '/leistungen/', '/preise/', '/preise/samsung/', '/franchise/', '/impressum/', '/datenschutz/', '/404.html'];
+const PAGES = ['/', '/leistungen/', '/preise/', '/preise/samsung/', '/preise/apple/iphone-13/', '/franchise/', '/impressum/', '/datenschutz/', '/404.html'];
 const VIEWPORTS = [[390, 844, 'mobile'], [1440, 900, 'desktop']];
 
 for (const [w, h, label] of VIEWPORTS) {

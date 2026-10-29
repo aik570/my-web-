@@ -28,16 +28,29 @@ eleventyComputed:
   <div class="wrap franchise__grid">
     <div>
       <h2 class="h2">Das Konzept.</h2>
-      <p class="head__lede">Handy Chirurg steht für Reparaturen ohne Termin, transparente Preise und eine Werkstatt, in der Kunden zusehen können. Als Partner übernehmen Sie dieses Konzept für Ihren Standort.</p>
+      <p class="head__lede">{{ franchise.concept }}</p>
+      <ul class="fhigh">
+        {%- for x in franchise.highlights %}<li><strong>{{ x.title }}</strong><span>{{ x.text }}</span></li>{% endfor %}
+      </ul>
     </div>
     {% include "partials/franchise-cards.njk" %}
   </div>
 </section>
 
+<section class="sec sec--white" aria-labelledby="stores-h">
+  <div class="wrap">
+    <h2 class="fstores__h" id="stores-h">{{ franchise.storesTitle }}</h2>
+    <div class="svc-visit__photos fstores">
+      <picture><source srcset="/assets/img/laden-empfang.webp" type="image/webp"><img src="/assets/img/laden-empfang.jpg" alt="Empfangsbereich im Laden von Handy Chirurg in Potsdam" width="1000" height="563" loading="lazy" decoding="async"></picture>
+      <picture><source srcset="/assets/img/laden-theke.webp" type="image/webp"><img src="/assets/img/laden-theke.jpg" alt="Theke mit Zubehör im Laden von Handy Chirurg in Potsdam" width="1000" height="563" loading="lazy" decoding="async"></picture>
+    </div>
+  </div>
+</section>
+
 <section class="sec sec--white">
   <div class="wrap narrow center">
-    <h2 class="h2">Interesse?</h2>
-    <p class="head__lede center">Sprechen Sie mit uns über Ihren Standort.</p>
+    <h2 class="h2">{{ franchise.interestTitle }}</h2>
+    <p class="head__lede center">{{ franchise.interestText }}</p>
     <div class="actions actions--center">
       {%- if franchise.contactEmail %}
       <a class="btn btn--primary" href="mailto:{{ franchise.contactEmail }}">{{ franchise.contactEmail }}</a>

@@ -43,6 +43,9 @@ export default function (eleventyConfig) {
   // Price list helpers: [brand, brandSlug, model, modelSlug] for the search; device types; repair types in use.
   eleventyConfig.addFilter('modelIndex', (brands = []) => brands.flatMap((b) => b.models.map((m) => [b.brand, b.slug, m.name, m.slug])));
   eleventyConfig.addFilter('categories', (models = []) => [...new Set(models.map((m) => m.category).filter(Boolean))]);
+  // Model offer page: repairs vs. accessories (Nunjucks selectattr cannot compare values)
+  eleventyConfig.addFilter('repairsOnly', (rows = []) => rows.filter((r) => r.service !== 'zubehoer'));
+  eleventyConfig.addFilter('extrasOnly', (rows = []) => rows.filter((r) => r.service === 'zubehoer'));
   eleventyConfig.addFilter('usedTypes', (models = []) => [...new Set(models.flatMap((m) => m.repairs.map((r) => r.service)))]);
   eleventyConfig.addFilter('nbsp', (s = '') => String(s).replace(/ (\S+)$/, ' $1'));
   eleventyConfig.addFilter('absolute', (p, base) => new URL(p, base).href);

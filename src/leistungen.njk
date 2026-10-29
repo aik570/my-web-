@@ -39,6 +39,16 @@ seo:
   </div>
 </section>
 
+<section class="sec sec--white why" aria-labelledby="why-h">
+  <div class="wrap">
+    <h2 class="fstores__h" id="why-h">{{ L.why.title }}</h2>
+    <p class="head__lede">{{ L.why.lede }}</p>
+    <ol class="why__list">
+      {%- for w in L.why.items %}<li><h3>{{ w.title }}</h3><p>{{ w.text }}</p></li>{% endfor %}
+    </ol>
+  </div>
+</section>
+
 <section class="sec sec--mint" aria-labelledby="besuch-h">
   <div class="wrap svc-visit">
     <div>

@@ -10,6 +10,8 @@ npm run cms            # (second terminal) local CMS backend, writes to the repo
 npm run build          # production build → _site/
 npm test               # end-to-end checks against _site/ (Playwright + Chromium)
 npm run check          # launch gate: lists open client inputs, fails while blockers remain
+npm run test:interactions -- --write   # clicks every link/button on representative pages, writes project-audit/INTERACTION-QA-MATRIX.md (several minutes)
+npm run preview:bundle # self-contained preview in .cache/preview (flat pages, relative links; open with any static server)
 npm run import:prices -- data-import/<file>.csv   # import the official price list
 ```
 

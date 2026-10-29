@@ -45,6 +45,193 @@
 # Old URLs of the current site. Extend this list once the full URL list of the
 # live site is known (see project-audit/07-risks-and-seo.md).
 # Former URLs of the previous website
+# Old model/offer URLs (/modell/apple/iphone-13, /reparatur/Apple/iphone-13?service=…, /marke/apple).
+# Query strings (?service=…) are passed on; the offer page preselects the repair.
+# One model had a different old slug:
+[[redirects]]
+  from = "/modell/samsung/galaxy-z-fold-8"
+  to = "/preise/samsung/galaxy-z-fold-7/"
+  status = 301
+[[redirects]]
+  from = "/modell/Samsung/galaxy-z-fold-8"
+  to = "/preise/samsung/galaxy-z-fold-7/"
+  status = 301
+[[redirects]]
+  from = "/reparatur/samsung/galaxy-z-fold-8"
+  to = "/preise/samsung/galaxy-z-fold-7/"
+  status = 301
+[[redirects]]
+  from = "/reparatur/Samsung/galaxy-z-fold-8"
+  to = "/preise/samsung/galaxy-z-fold-7/"
+  status = 301
+[[redirects]]
+  from = "/modell/Apple/:model"
+  to = "/preise/apple/:model/"
+  status = 301
+[[redirects]]
+  from = "/modell/apple/:model"
+  to = "/preise/apple/:model/"
+  status = 301
+[[redirects]]
+  from = "/reparatur/Apple/:model"
+  to = "/preise/apple/:model/"
+  status = 301
+[[redirects]]
+  from = "/reparatur/apple/:model"
+  to = "/preise/apple/:model/"
+  status = 301
+[[redirects]]
+  from = "/marke/Apple"
+  to = "/preise/apple/"
+  status = 301
+[[redirects]]
+  from = "/marke/apple"
+  to = "/preise/apple/"
+  status = 301
+[[redirects]]
+  from = "/modell/Samsung/:model"
+  to = "/preise/samsung/:model/"
+  status = 301
+[[redirects]]
+  from = "/modell/samsung/:model"
+  to = "/preise/samsung/:model/"
+  status = 301
+[[redirects]]
+  from = "/reparatur/Samsung/:model"
+  to = "/preise/samsung/:model/"
+  status = 301
+[[redirects]]
+  from = "/reparatur/samsung/:model"
+  to = "/preise/samsung/:model/"
+  status = 301
+[[redirects]]
+  from = "/marke/Samsung"
+  to = "/preise/samsung/"
+  status = 301
+[[redirects]]
+  from = "/marke/samsung"
+  to = "/preise/samsung/"
+  status = 301
+[[redirects]]
+  from = "/modell/Huawei/:model"
+  to = "/preise/huawei/:model/"
+  status = 301
+[[redirects]]
+  from = "/modell/huawei/:model"
+  to = "/preise/huawei/:model/"
+  status = 301
+[[redirects]]
+  from = "/reparatur/Huawei/:model"
+  to = "/preise/huawei/:model/"
+  status = 301
+[[redirects]]
+  from = "/reparatur/huawei/:model"
+  to = "/preise/huawei/:model/"
+  status = 301
+[[redirects]]
+  from = "/marke/Huawei"
+  to = "/preise/huawei/"
+  status = 301
+[[redirects]]
+  from = "/marke/huawei"
+  to = "/preise/huawei/"
+  status = 301
+[[redirects]]
+  from = "/modell/Xiaomi/:model"
+  to = "/preise/xiaomi/:model/"
+  status = 301
+[[redirects]]
+  from = "/modell/xiaomi/:model"
+  to = "/preise/xiaomi/:model/"
+  status = 301
+[[redirects]]
+  from = "/reparatur/Xiaomi/:model"
+  to = "/preise/xiaomi/:model/"
+  status = 301
+[[redirects]]
+  from = "/reparatur/xiaomi/:model"
+  to = "/preise/xiaomi/:model/"
+  status = 301
+[[redirects]]
+  from = "/marke/Xiaomi"
+  to = "/preise/xiaomi/"
+  status = 301
+[[redirects]]
+  from = "/marke/xiaomi"
+  to = "/preise/xiaomi/"
+  status = 301
+[[redirects]]
+  from = "/modell/Google/:model"
+  to = "/preise/google/:model/"
+  status = 301
+[[redirects]]
+  from = "/modell/google/:model"
+  to = "/preise/google/:model/"
+  status = 301
+[[redirects]]
+  from = "/reparatur/Google/:model"
+  to = "/preise/google/:model/"
+  status = 301
+[[redirects]]
+  from = "/reparatur/google/:model"
+  to = "/preise/google/:model/"
+  status = 301
+[[redirects]]
+  from = "/marke/Google"
+  to = "/preise/google/"
+  status = 301
+[[redirects]]
+  from = "/marke/google"
+  to = "/preise/google/"
+  status = 301
+[[redirects]]
+  from = "/modell/Sony/:model"
+  to = "/preise/sony/:model/"
+  status = 301
+[[redirects]]
+  from = "/modell/sony/:model"
+  to = "/preise/sony/:model/"
+  status = 301
+[[redirects]]
+  from = "/reparatur/Sony/:model"
+  to = "/preise/sony/:model/"
+  status = 301
+[[redirects]]
+  from = "/reparatur/sony/:model"
+  to = "/preise/sony/:model/"
+  status = 301
+[[redirects]]
+  from = "/marke/Sony"
+  to = "/preise/sony/"
+  status = 301
+[[redirects]]
+  from = "/marke/sony"
+  to = "/preise/sony/"
+  status = 301
+[[redirects]]
+  from = "/modell/OnePlus/:model"
+  to = "/preise/oneplus/:model/"
+  status = 301
+[[redirects]]
+  from = "/modell/oneplus/:model"
+  to = "/preise/oneplus/:model/"
+  status = 301
+[[redirects]]
+  from = "/reparatur/OnePlus/:model"
+  to = "/preise/oneplus/:model/"
+  status = 301
+[[redirects]]
+  from = "/reparatur/oneplus/:model"
+  to = "/preise/oneplus/:model/"
+  status = 301
+[[redirects]]
+  from = "/marke/OnePlus"
+  to = "/preise/oneplus/"
+  status = 301
+[[redirects]]
+  from = "/marke/oneplus"
+  to = "/preise/oneplus/"
+  status = 301
 [[redirects]]
   from = "/services"
   to = "/leistungen/"

@@ -73,7 +73,11 @@ seo:
       hash = t ? '#' + t.id : '';
       typeNote.hidden = !t;
       if (t) typeNote.textContent = 'Preise für ' + t.label + ': Wählen Sie den Hersteller.';
-      [].forEach.call(document.querySelectorAll('[data-brand-link]'), function (a) { a.hash = hash; });
+      [].forEach.call(document.querySelectorAll('[data-brand-link]'), function (a) {
+        var base = a.getAttribute('data-base') || a.getAttribute('href').split('#')[0];
+        a.setAttribute('data-base', base);
+        a.setAttribute('href', base + hash);
+      });
     }
     input.addEventListener('input', search);
     addEventListener('hashchange', fromHash);

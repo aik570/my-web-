@@ -41,6 +41,12 @@
     if (t.warranty) f.push('Garantie: ' + t.warranty);
     return f.length ? '<p class="selector__hint">' + esc(f.join(' · ')) + '</p>' : '';
   };
+  // Same key as the model offer page uses for #… (Eleventy slugify of the label).
+  var keyOf = function (r) {
+    if (!r.label) return r.service;
+    return r.label.toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue').replace(/ß/g, 'ss')
+      .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  };
   var callLink = function () { return '<a href="tel:' + esc(D.phone.dial) + '">' + esc(D.phone.display) + '</a>'; };
   var brandOf = function (name) { return (brands || []).filter(function (b) { return b.brand === name; })[0]; };
   var modelOf = function (b, name) { return b && b.models.filter(function (m) { return m.name === name; })[0]; };
@@ -109,6 +115,7 @@
     return '<div class="selector__cta"><p><span>Ausgewählt</span>' + esc(what) + '</p>' + facts(r) +
       (r.onRequest ? '<p class="selector__hint">Für diese Reparatur gibt es keinen festen Preis. Fragen Sie an, wir nennen ihn nach kurzer Prüfung.</p>' : '') +
       '<div class="actions">' + links + '</div>' +
+      '<a class="link-arrow" href="/preise/' + b.slug + '/' + m.slug + '/#' + esc(keyOf(r)) + '">Zum Reparaturangebot</a>' +
       '<p class="selector__hint">' + esc(D.meta && D.meta.vatNote ? D.meta.vatNote + ' · ' : '') + 'Den Preis bestätigen wir Ihnen vor der Reparatur.</p></div>';
   }
 

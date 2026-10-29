@@ -14,10 +14,16 @@
     <div>
       <h2 class="foot__h">Sprechzeiten</h2>
       <p>{% include "partials/hours-text.njk" %}</p>
+      {%- if prices.brands.length %}
+      <h2 class="foot__h">Preise nach Hersteller</h2>
+      <p class="foot__brands">{% for b in prices.brands %}<a href="/preise/{{ b.slug }}/">{{ b.brand }}</a>{% endfor %}</p>
+      {%- endif %}
     </div>
     <div>
+      <h2 class="foot__h">Seiten</h2>
+      <p><a href="/leistungen/">Reparaturleistungen</a><br><a href="/preise/">Preise</a><br><a href="/#ablauf">Ablauf</a><br><a href="/#kontakt">Kontakt</a><br><a href="/franchise/">Franchise</a></p>
       <h2 class="foot__h">Rechtliches</h2>
-      <p><a href="/leistungen/">Reparaturleistungen</a><br><a href="/preise/">Preise</a><br><a href="/impressum/">Impressum</a><br><a href="/datenschutz/">Datenschutz</a><br><a href="/franchise/">Franchise</a></p>
+      <p><a href="/impressum/">Impressum</a><br><a href="/datenschutz/">Datenschutz</a></p>
     </div>
   </div>
 </footer>

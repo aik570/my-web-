@@ -3,17 +3,115 @@
   "title": "Unsere Reparaturleistungen",
   "lede": "Professionelle Handy-Reparatur für alle gängigen Marken und Modelle. Schnell, zuverlässig und mit Garantie.",
   "items": [
-    { "id": "display", "title": "Display Reparatur", "duration": "60 Minuten", "warranty": "12 Monate Garantie", "text": "Professioneller Austausch des kompletten Display-Moduls inklusive Touchscreen und LCD. Wir verwenden hochwertige Ersatzteile für perfekte Bildqualität.", "priceType": "display" },
-    { "id": "akku", "title": "Akku Austausch", "duration": "30 Minuten", "warranty": "12 Monate Garantie", "text": "Austausch des Akkus mit Premium-Qualität für verbesserte Laufzeit und Leistung. Wieder volle Power für Ihr Smartphone.", "priceType": "akku" },
-    { "id": "kamera", "title": "Kamera Reparatur", "duration": "45 Minuten", "warranty": "12 Monate Garantie", "text": "Reparatur oder Austausch der Haupt- oder Frontkamera für kristallklare Fotos. Perfekte Bildqualität wie am ersten Tag.", "priceType": "hauptkamera" },
-    { "id": "ladebuchse", "title": "Ladebuchse Reparatur", "duration": "45 Minuten", "warranty": "12 Monate Garantie", "text": "Austausch der Ladebuchse für zuverlässiges Laden und Datenübertragung. Kein Wackelkontakt mehr.", "priceType": "ladebuchse" },
-    { "id": "wasserschaden", "title": "Wasserschaden Reparatur", "duration": "2-3 Stunden", "warranty": "6 Monate Garantie", "text": "Professionelle Reinigung und Trocknung mit Ultraschallbad und Spezialausrüstung. Wir retten Ihre Daten und Ihr Gerät.", "priceType": "wasserschaden" },
-    { "id": "home-button", "title": "Home Button Reparatur", "duration": "45 Minuten", "warranty": "12 Monate Garantie", "text": "Reparatur oder Austausch des Home Buttons für zuverlässige Touch ID Funktion. Wieder volle Funktionalität.", "priceType": "" },
-    { "id": "lautsprecher", "title": "Lautsprecher Reparatur", "duration": "45 Minuten", "warranty": "12 Monate Garantie", "text": "Austausch des Lautsprechers für kristallklaren Sound und volle Lautstärke. Genießen Sie wieder perfekten Klang.", "priceType": "lautsprecher" },
-    { "id": "mikrofon", "title": "Mikrofon Reparatur", "duration": "45 Minuten", "warranty": "12 Monate Garantie", "text": "Reparatur oder Austausch des Mikrofons für klare Sprachqualität bei Anrufen. Wieder perfekte Kommunikation.", "priceType": "" }
+    {
+      "id": "display",
+      "title": "Display Reparatur",
+      "duration": "60 Minuten",
+      "warranty": "12 Monate Garantie",
+      "text": "Professioneller Austausch des kompletten Display-Moduls inklusive Touchscreen und LCD. Wir verwenden hochwertige Ersatzteile für perfekte Bildqualität.",
+      "priceType": "display"
+    },
+    {
+      "id": "akku",
+      "title": "Akku Austausch",
+      "duration": "30 Minuten",
+      "warranty": "12 Monate Garantie",
+      "text": "Austausch des Akkus mit Premium-Qualität für verbesserte Laufzeit und Leistung. Wieder volle Power für Ihr Smartphone.",
+      "priceType": "akku"
+    },
+    {
+      "id": "kamera",
+      "title": "Kamera Reparatur",
+      "duration": "45 Minuten",
+      "warranty": "12 Monate Garantie",
+      "text": "Reparatur oder Austausch der Haupt- oder Frontkamera für kristallklare Fotos. Perfekte Bildqualität wie am ersten Tag.",
+      "priceType": "hauptkamera"
+    },
+    {
+      "id": "ladebuchse",
+      "title": "Ladebuchse Reparatur",
+      "duration": "45 Minuten",
+      "warranty": "12 Monate Garantie",
+      "text": "Austausch der Ladebuchse für zuverlässiges Laden und Datenübertragung. Kein Wackelkontakt mehr.",
+      "priceType": "ladebuchse"
+    },
+    {
+      "id": "wasserschaden",
+      "title": "Wasserschaden Reparatur",
+      "duration": "2-3 Stunden",
+      "warranty": "6 Monate Garantie",
+      "text": "Professionelle Reinigung und Trocknung mit Ultraschallbad und Spezialausrüstung. Wir retten Ihre Daten und Ihr Gerät.",
+      "priceType": "wasserschaden"
+    },
+    {
+      "id": "home-button",
+      "title": "Home Button Reparatur",
+      "duration": "45 Minuten",
+      "warranty": "12 Monate Garantie",
+      "text": "Reparatur oder Austausch des Home Buttons für zuverlässige Touch ID Funktion. Wieder volle Funktionalität.",
+      "priceType": ""
+    },
+    {
+      "id": "lautsprecher",
+      "title": "Lautsprecher Reparatur",
+      "duration": "45 Minuten",
+      "warranty": "12 Monate Garantie",
+      "text": "Austausch des Lautsprechers für kristallklaren Sound und volle Lautstärke. Genießen Sie wieder perfekten Klang.",
+      "priceType": "lautsprecher"
+    },
+    {
+      "id": "mikrofon",
+      "title": "Mikrofon Reparatur",
+      "duration": "45 Minuten",
+      "warranty": "12 Monate Garantie",
+      "text": "Reparatur oder Austausch des Mikrofons für klare Sprachqualität bei Anrufen. Wieder perfekte Kommunikation.",
+      "priceType": ""
+    }
   ],
   "visit": {
     "title": "Besuchen Sie uns in Potsdam",
     "text": "Kommen Sie mit Ihrem Gerät direkt in unseren Store – wir beraten Sie gerne persönlich und führen die Reparatur oft noch am selben Tag durch."
+  },
+  "why": {
+    "title": "Warum Sie Ihr Gerät zu Handy Chirurg bringen sollten",
+    "lede": "Professionelle Reparatur mit Qualitätsgarantie – transparent, schnell und zuverlässig.",
+    "items": [
+      {
+        "title": "Professionelle Fehleranalyse ab 25 €",
+        "text": "Wir prüfen Ihr Gerät gründlich und sagen Ihnen genau, was defekt ist. Die Diagnose erfolgt schnell, transparent und wird bei einer Reparatur verrechnet."
+      },
+      {
+        "title": "Schnelle Express-Reparatur",
+        "text": "In der Regel ist Ihr Gerät innerhalb von etwa 60 Minuten wieder einsatzbereit und kann direkt mitgenommen werden."
+      },
+      {
+        "title": "Einfach vorbeikommen – ohne Termin",
+        "text": "Sie müssen keinen Termin buchen. Kommen Sie einfach mit Ihrem defekten Gerät vorbei, wenn es Ihnen passt."
+      },
+      {
+        "title": "Faire und günstige Reparaturen",
+        "text": "Wir tauschen nur die Teile aus, die wirklich nötig sind – keine unnötigen Zusatzkosten, keine versteckten Leistungen."
+      },
+      {
+        "title": "Garantie auf jede Reparatur",
+        "text": "Nach der Reparatur erhalten Sie eine Garantie auf die durchgeführten Arbeiten und die verbauten Ersatzteile."
+      },
+      {
+        "title": "Datenschutz steht an erster Stelle",
+        "text": "Wir greifen nicht auf Ihre persönlichen Daten zu und löschen auch nichts. Ihr Inhalt bleibt unangetastet."
+      },
+      {
+        "title": "Klare, nachvollziehbare Preise",
+        "text": "Bevor wir loslegen, erfahren Sie genau, welche Kosten auf Sie zukommen. So wissen Sie von Anfang an, womit Sie rechnen können."
+      },
+      {
+        "title": "Großer Ersatzteillagerbestand",
+        "text": "Wir haben Original-Ersatzteile vieler gängiger Hersteller direkt vor Ort auf Lager – so können wir schnell reagieren."
+      },
+      {
+        "title": "Erfahrene Techniker",
+        "text": "Ihr Gerät wird von Profis repariert, die sich tagtäglich mit Smartphones, Laptops und Tablets beschäftigen und über langjährige Erfahrung verfügen."
+      }
+    ]
   }
 }

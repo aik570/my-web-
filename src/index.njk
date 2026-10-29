@@ -236,6 +236,36 @@ bodyClass: is-home
     <canvas class="ecg ecg--wide" data-ecg data-ecg-wide height="120" aria-hidden="true"></canvas>
   </section>
 
+  <!-- ============ KONTAKT ============ -->
+  <section class="sec sec--white contact" id="kontakt" aria-labelledby="kontakt-h">
+    <div class="wrap contact__grid">
+      <div>
+        <p class="kicker"><span class="kicker__cross" aria-hidden="true"></span>{{ h.contact.kicker }}</p>
+        <h2 id="kontakt-h">{{ h.contact.title }}</h2>
+        <p class="head__lede">{{ h.contact.lede }}</p>
+      </div>
+      <form class="contact__form" id="contact-form" action="mailto:{{ site.email }}" method="post" enctype="text/plain" novalidate data-email="{{ site.email }}">
+        <div class="field">
+          <label for="cf-name">Name <span aria-hidden="true">*</span></label>
+          <input id="cf-name" name="name" type="text" autocomplete="name" required maxlength="100">
+        </div>
+        <div class="field">
+          <label for="cf-phone">Mobilnummer <small>(optional)</small></label>
+          <input id="cf-phone" name="telefon" type="tel" autocomplete="tel" inputmode="tel" maxlength="40" pattern="[0-9 +\(\)\/\-]{6,40}">
+        </div>
+        <div class="field contact__wide">
+          <label for="cf-msg">Nachricht <span aria-hidden="true">*</span></label>
+          <textarea id="cf-msg" name="nachricht" rows="5" required minlength="10" maxlength="2000" placeholder="Gerät, Modell und was nicht funktioniert"></textarea>
+        </div>
+        <p class="contact__error contact__wide" id="cf-error" role="alert" hidden></p>
+        <div class="contact__wide contact__send">
+          <button class="btn btn--primary" type="submit">E-Mail vorbereiten</button>
+          <p class="selector__hint">{{ h.contact.note }} <a href="/datenschutz/">Datenschutz</a></p>
+        </div>
+      </form>
+    </div>
+  </section>
+
   <!-- ============ FRANCHISE TEASER ============ -->
   <section class="sec sec--mint franchise" aria-labelledby="franchise-h">
     <div class="wrap franchise__grid">
@@ -252,4 +282,5 @@ bodyClass: is-home
 
 {% block scripts %}
 <script src="/assets/js/selector.js" defer></script>
+<script src="/assets/js/contact.js" defer></script>
 {% endblock %}
