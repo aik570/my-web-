@@ -25,11 +25,16 @@ function roundedBox(w, h, d, r) {
   return g;
 }
 
-// Studio lighting for reflections, built in place of the RoomEnvironment add-on.
+// Studio lighting for reflections, built in place of the RoomEnvironment add-on:
+// a dark room with a large soft box above, strip lights left and right and a
+// faint teal bounce from the floor, so metal and glass get long, clean highlights.
 function studio() {
   const env = new THREE.Scene();
-  env.add(new THREE.Mesh(new THREE.BoxGeometry(12, 12, 12), new THREE.MeshBasicMaterial({ color: 0x6a706e, side: THREE.BackSide })));
-  [[0, 5.5, 0, -Math.PI / 2, 0, 5, 4, 7], [-5.5, 1, 1, 0, Math.PI / 2, 3, 5, 5], [5.5, 2, -2, 0, -Math.PI / 2, 2, 6, 4], [0, 1, 5.5, 0, Math.PI, 6, 2, 3]].forEach(([x, y, z, rx, ry, sw, sh, k]) => {
+  env.add(new THREE.Mesh(new THREE.BoxGeometry(12, 12, 12), new THREE.MeshBasicMaterial({ color: 0x3c4341, side: THREE.BackSide })));
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(12, 12), new THREE.MeshBasicMaterial({ color: 0x1d4a3f }));
+  floor.position.y = -5.9; floor.rotation.x = -Math.PI / 2;
+  env.add(floor);
+  [[0, 5.5, 0, -Math.PI / 2, 0, 5, 4, 7], [-5.5, 1, 1, 0, Math.PI / 2, 1.2, 7, 9], [5.5, 2, -2, 0, -Math.PI / 2, 1.2, 7, 5], [0, 1, 5.5, 0, Math.PI, 6, 2, 3], [-3, 3.5, 4, 0, Math.PI, 1.5, 1.5, 6]].forEach(([x, y, z, rx, ry, sw, sh, k]) => {
     const m = new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide });
     m.color.setScalar(k);
     const p = new THREE.Mesh(new THREE.PlaneGeometry(sw, sh), m);
@@ -63,6 +68,15 @@ renderer.setPixelRatio(Math.min(devicePixelRatio, matchMedia('(max-width: 760px)
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 0.95;
+
+// Glass quality. B: shader glass with shards, glints and refraction. A: the same
+// scene with the cracks drawn into the screen image. A is used on weak devices,
+// when the shader fails to compile and when frames turn out slow (see frameLoop).
+// ?glass=a / ?glass=b force one for testing.
+const forced = (location.search.match(/[?&]glass=([ab])/) || [])[1];
+const weak = (navigator.hardwareConcurrency || 8) <= 4 || (navigator.deviceMemory || 8) <= 3;
+let glassB = forced ? forced === 'b' : !weak;
+renderer.debug.onShaderError = () => { if (glassB) useGlassA('shader'); };
 
 const scene = new THREE.Scene();
 const pmrem = new THREE.PMREMGenerator(renderer);
@@ -131,11 +145,34 @@ const cracks = (() => {
   return lines;
 })();
 
+// The same cracks as a mask for the glass shader: red = hairline, green = soft
+// halo around it (used for refraction along the lines and for the glow).
+const IMPACT = [410, 860];
+function crackMask() {
+  const c = document.createElement('canvas');
+  c.width = sc.width; c.height = sc.height;
+  const x = c.getContext('2d');
+  x.fillStyle = '#000'; x.fillRect(0, 0, c.width, c.height);
+  x.globalCompositeOperation = 'lighter';
+  x.lineCap = 'round'; x.lineJoin = 'round';
+  const pass = (style, width, blur) => {
+    x.strokeStyle = style; x.lineWidth = width; x.shadowColor = style; x.shadowBlur = blur;
+    for (const pts of cracks) { x.beginPath(); pts.forEach(([a, b], i) => (i ? x.lineTo(a, b) : x.moveTo(a, b))); x.stroke(); }
+  };
+  pass('rgb(0,150,0)', 14, 18);
+  pass('rgb(255,0,0)', 2.4, 0);
+  const t = new THREE.CanvasTexture(c);
+  t.anisotropy = 4;
+  return t;
+}
+// Cracks heal from the edge of the screen towards the impact point.
+const CRACK_REACH = 1000;   // px, farther than the farthest crack end
+
 const PULSE = [[0, 0.62], [0.36, 0.62], [0.42, 0.62], [0.47, 0.3], [0.54, 0.86], [0.59, 0.5], [0.63, 0.62], [1, 0.62]];
 
 let lastScreenKey = '';
 function drawScreen(crack, lit, beat) {
-  const k = crack.toFixed(2) + lit.toFixed(2) + beat.toFixed(2);
+  const k = (glassB ? 'b' : crack.toFixed(3)) + lit.toFixed(2) + beat.toFixed(2);
   if (k === lastScreenKey) return;
   lastScreenKey = k;
 
@@ -191,8 +228,10 @@ function drawScreen(crack, lit, beat) {
     sx.globalAlpha = 1;
   }
 
-  if (crack > 0) {
-    sx.globalAlpha = crack;
+  if (crack > 0 && !glassB) {
+    sx.save();
+    sx.beginPath(); sx.arc(IMPACT[0], IMPACT[1], Math.max(1, crack * CRACK_REACH), 0, Math.PI * 2); sx.clip();
+    sx.globalAlpha = Math.min(1, crack * 3);
     sx.lineCap = 'round';
     for (const pts of cracks) {
       sx.beginPath();
@@ -200,7 +239,7 @@ function drawScreen(crack, lit, beat) {
       sx.strokeStyle = 'rgba(255,255,255,.55)'; sx.lineWidth = 2.2; sx.stroke();
       sx.strokeStyle = 'rgba(255,255,255,.12)'; sx.lineWidth = 7; sx.stroke();
     }
-    sx.globalAlpha = 1;
+    sx.restore();
   }
 
   // camera cut-out at the top of the screen
@@ -208,12 +247,14 @@ function drawScreen(crack, lit, beat) {
   roundedRectPath(sx, w / 2 - 70, 34, 140, 40, 20);
   sx.fill();
 
-  // a faint glass reflection across the top
-  const r = sx.createLinearGradient(0, 0, w, h * 0.6);
-  r.addColorStop(0, 'rgba(255,255,255,.07)');
-  r.addColorStop(0.45, 'rgba(255,255,255,0)');
-  sx.fillStyle = r;
-  sx.fillRect(0, 0, w, h);
+  // a faint glass reflection across the top (the shader glass draws its own)
+  if (!glassB) {
+    const r = sx.createLinearGradient(0, 0, w, h * 0.6);
+    r.addColorStop(0, 'rgba(255,255,255,.07)');
+    r.addColorStop(0.45, 'rgba(255,255,255,0)');
+    sx.fillStyle = r;
+    sx.fillRect(0, 0, w, h);
+  }
   sx.restore();
   screenTex.needsUpdate = true;
 }
@@ -254,11 +295,13 @@ function labelTexture(lines, bg, fg) {
 
 /* ---------- materials ---------- */
 
-const titanium = new THREE.MeshPhysicalMaterial({ color: 0x8e9895, metalness: 1, roughness: 0.32 });
+// Brushed titanium frame, polished glass front, frosted teal back glass with a
+// glossy coat, sapphire lenses.
+const titanium = new THREE.MeshPhysicalMaterial({ color: 0x9aa39f, metalness: 1, roughness: 0.26, clearcoat: 0.35, clearcoatRoughness: 0.2, envMapIntensity: 1.15 });
 const darkMetal = new THREE.MeshPhysicalMaterial({ color: 0x2b3130, metalness: 0.9, roughness: 0.4 });
-const glassBlack = new THREE.MeshPhysicalMaterial({ color: 0x050606, metalness: 0, roughness: 0.04, clearcoat: 1, clearcoatRoughness: 0.03 });
-const backGlass = new THREE.MeshPhysicalMaterial({ color: 0x2f7a68, metalness: 0.2, roughness: 0.42, clearcoat: 1, clearcoatRoughness: 0.25 });
-const lensGlass = new THREE.MeshPhysicalMaterial({ color: 0x020303, metalness: 0.4, roughness: 0.05, clearcoat: 1 });
+const glassBlack = new THREE.MeshPhysicalMaterial({ color: 0x030404, metalness: 0, roughness: 0.02, clearcoat: 1, clearcoatRoughness: 0.02, reflectivity: 0.6 });
+const backGlass = new THREE.MeshPhysicalMaterial({ color: 0x2f7a68, metalness: 0.15, roughness: 0.5, clearcoat: 1, clearcoatRoughness: 0.08, sheen: 0.4, sheenColor: 0x9fe6d0, sheenRoughness: 0.6 });
+const lensGlass = new THREE.MeshPhysicalMaterial({ color: 0x020303, metalness: 0.4, roughness: 0.03, clearcoat: 1, iridescence: 0.6, iridescenceIOR: 1.6 });
 
 /* ---------- parts ---------- */
 
@@ -275,10 +318,89 @@ function part(name) {
 // display: glass slab with the screen image laid on its face
 const display = part('display');
 display.add(new THREE.Mesh(roundedBox(W, H, 0.04, R), glassBlack));
-const screen = new THREE.Mesh(
-  new THREE.PlaneGeometry(W - 0.09, H - 0.09),
-  new THREE.MeshBasicMaterial({ map: screenTex, transparent: true, toneMapped: false })
-);
+const plainScreen = new THREE.MeshBasicMaterial({ map: screenTex, transparent: true, toneMapped: false });
+
+// Shader glass: the shattered area is split into shards (angular sectors and
+// rings around the impact), each tilted a little. A tilted shard shifts the
+// image behind it (refraction) and catches the key light at its own angle
+// (glints); the hairlines sparkle and refract along their halo. A soft box
+// reflection slides over the glass as the phone turns.
+const glassScreen = new THREE.ShaderMaterial({
+  transparent: true,
+  toneMapped: false,
+  uniforms: {
+    map: { value: screenTex },
+    crackMap: { value: null },
+    crack: { value: 1 },
+    impact: { value: new THREE.Vector2(IMPACT[0] / sc.width, 1 - IMPACT[1] / sc.height) },
+    aspect: { value: sc.height / sc.width },
+    uCam: { value: new THREE.Vector3(0, 0, 9) },
+    uLight: { value: new THREE.Vector3(-0.4, 0.5, 0.8) }
+  },
+  vertexShader: `
+    varying vec2 vUv; varying vec3 vView;
+    uniform vec3 uCam;
+    void main() {
+      vUv = uv;
+      vView = normalize(uCam - position);
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }`,
+  fragmentShader: `
+    uniform sampler2D map, crackMap;
+    uniform float crack, aspect;
+    uniform vec2 impact;
+    uniform vec3 uLight;
+    varying vec2 vUv; varying vec3 vView;
+    float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+    void main() {
+      vec2 q = vec2(vUv.x - impact.x, (vUv.y - impact.y) * aspect);
+      float d = length(q);
+      // healing front: cracks remain inside radius crack * reach
+      float reach = crack * 1.67;
+      float vis = crack > 0.001 ? 1.0 - smoothstep(reach - 0.12, reach, d) : 0.0;
+      float ang = atan(q.y, q.x);
+      vec2 id = vec2(floor((ang / 6.2831853 + 0.5) * 17.0 + 0.3 * sin(d * 11.0)), floor(log(d * 14.0 + 1.0) * 2.4));
+      // shards near the impact are small and steep, far ones large and nearly flat
+      vec2 tilt = (vec2(hash(id), hash(id + 7.31)) - 0.5) * 0.3 * vis * smoothstep(0.0, 0.03, d) * exp(-d * 3.2);
+      vec3 n = normalize(vec3(tilt, 1.0));
+      vec3 V = normalize(vView);
+      vec3 L = normalize(uLight);
+
+      vec4 cm = texture2D(crackMap, vUv);
+      float line = cm.r * vis, halo = cm.g * vis;
+      float hx = texture2D(crackMap, vUv + vec2(0.004, 0.0)).g - texture2D(crackMap, vUv - vec2(0.004, 0.0)).g;
+      float hy = texture2D(crackMap, vUv + vec2(0.0, 0.002)).g - texture2D(crackMap, vUv - vec2(0.0, 0.002)).g;
+      vec2 off = tilt * 0.022 + vec2(hx, hy) * 0.012 * vis;
+
+      vec4 base = texture2D(map, vUv + off);
+      // slight colour fringe where the glass is broken
+      vec3 col = vec3(texture2D(map, vUv + off * 1.5).r, base.g, texture2D(map, vUv + off * 0.5).b);
+
+      vec3 Hh = normalize(L + V);
+      float shard = pow(max(dot(n, Hh), 0.0), 260.0) * vis;            // facet glint
+      float facet = pow(max(dot(n, Hh), 0.0), 14.0) * vis * smoothstep(0.0, 0.05, d) * exp(-d * 2.0);   // faint sheen per shard
+      float sparkle = pow(max(dot(normalize(vec3(tilt * 4.0, 1.0)), Hh), 0.0), 30.0);
+      vec3 R = reflect(-V, normalize(vec3(tilt * 0.35, 1.0)));
+      float box = smoothstep(0.6, 1.0, dot(R, normalize(vec3(-0.35, 0.55, 0.76))));     // soft box
+      float fres = pow(1.0 - max(V.z, 0.0), 3.0);
+
+      col *= 1.0 - halo * 0.25;                                            // shadow of the fracture
+      col += vec3(0.92, 0.97, 1.0) * (line * (0.42 + 1.6 * sparkle) + halo * 0.05 + shard * 0.9 + facet * 0.07);
+      col += vec3(1.0) * (box * box * 0.1 + fres * 0.08);
+      gl_FragColor = vec4(col, base.a);
+    }`
+});
+
+const screen = new THREE.Mesh(new THREE.PlaneGeometry(W - 0.09, H - 0.09), glassB ? glassScreen : plainScreen);
+if (glassB) glassScreen.uniforms.crackMap.value = crackMask();
+function useGlassA(why) {
+  if (!glassB) return;
+  glassB = false;
+  screen.material = plainScreen;
+  lastScreenKey = '';
+  document.documentElement.dataset.glass = 'a-' + why;
+}
+document.documentElement.dataset.glass = glassB ? 'b' : 'a';
 screen.position.z = 0.0205;
 display.add(screen);
 
@@ -354,6 +476,18 @@ const back = part('back');
   });
 }
 
+// soft shadow below the phone (a blurred ellipse, fades while the phone is open)
+const shadow = (() => {
+  const c = document.createElement('canvas'); c.width = 256; c.height = 64;
+  const x = c.getContext('2d');
+  const g = x.createRadialGradient(128, 32, 4, 128, 32, 120);
+  g.addColorStop(0, 'rgba(15,38,33,.32)'); g.addColorStop(1, 'rgba(15,38,33,0)');
+  x.setTransform(1, 0, 0, 0.26, 0, 23.7); x.fillStyle = g; x.fillRect(0, -100, 256, 256);
+  const m = new THREE.Mesh(new THREE.PlaneGeometry(2.2, 0.55), new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(c), transparent: true, depthWrite: false, toneMapped: false }));
+  scene.add(m);
+  return m;
+})();
+
 // assembled z positions, and where each part travels when opened
 const LAYOUT = {
   display: { z: 0.07, open: 1.7 },
@@ -420,6 +554,7 @@ let lastInput = 0;
 addEventListener('scroll', () => { lastInput = performance.now(); }, { passive: true });
 canvas.addEventListener('pointermove', () => { lastInput = performance.now(); });
 
+const perf = [];
 let t0 = performance.now();
 let lastFrame = 0;
 let needsFrame = true;
@@ -440,7 +575,7 @@ function frameLoop(now) {
   const portrait = camera.aspect < 0.75;
 
   const open = smooth(0.16, 0.42, p) * (1 - smooth(0.6, 0.8, p));
-  const crack = 1 - smooth(0.62, 0.76, p);
+  const crack = 1 - smooth(0.58, 0.8, p);   // heals gradually while the parts close
   const lit = smooth(0.74, 0.84, p);
   const beat = smooth(0.8, 0.96, p);
 
@@ -469,8 +604,27 @@ function frameLoop(now) {
     part.position.z = lerp(L.z, L.open, open);
   }
 
+  if (glassB) {
+    phone.updateMatrixWorld();
+    glassScreen.uniforms.crack.value = crack;
+    screen.worldToLocal(glassScreen.uniforms.uCam.value.copy(camera.position));
+    const o = screen.worldToLocal(tmp.set(0, 0, 0));
+    screen.worldToLocal(glassScreen.uniforms.uLight.value.copy(key.position)).sub(o);
+  }
+  const s = phone.scale.x;
+  shadow.position.set(phone.position.x + 0.1, phone.position.y - H * s * 0.62, -0.6);
+  shadow.scale.setScalar(s * (1 - open * 0.3));
+  shadow.material.opacity = (portrait ? 0 : 1) * (1 - open * 0.8);
+
   drawScreen(crack, lit, beat);
   renderer.render(scene, camera);
+
+  // slow frames on the shader glass: switch to the lighter glass once
+  if (glassB && !forced && busy) {
+    perf.push(dt);
+    if (perf.length > 45) perf.shift();
+    if (perf.length === 45 && perf.reduce((a, b) => a + b) / 45 > 0.04) useGlassA('slow');
+  }
 
   // labels follow their parts
   const rect = canvas.getBoundingClientRect();
