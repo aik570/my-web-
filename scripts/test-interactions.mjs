@@ -195,6 +195,13 @@ async function exercise(page, el, url, isMobile) {
         await page.click('#menuBtn'); await page.waitForTimeout(250);
       }
       const before = page.url();
+      if (await loc.evaluate((a) => a.hasAttribute('data-zoom'))) {   // photo zoom: opens the large photo in a dialog
+        await loc.click(); await page.waitForTimeout(300);
+        const st = await page.evaluate(() => { const d = document.getElementById('zoom'); const i = d && d.querySelector('img'); return { open: !!(d && d.open), src: i ? i.getAttribute('src') : '', w: i ? i.naturalWidth : 0 }; });
+        await page.keyboard.press('Escape');
+        const closed = await page.evaluate(() => !document.getElementById('zoom').open);
+        return [st.open && st.src === el.href && closed && page.url() === before ? 'pass' : 'fail', `opens ${st.src} in a dialog (${st.w} px), Esc closes`];
+      }
       if (await loc.evaluate((a) => a.classList.contains('skip'))) {   // skip link: keyboard only
         await loc.focus(); await page.keyboard.press('Enter'); await page.waitForTimeout(150);
         const ok2 = page.url().endsWith('#main');

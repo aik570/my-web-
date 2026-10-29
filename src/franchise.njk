@@ -1,5 +1,6 @@
 ---
 permalink: /franchise/
+bodyClass: is-franchise
 eleventyComputed:
   seo:
     title: "{{ franchise.seo.title }}"
@@ -7,56 +8,110 @@ eleventyComputed:
 ---
 {% extends "base.njk" %}
 
+{%- set mailHref = 'mailto:' ~ franchise.contactEmail ~ '?subject=' ~ ('Franchise-Anfrage' | urlencode) %}
 {% block main %}
-<section class="sec sec--deep page-hero">
-  <div class="wrap">
-    <p class="kicker kicker--light"><span class="kicker__cross" aria-hidden="true"></span>{{ franchise.kicker }}</p>
-    <h1 class="page-title page-title--light">{{ franchise.title }}</h1>
-    <p class="head__lede head__lede--light">{{ franchise.lede }}</p>
-    <div class="actions">
-      {%- if franchise.contactEmail %}
-      <a class="btn btn--signal" href="mailto:{{ franchise.contactEmail }}?subject={{ ('Franchise – ' ~ franchise.ctaLabel) | urlencode }}">{{ franchise.ctaLabel }}</a>
-      {%- else %}
-      <a class="btn btn--signal" href="tel:{{ site.phone.dial }}">{{ franchise.ctaLabel }}: {{ site.phone.display }}</a>
-      {%- endif %}
+<section class="sec sec--mint fhero">
+  <div class="wrap fhero__grid">
+    <picture class="fhero__doc reveal">
+      <source srcset="/assets/img/franchise-doktor.webp 360w, /assets/img/franchise-doktor-720.webp 720w" sizes="(max-width: 700px) 46vw, 340px" type="image/webp">
+      <img src="/assets/img/franchise-doktor.png" alt="Handy-Chirurg-Maskottchen: Arzt mit Umhang, Schraubenschlüssel und Smartphone mit gesprungenem Display" width="360" height="500" decoding="async">
+    </picture>
+    <div class="fhero__text">
+      <p class="kicker"><span class="kicker__cross" aria-hidden="true"></span>{{ franchise.kicker }}</p>
+      {%- set brand = 'Handy Chirurg' %}
+      <h1 class="page-title">{% if franchise.title.endsWith(brand) %}{{ franchise.title.slice(0, -brand.length) }}<span class="fhero__brand">{{ brand }}</span>{% else %}{{ franchise.title }}{% endif %}</h1>
+      <p class="head__lede">{{ franchise.lede }}</p>
+      <div class="actions">
+        {%- if franchise.contactEmail %}
+        <a class="btn btn--primary" href="{{ mailHref }}">{{ franchise.ctaLabel }}</a>
+        {%- else %}
+        <a class="btn btn--primary" href="tel:{{ site.phone.dial }}">{{ franchise.ctaLabel }}: {{ site.phone.display }}</a>
+        {%- endif %}
+        <a class="btn btn--quiet" href="#vorteile">Vorteile ansehen</a>
+      </div>
     </div>
-  </div>
-  <canvas class="ecg ecg--wide" data-ecg data-ecg-wide height="90" aria-hidden="true"></canvas>
-</section>
-
-<section class="sec sec--mint franchise">
-  <div class="wrap franchise__grid">
-    <div>
-      <h2 class="h2">Das Konzept.</h2>
-      <p class="head__lede">{{ franchise.concept }}</p>
-      <ul class="fhigh">
-        {%- for x in franchise.highlights %}<li><strong>{{ x.title }}</strong><span>{{ x.text }}</span></li>{% endfor %}
-      </ul>
-    </div>
-    {% include "partials/franchise-cards.njk" %}
   </div>
 </section>
 
 <section class="sec sec--white" aria-labelledby="stores-h">
   <div class="wrap">
-    <h2 class="fstores__h" id="stores-h">{{ franchise.storesTitle }}</h2>
-    <div class="svc-visit__photos fstores">
-      <picture><source srcset="/assets/img/laden-empfang.webp" type="image/webp"><img src="/assets/img/laden-empfang.jpg" alt="Empfangsbereich im Laden von Handy Chirurg in Potsdam" width="1000" height="563" loading="lazy" decoding="async"></picture>
-      <picture><source srcset="/assets/img/laden-theke.webp" type="image/webp"><img src="/assets/img/laden-theke.jpg" alt="Theke mit Zubehör im Laden von Handy Chirurg in Potsdam" width="1000" height="563" loading="lazy" decoding="async"></picture>
+    <h2 class="fsec__h center reveal" id="stores-h">{{ franchise.storesTitle }}</h2>
+    <div class="fstores">
+      {%- for p in [
+        { file: 'laden-empfang', alt: 'Empfangsbereich mit Sitzecke und beleuchtetem Handy-Chirurg-Logo im Laden in Potsdam' },
+        { file: 'laden-theke', alt: 'Treppe, Theke und Zubehörwand im Laden von Handy Chirurg in Potsdam' }
+      ] %}
+      <a class="fstores__item reveal" href="/assets/img/{{ p.file }}-1600.jpg" data-zoom aria-label="Foto vergrößern: {{ p.alt }}">
+        <picture>
+          <source srcset="/assets/img/{{ p.file }}.webp 1000w, /assets/img/{{ p.file }}-1600.webp 1600w" sizes="(max-width: 700px) 100vw, 46vw" type="image/webp">
+          <img src="/assets/img/{{ p.file }}.jpg" alt="{{ p.alt }}" width="1000" height="563" loading="lazy" decoding="async">
+        </picture>
+        <span class="fstores__zoom" aria-hidden="true"></span>
+      </a>
+      {%- endfor %}
     </div>
   </div>
 </section>
 
-<section class="sec sec--white">
-  <div class="wrap narrow center">
-    <h2 class="h2">{{ franchise.interestTitle }}</h2>
-    <p class="head__lede center">{{ franchise.interestText }}</p>
-    <div class="actions actions--center">
-      {%- if franchise.contactEmail %}
-      <a class="btn btn--primary" href="mailto:{{ franchise.contactEmail }}">{{ franchise.contactEmail }}</a>
-      {%- endif %}
-      <a class="btn btn--quiet" href="tel:{{ site.phone.dial }}">{{ site.phone.display }}</a>
+<section class="sec sec--white fbenefits" id="vorteile" aria-labelledby="benefits-h">
+  <div class="wrap fbenefits__grid">
+    <div class="reveal">
+      <h2 class="fsec__h" id="benefits-h">{{ franchise.benefitsTitle }}</h2>
+      <p class="head__lede">{{ franchise.concept }}</p>
+      <ul class="fchecks">
+        {%- for o in franchise.offers %}<li>{{ o }}</li>{% endfor %}
+      </ul>
     </div>
+    <ul class="ftiles">
+      {%- set icons = [
+        '<path d="M3 17 9 11l4 4 8-8"/><path d="M15 7h6v6"/>',
+        '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.2-5.5 6.5-5.5s5.9 1.9 6.5 5.5"/><path d="M15.5 4.8a3.5 3.5 0 0 1 0 6.4M18 14.8c2 .8 3.2 2.5 3.5 5.2"/>',
+        '<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.6-.4-.4-2.6z"/>',
+        '<path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>'
+      ] %}
+      {%- for x in franchise.highlights %}
+      <li class="ftile reveal">
+        <svg viewBox="0 0 24 24" aria-hidden="true">{{ (icons[loop.index0] or icons[0]) | safe }}</svg>
+        <h3>{{ x.title }}</h3>
+        <p>{{ x.text }}</p>
+      </li>
+      {%- endfor %}
+    </ul>
   </div>
 </section>
+
+<section class="sec freq" aria-labelledby="req-h">
+  <picture class="freq__bg" aria-hidden="true">
+    <source srcset="/assets/img/franchise-werkstatt.webp" type="image/webp">
+    <img src="/assets/img/franchise-werkstatt.jpg" alt="" width="1246" height="842" loading="lazy" decoding="async">
+  </picture>
+  <div class="wrap narrow center freq__in">
+    <h2 class="fsec__h reveal" id="req-h">{{ franchise.requirementsTitle }}</h2>
+    <p class="head__lede center reveal">{{ franchise.requirementsText }}</p>
+    <ol class="freq__list">
+      {%- for r in franchise.requirements %}<li class="reveal"><span class="freq__no" aria-hidden="true">{{ loop.index }}</span>{{ r }}</li>{% endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="sec fcta" aria-labelledby="cta-h">
+  <div class="wrap narrow center">
+    <h2 class="fsec__h fsec__h--light reveal" id="cta-h">{{ franchise.interestTitle }}</h2>
+    <p class="head__lede head__lede--light center reveal">{{ franchise.interestText }}</p>
+    <div class="actions actions--center reveal">
+      {%- if franchise.contactEmail %}
+      <a class="btn btn--white" href="{{ mailHref }}">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>{{ franchise.contactEmail }}</a>
+      {%- endif %}
+      <a class="btn btn--outline-light" href="tel:{{ site.phone.dial }}">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 3 5 3.8C4 4.1 3.4 5.2 3.6 6.2c1.7 7.2 7 12.6 14.2 14.2 1 .2 2.1-.4 2.4-1.4l.8-2.9-4.3-1.9-1.9 2c-2.6-1.2-4.8-3.4-6-6l2-1.9L9.1 4.2"/></svg>{{ site.phone.display }}</a>
+    </div>
+  </div>
+  <canvas class="ecg ecg--wide" data-ecg data-ecg-wide height="90" aria-hidden="true"></canvas>
+</section>
+
+<dialog class="zoom" id="zoom" aria-label="Foto">
+  <form method="dialog"><button class="zoom__close" aria-label="Schließen">×</button></form>
+  <img alt="">
+</dialog>
 {% endblock %}

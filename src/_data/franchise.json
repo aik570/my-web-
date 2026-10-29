@@ -1,7 +1,12 @@
 {
   "kicker": "Franchise",
-  "title": "Ihre eigene Handy‑Chirurg‑Praxis.",
-  "lede": "Eröffnen Sie eine Werkstatt in Ihrer Stadt, mit einem erprobten Konzept und Unterstützung vom ersten Tag an.",
+  "title": "Werden Sie Franchise-Partner bei Handy Chirurg",
+  "lede": "Starten Sie Ihr eigenes erfolgreiches Smartphone-Reparaturgeschäft mit einem bewährten Konzept und starker Marke.",
+  "ctaLabel": "Jetzt Kontakt aufnehmen",
+  "contactEmail": "potsdam@handy-chirurg.de",
+  "storesTitle": "Unsere Stores – Modern & Einladend",
+  "benefitsTitle": "Ihre Vorteile als Franchise-Partner",
+  "concept": "Mit Handy Chirurg profitieren Sie von einem etablierten Geschäftsmodell in einer wachsenden Branche. Wir unterstützen Sie von Anfang an – von der Standortsuche bis zum erfolgreichen Betrieb.",
   "offers": [
     "Bewährtes Geschäftsmodell mit hoher Nachfrage",
     "Umfassende Schulung und laufende Unterstützung",
@@ -10,19 +15,6 @@
     "Zugang zu günstigen Ersatzteilen",
     "Eigene Software für Reparaturverwaltung"
   ],
-  "requirements": [
-    "Interesse an Technik und Kundenservice",
-    "Unternehmerisches Denken",
-    "Eigenkapital ab 25.000 €",
-    "Bereitschaft zur aktiven Mitarbeit"
-  ],
-  "contactEmail": "potsdam@handy-chirurg.de",
-  "ctaLabel": "Erstgespräch vereinbaren",
-  "seo": {
-    "title": "Franchise – Handy Chirurg",
-    "description": "Eröffnen Sie eine Handy-Chirurg-Werkstatt: erprobtes Geschäftsmodell, Schulung, Gebietsschutz, Marketing und günstige Ersatzteile. Eigenkapital ab 25.000 €."
-  },
-  "concept": "Mit Handy Chirurg profitieren Sie von einem etablierten Geschäftsmodell in einer wachsenden Branche. Wir unterstützen Sie von Anfang an – von der Standortsuche bis zum erfolgreichen Betrieb.",
   "highlights": [
     {
       "title": "Wachstumsmarkt",
@@ -41,7 +33,18 @@
       "text": "Exklusives Einzugsgebiet garantiert"
     }
   ],
-  "storesTitle": "Unsere Stores – modern & einladend",
+  "requirementsTitle": "Was wir von Ihnen erwarten",
+  "requirementsText": "Als Franchise-Partner bringen Sie Engagement und unternehmerischen Geist mit – den Rest bringen wir Ihnen bei.",
+  "requirements": [
+    "Interesse an Technik und Kundenservice",
+    "Unternehmerisches Denken",
+    "Eigenkapital ab 25.000 €",
+    "Bereitschaft zur aktiven Mitarbeit"
+  ],
   "interestTitle": "Interessiert? Kontaktieren Sie uns!",
-  "interestText": "Wir freuen uns auf Ihre Anfrage und beraten Sie gerne unverbindlich zu den Möglichkeiten einer Franchise-Partnerschaft."
+  "interestText": "Wir freuen uns auf Ihre Anfrage und beraten Sie gerne unverbindlich zu den Möglichkeiten einer Franchise-Partnerschaft.",
+  "seo": {
+    "title": "Franchise – Handy Chirurg",
+    "description": "Eröffnen Sie eine Handy-Chirurg-Werkstatt: erprobtes Geschäftsmodell, Schulung, Gebietsschutz, Marketing und günstige Ersatzteile. Eigenkapital ab 25.000 €."
+  }
 }

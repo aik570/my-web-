@@ -335,19 +335,22 @@ collections:
         format: json
         fields:
           - { name: kicker, label: Überzeile, widget: string }
-          - { name: title, label: Überschrift, widget: string }
+          - { name: title, label: Überschrift, widget: string, hint: '„Handy Chirurg“ am Ende wird farbig hervorgehoben' }
           - { name: lede, label: Text, widget: text }
-          - { name: concept, label: Das Konzept (Text), widget: text }
+          - { name: ctaLabel, label: Knopftext, widget: string }
+          - { name: contactEmail, label: E-Mail für Anfragen, widget: string, required: false, pattern: ['^$|^[^@\s]+@[^@\s]+\.[a-z]{2,}$', 'Gültige E-Mail-Adresse'], hint: 'Leer = Knopf ruft die Ladennummer an' }
+          - { name: storesTitle, label: Überschrift Store-Fotos, widget: string }
+          - { name: benefitsTitle, label: Überschrift Vorteile, widget: string }
+          - { name: concept, label: Text Vorteile, widget: text }
+          - { name: offers, label: Vorteile (Liste), widget: list, field: { name: item, label: Punkt, widget: string } }
           - name: highlights
             label: Vorteile (Kacheln)
             widget: list
             summary: '{{fields.title}}'
             fields: [{ name: title, label: Titel, widget: string }, { name: text, label: Text, widget: string }]
-          - { name: offers, label: Was Sie bekommen, widget: list, field: { name: item, label: Punkt, widget: string } }
+          - { name: requirementsTitle, label: Überschrift Erwartungen, widget: string }
+          - { name: requirementsText, label: Text Erwartungen, widget: text }
           - { name: requirements, label: Was Sie mitbringen, widget: list, field: { name: item, label: Punkt, widget: string } }
-          - { name: contactEmail, label: E-Mail für Anfragen, widget: string, required: false, pattern: ['^$|^[^@\s]+@[^@\s]+\.[a-z]{2,}$', 'Gültige E-Mail-Adresse'], hint: 'Leer = Knopf ruft die Ladennummer an' }
-          - { name: ctaLabel, label: Knopftext, widget: string }
-          - { name: storesTitle, label: Überschrift Store-Fotos, widget: string }
           - { name: interestTitle, label: Überschrift Kontakt, widget: string }
           - { name: interestText, label: Text Kontakt, widget: text }
           - name: seo

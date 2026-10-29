@@ -142,6 +142,24 @@
     }
   }
 
+  /* ---------- photo zoom: links with data-zoom open the large photo in a dialog ---------- */
+
+  var zoom = document.getElementById('zoom');
+  if (zoom && zoom.showModal) {
+    var zoomImg = zoom.querySelector('img');
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest('a[data-zoom]');
+      if (!a || e.metaKey || e.ctrlKey || e.shiftKey) return;
+      e.preventDefault();
+      var img = a.querySelector('img');
+      zoomImg.src = a.getAttribute('href');
+      zoomImg.alt = img ? img.alt : '';
+      zoom.showModal();
+    });
+    // click on the backdrop closes
+    zoom.addEventListener('click', function (e) { if (e.target === zoom) zoom.close(); });
+  }
+
   /* ---------- reveal: checked on scroll, so it works wherever scrolling does ---------- */
 
   var pending = [].slice.call(document.querySelectorAll('.reveal, .path__line'));
