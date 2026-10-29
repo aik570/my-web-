@@ -84,6 +84,11 @@
   });
   extras.forEach(function (x) { x.addEventListener('change', update); });
   addEventListener('hashchange', fromUrl);
+  // phones: the floating total hides while the summary itself is on screen
+  var bar = $('sum-bar'), sum = document.querySelector('.offer__sum');
+  if (bar && sum && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (en) { bar.classList.toggle('is-away', en[0].isIntersecting); }).observe(sum);
+  }
   update();
   fromUrl();
 })();

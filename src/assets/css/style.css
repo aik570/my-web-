@@ -688,3 +688,8 @@ mark.todo { background: #fff1c2; color: #6b4b00; padding: .1rem .35rem; border-r
 .why__list p { margin: 0; color: var(--grey); }
 .foot__brands { display: flex; flex-wrap: wrap; gap: .25rem .9rem; }
 .foot p + .foot__h { margin-top: 1.4rem; }
+@media (max-width: 900px) {
+  body:has(.offer__bar) .foot { padding-bottom: calc(6rem + env(safe-area-inset-bottom, 0px)); }
+  .offer__bar.is-away { opacity: 0; pointer-events: none; transform: translateY(1rem); }
+  .offer__bar { transition: opacity .2s, transform .2s; }
+}

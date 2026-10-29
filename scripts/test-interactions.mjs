@@ -281,7 +281,9 @@ async function exercise(page, el, url, isMobile) {
       return [pass ? 'pass' : 'fail', res.hits ? `${res.hits} results` : res.sel ? `selects ${res.sel}` : `${res.shown} models shown`];
     }
     if (el.kind === 'input:radio') {
-      await loc.check({ force: true }); await page.waitForTimeout(100);
+      // users tap the card (label); the radio itself is visually hidden
+      await loc.locator('xpath=ancestor::label').click(); await page.waitForTimeout(100);
+      if (!(await loc.isChecked())) return ['fail', 'tapping the card did not select it'];
       const total = await page.$eval('#sum-total', (e) => e.textContent).catch(() => null);
       const price = await loc.getAttribute('data-price');
       if (total === null) return ['pass', 'selects repair'];
@@ -290,9 +292,10 @@ async function exercise(page, el, url, isMobile) {
     }
     if (el.kind === 'input:checkbox') {
       const before = await page.$eval('#sum-total', (e) => e.textContent);
-      await loc.check({ force: true }); await page.waitForTimeout(100);
+      const card = loc.locator('xpath=ancestor::label');
+      await card.click(); await page.waitForTimeout(100);
       const after = await page.$eval('#sum-total', (e) => e.textContent);
-      await loc.uncheck({ force: true });
+      await card.click();
       return [before !== after || before === 'auf Anfrage' ? 'pass' : 'fail', `total ${before} → ${after}`];
     }
     if (el.kind.startsWith('input:') || el.kind === 'textarea') return ['pass', 'covered by the form submit check'];
