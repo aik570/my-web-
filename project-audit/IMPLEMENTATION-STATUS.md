@@ -1,6 +1,42 @@
 # Implementation status
 
-Updated: 28.10.2026, Phase 3 (recovery of the original website) · Branch `claude/zealous-bohr-71wesv`
+Updated: 29.10.2026, Finalization phase · Branch `claude/zealous-bohr-71wesv`
+
+## 0. Finalization phase (29.10.2026) — summary
+
+| Area | Result |
+|---|---|
+| Checkpoint | Clean tree at `3bf6915` before changes; fixes committed separately (`cac9f41`) |
+| Production build (`CONTEXT=production`) | OK, 18 files; no test data or test labels (checked by `test:prod`) |
+| `npm test` | **122 checks, all pass** (5 new: page titles, Impressum/Datenschutz content, sitemap coverage) |
+| `npm run check` | **Exit 1 — 5 blockers, 3 warnings** (list in section 7) |
+| Catalogue | Intact: 7 brands, 493 models, 5 882 rows; not re-imported |
+| **Bugs found and fixed** | (1) `/impressum/` and `/datenschutz/` rendered **empty** (title and text) since the first Eleventy port — pagination over object keys; (2) sitemap listed only 1 of 7 brand pages. Both now covered by tests |
+| Datenschutz | Hosting section now Netlify with facts from Netlify's own pages (entity/address, DPF, DPA in terms, subprocessor list); unused-service references removed and listed in the review marker; log retention still open |
+| Preview | **No hosted preview verified.** No Netlify account/token in this environment (only the session's GitHub token, which must not become the owner). Prepared: preview ZIP for Netlify Drop and exact client-owned setup (`docs/DEPLOY.md` B–C) |
+| CMS on hosted preview | **Not tested** (needs the Netlify site + OAuth App). Locally tested on the real catalogue (section 6). Auth flow and required OAuth scope checked in the Decap source |
+| New documents | `project-audit/CLIENT-APPROVAL-CHECKLIST.md`, `project-audit/DEVICE-QA-CHECKLIST.md`, rewritten `docs/DEPLOY.md` (settings, ownership, minimum permissions) |
+| SEO | Canonical on all indexable pages, `noindex` on previews and 404, sitemap 13 URLs (incl. 7 brand pages, `/leistungen/`), robots disallows `/admin/`, OG image 1200×676 (real shop photo); production Lighthouse SEO 100 |
+| Redirects | 12 rules in `netlify.toml`, all targets exist in the build (checked by script); behaviour on Netlify itself not yet observed |
+| Secrets | Scan of repository and build: no tokens/keys; OAuth secret is designed to live only in Netlify |
+
+### QA status by test type
+
+| Check | Automated (Playwright, local build) | Local browser (headless Chromium) | Hosted preview | Physical devices |
+|---|---|---|---|---|
+| Pages load, no console errors, no third-party requests, no failed assets | ✓ 8 pages × 390 px and 1440 px | — | not done | not done |
+| Horizontal overflow | ✓ same pages | — | not done | not done |
+| Responsive navigation/menu | partly (logo visible) | earlier phases | not done | not done |
+| 3D deferred start, fallback image, reduced motion | ✓ | — | not done | not done |
+| Calculator: catalogue load, model selection, prices match data, enquiry state, search | ✓ | — | not done | not done |
+| Price pages: filters, `#type`, `#model`, cross-brand search | ✓ | — | not done | not done |
+| Contact links (tel/mailto) | ✓ link targets | — | not done | not done |
+| Internal links, sitemap, titles, legal content | ✓ | — | — | — |
+| Redirects | config + targets checked by script | — | not done | — |
+| CMS edit → publish → rebuild → new price | — | ✓ local backend, real catalogue (28.10.) | not done | — |
+| Lighthouse (local, simulated throttling) | — | Home mobile 86 / A11y 100; desktop 60 (3D on software GPU, TBT not representative); `/preise/samsung/` mobile 83 / desktop 99; `/leistungen/` 98 / 100; SEO 100 in production build | not done | — |
+| iPhone Safari, Android Chrome | — | — | — | **not performed** — checklist ready |
+
 
 ## 1. Access to the original website
 
@@ -98,26 +134,23 @@ Contradictions found on the original (not resolved by us):
 - Observation: the Samsung entry took ~22 s to open and ~40 s to save in this environment (software rendering). On a normal laptop it will be faster, but if editors find it slow the price files can be split by series (e.g. Galaxy S, A, Tab) without code changes to the site.
 - Not yet verified: real GitHub OAuth login on a Netlify preview (needs the Netlify site; see `docs/DEPLOY.md` B).
 
-## 7. Verification results
+## 7. Launch blockers (29.10.2026)
 
-| Command | Result |
-|---|---|
-| `npm run build` (preview) | OK — 18 files incl. 7 brand pages, `/leistungen/`, `/preise/katalog.json` |
-| `npm test` | **all checks pass (117)**: 8 pages × 2 viewports (console errors, third-party requests, failed assets, overflow, logo), internal links, selector (catalogue load, models, prices, CTA, enquiry state, missing-repair hint, duration/warranty rule, search), price list (type names, `#akku`, no-match, `#model`, overview search, type carry-over), 3D start/fallback, reduced motion, opening state, production build guard (no test data, "in Prüfung" label, noindex/preview marker) |
-| `npm run check` | **Exit 1 — 5 blockers, 2 warnings** (was 10 blockers, 4 warnings) |
+| # | Blocker (`npm run check`) | Status | Needed from |
+|---|---|---|---|
+| 1 | Price list status `imported` | Open — data complete and reconciled (0 mismatches) | Owner: checklist item 1, then set "Geprüft" |
+| 2 | CMS points at the work repository `aik570/my-web-` | Open — steps ready (`docs/DEPLOY.md` C) | Owner: GitHub organisation + Netlify team (item 8) |
+| 3 | Datenschutz: legal review of the adapted text | Open — text updated for Netlify, changes listed | Owner/lawyer (item 7) |
+| 4 | Datenschutz: Netlify log retention + confirmation of the owner's Netlify account | Open — retention not published by Netlify | Owner (item 7/8); ask Netlify or accept generic wording after legal review |
+| 5 | Impressum: confirm copied data, legal form/register | Open | Owner (item 4) |
 
-Launch blockers:
-1. Price list status `imported` → owner spot-checks and sets "Geprüft" in the CMS.
-2. CMS repository is the shared work repository → client-owned repository needed.
-3. Datenschutz: legal review of the adapted text.
-4. Datenschutz: new hosting provider details.
-5. Impressum: owner confirms the copied data is current and complete.
+Warnings (not blocking): WhatsApp number · public-holiday rule · VAT note for prices (new).
+Also required before launch although not machine-checked: phone number decision, warranty wording, written approval of the preview and the domain switch.
 
-Warnings: WhatsApp number not set · public-holiday rule open.
-
-Real-device testing has **not** been performed.
-
-## 8. Next three actions
-1. **Owner review (one call):** confirm prices are current (database from 09.07.2026), the warranty rule (12 months vs 5 years original parts), Panzerglas double price, phone number (mobile vs landline), Impressum data. Then set price status to "Geprüft".
-2. **Netlify branch preview + GitHub OAuth** (`docs/DEPLOY.md` B), repeat the CMS edit → publish → rebuild test there; decide hosting and complete the Datenschutz hosting section.
-3. **Real-device QA** on iPhone Safari and Android Chrome against the preview (3D, calculator, brand pages).
+## 8. Next steps before production launch
+1. **Коля → owner:** send `CLIENT-APPROVAL-CHECKLIST.md`; get items 1–8 answered (one call is enough for most).
+2. **Owner:** create GitHub organisation + Netlify team, invite the developer (`docs/DEPLOY.md` C1).
+3. **Developer:** push to the client repository, create the Netlify branch deploy, OAuth App + provider, run the CMS test on the preview URL (C2–C4); record URL and result here.
+4. **Developer:** apply the owner's answers (prices status, phone/WhatsApp, warranty, VAT note, Impressum, Datenschutz retention) → `npm run check` must show 0 blockers.
+5. **Tester/owner:** `DEVICE-QA-CHECKLIST.md` on iPhone, Android and desktop against the preview; fix findings.
+6. **Owner:** written approval of the preview and the domain switch → `docs/DEPLOY.md` D.

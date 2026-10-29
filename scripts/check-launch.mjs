@@ -42,6 +42,7 @@ for (const f of files) {
 const site = read('src/_data/site.json');
 if (!site.whatsapp) warnings.push('WhatsApp-Nummer nicht eingetragen (Knopf wird nicht angezeigt)');
 if (site.publicHolidays === 'unknown') warnings.push('Feiertagsregel offen (Seite zeigt an Feiertagen „bitte vorher anrufen")');
+if (!meta.vatNote) warnings.push('Preisliste: kein Hinweis zur Umsatzsteuer (z. B. „Alle Preise inkl. MwSt.") – Angabe vom Inhaber bestätigen lassen (CLIENT-APPROVAL-CHECKLIST Punkt 6)');
 const fr = read('src/_data/franchise.json');
 if (!fr.contactEmail) warnings.push('Franchise: keine E-Mail für Anfragen (Knopf ruft die Ladennummer an)');
 

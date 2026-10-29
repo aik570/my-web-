@@ -2,52 +2,83 @@
 
 No DNS or production domain change without explicit approval.
 
+## Settings at a glance
+
+| Setting | Value | Where |
+|---|---|---|
+| Build command | `npm ci && npm run build` (production adds `&& npm run check`) | `netlify.toml` |
+| Publish directory | `_site` | `netlify.toml` |
+| Node | 22 (`NODE_VERSION`) | `netlify.toml` |
+| Environment variables | **None required.** `CONTEXT` is set by Netlify itself (`production`, `deploy-preview`, `branch-deploy`) | — |
+| Secrets | Only the GitHub OAuth **client secret**, stored in Netlify (*Access & security → OAuth*). Never in the repository | Netlify |
+| Redirects, headers (CSP, HSTS, noindex for `/admin/`) | as committed | `netlify.toml` |
+| 404 page | `_site/404.html`, served automatically by Netlify | — |
+
+Build behaviour by context: previews are marked "Vorschau" and `noindex`; production runs the launch gate (`npm run check`) and **fails on purpose** while any blocker is open (unverified prices, legal review markers, CMS still pointing at the work repository).
+
 ## A. Local preview (works now)
 
 ```
 npm ci
-npm run build          # preview build: "Vorschau" marker, noindex, labelled test prices
+npm run build          # preview build: "Vorschau" marker, noindex
 npx http-server _site -p 8080 -c-1     # or: npm run dev
 ```
 CMS locally: `npm run cms` (port 8081) + `npm run dev`, then http://localhost:8080/admin/.
 
-## B. Netlify preview from the current branch (needs a Netlify account)
+## B. Visual preview without Git (Netlify Drop, ~2 minutes)
 
-Builds the existing branch `claude/zealous-bohr-71wesv` as a **branch deploy** (context `branch-deploy`): marked "Vorschau", `noindex`, test prices clearly labelled. Production is never published from this setup.
+For a quick look by the client only. No CMS, and redirects from `netlify.toml` are not applied.
+1. `SITE_CONTEXT=branch-deploy npm run build` (or use the prepared `handy-chirurg-preview.zip`, unzipped).
+2. Log in at https://app.netlify.com (client's account) → *Sites* → drag the `_site` folder onto the drop area.
+3. Open the `*.netlify.app` URL, check it shows the "Vorschau" marker. Do not add a domain.
 
-1. Netlify → *Add new site → Import an existing project → GitHub* → install the Netlify GitHub App for the repository `aik570/my-web-` (repository owner must approve).
-2. Build settings are read from `netlify.toml` (`npm ci && npm run build`, publish `_site`, Node 22). Leave them.
-3. *Site configuration → Build & deploy → Branches and deploy contexts*:
-   - **Production branch:** `main` (does not exist in this repository, so no production deploy happens — verify that Netlify accepts it; otherwise choose a branch that is never pushed).
-   - **Branch deploys:** "Let me add individual branches" → `claude/zealous-bohr-71wesv`.
-4. Trigger a deploy of that branch. Preview URL: `https://claude-zealous-bohr-71wesv--<site-name>.netlify.app`.
-5. Do **not** add a custom domain.
+## C. Recommended: client-owned repository and Netlify site from the start
 
-CMS on the preview (optional, to test the real login → save → deploy loop):
-1. GitHub → *Settings → Developer settings → OAuth Apps → New*: Homepage `https://<site-name>.netlify.app`, Callback `https://api.netlify.com/auth/done`.
-2. Netlify → *Site configuration → Access & security → OAuth → Install provider → GitHub* → paste Client ID and Secret. The secret stays at Netlify; never commit it.
-3. If the login popup fails on the branch URL, add `site_domain: <site-name>.netlify.app` under `backend:` in `src/admin/config.yml`.
-4. Open `https://claude-zealous-bohr-71wesv--<site-name>.netlify.app/admin/`, log in with a GitHub account that has **Write** access to the repository, change one price, *Veröffentlichen*. Expected: a commit "CMS: preise … geändert" on `claude/zealous-bohr-71wesv`, a new branch deploy, the new price on `/preise/` after ~1 minute. Revert the test change afterwards (CMS or git).
+This avoids connecting the work repository to anything permanent. Everything below is done **by the client** (or by us after they invite us); we never use personal accounts as the long-term owner.
 
-## C. Production (after the launch blockers are resolved)
+### C1. Client creates (≈10 minutes)
+1. **GitHub organisation** (free), e.g. `handy-chirurg`, owner = client e-mail, 2FA on. Create an empty **private** repository, e.g. `handy-chirurg/website`.
+2. Invite the developer as collaborator with **Write** (Maintain is not needed).
+3. **Netlify team** on the client's e-mail (free tier is enough). Invite the developer as team member (*Developer* role).
 
-Ownership — everything belongs to the client; the developer is a removable collaborator:
+### C2. Developer moves the code (≈5 minutes)
+```
+git remote add client git@github.com:handy-chirurg/website.git
+git push client claude/zealous-bohr-71wesv:preview      # review branch
+```
+Then in `src/admin/config.yml`: `repo: handy-chirurg/website`, `branch: preview`, commit and push to `client/preview`. (Before launch: `branch: main`, see C5.)
 
-| Item | Owner | Developer access |
+### C3. Netlify site (client or developer as team member)
+1. *Add new site → Import an existing project → GitHub* → authorise the **Netlify GitHub App for the client organisation, only for this repository**.
+2. Build settings come from `netlify.toml`; leave them.
+3. *Branches and deploy contexts*: **Production branch `main`** (not pushed yet → nothing is published as production); **Branch deploys: `preview`**.
+4. Deploy. Preview URL: `https://preview--<site-name>.netlify.app`. Do **not** add a custom domain.
+
+### C4. CMS login (GitHub OAuth through Netlify)
+How it works (checked in the Decap source): the login popup opens `https://api.netlify.com/auth?provider=github&site_id=<site domain>`; Netlify exchanges the code with GitHub using the OAuth App secret stored at Netlify and hands the CMS a GitHub token. Decap requests the GitHub scope **`repo`**.
+1. GitHub → **organisation** *Settings → Developer settings → OAuth Apps → New*: Homepage `https://<site-name>.netlify.app`, Callback `https://api.netlify.com/auth/done`.
+2. Netlify → *Site configuration → Access & security → OAuth → Install provider → GitHub* → paste Client ID and Client Secret.
+3. If the popup fails on the branch URL, add `site_domain: <site-name>.netlify.app` under `backend:` in `src/admin/config.yml`.
+4. **Test** on `https://preview--<site-name>.netlify.app/admin/`: log in → open a brand → change one price → *Veröffentlichen* → expect a commit "CMS: preise … geändert" on `preview`, a new branch deploy, the new price on `/preise/<marke>/` after ~1–2 minutes → revert the change.
+
+### Minimum permissions
+
+| Who | Permission | Why |
 |---|---|---|
-| GitHub organisation + repository (e.g. `handy-chirurg/website`) | Client | Collaborator, *Maintain* or *Write* |
-| Netlify team + site | Client | Team member |
-| GitHub OAuth App for the CMS | Client organisation | — |
-| Domain / DNS (handychirurg.de) | Client | Only if the client delegates |
-| CMS editors | Client staff (own GitHub accounts, 2FA on) | — |
+| Netlify GitHub App | Read access to **this one repository** (contents, metadata), commit statuses/deploy hooks as requested by the app | To build on every push |
+| GitHub OAuth App | Belongs to the client organisation; no extra permissions to grant | Login for the CMS |
+| CMS editor (shop staff) | Own GitHub account, **Write** on this repository, 2FA on | Every *Veröffentlichen* is a commit. Note: the `repo` scope lets the CMS token reach all repositories the editor can access — use an account that only belongs to this organisation |
+| Developer | Write on the repository, *Developer* in the Netlify team; removable at any time | Maintenance |
+| Domain/DNS | Stays with the client; changed only after written approval | Launch |
 
-Steps:
-1. Create the client repository and push this branch as `main`:
-   `git push <client-remote> claude/zealous-bohr-71wesv:main`
-2. In `src/admin/config.yml` set `backend.repo` to the client repository and `backend.branch: main`.
-3. Netlify site from the client repository, production branch `main`. The production context runs `npm run check`: the deploy **fails on purpose** while any launch blocker remains (official prices not verified, legal placeholders, wrong CMS repository).
-4. OAuth provider as in B, with the client's OAuth App and the production domain.
-5. Give each editor **Write** access to the repository. If `main` gets branch protection, it must allow these users to push (or switch the CMS to `publish_mode: editorial_workflow`, which works through pull requests).
-6. Deploy notifications (failed deploys) to the maintainer's e-mail.
-7. Domain: only after written approval. Add `www.handychirurg.de` in Netlify, set DNS at the registrar, enable HTTPS, then activate the second-domain redirect in `netlify.toml` once the canonical domain is confirmed.
-8. After switch: submit `https://www.handychirurg.de/sitemap.xml` in Google Search Console; update the website/phone in the Google Business Profile.
+## D. Production launch (after all blockers are resolved and the client approved the preview)
+1. Set `backend.branch: main` in `src/admin/config.yml`; `git push client preview:main`.
+2. Netlify builds `main` as production; `npm run check` must pass, otherwise the deploy fails and nothing changes.
+3. Deploy notifications (failed deploys) to the maintainer's e-mail.
+4. Domain — **only after written approval**: add `www.handychirurg.de` in Netlify, change DNS at the registrar, enable HTTPS, then activate the second-domain redirect in `netlify.toml` once the canonical domain is confirmed.
+5. Update the GitHub OAuth App homepage to the final domain.
+6. After the switch: submit `https://www.handychirurg.de/sitemap.xml` in Google Search Console; update website and phone in the Google Business Profile.
+7. If `main` gets branch protection, it must allow the editors to push (or switch the CMS to `publish_mode: editorial_workflow`).
+
+## E. Alternative: temporary preview from the work repository
+Only if the client accounts are not ready yet: Netlify site from `aik570/my-web-`, production branch set to a name that does not exist and is never pushed, e.g. `handy-chirurg-production` (there is no `main`; the default branch belongs to another project), branch deploy `claude/zealous-bohr-71wesv`. OAuth as in C4. Remove the site once C is done.
