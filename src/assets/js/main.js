@@ -137,8 +137,17 @@
       // Larger screens: start once the page is idle.
       if (matchMedia('(max-width: 760px), (max-aspect-ratio: 3/4)').matches) {
         ['scroll', 'touchstart', 'pointerdown'].forEach(function (ev) { addEventListener(ev, load, { once: true, passive: true }); });
-      } else if ('requestIdleCallback' in window) requestIdleCallback(load, { timeout: 1500 });
-      else setTimeout(load, 200);
+      } else {
+        // after the intro: compiling the scene's shaders would stall its animation
+        var whenIdle = function () {
+          if ('requestIdleCallback' in window) requestIdleCallback(load, { timeout: 1500 });
+          else setTimeout(load, 200);
+        };
+        (function waitIntro() {
+          if (root.classList.contains('intro-done')) whenIdle();
+          else setTimeout(waitIntro, 150);
+        })();
+      }
     }
   }
 
@@ -252,14 +261,14 @@
     if (plan.unknown) {
       isOpen = null;
       text = plan.label + ' · bitte vorher anrufen';
-      short = plan.label;
+      short = [plan.label, 'bitte anrufen'];
       todayHours = 'Feiertag';
     } else {
       isOpen = !plan.closed && now.min >= plan.from && now.min < plan.to;
       todayHours = plan.closed ? 'geschlossen' : fmt(plan.from) + '–' + fmt(plan.to);
       if (isOpen) {
         text = 'Jetzt geöffnet';
-        short = 'Geöffnet bis ' + fmt(plan.to);
+        short = ['Geöffnet', 'bis ' + fmt(plan.to)];
       } else {
         // next opening within two weeks
         var next = '';
@@ -270,16 +279,20 @@
           next = (i === 0 ? 'heute' : i === 1 ? 'morgen' : WEEKDAY[new Date(now.date + i * 864e5).getUTCDay()]) + ' ' + fmt(p.from);
         }
         text = (plan.label ? plan.label + ' · ' : 'Geschlossen · ') + (next ? 'ab ' + next : 'Öffnungszeiten folgen');
-        short = 'Geschlossen' + (next ? ' · ab ' + next : '');
+        short = ['Geschlossen', next ? 'ab ' + next : ''];
       }
     }
 
     var state = document.querySelector('[data-state]');
     var hours = document.querySelector('[data-hours-today]');
-    var chip = document.querySelector('[data-state-short]');
     if (hours) hours.textContent = todayHours;
     if (state) { state.textContent = text; state.classList.toggle('is-closed', isOpen === false); }
-    if (chip) { chip.textContent = short; chip.classList.add(isOpen ? 'is-open' : 'is-closed'); }
+    // header chips (bar and mobile menu): label + time; grey when the day is unclear (holiday)
+    [].forEach.call(document.querySelectorAll('[data-state-short]'), function (chip) {
+      chip.querySelector('.nav__state-label').textContent = short[0];
+      chip.querySelector('.nav__state-time').textContent = short[1];
+      if (isOpen !== null) chip.classList.add(isOpen ? 'is-open' : 'is-closed');
+    });
   })();
 
   /* ---------- heart monitors ---------- */

@@ -47,7 +47,7 @@ for (const [w, h, label] of VIEWPORTS) {
     await page.waitForTimeout(url === '/' ? 3500 : 600);
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - innerWidth);
     const logo = await page.$eval('.nav__logo', (e) => +getComputedStyle(e).opacity);
-    ok(logo === 1, `${url} header logo visible`);
+    ok(logo === 1, `${url} header logo visible${logo === 1 ? '' : ' (' + await page.evaluate(() => document.documentElement.className + (document.getElementById('intro') ? ', intro running' : '')) + ')'}`);
     ok(errors.length === 0, `${url} no console errors ${errors.length ? JSON.stringify(errors.slice(0, 3)) : ''}`);
     ok(external.length === 0, `${url} no third-party requests ${external.length ? JSON.stringify(external.slice(0, 3)) : ''}`);
     ok(missing.length === 0, `${url} no failed assets ${missing.length ? JSON.stringify(missing.slice(0, 3)) : ''}`);
@@ -197,7 +197,9 @@ console.log('\n3D scene');
   const nogl = await browser.newPage({ viewport: { width: 1440, height: 900 } });
   await nogl.route('**/vendor/three.module.min.js', (r) => r.abort());
   await nogl.goto(BASE + '/');
-  await nogl.waitForTimeout(2500);
+  // the scene loads after the intro, so the fallback follows it
+  await nogl.waitForFunction(() => document.documentElement.classList.contains('no-webgl'), null, { timeout: 8000 }).catch(() => {});
+  await nogl.waitForTimeout(300);
   const fb = await nogl.evaluate(() => [document.documentElement.classList.contains('no-webgl'), getComputedStyle(document.querySelector('.story__poster')).display !== 'none', document.getElementById('story').offsetHeight < innerHeight * 1.5]);
   ok(fb.every(Boolean), `no WebGL: fallback poster shown and story collapsed ${JSON.stringify(fb)}`);
   await nogl.close();

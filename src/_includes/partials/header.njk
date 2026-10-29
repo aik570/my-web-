@@ -10,8 +10,10 @@
       <a href="/#ablauf">Ablauf</a>
       <a href="/#laden">Sprechzeiten</a>
       <a href="/#faq">Fragen</a>
+      <a class="nav__franchise" href="/franchise/"{% if page.url == '/franchise/' %} aria-current="page"{% endif %}>Franchise</a>
+      <span class="nav__state nav__state--menu" data-state-short><span class="nav__state-label">Sprechzeiten</span><span class="nav__state-time">{{ site.hours[0].from }}–{{ site.hours[0].to }}</span></span>
     </nav>
-    <span class="nav__state" data-state-short>{{ site.hours[0].from }}–{{ site.hours[0].to }}</span>
+    <span class="nav__state" data-state-short><span class="nav__state-label">Sprechzeiten</span><span class="nav__state-time">{{ site.hours[0].from }}–{{ site.hours[0].to }}</span></span>
     <a class="nav__call" href="tel:{{ site.phone.dial }}">
       <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6.6 2.5 4.2 3.2c-.9.3-1.4 1.2-1.2 2.1 1.4 6 5.9 10.5 11.9 11.9.9.2 1.8-.3 2.1-1.2l.7-2.4-3.6-1.6-1.6 1.7c-2.2-1-4-2.8-5-5l1.7-1.6L7.6 3.5" /></svg>
       <span class="nav__call-long">{{ site.phone.display }}</span><span class="nav__call-short">Anrufen</span>
