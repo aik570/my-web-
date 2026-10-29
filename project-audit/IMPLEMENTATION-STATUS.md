@@ -1,8 +1,31 @@
 # Implementation status
 
-Updated: 29.10.2026, Potsdam logo + dedicated Preisrechner · Branch `claude/zealous-bohr-71wesv`
+Updated: 29.10.2026 (evening), 3D glass, header, visual polish, final QA · Branch `claude/zealous-bohr-71wesv`
 
-## T. Franchise page (29.10.2026, latest)
+## U. 3D glass, header, visual polish and final QA (29.10.2026, latest)
+
+**Preview:** https://claude.ai/artifact/MKnvHQdRfoKvSRqyntbA2E (version 26). The link opens the home page; the franchise page is "Franchise" in the top menu (file `franchise.html` inside the preview). Verified: published pages read back from the artifact carry the latest stylesheet, scripts and navigation. Checked locally with browser automation (Chromium, emulated desktop 1440 × 900 and phone 390 × 844 / 360 / 320); **not visually inspected inside the claude.ai viewer and not tested on physical devices.**
+
+| Area | Result |
+|---|---|
+| 3D phone, variant B | Screen glass is a shader: shards (sectors and rings around the impact) each tilted slightly, refraction of the screen image, glints on facets and hairlines, soft box reflection and fresnel that move as the phone turns. Cracks heal gradually from the screen edge to the impact point between 58 % and 80 % of the hero scroll. Studio environment, frame, glass and lens materials refined; soft shadow under the phone. Scene, poses and story unchanged |
+| Variant A | Canvas cracks with the same radial healing. Chosen automatically on devices with ≤ 4 CPU cores or ≤ 3 GB device memory, when the shader fails to compile, or when frames are slow (> 40 ms average over 45 frames). `?glass=a` / `?glass=b` force a variant for testing |
+| Loading | 3D never blocks content: phones load it on first scroll/touch, desktops after the intro (shader compilation would otherwise stall the intro). Without WebGL the poster and static hero are shown (phone layout fixed, it was shifted off screen) |
+| Reduced motion | Intro skipped, no idle motion, scene follows scroll directly, hover lifts off |
+| Header | Franchise link (quiet outline, below the call button in weight) on desktop and full-width in the mobile menu; opens `/franchise/` (checked at 11 widths, 360–1440 px, no overlap, no horizontal scroll). Status chip: dot + label + time on one baseline, grey on holidays, also in the mobile menu; logic unchanged (shows "Geschlossen · ab morgen 10:00" after 18:30). Status hidden below 1240 px, menu below 980 px |
+| Buttons and states | One system (52/48 px, 10 px radius, 600 weight), hover lift, press, focus ring, 220 ms; cards, chips, brand/model buttons and arrow links share hover/active/focus states |
+| Defects found and fixed | Content cut off on narrow screens (hidden by `overflow-x: clip`): brand-page "Reparaturangebot …" links, model-page repair list and summary at ≤ 360 px, long URLs in Datenschutz, home hero at 320 px, no-WebGL hero on phones. New test checks for clipped content on every tested page |
+| Layout shift | CLS ≤ 0.03 on all checked pages, 0.065 on `/reparatur-finden/` on a phone (below the 0.1 "good" limit; the step content appears once the catalogue has loaded) |
+| `npm test` | **170 checks, all pass** (incl. production build checks) |
+| Interaction test | 733 elements on 11 pages, desktop + mobile: 721 passed, **0 failed**, 12 only present in a later state; 19 275 links on 508 pages, 0 broken; 12/12 redirect samples, 493/493 old model URLs |
+| `npm run check` | 5 blockers (unchanged, all need the owner), 3 warnings |
+| Production / DNS | Not touched |
+
+Limitations: the glass is a screen-space effect on the display plane (no real light transport through a 3D glass volume); in the test container (4 cores) the automatic choice is variant A, variant B was checked with `?glass=b`.
+
+---
+
+## T. Franchise page (29.10.2026)
 
 **Preview:** https://claude.ai/artifact/MKnvHQdRfoKvSRqyntbA2E (version 17) → "Franchise" in the footer.
 
