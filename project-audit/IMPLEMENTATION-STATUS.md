@@ -1,8 +1,49 @@
 # Implementation status
 
-Updated: 29.10.2026, Redesign completion + interactive preview · Branch `claude/zealous-bohr-71wesv`
+Updated: 29.10.2026, Potsdam logo + dedicated Preisrechner · Branch `claude/zealous-bohr-71wesv`
 
-## R. Redesign completion and preview (29.10.2026, latest)
+## S. Potsdam logo and dedicated Preisrechner (29.10.2026, latest)
+
+**Preview (for review):** https://claude.ai/artifact/MKnvHQdRfoKvSRqyntbA2E (version 11) — private until shared via its Share menu. Open the link; the start page is the home page, every other page is reached through the normal navigation (flat file names, e.g. `reparatur-finden.html`, `preise-apple-iphone-13.html`). Rebuilt with `npm run preview:bundle` from the current branch. The identical bundle was checked **locally** from a deep sub-path with the uploaded asset copies (0 failed requests, 0 script errors, 3D starts, home → calculator → model page, search). Read back from the artifact after publishing: published pages are byte-identical in content to the local bundle. **Not visually inspected inside the claude.ai viewer** (it cannot be opened from this environment).
+
+### Logo
+| Item | Result |
+|---|---|
+| Change | Berlin skyline replaced by a Potsdam line-art skyline, left to right: Schloss Sanssouci, Brandenburger Tor (Potsdam), St. Nikolaikirche, Altes Rathaus (Atlas with globe), Landtag / Fortunaportal, Garnisonkirche tower, Neues Palais (crown of the Three Graces) |
+| Kept | HANDY CHIRURG wordmark, stethoscope with cross, red ECG line, composition, colours (teal `#2f7a68`, red `#c8312a`) — the original vector tracings, only tiny tracing specks removed |
+| Reference | The attached 22.jpg (thin-line concept) was used for composition and line weight; the buildings were drawn after photographs, because the concept's buildings were not identifiable. Generated images were not used as assets |
+| Assets | `src/assets/img/logo.svg` (header, footer), `logo-white.svg` (dark backgrounds), `logo-sky.svg` + `logo-word.svg` (intro animation). All SVG, scalable. Source: `scripts/logo/build-logo.py` (run `python3 scripts/logo/build-logo.py`), original tracing in `scripts/logo/source-berlin-logo.svg` |
+| Favicon / social | Favicon is the ECG mark only (no skyline) — unchanged. Social image is the shop photo — unchanged |
+
+### Preisrechner `/reparatur-finden/`
+| Step | Behaviour |
+|---|---|
+| 1 Gerät | Search over all 493 models (ranked exact → prefix → contains, ↑/↓/Enter/Esc), 7 brand buttons, category chips (Smartphone/Tablet/Watch/Laptop where the brand has them), model filter |
+| 2 Reparatur | Only repairs in the catalogue for that model; one card per repair type, price or "Preis auf Anfrage" |
+| 3 Ergebnis | Device, repair, part quality (only where the catalogue has tiers), accessories, total, duration only where `repairTypes` has one, "Preise in Prüfung" note while unverified, call / e-mail (pre-filled) / WhatsApp (only if set), link to the model offer page |
+| Navigation | Progress bar (completed steps clickable), back buttons, browser back/forward (each step is a history entry), deep links `#marke`, `#marke--modell`, `#marke--modell--reparatur` |
+| Errors | Unknown brand/model/repair in the link → message + nearest valid step; model without prices → call message; catalogue failed to load → message with phone link and link to the price list |
+| Accessibility | Focus moves to the step heading, live status, keyboard operation, reduced motion respected, progress bar not covering content (checked desktop + 390 px) |
+| Entry points | Header "Preisrechner", footer, hero buttons, home `#preisrechner` block with brand deep links, brand pages ("<Marke> im Preisrechner"), model pages ("Im Preisrechner öffnen"). Old URLs and redirects unchanged |
+| Removed | Embedded home selector (`selector.njk`, `selector.js`) — replaced by the page above |
+
+### Tests
+| Check | Result |
+|---|---|
+| `npm test` (includes the new calculator tests: brand → models, category filter, search + keyboard, repair → result, quality switch, accessories, mailto, offer link, back/forward, deep link "auf Anfrage", unknown model, failed catalogue, no overflow) | 149 checks, all pass |
+| Production build | OK; no test data |
+| `npm run check` | 5 blockers (unchanged, all need the owner), 3 warnings |
+| Interaction test (`npm run test:interactions -- --write`) | INTERACTION_RESULT |
+| Physical devices | **Not tested** — `DEVICE-QA-CHECKLIST.md` |
+
+### Known issues / open
+- Prices are still "in Prüfung" (imported from the old site, not confirmed by the owner).
+- Logo: please confirm the building selection; if the owner prefers fewer buildings for small sizes, a reduced variant can be generated from the same script.
+- Questions for Коля from section R remain open.
+
+---
+
+## R. Redesign completion and preview (29.10.2026)
 
 **Preview (for review):** https://claude.ai/artifact/MKnvHQdRfoKvSRqyntbA2E — private until shared via its Share menu. Contains the current build of every page: home with 3D hero and calculator, `/leistungen/`, `/preise/`, 7 brand pages, **all 493 model offer pages**, franchise, Impressum, Datenschutz, 404. Built with `npm run preview:bundle` (flat file names, e.g. `preise-apple-iphone-13.html`; fonts, images and scripts in the artifact's asset store). The identical bundle was verified locally from a deep sub-path (0 failed requests, 0 script errors, 3D starts, calculator → model page, search). **Not verified inside the claude.ai viewer itself** (it cannot be opened from this environment).
 Not working in the preview: CMS (`/admin/`, needs the hosted site + GitHub login), Netlify redirects of old URLs (tested by the emulated redirect checks instead), and possibly `tel:`/`mailto:` links depending on the viewer.

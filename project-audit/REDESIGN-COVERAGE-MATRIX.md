@@ -33,7 +33,7 @@ No linked PDFs or other documents exist on the original site. External destinati
 |---|---|---|---|---|---|
 | GLOBAL-TOPBAR-01 | Top bar: e-mail link | Footer contact + calculator/offer e-mail actions | ◐ | ✓ | No separate top bar; e-mail in footer and contact section |
 | GLOBAL-TOPBAR-02 | Top bar: phone `0331 29080953` | Header call button + footer + call section: `0163 228 8224` | ◐ | ✓ | **Number differs** — decision pending (CLIENT-APPROVAL item 2) |
-| NAV-01 | Logo → `/` | Logo → `/` | ✓ | ✓ | — |
+| NAV-01 | Logo → `/` | Logo → `/` | ✓ | ✓ | Logo skyline redrawn as Potsdam (29.10.; was Berlin); wordmark, stethoscope, ECG unchanged — header, footer, intro |
 | NAV-02…04 | Startseite, Reparaturleistungen, Franchise | Leistungen, Preise, Ablauf, Sprechzeiten, Fragen; Franchise in footer and home teaser | ◐ | ✓ | Nav ordered by customer task; Franchise moved to footer/home |
 | NAV-05 | Second row: Apple … OnePlus (brand pages) | Header "Preise" → brand cards; footer "Preise nach Hersteller" (7 links) | ✓ | ✓ | — |
 | NAV-06 | Mobile menu button | Mobile menu button (aria-expanded) + call button | ✓ | ✓ | — |
@@ -46,7 +46,7 @@ No linked PDFs or other documents exist on the original site. External destinati
 | ID | Original section (purpose) | Content / assets | Interactive elements | New location | Functional | Visual | Notes |
 |---|---|---|---|---|---|---|---|
 | HOME-01 | Hero "Handy Chirurg Potsdam – Ihre Handy-Reparatur Experten" (positioning) | Text; technician hero image (stock) | — | Hero "Notaufnahme für Ihr Handy in Potsdam." + 3D phone story; intro logo heartbeat | ◐ | ✓ | Stock image replaced by 3D hero; same message (repair in Potsdam, fast, no data loss → "Schweigepflicht") |
-| HOME-02 | Price calculator: Hersteller → Modell → Reparaturservice → "zum Reparaturangebot" | Data from database | 3 dropdowns, 1 button | `#preisrechner`: Hersteller, Modell, search, repair list with prices, enquiry actions, "Zum Reparaturangebot" → model page | ✓ | ✓ | Adds search over 493 models and prices directly in the selector |
+| HOME-02 | Price calculator: Hersteller → Modell → Reparaturservice → "zum Reparaturangebot" | Data from database | 3 dropdowns, 1 button | Dedicated page `/reparatur-finden/` (29.10.): 1 Gerät (search over 493 models, brand buttons, category chips, filter) → 2 Reparatur (only catalogue repairs, verified prices or "auf Anfrage") → 3 Ergebnis (quality option only where the catalogue has it, accessories, total, call/e-mail, link to the model offer page). Home `#preisrechner` is an entry block with 7 brand deep links; brand and model pages link to the matching state | ✓ | ✓ | Own page instead of an embedded selector; deep links `#marke--modell--reparatur`; back button works per step |
 | HOME-03 | 3 trust cards: Zertifizierte Techniker vor Ort, Express Reparatur möglich, Garantie auf Ersatzteile | Icons | — | Hero tags + charter | ◐ | ✓ | "Zertifizierte Techniker" **not used** (unverified; CLIENT-APPROVAL item 5) |
 | HOME-04 | "Warum Du Dein Gerät zu Handy Chirurg bringen solltest" (9 benefits) | 9 texts; 2 photos (stock), mascot | — | Home: charter (4) + Befund block (diagnosis 25 €); full list of 9 on `/leistungen/` ("Warum Sie Ihr Gerät…") | ✓ | ✓ | Du → Sie; "einer unserer Filialen" not repeated (single shop; item 5); stock photos and mascot not used |
 | HOME-05 | "So läuft Deine Reparatur ab" (4 steps) | Text | — | `#ablauf` with two tracks: Im Laden / Per Post (tabs) | ◐ | ✓ | "beiden Filialen in Berlin" not copied (item 5); send-in and payment kept |
