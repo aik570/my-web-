@@ -154,9 +154,11 @@ async function collect(page) {
       const tag = e.tagName.toLowerCase();
       const kind = tag === 'a' ? (e.getAttribute('href').startsWith('tel:') ? 'tel' : e.getAttribute('href').startsWith('mailto:') ? 'mailto' : /^https?:/.test(e.getAttribute('href')) ? 'external' : 'link')
         : tag === 'input' ? 'input:' + (e.type || 'text') : tag;
-      const label = (e.getAttribute('aria-label') || (e.closest('label') && e.closest('label').innerText) || e.innerText || e.value || e.getAttribute('placeholder') || e.id || '').trim().replace(/\s+/g, ' ').slice(0, 70);
+      const label = (e.getAttribute('aria-label') || (e.closest('label') && e.closest('label').textContent) || e.textContent || e.value || e.getAttribute('placeholder') || e.id || '').trim().replace(/\s+/g, ' ').slice(0, 70);
+      const d = e.closest('details');
+      const inClosedDetails = !!(d && !d.open && e.tagName !== 'SUMMARY');
       const lbl = e.id && document.querySelector(`label[for="${e.id}"]`);
-      out.push({ idx: i, kind, area: area(e), label: (lbl ? lbl.innerText.trim().replace(/\s+/g, ' ') : label).slice(0, 70), href: e.getAttribute('href'), visible: vis(e) || (e.matches('input[type="radio"],input[type="checkbox"]') && vis(e.closest('label') || e)) });
+      out.push({ idx: i, kind, area: area(e), label: (lbl ? lbl.innerText.trim().replace(/\s+/g, ' ') : label).slice(0, 70), href: e.getAttribute('href'), inClosedDetails, visible: vis(e) || (e.matches('input[type="radio"],input[type="checkbox"]') && vis(e.closest('label') || e)) });
     });
     return out;
   }, areaOf);
@@ -165,7 +167,9 @@ async function collect(page) {
 // Behaviour checks per element. Returns [result, note].
 async function exercise(page, el, url, isMobile) {
   const loc = page.locator('a[href], button, select, input, textarea, summary').nth(el.idx);
-  if (!el.visible) return ['hidden', isMobile ? 'not shown at this width' : 'not shown at this width'];
+  // links inside a collapsed model (brand pages) are reached by opening it first
+  if (el.inClosedDetails) await loc.evaluate((e) => { e.closest('details').open = true; });
+  if (!el.visible && !el.inClosedDetails) return ['hidden', 'not shown at this width'];
   try {
     if (el.kind === 'tel') return [/^tel:\+\d{8,15}$/.test(el.href) ? 'pass' : 'fail', el.href];
     if (el.kind === 'mailto') return [/^mailto:[^@]+@[^@?]+\.[a-z]+/i.test(el.href) ? 'pass' : 'fail', el.href.split('?')[0]];
