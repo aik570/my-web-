@@ -960,22 +960,21 @@ mark.todo { background: #fff1c2; color: #6b4b00; padding: .1rem .35rem; border-r
 .fdevice__svg[data-part="fehleranalyse"] .part--fehleranalyse { stroke: var(--red); stroke-width: 3; fill: rgba(200, 49, 42, .1); }
 .fdevice__svg[data-part="backcover"] .part--backcover { stroke-dasharray: 7 6; fill: none; }
 .fdevice__svg[data-part="display"] .dv__screen { stroke: var(--red); fill: rgba(200, 49, 42, .1); }
-/* family picture under the part overlay; the selected area stays red on top of it */
-.fdevice__svg .dv__photo { display: none; }
-.fdevice__svg[data-photo] .dv__photo { display: inline; }
-.fdevice__svg[data-photo] .dv__body, .fdevice__svg[data-photo] .dv__screen, .fdevice__svg[data-photo] .dv__strap, .fdevice__svg[data-photo] .dv__base { fill: none; stroke: none; }
-.fdevice__svg[data-photo] .part { stroke: rgba(255, 255, 255, .55); stroke-width: 1.5; }
-.fdevice__svg[data-photo] .part--backcover, .fdevice__svg[data-photo] .part--wasserschaden, .fdevice__svg[data-photo] .part--fehleranalyse, .fdevice__svg[data-photo] .part--wifi-bluetooth { stroke: none; }
-.fdevice__svg[data-photo][data-part] .part { transition: stroke .25s, fill .25s, stroke-width .25s; }
-.fdevice__svg[data-photo][data-part="display"] .part--display, .fdevice__svg[data-photo][data-part="panzerglas"] .part--panzerglas,
-.fdevice__svg[data-photo][data-part="akku"] .part--akku, .fdevice__svg[data-photo][data-part="frontkamera"] .part--frontkamera,
-.fdevice__svg[data-photo][data-part="hauptkamera"] .part--hauptkamera, .fdevice__svg[data-photo][data-part="lautsprecher"] .part--lautsprecher,
-.fdevice__svg[data-photo][data-part="ladebuchse"] .part--ladebuchse, .fdevice__svg[data-photo][data-part="backcover"] .part--backcover,
-.fdevice__svg[data-photo][data-part="wifi-bluetooth"] .part--wifi-bluetooth, .fdevice__svg[data-photo][data-part="wasserschaden"] .part--wasserschaden,
-.fdevice__svg[data-photo][data-part="fehleranalyse"] .part--fehleranalyse { stroke: var(--red); stroke-width: 3.5; fill: rgba(200, 49, 42, .28); }
-.fdevice__svg[data-photo][data-part="backcover"] .part--backcover { fill: none; }
-/* non-phone pictures have no part map: frame the whole picture instead */
-.fdevice__svg[data-photo]:not([data-cat="Smartphone"]):not([data-cat=""]):not([data-cat="Sonstiges"]) .dv { display: none; }
+/* photo of the chosen model until a repair is chosen; then the drawing with the part in red */
+.fdevice__photo { display: block; width: 100%; max-width: 13rem; height: auto; max-height: 20rem; object-fit: contain; border-radius: 14px; background: var(--white); animation: dv-in .35s var(--ease) both; }
+.fdevice__photo[hidden] { display: none; }
+.fdevice__note a { color: inherit; }
+@keyframes dv-in { from { opacity: 0; transform: translateY(6px) scale(.98); } }
+.fdevice__svg:not([data-part=""]) .dv { animation: dv-in .35s var(--ease) both; }
+.fdevice__svg:not([data-part=""]) .part { animation: dv-pulse 1.6s ease-in-out .35s infinite; }
+.fdevice__svg .part { animation-play-state: paused; }
+.fdevice__svg[data-part="display"] .part--display, .fdevice__svg[data-part="panzerglas"] .part--panzerglas, .fdevice__svg[data-part="akku"] .part--akku,
+.fdevice__svg[data-part="frontkamera"] .part--frontkamera, .fdevice__svg[data-part="hauptkamera"] .part--hauptkamera, .fdevice__svg[data-part="lautsprecher"] .part--lautsprecher,
+.fdevice__svg[data-part="ladebuchse"] .part--ladebuchse, .fdevice__svg[data-part="backcover"] .part--backcover, .fdevice__svg[data-part="wifi-bluetooth"] .part--wifi-bluetooth,
+.fdevice__svg[data-part="wasserschaden"] .part--wasserschaden, .fdevice__svg[data-part="fehleranalyse"] .part--fehleranalyse { animation-play-state: running; }
+@keyframes dv-pulse { 50% { fill: rgba(200, 49, 42, .3); stroke-width: 4; } }
+@media (prefers-reduced-motion: reduce) { .fdevice__photo, .fdevice__svg .dv, .fdevice__svg .part { animation: none !important; } }
+.reduced .fdevice__photo, .reduced .fdevice__svg .dv, .reduced .fdevice__svg .part { animation: none !important; }
 .fdevice__name { margin: 0; font-weight: 700; text-align: center; }
 .fdevice__part { margin: 0; font: 500 .75rem var(--mono); color: var(--red); text-align: center; min-height: 1em; }
 .fdevice__note { margin: 0; font-size: .75rem; color: var(--grey); text-align: center; }
@@ -985,7 +984,7 @@ mark.todo { background: #fff1c2; color: #6b4b00; padding: .1rem .35rem; border-r
   /* compact row under the steps once a model is chosen */
   .fdevice { display: none; position: static; grid-template-columns: 4.5rem 1fr; grid-template-rows: auto auto 1fr; justify-items: start; align-items: start; column-gap: 1rem; row-gap: .15rem; padding: .75rem 1rem; }
   .fdevice[data-model] { display: grid; order: -1; }
-  .fdevice__svg { grid-row: 1 / 4; max-width: 4.5rem; }
+  .fdevice__svg, .fdevice__photo { grid-row: 1 / 4; max-width: 4.5rem; max-height: 7rem; }
   .fdevice__name, .fdevice__part, .fdevice__note { text-align: left; }
   .fdevice__part { min-height: 0; }
   .finder__progress { top: calc(4rem + env(safe-area-inset-top, 0px)); }
@@ -1141,3 +1140,9 @@ mark.todo { background: #fff1c2; color: #6b4b00; padding: .1rem .35rem; border-r
 .reduced .reviews__ticker { overflow-x: auto; scroll-snap-type: x mandatory; padding-inline: var(--gutter); -webkit-mask-image: none; mask-image: none; }
 .reduced .reviews__track { animation: none; }
 .reduced .reviews__track--copy { display: none; }
+/* back cover and main camera: turn the drawing to its back (camera top left, no screen) */
+.fdevice__svg .dv--phone { transform-box: view-box; transform-origin: 110px 150px; transition: transform .45s var(--ease); }
+.fdevice__svg:is([data-part="backcover"], [data-part="hauptkamera"]) .dv--phone { transform: scaleX(-1); }
+.fdevice__svg:is([data-part="backcover"], [data-part="hauptkamera"]) :is(.part--display, .part--frontkamera, .part--lautsprecher, .part--akku, .part--wifi-bluetooth, .part--wasserschaden, .part--fehleranalyse) { display: none; }
+.fdevice__svg[data-part="backcover"] .part--backcover { fill: rgba(200, 49, 42, .12); stroke-dasharray: none; }
+.reduced .fdevice__svg .dv--phone { transition: none; }

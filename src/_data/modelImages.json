@@ -1,5 +1,6 @@
 {
-  "note": "Rules for the device picture in the repair finder. The first rule whose brand matches and whose pattern (a regular expression, case-insensitive) matches the model name wins. No exact photo exists for any model yet: every image is a family picture (exact: false) and is labelled as such. A model without a matching rule shows the neutral drawing. Never point a rule at a picture of a different model generation.",
+  "note": "Pictures for the repair finder. 'models' maps a catalogue model (brand/slug) to a photo of exactly that model with its licence and author (shown as credit). Only freely licensed photos (e.g. Wikimedia Commons, CC BY / CC BY-SA / CC0 / public domain) or photos supplied with rights by the owner. 'rules' are the fallback: the first rule whose brand and pattern (regular expression, case-insensitive) match the model name gives a picture of the same series, labelled 'Symbolbild'. Without either, the neutral drawing is shown. Never point an entry at a picture of a different model.",
+  "models": {},
   "rules": [
     {
       "brand": "apple",

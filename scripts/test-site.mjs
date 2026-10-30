@@ -151,18 +151,21 @@ console.log('\nPreisrechner');
   ok(page.url().endsWith('#apple--iphone-13') && (await page.$$eval('.frepair', (e) => e.length)) === services.length, `model → ${services.length} repair cards, address #apple--iphone-13`);
   const akku = m13.repairs.find((r) => r[0] === 'akku');
   ok((await page.$eval('.frepair[data-service="akku"] .frepair__price', (e) => e.textContent)).includes(String(akku[2])), `card price = data (Akku ${akku[2]} €)`);
+  // device preview: photo of the model before a repair is chosen, then the drawing with the part in red
+  const imgs = JSON.parse(fs.readFileSync('src/_data/modelImages.json', 'utf8'));
+  const want = imgs.models['apple/iphone-13'] || imgs.rules.find((x) => x.brand === 'apple' && new RegExp(x.pattern, 'i').test('iPhone 13'));
+  const before = await page.evaluate(() => { const i = document.getElementById('f-device-photo'); return { src: i.getAttribute('src'), shown: !i.hidden && i.getBoundingClientRect().width > 20, svg: getComputedStyle(document.querySelector('.fdevice__svg')).display, note: document.getElementById('f-device-note').textContent }; });
+  ok(before.src === want.image && before.shown && before.svg === 'none' && (want.exact ? /Foto: .+Wikimedia Commons/.test(before.note) : /Symbolbild.*nicht das exakte Modell/.test(before.note)), `model chosen → photo ${want.image.split('/').pop()} (${want.exact ? 'exact, with credit' : 'Symbolbild'})`);
+  ok(await page.evaluate(async (h) => (await fetch(h)).ok, before.src), 'device photo file loads');
   await page.click('.frepair[data-service="display"]');
   await page.waitForFunction(() => !document.getElementById('f-step3').hidden && document.querySelectorAll('#r-quality-options input').length > 0, null, { timeout: 3000 }).catch(() => {});
   ok(!(await page.$eval('#f-step3', (e) => e.hidden)) && (await page.$$eval('#r-quality-options input', (e) => e.length)) === 2, 'result step with two part qualities (Standard / Original)');
   await page.waitForTimeout(400); // stroke colour transition
   const pic = await page.evaluate(() => {
-    const s = document.querySelector('.fdevice__svg'), i = s.querySelector('.dv__photo'), r = i.getBoundingClientRect();
-    return { href: i.getAttribute('href'), shown: r.width > 20, note: document.getElementById('f-device-note').textContent,
-      red: getComputedStyle(s.querySelector('.part--display')).stroke, other: getComputedStyle(s.querySelector('.part--akku')).stroke };
+    const s = document.querySelector('.fdevice__svg');
+    return { photo: document.getElementById('f-device-photo').hidden, svg: getComputedStyle(s).display, red: getComputedStyle(s.querySelector('.part--display')).stroke, other: getComputedStyle(s.querySelector('.part--akku')).stroke };
   });
-  ok(pic.href === '/assets/img/modelle/iphone-13.webp' && pic.shown && /Symbolbild iPhone 13-Serie/.test(pic.note) && /nicht das exakte Modell/.test(pic.note), 'device picture: iPhone 13 family image, labelled as Symbolbild (mobile row)');
-  ok(pic.red === 'rgb(200, 49, 42)' && pic.red !== pic.other, 'device picture: selected part (display) highlighted red');
-  ok(await page.evaluate(async (h) => (await fetch(h)).ok, pic.href), 'device picture file loads');
+  ok(pic.photo && pic.svg !== 'none' && pic.red === 'rgb(200, 49, 42)' && pic.red !== pic.other, 'repair chosen → photo hidden, drawing with the display in red');
   const orig = m13.repairs.find((r) => r[1] === 'Display – Originalqualität')[2];
   await page.click('#r-quality-options label >> nth=1');
   ok((await page.$eval('#r-total', (e) => e.textContent)).includes(String(orig)), `quality switch → ${orig} €`);
@@ -178,9 +181,10 @@ console.log('\nPreisrechner');
   // deep links, enquiry state, invalid links
   await page.goto(BASE + '/reparatur-finden/#samsung--galaxy-s23--hauptkamera'); await page.waitForSelector('#finder.is-ready');
   ok(/auf Anfrage/.test(await page.$eval('#r-total', (e) => e.textContent)) && !(await page.$eval('#r-request', (e) => e.hidden)), 'deep link to a repair without price → "Preis auf Anfrage" + enquiry text');
-  ok(await page.$eval('.dv__photo', (i) => i.getAttribute('href')) === '/assets/img/modelle/galaxy-s.webp' && await page.$eval('.fdevice__svg', (s) => s.dataset.part) === 'hauptkamera', 'deep link → Galaxy S family picture, camera highlighted');
+  ok(await page.$eval('#f-device-photo', (i) => i.hidden) && await page.$eval('.fdevice__svg', (s) => s.dataset.part === 'hauptkamera' && getComputedStyle(s.querySelector('.part--hauptkamera')).stroke === 'rgb(200, 49, 42)'), 'deep link to a repair → drawing, main camera in red');
   await page.goto(BASE + '/reparatur-finden/#apple--iphone-14-pro'); await page.waitForSelector('#finder.is-ready'); await page.waitForTimeout(100);
-  ok(!(await page.$eval('.dv__photo', (i) => i.hasAttribute('href'))) && /Schematische/.test(await page.$eval('#f-device-note', (e) => e.textContent)), 'no family picture for iPhone 14 Pro (would show another model) → drawing');
+  const p14 = imgs.models['apple/iphone-14-pro'];
+  ok(p14 ? await page.$eval('#f-device-photo', (i, src) => !i.hidden && i.getAttribute('src') === src, p14.image) : (!(await page.$eval('#f-device-photo', (i) => i.hasAttribute('src'))) && /Schematische/.test(await page.$eval('#f-device-note', (e) => e.textContent))), p14 ? 'iPhone 14 Pro → its own photo' : 'iPhone 14 Pro: no photo of this model → drawing, no picture of another model');
   await page.goto(BASE + '/reparatur-finden/#apple--gibt-es-nicht'); await page.waitForSelector('#finder.is-ready');
   ok(/nicht in der Preisliste/.test(await page.$eval('#f-status', (e) => e.textContent)) && !(await page.$eval('#f-step1', (e) => e.hidden)), 'unknown model → message, back at step 1');
   // search with keyboard

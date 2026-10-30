@@ -109,26 +109,32 @@
     btn(3).disabled = !r;
   }
 
-  // First rule from modelImages.json whose brand and pattern match; family pictures only, never another model's photo
+  // Photo of the exact model (modelImages.json "models"), else the first family rule whose brand and
+  // pattern match (labelled "Symbolbild"); never a picture of another model generation
   function imageFor(b, m) {
+    var exact = (D.photos || {})[b.slug + '/' + m.slug];
+    if (exact) return exact;
     return (D.images || []).filter(function (x) {
       try { return x.brand === b.slug && new RegExp(x.pattern, 'i').test(m.name); } catch (e) { return false; }
     })[0];
   }
 
+  // Before a repair is chosen: the model's photo. After: the drawing with the part in red.
   function device(b, m, r) {
-    var svg = root.querySelector('.fdevice__svg');
+    var svg = root.querySelector('.fdevice__svg'), img = $('f-device-photo'), note = $('f-device-note');
     svg.setAttribute('data-cat', (m && m.category) || 'Smartphone');
     svg.setAttribute('data-part', r ? r.service : '');
-    var pic = m && imageFor(b, m), photo = svg.querySelector('.dv__photo'), phone = !m || !m.category || m.category === 'Smartphone';
-    if (pic) {
-      if (photo.getAttribute('href') !== pic.image) photo.setAttribute('href', pic.image);
-      photo.setAttribute('x', phone ? 60 : 20); photo.setAttribute('y', 20);
-      photo.setAttribute('width', phone ? 100 : 180); photo.setAttribute('height', phone ? 200 : 260);
-    } else photo.removeAttribute('href');
-    svg.toggleAttribute('data-photo', !!pic);
+    var pic = m && imageFor(b, m), show = !!pic && !r;
+    if (pic && img.getAttribute('src') !== pic.image) { img.src = pic.image; img.alt = pic.exact ? 'Foto: ' + b.brand + ' ' + m.name : pic.label; }
+    if (!pic) { img.removeAttribute('src'); img.alt = ''; }
+    img.hidden = !show;
+    svg.style.display = show ? 'none' : '';
     root.querySelector('.fdevice').toggleAttribute('data-model', !!m);
-    $('f-device-note').textContent = pic ? pic.label + (pic.exact ? '' : ' – nicht das exakte Modell') : (m ? 'Schematische Darstellung' : '');
+    root.querySelector('.fdevice').toggleAttribute('data-photo', show);
+    if (show && pic.exact) {
+      note.innerHTML = 'Foto: ' + esc(pic.author) + ', <a href="' + esc(pic.licenseUrl) + '" target="_blank" rel="noopener">' + esc(pic.license) + '</a>, ' +
+        '<a href="' + esc(pic.source) + '" target="_blank" rel="noopener">Wikimedia Commons</a>';
+    } else note.textContent = show ? pic.label + ' – nicht das exakte Modell' : (m ? 'Schematische Darstellung' : '');
     $('f-device-name').textContent = m ? b.brand + ' ' + m.name : (b ? b.brand : 'Kein Gerät gewählt');
     $('f-device-part').textContent = r ? name(r) : '';
   }
