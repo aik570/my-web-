@@ -17,7 +17,7 @@ Updated: 30.10.2026, final visual polish (loader, contact, phone, footer, detail
 | Colour | Logo red on the kicker crosses and the footer beat |
 | Fixes found during the pass | Long German words in the larger headings (no clipping, no forced hyphenation); price counter loop with MutationObserver; footer buttons and pulse line; flaky model-count test waits for rendering |
 | `npm test` | 170 checks, all pass |
-| Interaction test | INTERACTION_RESULT |
+| Interaction test | 761 elements on 11 pages, desktop + mobile: 749 passed, **0 failed**, 12 only present in a later state; controls inside closed contact tabs are reached by choosing the tab; 20 803 links on 508 pages, 0 broken; 12/12 redirect samples, 493/493 old model URLs |
 | Production / DNS | Not touched |
 
 ---
