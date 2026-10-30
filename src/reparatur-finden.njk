@@ -110,6 +110,8 @@ seo:
     {#- Device visual: shows the chosen device type and highlights the part concerned -#}
     <aside class="fdevice" aria-hidden="true">
       <svg class="fdevice__svg" viewBox="0 0 220 300" data-cat="Smartphone">
+        {#- family picture (modelImages.json); set by finder.js only after a model is chosen, so it never loads up front -#}
+        <image class="dv__photo" x="60" y="20" width="100" height="200" preserveAspectRatio="xMidYMid meet"/>
         <g class="dv dv--phone">
           <rect class="dv__body" x="60" y="20" width="100" height="200" rx="16"/>
           <rect class="part part--display part--panzerglas" x="67" y="34" width="86" height="172" rx="8"/>
@@ -129,12 +131,13 @@ seo:
       </svg>
       <p class="fdevice__name" id="f-device-name">Kein Gerät gewählt</p>
       <p class="fdevice__part" id="f-device-part"></p>
+      <p class="fdevice__note" id="f-device-note"></p>
     </aside>
   </div>
 </section>
 {% endblock %}
 
 {% block scripts %}
-<script type="application/json" id="finder-data">{{ { types: prices.types, phone: site.phone, email: site.email, whatsapp: site.whatsapp, status: pricesMeta.status, isDemo: prices.isDemo, catalogue: '/preise/katalog.json' } | json | safe }}</script>
+<script type="application/json" id="finder-data">{{ { types: prices.types, phone: site.phone, email: site.email, whatsapp: site.whatsapp, status: pricesMeta.status, isDemo: prices.isDemo, catalogue: '/preise/katalog.json', images: modelImages.rules } | json | safe }}</script>
 <script src="/assets/js/finder.js" defer></script>
 {% endblock %}

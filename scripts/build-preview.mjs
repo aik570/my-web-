@@ -74,6 +74,8 @@ for (const rel of pages) {
   html = html.replace(/\s(href|src|action)="([^"]*)"/g, (m, a, u) => ` ${a}="${rewriteUrl(u)}"`);
   html = html.replace(/\ssrcset="([^"]*)"/g, (m, s) => ` srcset="${s.split(',').map((part) => { const [u, w] = part.trim().split(/\s+/); return rewriteUrl(u) + (w ? ' ' + w : ''); }).join(', ')}"`);
   html = html.replace(/"catalogue":"\/preise\/katalog\.json"/g, `"catalogue":"${assetRef('/preise/katalog.json', '')}"`);
+  // device pictures listed in the finder data (modelImages.json)
+  html = html.replace(/"image":"(\/assets\/[^"]+)"/g, (m, u) => `"image":"${assetRef(u, '')}"`);
   // price overview search builds model links in an inline script
   html = html.replace(`'/preise/' + m[1] + '/#' + m[3]`, `'preise-' + m[1] + '.html#' + m[3]`);
   html = html.replace(/<link rel="canonical"[^>]*>/, '');

@@ -48,7 +48,7 @@
     var t = typeOf[r.getAttribute('data-type')] || {};
     var facts = [];
     if (t.duration) facts.push('Dauer: ' + t.duration);
-    if (t.warranty) facts.push('Garantie: ' + t.warranty);
+    if (t.warranty) facts.push(/^ohne/i.test(t.warranty) ? t.warranty : 'Garantie: ' + t.warranty);
     $('sum-facts').hidden = !facts.length;
     $('sum-facts').textContent = facts.join(' · ');
 

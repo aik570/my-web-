@@ -1,0 +1,138 @@
+{
+  "note": "Rules for the device picture in the repair finder. The first rule whose brand matches and whose pattern (a regular expression, case-insensitive) matches the model name wins. No exact photo exists for any model yet: every image is a family picture (exact: false) and is labelled as such. A model without a matching rule shows the neutral drawing. Never point a rule at a picture of a different model generation.",
+  "rules": [
+    {
+      "brand": "apple",
+      "pattern": "^iPhone 17( Pro( Max)?)?$",
+      "image": "/assets/img/modelle/iphone-17.webp",
+      "label": "Symbolbild iPhone 17-Serie",
+      "exact": false
+    },
+    {
+      "brand": "apple",
+      "pattern": "^iPhone 16",
+      "image": "/assets/img/modelle/iphone-16.webp",
+      "label": "Symbolbild iPhone 16-Serie",
+      "exact": false
+    },
+    {
+      "brand": "apple",
+      "pattern": "^iPhone 15",
+      "image": "/assets/img/modelle/iphone-15.webp",
+      "label": "Symbolbild iPhone 15-Serie",
+      "exact": false
+    },
+    {
+      "brand": "apple",
+      "pattern": "^iPhone 14( Plus)?$",
+      "image": "/assets/img/modelle/iphone-14.webp",
+      "label": "Symbolbild iPhone 14 / 14 Plus",
+      "exact": false
+    },
+    {
+      "brand": "apple",
+      "pattern": "^iPhone 13",
+      "image": "/assets/img/modelle/iphone-13.webp",
+      "label": "Symbolbild iPhone 13-Serie",
+      "exact": false
+    },
+    {
+      "brand": "apple",
+      "pattern": "^iPhone 12",
+      "image": "/assets/img/modelle/iphone-12.webp",
+      "label": "Symbolbild iPhone 12-Serie",
+      "exact": false
+    },
+    {
+      "brand": "apple",
+      "pattern": "^iPhone 11",
+      "image": "/assets/img/modelle/iphone-11.webp",
+      "label": "Symbolbild iPhone 11-Serie",
+      "exact": false
+    },
+    {
+      "brand": "apple",
+      "pattern": "^iPhone (X|XS|XS Max|XR)$",
+      "image": "/assets/img/modelle/iphone-x.webp",
+      "label": "Symbolbild iPhone X / XS / XR",
+      "exact": false
+    },
+    {
+      "brand": "apple",
+      "pattern": "^iPhone ((6|6s|7|8)( Plus)?|SE \\((2020|2022)\\))$",
+      "image": "/assets/img/modelle/iphone-homebutton.webp",
+      "label": "Symbolbild iPhone mit Home-Button",
+      "exact": false
+    },
+    {
+      "brand": "apple",
+      "pattern": "^iPad (Pro (11|13) |Pro 12\\.9 Zoll [3-6]\\.|Air (4|5|11|13)|Mini (6|7)|10 )",
+      "image": "/assets/img/modelle/ipad.webp",
+      "label": "Symbolbild iPad ohne Home-Button",
+      "exact": false
+    },
+    {
+      "brand": "apple",
+      "pattern": "^Apple Watch Series (SE|[4-9]|10)\\b",
+      "image": "/assets/img/modelle/apple-watch.webp",
+      "label": "Symbolbild Apple Watch (Series)",
+      "exact": false
+    },
+    {
+      "brand": "samsung",
+      "pattern": "^Galaxy S2[0-5]",
+      "image": "/assets/img/modelle/galaxy-s.webp",
+      "label": "Symbolbild Galaxy S-Serie",
+      "exact": false
+    },
+    {
+      "brand": "samsung",
+      "pattern": "^Galaxy A\\d",
+      "image": "/assets/img/modelle/galaxy-a.webp",
+      "label": "Symbolbild Galaxy A-Serie",
+      "exact": false
+    },
+    {
+      "brand": "samsung",
+      "pattern": "^Galaxy Note ?20",
+      "image": "/assets/img/modelle/galaxy-note.webp",
+      "label": "Symbolbild Galaxy Note 20-Serie",
+      "exact": false
+    },
+    {
+      "brand": "xiaomi",
+      "pattern": "^Redmi",
+      "image": "/assets/img/modelle/redmi.webp",
+      "label": "Symbolbild Redmi-Serie",
+      "exact": false
+    },
+    {
+      "brand": "google",
+      "pattern": "^Pixel",
+      "image": "/assets/img/modelle/pixel.webp",
+      "label": "Symbolbild Google Pixel",
+      "exact": false
+    },
+    {
+      "brand": "huawei",
+      "pattern": "^(P|Mate)",
+      "image": "/assets/img/modelle/huawei.webp",
+      "label": "Symbolbild Huawei",
+      "exact": false
+    },
+    {
+      "brand": "sony",
+      "pattern": "Xperia",
+      "image": "/assets/img/modelle/xperia.webp",
+      "label": "Symbolbild Sony Xperia",
+      "exact": false
+    },
+    {
+      "brand": "oneplus",
+      "pattern": "^OnePlus",
+      "image": "/assets/img/modelle/oneplus.webp",
+      "label": "Symbolbild OnePlus",
+      "exact": false
+    }
+  ]
+}

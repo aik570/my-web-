@@ -48,6 +48,15 @@ for (const [w, h, label] of VIEWPORTS) {
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - innerWidth);
     const logo = await page.$eval('.nav__logo', (e) => +getComputedStyle(e).opacity);
     ok(logo === 1, `${url} header logo visible${logo === 1 ? '' : ' (' + await page.evaluate(() => document.documentElement.className + (document.getElementById('intro') ? ', intro running' : '')) + ')'}`);
+    if (url === '/impressum/') {
+      const call = await page.$eval('.nav__call', (c) => {
+        const r = c.getBoundingClientRect(), i = c.querySelector('svg').getBoundingClientRect();
+        const t = [...c.querySelectorAll('span')].find((x) => getComputedStyle(x).display !== 'none'), g = document.createRange(); g.selectNodeContents(t);
+        const tr = g.getBoundingClientRect(), mid = r.top + r.height / 2;
+        return { icon: Math.round(i.width), off: Math.max(Math.abs(i.top + i.height / 2 - mid), Math.abs(tr.top + tr.height / 2 - mid)) };
+      });
+      ok(call.icon === 16 && call.off <= 1, `header phone button: icon ${call.icon}px, icon/number centred (±${call.off.toFixed(1)}px)`);
+    }
     ok(errors.length === 0, `${url} no console errors ${errors.length ? JSON.stringify(errors.slice(0, 3)) : ''}`);
     ok(external.length === 0, `${url} no third-party requests ${external.length ? JSON.stringify(external.slice(0, 3)) : ''}`);
     ok(missing.length === 0, `${url} no failed assets ${missing.length ? JSON.stringify(missing.slice(0, 3)) : ''}`);
@@ -95,6 +104,23 @@ console.log('\ncontent & seo');
   ok(!/404|admin|katalog/.test(sm), 'sitemap excludes 404, admin and data files');
 }
 
+// Google reviews: only real data from reviews.json; without it, only a link to Google
+console.log('\nGoogle-Bewertungen');
+{
+  const rv = JSON.parse(fs.readFileSync('src/_data/reviews.json', 'utf8'));
+  const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
+  await page.goto(BASE + '/'); await page.waitForTimeout(300);
+  const st = await page.evaluate(() => {
+    const s = document.getElementById('bewertungen'), f = document.querySelector('footer');
+    return { exists: !!s, beforeFooter: !!s && !!f && !!(s.compareDocumentPosition(f) & Node.DOCUMENT_POSITION_FOLLOWING), cards: document.querySelectorAll('.reviews__track:not(.reviews__track--copy) .rcard').length,
+      link: s?.querySelector('a.btn')?.href || '', sample: !!s?.querySelector('.reviews__sample') };
+  });
+  ok(st.exists && st.beforeFooter, 'review section sits before the footer');
+  ok(st.cards === rv.items.length && !st.sample, `review cards = reviews.json (${rv.items.length})${rv.items.length ? '' : ' → no strip, nothing invented'}`);
+  ok(/^https:\/\/(www\.)?google\.[a-z.]+\/maps/.test(st.link), 'link to the reviews on Google');
+  await page.close();
+}
+
 // Preisrechner (/reparatur-finden/)
 console.log('\nPreisrechner');
 {
@@ -110,6 +136,8 @@ console.log('\nPreisrechner');
   await page.click('.fbrand[data-brand="apple"]');
   await page.waitForFunction((n) => document.querySelectorAll('.fmodel').length === n, apple.models.length, { timeout: 3000 }).catch(() => {});
   ok((await page.$$eval('.fmodel', (e) => e.length)) === apple.models.length, `brand → ${apple.models.length} models`);
+  const phones = await page.$$eval('.fmodel', (e) => e.map((x) => x.firstChild.textContent).filter((n) => /^iPhone/.test(n)));
+  ok(phones[0] === 'iPhone 17 Pro Max' && phones.indexOf('iPhone 16 Pro Max') > phones.indexOf('iPhone 17') && phones.indexOf('iPhone 6') === phones.length - 1, 'iPhones newest first (17 Pro Max … 6)');
   await page.click('#f-cats .chip[data-cat="Tablet"]');
   const tablets = apple.models.filter((m) => m.category === 'Tablet').length;
   ok((await page.$$eval('.fmodel', (e) => e.length)) === tablets, `device type filter → ${tablets} tablets`);
@@ -124,7 +152,17 @@ console.log('\nPreisrechner');
   const akku = m13.repairs.find((r) => r[0] === 'akku');
   ok((await page.$eval('.frepair[data-service="akku"] .frepair__price', (e) => e.textContent)).includes(String(akku[2])), `card price = data (Akku ${akku[2]} €)`);
   await page.click('.frepair[data-service="display"]');
+  await page.waitForFunction(() => !document.getElementById('f-step3').hidden && document.querySelectorAll('#r-quality-options input').length > 0, null, { timeout: 3000 }).catch(() => {});
   ok(!(await page.$eval('#f-step3', (e) => e.hidden)) && (await page.$$eval('#r-quality-options input', (e) => e.length)) === 2, 'result step with two part qualities (Standard / Original)');
+  await page.waitForTimeout(400); // stroke colour transition
+  const pic = await page.evaluate(() => {
+    const s = document.querySelector('.fdevice__svg'), i = s.querySelector('.dv__photo'), r = i.getBoundingClientRect();
+    return { href: i.getAttribute('href'), shown: r.width > 20, note: document.getElementById('f-device-note').textContent,
+      red: getComputedStyle(s.querySelector('.part--display')).stroke, other: getComputedStyle(s.querySelector('.part--akku')).stroke };
+  });
+  ok(pic.href === '/assets/img/modelle/iphone-13.webp' && pic.shown && /Symbolbild iPhone 13-Serie/.test(pic.note) && /nicht das exakte Modell/.test(pic.note), 'device picture: iPhone 13 family image, labelled as Symbolbild (mobile row)');
+  ok(pic.red === 'rgb(200, 49, 42)' && pic.red !== pic.other, 'device picture: selected part (display) highlighted red');
+  ok(await page.evaluate(async (h) => (await fetch(h)).ok, pic.href), 'device picture file loads');
   const orig = m13.repairs.find((r) => r[1] === 'Display – Originalqualität')[2];
   await page.click('#r-quality-options label >> nth=1');
   ok((await page.$eval('#r-total', (e) => e.textContent)).includes(String(orig)), `quality switch → ${orig} €`);
@@ -140,6 +178,9 @@ console.log('\nPreisrechner');
   // deep links, enquiry state, invalid links
   await page.goto(BASE + '/reparatur-finden/#samsung--galaxy-s23--hauptkamera'); await page.waitForSelector('#finder.is-ready');
   ok(/auf Anfrage/.test(await page.$eval('#r-total', (e) => e.textContent)) && !(await page.$eval('#r-request', (e) => e.hidden)), 'deep link to a repair without price → "Preis auf Anfrage" + enquiry text');
+  ok(await page.$eval('.dv__photo', (i) => i.getAttribute('href')) === '/assets/img/modelle/galaxy-s.webp' && await page.$eval('.fdevice__svg', (s) => s.dataset.part) === 'hauptkamera', 'deep link → Galaxy S family picture, camera highlighted');
+  await page.goto(BASE + '/reparatur-finden/#apple--iphone-14-pro'); await page.waitForSelector('#finder.is-ready'); await page.waitForTimeout(100);
+  ok(!(await page.$eval('.dv__photo', (i) => i.hasAttribute('href'))) && /Schematische/.test(await page.$eval('#f-device-note', (e) => e.textContent)), 'no family picture for iPhone 14 Pro (would show another model) → drawing');
   await page.goto(BASE + '/reparatur-finden/#apple--gibt-es-nicht'); await page.waitForSelector('#finder.is-ready');
   ok(/nicht in der Preisliste/.test(await page.$eval('#f-status', (e) => e.textContent)) && !(await page.$eval('#f-step1', (e) => e.hidden)), 'unknown model → message, back at step 1');
   // search with keyboard

@@ -1,0 +1,10 @@
+{
+  "note": "Google reviews for the review strip on the home page. Only filled by scripts/fetch-reviews.mjs from the Google Places API (or by hand from the Google Business Profile, copied word for word). Never invent or edit reviews, names or ratings. While items is empty, the site only links to the reviews on Google.",
+  "source": "Google",
+  "placeId": "",
+  "googleUrl": "",
+  "rating": null,
+  "count": null,
+  "fetchedAt": null,
+  "items": []
+}

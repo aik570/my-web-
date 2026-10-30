@@ -6,7 +6,7 @@
     { "q": "Was, wenn ich den Defekt an meinem Gerät gar nicht genau kenne?", "a": "Kein Stress, das finden wir für Sie heraus. Rufen Sie uns an oder kommen Sie vorbei und schildern Sie einfach, was Ihnen aufgefallen ist. Unsere Fehleranalyse gibt es ab 25 € – und sie wird bei einer Reparatur verrechnet." },
     { "q": "Verwendet ihr bei der Reparatur Original-Ersatzteile?", "a": "Für die gängigen Smartphone-Modelle halten wir Originalersatzteile bereit. Wir arbeiten nach Herstellervorgaben und setzen in der Regel Originalteile ein." },
     { "q": "Sind meine Daten bei euch sicher?", "a": "Ja, Ihre Daten behandeln wir vertraulich. Geräte und darauf befindliche Daten werden von uns nicht an Dritte weitergegeben." },
-    { "q": "Welche Garantie habe ich auf die Reparatur?", "a": "Auf neu eingebaute Original-Ersatzteile erhalten Sie 5 Jahre Garantie. Für Ersatzteile von Zweit-Herstellern gilt eine Garantie von 12 Monaten." },
+    { "q": "Welche Garantie habe ich auf die Reparatur?", "a": "Auf die durchgeführten Arbeiten und die verbauten Ersatzteile erhalten Sie 3 Monate Garantie. Für die Behandlung von Wasserschäden geben wir keine Garantie, weil Folgeschäden nicht vorhersehbar sind. Ihre gesetzlichen Gewährleistungsrechte bleiben davon unberührt." },
     { "q": "Wie kann ich die Reparatur bezahlen?", "a": "Die Bezahlung erfolgt bequem vor Ort in unserem Laden in Potsdam – bar oder mit EC-/Kreditkarte." },
     { "q": "Kann ich mein Gerät einschicken?", "a": "Ja. Mit unserem Send-in-Service drucken Sie einen Versandaufkleber aus, kleben ihn aufs Paket und geben es bei der Post ab. Die Bezahlung erfolgt dann per Vorkasse – wahlweise per Überweisung oder mit Kreditkarte (Stripe)." }
   ]

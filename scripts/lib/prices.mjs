@@ -98,3 +98,31 @@ export function validateCatalogue(brands, repairTypes) {
 export function countRows(brands) {
   return brands.reduce((n, b) => n + b.models.reduce((k, m) => k + m.repairs.length, 0), 0);
 }
+
+// iPhones are listed newest first (owner request 30.10.2026). The order comes
+// from the model name, so new models sort themselves in without extra data:
+// release (year.month), then Pro Max, Pro, Air, Plus, base, mini, e.
+const IPHONE_RELEASE = { x: 2017.11, xs: 2018.09, xr: 2018.09, '8': 2017.09, '7': 2016.09, '6s': 2015.09, '6': 2014.09 };
+export function iphoneOrder(name) {
+  const n = name.toLowerCase().replace(/[()]/g, ' ').replace(/\s+/g, ' ').trim();
+  if (!/^iphone\b/.test(n)) return null;
+  let date = null;
+  const se = /\bse\b(?: (\d{4}))?/.exec(n);
+  const num = /^iphone (\d+)(e)?\b/.exec(n);
+  if (se) date = { 2016: 2016.03, 2020: 2020.04, 2022: 2022.03 }[se[1] || 2016] || Number(se[1] || 2016);
+  else if (/^iphone air\b/.test(n)) date = 2025.09;
+  else if (num && Number(num[1]) >= 11) date = 2008 + Number(num[1]) + (num[2] ? 0.02 : 0.09);   // 11 → 2019.09, 16e → 2024.02
+  else { const k = /^iphone (\w+)/.exec(n); date = k && IPHONE_RELEASE[k[1]]; }
+  if (date == null) return null;
+  const variant = /^iphone xr\b/.test(n) ? 5 : /pro max/.test(n) ? 0 : /\bpro\b/.test(n) ? 1 : /\bair\b/.test(n) ? 2 : /\b(plus|max)\b/.test(n) ? 3 : /\bmini\b/.test(n) ? 5 : (num && num[2]) ? 6 : 4;
+  return -Math.round(date * 100) * 10 + variant;   // ascending sort → newest first
+}
+export function orderNewestFirst(brands) {
+  for (const b of brands) {
+    const slots = [], keyed = [];
+    b.models.forEach((m, i) => { const k = iphoneOrder(m.name); if (k != null) { slots.push(i); keyed.push([k, i, m]); } });
+    keyed.sort((a, c) => a[0] - c[0] || a[1] - c[1]);
+    slots.forEach((slot, j) => { b.models[slot] = keyed[j][2]; });
+  }
+  return brands;
+}

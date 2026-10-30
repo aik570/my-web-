@@ -1,0 +1,44 @@
+{#- Google reviews (reviewData = reviews.json, filled only from Google). No reviews → only a link to Google; nothing is invented. -#}
+{%- set rv = reviewData %}
+{%- set rvUrl = rv.googleUrl or site.mapsUrl %}
+{%- macro stars(n) -%}
+<span class="stars" role="img" aria-label="{{ n | string | replace('.', ',') }} von 5 Sternen">
+  {%- for i in range(1, 6) %}<svg viewBox="0 0 20 20" aria-hidden="true" class="{{ 'is-on' if n >= i else ('is-half' if n >= i - 0.5 else '') }}"><path d="m10 1.6 2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg>{% endfor -%}
+</span>
+{%- endmacro %}
+{%- macro card(r) -%}
+<li class="rcard">
+  {{ stars(r.rating) }}
+  <blockquote class="rcard__text"><p>{{ r.text }}</p></blockquote>
+  <p class="rcard__by">
+    {%- if r.authorUrl %}<a href="{{ r.authorUrl }}" target="_blank" rel="noopener nofollow">{{ r.author }}</a>{% else %}<span>{{ r.author }}</span>{% endif %}
+    {%- if r.when %}<small>{{ r.when }}</small>{% endif %}
+  </p>
+  <p class="rcard__src"><span class="rcard__g" aria-hidden="true">G</span>Bewertung auf Google</p>
+</li>
+{%- endmacro %}
+<section class="sec sec--white reviews" id="bewertungen" aria-labelledby="reviews-h">
+  <svg width="0" height="0" class="sr" aria-hidden="true"><defs><linearGradient id="star-half"><stop offset=".5" stop-color="#f2b01e"/><stop offset=".5" stop-color="#cfe6df"/></linearGradient></defs></svg>
+  <div class="wrap reviews__head">
+    <div>
+      <p class="kicker"><span class="kicker__cross" aria-hidden="true"></span>Google-Bewertungen</p>
+      <h2 id="reviews-h">Was unsere Kundschaft sagt</h2>
+      {%- if rv.isSample %}<p class="reviews__sample" role="note">Layouttest mit Beispieldaten – keine echten Bewertungen</p>{% endif %}
+    </div>
+    <div class="reviews__summary">
+      {%- if rv.items.length and rv.rating %}
+      <p class="reviews__score"><b>{{ rv.rating | string | replace('.', ',') }}</b>{{ stars(rv.rating) }}<span>{% if rv.count %}{{ rv.count }} Bewertungen auf Google{% else %}auf Google{% endif %}</span></p>
+      {%- else %}
+      <p class="head__lede">Lesen Sie, was Kundinnen und Kunden über uns schreiben – direkt bei Google.</p>
+      {%- endif %}
+      <a class="btn btn--quiet" href="{{ rvUrl }}" target="_blank" rel="noopener">Alle Bewertungen auf Google<span class="sr"> (öffnet Google Maps)</span></a>
+    </div>
+  </div>
+  {%- if rv.items.length %}
+  <div class="reviews__ticker" style="--rv-dur: {{ rv.items.length * 9 }}s">
+    <ul class="reviews__track">{% for r in rv.items %}{{ card(r) }}{% endfor %}</ul>
+    <ul class="reviews__track reviews__track--copy" aria-hidden="true" inert>{% for r in rv.items %}{{ card(r) }}{% endfor %}</ul>
+  </div>
+  <p class="wrap reviews__note">Quelle: Google{% if rv.fetchedAt %}{% set d = rv.fetchedAt.split('-') %}, Stand {{ d[2] }}.{{ d[1] }}.{{ d[0] }}{% endif %}. Die Bewertungen werden unverändert übernommen.</p>
+  {%- endif %}
+</section>

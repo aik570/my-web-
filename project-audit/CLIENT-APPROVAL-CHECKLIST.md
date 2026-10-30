@@ -94,3 +94,9 @@ Tick a box when the answer is received; record the answer and date next to it.
 - The contact section shows three further poses of the mascot (with a city map, with the "call me" gesture, writing a letter). They were generated with an image model from the existing mascot. Confirm they may be used, or supply poses from the original illustrator.
 - Phone number on the franchise page: the old page shows 0331 29080953, the redesign uses 0163 228 8224 everywhere (see item 2). Not changed until confirmed.
 
+### 12. Owner feedback 30.10.2026 — open points — [ ]
+- **Google reviews:** Google Place ID of the shop and a Google Maps Platform API key (Places API) for the build, or the owner's decision for another source (Business Profile API, a review widget). Confirm that storing the fetched reviews in the website repository is acceptable under Google's terms. Until then the site only links to Google.
+- **Device pictures:** no exact photos per model exist. Supply product photos per model (with rights), or approve the series pictures labelled "Symbolbild". The series pictures come from the old website (partly iStock, partly AI-generated) — confirm the rights.
+- **Sunday:** shown as closed — confirm.
+- **Warranty:** the old FAQ promised "5 Jahre auf Original-Displays, 12 Monate auf andere Teile"; it was replaced by 3 months / water damage without warranty, as instructed. Confirm warranty for back cover, WLAN/Bluetooth and board repairs (currently not shown).
+

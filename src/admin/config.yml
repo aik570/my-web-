@@ -159,7 +159,7 @@ collections:
               - { name: id, label: Kürzel, widget: string, pattern: ['^[a-z0-9-]+$', 'Nur Kleinbuchstaben, Ziffern, Bindestrich'], hint: 'Nicht ändern, wenn schon Preise darauf verweisen' }
               - { name: label, label: Name, widget: string }
               - { name: duration, label: Dauer, widget: string, required: false, hint: 'Nur eintragen, wenn bestätigt, z. B. „ca. 60 Minuten". Leer = wird nicht angezeigt' }
-              - { name: warranty, label: Garantie, widget: string, required: false, hint: 'Nur eintragen, wenn bestätigt, z. B. „6 Monate auf Teil und Arbeit". Leer = wird nicht angezeigt' }
+              - { name: warranty, label: Garantie, widget: string, required: false, hint: 'Nur eintragen, wenn bestätigt, z. B. „3 Monate" oder „Ohne Garantie". Leer = wird nicht angezeigt' }
 
       - name: preisliste
         label: Preisliste – Status und Hinweise
@@ -177,6 +177,38 @@ collections:
           - { name: updated, label: Stand, widget: datetime, format: YYYY-MM-DD, date_format: DD.MM.YYYY, time_format: false, required: false }
           - { name: vatNote, label: Hinweis zur Umsatzsteuer, widget: string, required: false, hint: 'z. B. „Alle Preise inkl. MwSt." – nur wenn bestätigt' }
           - { name: footnote, label: Fußnote, widget: string, required: false }
+
+      - name: modellbilder
+        label: Gerätebilder im Preisrechner
+        file: src/_data/modelImages.json
+        format: json
+        fields:
+          - { name: note, label: Hinweis, widget: hidden }
+          - name: rules
+            label: Regeln (die erste passende gilt)
+            widget: list
+            summary: '{{fields.label}}'
+            hint: 'Nur ein Bild derselben Geräte-Generation zuordnen. Ist es nicht das exakte Modell, „Exaktes Modell" ausschalten – dann steht „Symbolbild … – nicht das exakte Modell" darunter.'
+            fields:
+              - { name: brand, label: Hersteller-Kürzel, widget: string, pattern: ['^[a-z0-9-]+$', 'z. B. apple, samsung'] }
+              - { name: pattern, label: Modellname (Muster), widget: string, hint: 'Regulärer Ausdruck, z. B. ^iPhone 15 für alle iPhone-15-Modelle' }
+              - { name: image, label: Bild, widget: image, media_folder: /src/assets/img/modelle, public_folder: /assets/img/modelle, hint: 'WebP, Gerät freigestellt, etwa 220 × 440 Pixel' }
+              - { name: label, label: Bildunterschrift, widget: string, hint: 'z. B. „Symbolbild iPhone 15-Serie"' }
+              - { name: exact, label: Exaktes Modell, widget: boolean, default: false }
+
+      - name: bewertungen
+        label: Google-Bewertungen (Verbindung)
+        file: src/_data/reviews.json
+        format: json
+        fields:
+          - { name: note, label: Hinweis, widget: hidden }
+          - { name: source, label: Quelle, widget: hidden }
+          - { name: placeId, label: Google Place ID, widget: string, required: false, hint: 'Aus dem Google-Unternehmensprofil. Die Bewertungen selbst werden nur per Skript von Google übernommen (scripts/fetch-reviews.mjs) und hier nicht bearbeitet.' }
+          - { name: googleUrl, label: Link zu den Bewertungen auf Google, widget: string, required: false, pattern: ['^(https://.*)?$', 'Muss mit https:// beginnen'] }
+          - { name: rating, label: Durchschnitt, widget: hidden }
+          - { name: count, label: Anzahl, widget: hidden }
+          - { name: fetchedAt, label: Stand, widget: hidden }
+          - { name: items, label: Bewertungen, widget: hidden }
 
   # ---------------------------------------------------------------- Inhalte
   - name: inhalte

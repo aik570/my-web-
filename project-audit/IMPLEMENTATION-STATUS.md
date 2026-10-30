@@ -1,8 +1,27 @@
 # Implementation status
 
-Updated: 30.10.2026, final visual polish (loader, contact, phone, footer, details) · Branch `claude/zealous-bohr-71wesv`
+Updated: 30.10.2026, owner feedback (reviews, header phone, iPhone order, Saturday hours, device pictures, warranty, CMS prep) · Branch `claude/zealous-bohr-71wesv`
 
-## V. Final visual polish (30.10.2026, latest)
+## W. Owner feedback (30.10.2026, latest)
+
+**Preview:** https://claude.ai/artifact/MKnvHQdRfoKvSRqyntbA2E (version 35). Checked locally with browser automation (Chromium, emulated desktop 1440/1280/1100 and phone 390/320); not visually inspected inside the claude.ai viewer, no physical devices.
+
+| # | Request | Result |
+|---|---|---|
+| 1 | Google reviews strip before the footer | Done as a component (`partials/reviews.njk`, data `src/_data/reviews.json`). **No verified review source is connected, so no reviews are shown** — the section links to Google ("Alle Bewertungen auf Google"). With data: rating + count, cards with stars, full text (6 lines), reviewer name (linked to the Google profile when given), date, "Bewertung auf Google"; runs as a horizontal strip, pauses on hover and keyboard focus, becomes a swipeable list with reduced motion. Data only via `scripts/fetch-reviews.mjs` (Google Places API, `GOOGLE_PLACES_API_KEY` + `GOOGLE_PLACE_ID` in the build environment; texts stored unchanged). Layout checked with a clearly marked sample file (`scripts/fixtures/reviews-layout-sample.json`, only via `REVIEWS_FIXTURE`, refused in production builds). No `AggregateRating` in structured data (Google does not show self-published ratings for local businesses) |
+| 2 | Header phone alignment | Cause: in the desktop header the phone icon was squeezed to 2.5 px wide by flexbox, which made the number look off-centre. Icon fixed at 16 px, button no longer shrinks, line-height 1. Icon and number centred within ±0.5 px at 1440/1100/390/320 (new test) |
+| 3 | iPhones newest → oldest | Sorted by release date and line (Pro Max, Pro, Air, Plus, base, mini, e) in the price data (`orderNewestFirst`), so brand page, finder model list, search hits and catalogue share the order: 17 Pro Max … 17, 16 Pro Max … 6. URLs, prices and links unchanged. Other brands keep their order |
+| 4 | Saturday until 18:00 | `site.json` Saturday 10:00–18:00; footer, contact, hours table, header chip, structured data and the meta description follow from it. Sunday stays closed (to be confirmed) |
+| 5 | Device pictures in the finder | **No exact model photos exist** (the old site only had 21 shared pictures per series; some were assigned to the wrong models there). Rules in `src/_data/modelImages.json` map a series to a picture of the same generation, always labelled "Symbolbild … – nicht das exakte Modell". Models without a picture of the same generation (e.g. iPhone Air, 14 Pro/Pro Max, SE 1st gen, MacBooks, Galaxy S8–S10, Xiaomi numbered models) keep the neutral drawing ("Schematische Darstellung"). The selected repair is marked in red on top of the picture and changes with the choice. Pictures are WebP (2–19 KB), loaded only after a model is chosen. On phones a compact row (picture, model, repair) appears above the steps |
+| 6 | Warranty | 3 months on repairs and parts; water damage "Ohne Garantie". Services page, model pages, finder, catalogue facts, FAQ, home page, CMS hint. The texts say that statutory warranty rights (Gewährleistung) stay unaffected. Removed: the FAQ claim "5 Jahre auf Original-Displays / 12 Monate" and "Qualitätsgarantie". Back cover, WLAN/Bluetooth and board repairs show no warranty (no confirmed value) |
+| 7 | CMS preparation | Prices, warranty and water-damage status per repair type, and opening hours were already editable. Added: device-picture rules (brand, name pattern, image, caption, exact yes/no) and the Google connection (Place ID, Google link; review texts stay read-only). No new admin panel |
+| 8 | Checks | `npm test` 187 checks pass (176 site + 11 production) (new: iPhone order, device picture + red highlight, no wrong picture for iPhone 14 Pro, reviews before the footer and nothing invented, header phone centring, warranty/hours in the production build). Interaction test: see below. Launch gate unchanged at 5 blockers; new warnings: reviews not connected, only series pictures, Sunday to confirm |
+| — | Netlify Drop | New `handy-chirurg-vorschau.zip` built the same way (no `netlify.toml`, `_redirects` + `_headers`) |
+| — | Production / DNS | Not touched |
+
+---
+
+## V. Final visual polish (30.10.2026)
 
 **Preview:** https://claude.ai/artifact/MKnvHQdRfoKvSRqyntbA2E (version 32). The loading animation plays on the first visit per browser session (open the link in a new private window to see it again). Checked locally with browser automation (Chromium, emulated desktop and phone); not visually inspected inside the claude.ai viewer, no physical devices.
 

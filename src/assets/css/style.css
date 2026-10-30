@@ -176,7 +176,8 @@ h1, h2, h3 { font-stretch: 125%; font-weight: 700; letter-spacing: -.025em; text
 .nav__call:hover { background: var(--teal-700); transform: translateY(-1px); box-shadow: 0 2px 4px rgba(15, 38, 33, .16), 0 12px 24px -10px rgba(15, 38, 33, .5); }
 .nav__call:active { transform: scale(.985); transition-duration: .08s; }
 .nav__call:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--white), 0 0 0 5.5px var(--teal); }
-.nav__call svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linejoin: round; }
+.nav__call { flex: none; line-height: 1; }
+.nav__call svg { flex: none; display: block; width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linejoin: round; }
 .nav__call-short { display: none; }
 .nav__menu { display: none; }
 
@@ -959,11 +960,34 @@ mark.todo { background: #fff1c2; color: #6b4b00; padding: .1rem .35rem; border-r
 .fdevice__svg[data-part="fehleranalyse"] .part--fehleranalyse { stroke: var(--red); stroke-width: 3; fill: rgba(200, 49, 42, .1); }
 .fdevice__svg[data-part="backcover"] .part--backcover { stroke-dasharray: 7 6; fill: none; }
 .fdevice__svg[data-part="display"] .dv__screen { stroke: var(--red); fill: rgba(200, 49, 42, .1); }
+/* family picture under the part overlay; the selected area stays red on top of it */
+.fdevice__svg .dv__photo { display: none; }
+.fdevice__svg[data-photo] .dv__photo { display: inline; }
+.fdevice__svg[data-photo] .dv__body, .fdevice__svg[data-photo] .dv__screen, .fdevice__svg[data-photo] .dv__strap, .fdevice__svg[data-photo] .dv__base { fill: none; stroke: none; }
+.fdevice__svg[data-photo] .part { stroke: rgba(255, 255, 255, .55); stroke-width: 1.5; }
+.fdevice__svg[data-photo] .part--backcover, .fdevice__svg[data-photo] .part--wasserschaden, .fdevice__svg[data-photo] .part--fehleranalyse, .fdevice__svg[data-photo] .part--wifi-bluetooth { stroke: none; }
+.fdevice__svg[data-photo][data-part] .part { transition: stroke .25s, fill .25s, stroke-width .25s; }
+.fdevice__svg[data-photo][data-part="display"] .part--display, .fdevice__svg[data-photo][data-part="panzerglas"] .part--panzerglas,
+.fdevice__svg[data-photo][data-part="akku"] .part--akku, .fdevice__svg[data-photo][data-part="frontkamera"] .part--frontkamera,
+.fdevice__svg[data-photo][data-part="hauptkamera"] .part--hauptkamera, .fdevice__svg[data-photo][data-part="lautsprecher"] .part--lautsprecher,
+.fdevice__svg[data-photo][data-part="ladebuchse"] .part--ladebuchse, .fdevice__svg[data-photo][data-part="backcover"] .part--backcover,
+.fdevice__svg[data-photo][data-part="wifi-bluetooth"] .part--wifi-bluetooth, .fdevice__svg[data-photo][data-part="wasserschaden"] .part--wasserschaden,
+.fdevice__svg[data-photo][data-part="fehleranalyse"] .part--fehleranalyse { stroke: var(--red); stroke-width: 3.5; fill: rgba(200, 49, 42, .28); }
+.fdevice__svg[data-photo][data-part="backcover"] .part--backcover { fill: none; }
+/* non-phone pictures have no part map: frame the whole picture instead */
+.fdevice__svg[data-photo]:not([data-cat="Smartphone"]):not([data-cat=""]):not([data-cat="Sonstiges"]) .dv { display: none; }
 .fdevice__name { margin: 0; font-weight: 700; text-align: center; }
 .fdevice__part { margin: 0; font: 500 .75rem var(--mono); color: var(--red); text-align: center; min-height: 1em; }
+.fdevice__note { margin: 0; font-size: .75rem; color: var(--grey); text-align: center; }
+.fdevice__note:empty { display: none; }
 @media (max-width: 900px) {
   .finder__grid { grid-template-columns: 1fr; }
-  .fdevice { display: none; }
+  /* compact row under the steps once a model is chosen */
+  .fdevice { display: none; position: static; grid-template-columns: 4.5rem 1fr; grid-template-rows: auto auto 1fr; justify-items: start; align-items: start; column-gap: 1rem; row-gap: .15rem; padding: .75rem 1rem; }
+  .fdevice[data-model] { display: grid; order: -1; }
+  .fdevice__svg { grid-row: 1 / 4; max-width: 4.5rem; }
+  .fdevice__name, .fdevice__part, .fdevice__note { text-align: left; }
+  .fdevice__part { min-height: 0; }
   .finder__progress { top: calc(4rem + env(safe-area-inset-top, 0px)); }
 }
 @media (max-width: 560px) {
@@ -1079,3 +1103,41 @@ mark.todo { background: #fff1c2; color: #6b4b00; padding: .1rem .35rem; border-r
 .reduced .contact__doc picture { transition: none; }
 #kontakt-h { font-size: clamp(2rem, 1.2rem + 2.2vw, 3rem); }
 #cp-besuch .nav__state { margin-bottom: 1.25rem; }
+
+/* ============ Google reviews strip ============ */
+.reviews { overflow: hidden; }
+.reviews__head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1.5rem 3rem; margin-bottom: clamp(2rem, 1.5rem + 2vw, 3.25rem); }
+.reviews h2 { font-size: clamp(2rem, 1.3rem + 2.2vw, 3.25rem); line-height: 1.04; margin: 1.1rem 0 0; }
+.reviews__summary { display: grid; justify-items: start; gap: 1rem; max-width: 28rem; }
+.reviews__summary .head__lede { margin: 0; }
+.reviews__score { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem .75rem; margin: 0; }
+.reviews__score b { font-size: 2.5rem; font-weight: 800; font-stretch: 125%; letter-spacing: -.03em; line-height: 1; font-variant-numeric: tabular-nums; }
+.reviews__score > span:last-child { flex-basis: 100%; color: var(--grey); font-size: .9375rem; }
+.reviews__sample { display: inline-block; margin: 1rem 0 0; padding: .35rem .7rem; border-radius: 6px; background: #fff4d6; color: #6b4e00; font: 600 .8125rem var(--sans); }
+.stars { display: inline-flex; gap: 2px; }
+.stars svg { width: 1.05rem; height: 1.05rem; fill: var(--mint-200); }
+.stars svg.is-on { fill: #f2b01e; }
+.stars svg.is-half { fill: url(#star-half); }
+.reviews__ticker { display: flex; width: 100%; -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); }
+.reviews__track { display: flex; flex: none; gap: 1rem; margin: 0; padding: .5rem 1rem .5rem 0; list-style: none; animation: rv-run var(--rv-dur, 45s) linear infinite; }
+.reviews__ticker:hover .reviews__track, .reviews__ticker:focus-within .reviews__track { animation-play-state: paused; }
+@keyframes rv-run { to { transform: translateX(-100%); } }
+.rcard { display: flex; flex-direction: column; gap: .75rem; width: min(21rem, 78vw); padding: 1.4rem 1.4rem 1.2rem; border-radius: var(--r); background: var(--white); border: 1px solid var(--mint-100); box-shadow: 0 1px 2px rgba(15, 38, 33, .05), 0 14px 30px -22px rgba(15, 38, 33, .35); }
+.rcard__text { margin: 0; flex: 1; }
+.rcard__text p { margin: 0; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 6; line-clamp: 6; overflow: hidden; line-height: 1.55; }
+.rcard__by { display: grid; gap: .1rem; margin: 0; font-weight: 700; }
+.rcard__by a { color: inherit; text-decoration-color: var(--mint-200); }
+.rcard__by small { font: 500 .75rem var(--mono); color: var(--grey); }
+.rcard__src { display: flex; align-items: center; gap: .45rem; margin: 0; padding-top: .7rem; border-top: 1px solid var(--rule); font-size: .8125rem; color: var(--grey); }
+.rcard__g { display: grid; place-items: center; width: 1.25rem; height: 1.25rem; border-radius: 50%; border: 1.5px solid currentColor; font: 800 .6875rem/1 var(--sans); }
+.reviews__note { margin-top: 1.25rem; font-size: .8125rem; color: var(--grey); }
+/* reduced motion: no running strip, swipe/scroll through the cards instead */
+@media (prefers-reduced-motion: reduce) {
+  .reviews__ticker { overflow-x: auto; scroll-snap-type: x mandatory; padding-inline: var(--gutter); -webkit-mask-image: none; mask-image: none; }
+  .reviews__track { animation: none; }
+  .reviews__track--copy { display: none; }
+  .rcard { scroll-snap-align: start; }
+}
+.reduced .reviews__ticker { overflow-x: auto; scroll-snap-type: x mandatory; padding-inline: var(--gutter); -webkit-mask-image: none; mask-image: none; }
+.reduced .reviews__track { animation: none; }
+.reduced .reviews__track--copy { display: none; }

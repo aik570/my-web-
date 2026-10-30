@@ -254,7 +254,7 @@ bodyClass: is-home
         <p class="head__lede">{{ h.contact.lede }}</p>
         <div class="contact__visit">
           <span class="nav__state contact__state" data-state-short><span class="nav__state-label">Sprechzeiten</span><span class="nav__state-time">{{ site.hours[0].from }}–{{ site.hours[0].to }}</span></span>
-          <p><strong>{{ site.name }}</strong><br>{{ site.street }}, {{ site.postcode }} {{ site.city }}<br>Mo–Sa {{ site.hours[0].from }}–{{ site.hours[0].to }} Uhr · So geschlossen</p>
+          <p><strong>{{ site.name }}</strong><br>{{ site.street }}, {{ site.postcode }} {{ site.city }}<br>{% include "partials/hours-text.njk" %}</p>
           <a class="link-arrow" href="{{ site.mapsUrl }}" target="_blank" rel="noopener">Route planen</a>
         </div>
         <div class="contact__doc" aria-hidden="true">
@@ -330,7 +330,7 @@ bodyClass: is-home
         <div class="cpanel" role="tabpanel" id="cp-besuch" aria-labelledby="ct-besuch">
           <p class="cpanel__big">{{ site.street }}<br><span>{{ site.postcode }} {{ site.city }}</span></p>
           <span class="nav__state" data-state-short><span class="nav__state-label">Sprechzeiten</span><span class="nav__state-time">{{ site.hours[0].from }}–{{ site.hours[0].to }}</span></span>
-          <p class="cpanel__text">Ohne Termin – kommen Sie einfach mit Ihrem Gerät vorbei. Mo–Sa {{ site.hours[0].from }}–{{ site.hours[0].to }} Uhr, sonntags geschlossen.</p>
+          <p class="cpanel__text">Ohne Termin – kommen Sie einfach mit Ihrem Gerät vorbei.<br>{% include "partials/hours-text.njk" %}</p>
           <div class="actions"><a class="btn btn--primary" href="{{ site.mapsUrl }}" target="_blank" rel="noopener">Route planen</a></div>
         </div>
       </div>
@@ -349,6 +349,9 @@ bodyClass: is-home
       {% include "partials/franchise-cards.njk" %}
     </div>
   </section>
+
+  <!-- ============ GOOGLE-BEWERTUNGEN (only real reviews from reviews.json) ============ -->
+  {% include "partials/reviews.njk" %}
 {% endblock %}
 
 {% block scripts %}

@@ -41,6 +41,11 @@ for (const f of files) {
 // 3. Business data that is still open
 const site = read('src/_data/site.json');
 if (!site.whatsapp) warnings.push('WhatsApp-Nummer nicht eingetragen (Knopf wird nicht angezeigt)');
+const reviews = JSON.parse(fs.readFileSync('src/_data/reviews.json', 'utf8'));
+if (!reviews.items.length) warnings.push('Google-Bewertungen nicht verbunden (Startseite verlinkt nur auf Google) – Place ID und API-Schlüssel nötig, siehe scripts/fetch-reviews.mjs');
+const modelImages = JSON.parse(fs.readFileSync('src/_data/modelImages.json', 'utf8'));
+if (!modelImages.rules.some((r) => r.exact)) warnings.push('Gerätebilder im Preisrechner: nur Symbolbilder je Serie, keine exakten Modellfotos');
+if (site.hours.find((h) => h.dayIndex === 0 && !h.open)) warnings.push('Sonntag geschlossen – vom Inhaber bestätigen lassen');
 if (site.publicHolidays === 'unknown') warnings.push('Feiertagsregel offen (Seite zeigt an Feiertagen „bitte vorher anrufen")');
 if (!meta.vatNote) warnings.push('Preisliste: kein Hinweis zur Umsatzsteuer (z. B. „Alle Preise inkl. MwSt.") – Angabe vom Inhaber bestätigen lassen (CLIENT-APPROVAL-CHECKLIST Punkt 6)');
 const fr = read('src/_data/franchise.json');

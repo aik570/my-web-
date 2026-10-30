@@ -27,6 +27,15 @@ ok(!pages.filter((p) => !p.endsWith('404.html')).some((p) => /name="robots" cont
 const official = fs.readdirSync('src/content/prices').filter((f) => f.endsWith('.json'));
 if (official.length) ok(/Preise in Prüfung|keine echten/.test(fs.readFileSync(path.join(OUT, 'preise', 'index.html'), 'utf8')) || JSON.parse(fs.readFileSync('src/_data/pricesMeta.json', 'utf8')).status === 'verified', 'unverified official prices are labelled "in Prüfung"');
 if (!official.length) ok(/Preisliste wird gerade aktualisiert/.test(fs.readFileSync(path.join(OUT, 'index.html'), 'utf8')), 'without official prices the selector shows the call fallback');
+// owner decisions (30.10.2026): 3 months warranty, water damage without warranty, Saturday until 18:00
+const text = all.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
+ok(!/\b(6|12|24|sechs|zwölf)\s*Monate?n?\s+Garantie|Garantie[^.]{0,40}\b(6|12|24)\s*Monate|\d\s*Jahre?n?\s+Garantie/i.test(text), 'no old warranty periods (6/12 months, years)');
+ok(/3 Monate Garantie/.test(text) && /Wasserschaden[^.]{0,80}ohne Garantie|Ohne Garantie/.test(text), 'warranty: 3 months, water damage without warranty');
+ok(/gesetzlichen Gewährleistungsrechte/.test(text), 'warranty text keeps statutory rights');
+const home = fs.readFileSync(path.join(OUT, 'index.html'), 'utf8');
+ok(/"dayOfWeek": "https:\/\/schema.org\/Saturday", "opens": "10:00", "closes": "18:00"/.test(home) && !/Sunday/.test(home.match(/openingHoursSpecification[\s\S]*?\]/)?.[0] || ''), 'structured data: Saturday 10:00–18:00, Sunday closed');
+ok(!/Mo–Sa 10:00–18:30|Sa 10:00–18:30/.test(text), 'no page still says Saturday until 18:30');
+ok(!/Testeintrag|Layouttest mit Beispieldaten/.test(all), 'no layout-test reviews in the production build');
 
 const gate = spawnSync('node', ['scripts/check-launch.mjs'], { encoding: 'utf8' });
 const blockers = (gate.stdout.match(/✗/g) || []).length;

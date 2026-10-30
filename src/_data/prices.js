@@ -4,7 +4,7 @@
 // data-import/demo; production builds never do and show "Preisliste folgt".
 // Invalid data stops the build, so a broken price list never reaches the site.
 
-import { loadBrands, readJson, validateCatalogue, countRows, TYPES_FILE, PRICE_DIR, DEMO_DIR } from '../../scripts/lib/prices.mjs';
+import { loadBrands, readJson, validateCatalogue, countRows, orderNewestFirst, TYPES_FILE, PRICE_DIR, DEMO_DIR } from '../../scripts/lib/prices.mjs';
 import env from './env.js';
 
 export default function () {
@@ -17,6 +17,7 @@ export default function () {
   if (errors.length) {
     throw new Error(`Preisliste ungültig (${errors.length} Fehler):\n- ${errors.join('\n- ')}`);
   }
+  orderNewestFirst(brands);
   if (isDemo) console.warn('[prices] Keine offizielle Preisliste – Entwicklungsdaten werden angezeigt (nur Vorschau).');
   // One entry per model for the model offer pages (/preise/<marke>/<modell>/).
   const models = brands.flatMap((b) => b.models.map((m) => ({ ...m, brand: b.brand, brandSlug: b.slug })));

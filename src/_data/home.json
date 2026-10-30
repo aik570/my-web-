@@ -14,7 +14,7 @@
   "sceneDone": {
     "kicker": "Entlassen",
     "title": "Repariert. Und wieder gesund.",
-    "lede": "Mit Garantie auf Arbeit und Ersatzteile. Meist nach etwa 60 Minuten."
+    "lede": "Mit 3 Monaten Garantie auf Arbeit und Ersatzteile (außer Wasserschaden). Meist nach etwa 60 Minuten."
   },
   "tags": {
     "display": {
@@ -67,7 +67,7 @@
       },
       {
         "title": "Garantie.",
-        "text": "Auf die durchgeführten Arbeiten und die verbauten Ersatzteile."
+        "text": "3 Monate auf die durchgeführten Arbeiten und die verbauten Ersatzteile (Wasserschaden ohne Garantie)."
       }
     ]
   },

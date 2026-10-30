@@ -109,10 +109,26 @@
     btn(3).disabled = !r;
   }
 
+  // First rule from modelImages.json whose brand and pattern match; family pictures only, never another model's photo
+  function imageFor(b, m) {
+    return (D.images || []).filter(function (x) {
+      try { return x.brand === b.slug && new RegExp(x.pattern, 'i').test(m.name); } catch (e) { return false; }
+    })[0];
+  }
+
   function device(b, m, r) {
     var svg = root.querySelector('.fdevice__svg');
     svg.setAttribute('data-cat', (m && m.category) || 'Smartphone');
     svg.setAttribute('data-part', r ? r.service : '');
+    var pic = m && imageFor(b, m), photo = svg.querySelector('.dv__photo'), phone = !m || !m.category || m.category === 'Smartphone';
+    if (pic) {
+      if (photo.getAttribute('href') !== pic.image) photo.setAttribute('href', pic.image);
+      photo.setAttribute('x', phone ? 60 : 20); photo.setAttribute('y', 20);
+      photo.setAttribute('width', phone ? 100 : 180); photo.setAttribute('height', phone ? 200 : 260);
+    } else photo.removeAttribute('href');
+    svg.toggleAttribute('data-photo', !!pic);
+    root.querySelector('.fdevice').toggleAttribute('data-model', !!m);
+    $('f-device-note').textContent = pic ? pic.label + (pic.exact ? '' : ' – nicht das exakte Modell') : (m ? 'Schematische Darstellung' : '');
     $('f-device-name').textContent = m ? b.brand + ' ' + m.name : (b ? b.brand : 'Kein Gerät gewählt');
     $('f-device-part').textContent = r ? name(r) : '';
   }
@@ -194,7 +210,7 @@
     $('r-request').hidden = !request;
     var t = typeOf[r.service] || {}, facts = [];
     if (t.duration) facts.push('Dauer: ' + t.duration);
-    if (t.warranty) facts.push('Garantie: ' + t.warranty);
+    if (t.warranty) facts.push(/^ohne/i.test(t.warranty) ? t.warranty : 'Garantie: ' + t.warranty);
     if (unverified && !request) facts.push('Preis in Prüfung – verbindlich ist der Preis, den wir vor der Reparatur nennen');
     $('r-facts').hidden = !facts.length;
     $('r-facts').textContent = facts.join(' · ');

@@ -1,0 +1,15 @@
+{
+  "note": "LAYOUT TEST ONLY - not real reviews. Used by scripts/test-site.mjs via REVIEWS_FIXTURE to check the review strip; never shown on the site.",
+  "source": "Google",
+  "googleUrl": "https://www.google.com/maps/search/?api=1&query=Handy+Chirurg+Potsdam",
+  "rating": 4.5,
+  "count": 6,
+  "fetchedAt": "2026-10-30",
+  "items": [
+    { "author": "Testeintrag A", "rating": 5, "text": "Beispieltext für den Layouttest. Kein echter Kundenkommentar.", "when": "vor 1 Woche" },
+    { "author": "Testeintrag B", "rating": 4, "text": "Längerer Beispieltext für den Layouttest, damit die Kartenhöhe und das Abschneiden nach mehreren Zeilen geprüft werden können. Kein echter Kundenkommentar. Noch ein Satz, damit der Text wirklich lang genug ist und umbricht.", "when": "vor 2 Wochen" },
+    { "author": "Testeintrag C", "rating": 5, "text": "Beispieltext. Kein echter Kundenkommentar.", "when": "vor 1 Monat" },
+    { "author": "Testeintrag D", "rating": 3, "text": "Beispieltext für den Layouttest.", "when": "vor 2 Monaten" },
+    { "author": "Testeintrag E", "rating": 5, "text": "Beispieltext für den Layouttest. Kein echter Kundenkommentar.", "when": "vor 3 Monaten" }
+  ]
+}

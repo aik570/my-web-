@@ -18,7 +18,7 @@
     { "day": "Mittwoch", "dayIndex": 3, "open": true, "from": "10:00", "to": "18:30" },
     { "day": "Donnerstag", "dayIndex": 4, "open": true, "from": "10:00", "to": "18:30" },
     { "day": "Freitag", "dayIndex": 5, "open": true, "from": "10:00", "to": "18:30" },
-    { "day": "Samstag", "dayIndex": 6, "open": true, "from": "10:00", "to": "18:30" },
+    { "day": "Samstag", "dayIndex": 6, "open": true, "from": "10:00", "to": "18:00" },
     { "day": "Sonntag", "dayIndex": 0, "open": false, "from": "", "to": "" }
   ],
   "publicHolidays": "unknown",
@@ -29,7 +29,7 @@
   },
   "seo": {
     "title": "Handyreparatur Potsdam ohne Termin – Handy Chirurg",
-    "description": "Handyreparatur in Potsdam, meist in 60 Minuten. Display, Akku, Wasserschaden, Platine. Ohne Termin. Dortustraße 23, Mo–Sa 10:00–18:30 Uhr.",
+    "description": "Handyreparatur in Potsdam, meist in 60 Minuten. Display, Akku, Wasserschaden, Platine. Ohne Termin. Dortustraße 23. Mo–Fr 10–18:30, Sa 10–18 Uhr.",
     "image": "/assets/img/laden-dortustrasse.jpg"
   }
 }
