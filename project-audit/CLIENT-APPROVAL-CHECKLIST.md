@@ -91,5 +91,6 @@ Tick a box when the answer is received; record the answer and date next to it.
 ### 11. Franchise images — [ ]
 - The doctor mascot on `/franchise/` was taken from the current franchise page (handychirurg.de/franchise). Confirm that Handy Chirurg owns the rights to use it on the new site.
 - The reception photo (sofa, illuminated logo) carried the label "Вміст, згенерований ШІ" (AI-generated content) on the original site; the label was cropped. Confirm the photo shows the shop as it really is, or send an unedited photo.
+- The contact section shows three further poses of the mascot (with a city map, with the "call me" gesture, writing a letter). They were generated with an image model from the existing mascot. Confirm they may be used, or supply poses from the original illustrator.
 - Phone number on the franchise page: the old page shows 0331 29080953, the redesign uses 0163 228 8224 everywhere (see item 2). Not changed until confirmed.
 
