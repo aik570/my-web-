@@ -4,20 +4,10 @@
   var root = document.documentElement;
   var reduced = root.classList.contains('reduced');
 
-  /* ---------- intro: the logo draws like a monitor sweep, then docks in the header ---------- */
+  /* ---------- loading animation: the logo draws itself, then docks in the header ---------- */
 
-  // The heartbeat line of the logo, in logo units (viewBox 756 × 366).
-  var LINE = [[18, 285.5], [280, 284.5], [288, 276], [294, 284], [302, 250], [315, 302], [319, 298], [327, 281], [332, 279.5], [552, 279.5], [672, 279.5], [732, 279.5]];
-  function lineY(x) {
-    for (var i = 1; i < LINE.length; i++) {
-      if (x <= LINE[i][0]) {
-        var a = LINE[i - 1], b = LINE[i], t = (x - a[0]) / (b[0] - a[0]);
-        return a[1] + (b[1] - a[1]) * t;
-      }
-    }
-    return 279.5;
-  }
   var ease = function (t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; };
+  var easeOut = function (t) { return 1 - Math.pow(1 - t, 3); };
   var clamp = function (v) { return Math.max(0, Math.min(1, v)); };
 
   function runIntro() {
@@ -30,13 +20,22 @@
     try { sessionStorage.setItem('hc-intro', '1'); } catch (e) {}
 
     var logo = document.getElementById('introLogo');
-    var dot = intro.querySelector('.intro__dot');
-    var word = intro.querySelector('.intro__word');
-    var sky = intro.querySelector('.intro__sky');
+    var q = function (s) { return intro.querySelector(s); };
+    var line = q('.intro__skyline'), sky = q('.intro__sky'), tag = q('.intro__tag');
+    var pulse = q('.intro__pulse'), pen = q('.intro__pen'), spark = q('.intro__spark');
+    var wordRect = document.getElementById('ilWordRect'), ecgRect = document.getElementById('ilEcgRect');
+    var W = intro.querySelector('svg').viewBox.baseVal.width;
+    var pulseLen = pulse.getTotalLength();
+    // skyline strokes: each one is drawn while the pen front passes over its x range
+    var strokes = [].map.call(line.querySelectorAll('path'), function (el) {
+      var bb = el.getBBox();
+      return { el: el, x0: bb.x, x1: bb.x + bb.width, len: el.getTotalLength() };
+    });
+    var main = strokes.reduce(function (a, b) { return b.len > a.len ? b : a; });
     var navLogo = document.getElementById('navLogo');
-    var start = performance.now();
-    var SWEEP = 1300, WORD = 900, DOCK = 2000, END = 2700;
-    var docked = false, done = false;
+    // timeline (ms): skyline 0–1100, wordmark 850–1400, pulse 1050–1750, tagline 1600–1900, dock 1950–2550
+    var DOCK = 1950, END = 2550;
+    var start = performance.now(), docked = false, done = false;
 
     function finish() {
       if (done) return;
@@ -44,34 +43,54 @@
       root.classList.add('intro-done');
       intro.remove();
     }
-    intro.addEventListener('click', finish);
+    function skip() {
+      if (done) return;
+      intro.classList.add('is-skipping');
+      root.classList.add('intro-done');
+      setTimeout(finish, 260);
+    }
+    intro.addEventListener('click', skip);
+    ['keydown', 'wheel', 'touchstart'].forEach(function (ev) { addEventListener(ev, skip, { once: true, passive: true }); });
 
+    function place(el, pt) { el.setAttribute('cx', pt.x.toFixed(1)); el.setAttribute('cy', pt.y.toFixed(1)); }
     function frame() {
       if (done) return;
       try { step(performance.now() - start); } catch (e) { finish(); }
     }
     function step(t) {
-      var p = ease(clamp(t / SWEEP));
-      var x = p * 756;
-      sky.style.clipPath = 'inset(0 ' + (100 - p * 100).toFixed(2) + '% 0 0)';
-      sky.style.opacity = (0.35 + 0.65 * clamp((t - 300) / 1100)).toFixed(3);
-      var inGap = x > 552 && x < 672;   // behind the stethoscope
-      dot.style.left = (x / 7.56).toFixed(2) + '%';
-      dot.style.top = (lineY(x) / 3.66).toFixed(2) + '%';
-      dot.style.opacity = (p > 0.01 && p < 0.995 && !inGap) ? 1 : 0;
+      // 1. the skyline, drawn like a pen stroke from left to right
+      var p = ease(clamp(t / 1100)), front = p * W;
+      strokes.forEach(function (s) {
+        s.p = clamp((front - s.x0) / Math.max(1, s.x1 - s.x0));
+        s.el.style.strokeDashoffset = (1 - s.p).toFixed(4);
+      });
+      line.style.opacity = (1 - clamp((t - 1100) / 300)).toFixed(3);
+      sky.style.opacity = clamp((t - 800) / 450).toFixed(3);
+      place(pen, main.el.getPointAtLength(main.p * main.len));
+      pen.style.opacity = (main.p > 0.005 && main.p < 0.995 ? 1 : 0);
 
-      var w = ease(clamp((t - WORD) / 500));
-      word.style.opacity = w;
-      word.style.transform = 'translateY(' + (8 * (1 - w)).toFixed(2) + 'px)';
+      // 2. the wordmark, revealed left to right
+      wordRect.setAttribute('width', (W * easeOut(clamp((t - 850) / 550))).toFixed(1));
 
+      // 3. the heartbeat: a spark runs along the line and flares on the peak
+      var k = clamp((t - 1050) / 700);
+      var pt = pulse.getPointAtLength(ease(k) * pulseLen);
+      ecgRect.setAttribute('width', (k <= 0 ? 0 : k >= 1 ? W : pt.x + 2).toFixed(1));
+      place(spark, pt);
+      var flare = Math.exp(-Math.pow((pt.x - 303) / 12, 2));
+      spark.setAttribute('r', (14 + 22 * flare).toFixed(1));
+      spark.style.opacity = (k > 0 && k < 1 ? 1 : 0);
+
+      // 4. the tagline
+      tag.style.opacity = clamp((t - 1600) / 300).toFixed(3);
+
+      // 5. dock the drawn logo onto the header logo, then let the page through
       if (t >= DOCK && !docked) {
         docked = true;
-        // move the drawn logo onto the header logo, then let the page through
         var from = logo.getBoundingClientRect();
         var to = navLogo.getBoundingClientRect();
-        var k = to.width / from.width;
-        logo.style.transition = 'transform .65s cubic-bezier(.65,0,.35,1)';
-        logo.style.transform = 'translate(' + (to.left - from.left) + 'px,' + (to.top - from.top) + 'px) scale(' + k + ')';
+        logo.style.transition = 'transform .6s cubic-bezier(.65,0,.35,1)';
+        logo.style.transform = 'translate(' + (to.left - from.left) + 'px,' + (to.top - from.top) + 'px) scale(' + (to.width / from.width) + ')';
         intro.classList.add('is-leaving');
       }
       if (t >= END) { finish(); return; }

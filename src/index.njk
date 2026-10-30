@@ -5,12 +5,12 @@ bodyClass: is-home
 {% extends "base.njk" %}
 
 {% block intro %}
-<!-- Intro: the logo draws itself like a monitor sweep, then moves into the header. Once per session. -->
+<!-- Loading animation, first visit per session: the Potsdam skyline is drawn like a pen
+     stroke, HANDY CHIRURG appears, a spark runs along the heartbeat, then the logo docks
+     into the header. Click, key, wheel or touch skips it. -->
 <div class="intro" id="intro" aria-hidden="true">
   <div class="intro__logo" id="introLogo">
-    <img class="intro__sky" src="/assets/img/logo-sky.svg" alt="" width="756" height="366" decoding="sync">
-    <img class="intro__word" src="/assets/img/logo-word.svg" alt="" width="756" height="366" decoding="sync">
-    <span class="intro__dot"></span>
+    {% include "partials/intro-logo.svg" %}
   </div>
 </div>
 {% endblock %}

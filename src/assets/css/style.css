@@ -125,15 +125,11 @@ h1, h2, h3 { font-stretch: 125%; font-weight: 700; letter-spacing: -.025em; text
 }
 @keyframes introGone { to { opacity: 0; visibility: hidden; pointer-events: none; } }
 .intro.is-leaving { background: transparent; pointer-events: none; }
-/* Logo layers are images: rasterised once, so the sweep only clips a bitmap */
-.intro__logo { position: relative; width: min(74vw, 560px); aspect-ratio: 756 / 366; transform-origin: 0 0; will-change: transform; }
-.intro__logo img { position: absolute; inset: 0; width: 100%; height: 100%; }
-.intro__sky { clip-path: inset(0 100% 0 0); opacity: .35; }
-.intro__word { opacity: 0; }
-.intro__dot {
-  position: absolute; left: 0; top: 82%; width: 1.8%; aspect-ratio: 1; translate: -50% -50%;
-  border-radius: 50%; background: var(--red-l); box-shadow: 0 0 10px 2px rgba(255, 107, 94, .8); opacity: 0;
-}
+.intro.is-skipping { opacity: 0; transition: opacity .25s ease; pointer-events: none; }
+.intro__logo { position: relative; width: min(80vw, 640px); transform-origin: 0 0; will-change: transform; }
+.intro__svg { display: block; width: 100%; height: auto; overflow: visible; }
+.intro__skyline path { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.intro__sky, .intro__tag, .intro__pen, .intro__spark { opacity: 0; }
 .js:not(.reduced):not(.intro-seen):not(.intro-done) .is-home .nav__logo { opacity: 0; animation: logoIn .3s ease 5s forwards; }
 @keyframes logoIn { to { opacity: 1; } }
 .js.intro-done .nav__logo, .reduced .nav__logo { opacity: 1; }
