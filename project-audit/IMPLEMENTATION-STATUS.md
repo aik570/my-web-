@@ -4,6 +4,8 @@ Updated: 30.10.2026, owner feedback (reviews, header phone, iPhone order, Saturd
 
 ## X. Exact model photos in the repair finder (30.10.2026, latest)
 
+**Preview:** https://claude.ai/artifact/MKnvHQdRfoKvSRqyntbA2E (version 38). Checked locally with browser automation (desktop 1280, phone 390); not visually inspected inside the claude.ai viewer, no physical devices.
+
 | Item | Result |
 |---|---|
 | Behaviour | Model chosen → photo of exactly that model, with credit (author, licence, Wikimedia Commons). Repair chosen → photo hidden, animated drawing with the part in red (Display, Akku, Kamera, Ladebuchse …); back cover and main camera turn the drawing to its back. Back to the repair choice or another model → photo again. Prices, selection, navigation and URLs unchanged |
