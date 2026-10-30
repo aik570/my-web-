@@ -108,6 +108,7 @@ console.log('\nPreisrechner');
   ok(data.brands.length > 0 && await page.$eval('#finder', (f) => f.classList.contains('is-ready')), `catalogue loads (${data.brands.length} brands)`);
   const apple = data.brands.find((x) => x.slug === 'apple');
   await page.click('.fbrand[data-brand="apple"]');
+  await page.waitForFunction((n) => document.querySelectorAll('.fmodel').length === n, apple.models.length, { timeout: 3000 }).catch(() => {});
   ok((await page.$$eval('.fmodel', (e) => e.length)) === apple.models.length, `brand → ${apple.models.length} models`);
   await page.click('#f-cats .chip[data-cat="Tablet"]');
   const tablets = apple.models.filter((m) => m.category === 'Tablet').length;
