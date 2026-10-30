@@ -257,23 +257,31 @@ bodyClass: is-home
           <p><strong>{{ site.name }}</strong><br>{{ site.street }}, {{ site.postcode }} {{ site.city }}<br>Mo–Sa {{ site.hours[0].from }}–{{ site.hours[0].to }} Uhr · So geschlossen</p>
           <a class="link-arrow" href="{{ site.mapsUrl }}" target="_blank" rel="noopener">Route planen</a>
         </div>
+        <div class="contact__doc" aria-hidden="true">
+          {%- for d in [['besuch', 'mit Stadtplan'], ['anruf', 'am Telefon'], ['brief', 'beim Briefschreiben']] %}
+          <picture class="contact__doc-{{ d[0] }}{% if loop.first %} is-on{% endif %}">
+            <source srcset="/assets/img/doktor-{{ d[0] }}.webp 320w, /assets/img/doktor-{{ d[0] }}-640.webp 640w" sizes="(max-width: 860px) 150px, 230px" type="image/webp">
+            <img src="/assets/img/doktor-{{ d[0] }}.png" alt="" width="320" height="430" loading="lazy" decoding="async">
+          </picture>
+          {%- endfor %}
+        </div>
       </div>
 
       <div class="contact__box">
         <div class="ctabs" role="tablist" aria-label="Kontaktweg wählen">
-          <button type="button" class="ctab" role="tab" id="ct-brief" aria-controls="cp-brief" aria-selected="true">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>Brief</button>
+          <button type="button" class="ctab" role="tab" id="ct-besuch" aria-controls="cp-besuch" aria-selected="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Besuch</button>
           <button type="button" class="ctab" role="tab" id="ct-anruf" aria-controls="cp-anruf" aria-selected="false" tabindex="-1">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 3 5 3.8C4 4.1 3.4 5.2 3.6 6.2c1.7 7.2 7 12.6 14.2 14.2 1 .2 2.1-.4 2.4-1.4l.8-2.9-4.3-1.9-1.9 2c-2.6-1.2-4.8-3.4-6-6l2-1.9L9.1 4.2"/></svg>Anruf</button>
           {%- if site.whatsapp %}
           <button type="button" class="ctab" role="tab" id="ct-wa" aria-controls="cp-wa" aria-selected="false" tabindex="-1">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/></svg>WhatsApp</button>
           {%- endif %}
-          <button type="button" class="ctab" role="tab" id="ct-besuch" aria-controls="cp-besuch" aria-selected="false" tabindex="-1">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Besuch</button>
+          <button type="button" class="ctab" role="tab" id="ct-brief" aria-controls="cp-brief" aria-selected="false" tabindex="-1">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>Brief</button>
         </div>
 
-        <div class="cpanel" role="tabpanel" id="cp-brief" aria-labelledby="ct-brief">
+        <div class="cpanel" role="tabpanel" id="cp-brief" aria-labelledby="ct-brief" hidden>
           <div class="envelope" aria-hidden="true"><div class="envelope__back"></div><div class="envelope__flap"></div><div class="envelope__front"></div></div>
           <form class="contact__form letter" id="contact-form" action="mailto:{{ site.email }}" method="post" enctype="text/plain" novalidate data-email="{{ site.email }}">
             <p class="letter__to"><span>An</span> {{ site.name }} · {{ site.email }}</p>
@@ -319,8 +327,9 @@ bodyClass: is-home
         </div>
         {%- endif %}
 
-        <div class="cpanel" role="tabpanel" id="cp-besuch" aria-labelledby="ct-besuch" hidden>
+        <div class="cpanel" role="tabpanel" id="cp-besuch" aria-labelledby="ct-besuch">
           <p class="cpanel__big">{{ site.street }}<br><span>{{ site.postcode }} {{ site.city }}</span></p>
+          <span class="nav__state" data-state-short><span class="nav__state-label">Sprechzeiten</span><span class="nav__state-time">{{ site.hours[0].from }}–{{ site.hours[0].to }}</span></span>
           <p class="cpanel__text">Ohne Termin – kommen Sie einfach mit Ihrem Gerät vorbei. Mo–Sa {{ site.hours[0].from }}–{{ site.hours[0].to }} Uhr, sonntags geschlossen.</p>
           <div class="actions"><a class="btn btn--primary" href="{{ site.mapsUrl }}" target="_blank" rel="noopener">Route planen</a></div>
         </div>

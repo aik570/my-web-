@@ -17,6 +17,12 @@
       document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
     });
     if (focus) tab.focus();
+    // the doctor beside the box changes with the tab
+    var key = tab.id.replace('ct-', '');
+    if (key === 'wa') key = 'anruf';
+    [].forEach.call(document.querySelectorAll('.contact__doc picture'), function (pic) {
+      pic.classList.toggle('is-on', pic.classList.contains('contact__doc-' + key));
+    });
   }
   tabs.forEach(function (t, i) {
     t.addEventListener('click', function () { select(t); });

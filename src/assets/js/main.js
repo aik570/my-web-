@@ -263,7 +263,7 @@
 
   /* ---------- reveal: checked on scroll, so it works wherever scrolling does ---------- */
 
-  var pending = [].slice.call(document.querySelectorAll('.reveal, .path__line, .rise'));
+  var pending = [].slice.call(document.querySelectorAll('.reveal, .path__line, .rise, .foot'));
   function reveal() {
     var limit = innerHeight * 0.9;
     pending = pending.filter(function (el) {

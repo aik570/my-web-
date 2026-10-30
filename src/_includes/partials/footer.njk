@@ -1,8 +1,19 @@
 <footer class="foot">
-  <div class="wrap foot__grid">
-    <div class="foot__brand">
-      <img src="/assets/img/logo.svg" alt="{{ site.name }} – {{ site.tagline }}" width="756" height="366" loading="lazy">
+  {#- a heartbeat line runs across the page and draws itself when the footer comes into view -#}
+  <svg class="foot__pulse" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <path class="foot__pulse-line" d="M0 34 H520 M610 34 H1200"/>
+    <path class="foot__pulse-line foot__pulse-beat" d="M520 34 L538 34 L548 22 L556 34 L566 34 L578 4 L592 56 L602 28 L610 34"/>
+  </svg>
+
+  <div class="wrap foot__top">
+    <p class="foot__claim">{{ site.tagline }}<span class="foot__claim-dot" aria-hidden="true">.</span></p>
+    <div class="actions">
+      <a class="btn btn--primary" href="tel:{{ site.phone.dial }}">{{ site.phone.display }}</a>
+      <a class="btn btn--quiet" href="{{ site.mapsUrl }}" target="_blank" rel="noopener">Route planen</a>
     </div>
+  </div>
+
+  <div class="wrap foot__grid">
     <div>
       <h2 class="foot__h">Kontakt</h2>
       <p>{{ site.name }}<br>{{ site.street }}, {{ site.postcode }} {{ site.city }}<br>
@@ -13,16 +24,26 @@
     <div>
       <h2 class="foot__h">Sprechzeiten</h2>
       <p>{% include "partials/hours-text.njk" %}</p>
-      {%- if prices.brands.length %}
+    </div>
+    {%- if prices.brands.length %}
+    <div>
       <h2 class="foot__h">Preise nach Hersteller</h2>
       <p class="foot__brands">{% for b in prices.brands %}<a href="/preise/{{ b.slug }}/">{{ b.brand }}</a>{% endfor %}</p>
-      {%- endif %}
     </div>
+    {%- endif %}
     <div>
       <h2 class="foot__h">Seiten</h2>
       <p><a href="/reparatur-finden/">Preisrechner</a><br><a href="/leistungen/">Reparaturleistungen</a><br><a href="/preise/">Preise</a><br><a href="/#ablauf">Ablauf</a><br><a href="/#kontakt">Kontakt</a><br><a href="/franchise/">Franchise</a></p>
-      <h2 class="foot__h">Rechtliches</h2>
-      <p><a href="/impressum/">Impressum</a><br><a href="/datenschutz/">Datenschutz</a></p>
     </div>
+  </div>
+
+  <div class="wrap foot__bar">
+    <p>© {% year %} {{ site.name }}</p>
+    <p class="foot__legal"><a href="/impressum/">Impressum</a><a href="/datenschutz/">Datenschutz</a><a href="#main" class="foot__up">Nach oben <span aria-hidden="true">↑</span></a></p>
+  </div>
+
+  {#- the logo, large and quiet, closes the page -#}
+  <div class="foot__mark" aria-hidden="true">
+    <img src="/assets/img/logo.svg" alt="" width="756" height="366" loading="lazy">
   </div>
 </footer>
