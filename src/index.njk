@@ -248,30 +248,83 @@ bodyClass: is-home
   <!-- ============ KONTAKT ============ -->
   <section class="sec sec--white contact" id="kontakt" aria-labelledby="kontakt-h">
     <div class="wrap contact__grid">
-      <div>
+      <div class="contact__intro">
         <p class="kicker"><span class="kicker__cross" aria-hidden="true"></span>{{ h.contact.kicker }}</p>
         <h2 id="kontakt-h">{{ h.contact.title }}</h2>
         <p class="head__lede">{{ h.contact.lede }}</p>
+        <div class="contact__visit">
+          <span class="nav__state contact__state" data-state-short><span class="nav__state-label">Sprechzeiten</span><span class="nav__state-time">{{ site.hours[0].from }}–{{ site.hours[0].to }}</span></span>
+          <p><strong>{{ site.name }}</strong><br>{{ site.street }}, {{ site.postcode }} {{ site.city }}<br>Mo–Sa {{ site.hours[0].from }}–{{ site.hours[0].to }} Uhr · So geschlossen</p>
+          <a class="link-arrow" href="{{ site.mapsUrl }}" target="_blank" rel="noopener">Route planen</a>
+        </div>
       </div>
-      <form class="contact__form" id="contact-form" action="mailto:{{ site.email }}" method="post" enctype="text/plain" novalidate data-email="{{ site.email }}">
-        <div class="field">
-          <label for="cf-name">Name <span aria-hidden="true">*</span></label>
-          <input id="cf-name" name="name" type="text" autocomplete="name" required maxlength="100">
+
+      <div class="contact__box">
+        <div class="ctabs" role="tablist" aria-label="Kontaktweg wählen">
+          <button type="button" class="ctab" role="tab" id="ct-brief" aria-controls="cp-brief" aria-selected="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>Brief</button>
+          <button type="button" class="ctab" role="tab" id="ct-anruf" aria-controls="cp-anruf" aria-selected="false" tabindex="-1">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 3 5 3.8C4 4.1 3.4 5.2 3.6 6.2c1.7 7.2 7 12.6 14.2 14.2 1 .2 2.1-.4 2.4-1.4l.8-2.9-4.3-1.9-1.9 2c-2.6-1.2-4.8-3.4-6-6l2-1.9L9.1 4.2"/></svg>Anruf</button>
+          {%- if site.whatsapp %}
+          <button type="button" class="ctab" role="tab" id="ct-wa" aria-controls="cp-wa" aria-selected="false" tabindex="-1">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/></svg>WhatsApp</button>
+          {%- endif %}
+          <button type="button" class="ctab" role="tab" id="ct-besuch" aria-controls="cp-besuch" aria-selected="false" tabindex="-1">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Besuch</button>
         </div>
-        <div class="field">
-          <label for="cf-phone">Mobilnummer <small>(optional)</small></label>
-          <input id="cf-phone" name="telefon" type="tel" autocomplete="tel" inputmode="tel" maxlength="40" pattern="[0-9 +\(\)\/\-]{6,40}">
+
+        <div class="cpanel" role="tabpanel" id="cp-brief" aria-labelledby="ct-brief">
+          <div class="envelope" aria-hidden="true"><div class="envelope__back"></div><div class="envelope__flap"></div><div class="envelope__front"></div></div>
+          <form class="contact__form letter" id="contact-form" action="mailto:{{ site.email }}" method="post" enctype="text/plain" novalidate data-email="{{ site.email }}">
+            <p class="letter__to"><span>An</span> {{ site.name }} · {{ site.email }}</p>
+            <div class="field letter__field">
+              <label for="cf-msg">Ihre Nachricht <span aria-hidden="true">*</span></label>
+              <textarea id="cf-msg" name="nachricht" rows="5" required minlength="10" maxlength="2000" placeholder="Gerät, Modell und was nicht funktioniert" aria-describedby="cf-msg-hint"></textarea>
+              <small class="letter__hint" id="cf-msg-hint" data-hint="msg">Mindestens 10 Zeichen</small>
+            </div>
+            <div class="letter__sign">
+              <p class="letter__greet">Mit freundlichen Grüßen</p>
+              <div class="field letter__field">
+                <label for="cf-name">Name <span aria-hidden="true">*</span></label>
+                <input id="cf-name" name="name" type="text" autocomplete="name" required maxlength="100" aria-describedby="cf-name-hint">
+                <small class="letter__hint" id="cf-name-hint" data-hint="name">Damit wir Sie ansprechen können</small>
+              </div>
+              <div class="field letter__field">
+                <label for="cf-phone">Mobilnummer <small>(optional, für Rückruf)</small></label>
+                <input id="cf-phone" name="telefon" type="tel" autocomplete="tel" inputmode="tel" maxlength="40" pattern="[0-9 +\(\)\/\-]{6,40}" aria-describedby="cf-phone-hint">
+                <small class="letter__hint" id="cf-phone-hint" data-hint="phone">Ziffern, Leerzeichen, + ( ) / -</small>
+              </div>
+            </div>
+            <p class="contact__error" id="cf-error" role="alert" hidden></p>
+            <div class="contact__send">
+              <p class="letter__ready" id="cf-ready" aria-live="polite"></p>
+              <button class="btn btn--primary" type="submit">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5 21 4l-7.5 18-2.3-7.7z"/><path d="m11.2 14.3 4.3-4.3"/></svg>Brief abschicken</button>
+              <p class="selector__hint">{{ h.contact.note }} <a href="/datenschutz/">Datenschutz</a></p>
+            </div>
+          </form>
         </div>
-        <div class="field contact__wide">
-          <label for="cf-msg">Nachricht <span aria-hidden="true">*</span></label>
-          <textarea id="cf-msg" name="nachricht" rows="5" required minlength="10" maxlength="2000" placeholder="Gerät, Modell und was nicht funktioniert"></textarea>
+
+        <div class="cpanel" role="tabpanel" id="cp-anruf" aria-labelledby="ct-anruf" hidden>
+          <p class="cpanel__big"><a href="tel:{{ site.phone.dial }}">{{ site.phone.display }}</a></p>
+          <p class="cpanel__text">Am schnellsten erreichen Sie uns telefonisch während der Sprechzeiten. Wir nennen Ihnen den Preis und ob das Teil vorrätig ist.</p>
+          <span class="nav__state" data-state-short><span class="nav__state-label">Sprechzeiten</span><span class="nav__state-time">{{ site.hours[0].from }}–{{ site.hours[0].to }}</span></span>
+          <div class="actions"><a class="btn btn--primary" href="tel:{{ site.phone.dial }}">Jetzt anrufen</a></div>
         </div>
-        <p class="contact__error contact__wide" id="cf-error" role="alert" hidden></p>
-        <div class="contact__wide contact__send">
-          <button class="btn btn--primary" type="submit">E-Mail vorbereiten</button>
-          <p class="selector__hint">{{ h.contact.note }} <a href="/datenschutz/">Datenschutz</a></p>
+
+        {%- if site.whatsapp %}
+        <div class="cpanel" role="tabpanel" id="cp-wa" aria-labelledby="ct-wa" hidden>
+          <p class="cpanel__text">Schicken Sie uns ein Foto vom Schaden – wir antworten mit einer Einschätzung.</p>
+          <div class="actions"><a class="btn btn--primary" href="https://wa.me/{{ site.whatsapp | replace('+', '') }}" target="_blank" rel="noopener">WhatsApp öffnen</a></div>
         </div>
-      </form>
+        {%- endif %}
+
+        <div class="cpanel" role="tabpanel" id="cp-besuch" aria-labelledby="ct-besuch" hidden>
+          <p class="cpanel__big">{{ site.street }}<br><span>{{ site.postcode }} {{ site.city }}</span></p>
+          <p class="cpanel__text">Ohne Termin – kommen Sie einfach mit Ihrem Gerät vorbei. Mo–Sa {{ site.hours[0].from }}–{{ site.hours[0].to }} Uhr, sonntags geschlossen.</p>
+          <div class="actions"><a class="btn btn--primary" href="{{ site.mapsUrl }}" target="_blank" rel="noopener">Route planen</a></div>
+        </div>
+      </div>
     </div>
   </section>
 

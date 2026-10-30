@@ -171,8 +171,8 @@ const CRACK_REACH = 1000;   // px, farther than the farthest crack end
 const PULSE = [[0, 0.62], [0.36, 0.62], [0.42, 0.62], [0.47, 0.3], [0.54, 0.86], [0.59, 0.5], [0.63, 0.62], [1, 0.62]];
 
 let lastScreenKey = '';
-function drawScreen(crack, lit, beat) {
-  const k = (glassB ? 'b' : crack.toFixed(3)) + lit.toFixed(2) + beat.toFixed(2);
+function drawScreen(crack, lit, beat, flash = 0) {
+  const k = (glassB ? 'b' : crack.toFixed(3)) + lit.toFixed(2) + beat.toFixed(2) + flash.toFixed(2);
   if (k === lastScreenKey) return;
   lastScreenKey = k;
 
@@ -240,6 +240,14 @@ function drawScreen(crack, lit, beat) {
       sx.strokeStyle = 'rgba(255,255,255,.12)'; sx.lineWidth = 7; sx.stroke();
     }
     sx.restore();
+  }
+
+  // the display switching on: a short white flash
+  if (flash > 0.01) {
+    sx.globalAlpha = flash * 0.55;
+    sx.fillStyle = '#e9fff7';
+    sx.fillRect(0, 0, w, h);
+    sx.globalAlpha = 1;
   }
 
   // camera cut-out at the top of the screen
@@ -335,7 +343,8 @@ const glassScreen = new THREE.ShaderMaterial({
     impact: { value: new THREE.Vector2(IMPACT[0] / sc.width, 1 - IMPACT[1] / sc.height) },
     aspect: { value: sc.height / sc.width },
     uCam: { value: new THREE.Vector3(0, 0, 9) },
-    uLight: { value: new THREE.Vector3(-0.4, 0.5, 0.8) }
+    uLight: { value: new THREE.Vector3(-0.4, 0.5, 0.8) },
+    sweep: { value: 0 }
   },
   vertexShader: `
     varying vec2 vUv; varying vec3 vView;
@@ -347,7 +356,7 @@ const glassScreen = new THREE.ShaderMaterial({
     }`,
   fragmentShader: `
     uniform sampler2D map, crackMap;
-    uniform float crack, aspect;
+    uniform float crack, aspect, sweep;
     uniform vec2 impact;
     uniform vec3 uLight;
     varying vec2 vUv; varying vec3 vView;
@@ -387,6 +396,9 @@ const glassScreen = new THREE.ShaderMaterial({
       col *= 1.0 - halo * 0.25;                                            // shadow of the fracture
       col += vec3(0.92, 0.97, 1.0) * (line * (0.42 + 1.6 * sparkle) + halo * 0.05 + shard * 0.9 + facet * 0.07);
       col += vec3(1.0) * (box * box * 0.1 + fres * 0.08);
+      // repair moment: a band of light crosses the restored glass from corner to corner
+      float band = sweep > 0.0 && sweep < 1.0 ? exp(-pow((vUv.x * 0.6 + (1.0 - vUv.y) * 0.8 - sweep * 1.9 + 0.25) * 9.0, 2.0)) : 0.0;
+      col += vec3(0.75, 1.0, 0.92) * band * 0.55;
       gl_FragColor = vec4(col, base.a);
     }`
 });
@@ -430,6 +442,17 @@ const frame = part('frame');
   const b1 = new THREE.Mesh(btnGeo, titanium); b1.position.set(hw + 0.02, 0.6, 0); frame.add(b1);
   const b2 = new THREE.Mesh(btnGeo, titanium); b2.position.set(-hw - 0.02, 0.75, 0); frame.add(b2);
   const b3 = new THREE.Mesh(btnGeo, titanium); b3.position.set(-hw - 0.02, 0.3, 0); frame.add(b3);
+  // antenna bands, USB-C port and speaker holes, as on a real frame
+  const band = new THREE.MeshStandardMaterial({ color: 0x3a4240, roughness: 0.6 });
+  [[hw + 0.004, 1.2, 0.012, 0.03], [-hw - 0.004, -1.25, 0.012, 0.03], [0.45, hh + 0.004, 0.03, 0.012], [-0.45, -hh - 0.004, 0.03, 0.012]].forEach(([x, y, w, h]) => {
+    const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, 0.1), band); m.position.set(x, y, 0); frame.add(m);
+  });
+  const dark = new THREE.MeshStandardMaterial({ color: 0x050606, roughness: 0.8 });
+  const port = new THREE.Mesh(roundedBox(0.2, 0.03, 0.06, 0.012), dark); port.position.set(0, -hh - 0.008, 0); frame.add(port);
+  for (let i = 0; i < 5; i++) {
+    const g = new THREE.Mesh(new THREE.CylinderGeometry(0.011, 0.011, 0.02, 10), dark);
+    g.position.set(0.22 + i * 0.045, -hh - 0.004, 0); frame.add(g);
+  }
 }
 
 // battery
@@ -474,6 +497,11 @@ const back = part('back');
     lens.rotation.x = Math.PI / 2; lens.position.set(x, y, -0.074);
     back.add(ring, lens);
   });
+  // flash and LiDAR on the camera plateau
+  const flash = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.045, 0.02, 24), new THREE.MeshPhysicalMaterial({ color: 0xf3ead2, roughness: 0.25, transmission: 0, emissive: 0x2a2416 }));
+  flash.rotation.x = Math.PI / 2; flash.position.set(-0.2, 1.28, -0.066); back.add(flash);
+  const lidar = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.035, 0.02, 24), lensGlass);
+  lidar.rotation.x = Math.PI / 2; lidar.position.set(-0.2, 0.88, -0.066); back.add(lidar);
 }
 
 // soft shadow below the phone (a blurred ellipse, fades while the phone is open)
@@ -487,6 +515,17 @@ const shadow = (() => {
   scene.add(m);
   return m;
 })();
+
+// While the phone is open the parts are pointed out one after another: the
+// part glows faintly teal and its label is set apart (see frameLoop).
+const glow = new THREE.Color(0x2f7a68);
+for (const g of phone.children) {
+  g.traverse((o) => {
+    if (o.isMesh && !Array.isArray(o.material) && o.material.emissive) { o.material = o.material.clone(); g.userData.mats = (g.userData.mats || []).concat(o.material); }
+    if (o.isMesh && Array.isArray(o.material)) { o.material = o.material.map((m) => m.clone()); g.userData.mats = (g.userData.mats || []).concat(o.material.filter((m) => m.emissive)); }
+  });
+}
+const ORDER = ['display', 'board', 'battery', 'frame', 'back'];
 
 // assembled z positions, and where each part travels when opened
 const LAYOUT = {
@@ -603,6 +642,19 @@ function frameLoop(now) {
     const L = LAYOUT[part.name];
     part.position.z = lerp(L.z, L.open, open);
   }
+  // point out the parts one after another while open (0.40 → 0.60)
+  const tour = clamp((p - 0.4) / 0.2) * ORDER.length;
+  const active = open > 0.6 && tour > 0 && tour < ORDER.length ? ORDER[Math.floor(tour)] : '';
+  for (const part of phone.children) {
+    const on = part.name === active ? Math.sin(Math.PI * (tour % 1)) : 0;
+    (part.userData.mats || []).forEach((m) => { m.emissive.copy(glow).multiplyScalar(on * 0.35); });
+  }
+  labels.forEach((el) => el.classList.toggle('is-active', el.dataset.layer === active));
+
+  // the repair moment: light sweep over the glass, a short screen flash and a small bounce
+  const sweep = clamp((p - 0.76) / 0.1);
+  if (glassB) glassScreen.uniforms.sweep.value = sweep;
+  phone.scale.multiplyScalar(1 + 0.025 * Math.sin(Math.PI * sweep) * (reduced ? 0 : 1));
 
   if (glassB) {
     phone.updateMatrixWorld();
@@ -616,7 +668,7 @@ function frameLoop(now) {
   shadow.scale.setScalar(s * (1 - open * 0.3));
   shadow.material.opacity = (portrait ? 0 : 1) * (1 - open * 0.8);
 
-  drawScreen(crack, lit, beat);
+  drawScreen(crack, lit, beat, Math.sin(Math.PI * clamp((p - 0.74) / 0.05)));
   renderer.render(scene, camera);
 
   // slow frames on the shader glass: switch to the lighter glass once
