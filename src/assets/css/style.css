@@ -1021,3 +1021,36 @@ mark.todo { background: #fff1c2; color: #6b4b00; padding: .1rem .35rem; border-r
   background: linear-gradient(#fff, #fff) center / 46% 14% no-repeat, linear-gradient(#fff, #fff) center / 14% 46% no-repeat, radial-gradient(circle at 35% 30%, #3f9a84, var(--teal-800));
   box-shadow: 0 2px 6px rgba(15, 38, 33, .35); transform: scale(0); transition: transform .3s cubic-bezier(.3, 1.6, .5, 1) .85s; }
 .cpanel.is-sending .envelope__front::after { transform: scale(1); }
+
+
+/* ---------- final polish: Apple-like details ---------- */
+
+/* section headings a step larger, words rise from a mask when they come into view */
+.sec h2[id]:not(.fstores__h):not(.foot__h):not(.offer__sum-h):not(.fsec__h):not(.svc__title) { font-size: clamp(2.1rem, 1.3rem + 3.2vw, 4.25rem); line-height: 1.02; letter-spacing: -.03em; }
+.wr { display: inline-block; max-width: 100%; overflow: hidden; vertical-align: top; padding-bottom: .08em; margin-bottom: -.08em; }
+.wr > span { max-width: 100%; overflow-wrap: anywhere; hyphens: auto; }
+.wr > span { display: inline-block; transform: translateY(105%); transition: transform .9s cubic-bezier(.2, .7, .1, 1); transition-delay: calc(var(--i) * 45ms); }
+.rise.is-in .wr > span { transform: none; }
+
+/* page to page: a calm cross-fade, the header stays put (browsers with View Transitions) */
+@view-transition { navigation: auto; }
+.nav { view-transition-name: site-nav; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .35s; animation-timing-function: cubic-bezier(.2, .7, .1, 1); }
+@media (prefers-reduced-motion: reduce) { @view-transition { navigation: none; } }
+
+/* primary buttons: a thin sheen passes on hover */
+.btn--primary, .nav__call { position: relative; overflow: hidden; isolation: isolate; }
+.btn--primary::after, .nav__call::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, .22) 50%, transparent 65%); transform: translateX(-120%); transition: transform .7s cubic-bezier(.2, .7, .1, 1); }
+.btn--primary:hover::after, .nav__call:hover::after { transform: translateX(120%); }
+
+/* cards: soft light under the pointer */
+.fbrand, .brandcard, .svc__item, .ftile, .frepair, .entry__main, .sign { position: relative; isolation: isolate; }
+.fbrand::before, .brandcard::before, .svc__item::before, .ftile::before, .frepair::before, .sign::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .3s var(--ease);
+  background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 50%), rgba(111, 227, 192, .18), transparent 70%);
+}
+.entry__main::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .3s var(--ease);
+  background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, .14), transparent 70%); }
+:is(.fbrand, .brandcard, .svc__item, .ftile, .frepair, .entry__main, .sign):hover::before { opacity: 1; }
+@media (hover: none) { :is(.fbrand, .brandcard, .svc__item, .ftile, .frepair, .entry__main, .sign)::before { display: none; } }
+.reduced .btn--primary::after, .reduced .nav__call::after { display: none; }

@@ -188,9 +188,82 @@
     zoom.addEventListener('click', function (e) { if (e.target === zoom) zoom.close(); });
   }
 
+  /* ---------- headings rise word by word as they come into view ---------- */
+
+  if (!reduced) {
+    [].forEach.call(document.querySelectorAll('main h2[id], .page-title, .fsec__h'), function (h) {
+      if (h.closest('.story, .fresult, .offer, dialog, .prose, li, .fcard') || h.querySelector('a, input')) return;
+      var i = 0;
+      (function wrap(node) {
+        [].slice.call(node.childNodes).forEach(function (n) {
+          if (n.nodeType === 3) {
+            var frag = document.createDocumentFragment();
+            n.textContent.split(/(\s+)/).forEach(function (part) {
+              if (!part) return;
+              if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+              var o = document.createElement('span'), w = document.createElement('span');
+              o.className = 'wr'; w.textContent = part; w.style.setProperty('--i', i++);
+              o.appendChild(w); frag.appendChild(o);
+            });
+            n.parentNode.replaceChild(frag, n);
+          } else if (n.nodeType === 1 && n.tagName !== 'BR') wrap(n);
+        });
+      })(h);
+      h.classList.add('rise');
+    });
+  }
+
+  /* ---------- cards: a soft light follows the pointer ---------- */
+
+  document.addEventListener('pointermove', function (e) {
+    var c = e.target.closest && e.target.closest('.fbrand, .brandcard, .svc__item, .ftile, .frepair, .entry__main, .sign');
+    if (!c) return;
+    var r = c.getBoundingClientRect();
+    c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  }, { passive: true });
+
+  /* ---------- prices: the total counts to its new value ----------
+     The element itself always holds the final price (screen readers, scripts);
+     the counting is drawn by an aria-hidden copy laid over it. */
+
+  if (!reduced && window.MutationObserver) {
+    [].forEach.call(document.querySelectorAll('#r-total, #sum-total, #sum-bar-total'), function (el) {
+      var shown = el.textContent, raf = 0, ghost = null;
+      var num = function (t) { var m = /([\d.]+(?:,\d+)?)\s*€/.exec(t); return m ? parseFloat(m[1].replace(/\./g, '').replace(',', '.')) : null; };
+      function stop() {
+        cancelAnimationFrame(raf);
+        if (ghost) { ghost.remove(); ghost = null; }
+        el.style.color = '';
+      }
+      new MutationObserver(function () {
+        var target = el.textContent, a = num(shown), b = num(target);
+        shown = target;
+        stop();
+        if (a === null || b === null || a === b || !el.offsetParent) return;
+        var cs = getComputedStyle(el), prefix = target.slice(0, target.search(/\d/));
+        ghost = document.createElement('span');
+        ghost.setAttribute('aria-hidden', 'true');
+        // anchored at the right edge, where prices are aligned
+        ghost.style.cssText = 'position:absolute;pointer-events:none;white-space:nowrap;translate:-100% 0;' +
+          'left:' + (el.offsetLeft + el.offsetWidth) + 'px;top:' + el.offsetTop + 'px;line-height:' + el.offsetHeight + 'px;';
+        ['fontFamily', 'fontSize', 'fontWeight', 'fontStretch', 'fontVariantNumeric', 'letterSpacing', 'color'].forEach(function (k) { ghost.style[k] = cs[k]; });
+        el.offsetParent.appendChild(ghost);
+        el.style.color = 'transparent';
+        var t0 = performance.now();
+        (function tick(now) {
+          var k = Math.min(1, (now - t0) / 420), v = a + (b - a) * (1 - Math.pow(1 - k, 3));
+          if (!ghost) return;
+          ghost.textContent = prefix + Math.round(v).toLocaleString('de-DE') + ' €';
+          if (k < 1) raf = requestAnimationFrame(tick); else stop();
+        })(t0);
+      }).observe(el, { childList: true, characterData: true, subtree: true });
+    });
+  }
+
   /* ---------- reveal: checked on scroll, so it works wherever scrolling does ---------- */
 
-  var pending = [].slice.call(document.querySelectorAll('.reveal, .path__line'));
+  var pending = [].slice.call(document.querySelectorAll('.reveal, .path__line, .rise'));
   function reveal() {
     var limit = innerHeight * 0.9;
     pending = pending.filter(function (el) {
