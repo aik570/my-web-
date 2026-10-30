@@ -1,6 +1,205 @@
 {
   "note": "Pictures for the repair finder. 'models' maps a catalogue model (brand/slug) to a photo of exactly that model with its licence and author (shown as credit). Only freely licensed photos (e.g. Wikimedia Commons, CC BY / CC BY-SA / CC0 / public domain) or photos supplied with rights by the owner. 'rules' are the fallback: the first rule whose brand and pattern (regular expression, case-insensitive) match the model name gives a picture of the same series, labelled 'Symbolbild'. Without either, the neutral drawing is shown. Never point an entry at a picture of a different model.",
-  "models": {},
+  "models": {
+    "apple/iphone-12": {
+      "image": "/assets/img/modelle/foto/apple-iphone-12.webp",
+      "exact": true,
+      "author": "茅野ふたば",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "source": "https://commons.wikimedia.org/wiki/File%3AIPhone_12_Green_128g.jpg",
+      "file": "File:IPhone_12_Green_128g.jpg"
+    },
+    "apple/iphone-12-mini": {
+      "image": "/assets/img/modelle/foto/apple-iphone-12-mini.webp",
+      "exact": true,
+      "author": "Ssu",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "source": "https://commons.wikimedia.org/wiki/File%3AIPhone_12_mini.jpg",
+      "file": "File:IPhone_12_mini.jpg"
+    },
+    "apple/iphone-12-pro": {
+      "image": "/assets/img/modelle/foto/apple-iphone-12-pro.webp",
+      "exact": true,
+      "author": "茅野ふたば",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "source": "https://commons.wikimedia.org/wiki/File%3AIPhone_12_Pro_backside.jpg",
+      "file": "File:IPhone_12_Pro_backside.jpg"
+    },
+    "apple/iphone-13": {
+      "image": "/assets/img/modelle/foto/apple-iphone-13.webp",
+      "exact": true,
+      "author": "Kskhh",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "source": "https://commons.wikimedia.org/wiki/File%3AIPhone_13.jpg",
+      "file": "File:IPhone_13.jpg"
+    },
+    "apple/iphone-13-mini": {
+      "image": "/assets/img/modelle/foto/apple-iphone-13-mini.webp",
+      "exact": true,
+      "author": "DYVER",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "source": "https://commons.wikimedia.org/wiki/File%3AIPhone_13_Mini_Gr%C3%BCn_Freigestellt.png",
+      "file": "File:IPhone_13_Mini_Grün_Freigestellt.png"
+    },
+    "apple/iphone-13-pro-max": {
+      "image": "/assets/img/modelle/foto/apple-iphone-13-pro-max.webp",
+      "exact": true,
+      "author": "茅野ふたば",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "source": "https://commons.wikimedia.org/wiki/File%3AIPhone_13_Pro_Max_Sierra_Blue_128g.jpg",
+      "file": "File:IPhone_13_Pro_Max_Sierra_Blue_128g.jpg"
+    },
+    "apple/iphone-14": {
+      "image": "/assets/img/modelle/foto/apple-iphone-14.webp",
+      "exact": true,
+      "author": "KKPCW（Kyu3）",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "source": "https://commons.wikimedia.org/wiki/File%3AIPhone_14_-_3.jpg",
+      "file": "File:IPhone_14_-_3.jpg"
+    },
+    "apple/iphone-14-plus": {
+      "image": "/assets/img/modelle/foto/apple-iphone-14-plus.webp",
+      "exact": true,
+      "author": "Kskhh",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "source": "https://commons.wikimedia.org/wiki/File%3AA_blue_iPhone_14_Plus.jpg",
+      "file": "File:A_blue_iPhone_14_Plus.jpg"
+    },
+    "apple/iphone-14-pro": {
+      "image": "/assets/img/modelle/foto/apple-iphone-14-pro.webp",
+      "exact": true,
+      "author": "Ssu",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "source": "https://commons.wikimedia.org/wiki/File%3AIPhone_14_Pro_-_black.jpg",
+      "file": "File:IPhone_14_Pro_-_black.jpg"
+    },
+    "apple/iphone-14-pro-max": {
+      "image": "/assets/img/modelle/foto/apple-iphone-14-pro-max.webp",
+      "exact": true,
+      "author": "茅野ふたば",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "source": "https://commons.wikimedia.org/wiki/File%3AIPhone_14_Pro_Max_Deep_purple_A2896_China%2C_Hong_Kong_and_Macao_version_rear.jpg",
+      "file": "File:IPhone_14_Pro_Max_Deep_purple_A2896_China,_Hong_Kong_and_Macao_version_rear.jpg"
+    },
+    "apple/iphone-15": {
+      "image": "/assets/img/modelle/foto/apple-iphone-15.webp",
+      "exact": true,
+      "author": "メイド理世",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "source": "https://commons.wikimedia.org/wiki/File%3AApple_iPhone_15_Pink_-_back_view_%28November_1%2C_2024%29.jpg",
+      "file": "File:Apple_iPhone_15_Pink_-_back_view_(November_1,_2024).jpg"
+    },
+    "apple/iphone-15-pro-max": {
+      "image": "/assets/img/modelle/foto/apple-iphone-15-pro-max.webp",
+      "exact": true,
+      "author": "メイド理世",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "source": "https://commons.wikimedia.org/wiki/File%3AAbout_iPhone_15_Pro_Max_Natural_Titanium.jpg",
+      "file": "File:About_iPhone_15_Pro_Max_Natural_Titanium.jpg"
+    },
+    "apple/iphone-16": {
+      "image": "/assets/img/modelle/foto/apple-iphone-16.webp",
+      "exact": true,
+      "author": "Kyu3a",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "source": "https://commons.wikimedia.org/wiki/File%3ABack_of_iPhone_16_-_2.jpg",
+      "file": "File:Back_of_iPhone_16_-_2.jpg"
+    },
+    "apple/iphone-16-plus": {
+      "image": "/assets/img/modelle/foto/apple-iphone-16-plus.webp",
+      "exact": true,
+      "author": "メイド理世",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "source": "https://commons.wikimedia.org/wiki/File%3ABack_view_of_iPhone_16_Plus_Black.jpg",
+      "file": "File:Back_view_of_iPhone_16_Plus_Black.jpg"
+    },
+    "apple/iphone-16-pro": {
+      "image": "/assets/img/modelle/foto/apple-iphone-16-pro.webp",
+      "exact": true,
+      "author": "メイド理世",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "source": "https://commons.wikimedia.org/wiki/File%3AIPhone_16_Pro_%2854251031612%29.jpg",
+      "file": "File:IPhone_16_Pro_(54251031612).jpg"
+    },
+    "apple/iphone-16-pro-max": {
+      "image": "/assets/img/modelle/foto/apple-iphone-16-pro-max.webp",
+      "exact": true,
+      "author": "メイド理世",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "source": "https://commons.wikimedia.org/wiki/File%3ABack_view_of_iPhone_16_Pro_Max_Natural_Titanium.jpg",
+      "file": "File:Back_view_of_iPhone_16_Pro_Max_Natural_Titanium.jpg"
+    },
+    "apple/iphone-17": {
+      "image": "/assets/img/modelle/foto/apple-iphone-17.webp",
+      "exact": true,
+      "author": "Ahmad Ali Karim",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "source": "https://commons.wikimedia.org/wiki/File%3ABlack_iPhone_17.jpg",
+      "file": "File:Black_iPhone_17.jpg"
+    },
+    "apple/iphone-17-pro": {
+      "image": "/assets/img/modelle/foto/apple-iphone-17-pro.webp",
+      "exact": true,
+      "author": "茅野ふたば",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "source": "https://commons.wikimedia.org/wiki/File%3AIPhone_17_Pro_%28cropped%29.jpg",
+      "file": "File:IPhone_17_Pro_(cropped).jpg"
+    },
+    "apple/iphone-17-pro-max": {
+      "image": "/assets/img/modelle/foto/apple-iphone-17-pro-max.webp",
+      "exact": true,
+      "author": "Ahmad Ali Karim",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "source": "https://commons.wikimedia.org/wiki/File%3ACosmic_Orange_iPhone_17_Pro_Max.jpg",
+      "file": "File:Cosmic_Orange_iPhone_17_Pro_Max.jpg"
+    },
+    "apple/iphone-air": {
+      "image": "/assets/img/modelle/foto/apple-iphone-air.webp",
+      "exact": true,
+      "author": "Ahmad Ali Karim",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "source": "https://commons.wikimedia.org/wiki/File%3AIPhone_17_launch_at_Apple_TRX_Malaysia_61.jpg",
+      "file": "File:IPhone_17_launch_at_Apple_TRX_Malaysia_61.jpg"
+    },
+    "apple/iphone-se-2020": {
+      "image": "/assets/img/modelle/foto/apple-iphone-se-2020.webp",
+      "exact": true,
+      "author": "Seth Whales",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "source": "https://commons.wikimedia.org/wiki/File%3AIPhone_SE_%282020%29_Product_Red.jpg",
+      "file": "File:IPhone_SE_(2020)_Product_Red.jpg"
+    },
+    "apple/iphone-se-2022": {
+      "image": "/assets/img/modelle/foto/apple-iphone-se-2022.webp",
+      "exact": true,
+      "author": "Hajoon0102",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "source": "https://commons.wikimedia.org/wiki/File%3ABack_of_the_iPhone_SE_%283rd_generation%29.jpg",
+      "file": "File:Back_of_the_iPhone_SE_(3rd_generation).jpg"
+    }
+  },
   "rules": [
     {
       "brand": "apple",
