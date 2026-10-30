@@ -99,4 +99,5 @@ Tick a box when the answer is received; record the answer and date next to it.
 - **Device pictures:** no exact photos per model exist. Supply product photos per model (with rights), or approve the series pictures labelled "Symbolbild". The series pictures come from the old website (partly iStock, partly AI-generated) — confirm the rights.
 - **Sunday:** shown as closed — confirm.
 - **Warranty:** the old FAQ promised "5 Jahre auf Original-Displays, 12 Monate auf andere Teile"; it was replaced by 3 months / water damage without warranty, as instructed. Confirm warranty for back cover, WLAN/Bluetooth and board repairs (currently not shown).
+- **Model photos:** 181 models show a photo from Wikimedia Commons under a free licence with the required credit under the photo (author, licence, source). If the owner prefers uniform product photos, they need licensed images (e.g. from a parts supplier or own photos); the data structure takes them per model. The reference shops' images were not used (no permission).
 

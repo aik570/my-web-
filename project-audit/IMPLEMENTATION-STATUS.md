@@ -2,7 +2,20 @@
 
 Updated: 30.10.2026, owner feedback (reviews, header phone, iPhone order, Saturday hours, device pictures, warranty, CMS prep) · Branch `claude/zealous-bohr-71wesv`
 
-## W. Owner feedback (30.10.2026, latest)
+## X. Exact model photos in the repair finder (30.10.2026, latest)
+
+| Item | Result |
+|---|---|
+| Behaviour | Model chosen → photo of exactly that model, with credit (author, licence, Wikimedia Commons). Repair chosen → photo hidden, animated drawing with the part in red (Display, Akku, Kamera, Ladebuchse …); back cover and main camera turn the drawing to its back. Back to the repair choice or another model → photo again. Prices, selection, navigation and URLs unchanged |
+| Reference shops | houseofmobile-berlin.de and handy-reparatur-berlin030.de use one product image per model (e.g. `HOMG-iphone16promax.jpg.webp`, `iphone16promax.webp`). Their pages state "Alle Rechte vorbehalten" and grant no reuse; the images look like manufacturer renders. **Not copied** — used only to check which device a model is |
+| Source used | Wikimedia Commons, photos under free licences only (CC0, CC BY, CC BY-SA, public domain). 240 Commons categories found for the 385 smartphones; candidates reviewed visually; group shots, renders, shop shelves, damaged devices, mixed models/variants and manufacturer-authored uploads with doubtful licences were left out. Stored locally as WebP (≤ 480 px, 2.4 MB for all), loaded only when a model is chosen |
+| Coverage | **181 of 493 catalogue models with an exact photo** (all brands: Apple 36, Samsung 65, Xiaomi 29, Huawei 14, Sony 18, Google 10, OnePlus 9 — see `project-audit/MODEL-PHOTOS.md`), 154 with a labelled series picture ("Symbolbild … – nicht das exakte Modell"), 158 with the drawing only (mostly tablets, MacBooks, watches and models without a free photo) |
+| Tooling | `scripts/photos/commons-crawl.py` (find categories), `commons-sheet.py` (contact sheets for review), `commons-fetch.py` (licence + author + WebP), `report.mjs` (coverage list). Data: `src/_data/modelImages.json` → `models` (CMS-ready, with licence fields) and `rules` (fallback) |
+| Checks | `npm test` passes (new: photo before repair, drawing with red part after, photo back after browser back, exact photo where mapped); interaction test of the finder 49 elements, 0 failures |
+
+---
+
+## W. Owner feedback (30.10.2026)
 
 **Preview:** https://claude.ai/artifact/MKnvHQdRfoKvSRqyntbA2E (version 35). Checked locally with browser automation (Chromium, emulated desktop 1440/1280/1100 and phone 390/320); not visually inspected inside the claude.ai viewer, no physical devices.
 

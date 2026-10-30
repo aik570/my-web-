@@ -966,12 +966,10 @@ mark.todo { background: #fff1c2; color: #6b4b00; padding: .1rem .35rem; border-r
 .fdevice__note a { color: inherit; }
 @keyframes dv-in { from { opacity: 0; transform: translateY(6px) scale(.98); } }
 .fdevice__svg:not([data-part=""]) .dv { animation: dv-in .35s var(--ease) both; }
-.fdevice__svg:not([data-part=""]) .part { animation: dv-pulse 1.6s ease-in-out .35s infinite; }
-.fdevice__svg .part { animation-play-state: paused; }
 .fdevice__svg[data-part="display"] .part--display, .fdevice__svg[data-part="panzerglas"] .part--panzerglas, .fdevice__svg[data-part="akku"] .part--akku,
 .fdevice__svg[data-part="frontkamera"] .part--frontkamera, .fdevice__svg[data-part="hauptkamera"] .part--hauptkamera, .fdevice__svg[data-part="lautsprecher"] .part--lautsprecher,
 .fdevice__svg[data-part="ladebuchse"] .part--ladebuchse, .fdevice__svg[data-part="backcover"] .part--backcover, .fdevice__svg[data-part="wifi-bluetooth"] .part--wifi-bluetooth,
-.fdevice__svg[data-part="wasserschaden"] .part--wasserschaden, .fdevice__svg[data-part="fehleranalyse"] .part--fehleranalyse { animation-play-state: running; }
+.fdevice__svg[data-part="wasserschaden"] .part--wasserschaden, .fdevice__svg[data-part="fehleranalyse"] .part--fehleranalyse { animation: dv-pulse 1.6s ease-in-out .35s infinite; }
 @keyframes dv-pulse { 50% { fill: rgba(200, 49, 42, .3); stroke-width: 4; } }
 @media (prefers-reduced-motion: reduce) { .fdevice__photo, .fdevice__svg .dv, .fdevice__svg .part { animation: none !important; } }
 .reduced .fdevice__photo, .reduced .fdevice__svg .dv, .reduced .fdevice__svg .part { animation: none !important; }

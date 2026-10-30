@@ -176,6 +176,7 @@ console.log('\nPreisrechner');
   ok(await page.$eval('#r-offer', (a) => a.getAttribute('href') === '/preise/apple/iphone-13/#display-originalqualitaet'), 'link to the model page keeps the choice');
   await page.goBack(); await page.waitForTimeout(150);
   ok(!(await page.$eval('#f-step2', (e) => e.hidden)), 'browser back → step 2');
+  ok(await page.$eval('#f-device-photo', (i, src) => !i.hidden && i.getAttribute('src') === src, want.image), 'back to repair choice → model photo shown again');
   await page.goBack(); await page.waitForTimeout(150);
   ok(!(await page.$eval('#f-step1', (e) => e.hidden)) && await page.$eval('.fbrand[data-brand="apple"]', (b) => b.getAttribute('aria-pressed') === 'true'), 'browser back → step 1, brand kept');
   // deep links, enquiry state, invalid links
