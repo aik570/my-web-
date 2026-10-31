@@ -38,4 +38,8 @@ Licence situation checked on 31.10.2026: Samsung Mobile Press allows its materia
 ${rows.join('\n')}
 `;
 fs.writeFileSync('project-audit/MODEL-PHOTOS.md', md);
+// shopping list for the missing product photos (one row per model; fill file/licence/proof and import with normalize.py)
+const csv = ['model_id;brand;model;type;expected_file'];
+for (const b of data.brands) for (const m of b.models) if (!imgs.models[`${b.slug}/${m.slug}`]) csv.push([`${b.slug}/${m.slug}`, b.brand, m.name, m.category || '', `incoming/${b.slug}-${m.slug}.png`].join(';'));
+fs.writeFileSync('project-audit/PRODUCT-PHOTOS-NEEDED.csv', csv.join('\n') + '\n');
 console.log(count, 'of', total);

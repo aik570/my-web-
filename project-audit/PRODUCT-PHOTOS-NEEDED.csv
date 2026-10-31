@@ -1,0 +1,494 @@
+model_id;brand;model;type;expected_file
+apple/iphone-17-pro-max;Apple;iPhone 17 Pro Max;Smartphone;incoming/apple-iphone-17-pro-max.png
+apple/iphone-17-pro;Apple;iPhone 17 Pro;Smartphone;incoming/apple-iphone-17-pro.png
+apple/iphone-air;Apple;iPhone Air;Smartphone;incoming/apple-iphone-air.png
+apple/iphone-17;Apple;iPhone 17;Smartphone;incoming/apple-iphone-17.png
+apple/iphone-16-pro-max;Apple;iPhone 16 Pro Max;Smartphone;incoming/apple-iphone-16-pro-max.png
+apple/iphone-16-pro;Apple;iPhone 16 Pro;Smartphone;incoming/apple-iphone-16-pro.png
+apple/iphone-16-plus;Apple;iPhone 16 Plus;Smartphone;incoming/apple-iphone-16-plus.png
+apple/iphone-16;Apple;iPhone 16;Smartphone;incoming/apple-iphone-16.png
+apple/iphone-15-pro-max;Apple;iPhone 15 Pro Max;Smartphone;incoming/apple-iphone-15-pro-max.png
+apple/iphone-15-pro;Apple;iPhone 15 Pro;Smartphone;incoming/apple-iphone-15-pro.png
+apple/iphone-15-plus;Apple;iPhone 15 Plus;Smartphone;incoming/apple-iphone-15-plus.png
+apple/iphone-15;Apple;iPhone 15;Smartphone;incoming/apple-iphone-15.png
+apple/iphone-14-pro-max;Apple;iPhone 14 Pro Max;Smartphone;incoming/apple-iphone-14-pro-max.png
+apple/iphone-14-pro;Apple;iPhone 14 Pro;Smartphone;incoming/apple-iphone-14-pro.png
+apple/iphone-14-plus;Apple;iPhone 14 Plus;Smartphone;incoming/apple-iphone-14-plus.png
+apple/iphone-14;Apple;iPhone 14;Smartphone;incoming/apple-iphone-14.png
+apple/iphone-se-2022;Apple;iPhone SE (2022);Smartphone;incoming/apple-iphone-se-2022.png
+apple/iphone-13-pro-max;Apple;iPhone 13 Pro Max;Smartphone;incoming/apple-iphone-13-pro-max.png
+apple/iphone-13-pro;Apple;iPhone 13 Pro;Smartphone;incoming/apple-iphone-13-pro.png
+apple/iphone-13;Apple;iPhone 13;Smartphone;incoming/apple-iphone-13.png
+apple/iphone-13-mini;Apple;iPhone 13 mini;Smartphone;incoming/apple-iphone-13-mini.png
+apple/iphone-12-pro-max;Apple;iPhone 12 Pro Max;Smartphone;incoming/apple-iphone-12-pro-max.png
+apple/iphone-12-pro;Apple;iPhone 12 Pro;Smartphone;incoming/apple-iphone-12-pro.png
+apple/iphone-12;Apple;iPhone 12;Smartphone;incoming/apple-iphone-12.png
+apple/iphone-12-mini;Apple;iPhone 12 mini;Smartphone;incoming/apple-iphone-12-mini.png
+apple/iphone-se-2020;Apple;iPhone SE (2020);Smartphone;incoming/apple-iphone-se-2020.png
+apple/iphone-11-pro-max;Apple;iPhone 11 Pro Max;Smartphone;incoming/apple-iphone-11-pro-max.png
+apple/iphone-11-pro;Apple;iPhone 11 Pro;Smartphone;incoming/apple-iphone-11-pro.png
+apple/iphone-11;Apple;iPhone 11;Smartphone;incoming/apple-iphone-11.png
+apple/iphone-xs-max;Apple;iPhone XS Max;Smartphone;incoming/apple-iphone-xs-max.png
+apple/iphone-xs;Apple;iPhone XS;Smartphone;incoming/apple-iphone-xs.png
+apple/iphone-xr;Apple;iPhone XR;Smartphone;incoming/apple-iphone-xr.png
+apple/iphone-x;Apple;iPhone X;Smartphone;incoming/apple-iphone-x.png
+apple/iphone-8-plus;Apple;iPhone 8 Plus;Smartphone;incoming/apple-iphone-8-plus.png
+apple/iphone-8;Apple;iPhone 8;Smartphone;incoming/apple-iphone-8.png
+apple/iphone-7-plus;Apple;iPhone 7 Plus;Smartphone;incoming/apple-iphone-7-plus.png
+apple/iphone-7;Apple;iPhone 7;Smartphone;incoming/apple-iphone-7.png
+apple/iphone-se-2016;Apple;iPhone SE (2016);Smartphone;incoming/apple-iphone-se-2016.png
+apple/iphone-se;Apple;iPhone SE;Smartphone;incoming/apple-iphone-se.png
+apple/iphone-6s-plus;Apple;iPhone 6s Plus;Smartphone;incoming/apple-iphone-6s-plus.png
+apple/iphone-6s;Apple;iPhone 6s;Smartphone;incoming/apple-iphone-6s.png
+apple/iphone-6-plus;Apple;iPhone 6 Plus;Smartphone;incoming/apple-iphone-6-plus.png
+apple/iphone-6;Apple;iPhone 6;Smartphone;incoming/apple-iphone-6.png
+apple/ipad-pro-13-zoll-1-gen;Apple;iPad Pro 13 Zoll 1. Gen;Tablet;incoming/apple-ipad-pro-13-zoll-1-gen.png
+apple/ipad-pro-12-9-zoll-1-gen;Apple;iPad Pro 12.9 Zoll 1. Gen;Tablet;incoming/apple-ipad-pro-12-9-zoll-1-gen.png
+apple/ipad-pro-12-9-zoll-2-gen;Apple;iPad Pro 12.9 Zoll 2. Gen;Tablet;incoming/apple-ipad-pro-12-9-zoll-2-gen.png
+apple/ipad-pro-12-9-zoll-3-gen;Apple;iPad Pro 12.9 Zoll 3. Gen;Tablet;incoming/apple-ipad-pro-12-9-zoll-3-gen.png
+apple/ipad-pro-12-9-zoll-4-gen;Apple;iPad Pro 12.9 Zoll 4. Gen;Tablet;incoming/apple-ipad-pro-12-9-zoll-4-gen.png
+apple/ipad-pro-12-9-zoll-5-gen;Apple;iPad Pro 12.9 Zoll 5. Gen;Tablet;incoming/apple-ipad-pro-12-9-zoll-5-gen.png
+apple/ipad-pro-12-9-zoll-6-gen;Apple;iPad Pro 12.9 Zoll 6. Gen;Tablet;incoming/apple-ipad-pro-12-9-zoll-6-gen.png
+apple/ipad-pro-11-zoll-1-gen;Apple;iPad Pro 11 Zoll 1. Gen;Tablet;incoming/apple-ipad-pro-11-zoll-1-gen.png
+apple/ipad-pro-11-zoll-2-gen;Apple;iPad Pro 11 Zoll 2. Gen;Tablet;incoming/apple-ipad-pro-11-zoll-2-gen.png
+apple/ipad-pro-11-zoll-3-gen;Apple;iPad Pro 11 Zoll 3. Gen;Tablet;incoming/apple-ipad-pro-11-zoll-3-gen.png
+apple/ipad-pro-11-zoll-4-gen;Apple;iPad Pro 11 Zoll 4. Gen;Tablet;incoming/apple-ipad-pro-11-zoll-4-gen.png
+apple/ipad-pro-10-5-zoll;Apple;iPad Pro 10.5 Zoll;Tablet;incoming/apple-ipad-pro-10-5-zoll.png
+apple/ipad-pro-9-7-zoll;Apple;iPad Pro 9.7 Zoll;Tablet;incoming/apple-ipad-pro-9-7-zoll.png
+apple/ipad-mini-7;Apple;iPad Mini 7;Tablet;incoming/apple-ipad-mini-7.png
+apple/ipad-mini-6;Apple;iPad Mini 6;Tablet;incoming/apple-ipad-mini-6.png
+apple/ipad-mini-5;Apple;iPad Mini 5;Tablet;incoming/apple-ipad-mini-5.png
+apple/ipad-air-13-zoll-1-gen;Apple;iPad Air 13 Zoll 1. Gen;Tablet;incoming/apple-ipad-air-13-zoll-1-gen.png
+apple/ipad-air-11-zoll-1-gen;Apple;iPad Air 11 Zoll 1. Gen;Tablet;incoming/apple-ipad-air-11-zoll-1-gen.png
+apple/ipad-air-5;Apple;iPad Air 5;Tablet;incoming/apple-ipad-air-5.png
+apple/ipad-air-4;Apple;iPad Air 4;Tablet;incoming/apple-ipad-air-4.png
+apple/ipad-air-3;Apple;iPad Air 3;Tablet;incoming/apple-ipad-air-3.png
+apple/ipad-air-2;Apple;iPad Air 2;Tablet;incoming/apple-ipad-air-2.png
+apple/ipad-10-2022-10-9-zoll;Apple;iPad 10 (2022 10.9 Zoll);Tablet;incoming/apple-ipad-10-2022-10-9-zoll.png
+apple/ipad-9-2021-10-2-zoll;Apple;iPad 9 (2021 10.2 Zoll);Tablet;incoming/apple-ipad-9-2021-10-2-zoll.png
+apple/ipad-8-2020-10-2-zoll;Apple;iPad 8 (2020 10.2 Zoll);Tablet;incoming/apple-ipad-8-2020-10-2-zoll.png
+apple/ipad-7-gen;Apple;iPad 7. Gen;Tablet;incoming/apple-ipad-7-gen.png
+apple/ipad-6-gen;Apple;iPad 6. Gen;Tablet;incoming/apple-ipad-6-gen.png
+apple/ipad-5-gen;Apple;iPad 5. Gen;Tablet;incoming/apple-ipad-5-gen.png
+apple/apple-watch-series-se-40-44mm;Apple;Apple Watch Series SE 40/44mm;Smartwatch;incoming/apple-apple-watch-series-se-40-44mm.png
+apple/apple-watch-series-9-41-45mm;Apple;Apple Watch Series 9 41/45mm;Smartwatch;incoming/apple-apple-watch-series-9-41-45mm.png
+apple/apple-watch-series-8-41-45mm;Apple;Apple Watch Series 8 41/45mm;Smartwatch;incoming/apple-apple-watch-series-8-41-45mm.png
+apple/apple-watch-series-7-41-45mm;Apple;Apple Watch Series 7 41/45mm;Smartwatch;incoming/apple-apple-watch-series-7-41-45mm.png
+apple/apple-watch-series-6-40-44mm;Apple;Apple Watch Series 6 40/44mm;Smartwatch;incoming/apple-apple-watch-series-6-40-44mm.png
+apple/apple-watch-series-5-40-44-mm;Apple;Apple Watch Series 5 40/44 mm;Smartwatch;incoming/apple-apple-watch-series-5-40-44-mm.png
+apple/apple-watch-series-4-40-mm;Apple;Apple Watch Series 4 40 mm;Smartwatch;incoming/apple-apple-watch-series-4-40-mm.png
+apple/apple-watch-series-4-44-mm;Apple;Apple Watch Series 4 44 mm;Smartwatch;incoming/apple-apple-watch-series-4-44-mm.png
+apple/apple-watch-series-3-38-42-mm;Apple;Apple Watch Series 3 38/42 mm;Smartwatch;incoming/apple-apple-watch-series-3-38-42-mm.png
+apple/apple-watch-se-2-gen-40-44-mm;Apple;Apple Watch SE 2. Gen 40/44 mm;Smartwatch;incoming/apple-apple-watch-se-2-gen-40-44-mm.png
+apple/apple-watch-series-2-38-mm;Apple;Apple Watch Series 2 38 mm;Smartwatch;incoming/apple-apple-watch-series-2-38-mm.png
+apple/apple-watch-series-2-42-mm;Apple;Apple Watch Series 2 42 mm;Smartwatch;incoming/apple-apple-watch-series-2-42-mm.png
+apple/apple-watch-ultra-ultra-2;Apple;Apple Watch Ultra/Ultra 2;Smartwatch;incoming/apple-apple-watch-ultra-ultra-2.png
+apple/apple-watch-series-1-38-mm;Apple;Apple Watch Series 1 38 mm;Smartwatch;incoming/apple-apple-watch-series-1-38-mm.png
+apple/apple-watch-series-1-42-mm;Apple;Apple Watch Series 1 42 mm;Smartwatch;incoming/apple-apple-watch-series-1-42-mm.png
+apple/macbook-pro-17-zoll-a1151;Apple;MacBook Pro 17 Zoll A1151;Laptop;incoming/apple-macbook-pro-17-zoll-a1151.png
+apple/macbook-pro-17-zoll-a1212;Apple;MacBook Pro 17 Zoll A1212;Laptop;incoming/apple-macbook-pro-17-zoll-a1212.png
+apple/macbook-pro-17-zoll-a1229;Apple;MacBook Pro 17 Zoll A1229;Laptop;incoming/apple-macbook-pro-17-zoll-a1229.png
+apple/macbook-pro-17-zoll-a1261;Apple;MacBook Pro 17 Zoll A1261;Laptop;incoming/apple-macbook-pro-17-zoll-a1261.png
+apple/macbook-pro-17-zoll-a1297;Apple;MacBook Pro 17 Zoll A1297;Laptop;incoming/apple-macbook-pro-17-zoll-a1297.png
+apple/macbook-pro-16-zoll-a2141-2019;Apple;MacBook Pro 16 Zoll A2141 (2019);Laptop;incoming/apple-macbook-pro-16-zoll-a2141-2019.png
+apple/macbook-pro-16-zoll-a2485-2021;Apple;MacBook Pro 16 Zoll A2485 (2021);Laptop;incoming/apple-macbook-pro-16-zoll-a2485-2021.png
+apple/macbook-pro-16-zoll-a2780-2023;Apple;MacBook Pro 16 Zoll A2780 (2023);Laptop;incoming/apple-macbook-pro-16-zoll-a2780-2023.png
+apple/macbook-pro-15-zoll-a1150;Apple;MacBook Pro 15 Zoll A1150;Laptop;incoming/apple-macbook-pro-15-zoll-a1150.png
+apple/macbook-pro-15-zoll-a1211;Apple;MacBook Pro 15 Zoll A1211;Laptop;incoming/apple-macbook-pro-15-zoll-a1211.png
+apple/macbook-pro-15-zoll-a1226;Apple;MacBook Pro 15 Zoll A1226;Laptop;incoming/apple-macbook-pro-15-zoll-a1226.png
+apple/macbook-pro-15-zoll-a1260;Apple;MacBook Pro 15 Zoll A1260;Laptop;incoming/apple-macbook-pro-15-zoll-a1260.png
+apple/macbook-pro-15-zoll-a1286;Apple;MacBook Pro 15 Zoll A1286;Laptop;incoming/apple-macbook-pro-15-zoll-a1286.png
+apple/macbook-pro-15-zoll-a1398;Apple;MacBook Pro 15 Zoll A1398;Laptop;incoming/apple-macbook-pro-15-zoll-a1398.png
+apple/macbook-pro-15-zoll-a1398-2015;Apple;MacBook Pro 15 Zoll A1398 (2015);Laptop;incoming/apple-macbook-pro-15-zoll-a1398-2015.png
+apple/macbook-pro-15-zoll-a1707-2017;Apple;MacBook Pro 15 Zoll A1707 (2017);Laptop;incoming/apple-macbook-pro-15-zoll-a1707-2017.png
+apple/macbook-pro-15-zoll-a1990-2018;Apple;MacBook Pro 15 Zoll A1990 (2018);Laptop;incoming/apple-macbook-pro-15-zoll-a1990-2018.png
+apple/macbook-pro-14-zoll-a2442-2021;Apple;MacBook Pro 14 Zoll A2442 (2021);Laptop;incoming/apple-macbook-pro-14-zoll-a2442-2021.png
+apple/macbook-pro-14-zoll-a2779-2023;Apple;MacBook Pro 14 Zoll A2779 (2023);Laptop;incoming/apple-macbook-pro-14-zoll-a2779-2023.png
+apple/macbook-pro-13-zoll-a1425;Apple;MacBook Pro 13 Zoll A1425;Laptop;incoming/apple-macbook-pro-13-zoll-a1425.png
+apple/macbook-pro-13-zoll-a1502;Apple;MacBook Pro 13 Zoll A1502;Laptop;incoming/apple-macbook-pro-13-zoll-a1502.png
+apple/macbook-pro-13-zoll-a1502-2015;Apple;MacBook Pro 13 Zoll A1502 (2015);Laptop;incoming/apple-macbook-pro-13-zoll-a1502-2015.png
+apple/macbook-pro-13-zoll-a1706-a1708;Apple;MacBook Pro 13 Zoll A1706/A1708;Laptop;incoming/apple-macbook-pro-13-zoll-a1706-a1708.png
+apple/macbook-pro-13-zoll-a1989-2018;Apple;MacBook Pro 13 Zoll A1989 (2018);Laptop;incoming/apple-macbook-pro-13-zoll-a1989-2018.png
+apple/macbook-pro-13-zoll-a2159-2019;Apple;MacBook Pro 13 Zoll A2159 (2019);Laptop;incoming/apple-macbook-pro-13-zoll-a2159-2019.png
+apple/macbook-pro-13-zoll-a2251-2020;Apple;MacBook Pro 13 Zoll A2251 (2020);Laptop;incoming/apple-macbook-pro-13-zoll-a2251-2020.png
+apple/macbook-pro-13-zoll-a2289-2020;Apple;MacBook Pro 13 Zoll A2289 (2020);Laptop;incoming/apple-macbook-pro-13-zoll-a2289-2020.png
+apple/macbook-pro-13-zoll-a2338-m1-2020;Apple;MacBook Pro 13 Zoll A2338 M1 2020;Laptop;incoming/apple-macbook-pro-13-zoll-a2338-m1-2020.png
+apple/macbook-air-13-zoll-a1237;Apple;MacBook Air 13 Zoll A1237;Laptop;incoming/apple-macbook-air-13-zoll-a1237.png
+apple/macbook-air-13-zoll-a1304;Apple;MacBook Air 13 Zoll A1304;Laptop;incoming/apple-macbook-air-13-zoll-a1304.png
+apple/macbook-air-13-zoll-a1369;Apple;MacBook Air 13 Zoll A1369;Laptop;incoming/apple-macbook-air-13-zoll-a1369.png
+apple/macbook-air-13-zoll-a1466;Apple;MacBook Air 13 Zoll A1466;Laptop;incoming/apple-macbook-air-13-zoll-a1466.png
+apple/macbook-air-13-zoll-a1932-2018;Apple;MacBook Air 13 Zoll A1932 (2018);Laptop;incoming/apple-macbook-air-13-zoll-a1932-2018.png
+apple/macbook-air-13-zoll-a2179-2020;Apple;MacBook Air 13 Zoll A2179 (2020);Laptop;incoming/apple-macbook-air-13-zoll-a2179-2020.png
+apple/macbook-air-11-zoll-a1370;Apple;MacBook Air 11 Zoll A1370;Laptop;incoming/apple-macbook-air-11-zoll-a1370.png
+apple/macbook-air-11-zoll-a1465;Apple;MacBook Air 11 Zoll A1465;Laptop;incoming/apple-macbook-air-11-zoll-a1465.png
+apple/macbook-air-m2-2022-a2681;Apple;MacBook Air M2 2022 (A2681);Laptop;incoming/apple-macbook-air-m2-2022-a2681.png
+apple/macbook-air-m2-2023-a2941;Apple;MacBook Air M2 2023 (A2941);Laptop;incoming/apple-macbook-air-m2-2023-a2941.png
+apple/macbook-air-m1-2020-a2337;Apple;MacBook Air M1 2020 (A2337);Laptop;incoming/apple-macbook-air-m1-2020-a2337.png
+apple/macbook-13-zoll-a1181;Apple;MacBook 13 Zoll A1181;Laptop;incoming/apple-macbook-13-zoll-a1181.png
+apple/macbook-13-zoll-a1278;Apple;MacBook 13 Zoll A1278;Laptop;incoming/apple-macbook-13-zoll-a1278.png
+apple/macbook-13-zoll-a1342;Apple;MacBook 13 Zoll A1342;Laptop;incoming/apple-macbook-13-zoll-a1342.png
+apple/macbook-12-zoll-a1534;Apple;MacBook 12 Zoll A1534;Laptop;incoming/apple-macbook-12-zoll-a1534.png
+samsung/galaxy-s25;Samsung;Galaxy S25;Smartphone;incoming/samsung-galaxy-s25.png
+samsung/galaxy-s25-plus;Samsung;Galaxy S25 Plus;Smartphone;incoming/samsung-galaxy-s25-plus.png
+samsung/galaxy-s25-ultra;Samsung;Galaxy S25 Ultra;Smartphone;incoming/samsung-galaxy-s25-ultra.png
+samsung/galaxy-s24;Samsung;Galaxy S24;Smartphone;incoming/samsung-galaxy-s24.png
+samsung/galaxy-s24-plus;Samsung;Galaxy S24 Plus;Smartphone;incoming/samsung-galaxy-s24-plus.png
+samsung/galaxy-s24-ultra;Samsung;Galaxy S24 Ultra;Smartphone;incoming/samsung-galaxy-s24-ultra.png
+samsung/galaxy-s23;Samsung;Galaxy S23;Smartphone;incoming/samsung-galaxy-s23.png
+samsung/galaxy-s23-fe;Samsung;Galaxy S23 FE;Smartphone;incoming/samsung-galaxy-s23-fe.png
+samsung/galaxy-s23-plus;Samsung;Galaxy S23 Plus;Smartphone;incoming/samsung-galaxy-s23-plus.png
+samsung/galaxy-s23-ultra;Samsung;Galaxy S23 Ultra;Smartphone;incoming/samsung-galaxy-s23-ultra.png
+samsung/galaxy-s22;Samsung;Galaxy S22;Smartphone;incoming/samsung-galaxy-s22.png
+samsung/galaxy-s22-fe;Samsung;Galaxy S22 FE;Smartphone;incoming/samsung-galaxy-s22-fe.png
+samsung/galaxy-s22-plus;Samsung;Galaxy S22 Plus;Smartphone;incoming/samsung-galaxy-s22-plus.png
+samsung/galaxy-s22-ultra;Samsung;Galaxy S22 Ultra;Smartphone;incoming/samsung-galaxy-s22-ultra.png
+samsung/galaxy-s21;Samsung;Galaxy S21;Smartphone;incoming/samsung-galaxy-s21.png
+samsung/galaxy-s21-fe;Samsung;Galaxy S21 FE;Smartphone;incoming/samsung-galaxy-s21-fe.png
+samsung/galaxy-s21-plus;Samsung;Galaxy S21 Plus;Smartphone;incoming/samsung-galaxy-s21-plus.png
+samsung/galaxy-s21-ultra;Samsung;Galaxy S21 Ultra;Smartphone;incoming/samsung-galaxy-s21-ultra.png
+samsung/galaxy-s20;Samsung;Galaxy S20;Smartphone;incoming/samsung-galaxy-s20.png
+samsung/galaxy-s20-fe;Samsung;Galaxy S20 FE;Smartphone;incoming/samsung-galaxy-s20-fe.png
+samsung/galaxy-s20-plus;Samsung;Galaxy S20 Plus;Smartphone;incoming/samsung-galaxy-s20-plus.png
+samsung/galaxy-s20-ultra;Samsung;Galaxy S20 Ultra;Smartphone;incoming/samsung-galaxy-s20-ultra.png
+samsung/galaxy-s10;Samsung;Galaxy S10;Smartphone;incoming/samsung-galaxy-s10.png
+samsung/galaxy-s10-plus;Samsung;Galaxy S10 Plus;Smartphone;incoming/samsung-galaxy-s10-plus.png
+samsung/galaxy-s10e;Samsung;Galaxy S10e;Smartphone;incoming/samsung-galaxy-s10e.png
+samsung/galaxy-s9;Samsung;Galaxy S9;Smartphone;incoming/samsung-galaxy-s9.png
+samsung/galaxy-s9-plus;Samsung;Galaxy S9 Plus;Smartphone;incoming/samsung-galaxy-s9-plus.png
+samsung/galaxy-s8;Samsung;Galaxy S8;Smartphone;incoming/samsung-galaxy-s8.png
+samsung/galaxy-s8-plus;Samsung;Galaxy S8 Plus;Smartphone;incoming/samsung-galaxy-s8-plus.png
+samsung/galaxy-a90;Samsung;Galaxy A90;Smartphone;incoming/samsung-galaxy-a90.png
+samsung/galaxy-a80;Samsung;Galaxy A80;Smartphone;incoming/samsung-galaxy-a80.png
+samsung/galaxy-a73;Samsung;Galaxy A73;Smartphone;incoming/samsung-galaxy-a73.png
+samsung/galaxy-a72;Samsung;Galaxy A72;Smartphone;incoming/samsung-galaxy-a72.png
+samsung/galaxy-a71;Samsung;Galaxy A71;Smartphone;incoming/samsung-galaxy-a71.png
+samsung/galaxy-a70;Samsung;Galaxy A70;Smartphone;incoming/samsung-galaxy-a70.png
+samsung/galaxy-a60;Samsung;Galaxy A60;Smartphone;incoming/samsung-galaxy-a60.png
+samsung/galaxy-a55;Samsung;Galaxy A55;Smartphone;incoming/samsung-galaxy-a55.png
+samsung/galaxy-a54;Samsung;Galaxy A54;Smartphone;incoming/samsung-galaxy-a54.png
+samsung/galaxy-a54-5g;Samsung;Galaxy A54 5G;Smartphone;incoming/samsung-galaxy-a54-5g.png
+samsung/galaxy-a53;Samsung;Galaxy A53;Smartphone;incoming/samsung-galaxy-a53.png
+samsung/galaxy-a53-5g;Samsung;Galaxy A53 5G;Smartphone;incoming/samsung-galaxy-a53-5g.png
+samsung/galaxy-a52;Samsung;Galaxy A52;Smartphone;incoming/samsung-galaxy-a52.png
+samsung/galaxy-a52s;Samsung;Galaxy A52s;Smartphone;incoming/samsung-galaxy-a52s.png
+samsung/galaxy-a51;Samsung;Galaxy A51;Smartphone;incoming/samsung-galaxy-a51.png
+samsung/galaxy-a50;Samsung;Galaxy A50;Smartphone;incoming/samsung-galaxy-a50.png
+samsung/galaxy-a42-5g;Samsung;Galaxy A42 5G;Smartphone;incoming/samsung-galaxy-a42-5g.png
+samsung/galaxy-a41;Samsung;Galaxy A41;Smartphone;incoming/samsung-galaxy-a41.png
+samsung/galaxy-a40;Samsung;Galaxy A40;Smartphone;incoming/samsung-galaxy-a40.png
+samsung/galaxy-a35;Samsung;Galaxy A35;Smartphone;incoming/samsung-galaxy-a35.png
+samsung/galaxy-a34;Samsung;Galaxy A34;Smartphone;incoming/samsung-galaxy-a34.png
+samsung/galaxy-a33;Samsung;Galaxy A33;Smartphone;incoming/samsung-galaxy-a33.png
+samsung/galaxy-a32-5g;Samsung;Galaxy A32 5G;Smartphone;incoming/samsung-galaxy-a32-5g.png
+samsung/galaxy-a30;Samsung;Galaxy A30;Smartphone;incoming/samsung-galaxy-a30.png
+samsung/galaxy-a25;Samsung;Galaxy A25;Smartphone;incoming/samsung-galaxy-a25.png
+samsung/galaxy-a24;Samsung;Galaxy A24;Smartphone;incoming/samsung-galaxy-a24.png
+samsung/galaxy-a23-4g;Samsung;Galaxy A23 4G;Smartphone;incoming/samsung-galaxy-a23-4g.png
+samsung/galaxy-a23-5g;Samsung;Galaxy A23 5G;Smartphone;incoming/samsung-galaxy-a23-5g.png
+samsung/galaxy-a22-4g;Samsung;Galaxy A22 4G;Smartphone;incoming/samsung-galaxy-a22-4g.png
+samsung/galaxy-a22-5g;Samsung;Galaxy A22 5G;Smartphone;incoming/samsung-galaxy-a22-5g.png
+samsung/galaxy-a21s;Samsung;Galaxy A21s;Smartphone;incoming/samsung-galaxy-a21s.png
+samsung/galaxy-a20;Samsung;Galaxy A20;Smartphone;incoming/samsung-galaxy-a20.png
+samsung/galaxy-a20e;Samsung;Galaxy A20e;Smartphone;incoming/samsung-galaxy-a20e.png
+samsung/galaxy-a20s;Samsung;Galaxy A20s;Smartphone;incoming/samsung-galaxy-a20s.png
+samsung/galaxy-a15;Samsung;Galaxy A15;Smartphone;incoming/samsung-galaxy-a15.png
+samsung/galaxy-a14;Samsung;Galaxy A14;Smartphone;incoming/samsung-galaxy-a14.png
+samsung/galaxy-a14-5g;Samsung;Galaxy A14 5G;Smartphone;incoming/samsung-galaxy-a14-5g.png
+samsung/galaxy-a13;Samsung;Galaxy A13;Smartphone;incoming/samsung-galaxy-a13.png
+samsung/galaxy-a13-5g;Samsung;Galaxy A13 5G;Smartphone;incoming/samsung-galaxy-a13-5g.png
+samsung/galaxy-a12;Samsung;Galaxy A12;Smartphone;incoming/samsung-galaxy-a12.png
+samsung/galaxy-a10;Samsung;Galaxy A10;Smartphone;incoming/samsung-galaxy-a10.png
+samsung/galaxy-a10s;Samsung;Galaxy A10s;Smartphone;incoming/samsung-galaxy-a10s.png
+samsung/galaxy-a9;Samsung;Galaxy A9;Smartphone;incoming/samsung-galaxy-a9.png
+samsung/galaxy-a8;Samsung;Galaxy A8;Smartphone;incoming/samsung-galaxy-a8.png
+samsung/galaxy-a7-2018;Samsung;Galaxy A7 (2018);Smartphone;incoming/samsung-galaxy-a7-2018.png
+samsung/galaxy-a6;Samsung;Galaxy A6;Smartphone;incoming/samsung-galaxy-a6.png
+samsung/galaxy-a6-plus;Samsung;Galaxy A6 Plus;Smartphone;incoming/samsung-galaxy-a6-plus.png
+samsung/galaxy-a5;Samsung;Galaxy A5;Smartphone;incoming/samsung-galaxy-a5.png
+samsung/galaxy-a3-2017;Samsung;Galaxy A3 (2017);Smartphone;incoming/samsung-galaxy-a3-2017.png
+samsung/galaxy-a02s;Samsung;Galaxy A02s;Smartphone;incoming/samsung-galaxy-a02s.png
+samsung/galaxy-m55;Samsung;Galaxy M55;Smartphone;incoming/samsung-galaxy-m55.png
+samsung/galaxy-m54;Samsung;Galaxy M54;Smartphone;incoming/samsung-galaxy-m54.png
+samsung/galaxy-m53;Samsung;Galaxy M53;Smartphone;incoming/samsung-galaxy-m53.png
+samsung/galaxy-m52;Samsung;Galaxy M52;Smartphone;incoming/samsung-galaxy-m52.png
+samsung/galaxy-m51;Samsung;Galaxy M51;Smartphone;incoming/samsung-galaxy-m51.png
+samsung/galaxy-m33;Samsung;Galaxy M33;Smartphone;incoming/samsung-galaxy-m33.png
+samsung/galaxy-m32;Samsung;Galaxy M32;Smartphone;incoming/samsung-galaxy-m32.png
+samsung/galaxy-m31;Samsung;Galaxy M31;Smartphone;incoming/samsung-galaxy-m31.png
+samsung/galaxy-m31s;Samsung;Galaxy M31s;Smartphone;incoming/samsung-galaxy-m31s.png
+samsung/galaxy-m30s;Samsung;Galaxy M30s;Smartphone;incoming/samsung-galaxy-m30s.png
+samsung/galaxy-m23;Samsung;Galaxy M23;Smartphone;incoming/samsung-galaxy-m23.png
+samsung/galaxy-m22;Samsung;Galaxy M22;Smartphone;incoming/samsung-galaxy-m22.png
+samsung/galaxy-m21;Samsung;Galaxy M21;Smartphone;incoming/samsung-galaxy-m21.png
+samsung/galaxy-m20;Samsung;Galaxy M20;Smartphone;incoming/samsung-galaxy-m20.png
+samsung/galaxy-m12;Samsung;Galaxy M12;Smartphone;incoming/samsung-galaxy-m12.png
+samsung/galaxy-m11;Samsung;Galaxy M11;Smartphone;incoming/samsung-galaxy-m11.png
+samsung/galaxy-j7-2016;Samsung;Galaxy J7 (2016);Smartphone;incoming/samsung-galaxy-j7-2016.png
+samsung/galaxy-j7-2017;Samsung;Galaxy J7 (2017);Smartphone;incoming/samsung-galaxy-j7-2017.png
+samsung/galaxy-j6-2018;Samsung;Galaxy J6 (2018);Smartphone;incoming/samsung-galaxy-j6-2018.png
+samsung/galaxy-j6-plus;Samsung;Galaxy J6 Plus;Smartphone;incoming/samsung-galaxy-j6-plus.png
+samsung/galaxy-j5-2017;Samsung;Galaxy J5 (2017);Smartphone;incoming/samsung-galaxy-j5-2017.png
+samsung/galaxy-note-20;Samsung;Galaxy Note 20;Smartphone;incoming/samsung-galaxy-note-20.png
+samsung/galaxy-note-20-ultra;Samsung;Galaxy Note 20 Ultra;Smartphone;incoming/samsung-galaxy-note-20-ultra.png
+samsung/galaxy-note-10;Samsung;Galaxy Note 10;Smartphone;incoming/samsung-galaxy-note-10.png
+samsung/galaxy-note-10-plus;Samsung;Galaxy Note 10 Plus;Smartphone;incoming/samsung-galaxy-note-10-plus.png
+samsung/galaxy-note-9;Samsung;Galaxy Note 9;Smartphone;incoming/samsung-galaxy-note-9.png
+samsung/galaxy-z-flip-7;Samsung;Galaxy Z Flip 7;Smartphone;incoming/samsung-galaxy-z-flip-7.png
+samsung/galaxy-z-flip-6;Samsung;Galaxy Z Flip 6;Smartphone;incoming/samsung-galaxy-z-flip-6.png
+samsung/galaxy-z-flip-5;Samsung;Galaxy Z Flip 5;Smartphone;incoming/samsung-galaxy-z-flip-5.png
+samsung/galaxy-z-flip-4;Samsung;Galaxy Z Flip 4;Smartphone;incoming/samsung-galaxy-z-flip-4.png
+samsung/galaxy-z-flip-3;Samsung;Galaxy Z Flip 3;Smartphone;incoming/samsung-galaxy-z-flip-3.png
+samsung/galaxy-z-flip;Samsung;Galaxy Z Flip;Smartphone;incoming/samsung-galaxy-z-flip.png
+samsung/galaxy-z-fold-7;Samsung;Galaxy Z Fold 7;Smartphone;incoming/samsung-galaxy-z-fold-7.png
+samsung/galaxy-z-fold-6;Samsung;Galaxy Z Fold 6;Smartphone;incoming/samsung-galaxy-z-fold-6.png
+samsung/galaxy-z-fold-5;Samsung;Galaxy Z Fold 5;Smartphone;incoming/samsung-galaxy-z-fold-5.png
+samsung/galaxy-z-fold-4;Samsung;Galaxy Z Fold 4;Smartphone;incoming/samsung-galaxy-z-fold-4.png
+samsung/galaxy-z-fold-3;Samsung;Galaxy Z Fold 3;Smartphone;incoming/samsung-galaxy-z-fold-3.png
+samsung/galaxy-z-fold-2;Samsung;Galaxy Z Fold 2;Smartphone;incoming/samsung-galaxy-z-fold-2.png
+samsung/galaxy-tab-a9;Samsung;Galaxy Tab A9;Tablet;incoming/samsung-galaxy-tab-a9.png
+samsung/galaxy-tab-a9-plus;Samsung;Galaxy Tab A9 Plus;Tablet;incoming/samsung-galaxy-tab-a9-plus.png
+samsung/galaxy-tab-s9;Samsung;Galaxy Tab S9;Tablet;incoming/samsung-galaxy-tab-s9.png
+samsung/galaxy-tab-s9-fe;Samsung;Galaxy Tab S9 FE;Tablet;incoming/samsung-galaxy-tab-s9-fe.png
+samsung/galaxy-tab-s9-fe-plus;Samsung;Galaxy Tab S9 FE Plus;Tablet;incoming/samsung-galaxy-tab-s9-fe-plus.png
+samsung/galaxy-tab-s9-plus;Samsung;Galaxy Tab S9 Plus;Tablet;incoming/samsung-galaxy-tab-s9-plus.png
+samsung/galaxy-tab-s9-ultra;Samsung;Galaxy Tab S9 Ultra;Tablet;incoming/samsung-galaxy-tab-s9-ultra.png
+samsung/galaxy-tab-a8;Samsung;Galaxy Tab A8;Tablet;incoming/samsung-galaxy-tab-a8.png
+samsung/galaxy-tab-s8;Samsung;Galaxy Tab S8;Tablet;incoming/samsung-galaxy-tab-s8.png
+samsung/galaxy-tab-s8-plus;Samsung;Galaxy Tab S8 Plus;Tablet;incoming/samsung-galaxy-tab-s8-plus.png
+samsung/galaxy-tab-s8-ultra;Samsung;Galaxy Tab S8 Ultra;Tablet;incoming/samsung-galaxy-tab-s8-ultra.png
+samsung/galaxy-tab-s7;Samsung;Galaxy Tab S7;Tablet;incoming/samsung-galaxy-tab-s7.png
+samsung/galaxy-tab-s7-fe;Samsung;Galaxy Tab S7 FE;Tablet;incoming/samsung-galaxy-tab-s7-fe.png
+samsung/galaxy-tab-s7-plus;Samsung;Galaxy Tab S7 Plus;Tablet;incoming/samsung-galaxy-tab-s7-plus.png
+samsung/galaxy-tab-s6;Samsung;Galaxy Tab S6;Tablet;incoming/samsung-galaxy-tab-s6.png
+samsung/galaxy-tab-s6-lite;Samsung;Galaxy Tab S6 Lite;Tablet;incoming/samsung-galaxy-tab-s6-lite.png
+samsung/galaxy-tab-s5e;Samsung;Galaxy Tab S5e;Tablet;incoming/samsung-galaxy-tab-s5e.png
+samsung/galaxy-tab-s4;Samsung;Galaxy Tab S4;Tablet;incoming/samsung-galaxy-tab-s4.png
+samsung/galaxy-tab-s3;Samsung;Galaxy Tab S3;Tablet;incoming/samsung-galaxy-tab-s3.png
+samsung/galaxy-tab-s2;Samsung;Galaxy Tab S2;Tablet;incoming/samsung-galaxy-tab-s2.png
+samsung/galaxy-tab-e;Samsung;Galaxy Tab E;Tablet;incoming/samsung-galaxy-tab-e.png
+samsung/galaxy-tab-s;Samsung;Galaxy Tab S;Tablet;incoming/samsung-galaxy-tab-s.png
+samsung/galaxy-xcover-7;Samsung;Galaxy XCover 7;Smartphone;incoming/samsung-galaxy-xcover-7.png
+samsung/galaxy-xcover-7-pro;Samsung;Galaxy XCover 7 Pro;Smartphone;incoming/samsung-galaxy-xcover-7-pro.png
+samsung/galaxy-xcover-6-pro;Samsung;Galaxy Xcover 6 Pro;Smartphone;incoming/samsung-galaxy-xcover-6-pro.png
+samsung/galaxy-xcover-5;Samsung;Galaxy Xcover 5;Smartphone;incoming/samsung-galaxy-xcover-5.png
+samsung/galaxy-x-cover-4;Samsung;Galaxy X-Cover 4;Smartphone;incoming/samsung-galaxy-x-cover-4.png
+samsung/galaxy-xcover-4s;Samsung;Galaxy-Xcover 4s;Smartphone;incoming/samsung-galaxy-xcover-4s.png
+samsung/galaxy-x-cover-3;Samsung;Galaxy X-Cover 3;Smartphone;incoming/samsung-galaxy-x-cover-3.png
+samsung/galaxy-xcover-pro;Samsung;Galaxy Xcover Pro;Smartphone;incoming/samsung-galaxy-xcover-pro.png
+huawei/p-smart-2019;Huawei;P Smart (2019);Smartphone;incoming/huawei-p-smart-2019.png
+huawei/p-smart-plus-2019;Huawei;P Smart Plus (2019);Smartphone;incoming/huawei-p-smart-plus-2019.png
+huawei/p-smart;Huawei;P Smart;Smartphone;incoming/huawei-p-smart.png
+huawei/p-smart-plus;Huawei;P Smart Plus;Smartphone;incoming/huawei-p-smart-plus.png
+huawei/p50;Huawei;P50;Smartphone;incoming/huawei-p50.png
+huawei/p50-pro;Huawei;P50 Pro;Smartphone;incoming/huawei-p50-pro.png
+huawei/p40;Huawei;P40;Smartphone;incoming/huawei-p40.png
+huawei/p40-lite;Huawei;P40 Lite;Smartphone;incoming/huawei-p40-lite.png
+huawei/p40-lite-5g;Huawei;P40 Lite 5G;Smartphone;incoming/huawei-p40-lite-5g.png
+huawei/p40-lite-e;Huawei;P40 Lite E;Smartphone;incoming/huawei-p40-lite-e.png
+huawei/p40-pro;Huawei;P40 Pro;Smartphone;incoming/huawei-p40-pro.png
+huawei/p40-pro-plus;Huawei;P40 Pro Plus;Smartphone;incoming/huawei-p40-pro-plus.png
+huawei/p30;Huawei;P30;Smartphone;incoming/huawei-p30.png
+huawei/p30-lite;Huawei;P30 Lite;Smartphone;incoming/huawei-p30-lite.png
+huawei/p30-pro;Huawei;P30 Pro;Smartphone;incoming/huawei-p30-pro.png
+huawei/p20;Huawei;P20;Smartphone;incoming/huawei-p20.png
+huawei/p20-lite;Huawei;P20 Lite;Smartphone;incoming/huawei-p20-lite.png
+huawei/p20-pro;Huawei;P20 Pro;Smartphone;incoming/huawei-p20-pro.png
+huawei/p10;Huawei;P10;Smartphone;incoming/huawei-p10.png
+huawei/p10-lite;Huawei;P10 Lite;Smartphone;incoming/huawei-p10-lite.png
+huawei/p10-plus;Huawei;P10 Plus;Smartphone;incoming/huawei-p10-plus.png
+huawei/p9;Huawei;P9;Smartphone;incoming/huawei-p9.png
+huawei/p9-lite;Huawei;P9 Lite;Smartphone;incoming/huawei-p9-lite.png
+huawei/p9-plus;Huawei;P9 Plus;Smartphone;incoming/huawei-p9-plus.png
+huawei/mate-40;Huawei;Mate 40;Smartphone;incoming/huawei-mate-40.png
+huawei/mate-40-pro;Huawei;Mate 40 Pro;Smartphone;incoming/huawei-mate-40-pro.png
+huawei/mate-30;Huawei;Mate 30;Smartphone;incoming/huawei-mate-30.png
+huawei/mate-30-lite;Huawei;Mate 30 Lite;Smartphone;incoming/huawei-mate-30-lite.png
+huawei/mate-30-pro;Huawei;Mate 30 Pro;Smartphone;incoming/huawei-mate-30-pro.png
+huawei/mate-20;Huawei;Mate 20;Smartphone;incoming/huawei-mate-20.png
+huawei/mate-20-lite;Huawei;Mate 20 Lite;Smartphone;incoming/huawei-mate-20-lite.png
+huawei/mate-20-pro;Huawei;Mate 20 Pro;Smartphone;incoming/huawei-mate-20-pro.png
+huawei/mate-20-x;Huawei;Mate 20 X;Smartphone;incoming/huawei-mate-20-x.png
+huawei/mate-10-lite;Huawei;Mate 10 Lite;Smartphone;incoming/huawei-mate-10-lite.png
+huawei/mate-10-pro;Huawei;Mate 10 Pro;Smartphone;incoming/huawei-mate-10-pro.png
+huawei/mate-s;Huawei;Mate S;Smartphone;incoming/huawei-mate-s.png
+huawei/honor-20;Huawei;Honor 20;Smartphone;incoming/huawei-honor-20.png
+huawei/honor-20-lite;Huawei;Honor 20 Lite;Smartphone;incoming/huawei-honor-20-lite.png
+huawei/honor-10;Huawei;Honor 10;Smartphone;incoming/huawei-honor-10.png
+huawei/honor-10-lite;Huawei;Honor 10 Lite;Smartphone;incoming/huawei-honor-10-lite.png
+huawei/honor-view-10;Huawei;Honor View 10;Smartphone;incoming/huawei-honor-view-10.png
+huawei/honor-9;Huawei;Honor 9;Smartphone;incoming/huawei-honor-9.png
+huawei/honor-9-lite;Huawei;Honor 9 Lite;Smartphone;incoming/huawei-honor-9-lite.png
+huawei/honor-9x;Huawei;Honor 9X;Smartphone;incoming/huawei-honor-9x.png
+huawei/honor-9x-pro;Huawei;Honor 9X Pro;Smartphone;incoming/huawei-honor-9x-pro.png
+huawei/honor-8;Huawei;Honor 8;Smartphone;incoming/huawei-honor-8.png
+huawei/honor-8-pro;Huawei;Honor 8 Pro;Smartphone;incoming/huawei-honor-8-pro.png
+huawei/honor-8x;Huawei;Honor 8X;Smartphone;incoming/huawei-honor-8x.png
+huawei/honor-7x;Huawei;Honor 7X;Smartphone;incoming/huawei-honor-7x.png
+xiaomi/xiaomi-15;Xiaomi;Xiaomi 15;Smartphone;incoming/xiaomi-xiaomi-15.png
+xiaomi/xiaomi-15-ultra;Xiaomi;Xiaomi 15 Ultra;Smartphone;incoming/xiaomi-xiaomi-15-ultra.png
+xiaomi/xiaomi-14;Xiaomi;Xiaomi 14;Smartphone;incoming/xiaomi-xiaomi-14.png
+xiaomi/xiaomi-14-ultra;Xiaomi;Xiaomi 14 Ultra;Smartphone;incoming/xiaomi-xiaomi-14-ultra.png
+xiaomi/xiaomi-14t;Xiaomi;Xiaomi 14T;Smartphone;incoming/xiaomi-xiaomi-14t.png
+xiaomi/xiaomi-14t-pro;Xiaomi;Xiaomi 14T Pro;Smartphone;incoming/xiaomi-xiaomi-14t-pro.png
+xiaomi/xiaomi-13;Xiaomi;Xiaomi 13;Smartphone;incoming/xiaomi-xiaomi-13.png
+xiaomi/xiaomi-13-lite;Xiaomi;Xiaomi 13 Lite;Smartphone;incoming/xiaomi-xiaomi-13-lite.png
+xiaomi/xiaomi-13-pro;Xiaomi;Xiaomi 13 Pro;Smartphone;incoming/xiaomi-xiaomi-13-pro.png
+xiaomi/xiaomi-13-ultra;Xiaomi;Xiaomi 13 Ultra;Smartphone;incoming/xiaomi-xiaomi-13-ultra.png
+xiaomi/xiaomi-13t;Xiaomi;Xiaomi 13T;Smartphone;incoming/xiaomi-xiaomi-13t.png
+xiaomi/xiaomi-13t-pro;Xiaomi;Xiaomi 13T Pro;Smartphone;incoming/xiaomi-xiaomi-13t-pro.png
+xiaomi/xiaomi-12-5g;Xiaomi;Xiaomi 12 5G;Smartphone;incoming/xiaomi-xiaomi-12-5g.png
+xiaomi/xiaomi-12-lite-5g;Xiaomi;Xiaomi 12 Lite 5G;Smartphone;incoming/xiaomi-xiaomi-12-lite-5g.png
+xiaomi/xiaomi-12-pro-5g;Xiaomi;Xiaomi 12 Pro 5G;Smartphone;incoming/xiaomi-xiaomi-12-pro-5g.png
+xiaomi/xiaomi-12s;Xiaomi;Xiaomi 12S;Smartphone;incoming/xiaomi-xiaomi-12s.png
+xiaomi/xiaomi-12t;Xiaomi;Xiaomi 12T;Smartphone;incoming/xiaomi-xiaomi-12t.png
+xiaomi/xiaomi-12t-pro;Xiaomi;Xiaomi 12T Pro;Smartphone;incoming/xiaomi-xiaomi-12t-pro.png
+xiaomi/xiaomi-12x;Xiaomi;Xiaomi 12X;Smartphone;incoming/xiaomi-xiaomi-12x.png
+xiaomi/xiaomi-mi-11;Xiaomi;Xiaomi Mi 11;Smartphone;incoming/xiaomi-xiaomi-mi-11.png
+xiaomi/xiaomi-mi-11-lite;Xiaomi;Xiaomi Mi 11 Lite;Smartphone;incoming/xiaomi-xiaomi-mi-11-lite.png
+xiaomi/xiaomi-mi-11t;Xiaomi;Xiaomi Mi 11T;Smartphone;incoming/xiaomi-xiaomi-mi-11t.png
+xiaomi/xiaomi-mi-11t-pro;Xiaomi;Xiaomi Mi 11T Pro;Smartphone;incoming/xiaomi-xiaomi-mi-11t-pro.png
+xiaomi/xiaomi-mi-10-5g;Xiaomi;Xiaomi Mi 10 5G;Smartphone;incoming/xiaomi-xiaomi-mi-10-5g.png
+xiaomi/xiaomi-mi-10-lite-5g;Xiaomi;Xiaomi Mi 10 Lite 5G;Smartphone;incoming/xiaomi-xiaomi-mi-10-lite-5g.png
+xiaomi/xiaomi-mi-10-pro-5g;Xiaomi;Xiaomi Mi 10 Pro 5G;Smartphone;incoming/xiaomi-xiaomi-mi-10-pro-5g.png
+xiaomi/xiaomi-mi-10t-5g;Xiaomi;Xiaomi Mi 10T 5G;Smartphone;incoming/xiaomi-xiaomi-mi-10t-5g.png
+xiaomi/xiaomi-mi-10t-lite-5g;Xiaomi;Xiaomi Mi 10T Lite 5G;Smartphone;incoming/xiaomi-xiaomi-mi-10t-lite-5g.png
+xiaomi/xiaomi-mi-10t-pro-5g;Xiaomi;Xiaomi Mi 10T Pro 5G;Smartphone;incoming/xiaomi-xiaomi-mi-10t-pro-5g.png
+xiaomi/xiaomi-mi-9;Xiaomi;Xiaomi Mi 9;Smartphone;incoming/xiaomi-xiaomi-mi-9.png
+xiaomi/xiaomi-mi-9-lite;Xiaomi;Xiaomi Mi 9 Lite;Smartphone;incoming/xiaomi-xiaomi-mi-9-lite.png
+xiaomi/xiaomi-mi-9t;Xiaomi;Xiaomi Mi 9T;Smartphone;incoming/xiaomi-xiaomi-mi-9t.png
+xiaomi/xiaomi-mi-9t-pro;Xiaomi;Xiaomi Mi 9T Pro;Smartphone;incoming/xiaomi-xiaomi-mi-9t-pro.png
+xiaomi/redmi-note-14;Xiaomi;Redmi Note 14;Smartphone;incoming/xiaomi-redmi-note-14.png
+xiaomi/redmi-note-14-5g;Xiaomi;Redmi Note 14 5G;Smartphone;incoming/xiaomi-redmi-note-14-5g.png
+xiaomi/redmi-note-14-pro;Xiaomi;Redmi Note 14 Pro;Smartphone;incoming/xiaomi-redmi-note-14-pro.png
+xiaomi/redmi-note-14-pro-plus-5g;Xiaomi;Redmi Note 14 Pro Plus 5G;Smartphone;incoming/xiaomi-redmi-note-14-pro-plus-5g.png
+xiaomi/redmi-note-13;Xiaomi;Redmi Note 13;Smartphone;incoming/xiaomi-redmi-note-13.png
+xiaomi/redmi-note-13-5g;Xiaomi;Redmi Note 13 5G;Smartphone;incoming/xiaomi-redmi-note-13-5g.png
+xiaomi/redmi-note-13-pro;Xiaomi;Redmi Note 13 Pro;Smartphone;incoming/xiaomi-redmi-note-13-pro.png
+xiaomi/redmi-note-13-pro-plus-5g;Xiaomi;Redmi Note 13 Pro Plus 5G;Smartphone;incoming/xiaomi-redmi-note-13-pro-plus-5g.png
+xiaomi/redmi-note-12;Xiaomi;Redmi Note 12;Smartphone;incoming/xiaomi-redmi-note-12.png
+xiaomi/redmi-note-12-5g;Xiaomi;Redmi Note 12 5G;Smartphone;incoming/xiaomi-redmi-note-12-5g.png
+xiaomi/redmi-note-12-pro;Xiaomi;Redmi Note 12 Pro;Smartphone;incoming/xiaomi-redmi-note-12-pro.png
+xiaomi/redmi-note-12-pro-plus-5g;Xiaomi;Redmi Note 12 Pro Plus 5G;Smartphone;incoming/xiaomi-redmi-note-12-pro-plus-5g.png
+xiaomi/redmi-note-11;Xiaomi;Redmi Note 11;Smartphone;incoming/xiaomi-redmi-note-11.png
+xiaomi/redmi-note-11-pro;Xiaomi;Redmi Note 11 Pro;Smartphone;incoming/xiaomi-redmi-note-11-pro.png
+xiaomi/redmi-note-11-pro-5g;Xiaomi;Redmi Note 11 Pro 5G;Smartphone;incoming/xiaomi-redmi-note-11-pro-5g.png
+xiaomi/redmi-note-11-pro-plus-5g;Xiaomi;Redmi Note 11 Pro Plus 5G;Smartphone;incoming/xiaomi-redmi-note-11-pro-plus-5g.png
+xiaomi/redmi-note-11s;Xiaomi;Redmi Note 11S;Smartphone;incoming/xiaomi-redmi-note-11s.png
+xiaomi/redmi-note-11s-5g;Xiaomi;Redmi Note 11S 5G;Smartphone;incoming/xiaomi-redmi-note-11s-5g.png
+xiaomi/redmi-note-10-5g;Xiaomi;Redmi Note 10 5G;Smartphone;incoming/xiaomi-redmi-note-10-5g.png
+xiaomi/redmi-note-10-pro;Xiaomi;Redmi Note 10 Pro;Smartphone;incoming/xiaomi-redmi-note-10-pro.png
+xiaomi/redmi-note-10s;Xiaomi;Redmi Note 10S;Smartphone;incoming/xiaomi-redmi-note-10s.png
+xiaomi/redmi-note-10t;Xiaomi;Redmi Note 10T;Smartphone;incoming/xiaomi-redmi-note-10t.png
+xiaomi/redmi-note-9;Xiaomi;Redmi Note 9;Smartphone;incoming/xiaomi-redmi-note-9.png
+xiaomi/redmi-note-9-pro;Xiaomi;Redmi Note 9 Pro;Smartphone;incoming/xiaomi-redmi-note-9-pro.png
+xiaomi/redmi-note-9s;Xiaomi;Redmi Note 9S;Smartphone;incoming/xiaomi-redmi-note-9s.png
+xiaomi/redmi-note-9t-5g;Xiaomi;Redmi Note 9T 5G;Smartphone;incoming/xiaomi-redmi-note-9t-5g.png
+xiaomi/redmi-15;Xiaomi;Redmi 15;Smartphone;incoming/xiaomi-redmi-15.png
+xiaomi/redmi-15c;Xiaomi;Redmi 15C;Smartphone;incoming/xiaomi-redmi-15c.png
+xiaomi/redmi-14;Xiaomi;Redmi 14;Smartphone;incoming/xiaomi-redmi-14.png
+xiaomi/redmi-14c;Xiaomi;Redmi 14C;Smartphone;incoming/xiaomi-redmi-14c.png
+xiaomi/redmi-13;Xiaomi;Redmi 13;Smartphone;incoming/xiaomi-redmi-13.png
+xiaomi/redmi-13c;Xiaomi;Redmi 13C;Smartphone;incoming/xiaomi-redmi-13c.png
+xiaomi/redmi-12;Xiaomi;Redmi 12;Smartphone;incoming/xiaomi-redmi-12.png
+xiaomi/redmi-12c;Xiaomi;Redmi 12C;Smartphone;incoming/xiaomi-redmi-12c.png
+xiaomi/redmi-10;Xiaomi;Redmi 10;Smartphone;incoming/xiaomi-redmi-10.png
+xiaomi/redmi-10a;Xiaomi;Redmi 10A;Smartphone;incoming/xiaomi-redmi-10a.png
+xiaomi/redmi-10c;Xiaomi;Redmi 10C;Smartphone;incoming/xiaomi-redmi-10c.png
+xiaomi/redmi-9;Xiaomi;Redmi 9;Smartphone;incoming/xiaomi-redmi-9.png
+xiaomi/redmi-9a;Xiaomi;Redmi 9A;Smartphone;incoming/xiaomi-redmi-9a.png
+xiaomi/redmi-9at;Xiaomi;Redmi 9AT;Smartphone;incoming/xiaomi-redmi-9at.png
+xiaomi/redmi-9c;Xiaomi;Redmi 9C;Smartphone;incoming/xiaomi-redmi-9c.png
+xiaomi/redmi-9t;Xiaomi;Redmi 9T;Smartphone;incoming/xiaomi-redmi-9t.png
+xiaomi/redmi-a3;Xiaomi;Redmi A3;Smartphone;incoming/xiaomi-redmi-a3.png
+xiaomi/redmi-a2;Xiaomi;Redmi A2;Smartphone;incoming/xiaomi-redmi-a2.png
+xiaomi/poco-f7;Xiaomi;Poco F7;Smartphone;incoming/xiaomi-poco-f7.png
+xiaomi/poco-f7-pro;Xiaomi;Poco F7 Pro;Smartphone;incoming/xiaomi-poco-f7-pro.png
+xiaomi/poco-f7-ultra;Xiaomi;Poco F7 Ultra;Smartphone;incoming/xiaomi-poco-f7-ultra.png
+xiaomi/poco-f6;Xiaomi;Poco F6;Smartphone;incoming/xiaomi-poco-f6.png
+xiaomi/poco-f6-pro;Xiaomi;Poco F6 Pro;Smartphone;incoming/xiaomi-poco-f6-pro.png
+xiaomi/poco-f5;Xiaomi;Poco F5;Smartphone;incoming/xiaomi-poco-f5.png
+xiaomi/poco-f5-pro;Xiaomi;Poco F5 Pro;Smartphone;incoming/xiaomi-poco-f5-pro.png
+xiaomi/poco-f2-pro;Xiaomi;Poco F2 Pro;Smartphone;incoming/xiaomi-poco-f2-pro.png
+xiaomi/pocophone-f1;Xiaomi;Pocophone F1;Smartphone;incoming/xiaomi-pocophone-f1.png
+xiaomi/poco-x6;Xiaomi;Poco X6;Smartphone;incoming/xiaomi-poco-x6.png
+xiaomi/poco-x6-pro;Xiaomi;Poco X6 Pro;Smartphone;incoming/xiaomi-poco-x6-pro.png
+xiaomi/poco-x5;Xiaomi;Poco X5;Smartphone;incoming/xiaomi-poco-x5.png
+xiaomi/poco-x5-pro;Xiaomi;Poco X5 Pro;Smartphone;incoming/xiaomi-poco-x5-pro.png
+xiaomi/poco-x4-gt;Xiaomi;Poco X4 GT;Smartphone;incoming/xiaomi-poco-x4-gt.png
+xiaomi/poco-x4-pro;Xiaomi;Poco X4 Pro;Smartphone;incoming/xiaomi-poco-x4-pro.png
+google/pixel-9;Google;Pixel 9;Smartphone;incoming/google-pixel-9.png
+google/pixel-9-pro;Google;Pixel 9 Pro;Smartphone;incoming/google-pixel-9-pro.png
+google/pixel-9-pro-xl;Google;Pixel 9 Pro XL;Smartphone;incoming/google-pixel-9-pro-xl.png
+google/pixel-8;Google;Pixel 8;Smartphone;incoming/google-pixel-8.png
+google/pixel-8-pro;Google;Pixel 8 Pro;Smartphone;incoming/google-pixel-8-pro.png
+google/pixel-7;Google;Pixel 7;Smartphone;incoming/google-pixel-7.png
+google/pixel-7-pro;Google;Pixel 7 Pro;Smartphone;incoming/google-pixel-7-pro.png
+google/pixel-6;Google;Pixel 6;Smartphone;incoming/google-pixel-6.png
+google/pixel-6-pro;Google;Pixel 6 Pro;Smartphone;incoming/google-pixel-6-pro.png
+google/pixel-6a;Google;Pixel 6a;Smartphone;incoming/google-pixel-6a.png
+google/pixel-5;Google;Pixel 5;Smartphone;incoming/google-pixel-5.png
+google/pixel-5a;Google;Pixel 5a;Smartphone;incoming/google-pixel-5a.png
+google/pixel-4;Google;Pixel 4;Smartphone;incoming/google-pixel-4.png
+google/pixel-4-xl;Google;Pixel 4 XL;Smartphone;incoming/google-pixel-4-xl.png
+google/pixel-4a-4g;Google;Pixel 4a 4G;Smartphone;incoming/google-pixel-4a-4g.png
+google/pixel-4a-5g;Google;Pixel 4a 5G;Smartphone;incoming/google-pixel-4a-5g.png
+google/pixel-3;Google;Pixel 3;Smartphone;incoming/google-pixel-3.png
+google/pixel-3-xl;Google;Pixel 3 XL;Smartphone;incoming/google-pixel-3-xl.png
+google/pixel-3a;Google;Pixel 3a;Smartphone;incoming/google-pixel-3a.png
+google/pixel-3a-xl;Google;Pixel 3a XL;Smartphone;incoming/google-pixel-3a-xl.png
+sony/xperia-1;Sony;Xperia 1;Smartphone;incoming/sony-xperia-1.png
+sony/xperia-1-ii;Sony;Xperia 1 II;Smartphone;incoming/sony-xperia-1-ii.png
+sony/xperia-5;Sony;Xperia 5;Smartphone;incoming/sony-xperia-5.png
+sony/xperia-5-ii;Sony;Xperia 5 II;Smartphone;incoming/sony-xperia-5-ii.png
+sony/xperia-5-iii;Sony;Xperia 5 III;Smartphone;incoming/sony-xperia-5-iii.png
+sony/xperia-5-iv;Sony;Xperia 5 IV;Smartphone;incoming/sony-xperia-5-iv.png
+sony/xperia-5-v;Sony;Xperia 5 V;Smartphone;incoming/sony-xperia-5-v.png
+sony/xperia-5-vi;Sony;Xperia 5 VI;Smartphone;incoming/sony-xperia-5-vi.png
+sony/xperia-10-ii;Sony;Xperia 10 II;Smartphone;incoming/sony-xperia-10-ii.png
+sony/xperia-10-iii;Sony;Xperia 10 III;Smartphone;incoming/sony-xperia-10-iii.png
+sony/xperia-10-iv;Sony;Xperia 10 IV;Smartphone;incoming/sony-xperia-10-iv.png
+sony/xperia-10-plus;Sony;Xperia 10 Plus;Smartphone;incoming/sony-xperia-10-plus.png
+sony/xperia-10-v;Sony;Xperia 10 V;Smartphone;incoming/sony-xperia-10-v.png
+sony/xperia-10-vi;Sony;Xperia 10 VI;Smartphone;incoming/sony-xperia-10-vi.png
+sony/sony-xperia-xz-dual-f8332;Sony;Sony Xperia XZ Dual (F8332);Smartphone;incoming/sony-sony-xperia-xz-dual-f8332.png
+sony/sony-xperia-xz-f8331;Sony;Sony Xperia XZ (F8331);Smartphone;incoming/sony-sony-xperia-xz-f8331.png
+sony/sony-xperia-xz3;Sony;Sony Xperia XZ3;Smartphone;incoming/sony-sony-xperia-xz3.png
+sony/sony-xperia-xa2;Sony;Sony Xperia XA2;Smartphone;incoming/sony-sony-xperia-xa2.png
+sony/sony-xperia-xa2-ultra;Sony;Sony Xperia XA2 Ultra;Smartphone;incoming/sony-sony-xperia-xa2-ultra.png
+sony/sony-xperia-xz2;Sony;Sony Xperia XZ2;Smartphone;incoming/sony-sony-xperia-xz2.png
+sony/sony-xperia-xz2-compact;Sony;Sony Xperia XZ2 Compact;Smartphone;incoming/sony-sony-xperia-xz2-compact.png
+sony/sony-xperia-xz2-premium;Sony;Sony Xperia XZ2 Premium;Smartphone;incoming/sony-sony-xperia-xz2-premium.png
+sony/sony-xperia-xa1-ultra;Sony;Sony Xperia XA1 Ultra;Smartphone;incoming/sony-sony-xperia-xa1-ultra.png
+sony/sony-xperia-xz1;Sony;Sony Xperia XZ1;Smartphone;incoming/sony-sony-xperia-xz1.png
+sony/sony-xperia-xz1-compact;Sony;Sony Xperia XZ1 Compact;Smartphone;incoming/sony-sony-xperia-xz1-compact.png
+sony/sony-xperia-x;Sony;Sony Xperia X;Smartphone;incoming/sony-sony-xperia-x.png
+sony/sony-xperia-x-compact;Sony;Sony Xperia X Compact;Smartphone;incoming/sony-sony-xperia-x-compact.png
+sony/sony-xperia-x-performance;Sony;Sony Xperia X Performance;Smartphone;incoming/sony-sony-xperia-x-performance.png
+sony/sony-xperia-xa;Sony;Sony Xperia XA;Smartphone;incoming/sony-sony-xperia-xa.png
+sony/sony-xperia-xa-ultra;Sony;Sony Xperia XA Ultra;Smartphone;incoming/sony-sony-xperia-xa-ultra.png
+sony/sony-xperia-xzs;Sony;Sony Xperia XZs;Smartphone;incoming/sony-sony-xperia-xzs.png
+oneplus/oneplus-12;OnePlus;OnePlus 12;Smartphone;incoming/oneplus-oneplus-12.png
+oneplus/oneplus-12r;OnePlus;OnePlus 12R;Smartphone;incoming/oneplus-oneplus-12r.png
+oneplus/oneplus-11;OnePlus;OnePlus 11;Smartphone;incoming/oneplus-oneplus-11.png
+oneplus/oneplus-10-pro;OnePlus;OnePlus 10 Pro;Smartphone;incoming/oneplus-oneplus-10-pro.png
+oneplus/oneplus-10t;OnePlus;OnePlus 10T;Smartphone;incoming/oneplus-oneplus-10t.png
+oneplus/oneplus-9;OnePlus;OnePlus 9;Smartphone;incoming/oneplus-oneplus-9.png
+oneplus/oneplus-9-pro;OnePlus;OnePlus 9 Pro;Smartphone;incoming/oneplus-oneplus-9-pro.png
+oneplus/oneplus-8;OnePlus;OnePlus 8;Smartphone;incoming/oneplus-oneplus-8.png
+oneplus/oneplus-8-pro;OnePlus;OnePlus 8 Pro;Smartphone;incoming/oneplus-oneplus-8-pro.png
+oneplus/oneplus-8t;OnePlus;OnePlus 8T;Smartphone;incoming/oneplus-oneplus-8t.png
+oneplus/oneplus-7;OnePlus;OnePlus 7;Smartphone;incoming/oneplus-oneplus-7.png
+oneplus/oneplus-7-pro;OnePlus;OnePlus 7 Pro;Smartphone;incoming/oneplus-oneplus-7-pro.png
+oneplus/oneplus-6;OnePlus;OnePlus 6;Smartphone;incoming/oneplus-oneplus-6.png
+oneplus/oneplus-6t;OnePlus;OnePlus 6T;Smartphone;incoming/oneplus-oneplus-6t.png
+oneplus/oneplus-nord-n100;OnePlus;OnePlus Nord N100;Smartphone;incoming/oneplus-oneplus-nord-n100.png
+oneplus/oneplus-nord-n10;OnePlus;OnePlus Nord N10;Smartphone;incoming/oneplus-oneplus-nord-n10.png
+oneplus/oneplus-nord-4;OnePlus;OnePlus Nord 4;Smartphone;incoming/oneplus-oneplus-nord-4.png
+oneplus/oneplus-nord-ce-4-lite;OnePlus;OnePlus Nord CE 4 Lite;Smartphone;incoming/oneplus-oneplus-nord-ce-4-lite.png
+oneplus/oneplus-nord-3;OnePlus;OnePlus Nord 3;Smartphone;incoming/oneplus-oneplus-nord-3.png
+oneplus/oneplus-nord-ce-3;OnePlus;OnePlus Nord CE 3;Smartphone;incoming/oneplus-oneplus-nord-ce-3.png
+oneplus/oneplus-nord-2;OnePlus;OnePlus Nord 2;Smartphone;incoming/oneplus-oneplus-nord-2.png
+oneplus/oneplus-nord-ce-2;OnePlus;OnePlus Nord CE 2;Smartphone;incoming/oneplus-oneplus-nord-ce-2.png
+oneplus/oneplus-nord;OnePlus;OnePlus Nord;Smartphone;incoming/oneplus-oneplus-nord.png
+oneplus/oneplus-nord-ce;OnePlus;OnePlus Nord CE;Smartphone;incoming/oneplus-oneplus-nord-ce.png
+oneplus/oneplus-open;OnePlus;OnePlus Open;Smartphone;incoming/oneplus-oneplus-open.png

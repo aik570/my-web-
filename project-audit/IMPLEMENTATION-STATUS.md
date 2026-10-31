@@ -1,8 +1,23 @@
 # Implementation status
 
-Updated: 30.10.2026, owner feedback (reviews, header phone, iPhone order, Saturday hours, device pictures, warranty, CMS prep) · Branch `claude/zealous-bohr-71wesv`
+Updated: 31.10.2026, product photos only (licensed, isolated) · Branch `claude/zealous-bohr-71wesv`
 
-## X. Exact model photos in the repair finder (30.10.2026, latest)
+## Y. Product photos only (31.10.2026, latest)
+
+Owner correction: no lifestyle photos (hands, desks, shops) – only clean e-commerce product shots, consistent across brands.
+
+| Item | Result |
+|---|---|
+| Removed | All 181 Wikimedia photos from section X (hand-held/shop photos) and the 19 old-site series pictures. A model without a licensed product photo now shows the drawing – never a picture of another model |
+| Finder behaviour | Model chosen → product photo on a uniform white 3:4 card (no credit line unless the licence requires one). Repair chosen → photo hidden, drawing with the part in red and the pulse animation; back cover/main camera turn the drawing. Back to the model/repair choice → photo again |
+| Licences checked | **Samsung Mobile Press**: material only "for your personal, informational and non-commercial use" → not usable on this commercial website without written permission from Samsung. **iStock / Depositphotos**: standard licence allows website use, but photos of branded phones are usually marked "editorial use only", which excludes commercial use; only images without that mark may be bought – needs the owner's account and payment. **Apple newsroom / Google press**: images intended for news media; not used. **Reference shops**: no licence, not used |
+| Free sources | Wikimedia Commons scanned automatically for isolated shots on white (3 097 files of 240 categories, partly; scan stopped by Commons rate limit). Only a handful are upright product shots with a clean licence (e.g. iPhone 6s, Galaxy A52, Galaxy J5 2017, Honor 8, OnePlus 7 Pro); most are group shots, angled photos or renders with doubtful licences. Not enough for a consistent catalogue |
+| Pipeline | `scripts/photos/normalize.py manifest.json` – rejects images whose background is not light and even or where the device touches the edge, crops to the device, centres it on a white 600 × 800 canvas with equal margins, saves WebP to `src/assets/img/produkte/`, records licence + proof (invoice/permission no.) per model. Example: `scripts/photos/manifest.example.json`; originals go to `incoming/` (not committed) |
+| Missing list | `project-audit/MODEL-PHOTOS.md` and `project-audit/PRODUCT-PHOTOS-NEEDED.csv` (model id, brand, model, type, expected file name) |
+
+---
+
+## X. Exact model photos in the repair finder (30.10.2026, replaced by Y)
 
 **Preview:** https://claude.ai/artifact/MKnvHQdRfoKvSRqyntbA2E (version 38). Checked locally with browser automation (desktop 1280, phone 390); not visually inspected inside the claude.ai viewer, no physical devices.
 
