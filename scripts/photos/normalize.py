@@ -1,5 +1,16 @@
 """Turn licensed product photos into the uniform repair-finder format and register them.
 
+Batch (no manual list): put the originals into incoming/, each named <brand>-<catalogue-id>.<png|jpg|webp>
+exactly as in project-audit/PRODUCT-PHOTOS-NEEDED.csv, then
+
+    npm run build
+    python3 scripts/photos/normalize.py --incoming incoming --license "iStock Standard (nicht redaktionell)" --proof "Bestellung 12345"
+
+Files that match no catalogue model are reported and skipped. A licence per file can be given in
+incoming/licenses.csv (file;license;proof;credit;licenseUrl;source) and overrides --license/--proof.
+
+Single entries with full details:
+
     python3 scripts/photos/normalize.py scripts/photos/manifest.json
 
 manifest.json lists one entry per catalogue model:
@@ -56,4 +67,36 @@ def main(manifest):
     data['photos'].sort(key=lambda p: p['model'])
     DATA.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
 
-if __name__ == '__main__': main(sys.argv[1])
+def from_incoming(folder, license, proof, catalogue):
+    """Build manifest entries from file names in the incoming folder."""
+    cat = json.loads(pathlib.Path(catalogue).read_text())
+    ids = {f"{b['slug']}-{m['slug']}": f"{b['slug']}/{m['slug']}" for b in cat['brands'] for m in b['models']}
+    per_file = {}
+    csv = pathlib.Path(folder) / 'licenses.csv'
+    if csv.exists():
+        for line in csv.read_text().splitlines()[1:]:
+            parts = (line.split(';') + [''] * 6)[:6]
+            if parts[0]: per_file[parts[0]] = dict(zip(['license', 'proof', 'credit', 'licenseUrl', 'source'], parts[1:]))
+    entries = []
+    for f in sorted(pathlib.Path(folder).iterdir()):
+        if f.suffix.lower() not in ('.png', '.jpg', '.jpeg', '.webp'): continue
+        model = ids.get(f.stem)
+        if not model: print('NO MATCH', f.name, '(name must be <brand>-<catalogue-id>, see PRODUCT-PHOTOS-NEEDED.csv)'); continue
+        info = {'license': license, 'proof': proof, 'credit': '', 'licenseUrl': '', 'source': ''} | per_file.get(f.name, {})
+        if not info['license']: print('NO LICENCE', f.name, '(use --license or incoming/licenses.csv)'); continue
+        entries.append({'model': model, 'file': str(f.resolve()), **info})
+    return entries
+
+if __name__ == '__main__':
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument('manifest', nargs='?')
+    ap.add_argument('--incoming'); ap.add_argument('--license', default=''); ap.add_argument('--proof', default='')
+    ap.add_argument('--catalogue', default=str(ROOT / '_site/preise/katalog.json'))
+    a = ap.parse_args()
+    if a.incoming:
+        tmp = ROOT / '.cache/photo-manifest.json'; tmp.parent.mkdir(exist_ok=True)
+        tmp.write_text(json.dumps(from_incoming(a.incoming, a.license, a.proof, a.catalogue), indent=1, ensure_ascii=False))
+        main(tmp)
+    elif a.manifest: main(a.manifest)
+    else: ap.print_help()

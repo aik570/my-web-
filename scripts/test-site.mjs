@@ -104,6 +104,31 @@ console.log('\ncontent & seo');
   ok(!/404|admin|katalog/.test(sm), 'sitemap excludes 404, admin and data files');
 }
 
+// Header: logo, links, status, phone button and menu never overlap and stay inside the viewport
+console.log('\nHeader');
+{
+  const page = await browser.newPage();
+  const bad = [];
+  for (const w of [320, 360, 390, 430, 600, 768, 980, 1024, 1100, 1240, 1280, 1440, 1920]) {
+    await page.setViewportSize({ width: w, height: 800 });
+    await page.goto(BASE + '/impressum/'); await page.waitForTimeout(150);
+    const r = await page.evaluate(() => {
+      const els = [...document.querySelectorAll('.nav__in > *')].filter((e) => { const s = getComputedStyle(e); const b = e.getBoundingClientRect(); return s.display !== 'none' && s.visibility !== 'hidden' && b.width > 0 && b.height > 0 && !e.matches('.nav__links') || (e.matches('.nav__links') && getComputedStyle(e).position !== 'absolute'); });
+      const boxes = els.map((e) => ({ n: e.className.split(' ')[0], b: e.getBoundingClientRect() }));
+      const hit = [];
+      for (let i = 0; i < boxes.length; i++) for (let j = i + 1; j < boxes.length; j++) {
+        const a = boxes[i].b, c = boxes[j].b;
+        if (a.left < c.right - 1 && c.left < a.right - 1 && a.top < c.bottom - 1 && c.top < a.bottom - 1) hit.push(boxes[i].n + '×' + boxes[j].n);
+      }
+      const call = document.querySelector('.nav__call').getBoundingClientRect(), nav = document.querySelector('.nav__in').getBoundingClientRect();
+      return { hit, out: call.right > innerWidth || call.left < 0, mid: Math.abs(call.top + call.height / 2 - (nav.top + nav.height / 2)) };
+    });
+    if (r.hit.length || r.out || r.mid > 1) bad.push(`${w}px ${JSON.stringify(r)}`);
+  }
+  ok(bad.length === 0, `header at 13 widths (320–1920): no overlaps, phone button inside and vertically centred ${bad.join('; ')}`);
+  await page.close();
+}
+
 // Google reviews: only real data from reviews.json; without it, only a link to Google
 console.log('\nGoogle-Bewertungen');
 {
