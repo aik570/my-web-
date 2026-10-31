@@ -4,6 +4,8 @@ Updated: 31.10.2026, product photos only (licensed, isolated) · Branch `claude/
 
 ## Y. Product photos only (31.10.2026, latest)
 
+**Preview:** https://claude.ai/artifact/MKnvHQdRfoKvSRqyntbA2E (version 41). Checked locally with browser automation; not on physical devices.
+
 Owner correction: no lifestyle photos (hands, desks, shops) – only clean e-commerce product shots, consistent across brands.
 
 | Item | Result |
