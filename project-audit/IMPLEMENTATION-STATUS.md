@@ -4,6 +4,8 @@ Updated: 31.10.2026, handover round (reviews, header, model order, CMS, calculat
 
 ## Z. Handover round (31.10.2026, latest)
 
+**Preview:** https://claude.ai/artifact/MKnvHQdRfoKvSRqyntbA2E (version 44). Checked locally with browser automation (desktop and phone sizes); not on physical devices, not inside the claude.ai viewer.
+
 | Item | Result |
 |---|---|
 | 1 Google reviews | Section before the footer; only real data (none connected → heading + link to Google, 353 px high on a phone). With data: running strip on desktop (pauses on hover/focus), swipeable row on phones aligned with the page margin, cards fully readable. Needs Place ID + API key (owner) |
