@@ -46,7 +46,8 @@ export function validateCatalogue(brands, repairTypes) {
     for (const m of b.models) {
       const mWhere = `${b.brand} › ${m.name || '?'}`;
       if (!m.name || !String(m.name).trim()) { errors.push(`${b.brand}: Modell ohne Namen`); continue; }
-      const mKey = slug(m.name);
+      const mKey = m.id ? String(m.id).trim() : slug(m.name);
+      if (m.id && !/^[a-z0-9]+(-[a-z0-9]+)*$/.test(mKey)) errors.push(`${mWhere}: Katalog-ID „${m.id}" ungültig (nur a–z, 0–9, Bindestrich)`);
       if (seenModels.has(mKey)) errors.push(`${mWhere}: Modell ist doppelt (oder gleiche Adresse wie ein anderes Modell)`);
       seenModels.add(mKey);
       if (!Array.isArray(m.repairs) || m.repairs.length === 0) { warnings.push(`${mWhere}: keine Reparaturen`); continue; }
@@ -78,7 +79,7 @@ export function validateCatalogue(brands, repairTypes) {
         .filter((m) => m.name)
         .map((m) => ({
           name: String(m.name).trim(),
-          slug: slug(m.name),
+          slug: m.id ? String(m.id).trim() : slug(m.name),
           category: m.category || '',
           repairs: (m.repairs || []).map((r) => ({
             service: r.service,
@@ -86,7 +87,8 @@ export function validateCatalogue(brands, repairTypes) {
             price: r.onRequest || r.price === null || r.price === undefined || r.price === '' ? null : Number(r.price),
             from: Boolean(r.from),
             onRequest: Boolean(r.onRequest) || r.price === null || r.price === undefined || r.price === '',
-            note: (r.note || '').trim()
+            note: (r.note || '').trim(),
+            duration: (r.duration || '').trim()
           }))
         }))
     }))

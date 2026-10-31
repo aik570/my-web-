@@ -47,7 +47,8 @@
 
     var t = typeOf[r.getAttribute('data-type')] || {};
     var facts = [];
-    if (t.duration) facts.push('Dauer: ' + t.duration);
+    var dur = r.getAttribute('data-duration') || t.duration;   // per-model duration (CMS) wins over the repair type's
+    if (dur) facts.push('Dauer: ' + dur);
     if (t.warranty) facts.push(/^ohne/i.test(t.warranty) ? t.warranty : 'Garantie: ' + t.warranty);
     $('sum-facts').hidden = !facts.length;
     $('sum-facts').textContent = facts.join(' · ');

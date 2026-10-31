@@ -30,9 +30,9 @@
     return String(s).toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue').replace(/ß/g, 'ss')
       .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
   };
-  // katalog.json rows: [type, label, price|null, from, note]
+  // katalog.json rows: [type, label, price|null, from, note, duration]
   var row = function (a) {
-    return { service: a[0], label: a[1], price: a[2], from: !!a[3], note: a[4], key: a[1] ? slug(a[1]) : a[0] };
+    return { service: a[0], label: a[1], price: a[2], from: !!a[3], note: a[4], duration: a[5] || '', key: a[1] ? slug(a[1]) : a[0] };
   };
   var name = function (r) { return r.label || (typeOf[r.service] || {}).label || r.service; };
   var tier = function (r) { var m = /–\s*(.+)$/.exec(r.label || ''); return m ? m[1] : name(r); };
@@ -180,7 +180,7 @@
       return '<li><button type="button" class="frepair" data-key="' + esc(first.key) + '" data-service="' + esc(g.service) + '"' + (chosen ? ' aria-pressed="true"' : '') + '>' +
         '<span class="frepair__name">' + esc(t.label || g.service) + '</span>' +
         '<span class="frepair__price">' + prices + '</span>' +
-        (t.duration ? '<span class="frepair__meta">Dauer: ' + esc(t.duration) + '</span>' : '') +
+        ((first.duration || t.duration) ? '<span class="frepair__meta">Dauer: ' + esc(first.duration || t.duration) + '</span>' : '') +
         (first.note ? '<span class="frepair__meta">' + esc(first.note) + '</span>' : '') +
         '</button></li>';
     }).join('');
@@ -215,7 +215,7 @@
     $('r-total').textContent = request ? 'Preis auf Anfrage' : (r.from ? 'ab ' : '') + euro(sum);
     $('r-request').hidden = !request;
     var t = typeOf[r.service] || {}, facts = [];
-    if (t.duration) facts.push('Dauer: ' + t.duration);
+    if (r.duration || t.duration) facts.push('Dauer: ' + (r.duration || t.duration));
     if (t.warranty) facts.push(/^ohne/i.test(t.warranty) ? t.warranty : 'Garantie: ' + t.warranty);
     if (unverified && !request) facts.push('Preis in Prüfung – verbindlich ist der Preis, den wir vor der Reparatur nennen');
     $('r-facts').hidden = !facts.length;

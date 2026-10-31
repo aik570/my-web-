@@ -138,6 +138,6 @@ seo:
 {% endblock %}
 
 {% block scripts %}
-<script type="application/json" id="finder-data">{{ { types: prices.types, phone: site.phone, email: site.email, whatsapp: site.whatsapp, status: pricesMeta.status, isDemo: prices.isDemo, catalogue: '/preise/katalog.json', photos: modelImages.models } | json | safe }}</script>
+<script type="application/json" id="finder-data">{{ { types: prices.types, phone: site.phone, email: site.email, whatsapp: site.whatsapp, status: pricesMeta.status, isDemo: prices.isDemo, catalogue: '/preise/katalog.json', photos: modelPhotos } | json | safe }}</script>
 <script src="/assets/js/finder.js" defer></script>
 {% endblock %}

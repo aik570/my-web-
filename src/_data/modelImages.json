@@ -1,51 +1,50 @@
 {
-  "note": "Product photos for the repair finder, per catalogue model (brand/slug). Only clean product photography (device isolated on a white, light or transparent background, whole device, no hands, people or surroundings) with a licence that allows commercial use on this website: purchased stock (e.g. iStock/Depositphotos with a standard licence, not 'editorial use only'), manufacturer images with written permission, or free licences (CC0, CC BY, CC BY-SA). Images are normalised with scripts/photos/normalize.py. A model without an entry shows the drawing; it is listed as missing in project-audit/MODEL-PHOTOS.md. Never map an image of another model.",
-  "models": {
-    "apple/iphone-6s": {
+  "note": "Product photos for the repair finder, one entry per catalogue model (field model = brand/catalogue ID). Only clean product photography (device isolated on a white, light or transparent background, whole device, no hands, people or surroundings) with a licence that allows commercial use on this website: purchased stock (e.g. iStock/Depositphotos with a standard licence, not 'editorial use only'), manufacturer images with written permission, or free licences (CC0, CC BY, CC BY-SA). Images are normalised with scripts/photos/normalize.py. A model without an entry shows the drawing; it is listed as missing in project-audit/MODEL-PHOTOS.md. Never map an image of another model.",
+  "photos": [
+    {
+      "model": "apple/iphone-6s",
       "image": "/assets/img/produkte/apple-iphone-6s.webp",
-      "exact": true,
       "license": "CC BY-SA 4.0",
       "proof": "Wikimedia Commons File:IPhone_6s_-_rear_view-92671.jpg",
       "credit": "Raimond Spekking (bearbeitet)",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
       "source": "https://commons.wikimedia.org/wiki/File%3AIPhone_6s_-_rear_view-92671.jpg"
     },
-    "huawei/honor-8": {
+    {
+      "model": "huawei/honor-8",
       "image": "/assets/img/produkte/huawei-honor-8.webp",
-      "exact": true,
       "license": "CC BY 3.0",
       "proof": "Wikimedia Commons File:Honor_8_black_-_reverse.jpg",
       "credit": "Honor (bearbeitet)",
       "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
       "source": "https://commons.wikimedia.org/wiki/File%3AHonor_8_black_-_reverse.jpg"
     },
-    "oneplus/oneplus-7-pro": {
+    {
+      "model": "oneplus/oneplus-7-pro",
       "image": "/assets/img/produkte/oneplus-oneplus-7-pro.webp",
-      "exact": true,
       "license": "CC BY-SA 4.0",
       "proof": "Wikimedia Commons File:Oneplus_7_Pro_2019.jpg",
       "credit": "Thilo Parg (bearbeitet)",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
       "source": "https://commons.wikimedia.org/wiki/File%3AOneplus_7_Pro_2019.jpg"
     },
-    "samsung/galaxy-a52": {
+    {
+      "model": "samsung/galaxy-a52",
       "image": "/assets/img/produkte/samsung-galaxy-a52.webp",
-      "exact": true,
       "license": "CC BY-SA 4.0",
       "proof": "Wikimedia Commons File:Samsung-Galaxy-A52-White.jpg",
       "credit": "OnoMaker 12345 (bearbeitet)",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
       "source": "https://commons.wikimedia.org/wiki/File%3ASamsung-Galaxy-A52-White.jpg"
     },
-    "samsung/galaxy-j5-2017": {
+    {
+      "model": "samsung/galaxy-j5-2017",
       "image": "/assets/img/produkte/samsung-galaxy-j5-2017.webp",
-      "exact": true,
       "license": "CC BY-SA 4.0",
       "proof": "Wikimedia Commons File:Samsung_Galaxy_J5_(2017,_SM-J530F-DS)-0346.jpg",
       "credit": "Raimond Spekking (bearbeitet)",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
       "source": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_J5_%282017%2C_SM-J530F-DS%29-0346.jpg"
     }
-  },
-  "rules": []
+  ]
 }

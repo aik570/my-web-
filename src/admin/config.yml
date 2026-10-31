@@ -54,13 +54,14 @@ collections:
         summary: '{{fields.name}}'
         collapsed: true
         fields:
-          - { name: name, label: Modell, widget: string }
+          - { name: name, label: Modell, widget: string, hint: 'Genaue Bezeichnung inkl. Variante, z. B. „iPhone 16 Pro Max", „Galaxy S24 Ultra". Die Reihenfolge auf der Website ergibt sich automatisch (neueste zuerst).' }
+          - { name: id, label: Katalog-ID, widget: string, required: false, pattern: ['^([a-z0-9]+(-[a-z0-9]+)*)?$', 'Nur a–z, 0–9 und Bindestrich'], hint: 'Leer = wird aus dem Namen gebildet (z. B. iphone-16-pro-max). Bestimmt die Adresse /preise/<hersteller>/<id>/ und die Zuordnung des Produktfotos. Bei einer Umbenennung des Modells hier die bisherige ID eintragen, damit Links gleich bleiben.' }
           - { name: category, label: Gerätetyp, widget: select, options: [Smartphone, Tablet, Laptop, Smartwatch, PC, Sonstiges], default: Smartphone, required: false }
           - name: repairs
             label: Reparaturen
             label_singular: Reparatur
             widget: list
-            summary: '{{fields.service}} {{fields.label}}: {{fields.price}} €'
+            summary: '{{fields.service}} · {{fields.label}} · {{fields.price}} €'
             fields:
               - name: service
                 label: Reparaturart
@@ -75,6 +76,7 @@ collections:
               - { name: from, label: „ab"-Preis, widget: boolean, default: false, required: false }
               - { name: onRequest, label: Preis auf Anfrage, widget: boolean, default: false, required: false }
               - { name: note, label: Hinweis, widget: string, required: false }
+              - { name: duration, label: Dauer (nur dieses Modell), widget: string, required: false, hint: 'Leer = Dauer der Reparaturart (Einstellungen › Reparaturarten), z. B. „ca. 90 Minuten"' }
 
   # ---------------------------------------------------------------- Einstellungen
   - name: einstellungen
@@ -178,23 +180,26 @@ collections:
           - { name: vatNote, label: Hinweis zur Umsatzsteuer, widget: string, required: false, hint: 'z. B. „Alle Preise inkl. MwSt." – nur wenn bestätigt' }
           - { name: footnote, label: Fußnote, widget: string, required: false }
 
-      - name: modellbilder
-        label: Gerätebilder im Preisrechner
+      - name: produktfotos
+        label: Produktfotos im Preisrechner
         file: src/_data/modelImages.json
         format: json
         fields:
           - { name: note, label: Hinweis, widget: hidden }
-          - name: rules
-            label: Regeln (die erste passende gilt)
+          - name: photos
+            label: Fotos (ein Eintrag pro Modell)
+            label_singular: Foto
             widget: list
-            summary: '{{fields.label}}'
-            hint: 'Nur ein Bild derselben Geräte-Generation zuordnen. Ist es nicht das exakte Modell, „Exaktes Modell" ausschalten – dann steht „Symbolbild … – nicht das exakte Modell" darunter.'
+            summary: '{{fields.model}} – {{fields.license}}'
+            hint: 'Nur saubere Produktfotos (Gerät freigestellt auf Weiß, ganz sichtbar, keine Hände) mit Lizenz für die gewerbliche Nutzung auf dieser Website. Viele Fotos auf einmal: scripts/photos/normalize.py (siehe docs/CMS.md).'
             fields:
-              - { name: brand, label: Hersteller-Kürzel, widget: string, pattern: ['^[a-z0-9-]+$', 'z. B. apple, samsung'] }
-              - { name: pattern, label: Modellname (Muster), widget: string, hint: 'Regulärer Ausdruck, z. B. ^iPhone 15 für alle iPhone-15-Modelle' }
-              - { name: image, label: Bild, widget: image, media_folder: /src/assets/img/modelle, public_folder: /assets/img/modelle, hint: 'WebP, Gerät freigestellt, etwa 220 × 440 Pixel' }
-              - { name: label, label: Bildunterschrift, widget: string, hint: 'z. B. „Symbolbild iPhone 15-Serie"' }
-              - { name: exact, label: Exaktes Modell, widget: boolean, default: false }
+              - { name: model, label: Modell (Hersteller/Katalog-ID), widget: string, pattern: ['^[a-z0-9-]+/[a-z0-9-]+$', 'z. B. apple/iphone-16-pro-max'], hint: 'Hersteller-Kürzel / Katalog-ID, z. B. apple/iphone-16-pro-max (steht in der Adresse der Modellseite)' }
+              - { name: image, label: Foto, widget: image, media_folder: /src/assets/img/produkte, public_folder: /assets/img/produkte, hint: 'Hochformat 3:4, Gerät mittig auf weißem Hintergrund (am besten mit dem Skript vorbereitet)' }
+              - { name: license, label: Lizenz, widget: string, hint: 'z. B. „iStock Standard (nicht redaktionell)", „Genehmigung Samsung vom …", „CC BY-SA 4.0"' }
+              - { name: proof, label: Nachweis, widget: string, required: false, hint: 'Rechnungs- oder Genehmigungsnummer (wird nicht angezeigt)' }
+              - { name: credit, label: Bildnachweis (angezeigt), widget: string, required: false, hint: 'Nur wenn die Lizenz eine Namensnennung verlangt' }
+              - { name: licenseUrl, label: Link zur Lizenz, widget: string, required: false }
+              - { name: source, label: Link zur Quelle, widget: string, required: false }
 
       - name: bewertungen
         label: Google-Bewertungen (Verbindung)
@@ -321,6 +326,7 @@ collections:
           - { name: kicker, label: Überzeile, widget: string }
           - { name: title, label: Überschrift, widget: string }
           - { name: lede, label: Einleitung, widget: text }
+          - { name: note, label: Hinweis unter den Leistungen (Preis/Garantie), widget: text, hint: '{fee} wird durch den Preis der Fehleranalyse ersetzt. Gesetzliche Gewährleistung bitte nicht ausschließen.' }
           - name: items
             label: Leistungen
             label_singular: Leistung

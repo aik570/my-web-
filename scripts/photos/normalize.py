@@ -50,10 +50,10 @@ def main(manifest):
         dev = dev.resize((round(dev.width * s), round(dev.height * s)), Image.LANCZOS)
         canvas = Image.new('RGB', (W, H), (255, 255, 255)); canvas.paste(dev, ((W - dev.width) // 2, (H - dev.height) // 2))
         name = e['model'].replace('/', '-') + '.webp'; canvas.save(OUT / name, 'WEBP', quality=86, method=6)
-        data['models'][e['model']] = {'image': '/assets/img/produkte/' + name, 'exact': True, 'license': e['license'], 'proof': e.get('proof', ''),
+        entry = {'model': e['model'], 'image': '/assets/img/produkte/' + name, 'license': e['license'], 'proof': e.get('proof', ''),
                                       'credit': (e['credit'] + ' (bearbeitet)') if e.get('credit') and e['license'].upper().startswith('CC') else e.get('credit', ''), 'licenseUrl': e.get('licenseUrl', ''), 'source': e.get('source', '')}
         print('OK', e['model'])
-    data['models'] = dict(sorted(data['models'].items()))
+    data['photos'].sort(key=lambda p: p['model'])
     DATA.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
 
 if __name__ == '__main__': main(sys.argv[1])

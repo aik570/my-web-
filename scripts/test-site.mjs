@@ -154,7 +154,7 @@ console.log('\nPreisrechner');
   const akku = m13.repairs.find((r) => r[0] === 'akku');
   ok((await page.$eval('.frepair[data-service="akku"] .frepair__price', (e) => e.textContent)).includes(String(akku[2])), `card price = data (Akku ${akku[2]} €)`);
   // device preview: photo of the model before a repair is chosen, then the drawing with the part in red
-  const imgs = JSON.parse(fs.readFileSync('src/_data/modelImages.json', 'utf8'));
+  const imgs = { models: Object.fromEntries(JSON.parse(fs.readFileSync('src/_data/modelImages.json', 'utf8')).photos.map((p) => [p.model, p])) };
   const want = imgs.models['apple/iphone-13'];
   const before = await page.evaluate(() => { const i = document.getElementById('f-device-photo'); return { src: i.getAttribute('src'), shown: !i.hidden && i.getBoundingClientRect().width > 20, svg: getComputedStyle(document.querySelector('.fdevice__svg')).display, note: document.getElementById('f-device-note').textContent }; });
   if (want) {

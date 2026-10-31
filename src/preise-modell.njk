@@ -33,7 +33,7 @@ eleventyComputed:
         <ul class="repairs">
           {%- for r in repairs %}
           <li><label class="repair">
-            <input type="radio" name="repair" value="{{ loop.index0 }}" data-type="{{ r.service }}" data-key="{{ (r.label | slugify) if r.label else r.service }}" data-label="{{ r | repairName(prices.types) }}" data-price="{{ '' if r.onRequest else r.price }}" data-from="{{ 1 if r.from else '' }}"{% if loop.first %} checked{% endif %}>
+            <input type="radio" name="repair" value="{{ loop.index0 }}" data-type="{{ r.service }}" data-key="{{ (r.label | slugify) if r.label else r.service }}" data-label="{{ r | repairName(prices.types) }}" data-price="{{ '' if r.onRequest else r.price }}" data-from="{{ 1 if r.from else '' }}" data-duration="{{ r.duration }}"{% if loop.first %} checked{% endif %}>
             <span class="repair__name">{{ r | repairName(prices.types) }}{% if r.note %}<small>{{ r.note }}</small>{% endif %}</span>
             <span class="repair__price{% if r.onRequest %} is-request{% endif %}">{% if r.onRequest %}auf Anfrage{% else %}{% if r.from %}ab {% endif %}{{ r.price | euro }}{% endif %}</span>
           </label></li>
