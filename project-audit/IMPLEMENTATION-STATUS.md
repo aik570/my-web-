@@ -2,7 +2,24 @@
 
 Updated: 31.10.2026, handover round (reviews, header, model order, CMS, calculator, photos, warranty, hours, franchise) · Branch `claude/zealous-bohr-71wesv`
 
-## Z. Handover round (31.10.2026, latest)
+## ZZ. Final round (31.10.2026, latest)
+
+**Preview:** https://claude.ai/artifact/MKnvHQdRfoKvSRqyntbA2E (version 47). Checked locally with browser automation; not on physical devices.
+
+| Item | Result |
+|---|---|
+| Google reviews | Large section removed. Slim strip directly above the footer on every page (72 px on a phone, one line on desktop): Google mark, rating + quote ticker only when real data exists, link „Alle Bewertungen auf Google". Not fixed over the content, so nothing is covered |
+| Phone number (call block) | 9 rem → max 4.75 rem (76 px desktop, 32 px phone), one line, no overflow |
+| Befund | One source: Laden & Kontakt › Fehleranalyse. Overrides the per-model „Fehleranalyse" rows at build time; texts use {befund} (services, FAQ, notes) |
+| Status texts | Header opening texts editable (Laden & Kontakt › Texte der Öffnungsanzeige) |
+| Photo admin | Produktfotos: model chosen from the catalogue (searchable picker), photo uploaded/replaced in the media library, licence fields |
+| CMS end-to-end (`npm run test:cms`) | Repair price 119 → 126 € → calculator, model page, price list; Befund 25 → 31 € → catalogue rows, services, FAQ, calculator hint; Saturday 18:00 → 17:30 → hours table, footer (all pages), structured data, header status data; photo uploaded for Galaxy S24 Ultra → shown in the calculator. All files restored afterwards. Hosted login (GitHub/Netlify) not tested |
+| Product photos | Still 5 of 493 models (iPhone 6s, Galaxy A52, Galaxy J5 2017, Honor 8, OnePlus 7 Pro). No further legally usable exact packshots found (see Y); the other 488 show the drawing |
+| Checks | `npm test` 196 checks pass; `npm run test:cms` passes |
+
+---
+
+## Z. Handover round (31.10.2026)
 
 **Preview:** https://claude.ai/artifact/MKnvHQdRfoKvSRqyntbA2E (version 44). Checked locally with browser automation (desktop and phone sizes); not on physical devices, not inside the claude.ai viewer.
 
