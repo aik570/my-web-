@@ -1,8 +1,24 @@
 # Implementation status
 
-Updated: 31.10.2026, product photos only (licensed, isolated) · Branch `claude/zealous-bohr-71wesv`
+Updated: 31.10.2026, handover round (reviews, header, model order, CMS, calculator, photos, warranty, hours, franchise) · Branch `claude/zealous-bohr-71wesv`
 
-## Y. Product photos only (31.10.2026, latest)
+## Z. Handover round (31.10.2026, latest)
+
+| Item | Result |
+|---|---|
+| 1 Google reviews | Section before the footer; only real data (none connected → heading + link to Google, 353 px high on a phone). With data: running strip on desktop (pauses on hover/focus), swipeable row on phones aligned with the page margin, cards fully readable. Needs Place ID + API key (owner) |
+| 2 Header phone | Real defect found: at 1260–1320 px the phone button was pushed past the screen edge and at larger widths ~20 px past the content edge (status chip did not fit). Status chip now from 1440 px, tighter link spacing, button never shrinks. Test: 13 widths 320–1920, no overlaps, button inside and centred. Number unchanged (0163 228 8224), discrepancy in owner checklist 13 |
+| 3 Model order | One central rule set for the whole catalogue (`modelOrder` in scripts/lib/prices.mjs): series, newest generation first, fixed variant order (Pro Max → Pro → Air → Plus → base → mini; Ultra → Plus → base → FE …). Series shown as headings in the Preisrechner (iPhone / iPhone X-Serie / iPhone SE; Galaxy S / Z Fold / Z Flip / Note / A / M / J / XCover / Tab …; Redmi Note / Redmi / Poco; Xperia 1 / 5 / 10 …). No model removed, IDs unchanged; price files reordered once so the CMS list matches (built catalogue byte-identical) |
+| 4 CMS | Existing Decap CMS (Git-based). Prices per model and repair, „ab", „auf Anfrage", part quality (Bezeichnung), note, **new:** duration per model, catalogue ID; repair types with warranty and standard duration; product photos as editable list; services note (warranty sentence) editable; contact, hours, closures, home, services, FAQ, Franchise, Impressum, Datenschutz, Google reviews link. `npm run test:cms`: all 13 areas open; price edited in the editor and published → only that value changes in the file → rebuild → new price in catalogue, model page and Preisrechner. Production login (GitHub/Netlify) **not tested** – owner accounts needed |
+| 5 Calculator states | A: model → its product photo where licensed, else drawing; B: repair → photo hidden, drawing with the part in red (pulse); C: back → photo again, model/price/repair kept. Tested with OnePlus 7 Pro, iPhone 13, iPhone 14 Pro, Galaxy S23 |
+| 6 Photos | Pipeline: `normalize.py --incoming` (file name = catalogue ID, licence/proof per batch or per file, uniform white 600×800, rejects unclean backgrounds/cropped devices). 5 licensed photos; 488 missing, listed with catalogue ID and expected file name. No mass scraping running |
+| 7 Warranty | 3 Monate / Wasserschaden ohne Garantie everywhere; statutory rights sentence; editable in CMS (repair types, services note, FAQ, home). No 6-/12-month warranty claims left (production test). Legal pages contain no warranty wording. Wording flagged for legal review |
+| 8 Hours | Sa 10:00–18:00, Sunday closed (to confirm); one source (site.json, CMS) for header chip, footer, contact, hours table, structured data |
+| 9 Franchise | In the desktop header and the mobile menu (tests), page builds, no 404 |
+
+---
+
+## Y. Product photos only (31.10.2026)
 
 **Preview:** https://claude.ai/artifact/MKnvHQdRfoKvSRqyntbA2E (version 41). Checked locally with browser automation; not on physical devices.
 

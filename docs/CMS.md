@@ -17,6 +17,18 @@ Hinweise
 - Jede Änderung wird gespeichert und kann wiederhergestellt werden. Fehler? Melden Sie sich bei uns.
 - Schließtage (Urlaub, Feiertage): unter **Laden & Kontakt → Besondere Schließtage** eintragen. Die Anzeige „Jetzt geöffnet" richtet sich danach.
 
+### Einen Preis ändern (Beispiel: iPhone 16 Pro Max, Akkuwechsel)
+1. **Preise** → **Apple** öffnen. Die Modelle stehen in derselben Reihenfolge wie auf der Website (neueste zuerst). Mit Strg+F / ⌘+F „16 Pro Max" suchen.
+2. Den Pfeil links am Modell anklicken → unter **Reparaturen** die Zeile „akku · … · 119 €" aufklappen.
+3. **Preis in €** ändern, oben **Veröffentlichen → Jetzt veröffentlichen**.
+4. Der neue Preis erscheint nach dem Neuaufbau (ca. 1–2 Minuten) überall gleichzeitig: Preisrechner, Modellseite, Preisübersicht – es gibt nur diese eine Stelle.
+
+Weitere Felder je Reparatur: **Bezeichnung** (z. B. „Display – Originalqualität" für eine zweite Teilequalität), **„ab"-Preis**, **Preis auf Anfrage**, **Hinweis**, **Dauer (nur dieses Modell)**. Reparatur hinzufügen/entfernen = Zeile hinzufügen/Kreuz. Ein Modell, das eine Reparatur nicht anbietet, hat diese Zeile einfach nicht.
+Je Modell: **Modell** (Name mit Variante), **Katalog-ID** (Adresse der Modellseite, bei Umbenennungen die alte ID eintragen), **Gerätetyp**. Garantie und Standard-Dauer je Reparaturart: **Laden & Kontakt → Reparaturarten**.
+
+### Produktfotos
+**Laden & Kontakt → Produktfotos im Preisrechner**: ein Eintrag pro Modell (Hersteller/Katalog-ID, Foto, Lizenz, Nachweis). Nur freigestellte Produktfotos mit Lizenz für die gewerbliche Nutzung. Viele Fotos auf einmal (Entwickler): Dateien als `<hersteller>-<katalog-id>.png` nach `incoming/` legen (Namen siehe `project-audit/PRODUCT-PHOTOS-NEEDED.csv`), dann `npm run build && python3 scripts/photos/normalize.py --incoming incoming --license "…" --proof "…"` – zuschneiden, einheitlich auf Weiß setzen, eintragen.
+
 ## Ganze Preisliste auf einmal einspielen (Entwickler)
 
 Die offizielle Preisliste als Excel/Sheets-Tabelle mit den Spalten
@@ -54,6 +66,9 @@ Die Entwicklungsdaten liegen getrennt in `data-import/demo/` und werden nur in V
 | Speichern | Jede Veröffentlichung ist ein Git-Commit auf den konfigurierten Branch; der Host baut neu |
 | Prüfung | Feldformate im CMS; Preise zusätzlich beim Build (`src/_data/prices.js`) – ungültige Daten stoppen den Build, die Live-Seite bleibt dann unverändert |
 | Backup / Rückgängig | Git-Historie |
+
+### Automatischer Test
+`npm run build && npm run test:cms` öffnet /admin/ mit dem lokalen Backend (decap-server), prüft, dass alle Bereiche laden, ändert im Editor einen Preis, veröffentlicht, baut die Website neu und prüft den neuen Preis in Preisrechner und Modellseite. Die Preisdatei wird danach wiederhergestellt. Die GitHub-Anmeldung der gehosteten Seite prüft dieser Test nicht.
 
 ### Lokal arbeiten
 ```
