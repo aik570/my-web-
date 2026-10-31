@@ -146,12 +146,12 @@ console.log('\nGoogle-Bewertungen');
   const st = await page.evaluate(() => {
     const s = document.getElementById('bewertungen'), f = document.querySelector('footer');
     return { exists: !!s, beforeFooter: !!s && !!f && s.nextElementSibling === f, height: s ? s.getBoundingClientRect().height : 0,
-      cards: document.querySelectorAll('.rstrip__track:not([aria-hidden]) li').length, link: s?.querySelector('.rstrip__link')?.href || '', sample: !!s?.querySelector('.rstrip__sample'),
+      cards: document.querySelectorAll('.rv__card').length, link: s?.querySelector('.rv__link')?.href || '', sample: !!s?.querySelector('.rv__sample'),
       bigSection: !!document.querySelector('.reviews, #reviews-h') };
   });
-  ok(st.exists && st.beforeFooter && !st.bigSection, 'Google reviews: slim strip directly above the footer, no large section');
+  ok(st.exists && st.beforeFooter && !st.bigSection, 'Google reviews: compact card carousel directly above the footer, no large section');
   ok(st.height > 0 && st.height <= 120, `reviews strip is compact on a phone (${Math.round(st.height)} px)`);
-  ok(st.cards === rv.items.length && !st.sample, `review quotes = reviews.json (${rv.items.length})${rv.items.length ? '' : ' → no quotes, nothing invented'}`);
+  ok(st.cards === rv.items.length && !st.sample, `review cards = reviews.json (${rv.items.length})${rv.items.length ? '' : ' → no quotes, nothing invented'}`);
   ok(/^https:\/\/(www\.)?google\.[a-z.]+\/maps/.test(st.link), 'link to the reviews on Google');
   await page.close();
 }

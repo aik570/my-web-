@@ -1,5 +1,5 @@
-{#- Slim Google reviews strip above the footer. Only real data from reviews.json (filled from Google);
-    without data: just the link to the reviews on Google. Nothing is invented. -#}
+{#- Google reviews carousel above the footer (pattern: Google review cards in a slider).
+    Only real data from reviews.json (filled from Google). Without data: one compact line with the link to Google. -#}
 {%- set rv = reviewData %}
 {%- set rvUrl = rv.googleUrl or site.mapsUrl %}
 {%- macro stars(n) -%}
@@ -7,22 +7,34 @@
   {%- for i in range(1, 6) %}<svg viewBox="0 0 20 20" aria-hidden="true" class="{{ 'is-on' if n >= i else ('is-half' if n >= i - 0.5 else '') }}"><path d="m10 1.6 2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg>{% endfor -%}
 </span>
 {%- endmacro %}
-<aside class="rstrip" id="bewertungen" aria-label="Google-Bewertungen">
+{%- set gmark %}<svg class="gmark" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.6 5.4 2.7 13.3l7.9 6.1C12.5 13.6 17.8 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.6c0-1.6-.1-3.1-.4-4.6H24v9h12.4c-.5 2.9-2.2 5.3-4.6 6.9l7.5 5.8c4.3-4 6.8-10 6.8-17.1z"/><path fill="#FBBC05" d="M10.5 28.6A14.5 14.5 0 0 1 9.5 24c0-1.6.3-3.2.8-4.6l-7.9-6.1A24 24 0 0 0 0 24c0 3.9.9 7.5 2.6 10.7l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.5-5.8c-2.1 1.4-4.8 2.3-8.4 2.3-6.2 0-11.5-4.2-13.4-9.8l-7.9 6.1C6.6 42.6 14.6 48 24 48z"/></svg>{% endset %}
+<aside class="rv" id="bewertungen" aria-label="Google-Bewertungen">
   <svg width="0" height="0" class="sr" aria-hidden="true"><defs><linearGradient id="star-half"><stop offset=".5" stop-color="#f2b01e"/><stop offset=".5" stop-color="#cfe6df"/></linearGradient></defs></svg>
-  <div class="wrap rstrip__in">
-    <p class="rstrip__label"><span class="rstrip__g" aria-hidden="true">G</span>Google-Bewertungen
-      {%- if rv.items.length and rv.rating %} <b class="rstrip__score">{{ rv.rating | string | replace('.', ',') }}</b>{{ stars(rv.rating) }}{% if rv.count %}<small>({{ rv.count }})</small>{% endif %}{% endif %}
-      {%- if rv.isSample %} <small class="rstrip__sample">Layouttest – keine echten Bewertungen</small>{% endif %}
-    </p>
-    {%- if rv.items.length %}
-    <div class="rstrip__ticker" style="--rv-dur: {{ rv.items.length * 9 }}s">
-      {%- for copy in [0, 1] %}
-      <ul class="rstrip__track"{% if copy %} aria-hidden="true" inert{% endif %}>
-        {%- for r in rv.items %}<li>{{ stars(r.rating) }}<q>{{ r.text | truncate(110) }}</q><span>– {{ r.author }}</span></li>{% endfor %}
-      </ul>
-      {%- endfor %}
+  <div class="wrap">
+    <div class="rv__bar">
+      <p class="rv__label">{{ gmark | safe }}<span>Google-Bewertungen</span>
+        {%- if rv.items.length and rv.rating %}<b class="rv__score">{{ rv.rating | string | replace('.', ',') }}</b>{{ stars(rv.rating) }}{% if rv.count %}<small>{{ rv.count }} Bewertungen</small>{% endif %}{% endif %}
+        {%- if rv.isSample %}<small class="rv__sample">Layouttest – keine echten Bewertungen</small>{% endif %}
+      </p>
+      {%- if rv.items.length %}
+      <span class="rv__nav"><button type="button" class="rv__btn" data-rv="-1" aria-label="Vorherige Bewertungen">‹</button><button type="button" class="rv__btn" data-rv="1" aria-label="Nächste Bewertungen">›</button></span>
+      {%- endif %}
+      <a class="rv__link" href="{{ rvUrl }}" target="_blank" rel="noopener">Alle Bewertungen auf Google<span class="sr"> (öffnet Google Maps)</span> →</a>
     </div>
+    {%- if rv.items.length %}
+    <ul class="rv__track" data-rv-track tabindex="0" aria-label="Bewertungen, mit den Pfeilen blättern">
+      {%- for r in rv.items %}
+      <li class="rv__card">
+        <div class="rv__head">
+          <span class="rv__avatar" aria-hidden="true">{{ r.author | first | upper }}</span>
+          <span class="rv__who"><b>{% if r.authorUrl %}<a href="{{ r.authorUrl }}" target="_blank" rel="noopener nofollow">{{ r.author }}</a>{% else %}{{ r.author }}{% endif %}</b>{% if r.when %}<small>{{ r.when }}</small>{% endif %}</span>
+          {{ gmark | safe }}
+        </div>
+        {{ stars(r.rating) }}
+        <p class="rv__text">{{ r.text }}</p>
+      </li>
+      {%- endfor %}
+    </ul>
     {%- endif %}
-    <a class="rstrip__link" href="{{ rvUrl }}" target="_blank" rel="noopener">Alle Bewertungen auf Google<span class="sr"> (öffnet Google Maps)</span> →</a>
   </div>
 </aside>

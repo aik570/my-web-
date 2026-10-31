@@ -480,3 +480,24 @@
     });
   });
 })();
+
+// Google reviews carousel: arrows move one card, autoplay every 6 s (paused on hover, focus,
+// touch and with reduced motion); wraps to the start at the end.
+(function () {
+  var track = document.querySelector('[data-rv-track]');
+  if (!track) return;
+  var step = function () { var c = track.querySelector('.rv__card'); return c ? c.getBoundingClientRect().width + 16 : track.clientWidth; };
+  var go = function (dir) {
+    var max = track.scrollWidth - track.clientWidth - 2;
+    if (dir > 0 && track.scrollLeft >= max) track.scrollTo({ left: 0 });
+    else if (dir < 0 && track.scrollLeft <= 2) track.scrollTo({ left: track.scrollWidth });
+    else track.scrollBy({ left: dir * step() });
+  };
+  document.querySelectorAll('[data-rv]').forEach(function (b) { b.addEventListener('click', function () { go(+b.getAttribute('data-rv')); }); });
+  track.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); go(e.key === 'ArrowRight' ? 1 : -1); } });
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var paused = false, box = track.closest('.rv');
+  ['mouseenter', 'focusin', 'touchstart'].forEach(function (ev) { box.addEventListener(ev, function () { paused = true; }, { passive: true }); });
+  ['mouseleave', 'focusout'].forEach(function (ev) { box.addEventListener(ev, function () { paused = false; }); });
+  setInterval(function () { if (!paused && !document.hidden && track.scrollWidth > track.clientWidth + 4) go(1); }, 6000);
+})();
