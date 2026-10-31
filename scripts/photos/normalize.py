@@ -15,7 +15,7 @@ and saved as WebP in src/assets/img/produkte/. Images whose background is not li
 are rejected: the finder shows only clean product shots.
 """
 import json, sys, pathlib
-from PIL import Image, ImageChops
+from PIL import Image, ImageChops, ImageFilter
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 OUT = ROOT / 'src/assets/img/produkte'
@@ -29,9 +29,15 @@ def isolate(path):
     edge = [px[x, y] for x in range(0, w, max(1, w // 60)) for y in (0, h - 1)] + [px[x, y] for y in range(0, h, max(1, h // 60)) for x in (0, w - 1)]
     light = sum(1 for p in edge if min(p) > 225) / len(edge)
     if light < 0.95: raise ValueError(f'background not light and even ({light:.0%} of the edge)')
-    mask = ImageChops.difference(flat, Image.new('RGB', flat.size, (255, 255, 255))).convert('L').point(lambda v: 255 if v > 18 else 0)
+    # backdrop colour = median of the edge; everything close to it counts as background
+    bgc = tuple(sorted(p[i] for p in edge)[len(edge) // 2] for i in range(3))
+    diff = ImageChops.difference(flat, Image.new('RGB', flat.size, bgc)).convert('L')
+    mask = diff.point(lambda v: 255 if v > 26 else 0).filter(ImageFilter.MedianFilter(9))   # drop dust specks
     box = mask.getbbox()
     if not box or min(box[0], box[1], w - box[2], h - box[3]) < 2: raise ValueError('device touches the edge (cropped?)')
+    # turn the (light grey) backdrop into clean white, with a soft edge
+    soft = mask.filter(ImageFilter.MaxFilter(5)).filter(ImageFilter.GaussianBlur(2))
+    flat = Image.composite(flat, Image.new('RGB', flat.size, (255, 255, 255)), soft)
     return flat.crop(box)
 
 def main(manifest):
@@ -45,7 +51,7 @@ def main(manifest):
         canvas = Image.new('RGB', (W, H), (255, 255, 255)); canvas.paste(dev, ((W - dev.width) // 2, (H - dev.height) // 2))
         name = e['model'].replace('/', '-') + '.webp'; canvas.save(OUT / name, 'WEBP', quality=86, method=6)
         data['models'][e['model']] = {'image': '/assets/img/produkte/' + name, 'exact': True, 'license': e['license'], 'proof': e.get('proof', ''),
-                                      'credit': e.get('credit', ''), 'licenseUrl': e.get('licenseUrl', ''), 'source': e.get('source', '')}
+                                      'credit': (e['credit'] + ' (bearbeitet)') if e.get('credit') and e['license'].upper().startswith('CC') else e.get('credit', ''), 'licenseUrl': e.get('licenseUrl', ''), 'source': e.get('source', '')}
         print('OK', e['model'])
     data['models'] = dict(sorted(data['models'].items()))
     DATA.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')

@@ -188,6 +188,15 @@ console.log('\nPreisrechner');
   await page.goto(BASE + '/reparatur-finden/#apple--iphone-14-pro'); await page.waitForSelector('#finder.is-ready'); await page.waitForTimeout(100);
   const p14 = imgs.models['apple/iphone-14-pro'];
   ok(p14 ? await page.$eval('#f-device-photo', (i, src) => !i.hidden && i.getAttribute('src') === src, p14.image) : (!(await page.$eval('#f-device-photo', (i) => i.hasAttribute('src'))) && /Schematische/.test(await page.$eval('#f-device-note', (e) => e.textContent))), p14 ? 'iPhone 14 Pro → its own product photo' : 'iPhone 14 Pro: no product photo → drawing, no picture of another model');
+  const op = imgs.models['oneplus/oneplus-7-pro'];
+  if (op) {
+    await page.goto(BASE + '/reparatur-finden/#oneplus--oneplus-7-pro'); await page.waitForSelector('#finder.is-ready'); await page.waitForTimeout(150);
+    ok(await page.$eval('#f-device-photo', (i, src) => !i.hidden && i.getAttribute('src') === src && i.naturalWidth > 0, op.image), 'OnePlus 7 Pro → its product photo is shown');
+    await page.click('.frepair[data-service="akku"]'); await page.waitForTimeout(450);
+    ok(await page.evaluate(() => document.getElementById('f-device-photo').hidden && getComputedStyle(document.querySelector('.part--akku')).stroke === 'rgb(200, 49, 42)'), 'Akkuwechsel → photo hidden, battery in red');
+    await page.goBack(); await page.waitForTimeout(250);
+    ok(await page.$eval('#f-device-photo', (i) => !i.hidden), 'back to the repair choice → product photo again');
+  }
   // every registered photo: file exists, licence and proof recorded, clean white canvas
   const entries = Object.entries(imgs.models);
   ok(entries.every(([, v]) => v.license && fs.existsSync('src' + v.image)), `${entries.length} product photos: file present and licence recorded`);
