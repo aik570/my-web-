@@ -224,7 +224,7 @@ bodyClass: is-home
       </div>
       <div class="faq__list">
         {%- for f in faq.items %}
-        <details><summary>{{ f.q }}</summary><p>{{ f.a }}</p></details>
+        <details><summary>{{ f.q }}</summary><p>{{ f.a | fill }}</p></details>
         {%- endfor %}
       </div>
     </div>
@@ -350,8 +350,6 @@ bodyClass: is-home
     </div>
   </section>
 
-  <!-- ============ GOOGLE-BEWERTUNGEN (only real reviews from reviews.json) ============ -->
-  {% include "partials/reviews.njk" %}
 {% endblock %}
 
 {% block scripts %}

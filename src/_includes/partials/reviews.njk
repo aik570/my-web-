@@ -1,4 +1,5 @@
-{#- Google reviews (reviewData = reviews.json, filled only from Google). No reviews → only a link to Google; nothing is invented. -#}
+{#- Slim Google reviews strip above the footer. Only real data from reviews.json (filled from Google);
+    without data: just the link to the reviews on Google. Nothing is invented. -#}
 {%- set rv = reviewData %}
 {%- set rvUrl = rv.googleUrl or site.mapsUrl %}
 {%- macro stars(n) -%}
@@ -6,39 +7,22 @@
   {%- for i in range(1, 6) %}<svg viewBox="0 0 20 20" aria-hidden="true" class="{{ 'is-on' if n >= i else ('is-half' if n >= i - 0.5 else '') }}"><path d="m10 1.6 2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg>{% endfor -%}
 </span>
 {%- endmacro %}
-{%- macro card(r) -%}
-<li class="rcard">
-  {{ stars(r.rating) }}
-  <blockquote class="rcard__text"><p>{{ r.text }}</p></blockquote>
-  <p class="rcard__by">
-    {%- if r.authorUrl %}<a href="{{ r.authorUrl }}" target="_blank" rel="noopener nofollow">{{ r.author }}</a>{% else %}<span>{{ r.author }}</span>{% endif %}
-    {%- if r.when %}<small>{{ r.when }}</small>{% endif %}
-  </p>
-  <p class="rcard__src"><span class="rcard__g" aria-hidden="true">G</span>Bewertung auf Google</p>
-</li>
-{%- endmacro %}
-<section class="sec sec--white reviews" id="bewertungen" aria-labelledby="reviews-h">
+<aside class="rstrip" id="bewertungen" aria-label="Google-Bewertungen">
   <svg width="0" height="0" class="sr" aria-hidden="true"><defs><linearGradient id="star-half"><stop offset=".5" stop-color="#f2b01e"/><stop offset=".5" stop-color="#cfe6df"/></linearGradient></defs></svg>
-  <div class="wrap reviews__head">
-    <div>
-      <p class="kicker"><span class="kicker__cross" aria-hidden="true"></span>Google-Bewertungen</p>
-      <h2 id="reviews-h">Was unsere Kundschaft sagt</h2>
-      {%- if rv.isSample %}<p class="reviews__sample" role="note">Layouttest mit Beispieldaten – keine echten Bewertungen</p>{% endif %}
+  <div class="wrap rstrip__in">
+    <p class="rstrip__label"><span class="rstrip__g" aria-hidden="true">G</span>Google-Bewertungen
+      {%- if rv.items.length and rv.rating %} <b class="rstrip__score">{{ rv.rating | string | replace('.', ',') }}</b>{{ stars(rv.rating) }}{% if rv.count %}<small>({{ rv.count }})</small>{% endif %}{% endif %}
+      {%- if rv.isSample %} <small class="rstrip__sample">Layouttest – keine echten Bewertungen</small>{% endif %}
+    </p>
+    {%- if rv.items.length %}
+    <div class="rstrip__ticker" style="--rv-dur: {{ rv.items.length * 9 }}s">
+      {%- for copy in [0, 1] %}
+      <ul class="rstrip__track"{% if copy %} aria-hidden="true" inert{% endif %}>
+        {%- for r in rv.items %}<li>{{ stars(r.rating) }}<q>{{ r.text | truncate(110) }}</q><span>– {{ r.author }}</span></li>{% endfor %}
+      </ul>
+      {%- endfor %}
     </div>
-    <div class="reviews__summary">
-      {%- if rv.items.length and rv.rating %}
-      <p class="reviews__score"><b>{{ rv.rating | string | replace('.', ',') }}</b>{{ stars(rv.rating) }}<span>{% if rv.count %}{{ rv.count }} Bewertungen auf Google{% else %}auf Google{% endif %}</span></p>
-      {%- else %}
-      <p class="head__lede">Lesen Sie, was Kundinnen und Kunden über uns schreiben – direkt bei Google.</p>
-      {%- endif %}
-      <a class="btn btn--quiet" href="{{ rvUrl }}" target="_blank" rel="noopener">Alle Bewertungen auf Google<span class="sr"> (öffnet Google Maps)</span></a>
-    </div>
+    {%- endif %}
+    <a class="rstrip__link" href="{{ rvUrl }}" target="_blank" rel="noopener">Alle Bewertungen auf Google<span class="sr"> (öffnet Google Maps)</span> →</a>
   </div>
-  {%- if rv.items.length %}
-  <div class="reviews__ticker" style="--rv-dur: {{ rv.items.length * 9 }}s">
-    <ul class="reviews__track">{% for r in rv.items %}{{ card(r) }}{% endfor %}</ul>
-    <ul class="reviews__track reviews__track--copy" aria-hidden="true" inert>{% for r in rv.items %}{{ card(r) }}{% endfor %}</ul>
-  </div>
-  <p class="wrap reviews__note">Quelle: Google{% if rv.fetchedAt %}{% set d = rv.fetchedAt.split('-') %}, Stand {{ d[2] }}.{{ d[1] }}.{{ d[0] }}{% endif %}. Die Bewertungen werden unverändert übernommen.</p>
-  {%- endif %}
-</section>
+</aside>

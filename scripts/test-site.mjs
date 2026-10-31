@@ -145,11 +145,13 @@ console.log('\nGoogle-Bewertungen');
   await page.goto(BASE + '/'); await page.waitForTimeout(300);
   const st = await page.evaluate(() => {
     const s = document.getElementById('bewertungen'), f = document.querySelector('footer');
-    return { exists: !!s, beforeFooter: !!s && !!f && !!(s.compareDocumentPosition(f) & Node.DOCUMENT_POSITION_FOLLOWING), cards: document.querySelectorAll('.reviews__track:not(.reviews__track--copy) .rcard').length,
-      link: s?.querySelector('a.btn')?.href || '', sample: !!s?.querySelector('.reviews__sample') };
+    return { exists: !!s, beforeFooter: !!s && !!f && s.nextElementSibling === f, height: s ? s.getBoundingClientRect().height : 0,
+      cards: document.querySelectorAll('.rstrip__track:not([aria-hidden]) li').length, link: s?.querySelector('.rstrip__link')?.href || '', sample: !!s?.querySelector('.rstrip__sample'),
+      bigSection: !!document.querySelector('.reviews, #reviews-h') };
   });
-  ok(st.exists && st.beforeFooter, 'review section sits before the footer');
-  ok(st.cards === rv.items.length && !st.sample, `review cards = reviews.json (${rv.items.length})${rv.items.length ? '' : ' → no strip, nothing invented'}`);
+  ok(st.exists && st.beforeFooter && !st.bigSection, 'Google reviews: slim strip directly above the footer, no large section');
+  ok(st.height > 0 && st.height <= 120, `reviews strip is compact on a phone (${Math.round(st.height)} px)`);
+  ok(st.cards === rv.items.length && !st.sample, `review quotes = reviews.json (${rv.items.length})${rv.items.length ? '' : ' → no quotes, nothing invented'}`);
   ok(/^https:\/\/(www\.)?google\.[a-z.]+\/maps/.test(st.link), 'link to the reviews on Google');
   await page.close();
 }
@@ -187,7 +189,8 @@ console.log('\nPreisrechner');
   const akku = m13.repairs.find((r) => r[0] === 'akku');
   ok((await page.$eval('.frepair[data-service="akku"] .frepair__price', (e) => e.textContent)).includes(String(akku[2])), `card price = data (Akku ${akku[2]} €)`);
   // device preview: photo of the model before a repair is chosen, then the drawing with the part in red
-  const imgs = { models: Object.fromEntries(JSON.parse(fs.readFileSync('src/_data/modelImages.json', 'utf8')).photos.map((p) => [p.model, p])) };
+  // registered photos as the site resolves them (finder data: brand/catalogue-id → photo)
+  const imgs = { models: JSON.parse(await page.$eval('#finder-data', (e) => e.textContent)).photos };
   const want = imgs.models['apple/iphone-13'];
   const before = await page.evaluate(() => { const i = document.getElementById('f-device-photo'); return { src: i.getAttribute('src'), shown: !i.hidden && i.getBoundingClientRect().width > 20, svg: getComputedStyle(document.querySelector('.fdevice__svg')).display, note: document.getElementById('f-device-note').textContent }; });
   if (want) {

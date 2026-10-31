@@ -45,6 +45,12 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter('todo', (s = '') => markTodos(String(s)));
   eleventyConfig.addFilter('json', (v) => JSON.stringify(v).replace(/</g, '\\u003c'));
   eleventyConfig.addFilter('euro', (n) => `${Number(n).toLocaleString('de-DE', { minimumFractionDigits: Number.isInteger(n) ? 0 : 2, maximumFractionDigits: 2 })} €`);
+  // Owner-editable amounts inside texts: {befund} = price of the error analysis (site.json, CMS). One source for all pages.
+  eleventyConfig.addFilter('fill', (s = '') => {
+    const fee = JSON.parse(fs.readFileSync('src/_data/site.json', 'utf8')).diagnosisFee.amount;
+    const eur = `${Number(fee).toLocaleString('de-DE', { minimumFractionDigits: Number.isInteger(fee) ? 0 : 2, maximumFractionDigits: 2 })} €`;
+    return String(s).replace(/\{befund\}/g, eur);
+  });
   eleventyConfig.addFilter('repairName', (r, types = []) => r.label || (types.find((t) => t.id === r.service) || {}).label || r.service);
   // Price list helpers: [brand, brandSlug, model, modelSlug] for the search; device types; repair types in use.
   eleventyConfig.addFilter('modelIndex', (brands = []) => brands.flatMap((b) => b.models.map((m) => [b.brand, b.slug, m.name, m.slug])));

@@ -35,7 +35,7 @@ seo:
       </li>
       {%- endfor %}
     </ul>
-    <p class="svc__note">{{ leistungen.note | replace('{fee}', site.diagnosisFee.amount | euro) }}</p>
+    <p class="svc__note">{{ leistungen.note | fill }}</p>
   </div>
 </section>
 
@@ -44,7 +44,7 @@ seo:
     <h2 class="fstores__h" id="why-h">{{ L.why.title }}</h2>
     <p class="head__lede">{{ L.why.lede }}</p>
     <ol class="why__list">
-      {%- for w in L.why.items %}<li><h3>{{ w.title }}</h3><p>{{ w.text }}</p></li>{% endfor %}
+      {%- for w in L.why.items %}<li><h3>{{ w.title | fill }}</h3><p>{{ w.text | fill }}</p></li>{% endfor %}
     </ol>
   </div>
 </section>

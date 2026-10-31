@@ -30,7 +30,6 @@ Licence situation checked on 31.10.2026: Samsung Mobile Press allows its materia
 | Apple | iPhone 14 Pro | Smartphone | **fehlt** – Zeichnung |
 | Apple | iPhone 14 Plus | Smartphone | **fehlt** – Zeichnung |
 | Apple | iPhone 14 | Smartphone | **fehlt** – Zeichnung |
-| Apple | iPhone SE (2022) | Smartphone | **fehlt** – Zeichnung |
 | Apple | iPhone 13 Pro Max | Smartphone | **fehlt** – Zeichnung |
 | Apple | iPhone 13 Pro | Smartphone | **fehlt** – Zeichnung |
 | Apple | iPhone 13 | Smartphone | **fehlt** – Zeichnung |
@@ -39,363 +38,364 @@ Licence situation checked on 31.10.2026: Samsung Mobile Press allows its materia
 | Apple | iPhone 12 Pro | Smartphone | **fehlt** – Zeichnung |
 | Apple | iPhone 12 | Smartphone | **fehlt** – Zeichnung |
 | Apple | iPhone 12 mini | Smartphone | **fehlt** – Zeichnung |
-| Apple | iPhone SE (2020) | Smartphone | **fehlt** – Zeichnung |
 | Apple | iPhone 11 Pro Max | Smartphone | **fehlt** – Zeichnung |
 | Apple | iPhone 11 Pro | Smartphone | **fehlt** – Zeichnung |
 | Apple | iPhone 11 | Smartphone | **fehlt** – Zeichnung |
-| Apple | iPhone XS Max | Smartphone | **fehlt** – Zeichnung |
-| Apple | iPhone XS | Smartphone | **fehlt** – Zeichnung |
-| Apple | iPhone XR | Smartphone | **fehlt** – Zeichnung |
-| Apple | iPhone X | Smartphone | **fehlt** – Zeichnung |
 | Apple | iPhone 8 Plus | Smartphone | **fehlt** – Zeichnung |
 | Apple | iPhone 8 | Smartphone | **fehlt** – Zeichnung |
 | Apple | iPhone 7 Plus | Smartphone | **fehlt** – Zeichnung |
 | Apple | iPhone 7 | Smartphone | **fehlt** – Zeichnung |
-| Apple | iPhone SE (2016) | Smartphone | **fehlt** – Zeichnung |
-| Apple | iPhone SE | Smartphone | **fehlt** – Zeichnung |
 | Apple | iPhone 6s Plus | Smartphone | **fehlt** – Zeichnung |
 | Apple | iPhone 6s | Smartphone | Produktfoto (CC BY-SA 4.0) |
 | Apple | iPhone 6 Plus | Smartphone | **fehlt** – Zeichnung |
 | Apple | iPhone 6 | Smartphone | **fehlt** – Zeichnung |
+| Apple | iPhone XS Max | Smartphone | **fehlt** – Zeichnung |
+| Apple | iPhone XS | Smartphone | **fehlt** – Zeichnung |
+| Apple | iPhone XR | Smartphone | **fehlt** – Zeichnung |
+| Apple | iPhone X | Smartphone | **fehlt** – Zeichnung |
+| Apple | iPhone SE (2022) | Smartphone | **fehlt** – Zeichnung |
+| Apple | iPhone SE (2020) | Smartphone | **fehlt** – Zeichnung |
+| Apple | iPhone SE (2016) | Smartphone | **fehlt** – Zeichnung |
+| Apple | iPhone SE | Smartphone | **fehlt** – Zeichnung |
 | Apple | iPad Pro 13 Zoll 1. Gen | Tablet | **fehlt** – Zeichnung |
-| Apple | iPad Pro 12.9 Zoll 1. Gen | Tablet | **fehlt** – Zeichnung |
-| Apple | iPad Pro 12.9 Zoll 2. Gen | Tablet | **fehlt** – Zeichnung |
-| Apple | iPad Pro 12.9 Zoll 3. Gen | Tablet | **fehlt** – Zeichnung |
-| Apple | iPad Pro 12.9 Zoll 4. Gen | Tablet | **fehlt** – Zeichnung |
-| Apple | iPad Pro 12.9 Zoll 5. Gen | Tablet | **fehlt** – Zeichnung |
 | Apple | iPad Pro 12.9 Zoll 6. Gen | Tablet | **fehlt** – Zeichnung |
-| Apple | iPad Pro 11 Zoll 1. Gen | Tablet | **fehlt** – Zeichnung |
-| Apple | iPad Pro 11 Zoll 2. Gen | Tablet | **fehlt** – Zeichnung |
-| Apple | iPad Pro 11 Zoll 3. Gen | Tablet | **fehlt** – Zeichnung |
 | Apple | iPad Pro 11 Zoll 4. Gen | Tablet | **fehlt** – Zeichnung |
+| Apple | iPad Pro 12.9 Zoll 5. Gen | Tablet | **fehlt** – Zeichnung |
+| Apple | iPad Pro 11 Zoll 3. Gen | Tablet | **fehlt** – Zeichnung |
+| Apple | iPad Pro 12.9 Zoll 4. Gen | Tablet | **fehlt** – Zeichnung |
+| Apple | iPad Pro 11 Zoll 2. Gen | Tablet | **fehlt** – Zeichnung |
+| Apple | iPad Pro 12.9 Zoll 3. Gen | Tablet | **fehlt** – Zeichnung |
+| Apple | iPad Pro 11 Zoll 1. Gen | Tablet | **fehlt** – Zeichnung |
+| Apple | iPad Pro 12.9 Zoll 2. Gen | Tablet | **fehlt** – Zeichnung |
 | Apple | iPad Pro 10.5 Zoll | Tablet | **fehlt** – Zeichnung |
 | Apple | iPad Pro 9.7 Zoll | Tablet | **fehlt** – Zeichnung |
-| Apple | iPad Mini 7 | Tablet | **fehlt** – Zeichnung |
-| Apple | iPad Mini 6 | Tablet | **fehlt** – Zeichnung |
-| Apple | iPad Mini 5 | Tablet | **fehlt** – Zeichnung |
+| Apple | iPad Pro 12.9 Zoll 1. Gen | Tablet | **fehlt** – Zeichnung |
 | Apple | iPad Air 13 Zoll 1. Gen | Tablet | **fehlt** – Zeichnung |
 | Apple | iPad Air 11 Zoll 1. Gen | Tablet | **fehlt** – Zeichnung |
 | Apple | iPad Air 5 | Tablet | **fehlt** – Zeichnung |
 | Apple | iPad Air 4 | Tablet | **fehlt** – Zeichnung |
 | Apple | iPad Air 3 | Tablet | **fehlt** – Zeichnung |
 | Apple | iPad Air 2 | Tablet | **fehlt** – Zeichnung |
+| Apple | iPad Mini 7 | Tablet | **fehlt** – Zeichnung |
+| Apple | iPad Mini 6 | Tablet | **fehlt** – Zeichnung |
+| Apple | iPad Mini 5 | Tablet | **fehlt** – Zeichnung |
 | Apple | iPad 10 (2022 10.9 Zoll) | Tablet | **fehlt** – Zeichnung |
 | Apple | iPad 9 (2021 10.2 Zoll) | Tablet | **fehlt** – Zeichnung |
 | Apple | iPad 8 (2020 10.2 Zoll) | Tablet | **fehlt** – Zeichnung |
 | Apple | iPad 7. Gen | Tablet | **fehlt** – Zeichnung |
 | Apple | iPad 6. Gen | Tablet | **fehlt** – Zeichnung |
 | Apple | iPad 5. Gen | Tablet | **fehlt** – Zeichnung |
-| Apple | Apple Watch Series SE 40/44mm | Smartwatch | **fehlt** – Zeichnung |
+| Apple | Apple Watch Ultra/Ultra 2 | Smartwatch | **fehlt** – Zeichnung |
 | Apple | Apple Watch Series 9 41/45mm | Smartwatch | **fehlt** – Zeichnung |
 | Apple | Apple Watch Series 8 41/45mm | Smartwatch | **fehlt** – Zeichnung |
+| Apple | Apple Watch SE 2. Gen 40/44 mm | Smartwatch | **fehlt** – Zeichnung |
 | Apple | Apple Watch Series 7 41/45mm | Smartwatch | **fehlt** – Zeichnung |
 | Apple | Apple Watch Series 6 40/44mm | Smartwatch | **fehlt** – Zeichnung |
+| Apple | Apple Watch Series SE 40/44mm | Smartwatch | **fehlt** – Zeichnung |
 | Apple | Apple Watch Series 5 40/44 mm | Smartwatch | **fehlt** – Zeichnung |
 | Apple | Apple Watch Series 4 40 mm | Smartwatch | **fehlt** – Zeichnung |
 | Apple | Apple Watch Series 4 44 mm | Smartwatch | **fehlt** – Zeichnung |
 | Apple | Apple Watch Series 3 38/42 mm | Smartwatch | **fehlt** – Zeichnung |
-| Apple | Apple Watch SE 2. Gen 40/44 mm | Smartwatch | **fehlt** – Zeichnung |
 | Apple | Apple Watch Series 2 38 mm | Smartwatch | **fehlt** – Zeichnung |
 | Apple | Apple Watch Series 2 42 mm | Smartwatch | **fehlt** – Zeichnung |
-| Apple | Apple Watch Ultra/Ultra 2 | Smartwatch | **fehlt** – Zeichnung |
 | Apple | Apple Watch Series 1 38 mm | Smartwatch | **fehlt** – Zeichnung |
 | Apple | Apple Watch Series 1 42 mm | Smartwatch | **fehlt** – Zeichnung |
-| Apple | MacBook Pro 17 Zoll A1151 | Laptop | **fehlt** – Zeichnung |
-| Apple | MacBook Pro 17 Zoll A1212 | Laptop | **fehlt** – Zeichnung |
-| Apple | MacBook Pro 17 Zoll A1229 | Laptop | **fehlt** – Zeichnung |
-| Apple | MacBook Pro 17 Zoll A1261 | Laptop | **fehlt** – Zeichnung |
-| Apple | MacBook Pro 17 Zoll A1297 | Laptop | **fehlt** – Zeichnung |
-| Apple | MacBook Pro 16 Zoll A2141 (2019) | Laptop | **fehlt** – Zeichnung |
-| Apple | MacBook Pro 16 Zoll A2485 (2021) | Laptop | **fehlt** – Zeichnung |
 | Apple | MacBook Pro 16 Zoll A2780 (2023) | Laptop | **fehlt** – Zeichnung |
-| Apple | MacBook Pro 15 Zoll A1150 | Laptop | **fehlt** – Zeichnung |
-| Apple | MacBook Pro 15 Zoll A1211 | Laptop | **fehlt** – Zeichnung |
-| Apple | MacBook Pro 15 Zoll A1226 | Laptop | **fehlt** – Zeichnung |
-| Apple | MacBook Pro 15 Zoll A1260 | Laptop | **fehlt** – Zeichnung |
-| Apple | MacBook Pro 15 Zoll A1286 | Laptop | **fehlt** – Zeichnung |
-| Apple | MacBook Pro 15 Zoll A1398 | Laptop | **fehlt** – Zeichnung |
-| Apple | MacBook Pro 15 Zoll A1398 (2015) | Laptop | **fehlt** – Zeichnung |
-| Apple | MacBook Pro 15 Zoll A1707 (2017) | Laptop | **fehlt** – Zeichnung |
-| Apple | MacBook Pro 15 Zoll A1990 (2018) | Laptop | **fehlt** – Zeichnung |
-| Apple | MacBook Pro 14 Zoll A2442 (2021) | Laptop | **fehlt** – Zeichnung |
 | Apple | MacBook Pro 14 Zoll A2779 (2023) | Laptop | **fehlt** – Zeichnung |
-| Apple | MacBook Pro 13 Zoll A1425 | Laptop | **fehlt** – Zeichnung |
+| Apple | MacBook Pro 16 Zoll A2485 (2021) | Laptop | **fehlt** – Zeichnung |
+| Apple | MacBook Pro 14 Zoll A2442 (2021) | Laptop | **fehlt** – Zeichnung |
+| Apple | MacBook Pro 13 Zoll A2338 M1 2020 | Laptop | **fehlt** – Zeichnung |
+| Apple | MacBook Pro 13 Zoll A2289 (2020) | Laptop | **fehlt** – Zeichnung |
+| Apple | MacBook Pro 13 Zoll A2251 (2020) | Laptop | **fehlt** – Zeichnung |
+| Apple | MacBook Pro 13 Zoll A2159 (2019) | Laptop | **fehlt** – Zeichnung |
+| Apple | MacBook Pro 16 Zoll A2141 (2019) | Laptop | **fehlt** – Zeichnung |
+| Apple | MacBook Pro 15 Zoll A1990 (2018) | Laptop | **fehlt** – Zeichnung |
+| Apple | MacBook Pro 13 Zoll A1989 (2018) | Laptop | **fehlt** – Zeichnung |
+| Apple | MacBook Pro 15 Zoll A1707 (2017) | Laptop | **fehlt** – Zeichnung |
+| Apple | MacBook Pro 13 Zoll A1706/A1708 | Laptop | **fehlt** – Zeichnung |
 | Apple | MacBook Pro 13 Zoll A1502 | Laptop | **fehlt** – Zeichnung |
 | Apple | MacBook Pro 13 Zoll A1502 (2015) | Laptop | **fehlt** – Zeichnung |
-| Apple | MacBook Pro 13 Zoll A1706/A1708 | Laptop | **fehlt** – Zeichnung |
-| Apple | MacBook Pro 13 Zoll A1989 (2018) | Laptop | **fehlt** – Zeichnung |
-| Apple | MacBook Pro 13 Zoll A2159 (2019) | Laptop | **fehlt** – Zeichnung |
-| Apple | MacBook Pro 13 Zoll A2251 (2020) | Laptop | **fehlt** – Zeichnung |
-| Apple | MacBook Pro 13 Zoll A2289 (2020) | Laptop | **fehlt** – Zeichnung |
-| Apple | MacBook Pro 13 Zoll A2338 M1 2020 | Laptop | **fehlt** – Zeichnung |
-| Apple | MacBook Air 13 Zoll A1237 | Laptop | **fehlt** – Zeichnung |
-| Apple | MacBook Air 13 Zoll A1304 | Laptop | **fehlt** – Zeichnung |
-| Apple | MacBook Air 13 Zoll A1369 | Laptop | **fehlt** – Zeichnung |
-| Apple | MacBook Air 13 Zoll A1466 | Laptop | **fehlt** – Zeichnung |
-| Apple | MacBook Air 13 Zoll A1932 (2018) | Laptop | **fehlt** – Zeichnung |
-| Apple | MacBook Air 13 Zoll A2179 (2020) | Laptop | **fehlt** – Zeichnung |
-| Apple | MacBook Air 11 Zoll A1370 | Laptop | **fehlt** – Zeichnung |
-| Apple | MacBook Air 11 Zoll A1465 | Laptop | **fehlt** – Zeichnung |
-| Apple | MacBook Air M2 2022 (A2681) | Laptop | **fehlt** – Zeichnung |
+| Apple | MacBook Pro 13 Zoll A1425 | Laptop | **fehlt** – Zeichnung |
+| Apple | MacBook Pro 15 Zoll A1398 | Laptop | **fehlt** – Zeichnung |
+| Apple | MacBook Pro 15 Zoll A1398 (2015) | Laptop | **fehlt** – Zeichnung |
+| Apple | MacBook Pro 17 Zoll A1297 | Laptop | **fehlt** – Zeichnung |
+| Apple | MacBook Pro 15 Zoll A1286 | Laptop | **fehlt** – Zeichnung |
+| Apple | MacBook Pro 17 Zoll A1261 | Laptop | **fehlt** – Zeichnung |
+| Apple | MacBook Pro 15 Zoll A1260 | Laptop | **fehlt** – Zeichnung |
+| Apple | MacBook Pro 17 Zoll A1229 | Laptop | **fehlt** – Zeichnung |
+| Apple | MacBook Pro 15 Zoll A1226 | Laptop | **fehlt** – Zeichnung |
+| Apple | MacBook Pro 17 Zoll A1212 | Laptop | **fehlt** – Zeichnung |
+| Apple | MacBook Pro 15 Zoll A1211 | Laptop | **fehlt** – Zeichnung |
+| Apple | MacBook Pro 17 Zoll A1151 | Laptop | **fehlt** – Zeichnung |
+| Apple | MacBook Pro 15 Zoll A1150 | Laptop | **fehlt** – Zeichnung |
 | Apple | MacBook Air M2 2023 (A2941) | Laptop | **fehlt** – Zeichnung |
+| Apple | MacBook Air M2 2022 (A2681) | Laptop | **fehlt** – Zeichnung |
 | Apple | MacBook Air M1 2020 (A2337) | Laptop | **fehlt** – Zeichnung |
-| Apple | MacBook 13 Zoll A1181 | Laptop | **fehlt** – Zeichnung |
-| Apple | MacBook 13 Zoll A1278 | Laptop | **fehlt** – Zeichnung |
-| Apple | MacBook 13 Zoll A1342 | Laptop | **fehlt** – Zeichnung |
+| Apple | MacBook Air 13 Zoll A2179 (2020) | Laptop | **fehlt** – Zeichnung |
+| Apple | MacBook Air 13 Zoll A1932 (2018) | Laptop | **fehlt** – Zeichnung |
+| Apple | MacBook Air 13 Zoll A1466 | Laptop | **fehlt** – Zeichnung |
+| Apple | MacBook Air 11 Zoll A1465 | Laptop | **fehlt** – Zeichnung |
+| Apple | MacBook Air 11 Zoll A1370 | Laptop | **fehlt** – Zeichnung |
+| Apple | MacBook Air 13 Zoll A1369 | Laptop | **fehlt** – Zeichnung |
+| Apple | MacBook Air 13 Zoll A1304 | Laptop | **fehlt** – Zeichnung |
+| Apple | MacBook Air 13 Zoll A1237 | Laptop | **fehlt** – Zeichnung |
 | Apple | MacBook 12 Zoll A1534 | Laptop | **fehlt** – Zeichnung |
-| Samsung | Galaxy S25 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy S25 Plus | Smartphone | **fehlt** – Zeichnung |
+| Apple | MacBook 13 Zoll A1342 | Laptop | **fehlt** – Zeichnung |
+| Apple | MacBook 13 Zoll A1278 | Laptop | **fehlt** – Zeichnung |
+| Apple | MacBook 13 Zoll A1181 | Laptop | **fehlt** – Zeichnung |
 | Samsung | Galaxy S25 Ultra | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy S24 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy S24 Plus | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy S25 Plus | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy S25 | Smartphone | **fehlt** – Zeichnung |
 | Samsung | Galaxy S24 Ultra | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy S24 Plus | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy S24 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy S23 Ultra | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy S23 Plus | Smartphone | **fehlt** – Zeichnung |
 | Samsung | Galaxy S23 | Smartphone | **fehlt** – Zeichnung |
 | Samsung | Galaxy S23 FE | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy S23 Plus | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy S23 Ultra | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy S22 Ultra | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy S22 Plus | Smartphone | **fehlt** – Zeichnung |
 | Samsung | Galaxy S22 | Smartphone | **fehlt** – Zeichnung |
 | Samsung | Galaxy S22 FE | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy S22 Plus | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy S22 Ultra | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy S21 Ultra | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy S21 Plus | Smartphone | **fehlt** – Zeichnung |
 | Samsung | Galaxy S21 | Smartphone | **fehlt** – Zeichnung |
 | Samsung | Galaxy S21 FE | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy S21 Plus | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy S21 Ultra | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy S20 Ultra | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy S20 Plus | Smartphone | **fehlt** – Zeichnung |
 | Samsung | Galaxy S20 | Smartphone | **fehlt** – Zeichnung |
 | Samsung | Galaxy S20 FE | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy S20 Plus | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy S20 Ultra | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy S10 | Smartphone | **fehlt** – Zeichnung |
 | Samsung | Galaxy S10 Plus | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy S10 | Smartphone | **fehlt** – Zeichnung |
 | Samsung | Galaxy S10e | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy S9 | Smartphone | **fehlt** – Zeichnung |
 | Samsung | Galaxy S9 Plus | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy S8 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy S9 | Smartphone | **fehlt** – Zeichnung |
 | Samsung | Galaxy S8 Plus | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A90 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A80 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A73 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A72 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A71 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A70 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A60 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A55 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A54 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A54 5G | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A53 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A53 5G | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A52 | Smartphone | Produktfoto (CC BY-SA 4.0) |
-| Samsung | Galaxy A52s | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A51 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A50 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A42 5G | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A41 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A40 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A35 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A34 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A33 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A32 5G | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A30 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A25 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A24 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A23 4G | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A23 5G | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A22 4G | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A22 5G | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A21s | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A20 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A20e | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A20s | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A15 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A14 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A14 5G | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A13 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A13 5G | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A12 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A10 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A10s | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A9 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A8 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A7 (2018) | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A6 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A6 Plus | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A5 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A3 (2017) | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy A02s | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy M55 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy M54 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy M53 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy M52 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy M51 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy M33 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy M32 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy M31 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy M31s | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy M30s | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy M23 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy M22 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy M21 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy M20 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy M12 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy M11 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy J7 (2016) | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy J7 (2017) | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy J6 (2018) | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy J6 Plus | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy J5 (2017) | Smartphone | Produktfoto (CC BY-SA 4.0) |
-| Samsung | Galaxy Note 20 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy Note 20 Ultra | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy Note 10 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy Note 10 Plus | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy Note 9 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy Z Flip 7 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy Z Flip 6 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy Z Flip 5 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy Z Flip 4 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy Z Flip 3 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy Z Flip | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy S8 | Smartphone | **fehlt** – Zeichnung |
 | Samsung | Galaxy Z Fold 7 | Smartphone | **fehlt** – Zeichnung |
 | Samsung | Galaxy Z Fold 6 | Smartphone | **fehlt** – Zeichnung |
 | Samsung | Galaxy Z Fold 5 | Smartphone | **fehlt** – Zeichnung |
 | Samsung | Galaxy Z Fold 4 | Smartphone | **fehlt** – Zeichnung |
 | Samsung | Galaxy Z Fold 3 | Smartphone | **fehlt** – Zeichnung |
 | Samsung | Galaxy Z Fold 2 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy Tab A9 | Tablet | **fehlt** – Zeichnung |
-| Samsung | Galaxy Tab A9 Plus | Tablet | **fehlt** – Zeichnung |
-| Samsung | Galaxy Tab S9 | Tablet | **fehlt** – Zeichnung |
-| Samsung | Galaxy Tab S9 FE | Tablet | **fehlt** – Zeichnung |
+| Samsung | Galaxy Z Flip 7 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy Z Flip 6 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy Z Flip 5 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy Z Flip 4 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy Z Flip 3 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy Z Flip | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy Note 20 Ultra | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy Note 20 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy Note 10 Plus | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy Note 10 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy Note 9 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A55 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A35 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A25 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A15 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A54 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A54 5G | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A34 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A24 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A14 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A14 5G | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A73 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A53 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A53 5G | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A33 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A23 5G | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A23 4G | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A13 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A13 5G | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A72 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A52 | Smartphone | Produktfoto (CC BY-SA 4.0) |
+| Samsung | Galaxy A52s | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A42 5G | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A32 5G | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A22 5G | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A22 4G | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A12 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A02s | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A71 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A51 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A41 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A21s | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A90 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A80 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A70 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A60 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A50 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A40 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A30 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A20 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A20s | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A20e | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A10 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A10s | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A9 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A7 (2018) | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A6 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A6 Plus | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A8 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A5 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy A3 (2017) | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy M55 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy M54 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy M53 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy M33 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy M23 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy M52 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy M32 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy M22 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy M12 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy M51 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy M31 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy M31s | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy M21 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy M11 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy M30s | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy M20 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy J6 (2018) | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy J6 Plus | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy J7 (2017) | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy J5 (2017) | Smartphone | Produktfoto (CC BY-SA 4.0) |
+| Samsung | Galaxy J7 (2016) | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy XCover 7 Pro | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy XCover 7 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy Xcover 6 Pro | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy Xcover 5 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy Xcover Pro | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy-Xcover 4s | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy X-Cover 4 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy X-Cover 3 | Smartphone | **fehlt** – Zeichnung |
+| Samsung | Galaxy Tab S9 Ultra | Tablet | **fehlt** – Zeichnung |
 | Samsung | Galaxy Tab S9 FE Plus | Tablet | **fehlt** – Zeichnung |
 | Samsung | Galaxy Tab S9 Plus | Tablet | **fehlt** – Zeichnung |
-| Samsung | Galaxy Tab S9 Ultra | Tablet | **fehlt** – Zeichnung |
-| Samsung | Galaxy Tab A8 | Tablet | **fehlt** – Zeichnung |
-| Samsung | Galaxy Tab S8 | Tablet | **fehlt** – Zeichnung |
-| Samsung | Galaxy Tab S8 Plus | Tablet | **fehlt** – Zeichnung |
+| Samsung | Galaxy Tab S9 | Tablet | **fehlt** – Zeichnung |
+| Samsung | Galaxy Tab S9 FE | Tablet | **fehlt** – Zeichnung |
 | Samsung | Galaxy Tab S8 Ultra | Tablet | **fehlt** – Zeichnung |
+| Samsung | Galaxy Tab S8 Plus | Tablet | **fehlt** – Zeichnung |
+| Samsung | Galaxy Tab S8 | Tablet | **fehlt** – Zeichnung |
+| Samsung | Galaxy Tab S7 Plus | Tablet | **fehlt** – Zeichnung |
 | Samsung | Galaxy Tab S7 | Tablet | **fehlt** – Zeichnung |
 | Samsung | Galaxy Tab S7 FE | Tablet | **fehlt** – Zeichnung |
-| Samsung | Galaxy Tab S7 Plus | Tablet | **fehlt** – Zeichnung |
 | Samsung | Galaxy Tab S6 | Tablet | **fehlt** – Zeichnung |
 | Samsung | Galaxy Tab S6 Lite | Tablet | **fehlt** – Zeichnung |
 | Samsung | Galaxy Tab S5e | Tablet | **fehlt** – Zeichnung |
 | Samsung | Galaxy Tab S4 | Tablet | **fehlt** – Zeichnung |
 | Samsung | Galaxy Tab S3 | Tablet | **fehlt** – Zeichnung |
 | Samsung | Galaxy Tab S2 | Tablet | **fehlt** – Zeichnung |
+| Samsung | Galaxy Tab A9 Plus | Tablet | **fehlt** – Zeichnung |
+| Samsung | Galaxy Tab A9 | Tablet | **fehlt** – Zeichnung |
+| Samsung | Galaxy Tab A8 | Tablet | **fehlt** – Zeichnung |
 | Samsung | Galaxy Tab E | Tablet | **fehlt** – Zeichnung |
 | Samsung | Galaxy Tab S | Tablet | **fehlt** – Zeichnung |
-| Samsung | Galaxy XCover 7 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy XCover 7 Pro | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy Xcover 6 Pro | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy Xcover 5 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy X-Cover 4 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy-Xcover 4s | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy X-Cover 3 | Smartphone | **fehlt** – Zeichnung |
-| Samsung | Galaxy Xcover Pro | Smartphone | **fehlt** – Zeichnung |
-| Huawei | P Smart (2019) | Smartphone | **fehlt** – Zeichnung |
-| Huawei | P Smart Plus (2019) | Smartphone | **fehlt** – Zeichnung |
-| Huawei | P Smart | Smartphone | **fehlt** – Zeichnung |
-| Huawei | P Smart Plus | Smartphone | **fehlt** – Zeichnung |
-| Huawei | P50 | Smartphone | **fehlt** – Zeichnung |
 | Huawei | P50 Pro | Smartphone | **fehlt** – Zeichnung |
+| Huawei | P50 | Smartphone | **fehlt** – Zeichnung |
+| Huawei | P40 Pro Plus | Smartphone | **fehlt** – Zeichnung |
+| Huawei | P40 Pro | Smartphone | **fehlt** – Zeichnung |
 | Huawei | P40 | Smartphone | **fehlt** – Zeichnung |
 | Huawei | P40 Lite | Smartphone | **fehlt** – Zeichnung |
 | Huawei | P40 Lite 5G | Smartphone | **fehlt** – Zeichnung |
 | Huawei | P40 Lite E | Smartphone | **fehlt** – Zeichnung |
-| Huawei | P40 Pro | Smartphone | **fehlt** – Zeichnung |
-| Huawei | P40 Pro Plus | Smartphone | **fehlt** – Zeichnung |
+| Huawei | P30 Pro | Smartphone | **fehlt** – Zeichnung |
 | Huawei | P30 | Smartphone | **fehlt** – Zeichnung |
 | Huawei | P30 Lite | Smartphone | **fehlt** – Zeichnung |
-| Huawei | P30 Pro | Smartphone | **fehlt** – Zeichnung |
+| Huawei | P20 Pro | Smartphone | **fehlt** – Zeichnung |
 | Huawei | P20 | Smartphone | **fehlt** – Zeichnung |
 | Huawei | P20 Lite | Smartphone | **fehlt** – Zeichnung |
-| Huawei | P20 Pro | Smartphone | **fehlt** – Zeichnung |
+| Huawei | P10 Plus | Smartphone | **fehlt** – Zeichnung |
 | Huawei | P10 | Smartphone | **fehlt** – Zeichnung |
 | Huawei | P10 Lite | Smartphone | **fehlt** – Zeichnung |
-| Huawei | P10 Plus | Smartphone | **fehlt** – Zeichnung |
+| Huawei | P9 Plus | Smartphone | **fehlt** – Zeichnung |
 | Huawei | P9 | Smartphone | **fehlt** – Zeichnung |
 | Huawei | P9 Lite | Smartphone | **fehlt** – Zeichnung |
-| Huawei | P9 Plus | Smartphone | **fehlt** – Zeichnung |
-| Huawei | Mate 40 | Smartphone | **fehlt** – Zeichnung |
+| Huawei | P Smart Plus (2019) | Smartphone | **fehlt** – Zeichnung |
+| Huawei | P Smart (2019) | Smartphone | **fehlt** – Zeichnung |
+| Huawei | P Smart Plus | Smartphone | **fehlt** – Zeichnung |
+| Huawei | P Smart | Smartphone | **fehlt** – Zeichnung |
 | Huawei | Mate 40 Pro | Smartphone | **fehlt** – Zeichnung |
+| Huawei | Mate 40 | Smartphone | **fehlt** – Zeichnung |
+| Huawei | Mate 30 Pro | Smartphone | **fehlt** – Zeichnung |
 | Huawei | Mate 30 | Smartphone | **fehlt** – Zeichnung |
 | Huawei | Mate 30 Lite | Smartphone | **fehlt** – Zeichnung |
-| Huawei | Mate 30 Pro | Smartphone | **fehlt** – Zeichnung |
-| Huawei | Mate 20 | Smartphone | **fehlt** – Zeichnung |
-| Huawei | Mate 20 Lite | Smartphone | **fehlt** – Zeichnung |
 | Huawei | Mate 20 Pro | Smartphone | **fehlt** – Zeichnung |
 | Huawei | Mate 20 X | Smartphone | **fehlt** – Zeichnung |
-| Huawei | Mate 10 Lite | Smartphone | **fehlt** – Zeichnung |
+| Huawei | Mate 20 | Smartphone | **fehlt** – Zeichnung |
+| Huawei | Mate 20 Lite | Smartphone | **fehlt** – Zeichnung |
 | Huawei | Mate 10 Pro | Smartphone | **fehlt** – Zeichnung |
+| Huawei | Mate 10 Lite | Smartphone | **fehlt** – Zeichnung |
 | Huawei | Mate S | Smartphone | **fehlt** – Zeichnung |
 | Huawei | Honor 20 | Smartphone | **fehlt** – Zeichnung |
 | Huawei | Honor 20 Lite | Smartphone | **fehlt** – Zeichnung |
 | Huawei | Honor 10 | Smartphone | **fehlt** – Zeichnung |
-| Huawei | Honor 10 Lite | Smartphone | **fehlt** – Zeichnung |
 | Huawei | Honor View 10 | Smartphone | **fehlt** – Zeichnung |
+| Huawei | Honor 10 Lite | Smartphone | **fehlt** – Zeichnung |
+| Huawei | Honor 9X Pro | Smartphone | **fehlt** – Zeichnung |
+| Huawei | Honor 9X | Smartphone | **fehlt** – Zeichnung |
 | Huawei | Honor 9 | Smartphone | **fehlt** – Zeichnung |
 | Huawei | Honor 9 Lite | Smartphone | **fehlt** – Zeichnung |
-| Huawei | Honor 9X | Smartphone | **fehlt** – Zeichnung |
-| Huawei | Honor 9X Pro | Smartphone | **fehlt** – Zeichnung |
-| Huawei | Honor 8 | Smartphone | Produktfoto (CC BY 3.0) |
-| Huawei | Honor 8 Pro | Smartphone | **fehlt** – Zeichnung |
 | Huawei | Honor 8X | Smartphone | **fehlt** – Zeichnung |
+| Huawei | Honor 8 Pro | Smartphone | **fehlt** – Zeichnung |
+| Huawei | Honor 8 | Smartphone | Produktfoto (CC BY 3.0) |
 | Huawei | Honor 7X | Smartphone | **fehlt** – Zeichnung |
-| Xiaomi | Xiaomi 15 | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Xiaomi 15 Ultra | Smartphone | **fehlt** – Zeichnung |
-| Xiaomi | Xiaomi 14 | Smartphone | **fehlt** – Zeichnung |
+| Xiaomi | Xiaomi 15 | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Xiaomi 14 Ultra | Smartphone | **fehlt** – Zeichnung |
-| Xiaomi | Xiaomi 14T | Smartphone | **fehlt** – Zeichnung |
+| Xiaomi | Xiaomi 14 | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Xiaomi 14T Pro | Smartphone | **fehlt** – Zeichnung |
+| Xiaomi | Xiaomi 14T | Smartphone | **fehlt** – Zeichnung |
+| Xiaomi | Xiaomi 13 Ultra | Smartphone | **fehlt** – Zeichnung |
+| Xiaomi | Xiaomi 13 Pro | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Xiaomi 13 | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Xiaomi 13 Lite | Smartphone | **fehlt** – Zeichnung |
-| Xiaomi | Xiaomi 13 Pro | Smartphone | **fehlt** – Zeichnung |
-| Xiaomi | Xiaomi 13 Ultra | Smartphone | **fehlt** – Zeichnung |
-| Xiaomi | Xiaomi 13T | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Xiaomi 13T Pro | Smartphone | **fehlt** – Zeichnung |
-| Xiaomi | Xiaomi 12 5G | Smartphone | **fehlt** – Zeichnung |
-| Xiaomi | Xiaomi 12 Lite 5G | Smartphone | **fehlt** – Zeichnung |
+| Xiaomi | Xiaomi 13T | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Xiaomi 12 Pro 5G | Smartphone | **fehlt** – Zeichnung |
+| Xiaomi | Xiaomi 12 5G | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Xiaomi 12S | Smartphone | **fehlt** – Zeichnung |
-| Xiaomi | Xiaomi 12T | Smartphone | **fehlt** – Zeichnung |
-| Xiaomi | Xiaomi 12T Pro | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Xiaomi 12X | Smartphone | **fehlt** – Zeichnung |
+| Xiaomi | Xiaomi 12 Lite 5G | Smartphone | **fehlt** – Zeichnung |
+| Xiaomi | Xiaomi 12T Pro | Smartphone | **fehlt** – Zeichnung |
+| Xiaomi | Xiaomi 12T | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Xiaomi Mi 11 | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Xiaomi Mi 11 Lite | Smartphone | **fehlt** – Zeichnung |
-| Xiaomi | Xiaomi Mi 11T | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Xiaomi Mi 11T Pro | Smartphone | **fehlt** – Zeichnung |
+| Xiaomi | Xiaomi Mi 11T | Smartphone | **fehlt** – Zeichnung |
+| Xiaomi | Xiaomi Mi 10 Pro 5G | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Xiaomi Mi 10 5G | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Xiaomi Mi 10 Lite 5G | Smartphone | **fehlt** – Zeichnung |
-| Xiaomi | Xiaomi Mi 10 Pro 5G | Smartphone | **fehlt** – Zeichnung |
-| Xiaomi | Xiaomi Mi 10T 5G | Smartphone | **fehlt** – Zeichnung |
-| Xiaomi | Xiaomi Mi 10T Lite 5G | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Xiaomi Mi 10T Pro 5G | Smartphone | **fehlt** – Zeichnung |
+| Xiaomi | Xiaomi Mi 10T Lite 5G | Smartphone | **fehlt** – Zeichnung |
+| Xiaomi | Xiaomi Mi 10T 5G | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Xiaomi Mi 9 | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Xiaomi Mi 9 Lite | Smartphone | **fehlt** – Zeichnung |
-| Xiaomi | Xiaomi Mi 9T | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Xiaomi Mi 9T Pro | Smartphone | **fehlt** – Zeichnung |
+| Xiaomi | Xiaomi Mi 9T | Smartphone | **fehlt** – Zeichnung |
+| Xiaomi | Redmi Note 14 Pro Plus 5G | Smartphone | **fehlt** – Zeichnung |
+| Xiaomi | Redmi Note 14 Pro | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Redmi Note 14 | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Redmi Note 14 5G | Smartphone | **fehlt** – Zeichnung |
-| Xiaomi | Redmi Note 14 Pro | Smartphone | **fehlt** – Zeichnung |
-| Xiaomi | Redmi Note 14 Pro Plus 5G | Smartphone | **fehlt** – Zeichnung |
+| Xiaomi | Redmi Note 13 Pro Plus 5G | Smartphone | **fehlt** – Zeichnung |
+| Xiaomi | Redmi Note 13 Pro | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Redmi Note 13 | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Redmi Note 13 5G | Smartphone | **fehlt** – Zeichnung |
-| Xiaomi | Redmi Note 13 Pro | Smartphone | **fehlt** – Zeichnung |
-| Xiaomi | Redmi Note 13 Pro Plus 5G | Smartphone | **fehlt** – Zeichnung |
+| Xiaomi | Redmi Note 12 Pro Plus 5G | Smartphone | **fehlt** – Zeichnung |
+| Xiaomi | Redmi Note 12 Pro | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Redmi Note 12 | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Redmi Note 12 5G | Smartphone | **fehlt** – Zeichnung |
-| Xiaomi | Redmi Note 12 Pro | Smartphone | **fehlt** – Zeichnung |
-| Xiaomi | Redmi Note 12 Pro Plus 5G | Smartphone | **fehlt** – Zeichnung |
-| Xiaomi | Redmi Note 11 | Smartphone | **fehlt** – Zeichnung |
+| Xiaomi | Redmi Note 11 Pro Plus 5G | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Redmi Note 11 Pro | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Redmi Note 11 Pro 5G | Smartphone | **fehlt** – Zeichnung |
-| Xiaomi | Redmi Note 11 Pro Plus 5G | Smartphone | **fehlt** – Zeichnung |
+| Xiaomi | Redmi Note 11 | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Redmi Note 11S | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Redmi Note 11S 5G | Smartphone | **fehlt** – Zeichnung |
-| Xiaomi | Redmi Note 10 5G | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Redmi Note 10 Pro | Smartphone | **fehlt** – Zeichnung |
+| Xiaomi | Redmi Note 10 5G | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Redmi Note 10S | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Redmi Note 10T | Smartphone | **fehlt** – Zeichnung |
-| Xiaomi | Redmi Note 9 | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Redmi Note 9 Pro | Smartphone | **fehlt** – Zeichnung |
+| Xiaomi | Redmi Note 9 | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Redmi Note 9S | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Redmi Note 9T 5G | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Redmi 15 | Smartphone | **fehlt** – Zeichnung |
@@ -407,97 +407,95 @@ Licence situation checked on 31.10.2026: Samsung Mobile Press allows its materia
 | Xiaomi | Redmi 12 | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Redmi 12C | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Redmi 10 | Smartphone | **fehlt** – Zeichnung |
-| Xiaomi | Redmi 10A | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Redmi 10C | Smartphone | **fehlt** – Zeichnung |
+| Xiaomi | Redmi 10A | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Redmi 9 | Smartphone | **fehlt** – Zeichnung |
+| Xiaomi | Redmi 9T | Smartphone | **fehlt** – Zeichnung |
+| Xiaomi | Redmi 9C | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Redmi 9A | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Redmi 9AT | Smartphone | **fehlt** – Zeichnung |
-| Xiaomi | Redmi 9C | Smartphone | **fehlt** – Zeichnung |
-| Xiaomi | Redmi 9T | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Redmi A3 | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Redmi A2 | Smartphone | **fehlt** – Zeichnung |
-| Xiaomi | Poco F7 | Smartphone | **fehlt** – Zeichnung |
-| Xiaomi | Poco F7 Pro | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Poco F7 Ultra | Smartphone | **fehlt** – Zeichnung |
-| Xiaomi | Poco F6 | Smartphone | **fehlt** – Zeichnung |
+| Xiaomi | Poco F7 Pro | Smartphone | **fehlt** – Zeichnung |
+| Xiaomi | Poco F7 | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Poco F6 Pro | Smartphone | **fehlt** – Zeichnung |
-| Xiaomi | Poco F5 | Smartphone | **fehlt** – Zeichnung |
+| Xiaomi | Poco F6 | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Poco F5 Pro | Smartphone | **fehlt** – Zeichnung |
+| Xiaomi | Poco F5 | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Poco F2 Pro | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Pocophone F1 | Smartphone | **fehlt** – Zeichnung |
-| Xiaomi | Poco X6 | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Poco X6 Pro | Smartphone | **fehlt** – Zeichnung |
-| Xiaomi | Poco X5 | Smartphone | **fehlt** – Zeichnung |
+| Xiaomi | Poco X6 | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Poco X5 Pro | Smartphone | **fehlt** – Zeichnung |
-| Xiaomi | Poco X4 GT | Smartphone | **fehlt** – Zeichnung |
+| Xiaomi | Poco X5 | Smartphone | **fehlt** – Zeichnung |
 | Xiaomi | Poco X4 Pro | Smartphone | **fehlt** – Zeichnung |
-| Google | Pixel 9 | Smartphone | **fehlt** – Zeichnung |
-| Google | Pixel 9 Pro | Smartphone | **fehlt** – Zeichnung |
+| Xiaomi | Poco X4 GT | Smartphone | **fehlt** – Zeichnung |
 | Google | Pixel 9 Pro XL | Smartphone | **fehlt** – Zeichnung |
-| Google | Pixel 8 | Smartphone | **fehlt** – Zeichnung |
+| Google | Pixel 9 Pro | Smartphone | **fehlt** – Zeichnung |
+| Google | Pixel 9 | Smartphone | **fehlt** – Zeichnung |
 | Google | Pixel 8 Pro | Smartphone | **fehlt** – Zeichnung |
-| Google | Pixel 7 | Smartphone | **fehlt** – Zeichnung |
+| Google | Pixel 8 | Smartphone | **fehlt** – Zeichnung |
 | Google | Pixel 7 Pro | Smartphone | **fehlt** – Zeichnung |
-| Google | Pixel 6 | Smartphone | **fehlt** – Zeichnung |
+| Google | Pixel 7 | Smartphone | **fehlt** – Zeichnung |
 | Google | Pixel 6 Pro | Smartphone | **fehlt** – Zeichnung |
+| Google | Pixel 6 | Smartphone | **fehlt** – Zeichnung |
 | Google | Pixel 6a | Smartphone | **fehlt** – Zeichnung |
 | Google | Pixel 5 | Smartphone | **fehlt** – Zeichnung |
 | Google | Pixel 5a | Smartphone | **fehlt** – Zeichnung |
-| Google | Pixel 4 | Smartphone | **fehlt** – Zeichnung |
 | Google | Pixel 4 XL | Smartphone | **fehlt** – Zeichnung |
+| Google | Pixel 4 | Smartphone | **fehlt** – Zeichnung |
 | Google | Pixel 4a 4G | Smartphone | **fehlt** – Zeichnung |
 | Google | Pixel 4a 5G | Smartphone | **fehlt** – Zeichnung |
-| Google | Pixel 3 | Smartphone | **fehlt** – Zeichnung |
 | Google | Pixel 3 XL | Smartphone | **fehlt** – Zeichnung |
-| Google | Pixel 3a | Smartphone | **fehlt** – Zeichnung |
+| Google | Pixel 3 | Smartphone | **fehlt** – Zeichnung |
 | Google | Pixel 3a XL | Smartphone | **fehlt** – Zeichnung |
-| Sony | Xperia 1 | Smartphone | **fehlt** – Zeichnung |
+| Google | Pixel 3a | Smartphone | **fehlt** – Zeichnung |
 | Sony | Xperia 1 II | Smartphone | **fehlt** – Zeichnung |
-| Sony | Xperia 5 | Smartphone | **fehlt** – Zeichnung |
-| Sony | Xperia 5 II | Smartphone | **fehlt** – Zeichnung |
-| Sony | Xperia 5 III | Smartphone | **fehlt** – Zeichnung |
-| Sony | Xperia 5 IV | Smartphone | **fehlt** – Zeichnung |
-| Sony | Xperia 5 V | Smartphone | **fehlt** – Zeichnung |
+| Sony | Xperia 1 | Smartphone | **fehlt** – Zeichnung |
 | Sony | Xperia 5 VI | Smartphone | **fehlt** – Zeichnung |
-| Sony | Xperia 10 II | Smartphone | **fehlt** – Zeichnung |
-| Sony | Xperia 10 III | Smartphone | **fehlt** – Zeichnung |
-| Sony | Xperia 10 IV | Smartphone | **fehlt** – Zeichnung |
-| Sony | Xperia 10 Plus | Smartphone | **fehlt** – Zeichnung |
-| Sony | Xperia 10 V | Smartphone | **fehlt** – Zeichnung |
+| Sony | Xperia 5 V | Smartphone | **fehlt** – Zeichnung |
+| Sony | Xperia 5 IV | Smartphone | **fehlt** – Zeichnung |
+| Sony | Xperia 5 III | Smartphone | **fehlt** – Zeichnung |
+| Sony | Xperia 5 II | Smartphone | **fehlt** – Zeichnung |
+| Sony | Xperia 5 | Smartphone | **fehlt** – Zeichnung |
 | Sony | Xperia 10 VI | Smartphone | **fehlt** – Zeichnung |
+| Sony | Xperia 10 V | Smartphone | **fehlt** – Zeichnung |
+| Sony | Xperia 10 IV | Smartphone | **fehlt** – Zeichnung |
+| Sony | Xperia 10 III | Smartphone | **fehlt** – Zeichnung |
+| Sony | Xperia 10 II | Smartphone | **fehlt** – Zeichnung |
+| Sony | Xperia 10 Plus | Smartphone | **fehlt** – Zeichnung |
+| Sony | Sony Xperia XZ3 | Smartphone | **fehlt** – Zeichnung |
+| Sony | Sony Xperia XZ2 Premium | Smartphone | **fehlt** – Zeichnung |
+| Sony | Sony Xperia XZ2 Compact | Smartphone | **fehlt** – Zeichnung |
+| Sony | Sony Xperia XZ2 | Smartphone | **fehlt** – Zeichnung |
+| Sony | Sony Xperia XA2 Ultra | Smartphone | **fehlt** – Zeichnung |
+| Sony | Sony Xperia XA2 | Smartphone | **fehlt** – Zeichnung |
+| Sony | Sony Xperia XZ1 Compact | Smartphone | **fehlt** – Zeichnung |
+| Sony | Sony Xperia XZ1 | Smartphone | **fehlt** – Zeichnung |
+| Sony | Sony Xperia XA1 Ultra | Smartphone | **fehlt** – Zeichnung |
+| Sony | Sony Xperia XZs | Smartphone | **fehlt** – Zeichnung |
 | Sony | Sony Xperia XZ Dual (F8332) | Smartphone | **fehlt** – Zeichnung |
 | Sony | Sony Xperia XZ (F8331) | Smartphone | **fehlt** – Zeichnung |
-| Sony | Sony Xperia XZ3 | Smartphone | **fehlt** – Zeichnung |
-| Sony | Sony Xperia XA2 | Smartphone | **fehlt** – Zeichnung |
-| Sony | Sony Xperia XA2 Ultra | Smartphone | **fehlt** – Zeichnung |
-| Sony | Sony Xperia XZ2 | Smartphone | **fehlt** – Zeichnung |
-| Sony | Sony Xperia XZ2 Compact | Smartphone | **fehlt** – Zeichnung |
-| Sony | Sony Xperia XZ2 Premium | Smartphone | **fehlt** – Zeichnung |
-| Sony | Sony Xperia XA1 Ultra | Smartphone | **fehlt** – Zeichnung |
-| Sony | Sony Xperia XZ1 | Smartphone | **fehlt** – Zeichnung |
-| Sony | Sony Xperia XZ1 Compact | Smartphone | **fehlt** – Zeichnung |
-| Sony | Sony Xperia X | Smartphone | **fehlt** – Zeichnung |
 | Sony | Sony Xperia X Compact | Smartphone | **fehlt** – Zeichnung |
-| Sony | Sony Xperia X Performance | Smartphone | **fehlt** – Zeichnung |
-| Sony | Sony Xperia XA | Smartphone | **fehlt** – Zeichnung |
 | Sony | Sony Xperia XA Ultra | Smartphone | **fehlt** – Zeichnung |
-| Sony | Sony Xperia XZs | Smartphone | **fehlt** – Zeichnung |
+| Sony | Sony Xperia X Performance | Smartphone | **fehlt** – Zeichnung |
+| Sony | Sony Xperia X | Smartphone | **fehlt** – Zeichnung |
+| Sony | Sony Xperia XA | Smartphone | **fehlt** – Zeichnung |
 | OnePlus | OnePlus 12 | Smartphone | **fehlt** – Zeichnung |
 | OnePlus | OnePlus 12R | Smartphone | **fehlt** – Zeichnung |
 | OnePlus | OnePlus 11 | Smartphone | **fehlt** – Zeichnung |
 | OnePlus | OnePlus 10 Pro | Smartphone | **fehlt** – Zeichnung |
 | OnePlus | OnePlus 10T | Smartphone | **fehlt** – Zeichnung |
-| OnePlus | OnePlus 9 | Smartphone | **fehlt** – Zeichnung |
 | OnePlus | OnePlus 9 Pro | Smartphone | **fehlt** – Zeichnung |
-| OnePlus | OnePlus 8 | Smartphone | **fehlt** – Zeichnung |
+| OnePlus | OnePlus 9 | Smartphone | **fehlt** – Zeichnung |
 | OnePlus | OnePlus 8 Pro | Smartphone | **fehlt** – Zeichnung |
+| OnePlus | OnePlus 8 | Smartphone | **fehlt** – Zeichnung |
 | OnePlus | OnePlus 8T | Smartphone | **fehlt** – Zeichnung |
-| OnePlus | OnePlus 7 | Smartphone | **fehlt** – Zeichnung |
 | OnePlus | OnePlus 7 Pro | Smartphone | Produktfoto (CC BY-SA 4.0) |
+| OnePlus | OnePlus 7 | Smartphone | **fehlt** – Zeichnung |
 | OnePlus | OnePlus 6 | Smartphone | **fehlt** – Zeichnung |
 | OnePlus | OnePlus 6T | Smartphone | **fehlt** – Zeichnung |
-| OnePlus | OnePlus Nord N100 | Smartphone | **fehlt** – Zeichnung |
-| OnePlus | OnePlus Nord N10 | Smartphone | **fehlt** – Zeichnung |
 | OnePlus | OnePlus Nord 4 | Smartphone | **fehlt** – Zeichnung |
 | OnePlus | OnePlus Nord CE 4 Lite | Smartphone | **fehlt** – Zeichnung |
 | OnePlus | OnePlus Nord 3 | Smartphone | **fehlt** – Zeichnung |
@@ -506,4 +504,6 @@ Licence situation checked on 31.10.2026: Samsung Mobile Press allows its materia
 | OnePlus | OnePlus Nord CE 2 | Smartphone | **fehlt** – Zeichnung |
 | OnePlus | OnePlus Nord | Smartphone | **fehlt** – Zeichnung |
 | OnePlus | OnePlus Nord CE | Smartphone | **fehlt** – Zeichnung |
+| OnePlus | OnePlus Nord N100 | Smartphone | **fehlt** – Zeichnung |
+| OnePlus | OnePlus Nord N10 | Smartphone | **fehlt** – Zeichnung |
 | OnePlus | OnePlus Open | Smartphone | **fehlt** – Zeichnung |

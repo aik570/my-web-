@@ -18,6 +18,11 @@ export default function () {
     throw new Error(`Preisliste ungültig (${errors.length} Fehler):\n- ${errors.join('\n- ')}`);
   }
   orderNewestFirst(brands);
+  // Single source for the error analysis (Befund): its price comes from the CMS setting
+  // „Fehleranalyse" (site.json), never from the per-model rows.
+  const fee = readJson(new URL('./site.json', import.meta.url)).diagnosisFee?.amount;
+  if (Number.isFinite(Number(fee))) for (const b of brands) for (const m of b.models) for (const r of m.repairs)
+    if (r.service === 'fehleranalyse') Object.assign(r, { price: Number(fee), onRequest: false });
   if (isDemo) console.warn('[prices] Keine offizielle Preisliste – Entwicklungsdaten werden angezeigt (nur Vorschau).');
   // One entry per model for the model offer pages (/preise/<marke>/<modell>/).
   const models = brands.flatMap((b) => b.models.map((m) => ({ ...m, brand: b.brand, brandSlug: b.slug })));

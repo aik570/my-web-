@@ -77,7 +77,7 @@
     "lede": "Professionelle Reparatur mit 3 Monaten Garantie – transparent, schnell und zuverlässig.",
     "items": [
       {
-        "title": "Professionelle Fehleranalyse ab 25 €",
+        "title": "Professionelle Fehleranalyse ab {befund}",
         "text": "Wir prüfen Ihr Gerät gründlich und sagen Ihnen genau, was defekt ist. Die Diagnose erfolgt schnell, transparent und wird bei einer Reparatur verrechnet."
       },
       {
@@ -114,5 +114,5 @@
       }
     ]
   },
-  "note": "Den endgültigen Preis bestätigen wir Ihnen vor jeder Reparatur. Fehleranalyse ab {fee}, wird bei einer Reparatur verrechnet. Die Garantie gilt zusätzlich zu Ihren gesetzlichen Gewährleistungsrechten."
+  "note": "Den endgültigen Preis bestätigen wir Ihnen vor jeder Reparatur. Fehleranalyse ab {befund}, wird bei einer Reparatur verrechnet. Die Garantie gilt zusätzlich zu Ihren gesetzlichen Gewährleistungsrechten."
 }

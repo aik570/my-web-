@@ -51,6 +51,15 @@ def isolate(path):
     flat = Image.composite(flat, Image.new('RGB', flat.size, (255, 255, 255)), soft)
     return flat.crop(box)
 
+def names():
+    """brand/catalogue-id -> model name (the CMS stores the name it offers in its model picker)."""
+    cat = ROOT / '_site/preise/katalog.json'
+    if not cat.exists(): return {}
+    c = json.loads(cat.read_text())
+    return {f"{b['slug']}/{m['slug']}": m['name'] for b in c['brands'] for m in b['models']}
+
+NAMES = names()
+
 def main(manifest):
     OUT.mkdir(parents=True, exist_ok=True)
     data = json.loads(DATA.read_text())
@@ -61,7 +70,7 @@ def main(manifest):
         dev = dev.resize((round(dev.width * s), round(dev.height * s)), Image.LANCZOS)
         canvas = Image.new('RGB', (W, H), (255, 255, 255)); canvas.paste(dev, ((W - dev.width) // 2, (H - dev.height) // 2))
         name = e['model'].replace('/', '-') + '.webp'; canvas.save(OUT / name, 'WEBP', quality=86, method=6)
-        entry = {'model': e['model'], 'image': '/assets/img/produkte/' + name, 'license': e['license'], 'proof': e.get('proof', ''),
+        entry = {'model': NAMES.get(e['model'], e['model']), 'image': '/assets/img/produkte/' + name, 'license': e['license'], 'proof': e.get('proof', ''),
                                       'credit': (e['credit'] + ' (bearbeitet)') if e.get('credit') and e['license'].upper().startswith('CC') else e.get('credit', ''), 'licenseUrl': e.get('licenseUrl', ''), 'source': e.get('source', '')}
         print('OK', e['model'])
     data['photos'].sort(key=lambda p: p['model'])

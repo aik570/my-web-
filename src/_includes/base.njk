@@ -73,9 +73,10 @@
 {%- block main %}{{ content | safe }}{% endblock %}
 </main>
 
+{% include "partials/reviews.njk" %}
 {% include "partials/footer.njk" %}
 
-<script type="application/json" id="hc-data">{{ { hours: site.hours, closures: site.closures, publicHolidays: site.publicHolidays } | json | safe }}</script>
+<script type="application/json" id="hc-data">{{ { hours: site.hours, closures: site.closures, publicHolidays: site.publicHolidays, texts: site.statusTexts } | json | safe }}</script>
 <script src="/assets/js/main.js" defer></script>
 {%- block scripts %}{% endblock %}
 </body>

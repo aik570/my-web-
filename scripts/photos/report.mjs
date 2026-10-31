@@ -8,8 +8,9 @@ import fs from 'node:fs';
 import prices from '../../src/_data/prices.js';
 
 const list = JSON.parse(fs.readFileSync('src/_data/modelImages.json', 'utf8')).photos;
-const imgs = { models: Object.fromEntries(list.map((p) => [p.model, p])) };
 const data = await prices();
+const byName = Object.fromEntries(data.models.map((m) => [m.name, `${m.brandSlug}/${m.slug}`]));
+const imgs = { models: Object.fromEntries(list.map((p) => [byName[p.model] || p.model, p])) };
 const rows = []; const count = { exact: 0, none: 0 };
 for (const b of data.brands) {
   for (const m of b.models) {

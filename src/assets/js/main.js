@@ -287,6 +287,8 @@
   var DATA = {};
   try { DATA = JSON.parse(document.getElementById('hc-data').textContent); } catch (e) {}
   var HOURS = DATA.hours || [];
+  var T = DATA.texts || {};   // status wording from the CMS (site.json › statusTexts)
+  var tx = function (k, d) { return T[k] || d; };
   var isOpen = null;
 
   var toMin = function (hhmm) { var p = String(hhmm || '').split(':'); return p.length === 2 ? +p[0] * 60 + +p[1] : null; };
@@ -352,15 +354,15 @@
     var text, short, todayHours;
     if (plan.unknown) {
       isOpen = null;
-      text = plan.label + ' · bitte vorher anrufen';
-      short = [plan.label, 'bitte anrufen'];
+      text = plan.label + ' · ' + tx('holidayLong', 'bitte vorher anrufen');
+      short = [plan.label, tx('holidayShort', 'bitte anrufen')];
       todayHours = 'Feiertag';
     } else {
       isOpen = !plan.closed && now.min >= plan.from && now.min < plan.to;
       todayHours = plan.closed ? 'geschlossen' : fmt(plan.from) + '–' + fmt(plan.to);
       if (isOpen) {
-        text = 'Jetzt geöffnet';
-        short = ['Geöffnet', 'bis ' + fmt(plan.to)];
+        text = tx('open', 'Jetzt geöffnet');
+        short = [tx('openShort', 'Geöffnet'), tx('until', 'bis') + ' ' + fmt(plan.to)];
       } else {
         // next opening within two weeks
         var next = '';
@@ -370,8 +372,8 @@
           if (i === 0 && now.min >= p.from) continue;
           next = (i === 0 ? 'heute' : i === 1 ? 'morgen' : WEEKDAY[new Date(now.date + i * 864e5).getUTCDay()]) + ' ' + fmt(p.from);
         }
-        text = (plan.label ? plan.label + ' · ' : 'Geschlossen · ') + (next ? 'ab ' + next : 'Öffnungszeiten folgen');
-        short = ['Geschlossen', next ? 'ab ' + next : ''];
+        text = (plan.label ? plan.label + ' · ' : tx('closed', 'Geschlossen') + ' · ') + (next ? tx('from', 'ab') + ' ' + next : tx('noHours', 'Öffnungszeiten folgen'));
+        short = [tx('closed', 'Geschlossen'), next ? tx('from', 'ab') + ' ' + next : ''];
       }
     }
 

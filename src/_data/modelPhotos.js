@@ -6,10 +6,14 @@ import prices from './prices.js';
 
 export default function () {
   const list = JSON.parse(fs.readFileSync(new URL('./modelImages.json', import.meta.url))).photos || [];
-  const known = new Set(prices().models.map((m) => `${m.brandSlug}/${m.slug}`));
+  const models = prices().models;
+  const known = new Set(models.map((m) => `${m.brandSlug}/${m.slug}`));
+  // the CMS stores the model name (chosen from the catalogue); scripts may store brand/catalogue-id
+  const byName = new Map(models.map((m) => [m.name, `${m.brandSlug}/${m.slug}`]));
   const map = {};
-  for (const p of list) {
+  for (let p of list) {
     if (!p || !p.model || !p.image) continue;
+    p = { ...p, model: byName.get(p.model) || p.model };
     if (!known.has(p.model)) { console.warn(`[photos] ${p.model}: kein Modell mit dieser Katalog-ID – Foto wird nicht angezeigt`); continue; }
     if (!fs.existsSync(new URL('../' + p.image.replace(/^\//, ''), import.meta.url))) { console.warn(`[photos] ${p.model}: Datei ${p.image} fehlt`); continue; }
     if (!p.license) { console.warn(`[photos] ${p.model}: keine Lizenz eingetragen – Foto wird nicht angezeigt`); continue; }

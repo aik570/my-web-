@@ -138,8 +138,21 @@ collections:
             label: Fehleranalyse
             widget: object
             fields:
-              - { name: amount, label: Preis in €, widget: number, value_type: float, min: 0 }
+              - { name: amount, label: Preis in €, widget: number, value_type: float, min: 0, hint: 'Gilt überall: Preisrechner, Modellseiten (Zeile Fehleranalyse), Leistungen, FAQ, Hinweise. Im Text „{befund}" schreiben, um den Betrag einzusetzen.' }
               - { name: text, label: Text, widget: text }
+          - name: statusTexts
+            label: Texte der Öffnungsanzeige (Kopfzeile)
+            widget: object
+            collapsed: true
+            fields:
+              - { name: open, label: Geöffnet (lang), widget: string }
+              - { name: openShort, label: Geöffnet (kurz), widget: string }
+              - { name: until, label: „bis", widget: string }
+              - { name: closed, label: Geschlossen, widget: string }
+              - { name: from, label: „ab", widget: string }
+              - { name: noHours, label: Keine Zeiten bekannt, widget: string }
+              - { name: holidayLong, label: Feiertag (lang), widget: string }
+              - { name: holidayShort, label: Feiertag (kurz), widget: string }
           - name: seo
             label: Startseite – Suchmaschinen
             widget: object
@@ -190,11 +203,18 @@ collections:
             label: Fotos (ein Eintrag pro Modell)
             label_singular: Foto
             widget: list
-            summary: '{{fields.model}} – {{fields.license}}'
+            summary: '{{fields.model}} · {{fields.license}}'
             hint: 'Nur saubere Produktfotos (Gerät freigestellt auf Weiß, ganz sichtbar, keine Hände) mit Lizenz für die gewerbliche Nutzung auf dieser Website. Viele Fotos auf einmal: scripts/photos/normalize.py (siehe docs/CMS.md).'
             fields:
-              - { name: model, label: Modell (Hersteller/Katalog-ID), widget: string, pattern: ['^[a-z0-9-]+/[a-z0-9-]+$', 'z. B. apple/iphone-16-pro-max'], hint: 'Hersteller-Kürzel / Katalog-ID, z. B. apple/iphone-16-pro-max (steht in der Adresse der Modellseite)' }
-              - { name: image, label: Foto, widget: image, media_folder: /src/assets/img/produkte, public_folder: /assets/img/produkte, hint: 'Hochformat 3:4, Gerät mittig auf weißem Hintergrund (am besten mit dem Skript vorbereitet)' }
+              - name: model
+                label: Modell
+                widget: relation
+                collection: preise
+                value_field: 'models.*.name'
+                search_fields: ['models.*.name']
+                display_fields: ['models.*.name']
+                hint: 'Modell aus dem Preiskatalog wählen (Tippen zum Suchen, z. B. „16 Pro Max")'
+              - { name: image, label: Foto, widget: image, media_folder: /src/assets/img/produkte, public_folder: /assets/img/produkte, hint: 'Hochladen oder ersetzen. Freigestelltes Produktfoto auf Weiß, Hochformat (z. B. 600 × 800). Erscheint nach dem Veröffentlichen im Preisrechner.' }
               - { name: license, label: Lizenz, widget: string, hint: 'z. B. „iStock Standard (nicht redaktionell)", „Genehmigung Samsung vom …", „CC BY-SA 4.0"' }
               - { name: proof, label: Nachweis, widget: string, required: false, hint: 'Rechnungs- oder Genehmigungsnummer (wird nicht angezeigt)' }
               - { name: credit, label: Bildnachweis (angezeigt), widget: string, required: false, hint: 'Nur wenn die Lizenz eine Namensnennung verlangt' }
