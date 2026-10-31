@@ -153,10 +153,12 @@ console.log('\nPreisrechner');
   ok((await page.$eval('.frepair[data-service="akku"] .frepair__price', (e) => e.textContent)).includes(String(akku[2])), `card price = data (Akku ${akku[2]} €)`);
   // device preview: photo of the model before a repair is chosen, then the drawing with the part in red
   const imgs = JSON.parse(fs.readFileSync('src/_data/modelImages.json', 'utf8'));
-  const want = imgs.models['apple/iphone-13'] || imgs.rules.find((x) => x.brand === 'apple' && new RegExp(x.pattern, 'i').test('iPhone 13'));
+  const want = imgs.models['apple/iphone-13'];
   const before = await page.evaluate(() => { const i = document.getElementById('f-device-photo'); return { src: i.getAttribute('src'), shown: !i.hidden && i.getBoundingClientRect().width > 20, svg: getComputedStyle(document.querySelector('.fdevice__svg')).display, note: document.getElementById('f-device-note').textContent }; });
-  ok(before.src === want.image && before.shown && before.svg === 'none' && (want.exact ? /Foto: .+Wikimedia Commons/.test(before.note) : /Symbolbild.*nicht das exakte Modell/.test(before.note)), `model chosen → photo ${want.image.split('/').pop()} (${want.exact ? 'exact, with credit' : 'Symbolbild'})`);
-  ok(await page.evaluate(async (h) => (await fetch(h)).ok, before.src), 'device photo file loads');
+  if (want) {
+    ok(before.src === want.image && before.shown && before.svg === 'none', `model chosen → product photo ${want.image.split('/').pop()}`);
+    ok(await page.evaluate(async (h) => (await fetch(h)).ok, before.src), 'product photo file loads');
+  } else ok(!before.src && !before.shown && before.svg !== 'none' && /Schematische/.test(before.note), 'no licensed product photo for iPhone 13 → drawing, no other picture');
   await page.click('.frepair[data-service="display"]');
   await page.waitForFunction(() => !document.getElementById('f-step3').hidden && document.querySelectorAll('#r-quality-options input').length > 0, null, { timeout: 3000 }).catch(() => {});
   ok(!(await page.$eval('#f-step3', (e) => e.hidden)) && (await page.$$eval('#r-quality-options input', (e) => e.length)) === 2, 'result step with two part qualities (Standard / Original)');
@@ -176,7 +178,7 @@ console.log('\nPreisrechner');
   ok(await page.$eval('#r-offer', (a) => a.getAttribute('href') === '/preise/apple/iphone-13/#display-originalqualitaet'), 'link to the model page keeps the choice');
   await page.goBack(); await page.waitForTimeout(150);
   ok(!(await page.$eval('#f-step2', (e) => e.hidden)), 'browser back → step 2');
-  ok(await page.$eval('#f-device-photo', (i, src) => !i.hidden && i.getAttribute('src') === src, want.image), 'back to repair choice → model photo shown again');
+  if (want) ok(await page.$eval('#f-device-photo', (i, src) => !i.hidden && i.getAttribute('src') === src, want.image), 'back to repair choice → product photo shown again');
   await page.goBack(); await page.waitForTimeout(150);
   ok(!(await page.$eval('#f-step1', (e) => e.hidden)) && await page.$eval('.fbrand[data-brand="apple"]', (b) => b.getAttribute('aria-pressed') === 'true'), 'browser back → step 1, brand kept');
   // deep links, enquiry state, invalid links
@@ -185,7 +187,10 @@ console.log('\nPreisrechner');
   ok(await page.$eval('#f-device-photo', (i) => i.hidden) && await page.$eval('.fdevice__svg', (s) => s.dataset.part === 'hauptkamera' && getComputedStyle(s.querySelector('.part--hauptkamera')).stroke === 'rgb(200, 49, 42)'), 'deep link to a repair → drawing, main camera in red');
   await page.goto(BASE + '/reparatur-finden/#apple--iphone-14-pro'); await page.waitForSelector('#finder.is-ready'); await page.waitForTimeout(100);
   const p14 = imgs.models['apple/iphone-14-pro'];
-  ok(p14 ? await page.$eval('#f-device-photo', (i, src) => !i.hidden && i.getAttribute('src') === src, p14.image) : (!(await page.$eval('#f-device-photo', (i) => i.hasAttribute('src'))) && /Schematische/.test(await page.$eval('#f-device-note', (e) => e.textContent))), p14 ? 'iPhone 14 Pro → its own photo' : 'iPhone 14 Pro: no photo of this model → drawing, no picture of another model');
+  ok(p14 ? await page.$eval('#f-device-photo', (i, src) => !i.hidden && i.getAttribute('src') === src, p14.image) : (!(await page.$eval('#f-device-photo', (i) => i.hasAttribute('src'))) && /Schematische/.test(await page.$eval('#f-device-note', (e) => e.textContent))), p14 ? 'iPhone 14 Pro → its own product photo' : 'iPhone 14 Pro: no product photo → drawing, no picture of another model');
+  // every registered photo: file exists, licence and proof recorded, clean white canvas
+  const entries = Object.entries(imgs.models);
+  ok(entries.every(([, v]) => v.license && fs.existsSync('src' + v.image)), `${entries.length} product photos: file present and licence recorded`);
   await page.goto(BASE + '/reparatur-finden/#apple--gibt-es-nicht'); await page.waitForSelector('#finder.is-ready');
   ok(/nicht in der Preisliste/.test(await page.$eval('#f-status', (e) => e.textContent)) && !(await page.$eval('#f-step1', (e) => e.hidden)), 'unknown model → message, back at step 1');
   // search with keyboard

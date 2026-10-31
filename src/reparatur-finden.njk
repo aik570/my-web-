@@ -109,7 +109,7 @@ seo:
 
     {#- Device visual: shows the chosen device type and highlights the part concerned -#}
     <aside class="fdevice">
-      {#- photo of the chosen model (modelImages.json): shown until a repair is chosen; src is set by finder.js, so nothing loads up front -#}
+      {#- product photo of the chosen model (modelImages.json): shown until a repair is chosen; src is set by finder.js, so nothing loads up front -#}
       <img class="fdevice__photo" id="f-device-photo" alt="" width="240" height="320" decoding="async" hidden>
       <svg class="fdevice__svg" viewBox="0 0 220 300" data-cat="Smartphone" aria-hidden="true">
         <g class="dv dv--phone">
@@ -138,6 +138,6 @@ seo:
 {% endblock %}
 
 {% block scripts %}
-<script type="application/json" id="finder-data">{{ { types: prices.types, phone: site.phone, email: site.email, whatsapp: site.whatsapp, status: pricesMeta.status, isDemo: prices.isDemo, catalogue: '/preise/katalog.json', images: modelImages.rules, photos: modelImages.models } | json | safe }}</script>
+<script type="application/json" id="finder-data">{{ { types: prices.types, phone: site.phone, email: site.email, whatsapp: site.whatsapp, status: pricesMeta.status, isDemo: prices.isDemo, catalogue: '/preise/katalog.json', photos: modelImages.models } | json | safe }}</script>
 <script src="/assets/js/finder.js" defer></script>
 {% endblock %}

@@ -109,14 +109,9 @@
     btn(3).disabled = !r;
   }
 
-  // Photo of the exact model (modelImages.json "models"), else the first family rule whose brand and
-  // pattern match (labelled "Symbolbild"); never a picture of another model generation
+  // Product photo of exactly this model (modelImages.json "models"); no picture of another model
   function imageFor(b, m) {
-    var exact = (D.photos || {})[b.slug + '/' + m.slug];
-    if (exact) return exact;
-    return (D.images || []).filter(function (x) {
-      try { return x.brand === b.slug && new RegExp(x.pattern, 'i').test(m.name); } catch (e) { return false; }
-    })[0];
+    return (D.photos || {})[b.slug + '/' + m.slug];
   }
 
   // Before a repair is chosen: the model's photo. After: the drawing with the part in red.
@@ -125,16 +120,17 @@
     svg.setAttribute('data-cat', (m && m.category) || 'Smartphone');
     svg.setAttribute('data-part', r ? r.service : '');
     var pic = m && imageFor(b, m), show = !!pic && !r;
-    if (pic && img.getAttribute('src') !== pic.image) { img.src = pic.image; img.alt = pic.exact ? 'Foto: ' + b.brand + ' ' + m.name : pic.label; }
+    if (pic && img.getAttribute('src') !== pic.image) { img.src = pic.image; img.alt = 'Produktfoto ' + b.brand + ' ' + m.name; }
     if (!pic) { img.removeAttribute('src'); img.alt = ''; }
     img.hidden = !show;
     svg.style.display = show ? 'none' : '';
     root.querySelector('.fdevice').toggleAttribute('data-model', !!m);
     root.querySelector('.fdevice').toggleAttribute('data-photo', show);
-    if (show && pic.exact) {
-      note.innerHTML = 'Foto: ' + esc(pic.author) + ', <a href="' + esc(pic.licenseUrl) + '" target="_blank" rel="noopener">' + esc(pic.license) + '</a>, ' +
-        '<a href="' + esc(pic.source) + '" target="_blank" rel="noopener">Wikimedia Commons</a>';
-    } else note.textContent = show ? pic.label + ' – nicht das exakte Modell' : (m ? 'Schematische Darstellung' : '');
+    // credit only where the licence asks for it (CC BY / BY-SA); purchased stock and permitted press images carry their own notice if any
+    if (show && pic.credit) {
+      note.innerHTML = 'Foto: ' + esc(pic.credit) + (pic.license ? ', ' + (pic.licenseUrl ? '<a href="' + esc(pic.licenseUrl) + '" target="_blank" rel="noopener">' + esc(pic.license) + '</a>' : esc(pic.license)) : '') +
+        (pic.source ? ', <a href="' + esc(pic.source) + '" target="_blank" rel="noopener">Quelle</a>' : '');
+    } else note.textContent = show ? '' : (m ? 'Schematische Darstellung' : '');
     $('f-device-name').textContent = m ? b.brand + ' ' + m.name : (b ? b.brand : 'Kein Gerät gewählt');
     $('f-device-part').textContent = r ? name(r) : '';
   }

@@ -1,0 +1,53 @@
+"""Turn licensed product photos into the uniform repair-finder format and register them.
+
+    python3 scripts/photos/normalize.py scripts/photos/manifest.json
+
+manifest.json lists one entry per catalogue model:
+  { "model": "apple/iphone-16-pro-max",        # brand/slug from the catalogue
+    "file": "incoming/iphone-16-pro-max.png",   # original: device isolated on white/light or transparent background
+    "license": "iStock Standard",               # or "CC BY-SA 4.0", "Samsung permission 2026-11-02", ...
+    "proof": "iStock order 123456",             # invoice / permission reference (kept in the data, not shown)
+    "credit": "",                               # shown under the photo only when the licence requires it
+    "licenseUrl": "", "source": "" }
+
+Each image is cropped to the device, centred on a white 600 × 800 canvas with equal margins
+and saved as WebP in src/assets/img/produkte/. Images whose background is not light and even
+are rejected: the finder shows only clean product shots.
+"""
+import json, sys, pathlib
+from PIL import Image, ImageChops
+
+ROOT = pathlib.Path(__file__).resolve().parents[2]
+OUT = ROOT / 'src/assets/img/produkte'
+DATA = ROOT / 'src/_data/modelImages.json'
+W, H, PAD = 600, 800, 0.08
+
+def isolate(path):
+    im = Image.open(path).convert('RGBA')
+    flat = Image.new('RGB', im.size, (255, 255, 255)); flat.paste(im, mask=im.getchannel('A'))
+    w, h = flat.size; px = flat.load()
+    edge = [px[x, y] for x in range(0, w, max(1, w // 60)) for y in (0, h - 1)] + [px[x, y] for y in range(0, h, max(1, h // 60)) for x in (0, w - 1)]
+    light = sum(1 for p in edge if min(p) > 225) / len(edge)
+    if light < 0.95: raise ValueError(f'background not light and even ({light:.0%} of the edge)')
+    mask = ImageChops.difference(flat, Image.new('RGB', flat.size, (255, 255, 255))).convert('L').point(lambda v: 255 if v > 18 else 0)
+    box = mask.getbbox()
+    if not box or min(box[0], box[1], w - box[2], h - box[3]) < 2: raise ValueError('device touches the edge (cropped?)')
+    return flat.crop(box)
+
+def main(manifest):
+    OUT.mkdir(parents=True, exist_ok=True)
+    data = json.loads(DATA.read_text())
+    for e in json.loads(pathlib.Path(manifest).read_text()):
+        try: dev = isolate(ROOT / e['file'] if not pathlib.Path(e['file']).is_absolute() else e['file'])
+        except ValueError as err: print('SKIP', e['model'], err); continue
+        s = min(W * (1 - 2 * PAD) / dev.width, H * (1 - 2 * PAD) / dev.height)
+        dev = dev.resize((round(dev.width * s), round(dev.height * s)), Image.LANCZOS)
+        canvas = Image.new('RGB', (W, H), (255, 255, 255)); canvas.paste(dev, ((W - dev.width) // 2, (H - dev.height) // 2))
+        name = e['model'].replace('/', '-') + '.webp'; canvas.save(OUT / name, 'WEBP', quality=86, method=6)
+        data['models'][e['model']] = {'image': '/assets/img/produkte/' + name, 'exact': True, 'license': e['license'], 'proof': e.get('proof', ''),
+                                      'credit': e.get('credit', ''), 'licenseUrl': e.get('licenseUrl', ''), 'source': e.get('source', '')}
+        print('OK', e['model'])
+    data['models'] = dict(sorted(data['models'].items()))
+    DATA.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
+
+if __name__ == '__main__': main(sys.argv[1])
