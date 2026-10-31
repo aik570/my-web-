@@ -17,6 +17,7 @@ Updated: 31.10.2026, handover round (reviews, header, model order, CMS, calculat
 | 7 Warranty | 3 Monate / Wasserschaden ohne Garantie everywhere; statutory rights sentence; editable in CMS (repair types, services note, FAQ, home). No 6-/12-month warranty claims left (production test). Legal pages contain no warranty wording. Wording flagged for legal review |
 | 8 Hours | Sa 10:00–18:00, Sunday closed (to confirm); one source (site.json, CMS) for header chip, footer, contact, hours table, structured data |
 | 9 Franchise | In the desktop header and the mobile menu (tests), page builds, no 404 |
+| Checks | `npm test` 195 checks pass (site + production build); `npm run test:cms` passes; interaction test: 762 elements on 11 pages (desktop + mobile), 0 failures; 20 804 links on 508 pages, 0 broken; 493 old model URLs redirect; launch gate: 5 blockers, all owner items (price list sign-off, client repository, legal review) |
 
 ---
 
