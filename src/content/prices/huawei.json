@@ -3,297 +3,7 @@
   "order": 3,
   "models": [
     {
-      "name": "P Smart (2019)",
-      "category": "Smartphone",
-      "repairs": [
-        {
-          "service": "display",
-          "label": "Display – Standardqualität",
-          "price": 129,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "display",
-          "label": "Display – Originalqualität",
-          "price": 219,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "akku",
-          "label": "",
-          "price": 99,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "backcover",
-          "label": "",
-          "price": 79,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "ladebuchse",
-          "label": "",
-          "price": 99,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "hauptkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "frontkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "lautsprecher",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wifi-bluetooth",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wasserschaden",
-          "label": "",
-          "price": 67,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "fehleranalyse",
-          "label": "",
-          "price": 25,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "panzerglas",
-          "label": "",
-          "price": 25,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        }
-      ]
-    },
-    {
-      "name": "P Smart Plus (2019)",
-      "category": "Smartphone",
-      "repairs": [
-        {
-          "service": "display",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "akku",
-          "label": "",
-          "price": 99,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "backcover",
-          "label": "",
-          "price": 79,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "ladebuchse",
-          "label": "",
-          "price": 99,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "hauptkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "frontkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "lautsprecher",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wifi-bluetooth",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wasserschaden",
-          "label": "",
-          "price": 67,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "fehleranalyse",
-          "label": "",
-          "price": 25,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "panzerglas",
-          "label": "",
-          "price": 25,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        }
-      ]
-    },
-    {
-      "name": "P Smart",
-      "category": "Smartphone",
-      "repairs": [
-        {
-          "service": "display",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "akku",
-          "label": "",
-          "price": 79,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "backcover",
-          "label": "",
-          "price": 79,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "ladebuchse",
-          "label": "",
-          "price": 99,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "hauptkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "frontkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "lautsprecher",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wifi-bluetooth",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wasserschaden",
-          "label": "",
-          "price": 67,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "fehleranalyse",
-          "label": "",
-          "price": 25,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "panzerglas",
-          "label": "",
-          "price": 25,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        }
-      ]
-    },
-    {
-      "name": "P Smart Plus",
+      "name": "P50 Pro",
       "category": "Smartphone",
       "repairs": [
         {
@@ -307,7 +17,7 @@
         {
           "service": "display",
           "label": "Display – Originalqualität",
-          "price": 249,
+          "price": 399,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -315,7 +25,7 @@
         {
           "service": "akku",
           "label": "",
-          "price": 79,
+          "price": 119,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -323,7 +33,7 @@
         {
           "service": "backcover",
           "label": "",
-          "price": 79,
+          "price": 149,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -331,7 +41,7 @@
         {
           "service": "ladebuchse",
           "label": "",
-          "price": 99,
+          "price": 149,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -371,7 +81,7 @@
         {
           "service": "wasserschaden",
           "label": "",
-          "price": 67,
+          "price": 94,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -387,7 +97,7 @@
         {
           "service": "panzerglas",
           "label": "",
-          "price": 25,
+          "price": 32,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -497,7 +207,7 @@
       ]
     },
     {
-      "name": "P50 Pro",
+      "name": "P40 Pro Plus",
       "category": "Smartphone",
       "repairs": [
         {
@@ -527,7 +237,7 @@
         {
           "service": "backcover",
           "label": "",
-          "price": 149,
+          "price": 129,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -535,7 +245,7 @@
         {
           "service": "ladebuchse",
           "label": "",
-          "price": 149,
+          "price": 119,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -575,7 +285,109 @@
         {
           "service": "wasserschaden",
           "label": "",
-          "price": 94,
+          "price": 84,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 32,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "P40 Pro",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "Display – Standardqualität",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "display",
+          "label": "Display – Originalqualität",
+          "price": 329,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": 119,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": 99,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": 119,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 84,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -1007,7 +819,7 @@
       ]
     },
     {
-      "name": "P40 Pro",
+      "name": "P30 Pro",
       "category": "Smartphone",
       "repairs": [
         {
@@ -1021,7 +833,7 @@
         {
           "service": "display",
           "label": "Display – Originalqualität",
-          "price": 329,
+          "price": 279,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -1029,7 +841,7 @@
         {
           "service": "akku",
           "label": "",
-          "price": 119,
+          "price": 89,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -1037,7 +849,7 @@
         {
           "service": "backcover",
           "label": "",
-          "price": 99,
+          "price": 79,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -1045,7 +857,7 @@
         {
           "service": "ladebuchse",
           "label": "",
-          "price": 119,
+          "price": 89,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -1085,7 +897,7 @@
         {
           "service": "wasserschaden",
           "label": "",
-          "price": 84,
+          "price": 67,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -1101,109 +913,7 @@
         {
           "service": "panzerglas",
           "label": "",
-          "price": 32,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        }
-      ]
-    },
-    {
-      "name": "P40 Pro Plus",
-      "category": "Smartphone",
-      "repairs": [
-        {
-          "service": "display",
-          "label": "Display – Standardqualität",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "display",
-          "label": "Display – Originalqualität",
-          "price": 399,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "akku",
-          "label": "",
-          "price": 119,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "backcover",
-          "label": "",
-          "price": 129,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "ladebuchse",
-          "label": "",
-          "price": 119,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "hauptkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "frontkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "lautsprecher",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wifi-bluetooth",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wasserschaden",
-          "label": "",
-          "price": 84,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "fehleranalyse",
-          "label": "",
-          "price": 25,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "panzerglas",
-          "label": "",
-          "price": 32,
+          "price": 29,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -1415,7 +1125,7 @@
       ]
     },
     {
-      "name": "P30 Pro",
+      "name": "P20 Pro",
       "category": "Smartphone",
       "repairs": [
         {
@@ -1445,7 +1155,7 @@
         {
           "service": "backcover",
           "label": "",
-          "price": 79,
+          "price": 99,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -1453,7 +1163,7 @@
         {
           "service": "ladebuchse",
           "label": "",
-          "price": 89,
+          "price": 79,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -1493,7 +1203,7 @@
         {
           "service": "wasserschaden",
           "label": "",
-          "price": 67,
+          "price": 54,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -1509,7 +1219,7 @@
         {
           "service": "panzerglas",
           "label": "",
-          "price": 29,
+          "price": 25,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -1721,7 +1431,7 @@
       ]
     },
     {
-      "name": "P20 Pro",
+      "name": "P10 Plus",
       "category": "Smartphone",
       "repairs": [
         {
@@ -1735,7 +1445,7 @@
         {
           "service": "display",
           "label": "Display – Originalqualität",
-          "price": 279,
+          "price": 149,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -1743,7 +1453,7 @@
         {
           "service": "akku",
           "label": "",
-          "price": 89,
+          "price": 79,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -1751,7 +1461,7 @@
         {
           "service": "backcover",
           "label": "",
-          "price": 99,
+          "price": 79,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -1799,7 +1509,7 @@
         {
           "service": "wasserschaden",
           "label": "",
-          "price": 54,
+          "price": 47,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -2027,7 +1737,7 @@
       ]
     },
     {
-      "name": "P10 Plus",
+      "name": "P9 Plus",
       "category": "Smartphone",
       "repairs": [
         {
@@ -2041,7 +1751,7 @@
         {
           "service": "display",
           "label": "Display – Originalqualität",
-          "price": 149,
+          "price": 179,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -2333,29 +2043,21 @@
       ]
     },
     {
-      "name": "P9 Plus",
+      "name": "P Smart Plus (2019)",
       "category": "Smartphone",
       "repairs": [
         {
           "service": "display",
-          "label": "Display – Standardqualität",
+          "label": "",
           "price": null,
           "from": false,
           "onRequest": true,
           "note": ""
         },
         {
-          "service": "display",
-          "label": "Display – Originalqualität",
-          "price": 179,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
           "service": "akku",
           "label": "",
-          "price": 79,
+          "price": 99,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -2371,7 +2073,7 @@
         {
           "service": "ladebuchse",
           "label": "",
-          "price": 79,
+          "price": 99,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -2411,7 +2113,7 @@
         {
           "service": "wasserschaden",
           "label": "",
-          "price": 47,
+          "price": 67,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -2428,6 +2130,406 @@
           "service": "panzerglas",
           "label": "",
           "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "P Smart (2019)",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "Display – Standardqualität",
+          "price": 129,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "display",
+          "label": "Display – Originalqualität",
+          "price": 219,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": 99,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": 79,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": 99,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 67,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "P Smart Plus",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "Display – Standardqualität",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "display",
+          "label": "Display – Originalqualität",
+          "price": 249,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": 79,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": 79,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": 99,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 67,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "P Smart",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": 79,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": 79,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": 99,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 67,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "Mate 40 Pro",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "Display – Standardqualität",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "display",
+          "label": "Display – Originalqualität",
+          "price": 349,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": 119,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": 149,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": 149,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 87,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 32,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -2537,7 +2639,7 @@
       ]
     },
     {
-      "name": "Mate 40 Pro",
+      "name": "Mate 30 Pro",
       "category": "Smartphone",
       "repairs": [
         {
@@ -2575,7 +2677,7 @@
         {
           "service": "ladebuchse",
           "label": "",
-          "price": 149,
+          "price": 89,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -2615,7 +2717,7 @@
         {
           "service": "wasserschaden",
           "label": "",
-          "price": 87,
+          "price": 77,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -2843,7 +2945,7 @@
       ]
     },
     {
-      "name": "Mate 30 Pro",
+      "name": "Mate 20 Pro",
       "category": "Smartphone",
       "repairs": [
         {
@@ -2857,7 +2959,7 @@
         {
           "service": "display",
           "label": "Display – Originalqualität",
-          "price": 349,
+          "price": 249,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -2865,7 +2967,7 @@
         {
           "service": "akku",
           "label": "",
-          "price": 119,
+          "price": 99,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -2873,7 +2975,7 @@
         {
           "service": "backcover",
           "label": "",
-          "price": 149,
+          "price": 99,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -2881,7 +2983,7 @@
         {
           "service": "ladebuchse",
           "label": "",
-          "price": 89,
+          "price": 119,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -2921,7 +3023,7 @@
         {
           "service": "wasserschaden",
           "label": "",
-          "price": 77,
+          "price": 69,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -2938,6 +3040,100 @@
           "service": "panzerglas",
           "label": "",
           "price": 32,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "Mate 20 X",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 62,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 29,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -3149,7 +3345,7 @@
       ]
     },
     {
-      "name": "Mate 20 Pro",
+      "name": "Mate 10 Pro",
       "category": "Smartphone",
       "repairs": [
         {
@@ -3163,7 +3359,7 @@
         {
           "service": "display",
           "label": "Display – Originalqualität",
-          "price": 249,
+          "price": 219,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -3171,7 +3367,7 @@
         {
           "service": "akku",
           "label": "",
-          "price": 99,
+          "price": 79,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -3187,7 +3383,7 @@
         {
           "service": "ladebuchse",
           "label": "",
-          "price": 119,
+          "price": 79,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -3227,7 +3423,7 @@
         {
           "service": "wasserschaden",
           "label": "",
-          "price": 69,
+          "price": 61,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -3244,100 +3440,6 @@
           "service": "panzerglas",
           "label": "",
           "price": 32,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        }
-      ]
-    },
-    {
-      "name": "Mate 20 X",
-      "category": "Smartphone",
-      "repairs": [
-        {
-          "service": "display",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "akku",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "backcover",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "ladebuchse",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "hauptkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "frontkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "lautsprecher",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wifi-bluetooth",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wasserschaden",
-          "label": "",
-          "price": 62,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "fehleranalyse",
-          "label": "",
-          "price": 25,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "panzerglas",
-          "label": "",
-          "price": 29,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -3440,108 +3542,6 @@
           "service": "panzerglas",
           "label": "",
           "price": 29,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        }
-      ]
-    },
-    {
-      "name": "Mate 10 Pro",
-      "category": "Smartphone",
-      "repairs": [
-        {
-          "service": "display",
-          "label": "Display – Standardqualität",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "display",
-          "label": "Display – Originalqualität",
-          "price": 219,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "akku",
-          "label": "",
-          "price": 79,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "backcover",
-          "label": "",
-          "price": 99,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "ladebuchse",
-          "label": "",
-          "price": 79,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "hauptkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "frontkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "lautsprecher",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wifi-bluetooth",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wasserschaden",
-          "label": "",
-          "price": 61,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "fehleranalyse",
-          "label": "",
-          "price": 25,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "panzerglas",
-          "label": "",
-          "price": 32,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -3949,6 +3949,108 @@
       ]
     },
     {
+      "name": "Honor View 10",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "Display – Standardqualität",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "display",
+          "label": "Display – Originalqualität",
+          "price": 229,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": 89,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": 129,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": 89,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 67,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
       "name": "Honor 10 Lite",
       "category": "Smartphone",
       "repairs": [
@@ -4051,7 +4153,7 @@
       ]
     },
     {
-      "name": "Honor View 10",
+      "name": "Honor 9X Pro",
       "category": "Smartphone",
       "repairs": [
         {
@@ -4065,7 +4167,7 @@
         {
           "service": "display",
           "label": "Display – Originalqualität",
-          "price": 229,
+          "price": 139,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -4073,7 +4175,7 @@
         {
           "service": "akku",
           "label": "",
-          "price": 89,
+          "price": 79,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -4081,7 +4183,7 @@
         {
           "service": "backcover",
           "label": "",
-          "price": 129,
+          "price": 79,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -4089,7 +4191,109 @@
         {
           "service": "ladebuchse",
           "label": "",
-          "price": 89,
+          "price": 79,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 67,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "Honor 9X",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "Display – Standardqualität",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "display",
+          "label": "Display – Originalqualität",
+          "price": 139,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": 79,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": 79,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": 79,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -4357,7 +4561,7 @@
       ]
     },
     {
-      "name": "Honor 9X",
+      "name": "Honor 8X",
       "category": "Smartphone",
       "repairs": [
         {
@@ -4371,211 +4575,7 @@
         {
           "service": "display",
           "label": "Display – Originalqualität",
-          "price": 139,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "akku",
-          "label": "",
-          "price": 79,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "backcover",
-          "label": "",
-          "price": 79,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "ladebuchse",
-          "label": "",
-          "price": 79,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "hauptkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "frontkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "lautsprecher",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wifi-bluetooth",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wasserschaden",
-          "label": "",
-          "price": 67,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "fehleranalyse",
-          "label": "",
-          "price": 25,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "panzerglas",
-          "label": "",
-          "price": 25,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        }
-      ]
-    },
-    {
-      "name": "Honor 9X Pro",
-      "category": "Smartphone",
-      "repairs": [
-        {
-          "service": "display",
-          "label": "Display – Standardqualität",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "display",
-          "label": "Display – Originalqualität",
-          "price": 139,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "akku",
-          "label": "",
-          "price": 79,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "backcover",
-          "label": "",
-          "price": 79,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "ladebuchse",
-          "label": "",
-          "price": 79,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "hauptkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "frontkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "lautsprecher",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wifi-bluetooth",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wasserschaden",
-          "label": "",
-          "price": 67,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "fehleranalyse",
-          "label": "",
-          "price": 25,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "panzerglas",
-          "label": "",
-          "price": 25,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        }
-      ]
-    },
-    {
-      "name": "Honor 8",
-      "category": "Smartphone",
-      "repairs": [
-        {
-          "service": "display",
-          "label": "Display – Standardqualität",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "display",
-          "label": "Display – Originalqualität",
-          "price": 129,
+          "price": 159,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -4757,7 +4757,7 @@
       ]
     },
     {
-      "name": "Honor 8X",
+      "name": "Honor 8",
       "category": "Smartphone",
       "repairs": [
         {
@@ -4771,7 +4771,7 @@
         {
           "service": "display",
           "label": "Display – Originalqualität",
-          "price": 159,
+          "price": 129,
           "from": false,
           "onRequest": false,
           "note": ""

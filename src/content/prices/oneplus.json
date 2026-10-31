@@ -513,108 +513,6 @@
       ]
     },
     {
-      "name": "OnePlus 9",
-      "category": "Smartphone",
-      "repairs": [
-        {
-          "service": "display",
-          "label": "Display – Standardqualität",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "display",
-          "label": "Display – Originalqualität",
-          "price": 279,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "akku",
-          "label": "",
-          "price": 129,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "backcover",
-          "label": "",
-          "price": 179,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "ladebuchse",
-          "label": "",
-          "price": 119,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "hauptkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "frontkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "lautsprecher",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wifi-bluetooth",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wasserschaden",
-          "label": "",
-          "price": 71,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "fehleranalyse",
-          "label": "",
-          "price": 25,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "panzerglas",
-          "label": "",
-          "price": 29,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        }
-      ]
-    },
-    {
       "name": "OnePlus 9 Pro",
       "category": "Smartphone",
       "repairs": [
@@ -717,7 +615,7 @@
       ]
     },
     {
-      "name": "OnePlus 8",
+      "name": "OnePlus 9",
       "category": "Smartphone",
       "repairs": [
         {
@@ -731,7 +629,7 @@
         {
           "service": "display",
           "label": "Display – Originalqualität",
-          "price": 319,
+          "price": 279,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -747,7 +645,7 @@
         {
           "service": "backcover",
           "label": "",
-          "price": 149,
+          "price": 179,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -795,7 +693,7 @@
         {
           "service": "wasserschaden",
           "label": "",
-          "price": 64,
+          "price": 71,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -921,6 +819,108 @@
       ]
     },
     {
+      "name": "OnePlus 8",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "Display – Standardqualität",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "display",
+          "label": "Display – Originalqualität",
+          "price": 319,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": 129,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": 149,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": 119,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 64,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 29,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
       "name": "OnePlus 8T",
       "category": "Smartphone",
       "repairs": [
@@ -1000,100 +1000,6 @@
           "service": "wasserschaden",
           "label": "",
           "price": 64,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "fehleranalyse",
-          "label": "",
-          "price": 25,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "panzerglas",
-          "label": "",
-          "price": 29,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        }
-      ]
-    },
-    {
-      "name": "OnePlus 7",
-      "category": "Smartphone",
-      "repairs": [
-        {
-          "service": "display",
-          "label": "",
-          "price": 199,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "akku",
-          "label": "",
-          "price": 129,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "backcover",
-          "label": "",
-          "price": 129,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "ladebuchse",
-          "label": "",
-          "price": 99,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "hauptkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "frontkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "lautsprecher",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wifi-bluetooth",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wasserschaden",
-          "label": "",
-          "price": 58,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -1204,6 +1110,100 @@
           "service": "panzerglas",
           "label": "",
           "price": 32,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "OnePlus 7",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "",
+          "price": 199,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": 129,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": 129,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": 99,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 58,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 29,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -1392,194 +1392,6 @@
           "service": "panzerglas",
           "label": "",
           "price": 29,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        }
-      ]
-    },
-    {
-      "name": "OnePlus Nord N100",
-      "category": "Smartphone",
-      "repairs": [
-        {
-          "service": "display",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "akku",
-          "label": "",
-          "price": 79,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "backcover",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "ladebuchse",
-          "label": "",
-          "price": 79,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "hauptkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "frontkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "lautsprecher",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wifi-bluetooth",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wasserschaden",
-          "label": "",
-          "price": 62,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "fehleranalyse",
-          "label": "",
-          "price": 25,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "panzerglas",
-          "label": "",
-          "price": 25,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        }
-      ]
-    },
-    {
-      "name": "OnePlus Nord N10",
-      "category": "Smartphone",
-      "repairs": [
-        {
-          "service": "display",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "akku",
-          "label": "",
-          "price": 79,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "backcover",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "ladebuchse",
-          "label": "",
-          "price": 79,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "hauptkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "frontkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "lautsprecher",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wifi-bluetooth",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wasserschaden",
-          "label": "",
-          "price": 62,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "fehleranalyse",
-          "label": "",
-          "price": 25,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "panzerglas",
-          "label": "",
-          "price": 25,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -2332,6 +2144,194 @@
           "service": "panzerglas",
           "label": "",
           "price": 22,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "OnePlus Nord N100",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": 79,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": 79,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 62,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "OnePlus Nord N10",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": 79,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": 79,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 62,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 25,
           "from": false,
           "onRequest": false,
           "note": ""

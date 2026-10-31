@@ -3,100 +3,6 @@
   "order": 4,
   "models": [
     {
-      "name": "Xiaomi 15",
-      "category": "Smartphone",
-      "repairs": [
-        {
-          "service": "display",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "akku",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "backcover",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "ladebuchse",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "hauptkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "frontkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "lautsprecher",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wifi-bluetooth",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wasserschaden",
-          "label": "",
-          "price": 98,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "fehleranalyse",
-          "label": "",
-          "price": 25,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "panzerglas",
-          "label": "",
-          "price": 29,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        }
-      ]
-    },
-    {
       "name": "Xiaomi 15 Ultra",
       "category": "Smartphone",
       "repairs": [
@@ -191,7 +97,7 @@
       ]
     },
     {
-      "name": "Xiaomi 14",
+      "name": "Xiaomi 15",
       "category": "Smartphone",
       "repairs": [
         {
@@ -379,7 +285,7 @@
       ]
     },
     {
-      "name": "Xiaomi 14T",
+      "name": "Xiaomi 14",
       "category": "Smartphone",
       "repairs": [
         {
@@ -560,6 +466,288 @@
           "service": "panzerglas",
           "label": "",
           "price": 29,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "Xiaomi 14T",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 98,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 29,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "Xiaomi 13 Ultra",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 101,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 32,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "Xiaomi 13 Pro",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 101,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 32,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -755,7 +943,7 @@
       ]
     },
     {
-      "name": "Xiaomi 13 Pro",
+      "name": "Xiaomi 13T Pro",
       "category": "Smartphone",
       "repairs": [
         {
@@ -825,7 +1013,7 @@
         {
           "service": "wasserschaden",
           "label": "",
-          "price": 101,
+          "price": 91,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -841,101 +1029,7 @@
         {
           "service": "panzerglas",
           "label": "",
-          "price": 32,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        }
-      ]
-    },
-    {
-      "name": "Xiaomi 13 Ultra",
-      "category": "Smartphone",
-      "repairs": [
-        {
-          "service": "display",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "akku",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "backcover",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "ladebuchse",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "hauptkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "frontkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "lautsprecher",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wifi-bluetooth",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wasserschaden",
-          "label": "",
-          "price": 101,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "fehleranalyse",
-          "label": "",
-          "price": 25,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "panzerglas",
-          "label": "",
-          "price": 32,
+          "price": 29,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -1037,7 +1131,7 @@
       ]
     },
     {
-      "name": "Xiaomi 13T Pro",
+      "name": "Xiaomi 12 Pro 5G",
       "category": "Smartphone",
       "repairs": [
         {
@@ -1107,7 +1201,101 @@
         {
           "service": "wasserschaden",
           "label": "",
-          "price": 91,
+          "price": 94,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 32,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "Xiaomi 12 5G",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 85,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -1131,7 +1319,101 @@
       ]
     },
     {
-      "name": "Xiaomi 12 5G",
+      "name": "Xiaomi 12S",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 85,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 29,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "Xiaomi 12X",
       "category": "Smartphone",
       "repairs": [
         {
@@ -1319,288 +1601,6 @@
       ]
     },
     {
-      "name": "Xiaomi 12 Pro 5G",
-      "category": "Smartphone",
-      "repairs": [
-        {
-          "service": "display",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "akku",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "backcover",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "ladebuchse",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "hauptkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "frontkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "lautsprecher",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wifi-bluetooth",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wasserschaden",
-          "label": "",
-          "price": 94,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "fehleranalyse",
-          "label": "",
-          "price": 25,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "panzerglas",
-          "label": "",
-          "price": 32,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        }
-      ]
-    },
-    {
-      "name": "Xiaomi 12S",
-      "category": "Smartphone",
-      "repairs": [
-        {
-          "service": "display",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "akku",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "backcover",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "ladebuchse",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "hauptkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "frontkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "lautsprecher",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wifi-bluetooth",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wasserschaden",
-          "label": "",
-          "price": 85,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "fehleranalyse",
-          "label": "",
-          "price": 25,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "panzerglas",
-          "label": "",
-          "price": 29,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        }
-      ]
-    },
-    {
-      "name": "Xiaomi 12T",
-      "category": "Smartphone",
-      "repairs": [
-        {
-          "service": "display",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "akku",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "backcover",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "ladebuchse",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "hauptkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "frontkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "lautsprecher",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wifi-bluetooth",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wasserschaden",
-          "label": "",
-          "price": 85,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "fehleranalyse",
-          "label": "",
-          "price": 25,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "panzerglas",
-          "label": "",
-          "price": 29,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        }
-      ]
-    },
-    {
       "name": "Xiaomi 12T Pro",
       "category": "Smartphone",
       "repairs": [
@@ -1695,7 +1695,7 @@
       ]
     },
     {
-      "name": "Xiaomi 12X",
+      "name": "Xiaomi 12T",
       "category": "Smartphone",
       "repairs": [
         {
@@ -1977,6 +1977,100 @@
       ]
     },
     {
+      "name": "Xiaomi Mi 11T Pro",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 76,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 29,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
       "name": "Xiaomi Mi 11T",
       "category": "Smartphone",
       "repairs": [
@@ -2071,7 +2165,7 @@
       ]
     },
     {
-      "name": "Xiaomi Mi 11T Pro",
+      "name": "Xiaomi Mi 10 Pro 5G",
       "category": "Smartphone",
       "repairs": [
         {
@@ -2141,7 +2235,7 @@
         {
           "service": "wasserschaden",
           "label": "",
-          "price": 76,
+          "price": 67,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -2353,101 +2447,7 @@
       ]
     },
     {
-      "name": "Xiaomi Mi 10 Pro 5G",
-      "category": "Smartphone",
-      "repairs": [
-        {
-          "service": "display",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "akku",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "backcover",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "ladebuchse",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "hauptkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "frontkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "lautsprecher",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wifi-bluetooth",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wasserschaden",
-          "label": "",
-          "price": 67,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "fehleranalyse",
-          "label": "",
-          "price": 25,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "panzerglas",
-          "label": "",
-          "price": 29,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        }
-      ]
-    },
-    {
-      "name": "Xiaomi Mi 10T 5G",
+      "name": "Xiaomi Mi 10T Pro 5G",
       "category": "Smartphone",
       "repairs": [
         {
@@ -2635,7 +2635,7 @@
       ]
     },
     {
-      "name": "Xiaomi Mi 10T Pro 5G",
+      "name": "Xiaomi Mi 10T 5G",
       "category": "Smartphone",
       "repairs": [
         {
@@ -2917,6 +2917,100 @@
       ]
     },
     {
+      "name": "Xiaomi Mi 9T Pro",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 59,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
       "name": "Xiaomi Mi 9T",
       "category": "Smartphone",
       "repairs": [
@@ -3011,7 +3105,7 @@
       ]
     },
     {
-      "name": "Xiaomi Mi 9T Pro",
+      "name": "Redmi Note 14 Pro Plus 5G",
       "category": "Smartphone",
       "repairs": [
         {
@@ -3081,7 +3175,7 @@
         {
           "service": "wasserschaden",
           "label": "",
-          "price": 59,
+          "price": 77,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -3097,7 +3191,101 @@
         {
           "service": "panzerglas",
           "label": "",
+          "price": 32,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "Redmi Note 14 Pro",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 77,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
           "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 32,
           "from": false,
           "onRequest": false,
           "note": ""
@@ -3293,7 +3481,7 @@
       ]
     },
     {
-      "name": "Redmi Note 14 Pro",
+      "name": "Redmi Note 13 Pro Plus 5G",
       "category": "Smartphone",
       "repairs": [
         {
@@ -3387,7 +3575,7 @@
       ]
     },
     {
-      "name": "Redmi Note 14 Pro Plus 5G",
+      "name": "Redmi Note 13 Pro",
       "category": "Smartphone",
       "repairs": [
         {
@@ -3669,7 +3857,7 @@
       ]
     },
     {
-      "name": "Redmi Note 13 Pro",
+      "name": "Redmi Note 12 Pro Plus 5G",
       "category": "Smartphone",
       "repairs": [
         {
@@ -3763,7 +3951,7 @@
       ]
     },
     {
-      "name": "Redmi Note 13 Pro Plus 5G",
+      "name": "Redmi Note 12 Pro",
       "category": "Smartphone",
       "repairs": [
         {
@@ -4045,195 +4233,7 @@
       ]
     },
     {
-      "name": "Redmi Note 12 Pro",
-      "category": "Smartphone",
-      "repairs": [
-        {
-          "service": "display",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "akku",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "backcover",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "ladebuchse",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "hauptkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "frontkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "lautsprecher",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wifi-bluetooth",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wasserschaden",
-          "label": "",
-          "price": 77,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "fehleranalyse",
-          "label": "",
-          "price": 25,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "panzerglas",
-          "label": "",
-          "price": 32,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        }
-      ]
-    },
-    {
-      "name": "Redmi Note 12 Pro Plus 5G",
-      "category": "Smartphone",
-      "repairs": [
-        {
-          "service": "display",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "akku",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "backcover",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "ladebuchse",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "hauptkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "frontkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "lautsprecher",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wifi-bluetooth",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wasserschaden",
-          "label": "",
-          "price": 77,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "fehleranalyse",
-          "label": "",
-          "price": 25,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "panzerglas",
-          "label": "",
-          "price": 32,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        }
-      ]
-    },
-    {
-      "name": "Redmi Note 11",
+      "name": "Redmi Note 11 Pro Plus 5G",
       "category": "Smartphone",
       "repairs": [
         {
@@ -4515,7 +4515,7 @@
       ]
     },
     {
-      "name": "Redmi Note 11 Pro Plus 5G",
+      "name": "Redmi Note 11",
       "category": "Smartphone",
       "repairs": [
         {
@@ -4797,7 +4797,7 @@
       ]
     },
     {
-      "name": "Redmi Note 10 5G",
+      "name": "Redmi Note 10 Pro",
       "category": "Smartphone",
       "repairs": [
         {
@@ -4891,7 +4891,7 @@
       ]
     },
     {
-      "name": "Redmi Note 10 Pro",
+      "name": "Redmi Note 10 5G",
       "category": "Smartphone",
       "repairs": [
         {
@@ -5173,7 +5173,7 @@
       ]
     },
     {
-      "name": "Redmi Note 9",
+      "name": "Redmi Note 9 Pro",
       "category": "Smartphone",
       "repairs": [
         {
@@ -5267,7 +5267,7 @@
       ]
     },
     {
-      "name": "Redmi Note 9 Pro",
+      "name": "Redmi Note 9",
       "category": "Smartphone",
       "repairs": [
         {
@@ -6395,100 +6395,6 @@
       ]
     },
     {
-      "name": "Redmi 10A",
-      "category": "Smartphone",
-      "repairs": [
-        {
-          "service": "display",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "akku",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "backcover",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "ladebuchse",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "hauptkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "frontkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "lautsprecher",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wifi-bluetooth",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wasserschaden",
-          "label": "",
-          "price": 67,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "fehleranalyse",
-          "label": "",
-          "price": 25,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "panzerglas",
-          "label": "",
-          "price": 29,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        }
-      ]
-    },
-    {
       "name": "Redmi 10C",
       "category": "Smartphone",
       "repairs": [
@@ -6583,7 +6489,289 @@
       ]
     },
     {
+      "name": "Redmi 10A",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 67,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 29,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
       "name": "Redmi 9",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 44,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 19,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "Redmi 9T",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 44,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 19,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "Redmi 9C",
       "category": "Smartphone",
       "repairs": [
         {
@@ -6865,194 +7053,6 @@
       ]
     },
     {
-      "name": "Redmi 9C",
-      "category": "Smartphone",
-      "repairs": [
-        {
-          "service": "display",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "akku",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "backcover",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "ladebuchse",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "hauptkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "frontkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "lautsprecher",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wifi-bluetooth",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wasserschaden",
-          "label": "",
-          "price": 44,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "fehleranalyse",
-          "label": "",
-          "price": 25,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "panzerglas",
-          "label": "",
-          "price": 19,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        }
-      ]
-    },
-    {
-      "name": "Redmi 9T",
-      "category": "Smartphone",
-      "repairs": [
-        {
-          "service": "display",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "akku",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "backcover",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "ladebuchse",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "hauptkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "frontkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "lautsprecher",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wifi-bluetooth",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wasserschaden",
-          "label": "",
-          "price": 44,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "fehleranalyse",
-          "label": "",
-          "price": 25,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "panzerglas",
-          "label": "",
-          "price": 19,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        }
-      ]
-    },
-    {
       "name": "Redmi A3",
       "category": "Smartphone",
       "repairs": [
@@ -7241,7 +7241,7 @@
       ]
     },
     {
-      "name": "Poco F7",
+      "name": "Poco F7 Ultra",
       "category": "Smartphone",
       "repairs": [
         {
@@ -7429,101 +7429,7 @@
       ]
     },
     {
-      "name": "Poco F7 Ultra",
-      "category": "Smartphone",
-      "repairs": [
-        {
-          "service": "display",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "akku",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "backcover",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "ladebuchse",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "hauptkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "frontkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "lautsprecher",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wifi-bluetooth",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wasserschaden",
-          "label": "",
-          "price": 76,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "fehleranalyse",
-          "label": "",
-          "price": 25,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "panzerglas",
-          "label": "",
-          "price": 29,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        }
-      ]
-    },
-    {
-      "name": "Poco F6",
+      "name": "Poco F7",
       "category": "Smartphone",
       "repairs": [
         {
@@ -7711,7 +7617,7 @@
       ]
     },
     {
-      "name": "Poco F5",
+      "name": "Poco F6",
       "category": "Smartphone",
       "repairs": [
         {
@@ -7806,6 +7712,100 @@
     },
     {
       "name": "Poco F5 Pro",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 76,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 29,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "Poco F5",
       "category": "Smartphone",
       "repairs": [
         {
@@ -8087,100 +8087,6 @@
       ]
     },
     {
-      "name": "Poco X6",
-      "category": "Smartphone",
-      "repairs": [
-        {
-          "service": "display",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "akku",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "backcover",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "ladebuchse",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "hauptkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "frontkamera",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "lautsprecher",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wifi-bluetooth",
-          "label": "",
-          "price": null,
-          "from": false,
-          "onRequest": true,
-          "note": ""
-        },
-        {
-          "service": "wasserschaden",
-          "label": "",
-          "price": 67,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "fehleranalyse",
-          "label": "",
-          "price": 25,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        },
-        {
-          "service": "panzerglas",
-          "label": "",
-          "price": 25,
-          "from": false,
-          "onRequest": false,
-          "note": ""
-        }
-      ]
-    },
-    {
       "name": "Poco X6 Pro",
       "category": "Smartphone",
       "repairs": [
@@ -8275,7 +8181,7 @@
       ]
     },
     {
-      "name": "Poco X5",
+      "name": "Poco X6",
       "category": "Smartphone",
       "repairs": [
         {
@@ -8463,7 +8369,7 @@
       ]
     },
     {
-      "name": "Poco X4 GT",
+      "name": "Poco X5",
       "category": "Smartphone",
       "repairs": [
         {
@@ -8558,6 +8464,100 @@
     },
     {
       "name": "Poco X4 Pro",
+      "category": "Smartphone",
+      "repairs": [
+        {
+          "service": "display",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "akku",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "backcover",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "ladebuchse",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "hauptkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "frontkamera",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "lautsprecher",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wifi-bluetooth",
+          "label": "",
+          "price": null,
+          "from": false,
+          "onRequest": true,
+          "note": ""
+        },
+        {
+          "service": "wasserschaden",
+          "label": "",
+          "price": 67,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "fehleranalyse",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        },
+        {
+          "service": "panzerglas",
+          "label": "",
+          "price": 25,
+          "from": false,
+          "onRequest": false,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "Poco X4 GT",
       "category": "Smartphone",
       "repairs": [
         {
