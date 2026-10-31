@@ -126,6 +126,14 @@ console.log('\nHeader');
     if (r.hit.length || r.out || r.mid > 1) bad.push(`${w}px ${JSON.stringify(r)}`);
   }
   ok(bad.length === 0, `header at 13 widths (320–1920): no overlaps, phone button inside and vertically centred ${bad.join('; ')}`);
+  // Franchise in the main navigation: header link on desktop, mobile menu on phones
+  await page.setViewportSize({ width: 1280, height: 800 }); await page.goto(BASE + '/');
+  ok(await page.$eval('.nav__links a[href="/franchise/"]', (a) => a.getBoundingClientRect().width > 0 && getComputedStyle(a).visibility !== 'hidden'), 'Franchise link visible in the desktop header');
+  await page.setViewportSize({ width: 390, height: 800 }); await page.goto(BASE + '/'); await page.waitForTimeout(200);
+  await page.evaluate(() => document.documentElement.classList.add('intro-done'));
+  await page.click('#menuBtn'); await page.waitForTimeout(300);
+  ok(await page.$eval('.nav__links a[href="/franchise/"]', (a) => a.getBoundingClientRect().width > 0), 'Franchise link in the mobile menu');
+  const fr = await page.goto(BASE + '/franchise/'); ok(fr.status() === 200, '/franchise/ answers 200');
   await page.close();
 }
 
