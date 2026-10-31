@@ -12,6 +12,7 @@ export function render({ prices }) {
         name: m.name,
         slug: m.slug,
         category: m.category,
+        series: m.series,
         repairs: m.repairs.map((r) => [r.service, r.label, r.onRequest ? null : r.price, r.from ? 1 : 0, r.note])
       }))
     }))

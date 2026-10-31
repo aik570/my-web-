@@ -155,8 +155,12 @@
     var list = b.models.filter(function (m) {
       return (!state.cat || m.category === state.cat) && (!q || m.name.toLowerCase().indexOf(q) >= 0);
     });
-    $('f-model-list').innerHTML = list.map(function (m) {
-      return '<li><button type="button" class="fmodel" data-model="' + esc(m.slug) + '"' + (state.model === m.slug ? ' aria-pressed="true"' : '') + '>' +
+    // series headings (e.g. iPhone / iPhone X-Serie / iPhone SE) when the list spans more than one series
+    var series = list.map(function (m) { return m.series || ''; });
+    var grouped = series.some(function (s) { return s !== series[0]; });
+    $('f-model-list').innerHTML = list.map(function (m, i) {
+      var head = grouped && m.series && m.series !== series[i - 1] ? '<li class="fmodels__group" role="presentation">' + esc(m.series) + '</li>' : '';
+      return head + '<li><button type="button" class="fmodel" data-model="' + esc(m.slug) + '"' + (state.model === m.slug ? ' aria-pressed="true"' : '') + '>' +
         esc(m.name) + '<small>' + esc(m.category || '') + '</small></button></li>';
     }).join('');
     $('f-models-none').hidden = list.length > 0;

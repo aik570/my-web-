@@ -905,6 +905,8 @@ mark.todo { background: #fff1c2; color: #6b4b00; padding: .1rem .35rem; border-r
 .fmodels__tools { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 16rem); gap: .75rem 1rem; align-items: center; margin-bottom: 1rem; }
 .fmodels__tools input { min-height: 2.75rem; font-size: 1rem; }
 .fmodels__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); gap: 6px; max-height: 32rem; overflow-y: auto; padding-right: 2px; }
+.fmodels__group { grid-column: 1 / -1; margin: 1rem 0 .15rem; padding-bottom: .3rem; border-bottom: 1px solid var(--rule); font: 700 .8125rem var(--sans); color: var(--teal-700); }
+.fmodels__group:first-child { margin-top: 0; }
 .fmodel { width: 100%; display: grid; text-align: left; padding: .7rem .85rem; min-height: 3.25rem; border-radius: 8px; border: 1px solid var(--rule); background: var(--white); cursor: pointer; font: 600 .9375rem var(--sans); color: var(--ink); }
 .fmodel small { font: 400 .6875rem var(--mono); color: var(--grey); }
 .fmodel:hover { border-color: var(--teal); background: var(--mint-50); }
