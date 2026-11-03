@@ -47,7 +47,8 @@
 [[headers]]
   for = "/assets/*"
   [headers.values]
-    Cache-Control = "public, max-age=604800"
+    # always revalidate (cheap 304): file names do not change between deploys
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 # Old URLs of the current site. Extend this list once the full URL list of the
 # live site is known (see project-audit/07-risks-and-seo.md).

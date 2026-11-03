@@ -140,5 +140,5 @@ eleventyComputed:
 
 {% block scripts %}
 <script type="application/json" id="finder-data">{{ { types: prices.types, phone: site.phone, email: site.email, whatsapp: site.whatsapp, status: pricesMeta.status, isDemo: prices.isDemo, catalogue: '/preise/katalog.json', photos: modelPhotos } | json | safe }}</script>
-<script src="/assets/js/finder.js" defer></script>
+<script src="{{ '/assets/js/finder.js' | v }}" defer></script>
 {% endblock %}

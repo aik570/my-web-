@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { createHash } from 'node:crypto';
 import markdownIt from 'markdown-it';
 
 const md = markdownIt({ html: false, linkify: true, typographer: true, breaks: true });
@@ -51,6 +52,10 @@ export default function (eleventyConfig) {
   // {befund} price of the error analysis, {garantie} standard repair warranty, {garantieWasser} water damage,
   // {gewaehrleistung} sentence on the statutory rights.
   eleventyConfig.addFilter('fill', (s = '') => fillText(s));
+  // Cache busting: /assets/x.css → /assets/x.css?v=<content hash>, so browsers never keep an old file after a deploy
+  eleventyConfig.addFilter('v', (url) => {
+    try { return url + '?v=' + createHash('sha1').update(fs.readFileSync('src' + url)).digest('hex').slice(0, 10); } catch { return url; }
+  });
   eleventyConfig.addFilter('repairName', (r, types = []) => r.label || (types.find((t) => t.id === r.service) || {}).label || r.service);
   // Price list helpers: [brand, brandSlug, model, modelSlug] for the search; device types; repair types in use.
   eleventyConfig.addFilter('modelIndex', (brands = []) => brands.flatMap((b) => b.models.map((m) => [b.brand, b.slug, m.name, m.slug])));
