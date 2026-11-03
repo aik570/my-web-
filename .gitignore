@@ -5,3 +5,4 @@ product-images/assets/
 product-images/originals/
 product-images/*.zip
 product-images/contact-sheets/
+__pycache__/
