@@ -1,0 +1,72 @@
+{
+ "apple/iphone-13-mini": {
+  "verdict": "EXACT",
+  "note": "green back, diagonal dual camera of the 13 mini; file category IPhone 13 Mini",
+  "by": "Claude (contact sheet review)",
+  "date": "2026-11-03",
+  "sha256": "0d3275a4bce06b6c877e902594e865ecc828b4d08ff6c95ee482377c25648dd8"
+ },
+ "apple/iphone-7": {
+  "verdict": "EXACT",
+  "note": "rose gold back with iPhone 7 antenna lines and camera; file title A1778",
+  "by": "Claude (contact sheet review)",
+  "date": "2026-11-03",
+  "sha256": "ad9a0d8cda4a770f28cfbe0ab9a339db5229426db7bf6f9cb171dcf117f63a6b"
+ },
+ "apple/iphone-8": {
+  "verdict": "UNSURE",
+  "note": "front view; iPhone 8, 7 and 6s look identical from the front – model cannot be confirmed visually",
+  "by": "Claude (contact sheet review)",
+  "date": "2026-11-03",
+  "sha256": "860657c66f133951513fcd6d0871c3c1aa125e6e17c3f44b7b4456ff17528dfc"
+ },
+ "apple/iphone-se": {
+  "verdict": "UNSURE",
+  "note": "front view; iPhone SE (1st gen.) and 5s look identical from the front",
+  "by": "Claude (contact sheet review)",
+  "date": "2026-11-03",
+  "sha256": "f04596dfcd13b6e9636d2001dcf6a143c202a525a3ae918e7c387ee236b9427e"
+ },
+ "apple/iphone-6-plus": {
+  "verdict": "UNSURE",
+  "note": "front view taken from a 6 / 6 Plus group picture; size cannot be confirmed visually",
+  "by": "Claude (contact sheet review)",
+  "date": "2026-11-03",
+  "sha256": "f2044294b4bc6f7c827c1a2e5b09449df5638d5848fd2094c520e567f72b60ba"
+ },
+ "apple/iphone-6s": {
+  "verdict": "EXACT",
+  "note": "already on the website; checked when it was registered (31.10.2026)",
+  "by": "Claude (contact sheet review)",
+  "date": "2026-11-03",
+  "sha256": "ecfc24e39ed645016bd11cf55c217b4534ca88300130d966ee1f38f87feaa322"
+ },
+ "samsung/galaxy-a52": {
+  "verdict": "EXACT",
+  "note": "already on the website; checked when it was registered (31.10.2026)",
+  "by": "Claude (contact sheet review)",
+  "date": "2026-11-03",
+  "sha256": "97d33ece34a154df3112877af2be7fb3026d25c7ce5ee96fb096f7cea28a5ce1"
+ },
+ "samsung/galaxy-j5-2017": {
+  "verdict": "EXACT",
+  "note": "already on the website; checked when it was registered (31.10.2026)",
+  "by": "Claude (contact sheet review)",
+  "date": "2026-11-03",
+  "sha256": "ccf02a6adb2494b0d84228d8b353fccee98f3a8bade2a850edfddac47aff83aa"
+ },
+ "huawei/honor-8": {
+  "verdict": "EXACT",
+  "note": "already on the website; checked when it was registered (31.10.2026)",
+  "by": "Claude (contact sheet review)",
+  "date": "2026-11-03",
+  "sha256": "c865bd185761d11f4e488faeb395a4d8a9c58152e20d01f105d45ef7573290ab"
+ },
+ "oneplus/oneplus-7-pro": {
+  "verdict": "EXACT",
+  "note": "already on the website; checked when it was registered (31.10.2026)",
+  "by": "Claude (contact sheet review)",
+  "date": "2026-11-03",
+  "sha256": "cb0e8491f9d4a57621214c3f84f7771a16903e9b829b3cdf37a5f492ae8f53a6"
+ }
+}

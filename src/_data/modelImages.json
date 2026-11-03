@@ -45,6 +45,15 @@
       "credit": "Raimond Spekking (bearbeitet)",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
       "source": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_J5_%282017%2C_SM-J530F-DS%29-0346.jpg"
+    },
+    {
+      "model": "iPhone 13 mini",
+      "image": "/assets/img/produkte/apple-iphone-13-mini.webp",
+      "license": "CC BY-SA 4.0",
+      "proof": "Wikimedia Commons File:IPhone_13_Mini_Grün_Freigestellt.png",
+      "credit": "DYVER (bearbeitet)",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "source": "https://commons.wikimedia.org/wiki/File%3AIPhone_13_Mini_Gr%C3%BCn_Freigestellt.png"
     }
   ]
 }

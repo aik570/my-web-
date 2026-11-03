@@ -106,6 +106,14 @@ Tick a box when the answer is received; record the answer and date next to it.
 - **Phone number:** the redesign uses 0163 228 8224 everywhere; the old website shows 0331 29080953. Confirm which number is correct (not changed).
 - **Opening hours:** Mo–Fr 10:00–18:30, Sa 10:00–18:00, **Sunday closed** – confirm Sunday. Public holidays: the site says "bitte anrufen" (e.g. Reformationstag 31.10.).
 - **Warranty wording (legal review recommended):** "3 Monate Garantie auf Arbeit und Ersatzteile; Wasserschaden ohne Garantie; die gesetzlichen Gewährleistungsrechte bleiben unberührt" (services page, FAQ, home page, repair facts). Have a lawyer confirm the wording; in particular that excluding a guarantee for water-damage repairs does not read as excluding statutory warranty (Gewährleistung). Back cover, WLAN/Bluetooth and board repairs show no warranty yet – confirm the period.
-- **Product photos:** 5 of 493 models have a licensed product photo. The remaining 488 (list: `project-audit/PRODUCT-PHOTOS-NEEDED.csv`) need licensed images (purchase without "editorial use only", manufacturer permission, or own photos on white). Import: `scripts/photos/normalize.py --incoming`.
+- **Product photos:** 6 of 493 models have a licensed product photo (update 03.11.: see item 14). The remaining 487 (list: `project-audit/PRODUCT-PHOTOS-NEEDED.csv`) need licensed images (purchase without "editorial use only", manufacturer permission, or own photos on white). Import: `scripts/photos/normalize.py --incoming`.
 - **Google reviews:** Place ID and a Places API key (or another approved source) – until then the section only links to Google.
 
+
+### 14. Product image rights (03.11.2026) — [ ]
+The automatic collection (`product-images/REPORT.md`, contact sheets in `product-images/contact-sheets/`) found **121 exact official images** (Apple support pages: 75; Samsung Mobile Press: 46). They are *not* on the website: Apple's images are "all rights reserved", Samsung's press terms allow only personal, informational, non-commercial use. To use them, one of:
+- written permission from Apple / Samsung for use on the shop website (ask via their press/legal contacts), or
+- buy commercial (non-editorial) stock images of the same models, or
+- own product photos on white.
+Also decide: the free iPhone 7 photo (CC BY-SA 4.0) requires the credit „MacRepairDundee.co.uk" – a repair business; use it or not?
+For Xiaomi, Huawei, Sony, OnePlus and Google no official image source was reachable; Wikimedia Commons could only be partly checked (rate limit). Re-run: `python3 scripts/collect-product-images.py --retry-failed`.

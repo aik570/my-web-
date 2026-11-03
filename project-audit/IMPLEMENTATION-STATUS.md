@@ -1,8 +1,26 @@
 # Implementation status
 
-Updated: 31.10.2026, handover round (reviews, header, model order, CMS, calculator, photos, warranty, hours, franchise) · Branch `claude/zealous-bohr-71wesv`
+Updated: 03.11.2026, final fixes (reviews ticker, call number, CMS completion, product image collection) · Branch `claude/zealous-bohr-71wesv`
 
-## ZZ. Final round (31.10.2026, latest)
+## ZZZ. Final fixes (03.11.2026, latest)
+
+**Preview:** https://claude.ai/artifact/MKnvHQdRfoKvSRqyntbA2E (version 53 and later). Checked locally with browser automation; not on physical devices; production hosting and its CMS login not set up yet.
+
+| Item | Result |
+|---|---|
+| Google reviews | Thin blue strip directly above the footer on every page. With real reviews: continuously moving row of cards (Google mark, name, date, stars, 2-line text), seamless loop, pauses on hover/focus/touch, no motion with reduced motion (then a scrollable row). Without data (current): 42 px strip with the Google label and „Auf Google lesen →", no cards. Layout checked with the marked fixture (128 px desktop, 206 px phone, no overflow). Needs Place ID + Places API key or a review widget (owner) |
+| Phone number (call block) | 52 → 40 px desktop, 22 px phone (heading 67 / 34 px), fits at 320 px. Header and global type unchanged |
+| Model order | Unchanged (newest first, series groups). New optional CMS fields per model: **Gruppe** (heading) and **Position** (fixed place) |
+| Hours | Unchanged single source (Sa 10–18, So closed) |
+| Warranty | One source: Laden & Kontakt › Garantie (3 Monate / Ohne Garantie / statutory-rights sentence). All texts use {garantie}, {garantieWasser}, {gewaehrleistung}; repair types too. No 6/12-month repair warranty claims anywhere; Datenschutz retention periods untouched |
+| CMS additions | Unterseiten (headings + SEO title/description of price list, calculator, services, brand and model page patterns, 404), social links (footer), warranty object |
+| CMS end-to-end (`npm run test:cms`) | All 15 sections open; price 119→126 €, Befund 25→31 €, Saturday 18:00→17:30, warranty 3→4 Monate, /preise/ heading, model page title pattern, photo upload → all verified after rebuild in calculator, model page, price list, services, FAQ, hours, footer, structured data, header data; model Position/Gruppe logic checked; everything restored. Local backend only — GitHub/Netlify login not tested |
+| Product images | `scripts/collect-product-images.py` over all 493 models (CSV `project-audit/handy-chirurg-image-workflow.csv`, report `product-images/REPORT.md`, contact sheets, ZIP). Result: 7 VISUALLY_VERIFIED (free licence), 3 DOWNLOADED_CANDIDATE, 121 RIGHTS_REVIEW_REQUIRED (official Apple support / Samsung Mobile Press images – exact models, but not licensed for the shop site), 4 DUPLICATE, 358 FAILED (Commons rate-limited this network; no official source for Xiaomi/Huawei/Sony/OnePlus/Google). 4 Commons files rejected in the visual check (replacement display part; mock-up with wrong model). New on the site: iPhone 13 mini (CC BY-SA 4.0) → 6 of 493 models with a photo. iPhone 7 photo (CC BY-SA) not used: its author is a repair business – owner decision |
+| Checks | `npm test` 196 pass; `npm run test:cms` passes; interaction test see INTERACTION-QA-MATRIX.md |
+
+---
+
+## ZZ. Final round (31.10.2026)
 
 **Preview:** https://claude.ai/artifact/MKnvHQdRfoKvSRqyntbA2E (version 47). Checked locally with browser automation; not on physical devices.
 

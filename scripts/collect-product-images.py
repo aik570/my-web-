@@ -54,7 +54,7 @@ SITE_PHOTOS = ROOT / 'src/_data/modelImages.json'
 UA = 'HandyChirurgImageCollector/1.0 (https://www.handychirurg.de; product image licence research)'
 W, H, PAD = 600, 800, 0.08
 FREE = re.compile(r'^(cc0|cc[ -]by(-sa)?([ -]\d\.\d)?|public domain|pd\b|pd-|attribution)', re.I)
-BAD_WORDS = re.compile(r'box|packag|screenshot|screen ?shot|teardown|disassembl|inside|interior|repair|logo|hand|held|holding|user|people|person|store|shop|booth|mwc|ifa|expo|event|launch|ad\b|advert|billboard|poster|case|cover|charger|cable|dock|stand|keyboard|chart|diagram|icon|svg|simulator|docs|wallpaper|ui\b|interface|camera ?sample|sample|photo taken|taken with|shot on|render(ing)? of', re.I)
+BAD_WORDS = re.compile(r'box|packag|screenshot|screen ?shot|teardown|disassembl|inside|interior|repair|logo|hand|held|holding|user|people|person|store|shop|booth|mwc|ifa|expo|event|launch|ad\b|advert|billboard|poster|case|cover|charger|cable|dock|stand|keyboard|chart|diagram|icon|svg|screen\b|display\b|lcd|oled|battery|akku|part\b|spare|replacement|simulator|docs|wallpaper|ui\b|interface|camera ?sample|sample|photo taken|taken with|shot on|render(ing)? of', re.I)
 VARIANTS = {'pro', 'max', 'plus', 'mini', 'lite', 'ultra', 'fe', 'edge', 'neo', 'prime', 'note', 'xl', 'xr', 'xs', 'x', 'se', 'fold', 'flip', 'active', 'compact', 'premium', 'play', 'power', 'go', 'core', 'nord', 'mate', 'nova', 'redmi', 'poco', 'honor', 'smart', 'e', 's', 't', 'r', 'a', 'c', 'y', 'm', 'j'}
 
 # ------------------------------------------------------------------ HTTP with cache + backoff
@@ -119,6 +119,8 @@ def title_matches(brand, model, title):
     mt = model_tokens(brand, model)
     tt = [x for x in norm(title) if not re.fullmatch(r'\d{3,}', x)]
     nums_m = {x for x in mt if x.isdigit()}
+    # a title that names the model number must also name its variant ("iPhone 15" is not the 15 Pro Max)
+    if nums_m & set(tt) and any(v in VARIANTS and v not in tt for v in mt): return False
     for x in tt:
         if x.isdigit() and len(x) <= 2 and x not in nums_m: return False
         if x in VARIANTS and x not in mt: return False
@@ -152,10 +154,14 @@ def commons_names(brand, model):
     return list(dict.fromkeys(out))
 
 # ------------------------------------------------------------------ image checks
-def isolate(im):
-    """Return the device cropped from a light, even background, or raise ValueError."""
+def isolate(im, official=False):
+    """Return the device cropped from a light, even background, or raise ValueError.
+    official=True (manufacturer identification / press images): these are often cropped tight to the
+    devices on white, so a white margin is added before the checks; the contact sheet review still applies."""
     im = im.convert('RGBA')
     a = im.getchannel('A'); cutout = a.getextrema()[0] < 10
+    if official and not cutout:
+        m = max(8, round(max(im.size) * .03)); padded = Image.new('RGBA', (im.width + 2 * m, im.height + 2 * m), (255, 255, 255, 255)); padded.paste(im, (m, m)); im = padded
     if cutout:   # transparent background: cut-out packshot, often cropped tight -> add a margin
         m = max(8, round(max(im.size) * .03)); padded = Image.new('RGBA', (im.width + 2 * m, im.height + 2 * m), (255, 255, 255, 0)); padded.paste(im, (m, m)); im = padded
     flat = Image.new('RGB', im.size, (255, 255, 255)); flat.paste(im, mask=im.getchannel('A'))
@@ -195,8 +201,9 @@ def isolate(im):
     if ratio < 0.35: raise ValueError('object far wider than a phone (group or banner)')
     cover = sum(1 for v in mask.crop(box).resize((60, 60)).get_flattened_data() if v > 127) / 3600
     if cover < 0.55: raise ValueError(f'not a solid device outline ({cover:.0%} filled – drawing, text or scene)')
-    soft = mask.filter(ImageFilter.MaxFilter(5)).filter(ImageFilter.GaussianBlur(2))
-    flat = Image.composite(flat, Image.new('RGB', flat.size, (255, 255, 255)), soft)
+    if not (official or cutout):   # grey photo backdrop -> white; official images are kept pixel for pixel
+        soft = mask.filter(ImageFilter.MaxFilter(5)).filter(ImageFilter.GaussianBlur(2))
+        flat = Image.composite(flat, Image.new('RGB', flat.size, (255, 255, 255)), soft)
     out = flat.crop(box); out.info['lineup'] = lineup
     return out
 
@@ -357,7 +364,7 @@ def process(row, rec):
             got, why, hdr = fetch_image(url)
             if got:
                 try:
-                    dev = isolate(got[0])
+                    dev = isolate(got[0], official=True)
                     found = dict(source='Apple Support (official)', via=f'{page} – „{name}"', file_page=page, direct_image_url=url, downloaded_url=url,
                                  license='Apple Inc. – all rights reserved (support page image)', licenseUrl='https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html',
                                  credit='Apple Inc.', mime=hdr.get('type', '').split(';')[0], original_size=list(got[0].size), press_name=name,
@@ -376,7 +383,7 @@ def process(row, rec):
                 got, why, hdr = fetch_image(url)
                 if got:
                     try:
-                        dev = isolate(got[0])
+                        dev = isolate(got[0], official=True)
                         found = dict(source='Samsung Mobile Press', via='media-assets/' + slug, file_page='https://www.samsungmobilepress.com/media-assets/' + slug,
                                      direct_image_url=url, downloaded_url=url, license='Samsung Mobile Press terms: personal, informational, non-commercial use',
                                      licenseUrl='https://www.samsungmobilepress.com/terms-of-use', credit='Samsung Electronics', mime=hdr.get('type', '').split(';')[0],
@@ -501,6 +508,18 @@ def verify(recs):
     problems += [f'{k} used by {v}' for k, v in names.items() if len(v) > 1]
     return problems
 
+def failed_reasons(recs):
+    from collections import Counter
+    c = Counter()
+    for r in recs:
+        if r['status'] != 'FAILED': continue
+        t = ' '.join(r.get('tried') or [])
+        c['Samsung: no Mobile Press page for this model' if 'no media page' in t else
+          'Samsung: press image rejected (thumbnail only 306 × 240 px, or not a clean single packshot)' if 'Samsung press' in t else
+          'Apple: not on the identify-your-model pages (MacBook, Watch Ultra/Ultra 2)' if 'Apple support' in t else
+          'no official manufacturer image source available (Xiaomi, Huawei, Sony, OnePlus, Google)'] += 1
+    return c.most_common()
+
 def report(recs, sheet_files, problems):
     from collections import Counter
     c = Counter(r['status'] for r in recs); b = {}
@@ -513,6 +532,11 @@ def report(recs, sheet_files, problems):
          'DOWNLOADED_CANDIDATE still needs the visual check; RIGHTS_REVIEW_REQUIRED needs permission or a commercial licence first.**', '',
          '| Brand | ' + ' | '.join(order) + ' |', '|---|' + '---|' * len(order)] + \
         [f'| {br} | ' + ' | '.join(str(v.get(s, 0)) for s in order) + ' |' for br, v in b.items()] + ['',
+         '## What FAILED means here', '',
+         'FAILED = the model could not be checked completely in this run, not "no image exists". '
+         'Wikimedia Commons answered this network with HTTP 429 (rate limit) for most requests, so the free-licence check is still open. '
+         'Re-run with `python3 scripts/collect-product-images.py --retry-failed` from another network or with a Wikimedia API token.', ''] + \
+        [f'- {n} × {why}' for why, n in failed_reasons(recs)] + ['',
          '## File checks', '', ('All listed files exist, open as images and are used once.' if not problems else '\n'.join('- ' + p for p in problems)), '',
          '## Sources and limits', '',
          '- Wikimedia Commons API: category of the exact model, then exact title search. Free licences only; licence, author and file page are stored per model.',
