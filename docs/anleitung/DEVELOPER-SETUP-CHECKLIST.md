@@ -8,7 +8,7 @@ Status 03.11.2026. "Verified" = checked in this repository or by a test run on 0
 |---|---|---|
 | Decap CMS 3.x, self-hosted under `/admin/` (no CDN) | `src/admin/` | `/admin/` loads in the local build |
 | CMS config: GitHub backend, `publish_mode: simple`, German UI, 4 collections / 15 sections | `src/admin/config.yml` | `npm run test:cms`: all 15 open |
-| Local editing (decap-server, `local_backend: true`) | `npm run cms` + `npm run dev` | `test:cms` + `.cache/guide-shots.mjs`: price, Befund, hours, warranty, page heading, SEO title pattern, text, **add device**, photo upload → publish → rebuild → visible in calculator, model page, price list, services, FAQ, footer, structured data |
+| Local editing (decap-server, `local_backend: true`) | `npm run cms` + `npm run dev` | `npm run test:cms` + `node scripts/test-cms-guide.mjs`: price, Befund, hours, warranty, page heading, SEO title pattern, text, **add device**, photo upload → publish → rebuild → visible in calculator, model page, price list, services, FAQ, footer, structured data |
 | Build settings, Node 22, headers (CSP, `noindex` for `/admin/`), redirects | `netlify.toml` | `npm test` (production checks) |
 | Invalid CMS data stops the build (live site stays unchanged) | `src/_data/prices.js`, `scripts/check-launch.mjs` | build validation tests |
 | No secrets in the repository | — | only the OAuth client secret is needed, and it lives in Netlify |
