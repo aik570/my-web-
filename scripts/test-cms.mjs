@@ -121,8 +121,8 @@ try {
   const items = page.locator('[class*="ListItem-listControlItem"]');
   const last = items.last();
   const modelBox = last.locator('input').first();
-  await modelBox.click(); await modelBox.fill('Galaxy S24 Ultra'); await page.waitForTimeout(1500);
-  await page.locator('[class*="option"]', { hasText: /^Galaxy S24 Ultra$/ }).first().click(); await page.waitForTimeout(500);
+  await modelBox.click(); await modelBox.fill('Galaxy S21'); await page.waitForTimeout(1500);
+  await page.locator('[class*="option"]', { hasText: /^Galaxy S21$/ }).first().click(); await page.waitForTimeout(500);
   await last.getByRole('button', { name: /bild|image/i }).first().click(); await page.waitForTimeout(1500);
   const upName = `cms-test-${Date.now()}.webp`;
   fs.mkdirSync('.cache', { recursive: true }); fs.copyFileSync('src/assets/img/produkte/samsung-galaxy-a52.webp', `.cache/${upName}`);
@@ -132,8 +132,8 @@ try {
   await (await last.locator('label', { hasText: /^Lizenz/ }).getAttribute('for').then((id) => page.locator('#' + id))).fill('TEST (nur Test)');
   await publish(page);
   const photos = JSON.parse(fs.readFileSync(PHOTOS, 'utf8')).photos;
-  const added = photos.find((x) => x.model === 'Galaxy S24 Ultra');
-  ok(added && added.license.startsWith('TEST') && added.image === `/assets/img/produkte/${upName}` && fs.existsSync('src' + added.image), `published: photo entry for Galaxy S24 Ultra with the uploaded file (${added && added.image})`);
+  const added = photos.find((x) => x.model === 'Galaxy S21');
+  ok(added && added.license.startsWith('TEST') && added.image === `/assets/img/produkte/${upName}` && fs.existsSync('src' + added.image), `published: photo entry for Galaxy S21 with the uploaded file (${added && added.image})`);
 
   const saved = fs.readFileSync(FILE, 'utf8');
   const after = JSON.parse(saved).models.find((m) => m.name === MODEL).repairs.find((r) => r.service === 'akku').price;
@@ -174,8 +174,8 @@ try {
   const p2 = await browser.newPage();
   await p2.goto(`http://localhost:8082/reparatur-finden/#apple--${m.slug}--akku`); await p2.waitForSelector('#finder.is-ready'); await p2.waitForTimeout(500);
   ok((await p2.$eval('#r-total', (e) => e.textContent)).includes(`${NEW} €`), `Preisrechner shows ${NEW} €`);
-  await p2.goto(`http://localhost:8082/reparatur-finden/#samsung--galaxy-s24-ultra`); await p2.waitForSelector('#finder.is-ready'); await p2.waitForTimeout(500);
-  ok(await p2.$eval('#f-device-photo', (i) => !i.hidden && /cms-test-\d+\.webp$/.test(i.getAttribute('src')) && i.naturalWidth > 0), 'Preisrechner shows the photo uploaded in the CMS for Galaxy S24 Ultra');
+  await p2.goto(`http://localhost:8082/reparatur-finden/#samsung--galaxy-s21`); await p2.waitForSelector('#finder.is-ready'); await p2.waitForTimeout(500);
+  ok(await p2.$eval('#f-device-photo', (i) => !i.hidden && /cms-test-\d+\.webp$/.test(i.getAttribute('src')) && i.naturalWidth > 0), 'Preisrechner shows the photo uploaded in the CMS for Galaxy S21');
   s2.close();
   // model order overrides (Position / Gruppe in the CMS)
   const { orderNewestFirst } = await import('./lib/prices.mjs');

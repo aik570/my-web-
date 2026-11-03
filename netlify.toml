@@ -5,6 +5,9 @@
   command = "npm ci && npm run build"
   publish = "_site"
 
+[functions]
+  directory = "netlify/functions"
+
 [build.environment]
   NODE_VERSION = "22"
 
