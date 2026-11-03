@@ -1,6 +1,6 @@
 # Product image collection – report
 
-Run: 2026-11-03 09:35 · models: 493 · files on disk: 135
+Run: 2026-11-03 09:50 · models: 493 · files on disk: 135
 
 | Status | Models |
 |---|---|
