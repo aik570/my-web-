@@ -481,12 +481,19 @@
   });
 })();
 
-// Google reviews: arrow / arrow keys move by one card (wraps to the start at the end).
+// Google reviews ticker: the card row is copied once (hidden from screen readers) so the CSS
+// animation can loop without a gap; speed is set from the row width (~40 px/s).
 (function () {
-  var track = document.querySelector('[data-rvw]');
+  var track = document.querySelector('[data-rv-track]');
   if (!track) return;
-  var step = function () { var c = track.querySelector('.rvw__card'); return c ? c.getBoundingClientRect().width + 16 : track.clientWidth; };
-  var go = function (d) { var max = track.scrollWidth - track.clientWidth - 2; if (d > 0 && track.scrollLeft >= max) track.scrollTo({ left: 0 }); else track.scrollBy({ left: d * step() }); };
-  var next = document.querySelector('[data-rvw-next]'); if (next) next.addEventListener('click', function () { go(1); });
-  track.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); go(e.key === 'ArrowRight' ? 1 : -1); } });
+  var cards = Array.prototype.slice.call(track.children), vp = track.parentNode;
+  var copy = function () { cards.forEach(function (c) { var d = c.cloneNode(true); d.setAttribute('aria-hidden', 'true'); d.querySelectorAll('a').forEach(function (a) { a.tabIndex = -1; }); track.appendChild(d); }); };
+  // one "set" must be at least as wide as the strip, then the set is doubled for the seamless loop
+  var reps = Math.max(1, Math.ceil(vp.clientWidth / Math.max(1, track.scrollWidth)));
+  for (var i = 1; i < reps * 2; i++) copy();
+  var set = function () { track.style.setProperty('--rv-dur', Math.max(20, Math.round(track.scrollWidth / 2 / 40)) + 's'); };
+  set(); addEventListener('resize', set);
+  var box = track.closest('.rv');
+  box.addEventListener('touchstart', function () { box.classList.add('is-paused'); }, { passive: true });
+  box.addEventListener('touchend', function () { setTimeout(function () { box.classList.remove('is-paused'); }, 2500); });
 })();

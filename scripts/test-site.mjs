@@ -145,12 +145,12 @@ console.log('\nGoogle-Bewertungen');
   await page.goto(BASE + '/'); await page.waitForTimeout(300);
   const st = await page.evaluate(() => {
     const s = document.getElementById('bewertungen'), f = document.querySelector('footer'), bar = document.querySelector('.foot__bar');
-    return { exists: !!s, count: document.querySelectorAll('#bewertungen').length, placed: !!s && !!f && f.contains(s) && s.getBoundingClientRect().bottom <= bar.getBoundingClientRect().top + 1,
-      height: s ? s.getBoundingClientRect().height : 0, cards: document.querySelectorAll('.rvw__card').length,
-      link: s?.querySelector('.rvw__btn')?.href || '', sample: !!s?.querySelector('.rv__sample'), head: !!s?.querySelector('.rvw__head .gmark') };
+    return { exists: !!s, count: document.querySelectorAll('#bewertungen').length, placed: !!s && !!f && f.contains(s) && s.getBoundingClientRect().top >= bar.getBoundingClientRect().bottom - 1 && s.nextElementSibling?.classList.contains('foot__mark'),
+      height: s ? s.getBoundingClientRect().height : 0, cards: document.querySelectorAll('.rv__card:not([aria-hidden])').length,
+      link: s?.querySelector('.rv__link')?.href || '', sample: !!s?.querySelector('.rv__sample'), head: !!s?.querySelector('.rv__label .gmark') };
   });
-  ok(st.exists && st.count === 1 && st.placed && st.head, 'Google reviews: one block (reference layout: Google header + button, cards) in the footer above Impressum/Datenschutz and the logo');
-  ok(st.height > 0 && st.height <= (st.cards ? 460 : 200), `reviews block compact on a phone (${Math.round(st.height)} px)`);
+  ok(st.exists && st.count === 1 && st.placed && st.head, 'Google reviews: one thin strip directly under © / Impressum / Datenschutz, above the logo');
+  ok(st.height > 0 && st.height <= (st.cards ? 230 : 80), `reviews block compact on a phone (${Math.round(st.height)} px)`);
   ok(st.cards === rv.items.length && !st.sample, `review cards = reviews.json (${rv.items.length})${rv.items.length ? '' : ' → no quotes, nothing invented'}`);
   ok(/^https:\/\/(www\.)?google\.[a-z.]+\/maps/.test(st.link), 'link to the reviews on Google');
   await page.close();
