@@ -15,12 +15,17 @@ Status 03.11.2026. Only these images are used on the website (calculator, mappin
 
 **8 of 493 catalogue models** have a licensed image. All other models show the schematic drawing.
 
+## Manufacturer images shown ONLY in the preview (decision 03.11.2026, Коля: "фотографии давай")
+
+124 official images (Apple support pages: 78 incl. 4 Apple Watch size variants; Samsung Mobile Press: 46) are registered in `src/_data/modelImages.json` with `"rightsConfirmed": false`.
+- They appear in previews and on the Netlify test site (`HC_PREVIEW_SITE=1`).
+- **A production build leaves them out automatically** (`src/_data/modelPhotos.js`), and `npm run check` lists them as a launch blocker.
+- To use them on the real website: get written permission from Apple / Samsung (or buy licensed images), then switch on „Nutzungsrecht bestätigt" for each entry in /admin/ (Laden & Kontakt › Produktfotos) – or replace the photo there.
+
 ## Found but NOT used (rights not established or model not certain)
 
 | Images | Source | Why not used |
 |---|---|---|
-| 75 exact Apple models (iPhone 6–17, iPad, Apple Watch) | support.apple.com "Identify your model" pages | Apple Inc., all rights reserved – no permission for a shop website |
-| 46 exact Samsung models | Samsung Mobile Press (samsungmobilepress.com) | Terms: personal, informational, non-commercial use only |
 | iPhone 7 (CC BY-SA 4.0) | Wikimedia Commons, author MacRepairDundee.co.uk | Licence allows it, but the required credit names another repair business – owner decision |
 | iPhone 6 Plus, iPhone SE (unspecified generation) | Wikimedia Commons | Model/generation cannot be confirmed for the catalogue entry |
 | iPhone 16 Pro Max, iPhone 15 / 15 Plus / 15 Pro Max | Wikimedia Commons | Rejected: a replacement display part and a mock-up render with the wrong model name |

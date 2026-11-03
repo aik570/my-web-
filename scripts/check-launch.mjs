@@ -44,8 +44,11 @@ if (!site.whatsapp) warnings.push('WhatsApp-Nummer nicht eingetragen (Knopf wird
 const reviews = JSON.parse(fs.readFileSync('src/_data/reviews.json', 'utf8'));
 if (!reviews.items.length) warnings.push('Google-Bewertungen nicht verbunden (Startseite verlinkt nur auf Google) – Place ID und API-Schlüssel nötig, siehe scripts/fetch-reviews.mjs');
 const modelImages = JSON.parse(fs.readFileSync('src/_data/modelImages.json', 'utf8'));
-const exactPhotos = (modelImages.photos || []).length;
+const allPhotos = modelImages.photos || [];
+const unconfirmed = allPhotos.filter((p) => p.rightsConfirmed === false);
+const exactPhotos = allPhotos.length - unconfirmed.length;
 warnings.push(`Produktfotos im Preisrechner: ${exactPhotos} Modelle mit lizenziertem Produktfoto, übrige zeigen die Zeichnung – fehlende Modelle: project-audit/MODEL-PHOTOS.md`);
+if (unconfirmed.length) blockers.push(`Produktfotos: ${unconfirmed.length} Herstellerbilder (Apple/Samsung) ohne bestätigtes Nutzungsrecht – Genehmigung einholen und im CMS „Nutzungsrecht bestätigt" einschalten, oder ersetzen. Bis dahin erscheinen sie nur in der Vorschau`);
 if (site.hours.find((h) => h.dayIndex === 0 && !h.open)) warnings.push('Sonntag geschlossen – vom Inhaber bestätigen lassen');
 if (site.publicHolidays === 'unknown') warnings.push('Feiertagsregel offen (Seite zeigt an Feiertagen „bitte vorher anrufen")');
 if (!meta.vatNote) warnings.push('Preisliste: kein Hinweis zur Umsatzsteuer (z. B. „Alle Preise inkl. MwSt.") – Angabe vom Inhaber bestätigen lassen (CLIENT-APPROVAL-CHECKLIST Punkt 6)');

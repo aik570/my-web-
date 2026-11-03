@@ -3,6 +3,7 @@
 // a model no longer in the catalogue, or to a missing file, are left out with a warning.
 import fs from 'node:fs';
 import prices from './prices.js';
+import env from './env.js';
 
 export default function () {
   const list = JSON.parse(fs.readFileSync(new URL('./modelImages.json', import.meta.url))).photos || [];
@@ -16,6 +17,8 @@ export default function () {
     p = { ...p, model: byName.get(p.model) || p.model };
     if (!known.has(p.model)) { console.warn(`[photos] ${p.model}: kein Modell mit dieser Katalog-ID – Foto wird nicht angezeigt`); continue; }
     if (!fs.existsSync(new URL('../' + p.image.replace(/^\//, ''), import.meta.url))) { console.warn(`[photos] ${p.model}: Datei ${p.image} fehlt`); continue; }
+    // images whose usage right is not confirmed yet are only shown in previews, never in production
+    if (p.rightsConfirmed === false && env().isProduction) continue;
     if (!p.license) { console.warn(`[photos] ${p.model}: keine Lizenz eingetragen – Foto wird nicht angezeigt`); continue; }
     map[p.model] = { image: p.image, license: p.license, credit: p.credit || '', licenseUrl: p.licenseUrl || '', source: p.source || '', exact: true };
   }

@@ -235,6 +235,7 @@ collections:
                 hint: 'Modell aus dem Preiskatalog wählen (Tippen zum Suchen, z. B. „16 Pro Max")'
               - { name: image, label: Foto, widget: image, media_folder: /src/assets/img/produkte, public_folder: /assets/img/produkte, hint: 'Hochladen oder ersetzen. Freigestelltes Produktfoto auf Weiß, Hochformat (z. B. 600 × 800). Erscheint nach dem Veröffentlichen im Preisrechner.' }
               - { name: license, label: Lizenz, widget: string, hint: 'z. B. „iStock Standard (nicht redaktionell)", „Genehmigung Samsung vom …", „CC BY-SA 4.0"' }
+              - { name: rightsConfirmed, label: Nutzungsrecht bestätigt, widget: boolean, default: true, required: false, hint: 'Aus = Foto nur in der Vorschau, nicht auf der echten Website (z. B. Herstellerbild, Genehmigung fehlt noch)' }
               - { name: proof, label: Nachweis, widget: string, required: false, hint: 'Rechnungs- oder Genehmigungsnummer (wird nicht angezeigt)' }
               - { name: credit, label: Bildnachweis (angezeigt), widget: string, required: false, hint: 'Nur wenn die Lizenz eine Namensnennung verlangt' }
               - { name: licenseUrl, label: Link zur Lizenz, widget: string, required: false }

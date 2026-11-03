@@ -72,6 +72,1246 @@
       "credit": "Micaman45 (bearbeitet)",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
       "source": "https://commons.wikimedia.org/wiki/File%3AIPhone_SE_in_silver.png"
+    },
+    {
+      "model": "iPhone 17 Pro Max",
+      "image": "/assets/img/produkte/apple-iphone-17-pro-max.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone 17 Pro Max), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPhone 17 Pro",
+      "image": "/assets/img/produkte/apple-iphone-17-pro.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone 17 Pro), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPhone Air",
+      "image": "/assets/img/produkte/apple-iphone-air.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone Air), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPhone 17",
+      "image": "/assets/img/produkte/apple-iphone-17.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone 17), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPhone 16 Pro Max",
+      "image": "/assets/img/produkte/apple-iphone-16-pro-max.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone 16 Pro Max), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPhone 16 Pro",
+      "image": "/assets/img/produkte/apple-iphone-16-pro.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone 16 Pro), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPhone 16 Plus",
+      "image": "/assets/img/produkte/apple-iphone-16-plus.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone 16 Plus), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPhone 16",
+      "image": "/assets/img/produkte/apple-iphone-16.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone 16), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPhone 15 Pro Max",
+      "image": "/assets/img/produkte/apple-iphone-15-pro-max.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone 15 Pro Max), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPhone 15 Pro",
+      "image": "/assets/img/produkte/apple-iphone-15-pro.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone 15 Pro), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPhone 15 Plus",
+      "image": "/assets/img/produkte/apple-iphone-15-plus.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone 15 Plus), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPhone 15",
+      "image": "/assets/img/produkte/apple-iphone-15.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone 15), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPhone 14 Pro Max",
+      "image": "/assets/img/produkte/apple-iphone-14-pro-max.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone 14 Pro Max), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPhone 14 Pro",
+      "image": "/assets/img/produkte/apple-iphone-14-pro.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone 14 Pro), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPhone 14 Plus",
+      "image": "/assets/img/produkte/apple-iphone-14-plus.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone 14 Plus), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPhone 14",
+      "image": "/assets/img/produkte/apple-iphone-14.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone 14), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPhone SE (2022)",
+      "image": "/assets/img/produkte/apple-iphone-se-2022.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone SE (3rd generation)), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPhone 13 Pro Max",
+      "image": "/assets/img/produkte/apple-iphone-13-pro-max.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone 13 Pro Max), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPhone 13 Pro",
+      "image": "/assets/img/produkte/apple-iphone-13-pro.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone 13 Pro), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPhone 13",
+      "image": "/assets/img/produkte/apple-iphone-13.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone 13), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPhone 12 Pro Max",
+      "image": "/assets/img/produkte/apple-iphone-12-pro-max.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone 12 Pro Max), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPhone 12 Pro",
+      "image": "/assets/img/produkte/apple-iphone-12-pro.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone 12 Pro), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPhone 12",
+      "image": "/assets/img/produkte/apple-iphone-12.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone 12), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPhone 12 mini",
+      "image": "/assets/img/produkte/apple-iphone-12-mini.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone 12 mini), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPhone SE (2020)",
+      "image": "/assets/img/produkte/apple-iphone-se-2020.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone SE (2nd generation)), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPhone 11 Pro Max",
+      "image": "/assets/img/produkte/apple-iphone-11-pro-max.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone 11 Pro Max), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPhone 11 Pro",
+      "image": "/assets/img/produkte/apple-iphone-11-pro.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone 11 Pro), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPhone 11",
+      "image": "/assets/img/produkte/apple-iphone-11.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone 11), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPhone XS Max",
+      "image": "/assets/img/produkte/apple-iphone-xs-max.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone XS Max), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPhone XS",
+      "image": "/assets/img/produkte/apple-iphone-xs.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone XS), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPhone XR",
+      "image": "/assets/img/produkte/apple-iphone-xr.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone XR), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPhone X",
+      "image": "/assets/img/produkte/apple-iphone-x.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone X), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPhone 8 Plus",
+      "image": "/assets/img/produkte/apple-iphone-8-plus.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone 8 Plus), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPhone 7 Plus",
+      "image": "/assets/img/produkte/apple-iphone-7-plus.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone 7 Plus), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPhone 6s Plus",
+      "image": "/assets/img/produkte/apple-iphone-6s-plus.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone 6s Plus), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPhone 6",
+      "image": "/assets/img/produkte/apple-iphone-6.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108044 (iPhone 6), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108044"
+    },
+    {
+      "model": "iPad Pro 13 Zoll 1. Gen",
+      "image": "/assets/img/produkte/apple-ipad-pro-13-zoll-1-gen.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108043 (iPad Pro 13-inch (M4)), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108043"
+    },
+    {
+      "model": "iPad Pro 12.9 Zoll 1. Gen",
+      "image": "/assets/img/produkte/apple-ipad-pro-12-9-zoll-1-gen.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108043 (iPad Pro (12.9-inch)), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108043"
+    },
+    {
+      "model": "iPad Pro 12.9 Zoll 2. Gen",
+      "image": "/assets/img/produkte/apple-ipad-pro-12-9-zoll-2-gen.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108043 (iPad Pro 12.9-inch (2nd generation)), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108043"
+    },
+    {
+      "model": "iPad Pro 12.9 Zoll 3. Gen",
+      "image": "/assets/img/produkte/apple-ipad-pro-12-9-zoll-3-gen.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108043 (iPad Pro 12.9-inch (3rd generation)), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108043"
+    },
+    {
+      "model": "iPad Pro 12.9 Zoll 4. Gen",
+      "image": "/assets/img/produkte/apple-ipad-pro-12-9-zoll-4-gen.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108043 (iPad Pro 12.9-inch (4th generation)), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108043"
+    },
+    {
+      "model": "iPad Pro 12.9 Zoll 5. Gen",
+      "image": "/assets/img/produkte/apple-ipad-pro-12-9-zoll-5-gen.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108043 (iPad Pro 12.9-inch (5th generation)), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108043"
+    },
+    {
+      "model": "iPad Pro 12.9 Zoll 6. Gen",
+      "image": "/assets/img/produkte/apple-ipad-pro-12-9-zoll-6-gen.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108043 (iPad Pro 12.9-inch (6th generation)), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108043"
+    },
+    {
+      "model": "iPad Pro 11 Zoll 1. Gen",
+      "image": "/assets/img/produkte/apple-ipad-pro-11-zoll-1-gen.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108043 (iPad Pro 11-inch), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108043"
+    },
+    {
+      "model": "iPad Pro 11 Zoll 2. Gen",
+      "image": "/assets/img/produkte/apple-ipad-pro-11-zoll-2-gen.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108043 (iPad Pro 11-inch (2nd generation)), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108043"
+    },
+    {
+      "model": "iPad Pro 11 Zoll 3. Gen",
+      "image": "/assets/img/produkte/apple-ipad-pro-11-zoll-3-gen.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108043 (iPad Pro 11-inch (3rd generation)), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108043"
+    },
+    {
+      "model": "iPad Pro 11 Zoll 4. Gen",
+      "image": "/assets/img/produkte/apple-ipad-pro-11-zoll-4-gen.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108043 (iPad Pro 11-inch (4th generation)), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108043"
+    },
+    {
+      "model": "iPad Pro 10.5 Zoll",
+      "image": "/assets/img/produkte/apple-ipad-pro-10-5-zoll.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108043 (iPad Pro (10.5-inch)), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108043"
+    },
+    {
+      "model": "iPad Pro 9.7 Zoll",
+      "image": "/assets/img/produkte/apple-ipad-pro-9-7-zoll.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108043 (iPad Pro (9.7-inch)), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108043"
+    },
+    {
+      "model": "iPad Mini 7",
+      "image": "/assets/img/produkte/apple-ipad-mini-7.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108043 (iPad mini (A17 Pro)), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108043"
+    },
+    {
+      "model": "iPad Mini 6",
+      "image": "/assets/img/produkte/apple-ipad-mini-6.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108043 (iPad mini (6th generation)), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108043"
+    },
+    {
+      "model": "iPad Mini 5",
+      "image": "/assets/img/produkte/apple-ipad-mini-5.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108043 (iPad mini (5th generation)), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108043"
+    },
+    {
+      "model": "iPad Air 13 Zoll 1. Gen",
+      "image": "/assets/img/produkte/apple-ipad-air-13-zoll-1-gen.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108043 (iPad Air 13-inch (M2)), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108043"
+    },
+    {
+      "model": "iPad Air 11 Zoll 1. Gen",
+      "image": "/assets/img/produkte/apple-ipad-air-11-zoll-1-gen.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108043 (iPad Air 11-inch (M2)), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108043"
+    },
+    {
+      "model": "iPad Air 5",
+      "image": "/assets/img/produkte/apple-ipad-air-5.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108043 (iPad Air (5th generation)), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108043"
+    },
+    {
+      "model": "iPad Air 4",
+      "image": "/assets/img/produkte/apple-ipad-air-4.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108043 (iPad Air (4th generation)), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108043"
+    },
+    {
+      "model": "iPad Air 3",
+      "image": "/assets/img/produkte/apple-ipad-air-3.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108043 (iPad Air (3rd generation)), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108043"
+    },
+    {
+      "model": "iPad Air 2",
+      "image": "/assets/img/produkte/apple-ipad-air-2.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108043 (iPad Air 2), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108043"
+    },
+    {
+      "model": "iPad 10 (2022 10.9 Zoll)",
+      "image": "/assets/img/produkte/apple-ipad-10-2022-10-9-zoll.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108043 (iPad (10th generation)), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108043"
+    },
+    {
+      "model": "iPad 9 (2021 10.2 Zoll)",
+      "image": "/assets/img/produkte/apple-ipad-9-2021-10-2-zoll.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108043 (iPad (9th generation)), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108043"
+    },
+    {
+      "model": "iPad 8 (2020 10.2 Zoll)",
+      "image": "/assets/img/produkte/apple-ipad-8-2020-10-2-zoll.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108043 (iPad (8th generation)), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108043"
+    },
+    {
+      "model": "iPad 7. Gen",
+      "image": "/assets/img/produkte/apple-ipad-7-gen.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108043 (iPad (7th generation)), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108043"
+    },
+    {
+      "model": "iPad 6. Gen",
+      "image": "/assets/img/produkte/apple-ipad-6-gen.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108043 (iPad (6th generation)), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108043"
+    },
+    {
+      "model": "iPad 5. Gen",
+      "image": "/assets/img/produkte/apple-ipad-5-gen.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108043 (iPad (5th generation)), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108043"
+    },
+    {
+      "model": "Apple Watch Series SE 40/44mm",
+      "image": "/assets/img/produkte/apple-apple-watch-series-se-40-44mm.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108056 (Apple Watch SE), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108056"
+    },
+    {
+      "model": "Apple Watch Series 9 41/45mm",
+      "image": "/assets/img/produkte/apple-apple-watch-series-9-41-45mm.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108056 (Apple Watch Series 9), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108056"
+    },
+    {
+      "model": "Apple Watch Series 8 41/45mm",
+      "image": "/assets/img/produkte/apple-apple-watch-series-8-41-45mm.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108056 (Apple Watch Series 8), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108056"
+    },
+    {
+      "model": "Apple Watch Series 7 41/45mm",
+      "image": "/assets/img/produkte/apple-apple-watch-series-7-41-45mm.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108056 (Apple Watch Series 7), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108056"
+    },
+    {
+      "model": "Apple Watch Series 6 40/44mm",
+      "image": "/assets/img/produkte/apple-apple-watch-series-6-40-44mm.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108056 (Apple Watch Series 6), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108056"
+    },
+    {
+      "model": "Apple Watch Series 5 40/44 mm",
+      "image": "/assets/img/produkte/apple-apple-watch-series-5-40-44-mm.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108056 (Apple Watch Series 5), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108056"
+    },
+    {
+      "model": "Apple Watch Series 4 40 mm",
+      "image": "/assets/img/produkte/apple-apple-watch-series-4-40-mm.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108056 (Apple Watch Series 4), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108056"
+    },
+    {
+      "model": "Apple Watch Series 4 44 mm",
+      "image": "/assets/img/produkte/apple-apple-watch-series-4-44-mm.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108056 (Apple Watch Series 4), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108056"
+    },
+    {
+      "model": "Apple Watch Series 3 38/42 mm",
+      "image": "/assets/img/produkte/apple-apple-watch-series-3-38-42-mm.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108056 (Apple Watch Series 3), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108056"
+    },
+    {
+      "model": "Apple Watch SE 2. Gen 40/44 mm",
+      "image": "/assets/img/produkte/apple-apple-watch-se-2-gen-40-44-mm.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108056 (Apple Watch SE 2), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108056"
+    },
+    {
+      "model": "Apple Watch Series 2 38 mm",
+      "image": "/assets/img/produkte/apple-apple-watch-series-2-38-mm.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108056 (Apple Watch Series 2), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108056"
+    },
+    {
+      "model": "Apple Watch Series 2 42 mm",
+      "image": "/assets/img/produkte/apple-apple-watch-series-2-42-mm.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108056 (Apple Watch Series 2), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108056"
+    },
+    {
+      "model": "Apple Watch Series 1 38 mm",
+      "image": "/assets/img/produkte/apple-apple-watch-series-1-38-mm.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108056 (Apple Watch Series 1), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108056"
+    },
+    {
+      "model": "Apple Watch Series 1 42 mm",
+      "image": "/assets/img/produkte/apple-apple-watch-series-1-42-mm.webp",
+      "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://support.apple.com/en-us/108056 (Apple Watch Series 1), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+      "source": "https://support.apple.com/en-us/108056"
+    },
+    {
+      "model": "Galaxy S25",
+      "image": "/assets/img/produkte/samsung-galaxy-s25.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-s25 (Galaxy S25), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-s25"
+    },
+    {
+      "model": "Galaxy S25 Plus",
+      "image": "/assets/img/produkte/samsung-galaxy-s25-plus.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-s25-plus (Galaxy S25+), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-s25-plus"
+    },
+    {
+      "model": "Galaxy S25 Ultra",
+      "image": "/assets/img/produkte/samsung-galaxy-s25-ultra.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-s25-ultra (Galaxy S25 Ultra), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-s25-ultra"
+    },
+    {
+      "model": "Galaxy S24",
+      "image": "/assets/img/produkte/samsung-galaxy-s24.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-s24 (Galaxy S24), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-s24"
+    },
+    {
+      "model": "Galaxy S24 Plus",
+      "image": "/assets/img/produkte/samsung-galaxy-s24-plus.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-s24-plus (Galaxy S24+), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-s24-plus"
+    },
+    {
+      "model": "Galaxy S24 Ultra",
+      "image": "/assets/img/produkte/samsung-galaxy-s24-ultra.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-s24-ultra (Galaxy S24 Ultra), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-s24-ultra"
+    },
+    {
+      "model": "Galaxy S23",
+      "image": "/assets/img/produkte/samsung-galaxy-s23.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-s23 (Galaxy S23), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-s23"
+    },
+    {
+      "model": "Galaxy S23 FE",
+      "image": "/assets/img/produkte/samsung-galaxy-s23-fe.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-s23-fe (Galaxy S23 FE), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-s23-fe"
+    },
+    {
+      "model": "Galaxy S23 Plus",
+      "image": "/assets/img/produkte/samsung-galaxy-s23-plus.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-s23-plus (Galaxy S23+), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-s23-plus"
+    },
+    {
+      "model": "Galaxy S23 Ultra",
+      "image": "/assets/img/produkte/samsung-galaxy-s23-ultra.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-s23-ultra (Galaxy S23 Ultra), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-s23-ultra"
+    },
+    {
+      "model": "Galaxy S22",
+      "image": "/assets/img/produkte/samsung-galaxy-s22.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-s22 (Galaxy S22), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-s22"
+    },
+    {
+      "model": "Galaxy S22 Ultra",
+      "image": "/assets/img/produkte/samsung-galaxy-s22-ultra.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-s22-ultra (Galaxy S22 Ultra), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-s22-ultra"
+    },
+    {
+      "model": "Galaxy A73",
+      "image": "/assets/img/produkte/samsung-galaxy-a73.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-a73-5g (Galaxy A73 5G), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-a73-5g"
+    },
+    {
+      "model": "Galaxy A55",
+      "image": "/assets/img/produkte/samsung-galaxy-a55.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-a55-5g (Galaxy A55 5G), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-a55-5g"
+    },
+    {
+      "model": "Galaxy A54 5G",
+      "image": "/assets/img/produkte/samsung-galaxy-a54-5g.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-a54-5g (Galaxy A54 5G), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-a54-5g"
+    },
+    {
+      "model": "Galaxy A53 5G",
+      "image": "/assets/img/produkte/samsung-galaxy-a53-5g.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-a53-5g (Galaxy A53 5G), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-a53-5g"
+    },
+    {
+      "model": "Galaxy A35",
+      "image": "/assets/img/produkte/samsung-galaxy-a35.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-a35-5g (Galaxy A35 5G), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-a35-5g"
+    },
+    {
+      "model": "Galaxy A34",
+      "image": "/assets/img/produkte/samsung-galaxy-a34.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-a34-5g (Galaxy A34 5G), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-a34-5g"
+    },
+    {
+      "model": "Galaxy A33",
+      "image": "/assets/img/produkte/samsung-galaxy-a33.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-a33-5g (Galaxy A33 5G), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-a33-5g"
+    },
+    {
+      "model": "Galaxy A23 5G",
+      "image": "/assets/img/produkte/samsung-galaxy-a23-5g.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-a23-5g (Galaxy A23 5G), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-a23-5g"
+    },
+    {
+      "model": "Galaxy A14 5G",
+      "image": "/assets/img/produkte/samsung-galaxy-a14-5g.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-a14-5g (Galaxy A14 5G), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-a14-5g"
+    },
+    {
+      "model": "Galaxy A13",
+      "image": "/assets/img/produkte/samsung-galaxy-a13.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-a13 (Galaxy A13), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-a13"
+    },
+    {
+      "model": "Galaxy M53",
+      "image": "/assets/img/produkte/samsung-galaxy-m53.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-m53-5g (Galaxy M53 5G), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-m53-5g"
+    },
+    {
+      "model": "Galaxy M33",
+      "image": "/assets/img/produkte/samsung-galaxy-m33.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-m33 (Galaxy M33), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-m33"
+    },
+    {
+      "model": "Galaxy M23",
+      "image": "/assets/img/produkte/samsung-galaxy-m23.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-m23 (Galaxy M23), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-m23"
+    },
+    {
+      "model": "Galaxy Z Flip 7",
+      "image": "/assets/img/produkte/samsung-galaxy-z-flip-7.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-z-flip7 (Galaxy Z Flip7), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-z-flip7"
+    },
+    {
+      "model": "Galaxy Z Flip 6",
+      "image": "/assets/img/produkte/samsung-galaxy-z-flip-6.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-z-flip6 (Galaxy Z Flip6), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-z-flip6"
+    },
+    {
+      "model": "Galaxy Z Flip 4",
+      "image": "/assets/img/produkte/samsung-galaxy-z-flip-4.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-z-flip4 (Galaxy Z Flip4), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-z-flip4"
+    },
+    {
+      "model": "Galaxy Z Fold 7",
+      "image": "/assets/img/produkte/samsung-galaxy-z-fold-7.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-z-fold7 (Galaxy Z Fold7), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-z-fold7"
+    },
+    {
+      "model": "Galaxy Z Fold 6",
+      "image": "/assets/img/produkte/samsung-galaxy-z-fold-6.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-z-fold6 (Galaxy Z Fold6), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-z-fold6"
+    },
+    {
+      "model": "Galaxy Z Fold 5",
+      "image": "/assets/img/produkte/samsung-galaxy-z-fold-5.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-z-fold5 (Galaxy Z Fold5), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-z-fold5"
+    },
+    {
+      "model": "Galaxy Z Fold 4",
+      "image": "/assets/img/produkte/samsung-galaxy-z-fold-4.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-z-fold4 (Galaxy Z Fold4), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-z-fold4"
+    },
+    {
+      "model": "Galaxy Z Fold 3",
+      "image": "/assets/img/produkte/samsung-galaxy-z-fold-3.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-z-fold3-5g (Galaxy Z Fold3 5G), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-z-fold3-5g"
+    },
+    {
+      "model": "Galaxy Tab A9",
+      "image": "/assets/img/produkte/samsung-galaxy-tab-a9.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-tab-a9 (Galaxy Tab A9), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-tab-a9"
+    },
+    {
+      "model": "Galaxy Tab A9 Plus",
+      "image": "/assets/img/produkte/samsung-galaxy-tab-a9-plus.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-tab-a9-plus (Galaxy Tab A9+), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-tab-a9-plus"
+    },
+    {
+      "model": "Galaxy Tab S9",
+      "image": "/assets/img/produkte/samsung-galaxy-tab-s9.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-tab-s9 (Galaxy Tab S9), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-tab-s9"
+    },
+    {
+      "model": "Galaxy Tab S9 FE",
+      "image": "/assets/img/produkte/samsung-galaxy-tab-s9-fe.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-tab-s9-fe (Galaxy Tab S9 FE), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-tab-s9-fe"
+    },
+    {
+      "model": "Galaxy Tab S9 FE Plus",
+      "image": "/assets/img/produkte/samsung-galaxy-tab-s9-fe-plus.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-tab-s9-fe-plus (Galaxy Tab S9 FE+), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-tab-s9-fe-plus"
+    },
+    {
+      "model": "Galaxy Tab S9 Plus",
+      "image": "/assets/img/produkte/samsung-galaxy-tab-s9-plus.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-tab-s9plus (Galaxy Tab S9+), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-tab-s9plus"
+    },
+    {
+      "model": "Galaxy Tab S9 Ultra",
+      "image": "/assets/img/produkte/samsung-galaxy-tab-s9-ultra.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-tab-s9-ultra (Galaxy Tab S9 Ultra), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-tab-s9-ultra"
+    },
+    {
+      "model": "Galaxy Tab S8",
+      "image": "/assets/img/produkte/samsung-galaxy-tab-s8.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-tab-s8 (Galaxy Tab S8), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-tab-s8"
+    },
+    {
+      "model": "Galaxy Tab S8 Plus",
+      "image": "/assets/img/produkte/samsung-galaxy-tab-s8-plus.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-tab-s8-plus (Galaxy Tab S8+), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-tab-s8-plus"
+    },
+    {
+      "model": "Galaxy Tab S8 Ultra",
+      "image": "/assets/img/produkte/samsung-galaxy-tab-s8-ultra.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-tab-s8-ultra (Galaxy Tab S8 Ultra), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-tab-s8-ultra"
+    },
+    {
+      "model": "Galaxy XCover 7",
+      "image": "/assets/img/produkte/samsung-galaxy-xcover-7.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-xcover7 (Galaxy XCover7), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-xcover7"
+    },
+    {
+      "model": "Galaxy XCover 7 Pro",
+      "image": "/assets/img/produkte/samsung-galaxy-xcover-7-pro.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-xcover7-pro (Galaxy XCover7 Pro), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-xcover7-pro"
+    },
+    {
+      "model": "Galaxy Xcover 6 Pro",
+      "image": "/assets/img/produkte/samsung-galaxy-xcover-6-pro.webp",
+      "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+      "rightsConfirmed": false,
+      "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-xcover6-pro (Galaxy XCover6 Pro), geladen 03.11.2026",
+      "credit": "",
+      "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+      "source": "https://www.samsungmobilepress.com/media-assets/galaxy-xcover6-pro"
     }
   ]
 }

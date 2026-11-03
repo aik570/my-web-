@@ -41,6 +41,9 @@
     </div>
   </div>
 
+  {#- Google reviews (reference layout), right above the legal row and the logo -#}
+  <div class="wrap foot__reviews">{% include "partials/reviews.njk" %}</div>
+
   <div class="wrap foot__bar">
     <p>© {% year %} {{ site.name }}</p>
     <p class="foot__legal"><a href="/impressum/">Impressum</a><a href="/datenschutz/">Datenschutz</a><a href="#main" class="foot__up">Nach oben <span aria-hidden="true">↑</span></a></p>
@@ -50,7 +53,4 @@
   <div class="foot__mark" aria-hidden="true">
     <img src="/assets/img/logo.svg" alt="" width="756" height="366" loading="lazy">
   </div>
-
-  {#- Google reviews: thin strip along the lower edge, at the logo (agreed placement) -#}
-  {% include "partials/reviews.njk" %}
 </footer>
