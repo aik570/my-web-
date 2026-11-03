@@ -647,7 +647,7 @@ mark.todo { background: #fff1c2; color: #6b4b00; padding: .1rem .35rem; border-r
 
 /* Preview builds: visible marker so a preview can never be mistaken for the live site */
 .preview-flag {
-  position: fixed; left: 50%; bottom: calc(10px + env(safe-area-inset-bottom, 0px)); translate: -50% 0; z-index: 80; margin: 0;
+  position: fixed; right: 8px; top: calc(5rem + 6px + env(safe-area-inset-top, 0px)); z-index: 80; margin: 0; opacity: .9;   /* below the header, clear of the footer links and the reviews strip */
   padding: .4rem .8rem; border-radius: 999px; background: #6b4b00; color: #fff6d8;
   font: 500 .75rem/1.2 var(--mono); letter-spacing: .04em; pointer-events: none; white-space: nowrap;
 }
@@ -711,7 +711,7 @@ mark.todo { background: #fff1c2; color: #6b4b00; padding: .1rem .35rem; border-r
   .offer__bar-go { margin-left: auto; font-weight: 600; font-size: .875rem; white-space: nowrap; }
   .offer { padding-bottom: 6rem; }
 }
-@media (max-width: 900px) { body:has(.offer__bar) .preview-flag { bottom: calc(84px + env(safe-area-inset-bottom, 0px)); } }
+@media (max-width: 860px) { .preview-flag { top: calc(4rem + 6px + env(safe-area-inset-top, 0px)); } }
 
 /* ---------- contact: tabs, and a letter that folds into an envelope ---------- */
 .contact__grid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 2.5rem 4rem; align-items: start; }
@@ -1157,3 +1157,9 @@ mark.todo { background: #fff1c2; color: #6b4b00; padding: .1rem .35rem; border-r
 .reduced .fdevice__svg .dv--phone { transition: none; }
 
 .foot__social { display: flex; flex-wrap: wrap; gap: .25rem 1rem; }
+
+/* reviews strip inside the footer: last element, along the lower edge over the faded logo */
+.foot > .rv { position: relative; z-index: 1; margin-bottom: calc(-1.5rem - env(safe-area-inset-bottom, 0px)); padding-bottom: env(safe-area-inset-bottom, 0px); }
+body:has(.offer__bar) .foot > .rv { margin-bottom: 0; }
+.foot > .rv .rv__link, .foot > .rv .rv__link:hover { color: var(--white); }
+.foot > .rv .rv__card .rv__who a { color: inherit; }

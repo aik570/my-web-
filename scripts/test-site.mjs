@@ -145,11 +145,11 @@ console.log('\nGoogle-Bewertungen');
   await page.goto(BASE + '/'); await page.waitForTimeout(300);
   const st = await page.evaluate(() => {
     const s = document.getElementById('bewertungen'), f = document.querySelector('footer');
-    return { exists: !!s, beforeFooter: !!s && !!f && s.nextElementSibling === f, height: s ? s.getBoundingClientRect().height : 0,
+    return { exists: !!s, count: document.querySelectorAll('.rv').length, beforeFooter: !!s && !!f && s.parentElement === f && s === f.lastElementChild && s.previousElementSibling?.classList.contains('foot__mark') && s.getBoundingClientRect().top > document.querySelector('.foot__bar').getBoundingClientRect().bottom, height: s ? s.getBoundingClientRect().height : 0,
       cards: document.querySelectorAll('.rv__card:not([aria-hidden])').length, blue: getComputedStyle(s || document.body).backgroundImage.includes('gradient'), link: s?.querySelector('.rv__link')?.href || '', sample: !!s?.querySelector('.rv__sample'),
       bigSection: !!document.querySelector('.reviews, #reviews-h') };
   });
-  ok(st.exists && st.beforeFooter && !st.bigSection && st.blue, 'Google reviews: thin blue ticker strip directly above the footer, no large section');
+  ok(st.exists && st.count === 1 && st.beforeFooter && !st.bigSection && st.blue, 'Google reviews: one thin blue strip at the lower edge, under the logo, below Impressum/Datenschutz; no large section');
   ok(st.height > 0 && st.height <= (st.cards ? 230 : 80), `reviews strip is compact on a phone (${Math.round(st.height)} px)`);
   ok(st.cards === rv.items.length && !st.sample, `review cards = reviews.json (${rv.items.length})${rv.items.length ? '' : ' → no quotes, nothing invented'}`);
   ok(/^https:\/\/(www\.)?google\.[a-z.]+\/maps/.test(st.link), 'link to the reviews on Google');
