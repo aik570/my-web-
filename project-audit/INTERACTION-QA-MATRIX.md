@@ -100,7 +100,6 @@ WhatsApp actions: not present, because no WhatsApp number is confirmed (they app
 | HOME-KONTAKT-05 | KONTAKT | tel | 0163 228 8224 | tel:+491632288224 | pass | pass | tel:+491632288224 |
 | HOME-KONTAKT-06 | KONTAKT | tel | Jetzt anrufen | tel:+491632288224 | pass | pass | tel:+491632288224 |
 | HOME-FRANCHISE-01 | FRANCHISE | link | Mehr zum Franchise | /franchise/ | pass | pass | → /franchise/ |
-| HOME-BEWERTUNGEN-01 | BEWERTUNGEN | external | Auf Google lesen (öffnet Google Maps) → | https://www.google.com/maps/search/?… | pass | pass | https://www.google.com/maps/search/ (new tab, noopener) |
 | HOME-FOOTER-01 | FOOTER | tel | 0163 228 8224 | tel:+491632288224 | pass | pass | tel:+491632288224 |
 | HOME-FOOTER-02 | FOOTER | external | Route planen | https://www.google.com/maps/search/?… | pass | pass | https://www.google.com/maps/search/ (new tab, noopener) |
 | HOME-FOOTER-03 | FOOTER | mailto | potsdam@handy-chirurg.de | mailto:potsdam@handy-chirurg.de | pass | pass | mailto:potsdam@handy-chirurg.de |
@@ -120,6 +119,7 @@ WhatsApp actions: not present, because no WhatsApp number is confirmed (they app
 | HOME-FOOTER-17 | FOOTER | link | Impressum | /impressum/ | pass | pass | → /impressum/ |
 | HOME-FOOTER-18 | FOOTER | link | Datenschutz | /datenschutz/ | pass | pass | → /datenschutz/ |
 | HOME-FOOTER-19 | FOOTER | link | Nach oben ↑ | #main | pass | pass | → /#main |
+| HOME-FOOTER-20 | FOOTER | external | Auf Google lesen (öffnet Google Maps) → | https://www.google.com/maps/search/?… | pass | pass | https://www.google.com/maps/search/ (new tab, noopener) |
 
 ## /reparatur-finden/
 
@@ -155,7 +155,6 @@ WhatsApp actions: not present, because no WhatsApp number is confirmed (they app
 | FINDER-FINDER-17 | FINDER | tel | Jetzt anrufen: 0163 228 8224 | tel:+491632288224 | hidden | hidden |  |
 | FINDER-FINDER-18 | FINDER | mailto | Per E-Mail anfragen | mailto:potsdam@handy-chirurg.de | hidden | hidden |  |
 | FINDER-FINDER-19 | FINDER | link | Alle Preise für dieses Modell | /preise/ | hidden | hidden |  |
-| FINDER-BEWERTUNGEN-01 | BEWERTUNGEN | external | Auf Google lesen (öffnet Google Maps) → | https://www.google.com/maps/search/?… | pass | pass | https://www.google.com/maps/search/ (new tab, noopener) |
 | FINDER-FOOTER-01 | FOOTER | tel | 0163 228 8224 | tel:+491632288224 | pass | pass | tel:+491632288224 |
 | FINDER-FOOTER-02 | FOOTER | external | Route planen | https://www.google.com/maps/search/?… | pass | pass | https://www.google.com/maps/search/ (new tab, noopener) |
 | FINDER-FOOTER-03 | FOOTER | mailto | potsdam@handy-chirurg.de | mailto:potsdam@handy-chirurg.de | pass | pass | mailto:potsdam@handy-chirurg.de |
@@ -175,6 +174,7 @@ WhatsApp actions: not present, because no WhatsApp number is confirmed (they app
 | FINDER-FOOTER-17 | FOOTER | link | Impressum | /impressum/ | pass | pass | → /impressum/ |
 | FINDER-FOOTER-18 | FOOTER | link | Datenschutz | /datenschutz/ | pass | pass | → /datenschutz/ |
 | FINDER-FOOTER-19 | FOOTER | link | Nach oben ↑ | #main | pass | pass | → /reparatur-finden/#main |
+| FINDER-FOOTER-20 | FOOTER | external | Auf Google lesen (öffnet Google Maps) → | https://www.google.com/maps/search/?… | pass | pass | https://www.google.com/maps/search/ (new tab, noopener) |
 
 ## /leistungen/
 
@@ -202,7 +202,6 @@ WhatsApp actions: not present, because no WhatsApp number is confirmed (they app
 | LEISTUNGEN-BESUCH-02 | BESUCH | mailto | potsdam@handy-chirurg.de | mailto:potsdam@handy-chirurg.de | pass | pass | mailto:potsdam@handy-chirurg.de |
 | LEISTUNGEN-BESUCH-03 | BESUCH | tel | Jetzt anrufen | tel:+491632288224 | pass | pass | tel:+491632288224 |
 | LEISTUNGEN-BESUCH-04 | BESUCH | external | Route planen | https://www.google.com/maps/search/?… | pass | pass | https://www.google.com/maps/search/ (new tab, noopener) |
-| LEISTUNGEN-BEWERTUNGEN-01 | BEWERTUNGEN | external | Auf Google lesen (öffnet Google Maps) → | https://www.google.com/maps/search/?… | pass | pass | https://www.google.com/maps/search/ (new tab, noopener) |
 | LEISTUNGEN-FOOTER-01 | FOOTER | tel | 0163 228 8224 | tel:+491632288224 | pass | pass | tel:+491632288224 |
 | LEISTUNGEN-FOOTER-02 | FOOTER | external | Route planen | https://www.google.com/maps/search/?… | pass | pass | https://www.google.com/maps/search/ (new tab, noopener) |
 | LEISTUNGEN-FOOTER-03 | FOOTER | mailto | potsdam@handy-chirurg.de | mailto:potsdam@handy-chirurg.de | pass | pass | mailto:potsdam@handy-chirurg.de |
@@ -222,6 +221,7 @@ WhatsApp actions: not present, because no WhatsApp number is confirmed (they app
 | LEISTUNGEN-FOOTER-17 | FOOTER | link | Impressum | /impressum/ | pass | pass | → /impressum/ |
 | LEISTUNGEN-FOOTER-18 | FOOTER | link | Datenschutz | /datenschutz/ | pass | pass | → /datenschutz/ |
 | LEISTUNGEN-FOOTER-19 | FOOTER | link | Nach oben ↑ | #main | pass | pass | → /leistungen/#main |
+| LEISTUNGEN-FOOTER-20 | FOOTER | external | Auf Google lesen (öffnet Google Maps) → | https://www.google.com/maps/search/?… | pass | pass | https://www.google.com/maps/search/ (new tab, noopener) |
 
 ## /preise/
 
@@ -246,7 +246,6 @@ WhatsApp actions: not present, because no WhatsApp number is confirmed (they app
 | PREISE-PRICELIST-06 | PRICELIST | link | Google 20 Modelle · Smartphone | /preise/google/ | pass | pass | → /preise/google/ |
 | PREISE-PRICELIST-07 | PRICELIST | link | Sony 31 Modelle · Smartphone | /preise/sony/ | pass | pass | → /preise/sony/ |
 | PREISE-PRICELIST-08 | PRICELIST | link | OnePlus 25 Modelle · Smartphone | /preise/oneplus/ | pass | pass | → /preise/oneplus/ |
-| PREISE-BEWERTUNGEN-01 | BEWERTUNGEN | external | Auf Google lesen (öffnet Google Maps) → | https://www.google.com/maps/search/?… | pass | pass | https://www.google.com/maps/search/ (new tab, noopener) |
 | PREISE-FOOTER-01 | FOOTER | tel | 0163 228 8224 | tel:+491632288224 | pass | pass | tel:+491632288224 |
 | PREISE-FOOTER-02 | FOOTER | external | Route planen | https://www.google.com/maps/search/?… | pass | pass | https://www.google.com/maps/search/ (new tab, noopener) |
 | PREISE-FOOTER-03 | FOOTER | mailto | potsdam@handy-chirurg.de | mailto:potsdam@handy-chirurg.de | pass | pass | mailto:potsdam@handy-chirurg.de |
@@ -266,6 +265,7 @@ WhatsApp actions: not present, because no WhatsApp number is confirmed (they app
 | PREISE-FOOTER-17 | FOOTER | link | Impressum | /impressum/ | pass | pass | → /impressum/ |
 | PREISE-FOOTER-18 | FOOTER | link | Datenschutz | /datenschutz/ | pass | pass | → /datenschutz/ |
 | PREISE-FOOTER-19 | FOOTER | link | Nach oben ↑ | #main | pass | pass | → /preise/#main |
+| PREISE-FOOTER-20 | FOOTER | external | Auf Google lesen (öffnet Google Maps) → | https://www.google.com/maps/search/?… | pass | pass | https://www.google.com/maps/search/ (new tab, noopener) |
 
 ## /preise/apple/
 
@@ -564,7 +564,6 @@ WhatsApp actions: not present, because no WhatsApp number is confirmed (they app
 | BRAND-PRICELIST-271 | PRICELIST | summary | MacBook 13 Zoll A118112 Preise |  | pass | pass | opens / closes |
 | BRAND-PRICELIST-272 | PRICELIST | link | Reparaturangebot MacBook 13 Zoll A1181 | /preise/apple/macbook-13-zoll-a1181/ | pass | pass | → /preise/apple/macbook-13-zoll-a1181/ |
 | BRAND-PRICELIST-273 | PRICELIST | tel | 0163 228 8224 | tel:+491632288224 | hidden | hidden |  |
-| BRAND-BEWERTUNGEN-01 | BEWERTUNGEN | external | Auf Google lesen (öffnet Google Maps) → | https://www.google.com/maps/search/?… | pass | pass | https://www.google.com/maps/search/ (new tab, noopener) |
 | BRAND-FOOTER-01 | FOOTER | tel | 0163 228 8224 | tel:+491632288224 | pass | pass | tel:+491632288224 |
 | BRAND-FOOTER-02 | FOOTER | external | Route planen | https://www.google.com/maps/search/?… | pass | pass | https://www.google.com/maps/search/ (new tab, noopener) |
 | BRAND-FOOTER-03 | FOOTER | mailto | potsdam@handy-chirurg.de | mailto:potsdam@handy-chirurg.de | pass | pass | mailto:potsdam@handy-chirurg.de |
@@ -584,6 +583,7 @@ WhatsApp actions: not present, because no WhatsApp number is confirmed (they app
 | BRAND-FOOTER-17 | FOOTER | link | Impressum | /impressum/ | pass | pass | → /impressum/ |
 | BRAND-FOOTER-18 | FOOTER | link | Datenschutz | /datenschutz/ | pass | pass | → /datenschutz/ |
 | BRAND-FOOTER-19 | FOOTER | link | Nach oben ↑ | #main | pass | pass | → /preise/apple/#main |
+| BRAND-FOOTER-20 | FOOTER | external | Auf Google lesen (öffnet Google Maps) → | https://www.google.com/maps/search/?… | pass | pass | https://www.google.com/maps/search/ (new tab, noopener) |
 
 ## /preise/apple/iphone-13/
 
@@ -625,7 +625,6 @@ WhatsApp actions: not present, because no WhatsApp number is confirmed (they app
 | MODEL-VISIT-03 | VISIT | link | Im Preisrechner öffnen | /reparatur-finden/#apple--iphone-13 | pass | pass | → /reparatur-finden/#apple--iphone-13 |
 | MODEL-VISIT-04 | VISIT | link | Alle Apple-Modelle | /preise/apple/ | pass | pass | → /preise/apple/ |
 | MODEL-VISIT-05 | VISIT | link | Reparaturleistungen | /leistungen/ | pass | pass | → /leistungen/ |
-| MODEL-BEWERTUNGEN-01 | BEWERTUNGEN | external | Auf Google lesen (öffnet Google Maps) → | https://www.google.com/maps/search/?… | pass | pass | https://www.google.com/maps/search/ (new tab, noopener) |
 | MODEL-FOOTER-01 | FOOTER | tel | 0163 228 8224 | tel:+491632288224 | pass | pass | tel:+491632288224 |
 | MODEL-FOOTER-02 | FOOTER | external | Route planen | https://www.google.com/maps/search/?… | pass | pass | https://www.google.com/maps/search/ (new tab, noopener) |
 | MODEL-FOOTER-03 | FOOTER | mailto | potsdam@handy-chirurg.de | mailto:potsdam@handy-chirurg.de | pass | pass | mailto:potsdam@handy-chirurg.de |
@@ -645,6 +644,7 @@ WhatsApp actions: not present, because no WhatsApp number is confirmed (they app
 | MODEL-FOOTER-17 | FOOTER | link | Impressum | /impressum/ | pass | pass | → /impressum/ |
 | MODEL-FOOTER-18 | FOOTER | link | Datenschutz | /datenschutz/ | pass | pass | → /datenschutz/ |
 | MODEL-FOOTER-19 | FOOTER | link | Nach oben ↑ | #main | pass | pass | → /preise/apple/iphone-13/#main |
+| MODEL-FOOTER-20 | FOOTER | external | Auf Google lesen (öffnet Google Maps) → | https://www.google.com/maps/search/?… | pass | pass | https://www.google.com/maps/search/ (new tab, noopener) |
 
 ## /preise/samsung/galaxy-s23/
 
@@ -686,7 +686,6 @@ WhatsApp actions: not present, because no WhatsApp number is confirmed (they app
 | MODEL-REQUEST-VISIT-03 | VISIT | link | Im Preisrechner öffnen | /reparatur-finden/#samsung--galaxy-s23 | pass | pass | → /reparatur-finden/#samsung--galaxy-s23 |
 | MODEL-REQUEST-VISIT-04 | VISIT | link | Alle Samsung-Modelle | /preise/samsung/ | pass | pass | → /preise/samsung/ |
 | MODEL-REQUEST-VISIT-05 | VISIT | link | Reparaturleistungen | /leistungen/ | pass | pass | → /leistungen/ |
-| MODEL-REQUEST-BEWERTUNGEN-01 | BEWERTUNGEN | external | Auf Google lesen (öffnet Google Maps) → | https://www.google.com/maps/search/?… | pass | pass | https://www.google.com/maps/search/ (new tab, noopener) |
 | MODEL-REQUEST-FOOTER-01 | FOOTER | tel | 0163 228 8224 | tel:+491632288224 | pass | pass | tel:+491632288224 |
 | MODEL-REQUEST-FOOTER-02 | FOOTER | external | Route planen | https://www.google.com/maps/search/?… | pass | pass | https://www.google.com/maps/search/ (new tab, noopener) |
 | MODEL-REQUEST-FOOTER-03 | FOOTER | mailto | potsdam@handy-chirurg.de | mailto:potsdam@handy-chirurg.de | pass | pass | mailto:potsdam@handy-chirurg.de |
@@ -706,6 +705,7 @@ WhatsApp actions: not present, because no WhatsApp number is confirmed (they app
 | MODEL-REQUEST-FOOTER-17 | FOOTER | link | Impressum | /impressum/ | pass | pass | → /impressum/ |
 | MODEL-REQUEST-FOOTER-18 | FOOTER | link | Datenschutz | /datenschutz/ | pass | pass | → /datenschutz/ |
 | MODEL-REQUEST-FOOTER-19 | FOOTER | link | Nach oben ↑ | #main | pass | pass | → /preise/samsung/galaxy-s23/#main |
+| MODEL-REQUEST-FOOTER-20 | FOOTER | external | Auf Google lesen (öffnet Google Maps) → | https://www.google.com/maps/search/?… | pass | pass | https://www.google.com/maps/search/ (new tab, noopener) |
 
 ## /franchise/
 
@@ -729,7 +729,6 @@ WhatsApp actions: not present, because no WhatsApp number is confirmed (they app
 | FRANCHISE-CTA-01 | CTA | mailto | potsdam@handy-chirurg.de | mailto:potsdam@handy-chirurg.de?… | pass | pass | mailto:potsdam@handy-chirurg.de |
 | FRANCHISE-CTA-02 | CTA | tel | 0163 228 8224 | tel:+491632288224 | pass | pass | tel:+491632288224 |
 | FRANCHISE-MAIN-02 | MAIN | button | Schließen |  | hidden | hidden |  |
-| FRANCHISE-BEWERTUNGEN-01 | BEWERTUNGEN | external | Auf Google lesen (öffnet Google Maps) → | https://www.google.com/maps/search/?… | pass | pass | https://www.google.com/maps/search/ (new tab, noopener) |
 | FRANCHISE-FOOTER-01 | FOOTER | tel | 0163 228 8224 | tel:+491632288224 | pass | pass | tel:+491632288224 |
 | FRANCHISE-FOOTER-02 | FOOTER | external | Route planen | https://www.google.com/maps/search/?… | pass | pass | https://www.google.com/maps/search/ (new tab, noopener) |
 | FRANCHISE-FOOTER-03 | FOOTER | mailto | potsdam@handy-chirurg.de | mailto:potsdam@handy-chirurg.de | pass | pass | mailto:potsdam@handy-chirurg.de |
@@ -749,6 +748,7 @@ WhatsApp actions: not present, because no WhatsApp number is confirmed (they app
 | FRANCHISE-FOOTER-17 | FOOTER | link | Impressum | /impressum/ | pass | pass | → /impressum/ |
 | FRANCHISE-FOOTER-18 | FOOTER | link | Datenschutz | /datenschutz/ | pass | pass | → /datenschutz/ |
 | FRANCHISE-FOOTER-19 | FOOTER | link | Nach oben ↑ | #main | pass | pass | → /franchise/#main |
+| FRANCHISE-FOOTER-20 | FOOTER | external | Auf Google lesen (öffnet Google Maps) → | https://www.google.com/maps/search/?… | pass | pass | https://www.google.com/maps/search/ (new tab, noopener) |
 
 ## /impressum/
 
@@ -766,7 +766,6 @@ WhatsApp actions: not present, because no WhatsApp number is confirmed (they app
 | IMPRESSUM-NAV-09 | NAV | tel | 0163 228 8224Anrufen | tel:+491632288224 | pass | pass | tel:+491632288224 |
 | IMPRESSUM-NAV-10 | NAV | button | Menü öffnen |  | hidden | pass | menu opens / closes |
 | IMPRESSUM-LEGAL-01 | LEGAL | mailto | potsdam@handy-chirurg.de | mailto:potsdam@handy-chirurg.de | pass | pass | mailto:potsdam@handy-chirurg.de |
-| IMPRESSUM-BEWERTUNGEN-01 | BEWERTUNGEN | external | Auf Google lesen (öffnet Google Maps) → | https://www.google.com/maps/search/?… | pass | pass | https://www.google.com/maps/search/ (new tab, noopener) |
 | IMPRESSUM-FOOTER-01 | FOOTER | tel | 0163 228 8224 | tel:+491632288224 | pass | pass | tel:+491632288224 |
 | IMPRESSUM-FOOTER-02 | FOOTER | external | Route planen | https://www.google.com/maps/search/?… | pass | pass | https://www.google.com/maps/search/ (new tab, noopener) |
 | IMPRESSUM-FOOTER-03 | FOOTER | mailto | potsdam@handy-chirurg.de | mailto:potsdam@handy-chirurg.de | pass | pass | mailto:potsdam@handy-chirurg.de |
@@ -786,6 +785,7 @@ WhatsApp actions: not present, because no WhatsApp number is confirmed (they app
 | IMPRESSUM-FOOTER-17 | FOOTER | link | Impressum | /impressum/ | pass | pass | → /impressum/ |
 | IMPRESSUM-FOOTER-18 | FOOTER | link | Datenschutz | /datenschutz/ | pass | pass | → /datenschutz/ |
 | IMPRESSUM-FOOTER-19 | FOOTER | link | Nach oben ↑ | #main | pass | pass | → /impressum/#main |
+| IMPRESSUM-FOOTER-20 | FOOTER | external | Auf Google lesen (öffnet Google Maps) → | https://www.google.com/maps/search/?… | pass | pass | https://www.google.com/maps/search/ (new tab, noopener) |
 
 ## /datenschutz/
 
@@ -809,7 +809,6 @@ WhatsApp actions: not present, because no WhatsApp number is confirmed (they app
 | DATENSCHUTZ-LEGAL-05 | LEGAL | external | https://www.whatsapp.com/legal/privacy-policy-eea | https://www.whatsapp.com/legal/privacy-policy-eea | pass | pass | https://www.whatsapp.com/legal/privacy-policy-eea (new tab, noopener) |
 | DATENSCHUTZ-LEGAL-06 | LEGAL | external | https://www.whatsapp.com/legal/business-data-transfer-addendum | https://www.whatsapp.com/legal/business-data-transfer-addendum | pass | pass | https://www.whatsapp.com/legal/business-data-transfer-addendum (new tab, noopener) |
 | DATENSCHUTZ-LEGAL-07 | LEGAL | external | https://www.dataprivacyframework.gov/participant/7735 | https://www.dataprivacyframework.gov/participant/7735 | pass | pass | https://www.dataprivacyframework.gov/participant/7735 (new tab, noopener) |
-| DATENSCHUTZ-BEWERTUNGEN-01 | BEWERTUNGEN | external | Auf Google lesen (öffnet Google Maps) → | https://www.google.com/maps/search/?… | pass | pass | https://www.google.com/maps/search/ (new tab, noopener) |
 | DATENSCHUTZ-FOOTER-01 | FOOTER | tel | 0163 228 8224 | tel:+491632288224 | pass | pass | tel:+491632288224 |
 | DATENSCHUTZ-FOOTER-02 | FOOTER | external | Route planen | https://www.google.com/maps/search/?… | pass | pass | https://www.google.com/maps/search/ (new tab, noopener) |
 | DATENSCHUTZ-FOOTER-03 | FOOTER | mailto | potsdam@handy-chirurg.de | mailto:potsdam@handy-chirurg.de | pass | pass | mailto:potsdam@handy-chirurg.de |
@@ -829,6 +828,7 @@ WhatsApp actions: not present, because no WhatsApp number is confirmed (they app
 | DATENSCHUTZ-FOOTER-17 | FOOTER | link | Impressum | /impressum/ | pass | pass | → /impressum/ |
 | DATENSCHUTZ-FOOTER-18 | FOOTER | link | Datenschutz | /datenschutz/ | pass | pass | → /datenschutz/ |
 | DATENSCHUTZ-FOOTER-19 | FOOTER | link | Nach oben ↑ | #main | pass | pass | → /datenschutz/#main |
+| DATENSCHUTZ-FOOTER-20 | FOOTER | external | Auf Google lesen (öffnet Google Maps) → | https://www.google.com/maps/search/?… | pass | pass | https://www.google.com/maps/search/ (new tab, noopener) |
 
 ## /gibt-es-nicht
 
@@ -848,7 +848,6 @@ WhatsApp actions: not present, because no WhatsApp number is confirmed (they app
 | 404-NOTFOUND-01 | NOTFOUND | link | Zur Startseite | / | pass | pass | → / |
 | 404-NOTFOUND-02 | NOTFOUND | link | Preise ansehen | /preise/ | pass | pass | → /preise/ |
 | 404-NOTFOUND-03 | NOTFOUND | tel | Anrufen | tel:+491632288224 | pass | pass | tel:+491632288224 |
-| 404-BEWERTUNGEN-01 | BEWERTUNGEN | external | Auf Google lesen (öffnet Google Maps) → | https://www.google.com/maps/search/?… | pass | pass | https://www.google.com/maps/search/ (new tab, noopener) |
 | 404-FOOTER-01 | FOOTER | tel | 0163 228 8224 | tel:+491632288224 | pass | pass | tel:+491632288224 |
 | 404-FOOTER-02 | FOOTER | external | Route planen | https://www.google.com/maps/search/?… | pass | pass | https://www.google.com/maps/search/ (new tab, noopener) |
 | 404-FOOTER-03 | FOOTER | mailto | potsdam@handy-chirurg.de | mailto:potsdam@handy-chirurg.de | pass | pass | mailto:potsdam@handy-chirurg.de |
@@ -868,4 +867,5 @@ WhatsApp actions: not present, because no WhatsApp number is confirmed (they app
 | 404-FOOTER-17 | FOOTER | link | Impressum | /impressum/ | pass | pass | → /impressum/ |
 | 404-FOOTER-18 | FOOTER | link | Datenschutz | /datenschutz/ | pass | pass | → /datenschutz/ |
 | 404-FOOTER-19 | FOOTER | link | Nach oben ↑ | #main | pass | pass | → /gibt-es-nicht#main |
+| 404-FOOTER-20 | FOOTER | external | Auf Google lesen (öffnet Google Maps) → | https://www.google.com/maps/search/?… | pass | pass | https://www.google.com/maps/search/ (new tab, noopener) |
 

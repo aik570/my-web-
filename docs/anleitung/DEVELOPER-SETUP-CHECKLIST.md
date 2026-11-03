@@ -36,7 +36,7 @@ Status 03.11.2026. "Verified" = checked in this repository or by a test run on 0
 4. Datenschutz: Netlify log retention + confirmation that the site runs in the owner's Netlify account.
 5. Impressum: confirm data (register entry etc.).
 
-Warnings: WhatsApp number, public-holiday rule, VAT note, Sunday closed, product photos (6 of 493 – see `project-audit/CLIENT-APPROVAL-CHECKLIST.md` item 14).
+Warnings: WhatsApp number, public-holiday rule, VAT note, Sunday closed, product photos (8 of 493 – see `project-audit/CLIENT-APPROVAL-CHECKLIST.md` item 14).
 
 ## D. Hand the owner
 
