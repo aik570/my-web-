@@ -10,8 +10,10 @@
 
 # Production may only publish when every launch blocker is resolved:
 # official verified prices, complete legal pages, correct CMS repository.
+# Test site before launch: set the environment variable HC_PREVIEW_SITE=1 in Netlify →
+# built as a marked preview (noindex, "Vorschau"), launch check skipped. Remove it for the real launch.
 [context.production]
-  command = "npm ci && npm run build && npm run check"
+  command = "npm ci && npm run build && ([ \"$HC_PREVIEW_SITE\" = \"1\" ] || npm run check)"
 
 # Previews (pull requests, branch deploys) build normally. They are marked
 # "Vorschau", set noindex and may show the labelled development prices.
