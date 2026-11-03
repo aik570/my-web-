@@ -6,9 +6,11 @@
 
 import { loadBrands, readJson, validateCatalogue, countRows, orderNewestFirst, TYPES_FILE, PRICE_DIR, DEMO_DIR } from '../../scripts/lib/prices.mjs';
 import env from './env.js';
+import { fillText } from '../../scripts/lib/fill.mjs';
 
 export default function () {
-  const types = readJson(TYPES_FILE).items;
+  // warranty texts may use {garantie} / {garantieWasser} (CMS: Laden & Kontakt → Garantie)
+  const types = readJson(TYPES_FILE).items.map((t) => ({ ...t, warranty: fillText(t.warranty) }));
   let raw = loadBrands(PRICE_DIR);
   let isDemo = false;
   if (!raw.length && !env().isProduction) { raw = loadBrands(DEMO_DIR); isDemo = raw.length > 0; }

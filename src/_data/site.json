@@ -83,5 +83,11 @@
     "noHours": "Öffnungszeiten folgen",
     "holidayLong": "bitte vorher anrufen",
     "holidayShort": "bitte anrufen"
-  }
+  },
+  "warranty": {
+    "standard": "3 Monate",
+    "waterDamage": "Ohne Garantie",
+    "legalNote": "Ihre gesetzlichen Gewährleistungsrechte bleiben davon unberührt."
+  },
+  "social": []
 }

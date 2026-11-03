@@ -1,8 +1,9 @@
 ---
 permalink: /leistungen/
-seo:
-  title: Reparaturleistungen – Handy Chirurg Potsdam
-  description: Display, Akku, Kamera, Ladebuchse, Wasserschaden, Home Button, Lautsprecher und Mikrofon. Dauer und Garantie je Reparatur. Handy Chirurg, Dortustraße 23, Potsdam.
+eleventyComputed:
+  seo:
+    title: "{{ pages.leistungen.seo.title }}"
+    description: "{{ pages.leistungen.seo.description }}"
 ---
 {% extends "base.njk" %}
 {%- set L = leistungen %}
@@ -12,7 +13,7 @@ seo:
   <div class="wrap">
     <p class="kicker"><span class="kicker__cross" aria-hidden="true"></span>{{ L.kicker }}</p>
     <h1 class="page-title">{{ L.title }}</h1>
-    <p class="head__lede">{{ L.lede }}</p>
+    <p class="head__lede">{{ L.lede | fill }}</p>
   </div>
 </section>
 
@@ -21,12 +22,12 @@ seo:
     <ul class="svc">
       {%- for s in L.items %}
       <li class="svc__item" id="{{ s.id }}">
-        <h2 class="svc__title">{{ s.title }}</h2>
+        <h2 class="svc__title">{{ s.title | fill }}</h2>
         <dl class="svc__facts">
           {%- if s.duration %}<div><dt>Dauer</dt><dd>{{ s.duration }}</dd></div>{% endif %}
-          {%- if s.warranty %}<div><dt>Garantie</dt><dd>{{ s.warranty }}</dd></div>{% endif %}
+          {%- if s.warranty %}<div><dt>Garantie</dt><dd>{{ s.warranty | fill }}</dd></div>{% endif %}
         </dl>
-        <p>{{ s.text }}</p>
+        <p>{{ s.text | fill }}</p>
         {%- if s.priceType %}
         <a class="link-arrow" href="/preise/#{{ s.priceType }}">Preise nach Modell</a>
         {%- else %}
@@ -41,8 +42,8 @@ seo:
 
 <section class="sec sec--white why" aria-labelledby="why-h">
   <div class="wrap">
-    <h2 class="fstores__h" id="why-h">{{ L.why.title }}</h2>
-    <p class="head__lede">{{ L.why.lede }}</p>
+    <h2 class="fstores__h" id="why-h">{{ L.why.title | fill }}</h2>
+    <p class="head__lede">{{ L.why.lede | fill }}</p>
     <ol class="why__list">
       {%- for w in L.why.items %}<li><h3>{{ w.title | fill }}</h3><p>{{ w.text | fill }}</p></li>{% endfor %}
     </ol>
@@ -53,7 +54,7 @@ seo:
   <div class="wrap svc-visit">
     <div>
       <h2 class="h2" id="besuch-h">{{ L.visit.title }}</h2>
-      <p class="head__lede">{{ L.visit.text }}</p>
+      <p class="head__lede">{{ L.visit.text | fill }}</p>
       <p>{{ site.street }} · {{ site.postcode }} {{ site.city }}<br>
         <a href="tel:{{ site.phone.dial }}">{{ site.phone.display }}</a> · <a href="mailto:{{ site.email }}">{{ site.email }}</a><br>
         {% include "partials/hours-text.njk" %}</p>

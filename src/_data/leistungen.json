@@ -7,7 +7,7 @@
       "id": "display",
       "title": "Display Reparatur",
       "duration": "60 Minuten",
-      "warranty": "3 Monate Garantie",
+      "warranty": "{garantie} Garantie",
       "text": "Professioneller Austausch des kompletten Display-Moduls inklusive Touchscreen und LCD. Wir verwenden hochwertige Ersatzteile für perfekte Bildqualität.",
       "priceType": "display"
     },
@@ -15,7 +15,7 @@
       "id": "akku",
       "title": "Akku Austausch",
       "duration": "30 Minuten",
-      "warranty": "3 Monate Garantie",
+      "warranty": "{garantie} Garantie",
       "text": "Austausch des Akkus mit Premium-Qualität für verbesserte Laufzeit und Leistung. Wieder volle Power für Ihr Smartphone.",
       "priceType": "akku"
     },
@@ -23,7 +23,7 @@
       "id": "kamera",
       "title": "Kamera Reparatur",
       "duration": "45 Minuten",
-      "warranty": "3 Monate Garantie",
+      "warranty": "{garantie} Garantie",
       "text": "Reparatur oder Austausch der Haupt- oder Frontkamera für kristallklare Fotos. Perfekte Bildqualität wie am ersten Tag.",
       "priceType": "hauptkamera"
     },
@@ -31,7 +31,7 @@
       "id": "ladebuchse",
       "title": "Ladebuchse Reparatur",
       "duration": "45 Minuten",
-      "warranty": "3 Monate Garantie",
+      "warranty": "{garantie} Garantie",
       "text": "Austausch der Ladebuchse für zuverlässiges Laden und Datenübertragung. Kein Wackelkontakt mehr.",
       "priceType": "ladebuchse"
     },
@@ -39,7 +39,7 @@
       "id": "wasserschaden",
       "title": "Wasserschaden Reparatur",
       "duration": "2-3 Stunden",
-      "warranty": "Ohne Garantie",
+      "warranty": "{garantieWasser}",
       "text": "Professionelle Reinigung und Trocknung mit Ultraschallbad und Spezialausrüstung. Wir retten Ihre Daten und Ihr Gerät.",
       "priceType": "wasserschaden"
     },
@@ -47,7 +47,7 @@
       "id": "home-button",
       "title": "Home Button Reparatur",
       "duration": "45 Minuten",
-      "warranty": "3 Monate Garantie",
+      "warranty": "{garantie} Garantie",
       "text": "Reparatur oder Austausch des Home Buttons für zuverlässige Touch ID Funktion. Wieder volle Funktionalität.",
       "priceType": ""
     },
@@ -55,7 +55,7 @@
       "id": "lautsprecher",
       "title": "Lautsprecher Reparatur",
       "duration": "45 Minuten",
-      "warranty": "3 Monate Garantie",
+      "warranty": "{garantie} Garantie",
       "text": "Austausch des Lautsprechers für kristallklaren Sound und volle Lautstärke. Genießen Sie wieder perfekten Klang.",
       "priceType": "lautsprecher"
     },
@@ -63,7 +63,7 @@
       "id": "mikrofon",
       "title": "Mikrofon Reparatur",
       "duration": "45 Minuten",
-      "warranty": "3 Monate Garantie",
+      "warranty": "{garantie} Garantie",
       "text": "Reparatur oder Austausch des Mikrofons für klare Sprachqualität bei Anrufen. Wieder perfekte Kommunikation.",
       "priceType": ""
     }
@@ -74,7 +74,7 @@
   },
   "why": {
     "title": "Warum Sie Ihr Gerät zu Handy Chirurg bringen sollten",
-    "lede": "Professionelle Reparatur mit 3 Monaten Garantie – transparent, schnell und zuverlässig.",
+    "lede": "Professionelle Reparatur mit Garantie ({garantie}) – transparent, schnell und zuverlässig.",
     "items": [
       {
         "title": "Professionelle Fehleranalyse ab {befund}",
@@ -93,8 +93,8 @@
         "text": "Wir tauschen nur die Teile aus, die wirklich nötig sind – keine unnötigen Zusatzkosten, keine versteckten Leistungen."
       },
       {
-        "title": "3 Monate Garantie",
-        "text": "Auf die durchgeführten Arbeiten und die verbauten Ersatzteile erhalten Sie 3 Monate Garantie – ausgenommen Wasserschäden. Ihre gesetzlichen Gewährleistungsrechte bleiben unberührt."
+        "title": "{garantie} Garantie",
+        "text": "Auf die durchgeführten Arbeiten und die verbauten Ersatzteile erhalten Sie {garantie} Garantie – ausgenommen Wasserschäden ({garantieWasser}). {gewaehrleistung}"
       },
       {
         "title": "Datenschutz steht an erster Stelle",
@@ -114,5 +114,5 @@
       }
     ]
   },
-  "note": "Den endgültigen Preis bestätigen wir Ihnen vor jeder Reparatur. Fehleranalyse ab {befund}, wird bei einer Reparatur verrechnet. Die Garantie gilt zusätzlich zu Ihren gesetzlichen Gewährleistungsrechten."
+  "note": "Den endgültigen Preis bestätigen wir Ihnen vor jeder Reparatur. Fehleranalyse ab {befund}, wird bei einer Reparatur verrechnet. Die Garantie gilt zusätzlich: {gewaehrleistung}"
 }

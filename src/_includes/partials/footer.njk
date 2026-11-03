@@ -20,6 +20,10 @@
         <a href="tel:{{ site.phone.dial }}">{{ site.phone.display }}</a><br>
         {%- if site.whatsapp %}<a href="https://wa.me/{{ site.whatsapp | replace('+', '') }}" target="_blank" rel="noopener">WhatsApp</a><br>{% endif %}
         <a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+      {%- set socials = site.social | selectattr('url') %}
+      {%- if socials | length %}
+      <p class="foot__social">{% for x in socials %}<a href="{{ x.url }}" target="_blank" rel="noopener">{{ x.label }}</a>{% endfor %}</p>
+      {%- endif %}
     </div>
     <div>
       <h2 class="foot__h">Sprechzeiten</h2>

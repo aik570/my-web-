@@ -1,17 +1,18 @@
 ---
 permalink: /preise/
-seo:
-  title: Preise für Handyreparatur in Potsdam – Handy Chirurg
-  description: Reparaturpreise für Smartphones, Tablets, Laptops und Smartwatches von Apple, Samsung, Huawei, Xiaomi, Google, Sony und OnePlus. Handy Chirurg, Dortustraße 23, Potsdam.
+eleventyComputed:
+  seo:
+    title: "{{ pages.preise.seo.title }}"
+    description: "{{ pages.preise.seo.description }}"
 ---
 {% extends "base.njk" %}
 
 {% block main %}
 <section class="sec sec--white page-head">
   <div class="wrap">
-    <p class="kicker"><span class="kicker__cross" aria-hidden="true"></span>Preisliste</p>
-    <h1 class="page-title">Reparaturpreise</h1>
-    <p class="head__lede">Wählen Sie den Hersteller oder suchen Sie direkt nach Ihrem Modell. Den endgültigen Preis bestätigen wir Ihnen vor jeder Reparatur.</p>
+    <p class="kicker"><span class="kicker__cross" aria-hidden="true"></span>{{ pages.preise.kicker }}</p>
+    <h1 class="page-title">{{ pages.preise.title }}</h1>
+    <p class="head__lede">{{ pages.preise.lede | fill }}</p>
     {%- include "partials/price-notice.njk" %}
   </div>
 </section>

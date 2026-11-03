@@ -57,6 +57,8 @@ collections:
           - { name: name, label: Modell, widget: string, hint: 'Genaue Bezeichnung inkl. Variante, z. B. „iPhone 16 Pro Max", „Galaxy S24 Ultra". Die Reihenfolge auf der Website ergibt sich automatisch (neueste zuerst).' }
           - { name: id, label: Katalog-ID, widget: string, required: false, pattern: ['^([a-z0-9]+(-[a-z0-9]+)*)?$', 'Nur a–z, 0–9 und Bindestrich'], hint: 'Leer = wird aus dem Namen gebildet (z. B. iphone-16-pro-max). Bestimmt die Adresse /preise/<hersteller>/<id>/ und die Zuordnung des Produktfotos. Bei einer Umbenennung des Modells hier die bisherige ID eintragen, damit Links gleich bleiben.' }
           - { name: category, label: Gerätetyp, widget: select, options: [Smartphone, Tablet, Laptop, Smartwatch, PC, Sonstiges], default: Smartphone, required: false }
+          - { name: group, label: Gruppe im Preisrechner (optional), widget: string, required: false, hint: 'Leer = automatisch (z. B. „iPhone", „iPhone SE", „Galaxy S"). Nur eintragen, um die Überschrift zu ändern.' }
+          - { name: position, label: Position (optional), widget: number, value_type: int, min: 1, required: false, hint: 'Leer = automatisch, neueste zuerst. Eine Zahl setzt das Modell an diese Stelle der Liste (1 = ganz oben).' }
           - name: repairs
             label: Reparaturen
             label_singular: Reparatur
@@ -140,6 +142,23 @@ collections:
             fields:
               - { name: amount, label: Preis in €, widget: number, value_type: float, min: 0, hint: 'Gilt überall: Preisrechner, Modellseiten (Zeile Fehleranalyse), Leistungen, FAQ, Hinweise. Im Text „{befund}" schreiben, um den Betrag einzusetzen.' }
               - { name: text, label: Text, widget: text }
+          - name: warranty
+            label: Garantie (gilt überall)
+            widget: object
+            hint: 'In Texten einsetzen mit {garantie}, {garantieWasser} und {gewaehrleistung}. Die Garantie ist eine freiwillige Leistung des Ladens; die gesetzlichen Rechte der Kunden bleiben immer bestehen.'
+            fields:
+              - { name: standard, label: Garantie für Reparaturen, widget: string, hint: 'z. B. „3 Monate"' }
+              - { name: waterDamage, label: Wasserschaden, widget: string, hint: 'z. B. „Ohne Garantie"' }
+              - { name: legalNote, label: Satz zu den gesetzlichen Rechten, widget: string, hint: 'Nicht streichen: die gesetzliche Gewährleistung gilt unabhängig von der Garantie.' }
+          - name: social
+            label: Social-Media-Links (Fußzeile)
+            label_singular: Link
+            widget: list
+            required: false
+            summary: '{{fields.label}}'
+            fields:
+              - { name: label, label: Name, widget: string, hint: 'z. B. Instagram' }
+              - { name: url, label: Adresse, widget: string, pattern: ['^https://', 'Muss mit https:// beginnen'] }
           - name: statusTexts
             label: Texte der Öffnungsanzeige (Kopfzeile)
             widget: object
@@ -174,7 +193,7 @@ collections:
               - { name: id, label: Kürzel, widget: string, pattern: ['^[a-z0-9-]+$', 'Nur Kleinbuchstaben, Ziffern, Bindestrich'], hint: 'Nicht ändern, wenn schon Preise darauf verweisen' }
               - { name: label, label: Name, widget: string }
               - { name: duration, label: Dauer, widget: string, required: false, hint: 'Nur eintragen, wenn bestätigt, z. B. „ca. 60 Minuten". Leer = wird nicht angezeigt' }
-              - { name: warranty, label: Garantie, widget: string, required: false, hint: 'Nur eintragen, wenn bestätigt, z. B. „3 Monate" oder „Ohne Garantie". Leer = wird nicht angezeigt' }
+              - { name: warranty, label: Garantie, widget: string, required: false, hint: '„{garantie}" = allgemeine Garantie, „{garantieWasser}" = Wasserschaden (beides unter Laden & Kontakt › Garantie). Oder eigener Text. Leer = wird nicht angezeigt' }
 
       - name: preisliste
         label: Preisliste – Status und Hinweise
@@ -322,6 +341,81 @@ collections:
             widget: object
             fields: [{ name: kicker, label: Überzeile, widget: string }, { name: title, label: Überschrift, widget: string }]
 
+      - name: seiten
+        label: Unterseiten – Überschriften und Suchmaschinen
+        file: src/_data/pages.json
+        format: json
+        fields:
+          - { name: note, label: Hinweis, widget: hidden }
+          - name: preise
+            label: Preisliste (/preise/)
+            widget: object
+            fields:
+              - { name: kicker, label: Kleine Überschrift, widget: string }
+              - { name: title, label: Überschrift, widget: string }
+              - { name: lede, label: Einleitung, widget: text }
+              - name: seo
+                label: Suchmaschinen
+                widget: object
+                fields:
+                  - { name: title, label: Seitentitel, widget: string, pattern: ['^.{10,75}$', '10 bis 75 Zeichen'] }
+                  - { name: description, label: Beschreibung, widget: text, pattern: ['^[\s\S]{20,200}$', '20 bis 200 Zeichen'] }
+          - name: finder
+            label: Preisrechner (/reparatur-finden/)
+            widget: object
+            fields:
+              - { name: kicker, label: Kleine Überschrift, widget: string }
+              - { name: title, label: Überschrift, widget: string }
+              - { name: lede, label: Einleitung, widget: text }
+              - name: seo
+                label: Suchmaschinen ({anzahl} = Anzahl der Geräte)
+                widget: object
+                fields:
+                  - { name: title, label: Seitentitel, widget: string, pattern: ['^.{10,75}$', '10 bis 75 Zeichen'] }
+                  - { name: description, label: Beschreibung, widget: text, pattern: ['^[\s\S]{20,200}$', '20 bis 200 Zeichen'] }
+          - name: leistungen
+            label: Reparaturleistungen (/leistungen/) – Texte unter Inhalte › Reparaturleistungen
+            widget: object
+            fields:
+              - name: seo
+                label: Suchmaschinen
+                widget: object
+                fields:
+                  - { name: title, label: Seitentitel, widget: string, pattern: ['^.{10,75}$', '10 bis 75 Zeichen'] }
+                  - { name: description, label: Beschreibung, widget: text, pattern: ['^[\s\S]{20,200}$', '20 bis 200 Zeichen'] }
+          - name: hersteller
+            label: Preisseite je Hersteller
+            widget: object
+            fields:
+              - name: seo
+                label: Suchmaschinen ({hersteller}, {anzahl} = Anzahl der Modelle)
+                widget: object
+                fields:
+                  - { name: title, label: Seitentitel, widget: string, pattern: ['^.{10,75}$', '10 bis 75 Zeichen'] }
+                  - { name: description, label: Beschreibung, widget: text, pattern: ['^[\s\S]{20,200}$', '20 bis 200 Zeichen'] }
+          - name: modell
+            label: Angebotsseite je Modell
+            widget: object
+            fields:
+              - name: seo
+                label: Suchmaschinen ({hersteller}, {modell})
+                widget: object
+                fields:
+                  - { name: title, label: Seitentitel, widget: string, pattern: ['^.{10,75}$', '10 bis 75 Zeichen'] }
+                  - { name: description, label: Beschreibung, widget: text, pattern: ['^[\s\S]{20,200}$', '20 bis 200 Zeichen'] }
+          - name: fehlerseite
+            label: Seite nicht gefunden (404)
+            widget: object
+            fields:
+              - { name: kicker, label: Kleine Überschrift, widget: string }
+              - { name: title, label: Überschrift, widget: string }
+              - { name: lede, label: Einleitung, widget: text }
+              - name: seo
+                label: Suchmaschinen
+                widget: object
+                fields:
+                  - { name: title, label: Seitentitel, widget: string, pattern: ['^.{10,75}$', '10 bis 75 Zeichen'] }
+                  - { name: description, label: Beschreibung, widget: text, pattern: ['^[\s\S]{20,200}$', '20 bis 200 Zeichen'] }
       - name: fachbereiche
         label: Fachbereiche (Leistungen)
         file: src/_data/services.json
@@ -346,7 +440,7 @@ collections:
           - { name: kicker, label: Überzeile, widget: string }
           - { name: title, label: Überschrift, widget: string }
           - { name: lede, label: Einleitung, widget: text }
-          - { name: note, label: Hinweis unter den Leistungen (Preis/Garantie), widget: text, hint: '{fee} wird durch den Preis der Fehleranalyse ersetzt. Gesetzliche Gewährleistung bitte nicht ausschließen.' }
+          - { name: note, label: Hinweis unter den Leistungen (Preis/Garantie), widget: text, hint: '{befund} wird durch den Preis der Fehleranalyse ersetzt, {garantie} / {garantieWasser} / {gewaehrleistung} durch die Garantie-Angaben. Gesetzliche Gewährleistung bitte nicht ausschließen.' }
           - name: items
             label: Leistungen
             label_singular: Leistung
@@ -356,7 +450,7 @@ collections:
               - { name: id, label: Kürzel, widget: string, pattern: ['^[a-z0-9-]+$', 'Nur Kleinbuchstaben, Ziffern, Bindestrich'] }
               - { name: title, label: Titel, widget: string }
               - { name: duration, label: Dauer, widget: string, required: false, hint: 'Leer = wird nicht angezeigt' }
-              - { name: warranty, label: Garantie, widget: string, required: false, hint: 'Leer = wird nicht angezeigt' }
+              - { name: warranty, label: Garantie, widget: string, required: false, hint: 'z. B. „{garantie} Garantie" oder „{garantieWasser}". Leer = wird nicht angezeigt' }
               - { name: text, label: Beschreibung, widget: text }
               - { name: priceType, label: Preise verlinken (Kürzel der Reparaturart), widget: relation, collection: einstellungen, file: reparaturarten, search_fields: ['items.*.label'], display_fields: ['items.*.label'], value_field: 'items.*.id', required: false, hint: 'Leer = Link „Preis telefonisch"' }
           - name: why

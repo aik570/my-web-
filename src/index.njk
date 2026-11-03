@@ -19,7 +19,7 @@ bodyClass: is-home
   {%- set h = home -%}
 
   <!-- ============ STORY: Aufnahme → OP → Entlassen ============ -->
-  <section class="story" id="story" aria-label="{{ h.hero.title }}">
+  <section class="story" id="story" aria-label="{{ h.hero.title | fill }}">
     <div class="story__sticky">
       <div class="story__lamp" aria-hidden="true"></div>
       <canvas id="phoneCanvas" class="story__canvas" aria-hidden="true"></canvas>
@@ -28,7 +28,7 @@ bodyClass: is-home
       <div class="scene scene--hero" id="top">
         <p class="kicker"><span class="kicker__cross" aria-hidden="true"></span>{{ h.hero.kicker }}</p>
         <h1>{{ h.hero.title | nbsp }}</h1>
-        <p class="scene__lede">{{ h.hero.lede }}</p>
+        <p class="scene__lede">{{ h.hero.lede | fill }}</p>
         <div class="actions">
           <a class="btn btn--primary" href="tel:{{ site.phone.dial }}">{{ h.hero.ctaPrimary }}</a>
           <a class="btn btn--quiet" href="/reparatur-finden/">{{ h.hero.ctaPrice }}</a>
@@ -51,13 +51,13 @@ bodyClass: is-home
       <div class="scene scene--open" aria-hidden="true">
         <p class="kicker"><span class="kicker__cross" aria-hidden="true"></span>{{ h.sceneOpen.kicker }}</p>
         <p class="scene__title">{{ h.sceneOpen.title | nbsp }}</p>
-        <p class="scene__lede">{{ h.sceneOpen.lede }}</p>
+        <p class="scene__lede">{{ h.sceneOpen.lede | fill }}</p>
       </div>
 
       <div class="scene scene--done">
         <p class="kicker"><span class="kicker__cross" aria-hidden="true"></span>{{ h.sceneDone.kicker }}</p>
         <p class="scene__title">{{ h.sceneDone.title | nbsp }}</p>
-        <p class="scene__lede">{{ h.sceneDone.lede }}</p>
+        <p class="scene__lede">{{ h.sceneDone.lede | fill }}</p>
         <div class="actions">
           <a class="btn btn--primary" href="/reparatur-finden/">{{ h.hero.ctaPrice }}</a>
           <a class="btn btn--quiet" href="tel:{{ site.phone.dial }}">{{ h.hero.ctaPrimary }}</a>
@@ -80,8 +80,8 @@ bodyClass: is-home
       <div class="head head--row">
         <div>
           <p class="kicker"><span class="kicker__cross" aria-hidden="true"></span>{{ h.selector.kicker }}</p>
-          <h2 id="preisrechner-h">{{ h.selector.title }}</h2>
-          <p class="head__lede">{{ h.selector.lede }}</p>
+          <h2 id="preisrechner-h">{{ h.selector.title | fill }}</h2>
+          <p class="head__lede">{{ h.selector.lede | fill }}</p>
         </div>
         
       </div>
@@ -104,8 +104,8 @@ bodyClass: is-home
     <div class="wrap">
       <div class="head">
         <p class="kicker"><span class="kicker__cross" aria-hidden="true"></span>{{ h.services.kicker }}</p>
-        <h2 id="leistungen-h">{{ h.services.title }}</h2>
-        <p class="head__lede">{{ h.services.lede }}</p>
+        <h2 id="leistungen-h">{{ h.services.title | fill }}</h2>
+        <p class="head__lede">{{ h.services.lede | fill }}</p>
       </div>
 
       <ul class="signs">
@@ -136,11 +136,11 @@ bodyClass: is-home
     <div class="wrap charter__grid">
       <div class="charter__head">
         <p class="kicker kicker--light"><span class="kicker__cross" aria-hidden="true"></span>{{ h.charter.kicker }}</p>
-        <h2 id="charter-h">{{ h.charter.title }}</h2>
+        <h2 id="charter-h">{{ h.charter.title | fill }}</h2>
       </div>
       <ol class="charter__list">
         {%- for c in h.charter.items %}
-        <li class="reveal"><span class="charter__no">§ {{ loop.index }}</span><h3>{{ c.title }}</h3><p>{{ c.text }}</p></li>
+        <li class="reveal"><span class="charter__no">§ {{ loop.index }}</span><h3>{{ c.title | fill }}</h3><p>{{ c.text | fill }}</p></li>
         {%- endfor %}
       </ol>
     </div>
@@ -152,7 +152,7 @@ bodyClass: is-home
       <div class="head head--row">
         <div>
           <p class="kicker"><span class="kicker__cross" aria-hidden="true"></span>{{ h.process.kicker }}</p>
-          <h2 id="ablauf-h">{{ h.process.title }}</h2>
+          <h2 id="ablauf-h">{{ h.process.title | fill }}</h2>
         </div>
         <div class="switch" role="tablist" aria-label="Art der Abgabe">
           <button role="tab" id="tab-laden" aria-selected="true" aria-controls="panel-laden">{{ h.process.store.label }}</button>
@@ -191,7 +191,7 @@ bodyClass: is-home
         <div class="board__head">
           <img class="board__logo" src="/assets/img/logo-white.svg" alt="" width="756" height="366" loading="lazy">
           <div>
-            <h2 id="laden-h">{{ h.visit.title }}</h2>
+            <h2 id="laden-h">{{ h.visit.title | fill }}</h2>
             <p>{{ site.name }} · {{ site.street }} · {{ site.postcode }} {{ site.city }}</p>
           </div>
         </div>
@@ -219,7 +219,7 @@ bodyClass: is-home
     <div class="wrap faq__grid">
       <div>
         <p class="kicker"><span class="kicker__cross" aria-hidden="true"></span>{{ h.faqIntro.kicker }}</p>
-        <h2 id="faq-h">{{ h.faqIntro.title }}</h2>
+        <h2 id="faq-h">{{ h.faqIntro.title | fill }}</h2>
         <p class="head__lede">Ihre Frage ist nicht dabei? Rufen Sie an: <a href="tel:{{ site.phone.dial }}">{{ site.phone.display }}</a>.</p>
       </div>
       <div class="faq__list">
@@ -234,7 +234,7 @@ bodyClass: is-home
   <section class="sec sec--deep call" aria-labelledby="call-h">
     <div class="wrap">
       <p class="kicker kicker--light"><span class="kicker__cross" aria-hidden="true"></span>{{ h.call.kicker }}</p>
-      <h2 id="call-h" class="call__title">{{ h.call.title }}</h2>
+      <h2 id="call-h" class="call__title">{{ h.call.title | fill }}</h2>
       <a class="call__number" href="tel:{{ site.phone.dial }}">{{ site.phone.display }}</a>
       <p class="call__meta">
         <a href="mailto:{{ site.email }}">{{ site.email }}</a>
@@ -250,8 +250,8 @@ bodyClass: is-home
     <div class="wrap contact__grid">
       <div class="contact__intro">
         <p class="kicker"><span class="kicker__cross" aria-hidden="true"></span>{{ h.contact.kicker }}</p>
-        <h2 id="kontakt-h">{{ h.contact.title }}</h2>
-        <p class="head__lede">{{ h.contact.lede }}</p>
+        <h2 id="kontakt-h">{{ h.contact.title | fill }}</h2>
+        <p class="head__lede">{{ h.contact.lede | fill }}</p>
         <div class="contact__visit">
           <span class="nav__state contact__state" data-state-short><span class="nav__state-label">Sprechzeiten</span><span class="nav__state-time">{{ site.hours[0].from }}–{{ site.hours[0].to }}</span></span>
           <p><strong>{{ site.name }}</strong><br>{{ site.street }}, {{ site.postcode }} {{ site.city }}<br>{% include "partials/hours-text.njk" %}</p>

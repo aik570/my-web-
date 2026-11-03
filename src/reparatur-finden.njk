@@ -1,18 +1,19 @@
 ---
 permalink: /reparatur-finden/
 bodyClass: is-finder
-seo:
-  title: Reparatur finden – Preisrechner | Handy Chirurg Potsdam
-  description: In drei Schritten zum Reparaturpreis für 493 Geräte von Apple, Samsung, Huawei, Xiaomi, Google, Sony und OnePlus. Handy Chirurg, Dortustraße 23, Potsdam.
+eleventyComputed:
+  seo:
+    title: "{{ pages.finder.seo.title | replace('{anzahl}', prices.models.length) }}"
+    description: "{{ pages.finder.seo.description | replace('{anzahl}', prices.models.length) }}"
 ---
 {% extends "base.njk" %}
 
 {% block main %}
 <section class="sec sec--mint finder-head">
   <div class="wrap">
-    <p class="kicker"><span class="kicker__cross" aria-hidden="true"></span>Preisrechner</p>
-    <h1 class="page-title">Reparatur finden</h1>
-    <p class="head__lede">Gerät wählen, Reparatur wählen, Preis sehen. Ohne Termin in der Dortustraße 23.</p>
+    <p class="kicker"><span class="kicker__cross" aria-hidden="true"></span>{{ pages.finder.kicker }}</p>
+    <h1 class="page-title">{{ pages.finder.title }}</h1>
+    <p class="head__lede">{{ pages.finder.lede | fill }}</p>
     {%- include "partials/price-notice.njk" %}
   </div>
 </section>

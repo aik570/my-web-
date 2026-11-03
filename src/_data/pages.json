@@ -1,0 +1,48 @@
+{
+  "note": "Texte und Suchmaschinen-Angaben der Unterseiten. Platzhalter: {hersteller}, {modell}, {anzahl}.",
+  "preise": {
+    "kicker": "Preisliste",
+    "title": "Reparaturpreise",
+    "lede": "Wählen Sie den Hersteller oder suchen Sie direkt nach Ihrem Modell. Den endgültigen Preis bestätigen wir Ihnen vor jeder Reparatur.",
+    "seo": {
+      "title": "Preise für Handyreparatur in Potsdam – Handy Chirurg",
+      "description": "Reparaturpreise für Smartphones, Tablets, Laptops und Smartwatches von Apple, Samsung, Huawei, Xiaomi, Google, Sony und OnePlus. Handy Chirurg, Dortustraße 23, Potsdam."
+    }
+  },
+  "finder": {
+    "kicker": "Preisrechner",
+    "title": "Reparatur finden",
+    "lede": "Gerät wählen, Reparatur wählen, Preis sehen. Ohne Termin in der Dortustraße 23.",
+    "seo": {
+      "title": "Reparatur finden – Preisrechner | Handy Chirurg Potsdam",
+      "description": "In drei Schritten zum Reparaturpreis für {anzahl} Geräte von Apple, Samsung, Huawei, Xiaomi, Google, Sony und OnePlus. Handy Chirurg, Dortustraße 23, Potsdam."
+    }
+  },
+  "leistungen": {
+    "seo": {
+      "title": "Reparaturleistungen – Handy Chirurg Potsdam",
+      "description": "Display, Akku, Kamera, Ladebuchse, Wasserschaden, Home Button, Lautsprecher und Mikrofon. Dauer und Garantie je Reparatur. Handy Chirurg, Dortustraße 23, Potsdam."
+    }
+  },
+  "hersteller": {
+    "seo": {
+      "title": "{hersteller} Reparatur Preise in Potsdam – Handy Chirurg",
+      "description": "Reparaturpreise für {anzahl} {hersteller}-Modelle: Display, Akku, Ladebuchse, Kamera, Wasserschaden und mehr. Handy Chirurg, Dortustraße 23, Potsdam."
+    }
+  },
+  "modell": {
+    "seo": {
+      "title": "{modell} Reparatur in Potsdam – Preise | Handy Chirurg",
+      "description": "{hersteller} {modell}: Reparaturpreise für Display, Akku, Ladebuchse, Kamera und mehr. Handy Chirurg, Dortustraße 23, Potsdam, ohne Termin."
+    }
+  },
+  "fehlerseite": {
+    "kicker": "Fehler 404",
+    "title": "Diese Seite ist nicht zu retten.",
+    "lede": "Aber Ihr Handy vielleicht. Die Seite, die Sie suchen, gibt es nicht oder nicht mehr.",
+    "seo": {
+      "title": "Seite nicht gefunden – Handy Chirurg Potsdam",
+      "description": "Diese Seite gibt es nicht."
+    }
+  }
+}

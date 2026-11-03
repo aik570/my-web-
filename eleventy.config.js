@@ -14,6 +14,8 @@ md.renderer.rules.link_open = (tokens, idx, options, env, self) => {
 const TODO = /\[\[KLÄREN:\s*([^\]]+)\]\]/g;
 const markTodos = (html) => html.replace(TODO, '<mark class="todo" title="Vom Kunden zu bestätigen">⚠ $1</mark>');
 
+import { fillText } from './scripts/lib/fill.mjs';
+
 export default function (eleventyConfig) {
   // Content files are read by data files (prices, legal), not rendered as pages.
   eleventyConfig.ignores.add('src/content/**');
@@ -45,12 +47,10 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter('todo', (s = '') => markTodos(String(s)));
   eleventyConfig.addFilter('json', (v) => JSON.stringify(v).replace(/</g, '\\u003c'));
   eleventyConfig.addFilter('euro', (n) => `${Number(n).toLocaleString('de-DE', { minimumFractionDigits: Number.isInteger(n) ? 0 : 2, maximumFractionDigits: 2 })} €`);
-  // Owner-editable amounts inside texts: {befund} = price of the error analysis (site.json, CMS). One source for all pages.
-  eleventyConfig.addFilter('fill', (s = '') => {
-    const fee = JSON.parse(fs.readFileSync('src/_data/site.json', 'utf8')).diagnosisFee.amount;
-    const eur = `${Number(fee).toLocaleString('de-DE', { minimumFractionDigits: Number.isInteger(fee) ? 0 : 2, maximumFractionDigits: 2 })} €`;
-    return String(s).replace(/\{befund\}/g, eur);
-  });
+  // Owner-editable values inside texts (site.json, CMS → Laden & Kontakt). One source for all pages:
+  // {befund} price of the error analysis, {garantie} standard repair warranty, {garantieWasser} water damage,
+  // {gewaehrleistung} sentence on the statutory rights.
+  eleventyConfig.addFilter('fill', (s = '') => fillText(s));
   eleventyConfig.addFilter('repairName', (r, types = []) => r.label || (types.find((t) => t.id === r.service) || {}).label || r.service);
   // Price list helpers: [brand, brandSlug, model, modelSlug] for the search; device types; repair types in use.
   eleventyConfig.addFilter('modelIndex', (brands = []) => brands.flatMap((b) => b.models.map((m) => [b.brand, b.slug, m.name, m.slug])));

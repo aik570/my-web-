@@ -7,8 +7,8 @@ pagination:
 permalink: "/preise/{{ m.brandSlug }}/{{ m.slug }}/"
 eleventyComputed:
   seo:
-    title: "{{ m.name }} Reparatur in Potsdam – Preise | Handy Chirurg"
-    description: "{{ m.brand }} {{ m.name }}: Reparaturpreise für Display, Akku, Ladebuchse, Kamera und mehr. Handy Chirurg, Dortustraße 23, Potsdam, ohne Termin."
+    title: "{{ pages.modell.seo.title | replace('{hersteller}', m.brand) | replace('{modell}', m.name) }}"
+    description: "{{ pages.modell.seo.description | replace('{hersteller}', m.brand) | replace('{modell}', m.name) }}"
 ---
 {% extends "base.njk" %}
 {%- set repairs = m.repairs | repairsOnly %}

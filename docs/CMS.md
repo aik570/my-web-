@@ -5,8 +5,8 @@
 1. Öffnen Sie **https://www.handychirurg.de/admin/** und melden Sie sich mit Ihrem GitHub-Konto an.
 2. Links wählen Sie den Bereich:
    - **Preise** – ein Eintrag pro Hersteller, darin Modelle und Reparaturen.
-   - **Laden & Kontakt** – Telefon, WhatsApp, E-Mail, Öffnungszeiten, Schließtage, Fehleranalyse, Reparaturarten, Status der Preisliste.
-   - **Inhalte** – Texte der Startseite, Fachbereiche, Reparaturleistungen (Seite /leistungen/), häufige Fragen, Franchise.
+   - **Laden & Kontakt** – Telefon, WhatsApp, E-Mail, Adresse, Öffnungszeiten, Schließtage, Fehleranalyse (Befund), Garantie, Social-Media-Links, Texte der Öffnungsanzeige, Reparaturarten, Status der Preisliste, Produktfotos, Link zu den Google-Bewertungen.
+   - **Inhalte** – Texte der Startseite, Unterseiten (Überschriften, Seitentitel und Beschreibungen für Suchmaschinen), Fachbereiche, Reparaturleistungen (Seite /leistungen/), häufige Fragen, Franchise.
    - **Rechtliches** – Impressum und Datenschutzerklärung.
 3. Ändern Sie die Felder und klicken Sie oben auf **Veröffentlichen** → **Jetzt veröffentlichen**.
 4. Nach etwa einer Minute ist die Änderung auf der Website sichtbar.
@@ -25,6 +25,15 @@ Hinweise
 
 Weitere Felder je Reparatur: **Bezeichnung** (z. B. „Display – Originalqualität" für eine zweite Teilequalität), **„ab"-Preis**, **Preis auf Anfrage**, **Hinweis**, **Dauer (nur dieses Modell)**. Reparatur hinzufügen/entfernen = Zeile hinzufügen/Kreuz. Ein Modell, das eine Reparatur nicht anbietet, hat diese Zeile einfach nicht.
 Je Modell: **Modell** (Name mit Variante), **Katalog-ID** (Adresse der Modellseite, bei Umbenennungen die alte ID eintragen), **Gerätetyp**. Garantie und Standard-Dauer je Reparaturart: **Laden & Kontakt → Reparaturarten**.
+
+### Garantie und Befund (ein Wert für die ganze Website)
+**Laden & Kontakt → Garantie**: „Garantie für Reparaturen" (jetzt 3 Monate), „Wasserschaden" (jetzt „Ohne Garantie") und der Satz zu den gesetzlichen Rechten. In allen Texten stehen dafür Platzhalter: `{garantie}`, `{garantieWasser}`, `{gewaehrleistung}` – ebenso `{befund}` für den Preis der Fehleranalyse (jetzt 25 €). Ändern Sie den Wert einmal, er erscheint überall: Startseite, FAQ, Leistungen, Preisrechner, Modellseiten. Den Satz zu den gesetzlichen Rechten nicht streichen – die Garantie ist freiwillig, die gesetzliche Gewährleistung gilt immer.
+
+### Reihenfolge und Gruppen im Preisrechner
+Die Modelle stehen automatisch neueste zuerst, in Gruppen (z. B. „iPhone", „iPhone SE", „Galaxy S"). Je Modell gibt es zwei optionale Felder: **Gruppe im Preisrechner** (andere Überschrift) und **Position** (Zahl = feste Stelle in der Liste, 1 = ganz oben). Leer lassen = automatisch.
+
+### Seitentitel und Beschreibungen
+**Inhalte → Unterseiten**: Überschrift und Einleitung von Preisliste, Preisrechner und 404-Seite, dazu Seitentitel und Beschreibung (Google) jeder Unterseite. Für die Hersteller- und Modellseiten gibt es ein Muster mit `{hersteller}`, `{modell}`, `{anzahl}`. Die Startseite: **Laden & Kontakt → Startseite – Suchmaschinen**.
 
 ### Produktfotos
 **Laden & Kontakt → Produktfotos im Preisrechner**: ein Eintrag pro Modell (Hersteller/Katalog-ID, Foto, Lizenz, Nachweis). Nur freigestellte Produktfotos mit Lizenz für die gewerbliche Nutzung. Viele Fotos auf einmal (Entwickler): Dateien als `<hersteller>-<katalog-id>.png` nach `incoming/` legen (Namen siehe `project-audit/PRODUCT-PHOTOS-NEEDED.csv`), dann `npm run build && python3 scripts/photos/normalize.py --incoming incoming --license "…" --proof "…"` – zuschneiden, einheitlich auf Weiß setzen, eintragen.
@@ -68,7 +77,7 @@ Die Entwicklungsdaten liegen getrennt in `data-import/demo/` und werden nur in V
 | Backup / Rückgängig | Git-Historie |
 
 ### Automatischer Test
-`npm run build && npm run test:cms` öffnet /admin/ mit dem lokalen Backend (decap-server), prüft, dass alle Bereiche laden, ändert im Editor einen Preis, veröffentlicht, baut die Website neu und prüft den neuen Preis in Preisrechner und Modellseite. Die Preisdatei wird danach wiederhergestellt. Die GitHub-Anmeldung der gehosteten Seite prüft dieser Test nicht.
+`npm run build && npm run test:cms` öffnet /admin/ mit dem lokalen Backend (decap-server), prüft, dass alle 15 Bereiche laden, und ändert dann im Editor: einen Reparaturpreis, den Befund (25 → 31 €), die Samstagszeit (18:00 → 17:30), die Garantie (3 → 4 Monate), eine Seitenüberschrift und das Titelmuster der Modellseiten; außerdem wird für ein Modell ein Foto über die Medienbibliothek hochgeladen. Nach dem Veröffentlichen baut der Test die Website neu und prüft jede Änderung in Preisrechner, Modellseite, Preisliste, Leistungen, FAQ, Öffnungszeiten, Fußzeile, strukturierten Daten und Kopfzeilen-Status. Danach werden alle Dateien wiederhergestellt und Test-Uploads gelöscht. Die GitHub-/Netlify-Anmeldung der gehosteten Seite prüft dieser Test nicht – sie ist noch nicht eingerichtet (siehe unten).
 
 ### Lokal arbeiten
 ```

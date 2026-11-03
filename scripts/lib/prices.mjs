@@ -81,6 +81,8 @@ export function validateCatalogue(brands, repairTypes) {
           name: String(m.name).trim(),
           slug: m.id ? String(m.id).trim() : slug(m.name),
           category: m.category || '',
+          ...(String(m.group || '').trim() ? { group: String(m.group).trim() } : {}),
+          ...(Number.isFinite(Number(m.position)) && Number(m.position) > 0 && m.position !== '' && m.position !== null ? { position: Math.round(Number(m.position)) } : {}),
           repairs: (m.repairs || []).map((r) => ({
             service: r.service,
             label: (r.label || '').trim(),
@@ -219,7 +221,10 @@ export function orderNewestFirst(brands) {
   for (const b of brands) {
     const keyed = b.models.map((m, i) => ({ m, i, k: modelOrder(b.slug, m.name, m.category) }));
     keyed.sort((x, y) => x.k.cat - y.k.cat || x.k.rank - y.k.rank || y.k.gen - x.k.gen || x.k.variant - y.k.variant || x.i - y.i);
-    b.models = keyed.map(({ m, k }) => Object.assign(m, { series: k.series }));
+    // CMS overrides: "Gruppe" replaces the automatic series heading, "Position" pins a model to that place (1 = first).
+    const auto = keyed.filter(({ m }) => !m.position), pinned = keyed.filter(({ m }) => m.position).sort((x, y) => x.m.position - y.m.position || x.i - y.i);
+    for (const p of pinned) auto.splice(Math.min(p.m.position - 1, auto.length), 0, p);
+    b.models = auto.map(({ m, k }) => Object.assign(m, { series: m.group || k.series }));
   }
   return brands;
 }

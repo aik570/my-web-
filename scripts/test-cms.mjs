@@ -18,8 +18,8 @@ import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url);
 const { chromium } = require('playwright');
 const FILE = 'src/content/prices/apple.json';
-const SITE = 'src/_data/site.json', PHOTOS = 'src/_data/modelImages.json', UPLOAD_DIR = 'src/assets/img/produkte';
-const originals = { [SITE]: fs.readFileSync(SITE, 'utf8'), [PHOTOS]: fs.readFileSync(PHOTOS, 'utf8') };
+const SITE = 'src/_data/site.json', PHOTOS = 'src/_data/modelImages.json', PAGES = 'src/_data/pages.json', UPLOAD_DIR = 'src/assets/img/produkte';
+const originals = { [SITE]: fs.readFileSync(SITE, 'utf8'), [PHOTOS]: fs.readFileSync(PHOTOS, 'utf8'), [PAGES]: fs.readFileSync(PAGES, 'utf8') };
 const uploadsBefore = new Set(fs.readdirSync(UPLOAD_DIR));
 const OUT = '.cache/cms-test';
 const MODEL = 'iPhone 16 Pro Max';
@@ -64,7 +64,7 @@ try {
 
   console.log('\nadmin: collections');
   const routes = ['preise/entries/apple', 'einstellungen/entries/kontakt', 'einstellungen/entries/reparaturarten', 'einstellungen/entries/preisliste',
-    'einstellungen/entries/produktfotos', 'einstellungen/entries/bewertungen', 'inhalte/entries/startseite', 'inhalte/entries/fachbereiche',
+    'einstellungen/entries/produktfotos', 'einstellungen/entries/bewertungen', 'inhalte/entries/startseite', 'inhalte/entries/seiten', 'inhalte/entries/fachbereiche',
     'inhalte/entries/leistungen', 'inhalte/entries/fragen', 'inhalte/entries/franchise', 'rechtliches/entries/impressum', 'rechtliches/entries/datenschutz'];
   for (const r of routes) {
     await page.goto('http://localhost:8080/admin/#/collections/' + r); await page.waitForTimeout(1800);
@@ -94,9 +94,26 @@ try {
   const sat = page.locator('[class*="ListItem-listControlItem"]').filter({ has: page.locator('[class*="NestedObjectLabel"]', { hasText: /Samstag/ }) }).first();
   if (!(await satTo.isVisible())) { await sat.locator('button').first().click(); await page.waitForTimeout(500); }
   await satTo.fill('17:30'); await page.waitForTimeout(300);
+  const warr = await field(page, 'Garantie für Reparaturen');
+  ok((await warr.inputValue()) === '3 Monate', 'editor shows the warranty 3 Monate');
+  await warr.fill('4 Monate'); await page.waitForTimeout(300);
   await publish(page);
   const site = JSON.parse(fs.readFileSync(SITE, 'utf8'));
   ok(site.diagnosisFee.amount === 31 && site.hours.find((h) => h.day === 'Samstag').to === '17:30', 'published: site.json has Befund 31 € and Saturday 17:30');
+  ok(site.warranty.standard === '4 Monate' && site.warranty.waterDamage === 'Ohne Garantie' && /gesetzlichen/.test(site.warranty.legalNote), 'published: warranty 4 Monate, water damage and statutory-rights sentence kept');
+
+  console.log('\nadmin: page heading and SEO title (Inhalte › Unterseiten)');
+  await page.goto('http://localhost:8080/admin/#/collections/inhalte/entries/seiten'); await page.reload(); await page.waitForTimeout(5000);
+  const head = await field(page, 'Überschrift');
+  ok((await head.inputValue()) === 'Reparaturpreise', 'editor shows the /preise/ heading');
+  await head.fill('Reparaturpreise TEST');
+  const seoTitles = page.locator('label', { hasText: /^Seitentitel/ });
+  const mt = page.locator('#' + await seoTitles.nth(4).getAttribute('for'));   // Preisliste, Preisrechner, Leistungen, Hersteller, Modell
+  ok(/\{modell\}/.test(await mt.inputValue()), 'editor shows the model page title pattern with {modell}');
+  await mt.fill('{modell} TEST-Titel – Handy Chirurg'); await page.waitForTimeout(300);
+  await publish(page);
+  const pg = JSON.parse(fs.readFileSync(PAGES, 'utf8'));
+  ok(pg.preise.title === 'Reparaturpreise TEST' && pg.modell.seo.title.startsWith('{modell} TEST'), 'published: pages.json has the new heading and title pattern');
 
   console.log('\nadmin: add a product photo (model picker + upload)');
   await page.goto('http://localhost:8080/admin/#/collections/einstellungen/entries/produktfotos'); await page.reload(); await page.waitForTimeout(7000);
@@ -144,7 +161,15 @@ try {
   ok(/schema\.org\/Saturday", "opens": "10:00", "closes": "17:30"/.test(home), 'structured data: Saturday closes 17:30');
   ok(/Sa 10:00–17:30/.test(fs.readFileSync(`${OUT}/impressum/index.html`, 'utf8')), 'footer on every page: Sa 10:00–17:30');
   ok(/"to":"17:30"/.test(home.match(/id="hc-data">[^<]*/)[0]), 'header status data: Saturday until 17:30');
-  ok(new RegExp(`data-type="akku"[^>]*data-price="${NEW}"`).test(fs.readFileSync(`${OUT}/preise/apple/${m.slug}/index.html`, 'utf8')), `model page /preise/apple/${m.slug}/: ${NEW} €`);
+  const mp = fs.readFileSync(`${OUT}/preise/apple/${m.slug}/index.html`, 'utf8');
+  ok(new RegExp(`data-type="akku"[^>]*data-price="${NEW}"`).test(mp), `model page /preise/apple/${m.slug}/: ${NEW} €`);
+  // warranty everywhere
+  ok(/4 Monate Garantie/.test(leist) && !/3 Monate/.test(leist) && /gesetzlichen Gewährleistungsrechte/.test(leist), 'warranty on /leistungen/: 4 Monate, no 3 Monate left, statutory rights sentence shown');
+  ok(/4 Monate Garantie/.test(home) && !/3 Monate/.test(home), 'warranty on the home page (FAQ, scenes): 4 Monate');
+  ok(/"warranty":"4 Monate"/.test(finder) && /"warranty":"Ohne Garantie"/.test(finder), 'Preisrechner data: 4 Monate, Wasserschaden ohne Garantie');
+  // page texts / SEO
+  ok(/<h1 class="page-title">Reparaturpreise TEST<\/h1>/.test(fs.readFileSync(`${OUT}/preise/index.html`, 'utf8')), '/preise/ heading from the CMS');
+  ok(mp.includes(`<title>${MODEL} TEST-Titel – Handy Chirurg</title>`), `model page <title> from the CMS pattern (${MODEL})`);
   const s2 = serve(OUT, 8082);
   const p2 = await browser.newPage();
   await p2.goto(`http://localhost:8082/reparatur-finden/#apple--${m.slug}--akku`); await p2.waitForSelector('#finder.is-ready'); await p2.waitForTimeout(500);
@@ -152,6 +177,10 @@ try {
   await p2.goto(`http://localhost:8082/reparatur-finden/#samsung--galaxy-s24-ultra`); await p2.waitForSelector('#finder.is-ready'); await p2.waitForTimeout(500);
   ok(await p2.$eval('#f-device-photo', (i) => !i.hidden && /cms-test-\d+\.webp$/.test(i.getAttribute('src')) && i.naturalWidth > 0), 'Preisrechner shows the photo uploaded in the CMS for Galaxy S24 Ultra');
   s2.close();
+  // model order overrides (Position / Gruppe in the CMS)
+  const { orderNewestFirst } = await import('./lib/prices.mjs');
+  const [b] = orderNewestFirst([{ slug: 'apple', models: [{ name: 'iPhone 13', category: 'Smartphone' }, { name: 'iPhone 16', category: 'Smartphone' }, { name: 'iPhone SE (2022)', category: 'Smartphone', position: 1, group: 'Kompakt' }, { name: 'iPhone 15', category: 'Smartphone' }] }]);
+  ok(b.models.map((x) => x.name).join() === 'iPhone SE (2022),iPhone 16,iPhone 15,iPhone 13' && b.models[0].series === 'Kompakt' && b.models[1].series === 'iPhone', 'model order: Position pins a model, Gruppe renames its heading, the rest stays newest first');
 } finally {
   fs.writeFileSync(FILE, original);   // always restore the price list, settings and photos
   for (const [f, c] of Object.entries(originals)) fs.writeFileSync(f, c);
