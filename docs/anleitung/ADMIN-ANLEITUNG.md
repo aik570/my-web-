@@ -2,7 +2,7 @@
 
 Diese Anleitung zeigt Schritt für Schritt, wie Sie Preise, Geräte, Fotos, Öffnungszeiten und Texte Ihrer Website selbst ändern. Sie brauchen dafür keine technischen Kenntnisse – nur einen Internet-Browser (Chrome, Safari, Firefox oder Edge) am Computer.
 
-> **Wichtig – Stand 03.11.2026:** Die Bearbeitung ist fertig eingerichtet und auf dem Entwicklungsrechner vollständig getestet. Die **Anmeldung auf der echten Website** funktioniert erst, wenn Ihr Entwickler das Hosting (Netlify) und Ihr GitHub-Konto verbunden hat. Bis dahin ist **https://www.handychirurg.de/admin/ noch die alte Website** – dort können Sie die neue Website noch nicht bearbeiten. Ihr Entwickler sagt Ihnen Bescheid, sobald es losgehen kann.
+> **Stand 04.11.2026:** Die Website läuft unter **https://handychirurg.netlify.app**, die Bearbeitung unter **https://handychirurg.netlify.app/admin/**. Anmeldung nur mit Passwort. Sobald Ihre Domain umgestellt ist, gilt dieselbe Adresse mit Ihrer Domain, z. B. **https://www.handychirurg.de/admin/**.
 
 Die Bilder in dieser Anleitung sind Aufnahmen der echten Bearbeitungsseite. Rote Rahmen zeigen, wo Sie klicken oder etwas eintragen.
 
@@ -10,24 +10,18 @@ Die Bilder in dieser Anleitung sind Aufnahmen der echten Bearbeitungsseite. Rote
 
 ## 1. Bearbeitungsseite öffnen
 
-Geben Sie im Browser die Adresse der Website mit **/admin/** am Ende ein:
-
-**https://www.handychirurg.de/admin/** (nach dem Start der neuen Website)
-
-Vor dem Start schickt Ihnen Ihr Entwickler eine Vorschau-Adresse (sie endet auf `…netlify.app/admin/`).
-
-Tipp: Legen Sie sich ein Lesezeichen an.
+Geben Sie im Browser ein: **https://handychirurg.netlify.app/admin/**
+(nach der Domain-Umstellung: **https://www.handychirurg.de/admin/**). Tipp: Lesezeichen anlegen.
 
 ## 2. Anmelden
 
 ![Anmeldeseite](bilder/01-anmelden.png)
 
-1. Klicken Sie auf den Knopf **„Mit GitHub einloggen"** (auf dem Bild oben steht „Login" – so sieht der Knopf auf dem Testrechner aus).
-2. Es öffnet sich ein kleines Fenster von GitHub. Geben Sie dort **Ihren GitHub-Benutzernamen und Ihr Passwort** ein und bestätigen Sie den Code aus Ihrer Authenticator-App (Zwei-Faktor-Anmeldung).
-3. Beim ersten Mal fragt GitHub, ob die Website auf Ihr Konto zugreifen darf → **„Authorize"** klicken.
-4. Danach sehen Sie die Übersicht.
+1. Klicken Sie auf den Knopf **„Mit GitHub einloggen"** (der Name ist von der Software vorgegeben – Sie brauchen **kein** GitHub-Konto).
+2. Es öffnet sich ein kleines Fenster **„Website bearbeiten"** mit dem Feld **Passwort**.
+3. Passwort eingeben → **Anmelden**. Das Fenster schließt sich, Sie sehen die Übersicht.
 
-Sie brauchen dafür ein **eigenes GitHub-Konto**, das Ihr Entwickler für die Website freigeschaltet hat. Ihr Passwort kennt nur Sie – geben Sie es nicht weiter.
+Das Passwort bekommen Sie von Ihrem Betreuer. Geben Sie es niemandem weiter. Bei falschem Passwort steht „Falsches Passwort." – einfach erneut eingeben.
 
 ## 3. Die Übersicht
 
@@ -168,23 +162,21 @@ Erst mit „Jetzt veröffentlichen" wird gespeichert. Solange oben **„Ungespei
 
 ## 10. Prüfen, ob die Änderung online ist
 
-Nach dem Veröffentlichen baut die Website sich neu auf. Das dauert **etwa 1–2 Minuten**.
+Nach „Jetzt veröffentlichen" ist Ihre Änderung **sofort gespeichert**. Auf der Website erscheint sie, sobald die Website neu aufgebaut ist:
+- **Zurzeit** baut Ihr Betreuer die Website neu auf – sagen Sie ihm kurz Bescheid, was Sie geändert haben.
+- Sobald die automatische Aktualisierung eingerichtet ist, erscheint die Änderung nach **etwa 1–2 Minuten** von selbst.
 
-1. Öffnen Sie **https://www.handychirurg.de** in einem neuen Fenster.
-2. Seite neu laden: **Strg + F5** (Mac: **⌘ + Umschalt + R**).
-3. Prüfen Sie die Stelle, z. B. im **Preisrechner** das Gerät wählen.
+So prüfen Sie: **https://handychirurg.netlify.app** öffnen, mit **Strg + F5** (Mac: **⌘ + Umschalt + R**) neu laden, die Stelle ansehen, z. B. im **Preisrechner** das Gerät wählen.
 
 ![Prüfen im Preisrechner](bilder/10-pruefen.png)
-
-Sehen Sie nach 5 Minuten noch den alten Stand, siehe Kapitel 11.
 
 ## 11. Wenn etwas nicht klappt
 
 | Problem | Was tun |
 |---|---|
 | Das Anmeldefenster öffnet sich nicht | Der Browser blockiert Pop-ups. Oben in der Adresszeile auf das Symbol klicken und **Pop-ups für diese Seite erlauben**, dann erneut „Mit GitHub einloggen" |
-| „Nicht berechtigt" oder leere Übersicht nach der Anmeldung | Ihr GitHub-Konto ist für die Website nicht freigeschaltet. Bitte Ihren Entwickler kontaktieren |
-| Zwei-Faktor-Code wird nicht angenommen | Uhrzeit am Handy prüfen (automatisch einstellen), neuen Code abwarten |
+| „Falsches Passwort." | Passwort genau so eingeben, wie Sie es bekommen haben (Groß-/Kleinschreibung, Bindestriche) |
+| Nach dem Passwort bleibt „Sie werden eingeloggt…" stehen oder es kommt eine Fehlermeldung | Seite mit Strg + F5 neu laden und noch einmal anmelden. Hilft das nicht: Ihren Betreuer informieren (der Zugangsschlüssel muss erneuert werden) |
 | Felder sind rot, Veröffentlichen geht nicht | Format korrigieren (Uhrzeit `10:00`, Telefon `+491632288224`, Preis nur Zahl) |
 | Veröffentlicht, aber nach 5 Minuten nicht online | Seite mit Strg + F5 neu laden. Ist es dann noch alt, hat die Prüfung beim Neuaufbau einen Fehler gefunden – **die Website bleibt in diesem Fall unverändert online**, nichts geht kaputt. Bitte Ihren Entwickler informieren (welches Feld Sie geändert haben) |
 | Versehentlich etwas Falsches veröffentlicht | Einfach den richtigen Wert eintragen und erneut veröffentlichen. Jede Änderung wird gespeichert; Ihr Entwickler kann jeden früheren Stand wiederherstellen |
