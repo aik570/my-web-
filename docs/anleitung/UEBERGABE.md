@@ -29,7 +29,7 @@ Die Abnahme-Version trägt oben den Hinweis „Vorschau" und ist für Google ges
 
 Preise · neue Geräte · Gerätefotos · Öffnungszeiten, Schließtage, Feiertage · Preis der Fehleranalyse (zurzeit 25 €) · Garantie-Texte · Telefon, E-Mail, Adresse · alle Texte der Seiten · Impressum und Datenschutz. Wie es geht, steht Schritt für Schritt in der Anleitung.
 
-Gespeichert wird sofort mit „Veröffentlichen → Jetzt veröffentlichen". **Zurzeit** erscheint die Änderung auf der Website, nachdem Ihr Betreuer die Seite neu aufgebaut hat – bitte kurz Bescheid geben. Die automatische Aktualisierung (nach 1–2 Minuten von selbst) wird noch eingerichtet.
+Gespeichert wird sofort mit „Veröffentlichen → Jetzt veröffentlichen". Die Website aktualisiert sich danach **von selbst** – nach etwa 2–3 Minuten ist die Änderung online.
 
 ## 4. Was wir noch von Ihnen brauchen
 

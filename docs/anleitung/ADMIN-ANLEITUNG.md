@@ -162,9 +162,8 @@ Erst mit „Jetzt veröffentlichen" wird gespeichert. Solange oben **„Ungespei
 
 ## 10. Prüfen, ob die Änderung online ist
 
-Nach „Jetzt veröffentlichen" ist Ihre Änderung **sofort gespeichert**. Auf der Website erscheint sie, sobald die Website neu aufgebaut ist:
-- **Zurzeit** baut Ihr Betreuer die Website neu auf – sagen Sie ihm kurz Bescheid, was Sie geändert haben.
-- Sobald die automatische Aktualisierung eingerichtet ist, erscheint die Änderung nach **etwa 1–2 Minuten** von selbst.
+Nach „Jetzt veröffentlichen" ist Ihre Änderung **sofort gespeichert**. Die Website baut sich danach **von selbst** neu auf – nach **etwa 2–3 Minuten** ist die Änderung online.
+- Ist die Änderung nach 10 Minuten noch nicht zu sehen, war der neue Inhalt fehlerhaft (die Website bleibt dann unverändert online). Bitte kurz Ihrem Betreuer Bescheid geben.
 
 So prüfen Sie: **https://handychirurg.netlify.app** öffnen, mit **Strg + F5** (Mac: **⌘ + Umschalt + R**) neu laden, die Stelle ansehen, z. B. im **Preisrechner** das Gerät wählen.
 
