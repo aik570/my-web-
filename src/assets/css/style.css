@@ -1145,7 +1145,8 @@ mark.todo { background: #fff1c2; color: #6b4b00; padding: .1rem .35rem; border-r
   .rv__track [aria-hidden="true"] { display: none; }
 }
 .reduced .rv__track { animation: none; }
-.foot > .rv { position: relative; z-index: 1; margin: .25rem 0 0; }
+.foot > .rv { position: relative; z-index: 1; margin: 0 0 calc(-1.5rem - env(safe-area-inset-bottom, 0px)); padding-bottom: env(safe-area-inset-bottom, 0px); }
+body:has(.offer__bar) .foot > .rv { margin-bottom: 0; }
 .foot .rv__link, .foot .rv__link:hover { color: var(--white); padding: 0; }
 .foot .rv__card a { color: inherit; padding: 0; }
 .stars { display: inline-flex; gap: 2px; }

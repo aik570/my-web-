@@ -101,8 +101,8 @@ collections:
             label: Telefon
             widget: object
             fields:
-              - { name: display, label: Anzeige, widget: string, hint: 'So wie es auf der Seite steht, z. B. 0163 228 8224' }
-              - { name: dial, label: Zum Wählen, widget: string, pattern: ['^\+49\d{6,13}$', 'Format +49…, ohne Leerzeichen, z. B. +491632288224'] }
+              - { name: display, label: Anzeige, widget: string, hint: 'So wie es auf der Seite steht, z. B. 0331 29080953' }
+              - { name: dial, label: Zum Wählen, widget: string, pattern: ['^\+49\d{6,13}$', 'Format +49…, ohne Leerzeichen, z. B. +4933129080953'] }
           - { name: whatsapp, label: WhatsApp-Nummer, widget: string, required: false, pattern: ['^(\+\d{8,15})?$', 'Format +49…, ohne Leerzeichen. Leer = kein WhatsApp-Knopf'], hint: 'Leer lassen, solange nicht bestätigt' }
           - { name: email, label: E-Mail, widget: string, pattern: ['^[^@\s]+@[^@\s]+\.[a-z]{2,}$', 'Gültige E-Mail-Adresse'] }
           - { name: mapsUrl, label: Link „Route planen", widget: string, pattern: ['^https://', 'Muss mit https:// beginnen'] }
@@ -250,10 +250,22 @@ collections:
           - { name: source, label: Quelle, widget: hidden }
           - { name: placeId, label: Google Place ID, widget: string, required: false, hint: 'Aus dem Google-Unternehmensprofil. Die Bewertungen selbst werden nur per Skript von Google übernommen (scripts/fetch-reviews.mjs) und hier nicht bearbeitet.' }
           - { name: googleUrl, label: Link zu den Bewertungen auf Google, widget: string, required: false, pattern: ['^(https://.*)?$', 'Muss mit https:// beginnen'] }
-          - { name: rating, label: Durchschnitt, widget: hidden }
-          - { name: count, label: Anzahl, widget: hidden }
+          - { name: rating, label: Durchschnitt (Sterne bei Google), widget: number, value_type: float, min: 1, max: 5, step: 0.1, required: false, hint: 'Genau wie bei Google angezeigt, z. B. 4.9' }
+          - { name: count, label: Anzahl der Bewertungen bei Google, widget: number, value_type: int, min: 0, required: false }
           - { name: fetchedAt, label: Stand, widget: hidden }
-          - { name: items, label: Bewertungen, widget: hidden }
+          - name: items
+            label: Bewertungen (laufen unten auf der Website)
+            label_singular: Bewertung
+            widget: list
+            required: false
+            summary: '{{fields.author}} · {{fields.rating}}★'
+            hint: 'Nur echte Google-Bewertungen, Wort für Wort aus Ihrem Google-Profil kopiert. Nichts erfinden oder ändern.'
+            fields:
+              - { name: author, label: Name (wie bei Google), widget: string }
+              - { name: rating, label: Sterne, widget: number, value_type: int, min: 1, max: 5, default: 5 }
+              - { name: when, label: Datum (wie bei Google, z. B. „vor 2 Wochen"), widget: string, required: false }
+              - { name: text, label: Text (wortgetreu), widget: text }
+              - { name: authorUrl, label: Link zur Bewertung, widget: hidden, required: false }
 
   # ---------------------------------------------------------------- Inhalte
   - name: inhalte

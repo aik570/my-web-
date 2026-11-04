@@ -67,7 +67,7 @@ Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:
 Malake Mansour
 Dortustraße 23
 14467 Potsdam
-Telefon: 0163 228 8224
+Telefon: 0331 29080953
 E-Mail: potsdam@handy-chirurg.de
 
 Verantwortliche Stelle ist die natürliche oder juristische Person, die allein oder gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten (z. B. Namen, E-Mail-Adressen o. Ä.) entscheidet.

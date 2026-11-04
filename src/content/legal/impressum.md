@@ -13,7 +13,7 @@ Malake Mansour
 
 ## Kontakt
 
-Telefon: 0163 228 8224
+Telefon: 0331 29080953
 E-Mail: potsdam@handy-chirurg.de
 
 ## Umsatzsteuer-ID

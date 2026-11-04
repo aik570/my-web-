@@ -46,11 +46,11 @@
     <p class="foot__legal"><a href="/impressum/">Impressum</a><a href="/datenschutz/">Datenschutz</a><a href="#main" class="foot__up">Nach oben <span aria-hidden="true">↑</span></a></p>
   </div>
 
-  {#- Google reviews: thin strip directly under © / Impressum / Datenschutz, above the logo -#}
-  {% include "partials/reviews.njk" %}
-
   {#- the logo, large and quiet, closes the page -#}
   <div class="foot__mark" aria-hidden="true">
     <img src="/assets/img/logo.svg" alt="" width="756" height="366" loading="lazy">
   </div>
+
+  {#- Google reviews: moving strip along the very bottom, under the logo -#}
+  {% include "partials/reviews.njk" %}
 </footer>
