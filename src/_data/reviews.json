@@ -1,10 +1,77 @@
 {
-  "note": "Google reviews for the review strip on the home page. Only filled by scripts/fetch-reviews.mjs from the Google Places API (or by hand from the Google Business Profile, copied word for word). Never invent or edit reviews, names or ratings. While items is empty, the site only links to the reviews on Google.",
+  "note": "Google reviews for the review strip on the home page. Only filled by scripts/fetch-reviews.mjs from the Google Places API (or by hand from the Google Business Profile, copied word for word). Never invent or edit reviews, names or ratings. While items is empty, the site only links to the reviews on Google. 04.11.2026: 11 Bewertungen von Hand aus dem Google-Profil übernommen (Wortlaut unverändert, Originalsprache).",
   "source": "Google",
   "placeId": "",
   "googleUrl": "",
   "rating": null,
   "count": null,
-  "fetchedAt": null,
-  "items": []
+  "fetchedAt": "2026-11-04",
+  "items": [
+    {
+      "author": "Milena Krupa",
+      "rating": 5,
+      "when": "vor 3 Wochen",
+      "text": "Super miejsce. Pan który tam pracuje jest bardzo profesjonalny. Polecam, polecam."
+    },
+    {
+      "author": "Theo Weng",
+      "rating": 5,
+      "when": "vor einem Monat",
+      "text": "Sehr schön und freundlicher Service und sehr gemütliche Sitze"
+    },
+    {
+      "author": "Andreas",
+      "rating": 5,
+      "when": "vor einem Monat",
+      "text": "Ich habe ein neues Display-Schutzglas für mein iPhone benötigt. Wählen konnte ich zwischen glänzend, matt und privatsphäre. Der Austausch war im Preis inklusive. Toller Service mit Produktauswahl zum Preis von 20 EUR."
+    },
+    {
+      "author": "Harald Wäger",
+      "rating": 5,
+      "when": "vor 2 Monaten",
+      "text": "Super nett und kompetent. Meine Handy Ladebuchse funktioniert wieder einwandfrei und das ganze kostenlos. Respekt!"
+    },
+    {
+      "author": "Anna-Lena R.",
+      "rating": 5,
+      "when": "vor 4 Monaten",
+      "text": "Mein Panzerglas war extrem fest auf meinem Display und ich brauchte Hilfe bei der Entfernung.\nDie nette Dame hat mein Handy direkt angenommen und ich konnte es ein paar Stunden später wieder abholen. Toller Service, vielen Dank!!!"
+    },
+    {
+      "author": "Leon Krause",
+      "rating": 5,
+      "when": "vor 4 Monaten",
+      "text": "Schnelle Kontaktaufnahme\nTelefonisch besprochen was gemacht werden muss\nPreis nach kurzer Absprache auch erhalten …"
+    },
+    {
+      "author": "Axel Balduin-Müller",
+      "rating": 5,
+      "when": "vor 5 Monaten",
+      "text": "Ich hatte probleme beim laden meines Handys. Mein problem wurde in 2 minuten gelößt. Sehr kompente arbeit und super nettes Personal. Danke ."
+    },
+    {
+      "author": "Maia C.",
+      "rating": 5,
+      "when": "vor 5 Monaten",
+      "text": "Durchweg freundlich und hilfsbereit! Sehr zu empfehlen - ob Handyreparatur oder Paketannahme. Macht weiter so! Vielen Dank!"
+    },
+    {
+      "author": "Milan Holinski",
+      "rating": 5,
+      "when": "vor 5 Monaten",
+      "text": "Ich habe hier nur gute Erfahrungen gemacht der Service ist super man wird gut Beraten und bei Problemen mit Handy oder Laptop kümmern sie sich schnell darum. Sie Atmosphäre ist ruhig und angenehm, das Personal sehr kompetent und freundlich."
+    },
+    {
+      "author": "Dr. Zsuzsa Dudás",
+      "rating": 5,
+      "when": "vor 6 Monaten",
+      "text": "Wir haben mit dem Handychirurg Potsdam durchweg sehr gute Erfahrungen gemacht. Die Potsdam Oralchirurgie hat den Service in Anspruch genommen und war rundum zufrieden.\n\nEs wurde ein sehr hochwertiges Display verbaut und zusätzlich gab es kostenfrei eine Schutzfolie (Panzerglas) dazu – ein wirklich toller Service. Besonders positiv hervorzuheben ist die Kommunikation: Wir haben zeitnah einen Rückruf erhalten und wurden sowohl vor Ort als auch durch den Techniker sehr freundlich und kompetent beraten.\n\nNach der Erstellung eines transparenten Angebots und einer kleinen Anzahlung wurde das benötigte Teil bestellt. Bereits am nächsten Tag erfolgte der Einbau – und das innerhalb von nur einer Stunde.\n\nSchnell, professionell und kundenorientiert – wir sind sehr dankbar für die hervorragende Arbeit und können den Service absolut weiterempfehlen!"
+    },
+    {
+      "author": "Tvorog LV",
+      "rating": 5,
+      "when": "vor 2 Jahren",
+      "text": "Спасибо за отличный и быстрый сервис! Батарею на моем айфоне 11 поменяли меньше чем за час и даже почистили входы и динамики. Цены приятно удивили. Приятная атмосфера внутри. Рекомендую"
+    }
+  ]
 }
