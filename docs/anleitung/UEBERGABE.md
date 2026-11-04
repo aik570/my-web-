@@ -12,7 +12,7 @@ Stand: 04.11.2026
 | **Passwort** | erhalten Sie separat – bitte niemandem weitergeben |
 | **Anleitung** | „Website selbst bearbeiten" (PDF, mit Bildern) |
 
-Die Abnahme-Version trägt oben den Hinweis „Vorschau" und ist für Google gesperrt. Nach Ihrer Freigabe wird sie unter Ihrer Domain veröffentlicht (Punkt 4).
+Die Abnahme-Version trägt oben den Hinweis „Vorschau" und ist für Google gesperrt. Nach Ihrer Freigabe wird sie unter Ihrer Domain veröffentlicht (Punkt 5).
 
 ## 2. Was die Website enthält
 
