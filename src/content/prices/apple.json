@@ -3,6 +3,19 @@
   "order": 1,
   "models": [
     {
+      "category": "Smartphone",
+      "name": "iPhone 18 Pro Max",
+      "repairs": [
+        {
+          "from": false,
+          "onRequest": false,
+          "service": "display",
+          "label": "Standardqualität",
+          "price": 379
+        }
+      ]
+    },
+    {
       "name": "iPhone 17 Pro Max",
       "category": "Smartphone",
       "repairs": [
@@ -13581,19 +13594,6 @@
           "from": false,
           "onRequest": true,
           "note": ""
-        }
-      ]
-    },
-    {
-      "category": "Smartphone",
-      "name": "iPhone 18 Pro Max",
-      "repairs": [
-        {
-          "from": false,
-          "onRequest": false,
-          "service": "display",
-          "label": "Standardqualität",
-          "price": 379
         }
       ]
     }
