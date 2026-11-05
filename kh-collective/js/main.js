@@ -6,6 +6,20 @@
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const hasGsap = typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined';
 
+  /* ── Photo slots: build the placeholder furniture from data-* ── */
+  $$('.slot').forEach(el => {
+    el.insertAdjacentHTML('afterbegin',
+      '<div class="slot__fx" aria-hidden="true"></div>' +
+      '<span class="slot__mark" aria-hidden="true"><svg viewBox="0 0 120 120"><use href="#kh"/></svg></span>' +
+      '<i class="slot__c slot__c--tl"></i><i class="slot__c slot__c--tr"></i><i class="slot__c slot__c--bl"></i><i class="slot__c slot__c--br"></i>');
+    el.insertAdjacentHTML('beforeend',
+      `<figcaption class="slot__cap"><span>${el.dataset.n}</span><span>${el.dataset.label}</span><span>${el.dataset.ratio}</span></figcaption>`);
+    el.setAttribute('role', 'img');
+    el.setAttribute('aria-label', 'Platzhalter: ' + el.dataset.label);
+  });
+  const sizeSlots = () => $$('.slot').forEach(el => el.style.setProperty('--h', el.offsetHeight + 'px'));
+  sizeSlots(); addEventListener('resize', sizeSlots);
+
   /* ── Mobile menu ── */
   const burger = $('.nav__burger'), menu = $('.menu');
   const setMenu = open => {
@@ -34,7 +48,7 @@
   $('.film__frame').addEventListener('click', () => {
     if (video.paused) {
       video.play().then(() => film.classList.add('is-playing')).catch(() => {
-        $('.film__cap').textContent = 'Film folgt — Datei video/kh-collective.mp4 einsetzen';
+        const cap = $('.film__cap'); cap.hidden = false; cap.textContent = 'Film folgt';
       });
     } else { video.pause(); film.classList.remove('is-playing'); }
   });
@@ -144,9 +158,14 @@
   });
 
   /* Team portraits: reveal + slow parallax */
-  $$('.person__img').forEach(fig => {
-    gsap.fromTo(fig, { clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0% 0)', duration: 1.5, ease: 'expo.inOut', scrollTrigger: { trigger: fig, start: 'top 85%' } });
-    gsap.fromTo($('img', fig), { yPercent: -6 }, { yPercent: 6, ease: 'none', scrollTrigger: { trigger: fig, start: 'top bottom', end: 'bottom top', scrub: true } });
+  $$('.person__img, .rooms .slot').forEach(fig => {
+    gsap.fromTo(fig, { clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0% 0)', duration: 1.5, ease: 'expo.inOut', scrollTrigger: { trigger: fig, start: 'top 88%' } });
+    const fx = $('.slot__fx', fig);
+    if (fx) gsap.fromTo(fx, { yPercent: -8 }, { yPercent: 8, ease: 'none', scrollTrigger: { trigger: fig, start: 'top bottom', end: 'bottom top', scrub: true } });
+  });
+  /* Rooms grid: columns drift at different speeds */
+  $$('.rooms__grid .slot').forEach((el, i) => {
+    gsap.to(el, { yPercent: [-4, 6, -5, 3, -6][i] || 0, ease: 'none', scrollTrigger: { trigger: '.rooms__grid', start: 'top bottom', end: 'bottom top', scrub: true } });
   });
 
   /* Contact headline */

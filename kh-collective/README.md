@@ -1,4 +1,4 @@
-# Konzept Haus Collective — redesign v2 "The Voice of Space"
+# Konzept Haus Collective — redesign concept "The Voice of Space"
 
 A demo redesign of kh-collective.com for a first meeting with the studio. It is built
 on the studio's own identity, copy and photos. Open `index.html` in a browser. There is
@@ -38,10 +38,30 @@ else is invented, except what is listed under "Gaps".
 8. Team: large duotone portraits that turn to full colour on hover
 9. Contact: WhatsApp, Email and Old School Telefon as three large rows
 
+## Photo slots
+
+There are no photos yet. Every image place is an animated slot in the brand colours: a drifting
+colour field, a 6×6 grid, a scan line, crop marks and the KH mark. Each slot already has its final
+crop and is labelled with an ID, a subject and an aspect ratio.
+
+| ID | Subject | Ratio |
+|---|---|---|
+| R1 | Raum — Hotel / Lobby | 4:5 |
+| R2 | Raum — Headquarter | 16:10 |
+| R3 | Detail — Material | 1:1 |
+| R4 | Raum — Apartment | 3:4 |
+| R5 | Detail — Möbel | 4:3 |
+| F1 | Imagefilm | 16:9 |
+| T1 | Portrait — Christian Hiller | 3:2 |
+| T2 | Portrait — Milica Mésterovic | 2:3 |
+| T3 | Portrait — David Salcin | 2:3 |
+
+To add a photo, put an `<img src="img/…" alt="…">` inside the figure with `object-fit: cover`.
+
 ## Gaps to fill before the meeting
 
-- **Video:** their site has a film, but there is no file yet. Save it as `video/kh-collective.mp4`. Until then the frame shows Milica's photo as the poster.
-- **Photos:** the portraits are cropped from phone screenshots (about 670 px wide). Ask the studio for the originals.
+- **Video:** their site has a film, but there is no file yet. Save it as `video/kh-collective.mp4` and slot F1 plays it.
+- **Photos:** to be shot. See the slot list above.
 - **Contact links:** the WhatsApp, Email and phone links are `#`, because the screenshots don't show the numbers.
 - **Partial bios:** the screenshots cut the bios off.
   - Milica's bio is joined from two fragments.

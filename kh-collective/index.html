@@ -51,6 +51,7 @@
   <a href="#top" class="nav__word">Konzept Haus Collective</a>
   <nav class="nav__links" aria-label="Hauptnavigation">
     <a href="#studio">Studio</a>
+    <a href="#raeume">Räume</a>
     <a href="#modell">Modell</a>
     <a href="#film">Film</a>
     <a href="#team">Team</a>
@@ -61,6 +62,7 @@
 
 <div class="menu" aria-hidden="true">
   <a href="#studio">Studio</a>
+  <a href="#raeume">Räume</a>
   <a href="#modell">Modell</a>
   <a href="#film">Film</a>
   <a href="#team">Team</a>
@@ -116,6 +118,21 @@
   </ul>
 </section>
 
+<!-- ───────── Räume (photo slots) ───────── -->
+<section class="rooms" id="raeume" data-ink="#7A2FE6">
+  <div class="rooms__head">
+    <span class="tag">Räume</span>
+    <p class="rooms__intro">Ein bereits bestehendes Konzept in einen innovativen Kontext gestellt.</p>
+  </div>
+  <div class="rooms__grid">
+    <figure class="slot rooms__a" data-cursor="Foto" data-n="R1" data-label="Raum — Hotel / Lobby" data-ratio="4:5"></figure>
+    <figure class="slot rooms__b" data-cursor="Foto" data-n="R2" data-label="Raum — Headquarter" data-ratio="16:10"></figure>
+    <figure class="slot rooms__c" data-cursor="Foto" data-n="R3" data-label="Detail — Material" data-ratio="1:1"></figure>
+    <figure class="slot rooms__d" data-cursor="Foto" data-n="R4" data-label="Raum — Apartment" data-ratio="3:4"></figure>
+    <figure class="slot rooms__e" data-cursor="Foto" data-n="R5" data-label="Detail — Möbel" data-ratio="4:3"></figure>
+  </div>
+</section>
+
 <!-- ───────── Modell (interactive) ───────── -->
 <section class="model" id="modell" data-ink="#CC4F78">
   <span class="tag">02 — Unser Modell</span>
@@ -155,16 +172,16 @@
 
 <!-- ───────── Film ───────── -->
 <section class="film" id="film" data-ink="#1C20FF">
-  <div class="film__frame" data-cursor="Play">
+  <div class="film__frame slot" data-cursor="Play" data-n="F1" data-label="Imagefilm — The Voice of Space" data-ratio="16:9">
     <!-- Put the studio's own film at video/kh-collective.mp4 -->
-    <video class="film__video" playsinline preload="none" poster="img/milica-mesterovic.jpg">
+    <video class="film__video" playsinline preload="none">
       <source src="video/kh-collective.mp4" type="video/mp4">
     </video>
     <button class="film__play" aria-label="Film abspielen">
       <svg viewBox="0 0 120 120"><use href="#kh"/></svg>
       <span>Play</span>
     </button>
-    <span class="film__cap">The Voice of Space — Film</span>
+    <span class="film__cap" hidden></span>
   </div>
 </section>
 
@@ -174,7 +191,7 @@
   <h2 class="team__title">Unser Team hätte nicht besser gecastet werden können.</h2>
 
   <article class="person person--wide">
-    <figure class="person__img" data-cursor="Hallo"><img src="img/christian-hiller.jpg" alt="Christian Hiller sitzt auf einer Holzbank vor einer Betonwand" loading="lazy"></figure>
+    <figure class="person__img slot" data-cursor="Foto" data-n="T1" data-label="Portrait — Christian Hiller" data-ratio="3:2"></figure>
     <div class="person__body">
       <h3>Christian Hiller</h3>
       <p class="person__role">CEO &amp; Founder</p>
@@ -186,7 +203,7 @@
 
   <div class="team__pair">
     <article class="person">
-      <figure class="person__img" data-cursor="Hallo"><img src="img/milica-mesterovic.jpg" alt="Milica Mésterovic sitzt auf einem Stuhl vor einem Lkw mit roter Beschriftung" loading="lazy"></figure>
+      <figure class="person__img slot" data-cursor="Foto" data-n="T2" data-label="Portrait — Milica Mésterovic" data-ratio="2:3"></figure>
       <div class="person__body">
         <h3>Milica Mésterovic</h3>
         <p class="person__role">Creative Direction &amp; Concepts</p>
@@ -194,7 +211,7 @@
       </div>
     </article>
     <article class="person person--offset">
-      <figure class="person__img" data-cursor="Hallo"><img src="img/david-salcin.jpg" alt="David Salcin steht lachend vor einer Betonwand neben einem Holzstuhl" loading="lazy"></figure>
+      <figure class="person__img slot" data-cursor="Foto" data-n="T3" data-label="Portrait — David Salcin" data-ratio="2:3"></figure>
       <div class="person__body">
         <h3>David Salcin</h3>
         <p class="person__role">Sales &amp; Customer Experience</p>
