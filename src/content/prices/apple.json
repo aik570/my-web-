@@ -711,7 +711,7 @@
         {
           "service": "wasserschaden",
           "label": "",
-          "price": 35,
+          "price": 60,
           "from": false,
           "onRequest": false,
           "note": ""
