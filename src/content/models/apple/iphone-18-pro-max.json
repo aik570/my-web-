@@ -1,0 +1,14 @@
+{
+  "seq": 130,
+  "category": "Smartphone",
+  "name": "iPhone 18 Pro Max",
+  "repairs": [
+    {
+      "from": false,
+      "onRequest": false,
+      "service": "display",
+      "label": "Standardqualität",
+      "price": 379
+    }
+  ]
+}
