@@ -4,9 +4,11 @@
 import fs from 'node:fs';
 import prices from './prices.js';
 import env from './env.js';
+import { modelFilePhotos } from '../../scripts/lib/prices.mjs';
 
 export default function () {
-  const list = JSON.parse(fs.readFileSync(new URL('./modelImages.json', import.meta.url))).photos || [];
+  // photos in the model files (CMS) come last and win over older entries in modelImages.json (scripts)
+  const list = [...(JSON.parse(fs.readFileSync(new URL('./modelImages.json', import.meta.url))).photos || []), ...modelFilePhotos()];
   const models = prices().models;
   const known = new Set(models.map((m) => `${m.brandSlug}/${m.slug}`));
   // the CMS stores the model name (chosen from the catalogue); scripts may store brand/catalogue-id

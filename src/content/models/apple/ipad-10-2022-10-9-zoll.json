@@ -91,5 +91,14 @@
       "onRequest": false,
       "note": ""
     }
-  ]
+  ],
+  "photo": {
+    "image": "/assets/img/produkte/apple-ipad-10-2022-10-9-zoll.webp",
+    "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+    "rightsConfirmed": false,
+    "proof": "https://support.apple.com/en-us/108043 (iPad (10th generation)), geladen 03.11.2026",
+    "credit": "",
+    "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+    "source": "https://support.apple.com/en-us/108043"
+  }
 }

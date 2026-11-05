@@ -19,7 +19,7 @@
 | Раздел | Что там менять |
 |---|---|
 | **Preise · Apple**, **Preise · Samsung**, … | Список моделей бренда → модель → ремонт → цена. Новое устройство |
-| **Laden & Kontakt** | Телефон, e-mail, адрес, часы работы, выходные, **Befund** (цена диагностики), гарантия, **фото телефонов** |
+| **Laden & Kontakt** | Телефон, e-mail, адрес, часы работы, выходные, **Befund** (цена диагностики), гарантия |
 | **Inhalte** | Все тексты сайта: главная, услуги, вопросы (FAQ), Franchise |
 | **Rechtliches** | Impressum и Datenschutz (только по согласованию с юристом) |
 
@@ -49,15 +49,12 @@
 
 ![Фото](bilder/07a-foto-hinzufuegen.png)
 
-1. **Laden & Kontakt** → **Produktfotos im Preisrechner** → **«Foto hinzufügen»**.
-2. **Modell:** вписать название **точно как** в «Preise · …» (например «iPhone 15 Pro»).
-3. **Foto:** «Wähle ein Bild» → **«Hochladen»** → файл с компьютера → «Ausgewähltes Element verwenden».
-4. **Lizenz:** откуда фото (например «eigenes Foto»).
-5. **Veröffentlichen.**
+Фото хранится в самой модели: **Preise · бренд** → модель → раскрыть поле **«Produktfoto»**.
+1. **Foto:** «Wähle ein Bild» → **«Hochladen»** → файл с компьютера → «Ausgewähltes Element verwenden».
+2. **Lizenz:** откуда фото (например «eigenes Foto»). Без этого фото не покажется.
+3. **Veröffentlichen.**
 
-**Заменить фото:** открыть запись модели → «Wähle ein anderes Bild».
-
-![Заменить](bilder/07b-foto-ersetzen.png)
+**Заменить фото:** в поле «Produktfoto» → «Wähle ein anderes Bild».
 
 **Вкладка «Medien»** (вверху): все загруженные картинки, там же можно удалить лишние.
 

@@ -53,6 +53,20 @@ collections:
       - { name: category, label: Gerätetyp, widget: select, options: [Smartphone, Tablet, Laptop, Smartwatch, PC, Sonstiges], default: Smartphone, required: false }
       - { name: group, label: Gruppe im Preisrechner, widget: string, required: false, hint: 'Leer = automatisch (z. B. „iPhone", „iPhone SE", „Galaxy S"). Nur eintragen, um die Überschrift zu ändern.' }
       - { name: position, label: Position, widget: number, value_type: int, min: 1, required: false, hint: 'Leer = automatisch, neueste zuerst. Eine Zahl setzt das Modell an diese Stelle der Liste (1 = ganz oben).' }
+      - name: photo
+        label: Produktfoto
+        widget: object
+        collapsed: true
+        required: false
+        hint: 'Foto dieses Modells im Preisrechner. Nur saubere Produktfotos (Gerät freigestellt auf Weiß, ganz sichtbar, keine Hände) mit Lizenz für die gewerbliche Nutzung.'
+        fields:
+          - { name: image, label: Foto, widget: image, required: false, media_folder: /src/assets/img/produkte, public_folder: /assets/img/produkte, hint: 'Hochladen oder ersetzen. Hochformat (z. B. 600 × 800), Gerät auf Weiß.' }
+          - { name: license, label: Lizenz, widget: string, required: false, hint: 'Pflicht, sonst wird das Foto nicht gezeigt. z. B. „eigenes Foto", „iStock Standard (nicht redaktionell)", „CC BY-SA 4.0"' }
+          - { name: rightsConfirmed, label: Nutzungsrecht bestätigt, widget: boolean, default: true, required: false, hint: 'Aus = Foto nur in der Vorschau, nicht auf der echten Website (z. B. Herstellerbild, Genehmigung fehlt noch)' }
+          - { name: proof, label: Nachweis, widget: string, required: false, hint: 'Rechnungs- oder Genehmigungsnummer (wird nicht angezeigt)' }
+          - { name: credit, label: Bildnachweis (angezeigt), widget: string, required: false, hint: 'Nur wenn die Lizenz eine Namensnennung verlangt' }
+          - { name: licenseUrl, label: Link zur Lizenz, widget: string, required: false }
+          - { name: source, label: Link zur Quelle, widget: string, required: false }
       - name: repairs
         label: Reparaturen
         label_singular: Reparatur
@@ -107,6 +121,20 @@ collections:
       - { name: category, label: Gerätetyp, widget: select, options: [Smartphone, Tablet, Laptop, Smartwatch, PC, Sonstiges], default: Smartphone, required: false }
       - { name: group, label: Gruppe im Preisrechner, widget: string, required: false, hint: 'Leer = automatisch (z. B. „iPhone", „iPhone SE", „Galaxy S"). Nur eintragen, um die Überschrift zu ändern.' }
       - { name: position, label: Position, widget: number, value_type: int, min: 1, required: false, hint: 'Leer = automatisch, neueste zuerst. Eine Zahl setzt das Modell an diese Stelle der Liste (1 = ganz oben).' }
+      - name: photo
+        label: Produktfoto
+        widget: object
+        collapsed: true
+        required: false
+        hint: 'Foto dieses Modells im Preisrechner. Nur saubere Produktfotos (Gerät freigestellt auf Weiß, ganz sichtbar, keine Hände) mit Lizenz für die gewerbliche Nutzung.'
+        fields:
+          - { name: image, label: Foto, widget: image, required: false, media_folder: /src/assets/img/produkte, public_folder: /assets/img/produkte, hint: 'Hochladen oder ersetzen. Hochformat (z. B. 600 × 800), Gerät auf Weiß.' }
+          - { name: license, label: Lizenz, widget: string, required: false, hint: 'Pflicht, sonst wird das Foto nicht gezeigt. z. B. „eigenes Foto", „iStock Standard (nicht redaktionell)", „CC BY-SA 4.0"' }
+          - { name: rightsConfirmed, label: Nutzungsrecht bestätigt, widget: boolean, default: true, required: false, hint: 'Aus = Foto nur in der Vorschau, nicht auf der echten Website (z. B. Herstellerbild, Genehmigung fehlt noch)' }
+          - { name: proof, label: Nachweis, widget: string, required: false, hint: 'Rechnungs- oder Genehmigungsnummer (wird nicht angezeigt)' }
+          - { name: credit, label: Bildnachweis (angezeigt), widget: string, required: false, hint: 'Nur wenn die Lizenz eine Namensnennung verlangt' }
+          - { name: licenseUrl, label: Link zur Lizenz, widget: string, required: false }
+          - { name: source, label: Link zur Quelle, widget: string, required: false }
       - name: repairs
         label: Reparaturen
         label_singular: Reparatur
@@ -161,6 +189,20 @@ collections:
       - { name: category, label: Gerätetyp, widget: select, options: [Smartphone, Tablet, Laptop, Smartwatch, PC, Sonstiges], default: Smartphone, required: false }
       - { name: group, label: Gruppe im Preisrechner, widget: string, required: false, hint: 'Leer = automatisch (z. B. „iPhone", „iPhone SE", „Galaxy S"). Nur eintragen, um die Überschrift zu ändern.' }
       - { name: position, label: Position, widget: number, value_type: int, min: 1, required: false, hint: 'Leer = automatisch, neueste zuerst. Eine Zahl setzt das Modell an diese Stelle der Liste (1 = ganz oben).' }
+      - name: photo
+        label: Produktfoto
+        widget: object
+        collapsed: true
+        required: false
+        hint: 'Foto dieses Modells im Preisrechner. Nur saubere Produktfotos (Gerät freigestellt auf Weiß, ganz sichtbar, keine Hände) mit Lizenz für die gewerbliche Nutzung.'
+        fields:
+          - { name: image, label: Foto, widget: image, required: false, media_folder: /src/assets/img/produkte, public_folder: /assets/img/produkte, hint: 'Hochladen oder ersetzen. Hochformat (z. B. 600 × 800), Gerät auf Weiß.' }
+          - { name: license, label: Lizenz, widget: string, required: false, hint: 'Pflicht, sonst wird das Foto nicht gezeigt. z. B. „eigenes Foto", „iStock Standard (nicht redaktionell)", „CC BY-SA 4.0"' }
+          - { name: rightsConfirmed, label: Nutzungsrecht bestätigt, widget: boolean, default: true, required: false, hint: 'Aus = Foto nur in der Vorschau, nicht auf der echten Website (z. B. Herstellerbild, Genehmigung fehlt noch)' }
+          - { name: proof, label: Nachweis, widget: string, required: false, hint: 'Rechnungs- oder Genehmigungsnummer (wird nicht angezeigt)' }
+          - { name: credit, label: Bildnachweis (angezeigt), widget: string, required: false, hint: 'Nur wenn die Lizenz eine Namensnennung verlangt' }
+          - { name: licenseUrl, label: Link zur Lizenz, widget: string, required: false }
+          - { name: source, label: Link zur Quelle, widget: string, required: false }
       - name: repairs
         label: Reparaturen
         label_singular: Reparatur
@@ -215,6 +257,20 @@ collections:
       - { name: category, label: Gerätetyp, widget: select, options: [Smartphone, Tablet, Laptop, Smartwatch, PC, Sonstiges], default: Smartphone, required: false }
       - { name: group, label: Gruppe im Preisrechner, widget: string, required: false, hint: 'Leer = automatisch (z. B. „iPhone", „iPhone SE", „Galaxy S"). Nur eintragen, um die Überschrift zu ändern.' }
       - { name: position, label: Position, widget: number, value_type: int, min: 1, required: false, hint: 'Leer = automatisch, neueste zuerst. Eine Zahl setzt das Modell an diese Stelle der Liste (1 = ganz oben).' }
+      - name: photo
+        label: Produktfoto
+        widget: object
+        collapsed: true
+        required: false
+        hint: 'Foto dieses Modells im Preisrechner. Nur saubere Produktfotos (Gerät freigestellt auf Weiß, ganz sichtbar, keine Hände) mit Lizenz für die gewerbliche Nutzung.'
+        fields:
+          - { name: image, label: Foto, widget: image, required: false, media_folder: /src/assets/img/produkte, public_folder: /assets/img/produkte, hint: 'Hochladen oder ersetzen. Hochformat (z. B. 600 × 800), Gerät auf Weiß.' }
+          - { name: license, label: Lizenz, widget: string, required: false, hint: 'Pflicht, sonst wird das Foto nicht gezeigt. z. B. „eigenes Foto", „iStock Standard (nicht redaktionell)", „CC BY-SA 4.0"' }
+          - { name: rightsConfirmed, label: Nutzungsrecht bestätigt, widget: boolean, default: true, required: false, hint: 'Aus = Foto nur in der Vorschau, nicht auf der echten Website (z. B. Herstellerbild, Genehmigung fehlt noch)' }
+          - { name: proof, label: Nachweis, widget: string, required: false, hint: 'Rechnungs- oder Genehmigungsnummer (wird nicht angezeigt)' }
+          - { name: credit, label: Bildnachweis (angezeigt), widget: string, required: false, hint: 'Nur wenn die Lizenz eine Namensnennung verlangt' }
+          - { name: licenseUrl, label: Link zur Lizenz, widget: string, required: false }
+          - { name: source, label: Link zur Quelle, widget: string, required: false }
       - name: repairs
         label: Reparaturen
         label_singular: Reparatur
@@ -269,6 +325,20 @@ collections:
       - { name: category, label: Gerätetyp, widget: select, options: [Smartphone, Tablet, Laptop, Smartwatch, PC, Sonstiges], default: Smartphone, required: false }
       - { name: group, label: Gruppe im Preisrechner, widget: string, required: false, hint: 'Leer = automatisch (z. B. „iPhone", „iPhone SE", „Galaxy S"). Nur eintragen, um die Überschrift zu ändern.' }
       - { name: position, label: Position, widget: number, value_type: int, min: 1, required: false, hint: 'Leer = automatisch, neueste zuerst. Eine Zahl setzt das Modell an diese Stelle der Liste (1 = ganz oben).' }
+      - name: photo
+        label: Produktfoto
+        widget: object
+        collapsed: true
+        required: false
+        hint: 'Foto dieses Modells im Preisrechner. Nur saubere Produktfotos (Gerät freigestellt auf Weiß, ganz sichtbar, keine Hände) mit Lizenz für die gewerbliche Nutzung.'
+        fields:
+          - { name: image, label: Foto, widget: image, required: false, media_folder: /src/assets/img/produkte, public_folder: /assets/img/produkte, hint: 'Hochladen oder ersetzen. Hochformat (z. B. 600 × 800), Gerät auf Weiß.' }
+          - { name: license, label: Lizenz, widget: string, required: false, hint: 'Pflicht, sonst wird das Foto nicht gezeigt. z. B. „eigenes Foto", „iStock Standard (nicht redaktionell)", „CC BY-SA 4.0"' }
+          - { name: rightsConfirmed, label: Nutzungsrecht bestätigt, widget: boolean, default: true, required: false, hint: 'Aus = Foto nur in der Vorschau, nicht auf der echten Website (z. B. Herstellerbild, Genehmigung fehlt noch)' }
+          - { name: proof, label: Nachweis, widget: string, required: false, hint: 'Rechnungs- oder Genehmigungsnummer (wird nicht angezeigt)' }
+          - { name: credit, label: Bildnachweis (angezeigt), widget: string, required: false, hint: 'Nur wenn die Lizenz eine Namensnennung verlangt' }
+          - { name: licenseUrl, label: Link zur Lizenz, widget: string, required: false }
+          - { name: source, label: Link zur Quelle, widget: string, required: false }
       - name: repairs
         label: Reparaturen
         label_singular: Reparatur
@@ -323,6 +393,20 @@ collections:
       - { name: category, label: Gerätetyp, widget: select, options: [Smartphone, Tablet, Laptop, Smartwatch, PC, Sonstiges], default: Smartphone, required: false }
       - { name: group, label: Gruppe im Preisrechner, widget: string, required: false, hint: 'Leer = automatisch (z. B. „iPhone", „iPhone SE", „Galaxy S"). Nur eintragen, um die Überschrift zu ändern.' }
       - { name: position, label: Position, widget: number, value_type: int, min: 1, required: false, hint: 'Leer = automatisch, neueste zuerst. Eine Zahl setzt das Modell an diese Stelle der Liste (1 = ganz oben).' }
+      - name: photo
+        label: Produktfoto
+        widget: object
+        collapsed: true
+        required: false
+        hint: 'Foto dieses Modells im Preisrechner. Nur saubere Produktfotos (Gerät freigestellt auf Weiß, ganz sichtbar, keine Hände) mit Lizenz für die gewerbliche Nutzung.'
+        fields:
+          - { name: image, label: Foto, widget: image, required: false, media_folder: /src/assets/img/produkte, public_folder: /assets/img/produkte, hint: 'Hochladen oder ersetzen. Hochformat (z. B. 600 × 800), Gerät auf Weiß.' }
+          - { name: license, label: Lizenz, widget: string, required: false, hint: 'Pflicht, sonst wird das Foto nicht gezeigt. z. B. „eigenes Foto", „iStock Standard (nicht redaktionell)", „CC BY-SA 4.0"' }
+          - { name: rightsConfirmed, label: Nutzungsrecht bestätigt, widget: boolean, default: true, required: false, hint: 'Aus = Foto nur in der Vorschau, nicht auf der echten Website (z. B. Herstellerbild, Genehmigung fehlt noch)' }
+          - { name: proof, label: Nachweis, widget: string, required: false, hint: 'Rechnungs- oder Genehmigungsnummer (wird nicht angezeigt)' }
+          - { name: credit, label: Bildnachweis (angezeigt), widget: string, required: false, hint: 'Nur wenn die Lizenz eine Namensnennung verlangt' }
+          - { name: licenseUrl, label: Link zur Lizenz, widget: string, required: false }
+          - { name: source, label: Link zur Quelle, widget: string, required: false }
       - name: repairs
         label: Reparaturen
         label_singular: Reparatur
@@ -377,6 +461,20 @@ collections:
       - { name: category, label: Gerätetyp, widget: select, options: [Smartphone, Tablet, Laptop, Smartwatch, PC, Sonstiges], default: Smartphone, required: false }
       - { name: group, label: Gruppe im Preisrechner, widget: string, required: false, hint: 'Leer = automatisch (z. B. „iPhone", „iPhone SE", „Galaxy S"). Nur eintragen, um die Überschrift zu ändern.' }
       - { name: position, label: Position, widget: number, value_type: int, min: 1, required: false, hint: 'Leer = automatisch, neueste zuerst. Eine Zahl setzt das Modell an diese Stelle der Liste (1 = ganz oben).' }
+      - name: photo
+        label: Produktfoto
+        widget: object
+        collapsed: true
+        required: false
+        hint: 'Foto dieses Modells im Preisrechner. Nur saubere Produktfotos (Gerät freigestellt auf Weiß, ganz sichtbar, keine Hände) mit Lizenz für die gewerbliche Nutzung.'
+        fields:
+          - { name: image, label: Foto, widget: image, required: false, media_folder: /src/assets/img/produkte, public_folder: /assets/img/produkte, hint: 'Hochladen oder ersetzen. Hochformat (z. B. 600 × 800), Gerät auf Weiß.' }
+          - { name: license, label: Lizenz, widget: string, required: false, hint: 'Pflicht, sonst wird das Foto nicht gezeigt. z. B. „eigenes Foto", „iStock Standard (nicht redaktionell)", „CC BY-SA 4.0"' }
+          - { name: rightsConfirmed, label: Nutzungsrecht bestätigt, widget: boolean, default: true, required: false, hint: 'Aus = Foto nur in der Vorschau, nicht auf der echten Website (z. B. Herstellerbild, Genehmigung fehlt noch)' }
+          - { name: proof, label: Nachweis, widget: string, required: false, hint: 'Rechnungs- oder Genehmigungsnummer (wird nicht angezeigt)' }
+          - { name: credit, label: Bildnachweis (angezeigt), widget: string, required: false, hint: 'Nur wenn die Lizenz eine Namensnennung verlangt' }
+          - { name: licenseUrl, label: Link zur Lizenz, widget: string, required: false }
+          - { name: source, label: Link zur Quelle, widget: string, required: false }
       - name: repairs
         label: Reparaturen
         label_singular: Reparatur
@@ -559,28 +657,6 @@ collections:
           - { name: updated, label: Stand, widget: datetime, format: YYYY-MM-DD, date_format: DD.MM.YYYY, time_format: false, required: false }
           - { name: vatNote, label: Hinweis zur Umsatzsteuer, widget: string, required: false, hint: 'z. B. „Alle Preise inkl. MwSt." – nur wenn bestätigt' }
           - { name: footnote, label: Fußnote, widget: string, required: false }
-
-      - name: produktfotos
-        label: Produktfotos im Preisrechner
-        file: src/_data/modelImages.json
-        format: json
-        fields:
-          - { name: note, label: Hinweis, widget: hidden }
-          - name: photos
-            label: Fotos (ein Eintrag pro Modell)
-            label_singular: Foto
-            widget: list
-            summary: '{{fields.model}} · {{fields.license}}'
-            hint: 'Nur saubere Produktfotos (Gerät freigestellt auf Weiß, ganz sichtbar, keine Hände) mit Lizenz für die gewerbliche Nutzung auf dieser Website. Viele Fotos auf einmal: scripts/photos/normalize.py (siehe docs/CMS.md).'
-            fields:
-              - { name: model, label: Modell, widget: string, hint: 'Genauer Modellname wie unter „Preise · …", z. B. „iPhone 16 Pro Max"' }
-              - { name: image, label: Foto, widget: image, media_folder: /src/assets/img/produkte, public_folder: /assets/img/produkte, hint: 'Hochladen oder ersetzen. Freigestelltes Produktfoto auf Weiß, Hochformat (z. B. 600 × 800). Erscheint nach dem Veröffentlichen im Preisrechner.' }
-              - { name: license, label: Lizenz, widget: string, hint: 'z. B. „iStock Standard (nicht redaktionell)", „Genehmigung Samsung vom …", „CC BY-SA 4.0"' }
-              - { name: rightsConfirmed, label: Nutzungsrecht bestätigt, widget: boolean, default: true, required: false, hint: 'Aus = Foto nur in der Vorschau, nicht auf der echten Website (z. B. Herstellerbild, Genehmigung fehlt noch)' }
-              - { name: proof, label: Nachweis, widget: string, required: false, hint: 'Rechnungs- oder Genehmigungsnummer (wird nicht angezeigt)' }
-              - { name: credit, label: Bildnachweis (angezeigt), widget: string, required: false, hint: 'Nur wenn die Lizenz eine Namensnennung verlangt' }
-              - { name: licenseUrl, label: Link zur Lizenz, widget: string, required: false }
-              - { name: source, label: Link zur Quelle, widget: string, required: false }
 
       - name: bewertungen
         label: Google-Bewertungen (Verbindung)

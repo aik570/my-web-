@@ -99,5 +99,13 @@
       "onRequest": false,
       "note": ""
     }
-  ]
+  ],
+  "photo": {
+    "image": "/assets/img/produkte/apple-iphone-8.webp",
+    "license": "CC BY-SA 4.0",
+    "proof": "Wikimedia Commons File:IPhone_8.png (Kategorie IPhone 8), geladen 03.11.2026",
+    "credit": "Dimsar01 (bearbeitet)",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3AIPhone_8.png"
+  }
 }

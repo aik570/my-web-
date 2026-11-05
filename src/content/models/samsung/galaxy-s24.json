@@ -123,5 +123,14 @@
       "onRequest": false,
       "note": "Premium Displayschutz aus Panzerglas"
     }
-  ]
+  ],
+  "photo": {
+    "image": "/assets/img/produkte/samsung-galaxy-s24.webp",
+    "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+    "rightsConfirmed": false,
+    "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-s24 (Galaxy S24), geladen 03.11.2026",
+    "credit": "",
+    "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+    "source": "https://www.samsungmobilepress.com/media-assets/galaxy-s24"
+  }
 }

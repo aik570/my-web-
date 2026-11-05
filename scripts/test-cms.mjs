@@ -18,7 +18,7 @@ import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url);
 const { chromium } = require('playwright');
 const FILE = 'src/content/models/apple/iphone-16-pro-max.json';
-const SITE = 'src/_data/site.json', PHOTOS = 'src/_data/modelImages.json', PAGES = 'src/_data/pages.json', UPLOAD_DIR = 'src/assets/img/produkte';
+const SITE = 'src/_data/site.json', PHOTOS = 'src/content/models/samsung/galaxy-s21.json', PAGES = 'src/_data/pages.json', UPLOAD_DIR = 'src/assets/img/produkte';
 const originals = { [SITE]: fs.readFileSync(SITE, 'utf8'), [PHOTOS]: fs.readFileSync(PHOTOS, 'utf8'), [PAGES]: fs.readFileSync(PAGES, 'utf8') };
 const uploadsBefore = new Set(fs.readdirSync(UPLOAD_DIR));
 const OUT = '.cache/cms-test';
@@ -64,7 +64,7 @@ try {
 
   console.log('\nadmin: collections');
   const routes = ['preise-apple/entries/iphone-16-pro-max', 'preise-samsung/entries/galaxy-s24-ultra', 'hersteller/entries/apple', 'einstellungen/entries/kontakt', 'einstellungen/entries/reparaturarten', 'einstellungen/entries/preisliste',
-    'einstellungen/entries/produktfotos', 'einstellungen/entries/bewertungen', 'inhalte/entries/startseite', 'inhalte/entries/seiten', 'inhalte/entries/fachbereiche',
+    'einstellungen/entries/bewertungen', 'inhalte/entries/startseite', 'inhalte/entries/seiten', 'inhalte/entries/fachbereiche',
     'inhalte/entries/leistungen', 'inhalte/entries/fragen', 'inhalte/entries/franchise', 'rechtliches/entries/impressum', 'rechtliches/entries/datenschutz'];
   for (const r of routes) {
     await page.goto('http://localhost:8080/admin/#/collections/' + r); await page.waitForTimeout(1800);
@@ -120,23 +120,19 @@ try {
   const pg = JSON.parse(fs.readFileSync(PAGES, 'utf8'));
   ok(pg.preise.title === 'Reparaturpreise TEST' && pg.modell.seo.title.startsWith('{modell} TEST'), 'published: pages.json has the new heading and title pattern');
 
-  console.log('\nadmin: add a product photo (model picker + upload)');
-  await page.goto('http://localhost:8080/admin/#/collections/einstellungen/entries/produktfotos'); await page.reload(); await page.waitForTimeout(7000);
-  await page.getByRole('button', { name: /foto hinzufügen/i }).click(); await page.waitForTimeout(800);
-  const items = page.locator('[class*="ListItem-listControlItem"]');
-  const last = items.last();
-  const modelBox = last.locator('input').first();
-  await modelBox.click(); await modelBox.fill('Galaxy S21'); await page.waitForTimeout(500);
-  await last.getByRole('button', { name: /bild|image/i }).first().click(); await page.waitForTimeout(1500);
+  console.log('\nadmin: add a product photo in the model (Preise · Samsung › Galaxy S21 › Produktfoto)');
+  await page.goto('http://localhost:8080/admin/#/collections/preise-samsung/entries/galaxy-s21'); await page.reload(); await page.waitForTimeout(3000);
+  const bar = page.locator('[class*="ObjectWidgetTopBar"], [class*="TopBar"]').filter({ hasText: /^Produktfoto/i }).first();
+  await (await bar.count() ? bar.locator('button').first() : page.getByText('Produktfoto', { exact: true }).first()).click(); await page.waitForTimeout(800);
+  await page.getByRole('button', { name: /bild|image/i }).first().click(); await page.waitForTimeout(1500);
   const upName = `cms-test-${Date.now()}.webp`;
   fs.mkdirSync('.cache', { recursive: true }); fs.copyFileSync('src/assets/img/produkte/samsung-galaxy-a52.webp', `.cache/${upName}`);
   await page.locator('input[type="file"]').last().setInputFiles(`.cache/${upName}`); await page.waitForTimeout(3000);
   // the uploaded file is selected automatically (marked „Entwurf")
   await page.getByRole('button', { name: /Ausgewähltes Element verwenden|choose selected/i }).last().click(); await page.waitForTimeout(800);
-  await (await last.locator('label', { hasText: /^Lizenz/ }).getAttribute('for').then((id) => page.locator('#' + id))).fill('TEST (nur Test)');
+  await (await field(page, 'Lizenz')).fill('TEST (nur Test)');
   await publish(page);
-  const photos = JSON.parse(fs.readFileSync(PHOTOS, 'utf8')).photos;
-  const added = photos.find((x) => x.model === 'Galaxy S21');
+  const added = JSON.parse(fs.readFileSync(PHOTOS, 'utf8')).photo;
   ok(added && added.license.startsWith('TEST') && added.image === `/assets/img/produkte/${upName}` && fs.existsSync('src' + added.image), `published: photo entry for Galaxy S21 with the uploaded file (${added && added.image})`);
 
   const saved = fs.readFileSync(FILE, 'utf8');

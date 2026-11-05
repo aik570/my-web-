@@ -247,3 +247,13 @@ export function orderNewestFirst(brands) {
   }
   return brands;
 }
+
+// Product photos stored in the model files (CMS: Preise · <Marke> › Modell › Produktfoto), as the same
+// list format as modelImages.json, with model = "<brand file>/<catalogue id>".
+export function modelFilePhotos(dir = PRICE_DIR) {
+  const out = [];
+  for (const b of loadBrands(dir)) for (const m of b.models || [])
+    if (m.photo && m.photo.image) out.push({ ...m.photo, model: `${slug(b.brand)}/${m.id ? String(m.id).trim() : slug(m.name)}` });
+  return out;
+}
+

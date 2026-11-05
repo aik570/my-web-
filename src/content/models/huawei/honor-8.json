@@ -99,5 +99,13 @@
       "onRequest": false,
       "note": ""
     }
-  ]
+  ],
+  "photo": {
+    "image": "/assets/img/produkte/huawei-honor-8.webp",
+    "license": "CC BY 3.0",
+    "proof": "Wikimedia Commons File:Honor_8_black_-_reverse.jpg",
+    "credit": "Honor (bearbeitet)",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3AHonor_8_black_-_reverse.jpg"
+  }
 }

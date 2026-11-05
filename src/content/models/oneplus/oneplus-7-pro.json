@@ -91,5 +91,13 @@
       "onRequest": false,
       "note": ""
     }
-  ]
+  ],
+  "photo": {
+    "image": "/assets/img/produkte/oneplus-oneplus-7-pro.webp",
+    "license": "CC BY-SA 4.0",
+    "proof": "Wikimedia Commons File:Oneplus_7_Pro_2019.jpg",
+    "credit": "Thilo Parg (bearbeitet)",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3AOneplus_7_Pro_2019.jpg"
+  }
 }

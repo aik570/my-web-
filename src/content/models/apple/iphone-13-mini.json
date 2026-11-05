@@ -123,5 +123,13 @@
       "onRequest": false,
       "note": "Premium Displayschutz aus Panzerglas"
     }
-  ]
+  ],
+  "photo": {
+    "image": "/assets/img/produkte/apple-iphone-13-mini.webp",
+    "license": "CC BY-SA 4.0",
+    "proof": "Wikimedia Commons File:IPhone_13_Mini_Grün_Freigestellt.png",
+    "credit": "DYVER (bearbeitet)",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3AIPhone_13_Mini_Gr%C3%BCn_Freigestellt.png"
+  }
 }

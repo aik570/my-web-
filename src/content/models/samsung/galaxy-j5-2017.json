@@ -99,5 +99,13 @@
       "onRequest": false,
       "note": ""
     }
-  ]
+  ],
+  "photo": {
+    "image": "/assets/img/produkte/samsung-galaxy-j5-2017.webp",
+    "license": "CC BY-SA 4.0",
+    "proof": "Wikimedia Commons File:Samsung_Galaxy_J5_(2017,_SM-J530F-DS)-0346.jpg",
+    "credit": "Raimond Spekking (bearbeitet)",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3ASamsung_Galaxy_J5_%282017%2C_SM-J530F-DS%29-0346.jpg"
+  }
 }

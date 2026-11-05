@@ -99,5 +99,13 @@
       "onRequest": false,
       "note": ""
     }
-  ]
+  ],
+  "photo": {
+    "image": "/assets/img/produkte/samsung-galaxy-a52.webp",
+    "license": "CC BY-SA 4.0",
+    "proof": "Wikimedia Commons File:Samsung-Galaxy-A52-White.jpg",
+    "credit": "OnoMaker 12345 (bearbeitet)",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3ASamsung-Galaxy-A52-White.jpg"
+  }
 }

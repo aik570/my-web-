@@ -99,5 +99,13 @@
       "onRequest": false,
       "note": ""
     }
-  ]
+  ],
+  "photo": {
+    "image": "/assets/img/produkte/google-pixel-6.webp",
+    "license": "CC BY-SA 4.0",
+    "proof": "Wikimedia Commons File:Google_Pixel_6_Sorta_Seafoam_rear.jpg",
+    "credit": "IXTA9839 (bearbeitet)",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Google_Pixel_6_Sorta_Seafoam_rear.jpg"
+  }
 }

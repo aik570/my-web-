@@ -99,5 +99,14 @@
       "onRequest": false,
       "note": ""
     }
-  ]
+  ],
+  "photo": {
+    "image": "/assets/img/produkte/samsung-galaxy-tab-s9-fe.webp",
+    "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+    "rightsConfirmed": false,
+    "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-tab-s9-fe (Galaxy Tab S9 FE), geladen 03.11.2026",
+    "credit": "",
+    "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+    "source": "https://www.samsungmobilepress.com/media-assets/galaxy-tab-s9-fe"
+  }
 }

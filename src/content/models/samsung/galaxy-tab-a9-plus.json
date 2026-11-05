@@ -99,5 +99,14 @@
       "onRequest": false,
       "note": ""
     }
-  ]
+  ],
+  "photo": {
+    "image": "/assets/img/produkte/samsung-galaxy-tab-a9-plus.webp",
+    "license": "Samsung Mobile Press – nur nicht-kommerzielle Nutzung · Nutzungsrecht NICHT bestätigt",
+    "rightsConfirmed": false,
+    "proof": "https://www.samsungmobilepress.com/media-assets/galaxy-tab-a9-plus (Galaxy Tab A9+), geladen 03.11.2026",
+    "credit": "",
+    "licenseUrl": "https://www.samsungmobilepress.com/terms-of-use",
+    "source": "https://www.samsungmobilepress.com/media-assets/galaxy-tab-a9-plus"
+  }
 }

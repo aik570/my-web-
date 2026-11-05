@@ -99,5 +99,13 @@
       "onRequest": false,
       "note": ""
     }
-  ]
+  ],
+  "photo": {
+    "image": "/assets/img/produkte/apple-iphone-6s.webp",
+    "license": "CC BY-SA 4.0",
+    "proof": "Wikimedia Commons File:IPhone_6s_-_rear_view-92671.jpg",
+    "credit": "Raimond Spekking (bearbeitet)",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File%3AIPhone_6s_-_rear_view-92671.jpg"
+  }
 }

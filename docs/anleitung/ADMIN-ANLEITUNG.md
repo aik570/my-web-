@@ -32,7 +32,7 @@ Links sehen Sie vier Bereiche:
 | Bereich | Was Sie dort ändern |
 |---|---|
 | **Preise · Apple**, **Preise · Samsung**, … | Je Hersteller eine Liste: ein Eintrag pro Modell mit seinen Reparaturpreisen |
-| **Laden & Kontakt** | Telefon, E-Mail, Adresse, Öffnungszeiten, Schließtage, Preis der Fehleranalyse (Befund), Garantie, Produktfotos, Link zu den Google-Bewertungen |
+| **Laden & Kontakt** | Telefon, E-Mail, Adresse, Öffnungszeiten, Schließtage, Preis der Fehleranalyse (Befund), Garantie, Link zu den Google-Bewertungen |
 | **Inhalte** | Texte der Startseite und der Unterseiten, Reparaturleistungen, häufige Fragen, Franchise |
 | **Rechtliches** | Impressum und Datenschutzerklärung |
 
@@ -83,21 +83,16 @@ Danach **Veröffentlichen → Jetzt veröffentlichen**. Das neue Gerät erschein
 
 ## 6. Ein Gerätefoto hochladen oder ersetzen
 
-Links **Laden & Kontakt → Produktfotos im Preisrechner**.
-
-**Neues Foto:** auf **„Foto hinzufügen"** klicken.
+Das Foto gehört zum Modell: links **Preise · (Hersteller)** → Modell anklicken → Feld **„Produktfoto"** aufklappen.
 
 ![Foto hinzufügen](bilder/07a-foto-hinzufuegen.png)
 
-1. **Modell:** den Modellnamen **genau so** eintippen, wie er unter „Preise · …" steht (z. B. „iPhone 15 Pro").
-2. **Foto:** auf **„Wähle ein Bild"** klicken → **„Hochladen"** → Datei vom Computer wählen → **„Ausgewähltes Element verwenden"**.
-3. **Lizenz:** eintragen, woher das Foto stammt und dass Sie es verwenden dürfen (z. B. „Eigenes Foto", „Gekauft bei iStock, Lizenz Standard", „Genehmigung Samsung vom …"). Dieses Feld ist Pflicht.
-4. **Bildnachweis** nur ausfüllen, wenn die Lizenz eine Namensnennung verlangt – er wird dann unter dem Foto angezeigt.
-5. **Veröffentlichen → Jetzt veröffentlichen.**
+1. **Foto:** auf **„Wähle ein Bild"** klicken → **„Hochladen"** → Datei vom Computer wählen → **„Ausgewähltes Element verwenden"**.
+2. **Lizenz:** eintragen, woher das Foto stammt und dass Sie es verwenden dürfen (z. B. „Eigenes Foto", „Gekauft bei iStock, Lizenz Standard", „Genehmigung Samsung vom …"). Dieses Feld ist Pflicht.
+3. **Bildnachweis** nur ausfüllen, wenn die Lizenz eine Namensnennung verlangt – er wird dann unter dem Foto angezeigt.
+4. **Veröffentlichen → Jetzt veröffentlichen.**
 
-**Foto ersetzen:** den Eintrag des Modells aufklappen → **„Wähle ein anderes Bild"** → neues Bild hochladen → veröffentlichen.
-
-![Foto ersetzen](bilder/07b-foto-ersetzen.png)
+**Foto ersetzen:** im Feld „Produktfoto" auf **„Wähle ein anderes Bild"** → neues Bild hochladen → veröffentlichen.
 
 Bitte nur:
 - **saubere Produktfotos**: das ganze Gerät, freigestellt auf weißem oder hellem Hintergrund, ohne Hände, ohne Werkstatt, ohne Werbung;

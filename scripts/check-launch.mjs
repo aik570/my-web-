@@ -44,7 +44,8 @@ if (!site.whatsapp) warnings.push('WhatsApp-Nummer nicht eingetragen (Knopf wird
 const reviews = JSON.parse(fs.readFileSync('src/_data/reviews.json', 'utf8'));
 if (!reviews.items.length) warnings.push('Google-Bewertungen nicht verbunden (Startseite verlinkt nur auf Google) – Place ID und API-Schlüssel nötig, siehe scripts/fetch-reviews.mjs');
 const modelImages = JSON.parse(fs.readFileSync('src/_data/modelImages.json', 'utf8'));
-const allPhotos = modelImages.photos || [];
+const { modelFilePhotos } = await import('./lib/prices.mjs');
+const allPhotos = [...(modelImages.photos || []), ...modelFilePhotos()];
 const unconfirmed = allPhotos.filter((p) => p.rightsConfirmed === false);
 const exactPhotos = allPhotos.length - unconfirmed.length;
 warnings.push(`Produktfotos im Preisrechner: ${exactPhotos} Modelle mit lizenziertem Produktfoto, übrige zeigen die Zeichnung – fehlende Modelle: project-audit/MODEL-PHOTOS.md`);

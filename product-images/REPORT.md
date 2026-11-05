@@ -1,12 +1,12 @@
 # Product image collection – report
 
-Run: 2026-11-03 09:50 · models: 493 · files on disk: 135
+Run: 2026-11-05 12:56 · models: 501 · files on disk: 143
 
 | Status | Models |
 |---|---|
 | DOWNLOADED_CANDIDATE | 3 |
 | VISUALLY_VERIFIED | 7 |
-| RIGHTS_REVIEW_REQUIRED | 121 |
+| RIGHTS_REVIEW_REQUIRED | 129 |
 | DUPLICATE | 4 |
 | MISSING | 0 |
 | FAILED | 358 |
@@ -15,8 +15,8 @@ Run: 2026-11-03 09:50 · models: 493 · files on disk: 135
 
 | Brand | DOWNLOADED_CANDIDATE | VISUALLY_VERIFIED | RIGHTS_REVIEW_REQUIRED | DUPLICATE | MISSING | FAILED |
 |---|---|---|---|---|---|---|
-| Apple | 3 | 3 | 75 | 4 | 0 | 44 |
-| Samsung | 0 | 2 | 46 | 0 | 0 | 99 |
+| Apple | 3 | 3 | 79 | 4 | 0 | 44 |
+| Samsung | 0 | 2 | 50 | 0 | 0 | 99 |
 | Huawei | 0 | 1 | 0 | 0 | 0 | 48 |
 | Xiaomi | 0 | 0 | 0 | 0 | 0 | 92 |
 | Google | 0 | 0 | 0 | 0 | 0 | 20 |
@@ -203,3 +203,11 @@ All listed files exist, open as images and are used once.
 | Samsung | Galaxy Xcover 6 Pro | RIGHTS_REVIEW_REQUIRED | https://www.samsungmobilepress.com/media-assets/galaxy-xcover6-pro | Samsung Mobile Press terms: personal, informational, non-commercial use |
 | Huawei | Honor 8 | VISUALLY_VERIFIED | https://commons.wikimedia.org/wiki/File%3AHonor_8_black_-_reverse.jpg | CC BY 3.0 |
 | OnePlus | OnePlus 7 Pro | VISUALLY_VERIFIED | https://commons.wikimedia.org/wiki/File%3AOneplus_7_Pro_2019.jpg | CC BY-SA 4.0 |
+| Apple | iPhone 18 Pro Max | RIGHTS_REVIEW_REQUIRED | https://support.apple.com/en-us/108044 | Apple Inc. – all rights reserved (support page image) |
+| Apple | iPhone 18 Pro | RIGHTS_REVIEW_REQUIRED | https://support.apple.com/en-us/108044 | Apple Inc. – all rights reserved (support page image) |
+| Apple | iPhone 17e | RIGHTS_REVIEW_REQUIRED | https://support.apple.com/en-us/108044 | Apple Inc. – all rights reserved (support page image) |
+| Apple | iPhone 16e | RIGHTS_REVIEW_REQUIRED | https://support.apple.com/en-us/108044 | Apple Inc. – all rights reserved (support page image) |
+| Samsung | Galaxy S26 Ultra | RIGHTS_REVIEW_REQUIRED | https://www.samsungmobilepress.com/media-assets/galaxy-s26-ultra | Samsung Mobile Press terms: personal, informational, non-commercial use |
+| Samsung | Galaxy S26 Plus | RIGHTS_REVIEW_REQUIRED | https://www.samsungmobilepress.com/media-assets/galaxy-s26-plus | Samsung Mobile Press terms: personal, informational, non-commercial use |
+| Samsung | Galaxy S26 | RIGHTS_REVIEW_REQUIRED | https://www.samsungmobilepress.com/media-assets/galaxy-s26 | Samsung Mobile Press terms: personal, informational, non-commercial use |
+| Samsung | Galaxy S26 FE | RIGHTS_REVIEW_REQUIRED | https://www.samsungmobilepress.com/media-assets/galaxy-s26-fe | Samsung Mobile Press terms: personal, informational, non-commercial use |

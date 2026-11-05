@@ -1,4 +1,5 @@
 // npm run build && node scripts/test-cms-guide.mjs
+// NOTE (05.11.2026): written for the old single-file price editor and the Produktfotos list; the guide screenshots 03, 05 and 07a are now taken from the per-model editor. Update before re-running.
 // Screenshots for docs/anleitung/ADMIN-ANLEITUNG.md from the real /admin/ (local backend) + checks of
 // "add a device" and "edit a text": publish → rebuild → visible on the site. All files restored at the end.
 import { createRequire } from 'node:module'; const { chromium } = createRequire(import.meta.url)('playwright');

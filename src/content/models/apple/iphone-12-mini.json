@@ -123,5 +123,14 @@
       "onRequest": false,
       "note": "Premium Displayschutz aus Panzerglas"
     }
-  ]
+  ],
+  "photo": {
+    "image": "/assets/img/produkte/apple-iphone-12-mini.webp",
+    "license": "Apple Inc. – alle Rechte vorbehalten · Nutzungsrecht NICHT bestätigt",
+    "rightsConfirmed": false,
+    "proof": "https://support.apple.com/en-us/108044 (iPhone 12 mini), geladen 03.11.2026",
+    "credit": "",
+    "licenseUrl": "https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html",
+    "source": "https://support.apple.com/en-us/108044"
+  }
 }
