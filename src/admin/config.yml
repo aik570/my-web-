@@ -51,8 +51,8 @@ collections:
       - { name: name, label: Modell, widget: string, hint: 'Genaue Bezeichnung inkl. Variante, z. B. „iPhone 16 Pro Max", „Galaxy S24 Ultra". Die Reihenfolge auf der Website ergibt sich automatisch (neueste zuerst).' }
       - { name: id, label: Katalog-ID, widget: string, required: false, pattern: ['^([a-z0-9]+(-[a-z0-9]+)*)?$', 'Nur a–z, 0–9 und Bindestrich'], hint: 'Leer = wird aus dem Namen gebildet (z. B. iphone-16-pro-max). Bestimmt die Adresse /preise/<hersteller>/<id>/ und die Zuordnung des Produktfotos. Bei einer Umbenennung des Modells hier die bisherige ID eintragen, damit Links gleich bleiben.' }
       - { name: category, label: Gerätetyp, widget: select, options: [Smartphone, Tablet, Laptop, Smartwatch, PC, Sonstiges], default: Smartphone, required: false }
-      - { name: group, label: Gruppe im Preisrechner (optional), widget: string, required: false, hint: 'Leer = automatisch (z. B. „iPhone", „iPhone SE", „Galaxy S"). Nur eintragen, um die Überschrift zu ändern.' }
-      - { name: position, label: Position (optional), widget: number, value_type: int, min: 1, required: false, hint: 'Leer = automatisch, neueste zuerst. Eine Zahl setzt das Modell an diese Stelle der Liste (1 = ganz oben).' }
+      - { name: group, label: Gruppe im Preisrechner, widget: string, required: false, hint: 'Leer = automatisch (z. B. „iPhone", „iPhone SE", „Galaxy S"). Nur eintragen, um die Überschrift zu ändern.' }
+      - { name: position, label: Position, widget: number, value_type: int, min: 1, required: false, hint: 'Leer = automatisch, neueste zuerst. Eine Zahl setzt das Modell an diese Stelle der Liste (1 = ganz oben).' }
       - name: repairs
         label: Reparaturen
         label_singular: Reparatur
@@ -105,8 +105,8 @@ collections:
       - { name: name, label: Modell, widget: string, hint: 'Genaue Bezeichnung inkl. Variante, z. B. „iPhone 16 Pro Max", „Galaxy S24 Ultra". Die Reihenfolge auf der Website ergibt sich automatisch (neueste zuerst).' }
       - { name: id, label: Katalog-ID, widget: string, required: false, pattern: ['^([a-z0-9]+(-[a-z0-9]+)*)?$', 'Nur a–z, 0–9 und Bindestrich'], hint: 'Leer = wird aus dem Namen gebildet (z. B. iphone-16-pro-max). Bestimmt die Adresse /preise/<hersteller>/<id>/ und die Zuordnung des Produktfotos. Bei einer Umbenennung des Modells hier die bisherige ID eintragen, damit Links gleich bleiben.' }
       - { name: category, label: Gerätetyp, widget: select, options: [Smartphone, Tablet, Laptop, Smartwatch, PC, Sonstiges], default: Smartphone, required: false }
-      - { name: group, label: Gruppe im Preisrechner (optional), widget: string, required: false, hint: 'Leer = automatisch (z. B. „iPhone", „iPhone SE", „Galaxy S"). Nur eintragen, um die Überschrift zu ändern.' }
-      - { name: position, label: Position (optional), widget: number, value_type: int, min: 1, required: false, hint: 'Leer = automatisch, neueste zuerst. Eine Zahl setzt das Modell an diese Stelle der Liste (1 = ganz oben).' }
+      - { name: group, label: Gruppe im Preisrechner, widget: string, required: false, hint: 'Leer = automatisch (z. B. „iPhone", „iPhone SE", „Galaxy S"). Nur eintragen, um die Überschrift zu ändern.' }
+      - { name: position, label: Position, widget: number, value_type: int, min: 1, required: false, hint: 'Leer = automatisch, neueste zuerst. Eine Zahl setzt das Modell an diese Stelle der Liste (1 = ganz oben).' }
       - name: repairs
         label: Reparaturen
         label_singular: Reparatur
@@ -159,8 +159,8 @@ collections:
       - { name: name, label: Modell, widget: string, hint: 'Genaue Bezeichnung inkl. Variante, z. B. „iPhone 16 Pro Max", „Galaxy S24 Ultra". Die Reihenfolge auf der Website ergibt sich automatisch (neueste zuerst).' }
       - { name: id, label: Katalog-ID, widget: string, required: false, pattern: ['^([a-z0-9]+(-[a-z0-9]+)*)?$', 'Nur a–z, 0–9 und Bindestrich'], hint: 'Leer = wird aus dem Namen gebildet (z. B. iphone-16-pro-max). Bestimmt die Adresse /preise/<hersteller>/<id>/ und die Zuordnung des Produktfotos. Bei einer Umbenennung des Modells hier die bisherige ID eintragen, damit Links gleich bleiben.' }
       - { name: category, label: Gerätetyp, widget: select, options: [Smartphone, Tablet, Laptop, Smartwatch, PC, Sonstiges], default: Smartphone, required: false }
-      - { name: group, label: Gruppe im Preisrechner (optional), widget: string, required: false, hint: 'Leer = automatisch (z. B. „iPhone", „iPhone SE", „Galaxy S"). Nur eintragen, um die Überschrift zu ändern.' }
-      - { name: position, label: Position (optional), widget: number, value_type: int, min: 1, required: false, hint: 'Leer = automatisch, neueste zuerst. Eine Zahl setzt das Modell an diese Stelle der Liste (1 = ganz oben).' }
+      - { name: group, label: Gruppe im Preisrechner, widget: string, required: false, hint: 'Leer = automatisch (z. B. „iPhone", „iPhone SE", „Galaxy S"). Nur eintragen, um die Überschrift zu ändern.' }
+      - { name: position, label: Position, widget: number, value_type: int, min: 1, required: false, hint: 'Leer = automatisch, neueste zuerst. Eine Zahl setzt das Modell an diese Stelle der Liste (1 = ganz oben).' }
       - name: repairs
         label: Reparaturen
         label_singular: Reparatur
@@ -213,8 +213,8 @@ collections:
       - { name: name, label: Modell, widget: string, hint: 'Genaue Bezeichnung inkl. Variante, z. B. „iPhone 16 Pro Max", „Galaxy S24 Ultra". Die Reihenfolge auf der Website ergibt sich automatisch (neueste zuerst).' }
       - { name: id, label: Katalog-ID, widget: string, required: false, pattern: ['^([a-z0-9]+(-[a-z0-9]+)*)?$', 'Nur a–z, 0–9 und Bindestrich'], hint: 'Leer = wird aus dem Namen gebildet (z. B. iphone-16-pro-max). Bestimmt die Adresse /preise/<hersteller>/<id>/ und die Zuordnung des Produktfotos. Bei einer Umbenennung des Modells hier die bisherige ID eintragen, damit Links gleich bleiben.' }
       - { name: category, label: Gerätetyp, widget: select, options: [Smartphone, Tablet, Laptop, Smartwatch, PC, Sonstiges], default: Smartphone, required: false }
-      - { name: group, label: Gruppe im Preisrechner (optional), widget: string, required: false, hint: 'Leer = automatisch (z. B. „iPhone", „iPhone SE", „Galaxy S"). Nur eintragen, um die Überschrift zu ändern.' }
-      - { name: position, label: Position (optional), widget: number, value_type: int, min: 1, required: false, hint: 'Leer = automatisch, neueste zuerst. Eine Zahl setzt das Modell an diese Stelle der Liste (1 = ganz oben).' }
+      - { name: group, label: Gruppe im Preisrechner, widget: string, required: false, hint: 'Leer = automatisch (z. B. „iPhone", „iPhone SE", „Galaxy S"). Nur eintragen, um die Überschrift zu ändern.' }
+      - { name: position, label: Position, widget: number, value_type: int, min: 1, required: false, hint: 'Leer = automatisch, neueste zuerst. Eine Zahl setzt das Modell an diese Stelle der Liste (1 = ganz oben).' }
       - name: repairs
         label: Reparaturen
         label_singular: Reparatur
@@ -267,8 +267,8 @@ collections:
       - { name: name, label: Modell, widget: string, hint: 'Genaue Bezeichnung inkl. Variante, z. B. „iPhone 16 Pro Max", „Galaxy S24 Ultra". Die Reihenfolge auf der Website ergibt sich automatisch (neueste zuerst).' }
       - { name: id, label: Katalog-ID, widget: string, required: false, pattern: ['^([a-z0-9]+(-[a-z0-9]+)*)?$', 'Nur a–z, 0–9 und Bindestrich'], hint: 'Leer = wird aus dem Namen gebildet (z. B. iphone-16-pro-max). Bestimmt die Adresse /preise/<hersteller>/<id>/ und die Zuordnung des Produktfotos. Bei einer Umbenennung des Modells hier die bisherige ID eintragen, damit Links gleich bleiben.' }
       - { name: category, label: Gerätetyp, widget: select, options: [Smartphone, Tablet, Laptop, Smartwatch, PC, Sonstiges], default: Smartphone, required: false }
-      - { name: group, label: Gruppe im Preisrechner (optional), widget: string, required: false, hint: 'Leer = automatisch (z. B. „iPhone", „iPhone SE", „Galaxy S"). Nur eintragen, um die Überschrift zu ändern.' }
-      - { name: position, label: Position (optional), widget: number, value_type: int, min: 1, required: false, hint: 'Leer = automatisch, neueste zuerst. Eine Zahl setzt das Modell an diese Stelle der Liste (1 = ganz oben).' }
+      - { name: group, label: Gruppe im Preisrechner, widget: string, required: false, hint: 'Leer = automatisch (z. B. „iPhone", „iPhone SE", „Galaxy S"). Nur eintragen, um die Überschrift zu ändern.' }
+      - { name: position, label: Position, widget: number, value_type: int, min: 1, required: false, hint: 'Leer = automatisch, neueste zuerst. Eine Zahl setzt das Modell an diese Stelle der Liste (1 = ganz oben).' }
       - name: repairs
         label: Reparaturen
         label_singular: Reparatur
@@ -321,8 +321,8 @@ collections:
       - { name: name, label: Modell, widget: string, hint: 'Genaue Bezeichnung inkl. Variante, z. B. „iPhone 16 Pro Max", „Galaxy S24 Ultra". Die Reihenfolge auf der Website ergibt sich automatisch (neueste zuerst).' }
       - { name: id, label: Katalog-ID, widget: string, required: false, pattern: ['^([a-z0-9]+(-[a-z0-9]+)*)?$', 'Nur a–z, 0–9 und Bindestrich'], hint: 'Leer = wird aus dem Namen gebildet (z. B. iphone-16-pro-max). Bestimmt die Adresse /preise/<hersteller>/<id>/ und die Zuordnung des Produktfotos. Bei einer Umbenennung des Modells hier die bisherige ID eintragen, damit Links gleich bleiben.' }
       - { name: category, label: Gerätetyp, widget: select, options: [Smartphone, Tablet, Laptop, Smartwatch, PC, Sonstiges], default: Smartphone, required: false }
-      - { name: group, label: Gruppe im Preisrechner (optional), widget: string, required: false, hint: 'Leer = automatisch (z. B. „iPhone", „iPhone SE", „Galaxy S"). Nur eintragen, um die Überschrift zu ändern.' }
-      - { name: position, label: Position (optional), widget: number, value_type: int, min: 1, required: false, hint: 'Leer = automatisch, neueste zuerst. Eine Zahl setzt das Modell an diese Stelle der Liste (1 = ganz oben).' }
+      - { name: group, label: Gruppe im Preisrechner, widget: string, required: false, hint: 'Leer = automatisch (z. B. „iPhone", „iPhone SE", „Galaxy S"). Nur eintragen, um die Überschrift zu ändern.' }
+      - { name: position, label: Position, widget: number, value_type: int, min: 1, required: false, hint: 'Leer = automatisch, neueste zuerst. Eine Zahl setzt das Modell an diese Stelle der Liste (1 = ganz oben).' }
       - name: repairs
         label: Reparaturen
         label_singular: Reparatur
@@ -375,8 +375,8 @@ collections:
       - { name: name, label: Modell, widget: string, hint: 'Genaue Bezeichnung inkl. Variante, z. B. „iPhone 16 Pro Max", „Galaxy S24 Ultra". Die Reihenfolge auf der Website ergibt sich automatisch (neueste zuerst).' }
       - { name: id, label: Katalog-ID, widget: string, required: false, pattern: ['^([a-z0-9]+(-[a-z0-9]+)*)?$', 'Nur a–z, 0–9 und Bindestrich'], hint: 'Leer = wird aus dem Namen gebildet (z. B. iphone-16-pro-max). Bestimmt die Adresse /preise/<hersteller>/<id>/ und die Zuordnung des Produktfotos. Bei einer Umbenennung des Modells hier die bisherige ID eintragen, damit Links gleich bleiben.' }
       - { name: category, label: Gerätetyp, widget: select, options: [Smartphone, Tablet, Laptop, Smartwatch, PC, Sonstiges], default: Smartphone, required: false }
-      - { name: group, label: Gruppe im Preisrechner (optional), widget: string, required: false, hint: 'Leer = automatisch (z. B. „iPhone", „iPhone SE", „Galaxy S"). Nur eintragen, um die Überschrift zu ändern.' }
-      - { name: position, label: Position (optional), widget: number, value_type: int, min: 1, required: false, hint: 'Leer = automatisch, neueste zuerst. Eine Zahl setzt das Modell an diese Stelle der Liste (1 = ganz oben).' }
+      - { name: group, label: Gruppe im Preisrechner, widget: string, required: false, hint: 'Leer = automatisch (z. B. „iPhone", „iPhone SE", „Galaxy S"). Nur eintragen, um die Überschrift zu ändern.' }
+      - { name: position, label: Position, widget: number, value_type: int, min: 1, required: false, hint: 'Leer = automatisch, neueste zuerst. Eine Zahl setzt das Modell an diese Stelle der Liste (1 = ganz oben).' }
       - name: repairs
         label: Reparaturen
         label_singular: Reparatur

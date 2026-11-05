@@ -31,7 +31,7 @@ Links sehen Sie vier Bereiche:
 
 | Bereich | Was Sie dort ändern |
 |---|---|
-| **Preise** | Je Hersteller (Apple, Samsung, …) alle Modelle und ihre Reparaturpreise |
+| **Preise · Apple**, **Preise · Samsung**, … | Je Hersteller eine Liste: ein Eintrag pro Modell mit seinen Reparaturpreisen |
 | **Laden & Kontakt** | Telefon, E-Mail, Adresse, Öffnungszeiten, Schließtage, Preis der Fehleranalyse (Befund), Garantie, Produktfotos, Link zu den Google-Bewertungen |
 | **Inhalte** | Texte der Startseite und der Unterseiten, Reparaturleistungen, häufige Fragen, Franchise |
 | **Rechtliches** | Impressum und Datenschutzerklärung |
@@ -40,11 +40,11 @@ Links sehen Sie vier Bereiche:
 
 Beispiel: iPhone 16 Pro Max, Akkuwechsel.
 
-**Schritt 1:** Links **Preise** → **Apple** anklicken. Die Modelle stehen in derselben Reihenfolge wie auf der Website (neueste zuerst). Zum Suchen: **Strg + F** (Mac: **⌘ + F**) drücken und „16 Pro Max" eintippen.
+**Schritt 1:** Links **Preise · Apple** anklicken. Es erscheint die Liste aller Apple-Modelle. Zum Suchen: **Strg + F** (Mac: **⌘ + F**) drücken und „16 Pro Max" eintippen.
 
 ![Modell finden](bilder/03-modell-finden.png)
 
-**Schritt 2:** Auf das Modell klicken – es klappt auf. Unter **Reparaturen** die Zeile **„akku …"** anklicken.
+**Schritt 2:** Auf das Modell klicken – es öffnet sich sofort. Unter **Reparaturen** die Zeile **„akku …"** anklicken.
 
 **Schritt 3:** Im Feld **„Preis in €"** den neuen Preis eintragen (nur die Zahl, z. B. `129`).
 
@@ -60,7 +60,7 @@ Gut zu wissen:
 
 ## 5. Ein Gerät hinzufügen oder ändern
 
-**Neues Gerät:** In **Preise → (Hersteller)** ganz nach unten scrollen bzw. bei „Modelle" auf **„Modell hinzufügen"** klicken.
+**Neues Gerät:** Links **Preise · (Hersteller)** wählen und oben auf **„＋ Modell"** klicken. Modellname eintragen, dann unter **Reparaturen** auf **„Reparatur hinzufügen"**.
 
 ![Gerät hinzufügen](bilder/05-geraet-hinzufuegen.png)
 
@@ -89,7 +89,7 @@ Links **Laden & Kontakt → Produktfotos im Preisrechner**.
 
 ![Foto hinzufügen](bilder/07a-foto-hinzufuegen.png)
 
-1. **Modell:** Namen eintippen (z. B. „15 Pro") und das richtige Modell aus der Liste wählen.
+1. **Modell:** den Modellnamen **genau so** eintippen, wie er unter „Preise · …" steht (z. B. „iPhone 15 Pro").
 2. **Foto:** auf **„Wähle ein Bild"** klicken → **„Hochladen"** → Datei vom Computer wählen → **„Ausgewähltes Element verwenden"**.
 3. **Lizenz:** eintragen, woher das Foto stammt und dass Sie es verwenden dürfen (z. B. „Eigenes Foto", „Gekauft bei iStock, Lizenz Standard", „Genehmigung Samsung vom …"). Dieses Feld ist Pflicht.
 4. **Bildnachweis** nur ausfüllen, wenn die Lizenz eine Namensnennung verlangt – er wird dann unter dem Foto angezeigt.

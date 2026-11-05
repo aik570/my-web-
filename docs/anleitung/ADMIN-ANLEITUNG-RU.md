@@ -18,7 +18,7 @@
 
 | Раздел | Что там менять |
 |---|---|
-| **Preise** | Бренд → модель → ремонт → цена. Добавить новое устройство |
+| **Preise · Apple**, **Preise · Samsung**, … | Список моделей бренда → модель → ремонт → цена. Новое устройство |
 | **Laden & Kontakt** | Телефон, e-mail, адрес, часы работы, выходные, **Befund** (цена диагностики), гарантия, **фото телефонов** |
 | **Inhalte** | Все тексты сайта: главная, услуги, вопросы (FAQ), Franchise |
 | **Rechtliches** | Impressum и Datenschutz (только по согласованию с юристом) |
@@ -27,8 +27,8 @@
 
 ![Найти модель](bilder/03-modell-finden.png)
 
-1. **Preise** → **Apple** (или другой бренд). Найти модель: Ctrl+F → «16 Pro Max».
-2. Кликнуть на модель → кликнуть на строку ремонта (например «akku»).
+1. **Preise · Apple** (или другой бренд). Найти модель: Ctrl+F → «16 Pro Max».
+2. Кликнуть на модель (открывается сразу) → кликнуть на строку ремонта (например «akku»).
 3. Поле **«Preis in €»** → новая цена (только число).
 
 ![Цена](bilder/04-preis-aendern.png)
@@ -41,7 +41,7 @@
 
 ![Добавить](bilder/05-geraet-hinzufuegen.png)
 
-**Preise** → бренд → внизу **«Modell hinzufügen»** → название модели → **«Reparatur hinzufügen»** → вид ремонта + цена → **Veröffentlichen**.
+**Preise · бренд** → вверху **«＋ Modell»** → название модели → **«Reparatur hinzufügen»** → вид ремонта + цена → **Veröffentlichen**.
 
 ![Заполнить](bilder/06-geraet-ausfuellen.png)
 
@@ -50,7 +50,7 @@
 ![Фото](bilder/07a-foto-hinzufuegen.png)
 
 1. **Laden & Kontakt** → **Produktfotos im Preisrechner** → **«Foto hinzufügen»**.
-2. **Modell:** начать печатать название → выбрать модель из списка.
+2. **Modell:** вписать название **точно как** в «Preise · …» (например «iPhone 15 Pro»).
 3. **Foto:** «Wähle ein Bild» → **«Hochladen»** → файл с компьютера → «Ausgewähltes Element verwenden».
 4. **Lizenz:** откуда фото (например «eigenes Foto»).
 5. **Veröffentlichen.**
