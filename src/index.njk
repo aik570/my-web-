@@ -283,7 +283,7 @@ bodyClass: is-home
 
         <div class="cpanel" role="tabpanel" id="cp-brief" aria-labelledby="ct-brief" hidden>
           <div class="envelope" aria-hidden="true"><div class="envelope__back"></div><div class="envelope__flap"></div><div class="envelope__front"></div></div>
-          <form class="contact__form letter" id="contact-form" action="mailto:{{ site.email }}" method="post" enctype="text/plain" novalidate data-email="{{ site.email }}">
+          <form class="contact__form letter" id="contact-form" method="dialog" novalidate data-email="{{ site.email }}">
             <p class="letter__to"><span>An</span> {{ site.name }} · {{ site.email }}</p>
             <div class="field letter__field">
               <label for="cf-msg">Ihre Nachricht <span aria-hidden="true">*</span></label>

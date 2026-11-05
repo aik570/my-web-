@@ -11,6 +11,15 @@ eleventyComputed:
     description: "{{ pages.modell.seo.description | replace('{hersteller}', m.brand) | replace('{modell}', m.name) }}"
 ---
 {% extends "base.njk" %}
+{% block head %}
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+  { "@type": "ListItem", "position": 1, "name": "Preisliste", "item": {{ ('/preise/' | absolute(site.url)) | json | safe }} },
+  { "@type": "ListItem", "position": 2, "name": {{ m.brand | json | safe }}, "item": {{ ('/preise/' + m.brandSlug + '/') | absolute(site.url) | json | safe }} },
+  { "@type": "ListItem", "position": 3, "name": {{ m.name | json | safe }}, "item": {{ ('/preise/' + m.brandSlug + '/' + m.slug + '/') | absolute(site.url) | json | safe }} }
+] }
+</script>
+{% endblock %}
 {%- set repairs = m.repairs | repairsOnly %}
 {%- set extras = m.repairs | extrasOnly %}
 

@@ -1029,7 +1029,7 @@ mark.todo { background: #fff1c2; color: #6b4b00; padding: .1rem .35rem; border-r
 .entry__steps .field__no:not(:first-child) { margin-left: .5rem; }
 .entry__title { font-size: var(--t-2); font-weight: 800; font-stretch: 125%; letter-spacing: -.02em; }
 .entry__title::after { content: " →"; }
-.entry__meta { font: 400 .8125rem var(--mono); color: rgba(255, 255, 255, .8); }
+.entry__meta { font: 400 .8125rem var(--mono); color: var(--white); }
 .entry__brands { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
 .entry__brands a { display: flex; align-items: center; min-height: 3.25rem; padding: 0 1.1rem; border-radius: 8px; border: 1.5px solid var(--mint-200); background: var(--white); font-weight: 700; color: var(--ink); text-decoration: none; }
 .entry__brands a:hover, .entry__brands a:focus-visible { border-color: var(--teal); }

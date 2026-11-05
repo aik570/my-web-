@@ -14,7 +14,12 @@ form{width:min(22rem,90vw);display:grid;gap:.75rem;padding:1.75rem;border-radius
 h1{margin:0 0 .25rem;font-size:1.25rem}input{font:inherit;padding:.7rem .8rem;border:1px solid #c9e2da;border-radius:8px}
 button{font:inherit;font-weight:700;padding:.75rem;border:0;border-radius:8px;background:#2f7a68;color:#fff;cursor:pointer}
 .err{margin:0;color:#c8312a;font-size:.9rem}</style></head><body>${body}</body></html>`,
-  { status, headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store', 'x-robots-tag': 'noindex' } });
+  { status, headers: {
+    'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store', 'x-robots-tag': 'noindex',
+    // the login window may not be framed by other sites (clickjacking) and loads nothing from elsewhere
+    'x-frame-options': 'DENY', 'x-content-type-options': 'nosniff', 'referrer-policy': 'no-referrer',
+    'content-security-policy': "default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'"
+  } });
 
 const form = (error = '') => page(`<form method="post" autocomplete="on">
 <h1>Website bearbeiten</h1><label for="pw">Passwort</label>
@@ -27,6 +32,9 @@ export default async (req) => {
   const password = process.env.ADMIN_PASSWORD, token = process.env.GITHUB_TOKEN;
   if (!password || !token) return page('<form><h1>Noch nicht eingerichtet</h1><p class="err">In Netlify fehlen ADMIN_PASSWORD und/oder GITHUB_TOKEN (Site configuration → Environment variables). Danach neu veröffentlichen.</p></form>', 503);
   if (req.method !== 'POST') return form();
+  // only the login form of this site may post a password (no guessing from other websites)
+  const from = req.headers.get('origin');
+  if (from && from !== 'null' && new URL(from).host !== (req.headers.get('x-forwarded-host') || req.headers.get('host') || new URL(req.url).host)) return page('<form><p class="err">Nicht erlaubt.</p></form>', 403);
   const data = await req.formData();
   if (!same(data.get('password') || '', password)) {
     await new Promise((r) => setTimeout(r, 1500));   // slows down guessing

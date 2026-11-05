@@ -37,11 +37,15 @@ export default function (eleventyConfig) {
   // Decap CMS, self-hosted: main bundle, its lazy chunks and wasm, no source maps.
   const decap = 'node_modules/decap-cms/dist';
   if (fs.existsSync(decap)) {
+    const decapVersion = JSON.parse(fs.readFileSync('node_modules/decap-cms/package.json', 'utf8')).version;
     const files = {};
     for (const f of fs.readdirSync(decap)) {
-      if (/(^|\.)decap-cms\.js$/.test(f) || f.endsWith('.wasm') || f === 'decap-cms.js.LICENSE.txt') files[`${decap}/${f}`] = `admin/${f}`;
+      // in a folder named after the Decap version: the files never change under that URL, so browsers
+      // cache them for a year (netlify.toml) and the admin opens without re-checking ~100 files
+      if (/(^|\.)decap-cms\.js$/.test(f) || f.endsWith('.wasm') || f === 'decap-cms.js.LICENSE.txt') files[`${decap}/${f}`] = `admin/cms-${decapVersion}/${f}`;
     }
     eleventyConfig.addPassthroughCopy(files);
+    eleventyConfig.addGlobalData('decapVersion', decapVersion);
   }
 
   eleventyConfig.addFilter('md', (s = '') => markTodos(md.render(String(s))));

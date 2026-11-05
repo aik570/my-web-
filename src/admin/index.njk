@@ -15,7 +15,7 @@ eleventyExcludeFromCollections: true
 <body>
   <!-- Decap CMS is served from this site, not from a CDN. -->
   <script>window.CMS_MANUAL_INIT = true;</script>
-  <script src="/admin/decap-cms.js"></script>
+  <script src="/admin/cms-{{ decapVersion }}/decap-cms.js"></script>
   <script>
     // On the hosted site: password login (Netlify function admin-login), see netlify/functions/admin-login.mjs.
     // On localhost the local backend (npm run cms) is used as before.

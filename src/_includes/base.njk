@@ -49,6 +49,9 @@
   "image": {{ (site.seo.image | absolute(site.url)) | json | safe }},
   "telephone": {{ site.phone.dial | json | safe }},
   "email": {{ site.email | json | safe }},
+  {%- if site.mapsUrl %}
+  "hasMap": {{ site.mapsUrl | json | safe }},
+  {%- endif %}
   "address": { "@type": "PostalAddress", "streetAddress": {{ site.street | json | safe }}, "postalCode": {{ site.postcode | json | safe }}, "addressLocality": {{ site.city | json | safe }}, "addressCountry": "DE" },
   "openingHoursSpecification": [
     {%- for h in site.hours | selectattr("open") %}
