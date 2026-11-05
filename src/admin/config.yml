@@ -4,7 +4,6 @@
 
 backend:
   name: github
-  use_graphql: true
   # PREVIEW SETUP: work repository and working branch, so CMS saves trigger
   # Netlify branch deploys of the preview. Before launch: client-owned repository
   # and its production branch (npm run check blocks launch until then).
