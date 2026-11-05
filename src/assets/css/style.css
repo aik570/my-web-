@@ -180,6 +180,18 @@ h1, h2, h3 { font-stretch: 125%; font-weight: 700; letter-spacing: -.025em; text
 .nav__call svg { flex: none; display: block; width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linejoin: round; }
 .nav__call-short { display: none; }
 .nav__menu { display: none; }
+/* WhatsApp next to the call button: same height, outlined in WhatsApp green */
+.nav__wa {
+  flex: none; display: inline-flex; align-items: center; justify-content: center; gap: .45rem;
+  min-height: 2.75rem; min-width: 2.75rem; padding: 0 1rem; border-radius: 10px; line-height: 1;
+  background: var(--white); color: #128c4a; border: 1.5px solid #25d366; text-decoration: none;
+  font: 600 .9375rem var(--sans); white-space: nowrap;
+  transition: background-color .22s var(--ease), transform .22s var(--ease);
+}
+.nav__wa:hover { background: #effcf4; transform: translateY(-1px); }
+.nav__wa:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--white), 0 0 0 5.5px #25d366; }
+.nav__wa svg { flex: none; display: block; width: 18px; height: 18px; fill: #25d366; }
+.nav__in > .nav__wa + .nav__call { margin-left: -.5rem; }
 
 /* narrower desktops: drop the status first, then tighten the links */
 /* the status chip only where everything fits; the phone button keeps its size and stays at the content edge */
@@ -192,9 +204,13 @@ h1, h2, h3 { font-stretch: 125%; font-weight: 700; letter-spacing: -.025em; text
   .nav__in { gap: .75rem; height: 4rem; }
   .nav__logo { width: 100px; }
   .nav__call { margin-left: auto; }
+  .nav__wa { margin-left: auto; padding: 0; }
+  .nav__wa svg { width: 22px; height: 22px; }
+  .nav__wa-text { display: none; }
+  .nav__in > .nav__wa + .nav__call { margin-left: -.25rem; }
   .nav__call-long { display: none; }
   .nav__call-short { display: inline; }
-  .nav__menu { display: grid; place-content: center; gap: 6px; width: 2.75rem; height: 2.75rem; background: none; border: 0; padding: 0; cursor: pointer; }
+  .nav__menu { flex: none; display: grid; place-content: center; gap: 6px; width: 2.75rem; height: 2.75rem; background: none; border: 0; padding: 0; cursor: pointer; }
   .nav__menu span { width: 20px; height: 2px; background: var(--ink); transition: transform .25s var(--ease); }
   .nav__menu[aria-expanded="true"] span:first-child { transform: translateY(4px) rotate(45deg); }
   .nav__menu[aria-expanded="true"] span:last-child { transform: translateY(-4px) rotate(-45deg); }
@@ -1162,3 +1178,19 @@ body:has(.offer__bar) .foot > .rv { margin-bottom: 0; }
 
 .foot__social { display: flex; flex-wrap: wrap; gap: .25rem 1rem; }
 
+
+/* WhatsApp + call in the header on narrower desktops: WhatsApp as icon, call as "Anrufen" */
+@media (max-width: 1279px) {
+  .nav__wa { padding: 0; }
+  .nav__wa svg { width: 22px; height: 22px; }
+  .nav__wa-text { display: none; }
+  .nav__call-long { display: none; }
+  .nav__call-short { display: inline; }
+}
+/* contact tabs: four tabs share the width on phones */
+@media (max-width: 560px) {
+  .ctabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); width: 100%; }
+  .ctab { justify-content: center; padding: 0 .3rem; font-size: .875rem; }
+  .ctab svg { display: none; }
+}
+@media (max-width: 370px) { .ctab { font-size: .8125rem; padding: 0 .15rem; } }
