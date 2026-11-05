@@ -1,59 +1,56 @@
-# Konzept Haus Collective — redesign concept "Kreislauf"
+# Konzept Haus Collective — redesign v2 "The Voice of Space"
 
-A demo redesign of kh-collective.com, built for a first meeting with the studio.
-Open `index.html` in a browser. There is no build step.
+A demo redesign of kh-collective.com for a first meeting with the studio. It is built
+on the studio's own identity, copy and photos. Open `index.html` in a browser. There is
+no build step.
 
-## What we know about the client
+## Source
 
-Collected from public sources. The live site could not be read from the build environment,
-so check this against the current site before the meeting.
+All content comes from phone screenshots of the live site (team and about pages),
+taken on 5 Nov 2026. The address comes from the site's Impressum via search. Nothing
+else is invented, except what is listed under "Gaps".
 
-- **Who:** Konzept Haus Collective GmbH, a "Kreativ Studio für Raumkonzepte und Circular Interior Design".
-- **Where:** Potsdam (website). Register entries also name Michendorf and Rheda-Wiedenbrück.
-- **Team:** architects, interior architects, furniture enthusiasts and branding experts.
-- **Promise:** highly individual, ready-to-build concepts "in allen Budgetebenen".
-- **Fields (from the register):** needs analysis, brand-led concepts, buying and selling furniture, installation, for living, hospitality and office.
-- **Sister brand:** *Gute Räume*, a concept store at ABC-Straße 15, Hamburg, with B2B Residential and Hospitality.
+## Kept from their identity
 
-## Three directions
+| Token | Value | Where it came from |
+|---|---|---|
+| `--blue` | `#1C20FF` | KH mark and body text |
+| `--violet` | `#7A2FE6` | text tint mid-page (the colour drifts as you scroll) |
+| `--rose` | `#CC4F78` | the pink state of the mark. Their `#CC8395` was deepened for text contrast |
+| `--navy` | `#15166E` | dark blue for small text |
+| `--paper` | `#FFFFFF` | page ground |
+| `--mist` | `#E7E7E7` | video placeholder grey |
 
-| | Direction | Idea | Risk |
-|---|---|---|---|
-| **A** | **Kreislauf** (chosen) | The circle is the brand. Every interaction loops: the preloader ring, the orbiting hero, a pinned five-step cycle, and a material passport. Warm lime plaster, ink, one terracotta accent. | Needs real project photography to land. |
-| B | Dark Gallery | Cinematic black, full-bleed photos, slow crossfades. Feels like Joseph Dirand or Studio KO. | Looks like every luxury studio and hides the circular story. |
-| C | Raumplan | Swiss grid, floor plans, technical line drawings, mono type. Feels like OMA or Office KGDVS. | Too cold for a studio that sells warmth and furniture. |
+- **KH mark:** pinned to the left edge, as on their site. It now turns as you scroll and is redrawn as SVG.
+- **Colour drift:** blue → violet → rose → blue. It is now tied to sections instead of running freely.
+- **Type:** their wide-tracked grotesk. Archivo stands in, pushed to its widest setting for headlines.
+- **Voice:** "Wir geben Räumen eine Stimme. The Voice of Space.", "Old School Telefon", "Be water my friend".
 
-**Why A:** "circular" is the one thing that sets them apart from other interior studios, and A is the only direction where it shapes the site itself, not just the copy.
+## What the redesign adds
 
-## Reference studios
+1. Loader: the KH mark draws itself
+2. Hero: "THE VOICE OF SPACE" in huge type, with the mark set in as a glyph
+3. Studio copy inks in word by word, then their four promises (experience, European makers, sustainable, best terms)
+4. **700+** projects counts up. The project types become a kinetic list (hotels, half cruise ships, stadium lounges, a stalactite cave)
+5. **Their model as an interaction:** a Low Budget ↔ Einzigartigkeit slider whose answer never changes ("exklusive, identitätsstiftende Räume")
+6. Marquee of the furniture brands from Christian's career
+7. Film slot that opens from a circle to full frame
+8. Team: large duotone portraits that turn to full colour on hover
+9. Contact: WhatsApp, Email and Old School Telefon as three large rows
 
-- **Norm Architects:** restraint, negative space, material calm.
-- **Studio David Thulstrup:** editorial project pages, colour used as a material.
-- **Spacon & X:** circular furniture done credibly, which is close to KH's story.
-- **Note Design Studio:** playful type set against serious interiors.
-- **Kinfolk / Fantastic Frank:** photo-led editorial rhythm.
+## Gaps to fill before the meeting
 
-## Page structure
-
-1. Preloader: a ring draws to 100 and opens into the hero
-2. Hero: "Räume, die im Kreis denken." with an orbiting photo disc
-3. Studio manifesto: words ink in as you scroll, plus the three fields (Wohnen, Hospitality, Büro)
-4. **Kreislauf:** a pinned ring with five stations (Bedarfsanalyse → Konzept → Material → Montage → Rückführung)
-5. Projekte: a pinned horizontal rail, with a circularity metric on every card
-6. **Materialpass:** an interactive material passport (origin, second life, CO₂, take-back)
-7. Budgetebenen: three tiers
-8. Disciplines marquee
-9. Gute Räume: the Hamburg concept store
-10. Contact: a magnetic e-mail disc, then the footer wordmark
-
-## Before showing it
-
-- **Placeholders:** project names, the metrics on the cards and the material passport values are invented for the pitch. They are labelled on the page. Replace them with real data.
-- **Images:** four are AI-generated mood images on a Higgsfield CDN (`d8j0ntlcm91z4.cloudfront.net`). Download them into `img/` before the meeting, or swap in the studio's own photos.
-- **Contact details:** the e-mail address is a guess (`hallo@…`). The address comes from search results.
+- **Video:** their site has a film, but there is no file yet. Save it as `video/kh-collective.mp4`. Until then the frame shows Milica's photo as the poster.
+- **Photos:** the portraits are cropped from phone screenshots (about 670 px wide). Ask the studio for the originals.
+- **Contact links:** the WhatsApp, Email and phone links are `#`, because the screenshots don't show the numbers.
+- **Partial bios:** the screenshots cut the bios off.
+  - Milica's bio is joined from two fragments.
+  - David's sentence ends with "David wäre es.", which is reconstructed.
+  - Check both against the site.
+- **First screen:** the top of their homepage was not captured. The hero uses their own line "The Voice of Space".
 
 ## Stack
 
 HTML, CSS and JS. The page uses GSAP 3.12.5 with ScrollTrigger (cdnjs) and Lenis 1.1.13 (unpkg).
-Fonts are Instrument Serif, Geist and Geist Mono from Google Fonts. If GSAP fails to load, or the
-visitor prefers reduced motion, the page skips the loader and shows everything as static.
+Archivo comes from Google Fonts. If GSAP fails to load, or the visitor prefers reduced motion,
+the page skips the loader and shows everything as static.
