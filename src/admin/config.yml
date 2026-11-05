@@ -64,15 +64,27 @@ collections:
             label_singular: Reparatur
             widget: list
             summary: '{{fields.service}} · {{fields.label}} · {{fields.price}} €'
+            collapsed: true
             fields:
+              # a plain select (not a relation): a relation widget in each of the ~1,600 rows made the editor very slow.
+              # Keep these options in sync with src/_data/repairTypes.json (npm test checks it).
               - name: service
                 label: Reparaturart
-                widget: relation
-                collection: einstellungen
-                file: reparaturarten
-                search_fields: ['items.*.label']
-                value_field: 'items.*.id'
-                display_fields: ['items.*.label']
+                widget: select
+                options:
+                  - { value: display, label: Display }
+                  - { value: akku, label: Akkuwechsel }
+                  - { value: backcover, label: Backcover }
+                  - { value: ladebuchse, label: Ladebuchse }
+                  - { value: hauptkamera, label: Hauptkamera }
+                  - { value: frontkamera, label: Frontkamera }
+                  - { value: lautsprecher, label: Lautsprecher }
+                  - { value: wifi-bluetooth, label: WiFi & Bluetooth }
+                  - { value: wasserschaden, label: Wasserschaden }
+                  - { value: platine, label: Platine }
+                  - { value: fehleranalyse, label: Fehleranalyse }
+                  - { value: panzerglas, label: Panzerglas }
+                  - { value: zubehoer, label: Zubehör }
               - { name: label, label: Bezeichnung, widget: string, required: false, hint: 'z. B. „Original" oder „Kompatibel". Leer = Name der Reparaturart' }
               - { name: price, label: Preis in €, widget: number, value_type: float, min: 0, max: 5000, step: 0.01, required: false, hint: 'Leer lassen, wenn „auf Anfrage"' }
               - { name: from, label: „ab"-Preis, widget: boolean, default: false, required: false }
@@ -187,6 +199,7 @@ collections:
         fields:
           - name: items
             label: Reparaturarten
+            hint: 'Namen, Dauer und Texte hier ändern. Eine ganz neue Reparaturart bitte über Ihren Betreuer anlegen – sie muss auch in der Preisauswahl ergänzt werden.'
             widget: list
             summary: '{{fields.label}}'
             fields:

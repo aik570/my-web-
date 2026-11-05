@@ -87,7 +87,8 @@ try {
   console.log('\nadmin: Befund price and opening hours (Laden & Kontakt)');
   await page.goto('http://localhost:8080/admin/#/collections/einstellungen/entries/kontakt'); await page.reload(); await page.waitForTimeout(6000);
   const fee = await field(page, 'Preis in €');
-  ok(Number(await fee.inputValue()) === 25, `editor shows Befund 25 €`);
+  const FEE = JSON.parse(originals[SITE]).diagnosisFee.amount;
+  ok(Number(await fee.inputValue()) === FEE, `editor shows Befund ${FEE} €`);
   await fee.fill('31');
   const satTo = await field(page, 'Bis', 5);   // Montag … Samstag = 6th row
   ok((await satTo.inputValue()) === '18:00', 'editor shows Saturday until 18:00');
@@ -154,7 +155,7 @@ try {
   const anyModel = cat.brands[0].models.find((x) => x.repairs.some((r) => r[0] === 'fehleranalyse'));
   ok(anyModel.repairs.find((r) => r[0] === 'fehleranalyse')[2] === 31, `Befund in the catalogue rows: 31 € (${anyModel.name})`);
   const leist = fs.readFileSync(`${OUT}/leistungen/index.html`, 'utf8'), home = fs.readFileSync(`${OUT}/index.html`, 'utf8'), finder = fs.readFileSync(`${OUT}/reparatur-finden/index.html`, 'utf8');
-  ok(/Fehleranalyse ab 31 €/.test(leist) && !/ab 25 €/.test(leist), 'Befund on /leistungen/: ab 31 €, no 25 € left');
+  ok(/Fehleranalyse ab 31 €/.test(leist) && !new RegExp(`ab ${JSON.parse(originals[SITE]).diagnosisFee.amount} €`).test(leist), 'Befund on /leistungen/: ab 31 €, old fee gone');
   ok(/ab 31 €/.test(home) && /31 €/.test(finder), 'Befund in FAQ (home) and Preisrechner hint: 31 €');
   // opening hours everywhere
   ok(/Samstag<\/th><td>10:00 – 17:30/.test(home), 'hours table (home): Samstag 10:00 – 17:30');

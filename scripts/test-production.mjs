@@ -11,6 +11,16 @@ let failed = 0;
 const ok = (c, m) => { console.log(`${c ? '  ✓' : '  ✗'} ${m}`); if (!c) failed++; };
 
 console.log('\nproduction build');
+// CMS: the repair-type select in the price editor lists exactly the repair types of repairTypes.json
+{
+  const cfg = fs.readFileSync('src/admin/config.yml', 'utf8');
+  const block = cfg.split('name: service')[1].split('- { name: label')[0];
+  const opts = [...block.matchAll(/value: ([a-z0-9-]+)/g)].map((m) => m[1]);
+  const rt = JSON.parse(fs.readFileSync('src/_data/repairTypes.json', 'utf8'));
+  const ids = (rt.items || rt).map((i) => i.id);
+  ok(opts.join() === ids.join(), `CMS repair-type options = repairTypes.json (${opts.length})`);
+}
+
 fs.rmSync(OUT, { recursive: true, force: true });
 execSync(`npx eleventy --quiet --output=${OUT}`, { env: { ...process.env, CONTEXT: 'production' }, stdio: 'pipe' });
 
