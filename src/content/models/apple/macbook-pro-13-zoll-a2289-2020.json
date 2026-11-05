@@ -1,0 +1,103 @@
+{
+  "seq": 92,
+  "name": "MacBook Pro 13 Zoll A2289 (2020)",
+  "category": "Laptop",
+  "repairs": [
+    {
+      "service": "display",
+      "label": "Display – Standardqualität",
+      "price": null,
+      "from": false,
+      "onRequest": true,
+      "note": ""
+    },
+    {
+      "service": "display",
+      "label": "Display – Originalqualität",
+      "price": 699,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "akku",
+      "label": "",
+      "price": 249,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "backcover",
+      "label": "",
+      "price": null,
+      "from": false,
+      "onRequest": true,
+      "note": ""
+    },
+    {
+      "service": "ladebuchse",
+      "label": "",
+      "price": null,
+      "from": false,
+      "onRequest": true,
+      "note": ""
+    },
+    {
+      "service": "hauptkamera",
+      "label": "",
+      "price": null,
+      "from": false,
+      "onRequest": true,
+      "note": ""
+    },
+    {
+      "service": "frontkamera",
+      "label": "",
+      "price": null,
+      "from": false,
+      "onRequest": true,
+      "note": ""
+    },
+    {
+      "service": "lautsprecher",
+      "label": "",
+      "price": null,
+      "from": false,
+      "onRequest": true,
+      "note": ""
+    },
+    {
+      "service": "wifi-bluetooth",
+      "label": "",
+      "price": null,
+      "from": false,
+      "onRequest": true,
+      "note": ""
+    },
+    {
+      "service": "wasserschaden",
+      "label": "",
+      "price": 50,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "fehleranalyse",
+      "label": "",
+      "price": 35,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "panzerglas",
+      "label": "",
+      "price": null,
+      "from": false,
+      "onRequest": true,
+      "note": ""
+    }
+  ]
+}

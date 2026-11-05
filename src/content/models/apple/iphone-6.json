@@ -1,0 +1,103 @@
+{
+  "seq": 35,
+  "name": "iPhone 6",
+  "category": "Smartphone",
+  "repairs": [
+    {
+      "service": "display",
+      "label": "Display – Standardqualität",
+      "price": 59,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "display",
+      "label": "Display – Originalqualität",
+      "price": 79,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "akku",
+      "label": "",
+      "price": 59,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "backcover",
+      "label": "",
+      "price": null,
+      "from": false,
+      "onRequest": true,
+      "note": ""
+    },
+    {
+      "service": "ladebuchse",
+      "label": "",
+      "price": 89,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "hauptkamera",
+      "label": "",
+      "price": 59,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "frontkamera",
+      "label": "",
+      "price": 59,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "lautsprecher",
+      "label": "",
+      "price": 79,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "wifi-bluetooth",
+      "label": "",
+      "price": 349,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "wasserschaden",
+      "label": "",
+      "price": 35,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "fehleranalyse",
+      "label": "",
+      "price": 25,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "panzerglas",
+      "label": "",
+      "price": 25,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    }
+  ]
+}

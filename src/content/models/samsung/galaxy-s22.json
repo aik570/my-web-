@@ -1,0 +1,127 @@
+{
+  "seq": 13,
+  "name": "Galaxy S22",
+  "category": "Smartphone",
+  "repairs": [
+    {
+      "service": "display",
+      "label": "Display – Standardqualität",
+      "price": null,
+      "from": false,
+      "onRequest": true,
+      "note": ""
+    },
+    {
+      "service": "display",
+      "label": "Display – Originalqualität",
+      "price": 249,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "akku",
+      "label": "",
+      "price": 119,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "backcover",
+      "label": "",
+      "price": 119,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "ladebuchse",
+      "label": "",
+      "price": 119,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "hauptkamera",
+      "label": "",
+      "price": null,
+      "from": false,
+      "onRequest": true,
+      "note": ""
+    },
+    {
+      "service": "frontkamera",
+      "label": "",
+      "price": null,
+      "from": false,
+      "onRequest": true,
+      "note": ""
+    },
+    {
+      "service": "lautsprecher",
+      "label": "",
+      "price": null,
+      "from": false,
+      "onRequest": true,
+      "note": ""
+    },
+    {
+      "service": "wifi-bluetooth",
+      "label": "",
+      "price": null,
+      "from": false,
+      "onRequest": true,
+      "note": ""
+    },
+    {
+      "service": "wasserschaden",
+      "label": "",
+      "price": 91,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "fehleranalyse",
+      "label": "",
+      "price": 25,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "panzerglas",
+      "label": "",
+      "price": 32,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "zubehoer",
+      "label": "Schutzfolie",
+      "price": 30,
+      "from": false,
+      "onRequest": false,
+      "note": "Hochwertiger Displayschutz"
+    },
+    {
+      "service": "zubehoer",
+      "label": "Handyhülle",
+      "price": 40,
+      "from": false,
+      "onRequest": false,
+      "note": "Robuste Schutzhülle"
+    },
+    {
+      "service": "zubehoer",
+      "label": "Panzerglas",
+      "price": 50,
+      "from": false,
+      "onRequest": false,
+      "note": "Premium Displayschutz aus Panzerglas"
+    }
+  ]
+}

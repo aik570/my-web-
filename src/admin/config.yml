@@ -4,6 +4,7 @@
 
 backend:
   name: github
+  use_graphql: true
   # PREVIEW SETUP: work repository and working branch, so CMS saves trigger
   # Netlify branch deploys of the preview. Before launch: client-owned repository
   # and its production branch (npm run check blocks launch until then).
@@ -30,67 +31,402 @@ public_folder: /assets/img/uploads
 collections:
 
   # ---------------------------------------------------------------- Preise
-  - name: preise
-    label: Preise
-    label_singular: Hersteller
-    description: Ein Eintrag pro Hersteller. Darin Modelle und deren Reparaturen mit Preis. Ungültige Preise verhindern die Veröffentlichung.
-    folder: src/content/prices
+  # One collection per manufacturer, one file per model (src/content/models/<marke>/<modell>.json):
+  # the editor only loads the model you open, so it stays fast with hundreds of models.
+  - name: preise-apple
+    label: "Preise · Apple"
+    label_singular: Modell
+    description: 'Ein Eintrag pro Modell mit seinen Reparaturen und Preisen. Suchen: Strg+F oder oben „Suchen". Ungültige Preise verhindern die Veröffentlichung.'
+    folder: src/content/models/apple
     extension: json
     format: json
     create: true
     delete: true
+    identifier_field: name
+    slug: '{{name}}'
+    summary: '{{name}}'
+    sortable_fields: ['name']
+    editor: { preview: false }
+    fields:
+      - { name: seq, label: Reihenfolge (intern), widget: hidden, required: false }
+      - { name: name, label: Modell, widget: string, hint: 'Genaue Bezeichnung inkl. Variante, z. B. „iPhone 16 Pro Max", „Galaxy S24 Ultra". Die Reihenfolge auf der Website ergibt sich automatisch (neueste zuerst).' }
+      - { name: id, label: Katalog-ID, widget: string, required: false, pattern: ['^([a-z0-9]+(-[a-z0-9]+)*)?$', 'Nur a–z, 0–9 und Bindestrich'], hint: 'Leer = wird aus dem Namen gebildet (z. B. iphone-16-pro-max). Bestimmt die Adresse /preise/<hersteller>/<id>/ und die Zuordnung des Produktfotos. Bei einer Umbenennung des Modells hier die bisherige ID eintragen, damit Links gleich bleiben.' }
+      - { name: category, label: Gerätetyp, widget: select, options: [Smartphone, Tablet, Laptop, Smartwatch, PC, Sonstiges], default: Smartphone, required: false }
+      - { name: group, label: Gruppe im Preisrechner (optional), widget: string, required: false, hint: 'Leer = automatisch (z. B. „iPhone", „iPhone SE", „Galaxy S"). Nur eintragen, um die Überschrift zu ändern.' }
+      - { name: position, label: Position (optional), widget: number, value_type: int, min: 1, required: false, hint: 'Leer = automatisch, neueste zuerst. Eine Zahl setzt das Modell an diese Stelle der Liste (1 = ganz oben).' }
+      - name: repairs
+        label: Reparaturen
+        label_singular: Reparatur
+        widget: list
+        summary: '{{fields.service}} · {{fields.label}} · {{fields.price}} €'
+        collapsed: true
+        fields:
+          # a plain select (not a relation): a relation widget in each of the ~1,600 rows made the editor very slow.
+          # Keep these options in sync with src/_data/repairTypes.json (npm test checks it).
+          - name: service
+            label: Reparaturart
+            widget: select
+            options:
+              - { value: display, label: Display }
+              - { value: akku, label: Akkuwechsel }
+              - { value: backcover, label: Backcover }
+              - { value: ladebuchse, label: Ladebuchse }
+              - { value: hauptkamera, label: Hauptkamera }
+              - { value: frontkamera, label: Frontkamera }
+              - { value: lautsprecher, label: Lautsprecher }
+              - { value: wifi-bluetooth, label: WiFi & Bluetooth }
+              - { value: wasserschaden, label: Wasserschaden }
+              - { value: platine, label: Platine }
+              - { value: fehleranalyse, label: Fehleranalyse }
+              - { value: panzerglas, label: Panzerglas }
+              - { value: zubehoer, label: Zubehör }
+          - { name: label, label: Bezeichnung, widget: string, required: false, hint: 'z. B. „Original" oder „Kompatibel". Leer = Name der Reparaturart' }
+          - { name: price, label: Preis in €, widget: number, value_type: float, min: 0, max: 5000, step: 0.01, required: false, hint: 'Leer lassen, wenn „auf Anfrage"' }
+          - { name: from, label: „ab"-Preis, widget: boolean, default: false, required: false }
+          - { name: onRequest, label: Preis auf Anfrage, widget: boolean, default: false, required: false }
+          - { name: note, label: Hinweis, widget: string, required: false }
+          - { name: duration, label: Dauer (nur dieses Modell), widget: string, required: false, hint: 'Leer = Dauer der Reparaturart (Einstellungen › Reparaturarten), z. B. „ca. 90 Minuten"' }
+
+  - name: preise-samsung
+    label: "Preise · Samsung"
+    label_singular: Modell
+    description: 'Ein Eintrag pro Modell mit seinen Reparaturen und Preisen. Suchen: Strg+F oder oben „Suchen". Ungültige Preise verhindern die Veröffentlichung.'
+    folder: src/content/models/samsung
+    extension: json
+    format: json
+    create: true
+    delete: true
+    identifier_field: name
+    slug: '{{name}}'
+    summary: '{{name}}'
+    sortable_fields: ['name']
+    editor: { preview: false }
+    fields:
+      - { name: seq, label: Reihenfolge (intern), widget: hidden, required: false }
+      - { name: name, label: Modell, widget: string, hint: 'Genaue Bezeichnung inkl. Variante, z. B. „iPhone 16 Pro Max", „Galaxy S24 Ultra". Die Reihenfolge auf der Website ergibt sich automatisch (neueste zuerst).' }
+      - { name: id, label: Katalog-ID, widget: string, required: false, pattern: ['^([a-z0-9]+(-[a-z0-9]+)*)?$', 'Nur a–z, 0–9 und Bindestrich'], hint: 'Leer = wird aus dem Namen gebildet (z. B. iphone-16-pro-max). Bestimmt die Adresse /preise/<hersteller>/<id>/ und die Zuordnung des Produktfotos. Bei einer Umbenennung des Modells hier die bisherige ID eintragen, damit Links gleich bleiben.' }
+      - { name: category, label: Gerätetyp, widget: select, options: [Smartphone, Tablet, Laptop, Smartwatch, PC, Sonstiges], default: Smartphone, required: false }
+      - { name: group, label: Gruppe im Preisrechner (optional), widget: string, required: false, hint: 'Leer = automatisch (z. B. „iPhone", „iPhone SE", „Galaxy S"). Nur eintragen, um die Überschrift zu ändern.' }
+      - { name: position, label: Position (optional), widget: number, value_type: int, min: 1, required: false, hint: 'Leer = automatisch, neueste zuerst. Eine Zahl setzt das Modell an diese Stelle der Liste (1 = ganz oben).' }
+      - name: repairs
+        label: Reparaturen
+        label_singular: Reparatur
+        widget: list
+        summary: '{{fields.service}} · {{fields.label}} · {{fields.price}} €'
+        collapsed: true
+        fields:
+          # a plain select (not a relation): a relation widget in each of the ~1,600 rows made the editor very slow.
+          # Keep these options in sync with src/_data/repairTypes.json (npm test checks it).
+          - name: service
+            label: Reparaturart
+            widget: select
+            options:
+              - { value: display, label: Display }
+              - { value: akku, label: Akkuwechsel }
+              - { value: backcover, label: Backcover }
+              - { value: ladebuchse, label: Ladebuchse }
+              - { value: hauptkamera, label: Hauptkamera }
+              - { value: frontkamera, label: Frontkamera }
+              - { value: lautsprecher, label: Lautsprecher }
+              - { value: wifi-bluetooth, label: WiFi & Bluetooth }
+              - { value: wasserschaden, label: Wasserschaden }
+              - { value: platine, label: Platine }
+              - { value: fehleranalyse, label: Fehleranalyse }
+              - { value: panzerglas, label: Panzerglas }
+              - { value: zubehoer, label: Zubehör }
+          - { name: label, label: Bezeichnung, widget: string, required: false, hint: 'z. B. „Original" oder „Kompatibel". Leer = Name der Reparaturart' }
+          - { name: price, label: Preis in €, widget: number, value_type: float, min: 0, max: 5000, step: 0.01, required: false, hint: 'Leer lassen, wenn „auf Anfrage"' }
+          - { name: from, label: „ab"-Preis, widget: boolean, default: false, required: false }
+          - { name: onRequest, label: Preis auf Anfrage, widget: boolean, default: false, required: false }
+          - { name: note, label: Hinweis, widget: string, required: false }
+          - { name: duration, label: Dauer (nur dieses Modell), widget: string, required: false, hint: 'Leer = Dauer der Reparaturart (Einstellungen › Reparaturarten), z. B. „ca. 90 Minuten"' }
+
+  - name: preise-huawei
+    label: "Preise · Huawei"
+    label_singular: Modell
+    description: 'Ein Eintrag pro Modell mit seinen Reparaturen und Preisen. Suchen: Strg+F oder oben „Suchen". Ungültige Preise verhindern die Veröffentlichung.'
+    folder: src/content/models/huawei
+    extension: json
+    format: json
+    create: true
+    delete: true
+    identifier_field: name
+    slug: '{{name}}'
+    summary: '{{name}}'
+    sortable_fields: ['name']
+    editor: { preview: false }
+    fields:
+      - { name: seq, label: Reihenfolge (intern), widget: hidden, required: false }
+      - { name: name, label: Modell, widget: string, hint: 'Genaue Bezeichnung inkl. Variante, z. B. „iPhone 16 Pro Max", „Galaxy S24 Ultra". Die Reihenfolge auf der Website ergibt sich automatisch (neueste zuerst).' }
+      - { name: id, label: Katalog-ID, widget: string, required: false, pattern: ['^([a-z0-9]+(-[a-z0-9]+)*)?$', 'Nur a–z, 0–9 und Bindestrich'], hint: 'Leer = wird aus dem Namen gebildet (z. B. iphone-16-pro-max). Bestimmt die Adresse /preise/<hersteller>/<id>/ und die Zuordnung des Produktfotos. Bei einer Umbenennung des Modells hier die bisherige ID eintragen, damit Links gleich bleiben.' }
+      - { name: category, label: Gerätetyp, widget: select, options: [Smartphone, Tablet, Laptop, Smartwatch, PC, Sonstiges], default: Smartphone, required: false }
+      - { name: group, label: Gruppe im Preisrechner (optional), widget: string, required: false, hint: 'Leer = automatisch (z. B. „iPhone", „iPhone SE", „Galaxy S"). Nur eintragen, um die Überschrift zu ändern.' }
+      - { name: position, label: Position (optional), widget: number, value_type: int, min: 1, required: false, hint: 'Leer = automatisch, neueste zuerst. Eine Zahl setzt das Modell an diese Stelle der Liste (1 = ganz oben).' }
+      - name: repairs
+        label: Reparaturen
+        label_singular: Reparatur
+        widget: list
+        summary: '{{fields.service}} · {{fields.label}} · {{fields.price}} €'
+        collapsed: true
+        fields:
+          # a plain select (not a relation): a relation widget in each of the ~1,600 rows made the editor very slow.
+          # Keep these options in sync with src/_data/repairTypes.json (npm test checks it).
+          - name: service
+            label: Reparaturart
+            widget: select
+            options:
+              - { value: display, label: Display }
+              - { value: akku, label: Akkuwechsel }
+              - { value: backcover, label: Backcover }
+              - { value: ladebuchse, label: Ladebuchse }
+              - { value: hauptkamera, label: Hauptkamera }
+              - { value: frontkamera, label: Frontkamera }
+              - { value: lautsprecher, label: Lautsprecher }
+              - { value: wifi-bluetooth, label: WiFi & Bluetooth }
+              - { value: wasserschaden, label: Wasserschaden }
+              - { value: platine, label: Platine }
+              - { value: fehleranalyse, label: Fehleranalyse }
+              - { value: panzerglas, label: Panzerglas }
+              - { value: zubehoer, label: Zubehör }
+          - { name: label, label: Bezeichnung, widget: string, required: false, hint: 'z. B. „Original" oder „Kompatibel". Leer = Name der Reparaturart' }
+          - { name: price, label: Preis in €, widget: number, value_type: float, min: 0, max: 5000, step: 0.01, required: false, hint: 'Leer lassen, wenn „auf Anfrage"' }
+          - { name: from, label: „ab"-Preis, widget: boolean, default: false, required: false }
+          - { name: onRequest, label: Preis auf Anfrage, widget: boolean, default: false, required: false }
+          - { name: note, label: Hinweis, widget: string, required: false }
+          - { name: duration, label: Dauer (nur dieses Modell), widget: string, required: false, hint: 'Leer = Dauer der Reparaturart (Einstellungen › Reparaturarten), z. B. „ca. 90 Minuten"' }
+
+  - name: preise-xiaomi
+    label: "Preise · Xiaomi"
+    label_singular: Modell
+    description: 'Ein Eintrag pro Modell mit seinen Reparaturen und Preisen. Suchen: Strg+F oder oben „Suchen". Ungültige Preise verhindern die Veröffentlichung.'
+    folder: src/content/models/xiaomi
+    extension: json
+    format: json
+    create: true
+    delete: true
+    identifier_field: name
+    slug: '{{name}}'
+    summary: '{{name}}'
+    sortable_fields: ['name']
+    editor: { preview: false }
+    fields:
+      - { name: seq, label: Reihenfolge (intern), widget: hidden, required: false }
+      - { name: name, label: Modell, widget: string, hint: 'Genaue Bezeichnung inkl. Variante, z. B. „iPhone 16 Pro Max", „Galaxy S24 Ultra". Die Reihenfolge auf der Website ergibt sich automatisch (neueste zuerst).' }
+      - { name: id, label: Katalog-ID, widget: string, required: false, pattern: ['^([a-z0-9]+(-[a-z0-9]+)*)?$', 'Nur a–z, 0–9 und Bindestrich'], hint: 'Leer = wird aus dem Namen gebildet (z. B. iphone-16-pro-max). Bestimmt die Adresse /preise/<hersteller>/<id>/ und die Zuordnung des Produktfotos. Bei einer Umbenennung des Modells hier die bisherige ID eintragen, damit Links gleich bleiben.' }
+      - { name: category, label: Gerätetyp, widget: select, options: [Smartphone, Tablet, Laptop, Smartwatch, PC, Sonstiges], default: Smartphone, required: false }
+      - { name: group, label: Gruppe im Preisrechner (optional), widget: string, required: false, hint: 'Leer = automatisch (z. B. „iPhone", „iPhone SE", „Galaxy S"). Nur eintragen, um die Überschrift zu ändern.' }
+      - { name: position, label: Position (optional), widget: number, value_type: int, min: 1, required: false, hint: 'Leer = automatisch, neueste zuerst. Eine Zahl setzt das Modell an diese Stelle der Liste (1 = ganz oben).' }
+      - name: repairs
+        label: Reparaturen
+        label_singular: Reparatur
+        widget: list
+        summary: '{{fields.service}} · {{fields.label}} · {{fields.price}} €'
+        collapsed: true
+        fields:
+          # a plain select (not a relation): a relation widget in each of the ~1,600 rows made the editor very slow.
+          # Keep these options in sync with src/_data/repairTypes.json (npm test checks it).
+          - name: service
+            label: Reparaturart
+            widget: select
+            options:
+              - { value: display, label: Display }
+              - { value: akku, label: Akkuwechsel }
+              - { value: backcover, label: Backcover }
+              - { value: ladebuchse, label: Ladebuchse }
+              - { value: hauptkamera, label: Hauptkamera }
+              - { value: frontkamera, label: Frontkamera }
+              - { value: lautsprecher, label: Lautsprecher }
+              - { value: wifi-bluetooth, label: WiFi & Bluetooth }
+              - { value: wasserschaden, label: Wasserschaden }
+              - { value: platine, label: Platine }
+              - { value: fehleranalyse, label: Fehleranalyse }
+              - { value: panzerglas, label: Panzerglas }
+              - { value: zubehoer, label: Zubehör }
+          - { name: label, label: Bezeichnung, widget: string, required: false, hint: 'z. B. „Original" oder „Kompatibel". Leer = Name der Reparaturart' }
+          - { name: price, label: Preis in €, widget: number, value_type: float, min: 0, max: 5000, step: 0.01, required: false, hint: 'Leer lassen, wenn „auf Anfrage"' }
+          - { name: from, label: „ab"-Preis, widget: boolean, default: false, required: false }
+          - { name: onRequest, label: Preis auf Anfrage, widget: boolean, default: false, required: false }
+          - { name: note, label: Hinweis, widget: string, required: false }
+          - { name: duration, label: Dauer (nur dieses Modell), widget: string, required: false, hint: 'Leer = Dauer der Reparaturart (Einstellungen › Reparaturarten), z. B. „ca. 90 Minuten"' }
+
+  - name: preise-google
+    label: "Preise · Google"
+    label_singular: Modell
+    description: 'Ein Eintrag pro Modell mit seinen Reparaturen und Preisen. Suchen: Strg+F oder oben „Suchen". Ungültige Preise verhindern die Veröffentlichung.'
+    folder: src/content/models/google
+    extension: json
+    format: json
+    create: true
+    delete: true
+    identifier_field: name
+    slug: '{{name}}'
+    summary: '{{name}}'
+    sortable_fields: ['name']
+    editor: { preview: false }
+    fields:
+      - { name: seq, label: Reihenfolge (intern), widget: hidden, required: false }
+      - { name: name, label: Modell, widget: string, hint: 'Genaue Bezeichnung inkl. Variante, z. B. „iPhone 16 Pro Max", „Galaxy S24 Ultra". Die Reihenfolge auf der Website ergibt sich automatisch (neueste zuerst).' }
+      - { name: id, label: Katalog-ID, widget: string, required: false, pattern: ['^([a-z0-9]+(-[a-z0-9]+)*)?$', 'Nur a–z, 0–9 und Bindestrich'], hint: 'Leer = wird aus dem Namen gebildet (z. B. iphone-16-pro-max). Bestimmt die Adresse /preise/<hersteller>/<id>/ und die Zuordnung des Produktfotos. Bei einer Umbenennung des Modells hier die bisherige ID eintragen, damit Links gleich bleiben.' }
+      - { name: category, label: Gerätetyp, widget: select, options: [Smartphone, Tablet, Laptop, Smartwatch, PC, Sonstiges], default: Smartphone, required: false }
+      - { name: group, label: Gruppe im Preisrechner (optional), widget: string, required: false, hint: 'Leer = automatisch (z. B. „iPhone", „iPhone SE", „Galaxy S"). Nur eintragen, um die Überschrift zu ändern.' }
+      - { name: position, label: Position (optional), widget: number, value_type: int, min: 1, required: false, hint: 'Leer = automatisch, neueste zuerst. Eine Zahl setzt das Modell an diese Stelle der Liste (1 = ganz oben).' }
+      - name: repairs
+        label: Reparaturen
+        label_singular: Reparatur
+        widget: list
+        summary: '{{fields.service}} · {{fields.label}} · {{fields.price}} €'
+        collapsed: true
+        fields:
+          # a plain select (not a relation): a relation widget in each of the ~1,600 rows made the editor very slow.
+          # Keep these options in sync with src/_data/repairTypes.json (npm test checks it).
+          - name: service
+            label: Reparaturart
+            widget: select
+            options:
+              - { value: display, label: Display }
+              - { value: akku, label: Akkuwechsel }
+              - { value: backcover, label: Backcover }
+              - { value: ladebuchse, label: Ladebuchse }
+              - { value: hauptkamera, label: Hauptkamera }
+              - { value: frontkamera, label: Frontkamera }
+              - { value: lautsprecher, label: Lautsprecher }
+              - { value: wifi-bluetooth, label: WiFi & Bluetooth }
+              - { value: wasserschaden, label: Wasserschaden }
+              - { value: platine, label: Platine }
+              - { value: fehleranalyse, label: Fehleranalyse }
+              - { value: panzerglas, label: Panzerglas }
+              - { value: zubehoer, label: Zubehör }
+          - { name: label, label: Bezeichnung, widget: string, required: false, hint: 'z. B. „Original" oder „Kompatibel". Leer = Name der Reparaturart' }
+          - { name: price, label: Preis in €, widget: number, value_type: float, min: 0, max: 5000, step: 0.01, required: false, hint: 'Leer lassen, wenn „auf Anfrage"' }
+          - { name: from, label: „ab"-Preis, widget: boolean, default: false, required: false }
+          - { name: onRequest, label: Preis auf Anfrage, widget: boolean, default: false, required: false }
+          - { name: note, label: Hinweis, widget: string, required: false }
+          - { name: duration, label: Dauer (nur dieses Modell), widget: string, required: false, hint: 'Leer = Dauer der Reparaturart (Einstellungen › Reparaturarten), z. B. „ca. 90 Minuten"' }
+
+  - name: preise-sony
+    label: "Preise · Sony"
+    label_singular: Modell
+    description: 'Ein Eintrag pro Modell mit seinen Reparaturen und Preisen. Suchen: Strg+F oder oben „Suchen". Ungültige Preise verhindern die Veröffentlichung.'
+    folder: src/content/models/sony
+    extension: json
+    format: json
+    create: true
+    delete: true
+    identifier_field: name
+    slug: '{{name}}'
+    summary: '{{name}}'
+    sortable_fields: ['name']
+    editor: { preview: false }
+    fields:
+      - { name: seq, label: Reihenfolge (intern), widget: hidden, required: false }
+      - { name: name, label: Modell, widget: string, hint: 'Genaue Bezeichnung inkl. Variante, z. B. „iPhone 16 Pro Max", „Galaxy S24 Ultra". Die Reihenfolge auf der Website ergibt sich automatisch (neueste zuerst).' }
+      - { name: id, label: Katalog-ID, widget: string, required: false, pattern: ['^([a-z0-9]+(-[a-z0-9]+)*)?$', 'Nur a–z, 0–9 und Bindestrich'], hint: 'Leer = wird aus dem Namen gebildet (z. B. iphone-16-pro-max). Bestimmt die Adresse /preise/<hersteller>/<id>/ und die Zuordnung des Produktfotos. Bei einer Umbenennung des Modells hier die bisherige ID eintragen, damit Links gleich bleiben.' }
+      - { name: category, label: Gerätetyp, widget: select, options: [Smartphone, Tablet, Laptop, Smartwatch, PC, Sonstiges], default: Smartphone, required: false }
+      - { name: group, label: Gruppe im Preisrechner (optional), widget: string, required: false, hint: 'Leer = automatisch (z. B. „iPhone", „iPhone SE", „Galaxy S"). Nur eintragen, um die Überschrift zu ändern.' }
+      - { name: position, label: Position (optional), widget: number, value_type: int, min: 1, required: false, hint: 'Leer = automatisch, neueste zuerst. Eine Zahl setzt das Modell an diese Stelle der Liste (1 = ganz oben).' }
+      - name: repairs
+        label: Reparaturen
+        label_singular: Reparatur
+        widget: list
+        summary: '{{fields.service}} · {{fields.label}} · {{fields.price}} €'
+        collapsed: true
+        fields:
+          # a plain select (not a relation): a relation widget in each of the ~1,600 rows made the editor very slow.
+          # Keep these options in sync with src/_data/repairTypes.json (npm test checks it).
+          - name: service
+            label: Reparaturart
+            widget: select
+            options:
+              - { value: display, label: Display }
+              - { value: akku, label: Akkuwechsel }
+              - { value: backcover, label: Backcover }
+              - { value: ladebuchse, label: Ladebuchse }
+              - { value: hauptkamera, label: Hauptkamera }
+              - { value: frontkamera, label: Frontkamera }
+              - { value: lautsprecher, label: Lautsprecher }
+              - { value: wifi-bluetooth, label: WiFi & Bluetooth }
+              - { value: wasserschaden, label: Wasserschaden }
+              - { value: platine, label: Platine }
+              - { value: fehleranalyse, label: Fehleranalyse }
+              - { value: panzerglas, label: Panzerglas }
+              - { value: zubehoer, label: Zubehör }
+          - { name: label, label: Bezeichnung, widget: string, required: false, hint: 'z. B. „Original" oder „Kompatibel". Leer = Name der Reparaturart' }
+          - { name: price, label: Preis in €, widget: number, value_type: float, min: 0, max: 5000, step: 0.01, required: false, hint: 'Leer lassen, wenn „auf Anfrage"' }
+          - { name: from, label: „ab"-Preis, widget: boolean, default: false, required: false }
+          - { name: onRequest, label: Preis auf Anfrage, widget: boolean, default: false, required: false }
+          - { name: note, label: Hinweis, widget: string, required: false }
+          - { name: duration, label: Dauer (nur dieses Modell), widget: string, required: false, hint: 'Leer = Dauer der Reparaturart (Einstellungen › Reparaturarten), z. B. „ca. 90 Minuten"' }
+
+  - name: preise-oneplus
+    label: "Preise · OnePlus"
+    label_singular: Modell
+    description: 'Ein Eintrag pro Modell mit seinen Reparaturen und Preisen. Suchen: Strg+F oder oben „Suchen". Ungültige Preise verhindern die Veröffentlichung.'
+    folder: src/content/models/oneplus
+    extension: json
+    format: json
+    create: true
+    delete: true
+    identifier_field: name
+    slug: '{{name}}'
+    summary: '{{name}}'
+    sortable_fields: ['name']
+    editor: { preview: false }
+    fields:
+      - { name: seq, label: Reihenfolge (intern), widget: hidden, required: false }
+      - { name: name, label: Modell, widget: string, hint: 'Genaue Bezeichnung inkl. Variante, z. B. „iPhone 16 Pro Max", „Galaxy S24 Ultra". Die Reihenfolge auf der Website ergibt sich automatisch (neueste zuerst).' }
+      - { name: id, label: Katalog-ID, widget: string, required: false, pattern: ['^([a-z0-9]+(-[a-z0-9]+)*)?$', 'Nur a–z, 0–9 und Bindestrich'], hint: 'Leer = wird aus dem Namen gebildet (z. B. iphone-16-pro-max). Bestimmt die Adresse /preise/<hersteller>/<id>/ und die Zuordnung des Produktfotos. Bei einer Umbenennung des Modells hier die bisherige ID eintragen, damit Links gleich bleiben.' }
+      - { name: category, label: Gerätetyp, widget: select, options: [Smartphone, Tablet, Laptop, Smartwatch, PC, Sonstiges], default: Smartphone, required: false }
+      - { name: group, label: Gruppe im Preisrechner (optional), widget: string, required: false, hint: 'Leer = automatisch (z. B. „iPhone", „iPhone SE", „Galaxy S"). Nur eintragen, um die Überschrift zu ändern.' }
+      - { name: position, label: Position (optional), widget: number, value_type: int, min: 1, required: false, hint: 'Leer = automatisch, neueste zuerst. Eine Zahl setzt das Modell an diese Stelle der Liste (1 = ganz oben).' }
+      - name: repairs
+        label: Reparaturen
+        label_singular: Reparatur
+        widget: list
+        summary: '{{fields.service}} · {{fields.label}} · {{fields.price}} €'
+        collapsed: true
+        fields:
+          # a plain select (not a relation): a relation widget in each of the ~1,600 rows made the editor very slow.
+          # Keep these options in sync with src/_data/repairTypes.json (npm test checks it).
+          - name: service
+            label: Reparaturart
+            widget: select
+            options:
+              - { value: display, label: Display }
+              - { value: akku, label: Akkuwechsel }
+              - { value: backcover, label: Backcover }
+              - { value: ladebuchse, label: Ladebuchse }
+              - { value: hauptkamera, label: Hauptkamera }
+              - { value: frontkamera, label: Frontkamera }
+              - { value: lautsprecher, label: Lautsprecher }
+              - { value: wifi-bluetooth, label: WiFi & Bluetooth }
+              - { value: wasserschaden, label: Wasserschaden }
+              - { value: platine, label: Platine }
+              - { value: fehleranalyse, label: Fehleranalyse }
+              - { value: panzerglas, label: Panzerglas }
+              - { value: zubehoer, label: Zubehör }
+          - { name: label, label: Bezeichnung, widget: string, required: false, hint: 'z. B. „Original" oder „Kompatibel". Leer = Name der Reparaturart' }
+          - { name: price, label: Preis in €, widget: number, value_type: float, min: 0, max: 5000, step: 0.01, required: false, hint: 'Leer lassen, wenn „auf Anfrage"' }
+          - { name: from, label: „ab"-Preis, widget: boolean, default: false, required: false }
+          - { name: onRequest, label: Preis auf Anfrage, widget: boolean, default: false, required: false }
+          - { name: note, label: Hinweis, widget: string, required: false }
+          - { name: duration, label: Dauer (nur dieses Modell), widget: string, required: false, hint: 'Leer = Dauer der Reparaturart (Einstellungen › Reparaturarten), z. B. „ca. 90 Minuten"' }
+
+  - name: hersteller
+    label: Hersteller
+    label_singular: Hersteller
+    description: Name und Reihenfolge der Hersteller. Die Modelle stehen unter „Preise · …". Einen neuen Hersteller legt Ihr Betreuer an.
+    folder: src/content/prices
+    extension: json
+    format: json
+    create: false
+    delete: false
     identifier_field: brand
     slug: '{{brand}}'
     editor: { preview: false }
     summary: '{{brand}}'
-    sortable_fields: ['brand', 'order']
     fields:
       - { name: brand, label: Hersteller, widget: string, hint: 'z. B. Apple' }
       - { name: order, label: Reihenfolge, widget: number, value_type: int, min: 1, default: 10, hint: 'Kleinere Zahl = weiter oben' }
-      - name: models
-        label: Modelle
-        label_singular: Modell
-        widget: list
-        summary: '{{fields.name}}'
-        collapsed: true
-        fields:
-          - { name: name, label: Modell, widget: string, hint: 'Genaue Bezeichnung inkl. Variante, z. B. „iPhone 16 Pro Max", „Galaxy S24 Ultra". Die Reihenfolge auf der Website ergibt sich automatisch (neueste zuerst).' }
-          - { name: id, label: Katalog-ID, widget: string, required: false, pattern: ['^([a-z0-9]+(-[a-z0-9]+)*)?$', 'Nur a–z, 0–9 und Bindestrich'], hint: 'Leer = wird aus dem Namen gebildet (z. B. iphone-16-pro-max). Bestimmt die Adresse /preise/<hersteller>/<id>/ und die Zuordnung des Produktfotos. Bei einer Umbenennung des Modells hier die bisherige ID eintragen, damit Links gleich bleiben.' }
-          - { name: category, label: Gerätetyp, widget: select, options: [Smartphone, Tablet, Laptop, Smartwatch, PC, Sonstiges], default: Smartphone, required: false }
-          - { name: group, label: Gruppe im Preisrechner (optional), widget: string, required: false, hint: 'Leer = automatisch (z. B. „iPhone", „iPhone SE", „Galaxy S"). Nur eintragen, um die Überschrift zu ändern.' }
-          - { name: position, label: Position (optional), widget: number, value_type: int, min: 1, required: false, hint: 'Leer = automatisch, neueste zuerst. Eine Zahl setzt das Modell an diese Stelle der Liste (1 = ganz oben).' }
-          - name: repairs
-            label: Reparaturen
-            label_singular: Reparatur
-            widget: list
-            summary: '{{fields.service}} · {{fields.label}} · {{fields.price}} €'
-            collapsed: true
-            fields:
-              # a plain select (not a relation): a relation widget in each of the ~1,600 rows made the editor very slow.
-              # Keep these options in sync with src/_data/repairTypes.json (npm test checks it).
-              - name: service
-                label: Reparaturart
-                widget: select
-                options:
-                  - { value: display, label: Display }
-                  - { value: akku, label: Akkuwechsel }
-                  - { value: backcover, label: Backcover }
-                  - { value: ladebuchse, label: Ladebuchse }
-                  - { value: hauptkamera, label: Hauptkamera }
-                  - { value: frontkamera, label: Frontkamera }
-                  - { value: lautsprecher, label: Lautsprecher }
-                  - { value: wifi-bluetooth, label: WiFi & Bluetooth }
-                  - { value: wasserschaden, label: Wasserschaden }
-                  - { value: platine, label: Platine }
-                  - { value: fehleranalyse, label: Fehleranalyse }
-                  - { value: panzerglas, label: Panzerglas }
-                  - { value: zubehoer, label: Zubehör }
-              - { name: label, label: Bezeichnung, widget: string, required: false, hint: 'z. B. „Original" oder „Kompatibel". Leer = Name der Reparaturart' }
-              - { name: price, label: Preis in €, widget: number, value_type: float, min: 0, max: 5000, step: 0.01, required: false, hint: 'Leer lassen, wenn „auf Anfrage"' }
-              - { name: from, label: „ab"-Preis, widget: boolean, default: false, required: false }
-              - { name: onRequest, label: Preis auf Anfrage, widget: boolean, default: false, required: false }
-              - { name: note, label: Hinweis, widget: string, required: false }
-              - { name: duration, label: Dauer (nur dieses Modell), widget: string, required: false, hint: 'Leer = Dauer der Reparaturart (Einstellungen › Reparaturarten), z. B. „ca. 90 Minuten"' }
 
   # ---------------------------------------------------------------- Einstellungen
   - name: einstellungen
@@ -238,14 +574,7 @@ collections:
             summary: '{{fields.model}} · {{fields.license}}'
             hint: 'Nur saubere Produktfotos (Gerät freigestellt auf Weiß, ganz sichtbar, keine Hände) mit Lizenz für die gewerbliche Nutzung auf dieser Website. Viele Fotos auf einmal: scripts/photos/normalize.py (siehe docs/CMS.md).'
             fields:
-              - name: model
-                label: Modell
-                widget: relation
-                collection: preise
-                value_field: 'models.*.name'
-                search_fields: ['models.*.name']
-                display_fields: ['models.*.name']
-                hint: 'Modell aus dem Preiskatalog wählen (Tippen zum Suchen, z. B. „16 Pro Max")'
+              - { name: model, label: Modell, widget: string, hint: 'Genauer Modellname wie unter „Preise · …", z. B. „iPhone 16 Pro Max"' }
               - { name: image, label: Foto, widget: image, media_folder: /src/assets/img/produkte, public_folder: /assets/img/produkte, hint: 'Hochladen oder ersetzen. Freigestelltes Produktfoto auf Weiß, Hochformat (z. B. 600 × 800). Erscheint nach dem Veröffentlichen im Preisrechner.' }
               - { name: license, label: Lizenz, widget: string, hint: 'z. B. „iStock Standard (nicht redaktionell)", „Genehmigung Samsung vom …", „CC BY-SA 4.0"' }
               - { name: rightsConfirmed, label: Nutzungsrecht bestätigt, widget: boolean, default: true, required: false, hint: 'Aus = Foto nur in der Vorschau, nicht auf der echten Website (z. B. Herstellerbild, Genehmigung fehlt noch)' }

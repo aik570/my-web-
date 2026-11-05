@@ -1,0 +1,103 @@
+{
+  "seq": 39,
+  "name": "Galaxy Z Flip 4",
+  "category": "Smartphone",
+  "repairs": [
+    {
+      "service": "display",
+      "label": "Display – Standardqualität",
+      "price": null,
+      "from": false,
+      "onRequest": true,
+      "note": ""
+    },
+    {
+      "service": "display",
+      "label": "Display – Originalqualität",
+      "price": 449,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "akku",
+      "label": "",
+      "price": 149,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "backcover",
+      "label": "",
+      "price": 99,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "ladebuchse",
+      "label": "",
+      "price": 99,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "hauptkamera",
+      "label": "",
+      "price": null,
+      "from": false,
+      "onRequest": true,
+      "note": ""
+    },
+    {
+      "service": "frontkamera",
+      "label": "",
+      "price": null,
+      "from": false,
+      "onRequest": true,
+      "note": ""
+    },
+    {
+      "service": "lautsprecher",
+      "label": "",
+      "price": null,
+      "from": false,
+      "onRequest": true,
+      "note": ""
+    },
+    {
+      "service": "wifi-bluetooth",
+      "label": "",
+      "price": null,
+      "from": false,
+      "onRequest": true,
+      "note": ""
+    },
+    {
+      "service": "wasserschaden",
+      "label": "",
+      "price": 109,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "fehleranalyse",
+      "label": "",
+      "price": 25,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "panzerglas",
+      "label": "",
+      "price": 35,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    }
+  ]
+}

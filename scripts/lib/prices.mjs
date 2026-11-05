@@ -13,11 +13,25 @@ export function readJson(file) {
   return JSON.parse(fs.readFileSync(file, 'utf8'));
 }
 
-export function loadBrands(dir = PRICE_DIR) {
+export const MODEL_DIR = 'src/content/models';         // one file per model: <MODEL_DIR>/<brand>/<model>.json (CMS)
+
+// Brand files (<dir>/<brand>.json: brand, order) plus their models. Models come from the brand
+// file itself (import / demo data) and from <MODEL_DIR>/<brand>/*.json, one file per model, which
+// keeps the CMS fast. Model files are ordered by their "seq" (original list order), then by name.
+export function loadBrands(dir = PRICE_DIR, modelDir = dir === PRICE_DIR ? MODEL_DIR : null) {
   if (!fs.existsSync(dir)) return [];
   return fs.readdirSync(dir)
     .filter((f) => f.endsWith('.json'))
-    .map((f) => ({ file: path.join(dir, f), ...readJson(path.join(dir, f)) }));
+    .map((f) => {
+      const b = { file: path.join(dir, f), ...readJson(path.join(dir, f)) };
+      const md = modelDir && path.join(modelDir, f.replace(/\.json$/, ''));
+      const files = md && fs.existsSync(md) ? fs.readdirSync(md).filter((x) => x.endsWith('.json')).sort() : [];
+      const own = files.map((x) => readJson(path.join(md, x)))
+        .map((m, i) => ({ m, i }))
+        .sort((a, z) => (a.m.seq ?? Infinity) - (z.m.seq ?? Infinity) || a.i - z.i)
+        .map(({ m }) => { const { seq, ...rest } = m; return rest; });
+      return { ...b, models: [...(b.models || []), ...own] };
+    });
 }
 
 // URL-safe id for brands and models (/preise/apple/#iphone-13).

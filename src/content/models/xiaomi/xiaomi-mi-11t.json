@@ -1,0 +1,95 @@
+{
+  "seq": 23,
+  "name": "Xiaomi Mi 11T",
+  "category": "Smartphone",
+  "repairs": [
+    {
+      "service": "display",
+      "label": "",
+      "price": null,
+      "from": false,
+      "onRequest": true,
+      "note": ""
+    },
+    {
+      "service": "akku",
+      "label": "",
+      "price": null,
+      "from": false,
+      "onRequest": true,
+      "note": ""
+    },
+    {
+      "service": "backcover",
+      "label": "",
+      "price": null,
+      "from": false,
+      "onRequest": true,
+      "note": ""
+    },
+    {
+      "service": "ladebuchse",
+      "label": "",
+      "price": null,
+      "from": false,
+      "onRequest": true,
+      "note": ""
+    },
+    {
+      "service": "hauptkamera",
+      "label": "",
+      "price": null,
+      "from": false,
+      "onRequest": true,
+      "note": ""
+    },
+    {
+      "service": "frontkamera",
+      "label": "",
+      "price": null,
+      "from": false,
+      "onRequest": true,
+      "note": ""
+    },
+    {
+      "service": "lautsprecher",
+      "label": "",
+      "price": null,
+      "from": false,
+      "onRequest": true,
+      "note": ""
+    },
+    {
+      "service": "wifi-bluetooth",
+      "label": "",
+      "price": null,
+      "from": false,
+      "onRequest": true,
+      "note": ""
+    },
+    {
+      "service": "wasserschaden",
+      "label": "",
+      "price": 76,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "fehleranalyse",
+      "label": "",
+      "price": 25,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "panzerglas",
+      "label": "",
+      "price": 29,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    }
+  ]
+}

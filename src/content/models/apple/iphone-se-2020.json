@@ -1,0 +1,103 @@
+{
+  "seq": 41,
+  "name": "iPhone SE (2020)",
+  "category": "Smartphone",
+  "repairs": [
+    {
+      "service": "display",
+      "label": "Display – Standardqualität",
+      "price": 99,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "display",
+      "label": "Display – Originalqualität",
+      "price": 139,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "akku",
+      "label": "",
+      "price": 79,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "backcover",
+      "label": "",
+      "price": 99,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "ladebuchse",
+      "label": "",
+      "price": 99,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "hauptkamera",
+      "label": "",
+      "price": 99,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "frontkamera",
+      "label": "",
+      "price": 99,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "lautsprecher",
+      "label": "",
+      "price": 79,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "wifi-bluetooth",
+      "label": "",
+      "price": null,
+      "from": false,
+      "onRequest": true,
+      "note": ""
+    },
+    {
+      "service": "wasserschaden",
+      "label": "",
+      "price": 35,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "fehleranalyse",
+      "label": "",
+      "price": 25,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "panzerglas",
+      "label": "",
+      "price": 19,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    }
+  ]
+}

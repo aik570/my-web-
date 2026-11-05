@@ -2,7 +2,7 @@
 // End-to-end test of the admin (Decap CMS) with its local backend:
 //   1. every collection / settings file opens in /admin/ without errors
 //   2. a price is changed in the editor (Apple › iPhone 16 Pro Max › Akku) and published
-//   3. only that value changes in src/content/prices/apple.json
+//   3. only that value changes in src/content/models/apple/iphone-16-pro-max.json
 //   4. after a rebuild the new price is in the catalogue, on the model page and in the Preisrechner
 // The price file is always restored. This checks the CMS and the build, not the GitHub login
 // of the hosted site (that needs the owner's GitHub/Netlify account, see docs/CMS.md).
@@ -17,7 +17,7 @@ import { createRequire } from 'node:module';
 
 const require = createRequire(import.meta.url);
 const { chromium } = require('playwright');
-const FILE = 'src/content/prices/apple.json';
+const FILE = 'src/content/models/apple/iphone-16-pro-max.json';
 const SITE = 'src/_data/site.json', PHOTOS = 'src/_data/modelImages.json', PAGES = 'src/_data/pages.json', UPLOAD_DIR = 'src/assets/img/produkte';
 const originals = { [SITE]: fs.readFileSync(SITE, 'utf8'), [PHOTOS]: fs.readFileSync(PHOTOS, 'utf8'), [PAGES]: fs.readFileSync(PAGES, 'utf8') };
 const uploadsBefore = new Set(fs.readdirSync(UPLOAD_DIR));
@@ -27,7 +27,7 @@ let failed = 0;
 const ok = (c, m) => { console.log(`${c ? '  ✓' : '  ✗'} ${m}`); if (!c) failed++; };
 
 const original = fs.readFileSync(FILE, 'utf8');
-const before = JSON.parse(original).models.find((m) => m.name === MODEL).repairs.find((r) => r.service === 'akku').price;
+const before = JSON.parse(original).repairs.find((r) => r.service === 'akku').price;
 const NEW = before + 7;
 
 const serve = (root, port) => http.createServer((q, r) => {
@@ -63,7 +63,7 @@ try {
   if (await login.count()) { await login.first().click(); await page.waitForTimeout(2500); }
 
   console.log('\nadmin: collections');
-  const routes = ['preise/entries/apple', 'einstellungen/entries/kontakt', 'einstellungen/entries/reparaturarten', 'einstellungen/entries/preisliste',
+  const routes = ['preise-apple/entries/iphone-16-pro-max', 'preise-samsung/entries/galaxy-s24-ultra', 'hersteller/entries/apple', 'einstellungen/entries/kontakt', 'einstellungen/entries/reparaturarten', 'einstellungen/entries/preisliste',
     'einstellungen/entries/produktfotos', 'einstellungen/entries/bewertungen', 'inhalte/entries/startseite', 'inhalte/entries/seiten', 'inhalte/entries/fachbereiche',
     'inhalte/entries/leistungen', 'inhalte/entries/fragen', 'inhalte/entries/franchise', 'rechtliches/entries/impressum', 'rechtliches/entries/datenschutz'];
   for (const r of routes) {
@@ -74,10 +74,14 @@ try {
   }
 
   console.log('\nadmin: change a price');
-  await page.goto('http://localhost:8080/admin/#/collections/preise/entries/apple'); await page.waitForTimeout(3500);
-  const item = page.locator('[class*="ListItem-listControlItem"]').filter({ has: page.locator('[class*="NestedObjectLabel"]', { hasText: new RegExp(`^${MODEL}$`) }) }).first();
-  await item.scrollIntoViewIfNeeded(); await item.locator('button').first().click(); await page.waitForTimeout(800);
-  const row = item.locator('[class*="ListItem-listControlItem"]').filter({ has: page.locator('[class*="NestedObjectLabel"]', { hasText: /^akku\b/ }) }).first();
+  let t0 = Date.now();
+  await page.goto('http://localhost:8080/admin/#/collections/preise-apple'); await page.getByText(MODEL, { exact: true }).first().waitFor();
+  const tList = Date.now() - t0; t0 = Date.now();
+  await page.getByText(MODEL, { exact: true }).first().click();
+  await page.locator('[class*="NestedObjectLabel"]', { hasText: /^akku\b/ }).first().waitFor();
+  const tOpen = Date.now() - t0;
+  ok(tList < 8000 && tOpen < 4000, `Apple list ${tList} ms, open ${MODEL} ${tOpen} ms`);
+  const row = page.locator('[class*="ListItem-listControlItem"]').filter({ has: page.locator('[class*="NestedObjectLabel"]', { hasText: /^akku\b/ }) }).first();
   await row.scrollIntoViewIfNeeded(); await row.locator('button').first().click(); await page.waitForTimeout(600);
   const input = row.locator('input[type="number"]').first();
   ok(Number(await input.inputValue()) === before, `editor shows the current price ${before} €`);
@@ -122,8 +126,7 @@ try {
   const items = page.locator('[class*="ListItem-listControlItem"]');
   const last = items.last();
   const modelBox = last.locator('input').first();
-  await modelBox.click(); await modelBox.fill('Galaxy S21'); await page.waitForTimeout(1500);
-  await page.locator('[class*="option"]', { hasText: /^Galaxy S21$/ }).first().click(); await page.waitForTimeout(500);
+  await modelBox.click(); await modelBox.fill('Galaxy S21'); await page.waitForTimeout(500);
   await last.getByRole('button', { name: /bild|image/i }).first().click(); await page.waitForTimeout(1500);
   const upName = `cms-test-${Date.now()}.webp`;
   fs.mkdirSync('.cache', { recursive: true }); fs.copyFileSync('src/assets/img/produkte/samsung-galaxy-a52.webp', `.cache/${upName}`);
@@ -137,7 +140,7 @@ try {
   ok(added && added.license.startsWith('TEST') && added.image === `/assets/img/produkte/${upName}` && fs.existsSync('src' + added.image), `published: photo entry for Galaxy S21 with the uploaded file (${added && added.image})`);
 
   const saved = fs.readFileSync(FILE, 'utf8');
-  const after = JSON.parse(saved).models.find((m) => m.name === MODEL).repairs.find((r) => r.service === 'akku').price;
+  const after = JSON.parse(saved).repairs.find((r) => r.service === 'akku').price;
   ok(after === NEW, `published: ${FILE} now has ${after} €`);
   const changed = saved.split('\n').filter((l, i) => l !== original.split('\n')[i]);
   ok(changed.length === 1 && changed[0].includes(String(NEW)), `only that line changed in the file (${changed.length})`);
