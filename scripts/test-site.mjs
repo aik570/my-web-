@@ -173,7 +173,7 @@ console.log('\nPreisrechner');
   ok((await page.$$eval('.fmodel', (e) => e.length)) === apple.models.length, `brand → ${apple.models.length} models`);
   const phones = await page.$$eval('.fmodel', (e) => e.map((x) => x.firstChild.textContent).filter((n) => /^iPhone/.test(n)));
   const at = (n) => phones.indexOf(n);
-  ok(phones[0] === 'iPhone 17 Pro Max' && at('iPhone 16 Pro Max') > at('iPhone 17') && at('iPhone 16 Pro') > at('iPhone 16 Pro Max') && at('iPhone 16') > at('iPhone 16 Plus') && at('iPhone 6s') < at('iPhone 6') && at('iPhone 6') < at('iPhone XS Max') && at('iPhone X') < at('iPhone SE (2022)'), 'iPhones newest first, Pro Max → Pro → Plus → base, then X-Serie and SE');
+  ok(/^iPhone 1[7-9] Pro Max$/.test(phones[0]) && at('iPhone 17 Pro Max') < at('iPhone 17 Pro') && at('iPhone 16 Pro Max') > at('iPhone 17') && at('iPhone 16 Pro') > at('iPhone 16 Pro Max') && at('iPhone 16') > at('iPhone 16 Plus') && at('iPhone 6s') < at('iPhone 6') && at('iPhone 6') < at('iPhone XS Max') && at('iPhone X') < at('iPhone SE (2022)'), 'iPhones newest first, Pro Max → Pro → Plus → base, then X-Serie and SE');
   ok((await page.$$eval('.fmodels__group', (e) => e.map((x) => x.textContent))).join('|').startsWith('iPhone|iPhone X-Serie|iPhone SE'), 'model list grouped: iPhone / iPhone X-Serie / iPhone SE');
   await page.click('#f-cats .chip[data-cat="Tablet"]');
   const tablets = apple.models.filter((m) => m.category === 'Tablet').length;

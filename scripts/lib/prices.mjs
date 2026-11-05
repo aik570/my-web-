@@ -30,7 +30,12 @@ export function loadBrands(dir = PRICE_DIR, modelDir = dir === PRICE_DIR ? MODEL
         .map((m, i) => ({ m, i }))
         .sort((a, z) => (a.m.seq ?? Infinity) - (z.m.seq ?? Infinity) || a.i - z.i)
         .map(({ m }) => { const { seq, ...rest } = m; return rest; });
-      return { ...b, models: [...(b.models || []), ...own] };
+      // A save from an admin tab opened before the switch to model files writes the whole list back
+      // into the brand file: those entries replace the model files of the same model instead of
+      // failing the build as duplicates.
+      const inFile = new Set((b.models || []).map((m) => slug(m.id || m.name)));
+      if (inFile.size && own.length) console.warn(`[prices] ${f}: enthält noch Modelle (Speichern aus einem alten Admin-Fenster) – diese gelten`);
+      return { ...b, models: [...(b.models || []), ...own.filter((m) => !inFile.has(slug(m.id || m.name)))] };
     });
 }
 
