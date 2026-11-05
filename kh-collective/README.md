@@ -1,7 +1,7 @@
 # Konzept Haus Collective — redesign concept "The Voice of Space"
 
 A demo redesign of kh-collective.com for a first meeting with the studio. It is built
-on the studio's own identity, copy and photos. Open `index.html` in a browser. There is
+on the studio's own identity and copy, with labelled slots where photos will go. Open `index.html` in a browser. There is
 no build step.
 
 ## Source
@@ -35,7 +35,7 @@ else is invented, except what is listed under "Gaps".
 5. **Their model as an interaction:** a Low Budget ↔ Einzigartigkeit slider whose answer never changes ("exklusive, identitätsstiftende Räume")
 6. Marquee of the furniture brands from Christian's career
 7. Film slot that opens from a circle to full frame
-8. Team: large duotone portraits that turn to full colour on hover
+8. Team: large portrait slots, one per person
 9. Contact: WhatsApp, Email and Old School Telefon as three large rows
 
 ## Photo slots
