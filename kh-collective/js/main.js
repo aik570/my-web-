@@ -246,6 +246,10 @@
   const loader = $('.loader');
   let lenis = null;
 
+  /* Crossed-out questions draw their line when seen (no GSAP needed) */
+  const sio = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); sio.unobserve(e.target); } }), { rootMargin: '0px 0px -25% 0px' });
+  $$('.strikes li').forEach((li, i) => { $('s', li).style.transitionDelay = (.3 + i * .35) + 's'; sio.observe(li); });
+
   if (!hasGsap || reduce) {
     loader.remove(); document.body.classList.remove('is-loading');
     $$('.lead .w').forEach(w => { w.style.opacity = 1; });
@@ -312,7 +316,21 @@
   });
 
   /* Lists slide in */
-  gsap.from('.cols p', { y: 40, opacity: 0, duration: 1.1, stagger: .08, ease: 'expo.out', scrollTrigger: { trigger: '.cols', start: 'top 85%' } });
+  /* Text appears in small pieces, never as a wall */
+  const rise = (targets, trigger, opts = {}) => gsap.from(targets, Object.assign({ y: 36, opacity: 0, duration: 1.1, stagger: .08, ease: 'expo.out', scrollTrigger: { trigger, start: 'top 86%' } }, opts));
+  $$('.reveal').forEach(el => rise(el, el));
+  $$('.chips, .pills, .words, .points--tags').forEach(l => rise($$('li', l), l, { y: 18, scale: .85, stagger: .05, duration: .8, ease: 'back.out(1.8)' }));
+  $$('.cards, .points:not(.points--tags), .person__facts, .flow, .steps, .know').forEach(l => rise([...l.children], l, { stagger: .1 }));
+  $$('.facts').forEach(l => rise([...l.children], l, { y: 16, stagger: .08, duration: .8 }));
+  $$('.strikes li').forEach(li => rise(li, li, { x: -40, y: 0 }));
+  $$('.hook, .person blockquote').forEach(q => gsap.from(q, { y: 50, opacity: 0, skewY: 3, duration: 1.4, ease: 'expo.out', scrollTrigger: { trigger: q, start: 'top 88%' } }));
+  /* Manifest cards: each one sinks back as the next slides over it */
+  const cards = $$('.stack__card');
+  cards.forEach((c, i) => {
+    const a = $('a', c);
+    rise(a, c, { y: 80, duration: 1.2 });
+    if (i < cards.length - 1) gsap.to(a, { scale: .92, filter: 'brightness(.45)', ease: 'none', immediateRender: false, scrollTrigger: { trigger: cards[i + 1], start: 'top 85%', end: 'top 30%', scrub: true } });
+  });
   $$('.services li').forEach((li, i) => gsap.from(li, { xPercent: i % 2 ? 8 : -8, opacity: 0, duration: 1.2, ease: 'expo.out', scrollTrigger: { trigger: li, start: 'top 94%' } }));
   gsap.from('.partners li', { y: 24, opacity: 0, duration: .8, stagger: .025, ease: 'power3.out', scrollTrigger: { trigger: '.partners', start: 'top 85%' } });
   gsap.from('.way', { y: 30, opacity: 0, duration: 1, stagger: .08, ease: 'expo.out', scrollTrigger: { trigger: '.ways', start: 'top 88%' } });
