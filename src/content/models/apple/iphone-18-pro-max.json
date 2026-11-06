@@ -4,11 +4,20 @@
   "name": "iPhone 18 Pro Max",
   "repairs": [
     {
+      "service": "display",
+      "label": "Display – Standardqualität",
+      "price": 379,
       "from": false,
       "onRequest": false,
+      "note": ""
+    },
+    {
       "service": "display",
-      "label": "Standardqualität",
-      "price": 379
+      "label": "Display – Originalqualität",
+      "price": null,
+      "from": false,
+      "onRequest": false,
+      "note": ""
     },
     {
       "service": "akku",
