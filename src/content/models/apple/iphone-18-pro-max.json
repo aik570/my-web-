@@ -9,6 +9,110 @@
       "service": "display",
       "label": "Standardqualität",
       "price": 379
+    },
+    {
+      "service": "akku",
+      "label": "",
+      "price": null,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "backcover",
+      "label": "",
+      "price": null,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "ladebuchse",
+      "label": "",
+      "price": null,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "hauptkamera",
+      "label": "",
+      "price": null,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "frontkamera",
+      "label": "",
+      "price": null,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "lautsprecher",
+      "label": "",
+      "price": null,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "wifi-bluetooth",
+      "label": "",
+      "price": null,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "wasserschaden",
+      "label": "",
+      "price": null,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "fehleranalyse",
+      "label": "",
+      "price": null,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "panzerglas",
+      "label": "",
+      "price": null,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "zubehoer",
+      "label": "Schutzfolie",
+      "price": null,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "zubehoer",
+      "label": "Handyhülle",
+      "price": null,
+      "from": false,
+      "onRequest": false,
+      "note": ""
+    },
+    {
+      "service": "zubehoer",
+      "label": "Panzerglas",
+      "price": null,
+      "from": false,
+      "onRequest": false,
+      "note": ""
     }
   ],
   "photo": {
