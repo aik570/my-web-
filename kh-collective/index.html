@@ -3,252 +3,371 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Konzept Haus Collective — The Voice of Space</title>
-<meta name="description" content="Wir geben Räumen eine Stimme. Kreativ Studio für Raumkonzepte und Circular Interior Design in Potsdam.">
-<meta name="theme-color" content="#FFFFFF">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%231C20FF' stroke-width='20' stroke-linecap='round'%3E%3Cpath d='M14 12v96M106 12v96M14 60C66 60 60 18 104 16M14 60C66 60 60 102 104 104'/%3E%3C/g%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; media-src 'self'; font-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="robots" content="noindex, nofollow">
+<title>Konzept Haus Collective — Gute Räume. The Voice of Space.</title>
+<meta name="description" content="Konzept Haus Collective ist ein Kreativ Studio für Raumkonzepte und Circular Interior Design in Potsdam.">
+<meta name="theme-color" content="#8f30ff">
+<link rel="icon" href="media/kh-mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/fonts.css">
 <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="is-loading">
 
-<!-- The KH mark, defined once -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="kh" viewBox="0 0 120 120">
-    <g fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round">
-      <path class="kh-bar" d="M14 12v96"/>
-      <path class="kh-bar" d="M106 12v96"/>
-      <path class="kh-arm" d="M14 60C66 60 60 18 104 16"/>
-      <path class="kh-arm" d="M14 60C66 60 60 102 104 104"/>
-    </g>
+<a class="skip" href="#start-inhalt">Zum Inhalt springen</a>
+
+<!-- The KH mark, path exactly as on kh-collective.com -->
+<svg class="defs" aria-hidden="true" focusable="false">
+  <symbol id="kh" viewBox="10 9 80 82">
+    <path fill="currentColor" d="M83.599135,10.001802 C80.935712,10.001802 78.7750597,12.1606523 78.7750597,14.8258774 L78.7750597,33.8032167 C78.7750597,40.0851466 73.6824796,45.1777267 67.4005496,45.1777267 L56.200838,45.1777267 C54.3177006,45.1777267 52.6706312,43.9126909 52.1822769,42.0944272 C51.6957246,40.2761634 52.4904266,38.3569852 54.1212777,37.4145155 L74.8952561,25.4219039 C77.2018741,24.0901924 77.992972,21.1402442 76.6612605,18.8318241 C75.329549,16.5252061 72.3796008,15.7341082 70.0711808,17.0658197 L43.1936748,32.583232 C38.6615308,35.1998018 33.0787944,35.1998018 28.5466504,32.583232 C24.0145065,29.9666622 21.2231383,25.1317746 21.2231383,19.898635 L21.2231383,14.8240753 C21.2231383,12.1606523 19.064288,10 16.3990629,10 C13.73564,10 11.5749876,12.1588503 11.5749876,14.8240753 L11.5749876,85.1759247 C11.5749876,87.8393477 13.7338379,90 16.3990629,90 C19.0624859,90 21.2231383,87.8411497 21.2231383,85.1759247 L21.2231383,78.9642745 C21.2231383,73.9654007 23.8901653,69.3467586 28.2186782,66.8473217 C32.5471911,64.3478848 37.8812452,64.3478848 42.2097581,66.8473217 L70.0711808,82.9341803 C70.8298419,83.3720773 71.6605848,83.5811146 72.4787133,83.5811146 C74.1456053,83.5811146 75.7674461,82.7161328 76.6612605,81.1681759 C77.992972,78.8615579 77.2036762,75.9116097 74.8952561,74.5780961 L53.5752579,62.2683245 C52.0110826,61.3654998 51.2488174,59.5238095 51.7155471,57.7794297 C52.1822769,56.0350498 53.7644727,54.8222733 55.5701221,54.8222733 L66.9572465,54.8222733 C73.4842546,54.8222733 78.7768617,60.1130783 78.7768617,66.6418885 L78.7768617,85.1741226 C78.7768617,87.8375456 80.935712,89.998198 83.6009371,89.998198 C86.2661621,89.998198 88.4250124,87.8393477 88.4250124,85.1741226 L88.4250124,14.8222733 C88.4232103,12.1606523 86.262558,10.001802 83.599135,10.001802"/>
   </symbol>
 </svg>
 
 <!-- ───────── Loader ───────── -->
 <div class="loader" aria-hidden="true">
-  <svg class="loader__mark" viewBox="0 0 120 120">
-    <g fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round">
-      <path pathLength="1" d="M14 12v96"/>
-      <path pathLength="1" d="M106 12v96"/>
-      <path pathLength="1" d="M14 60C66 60 60 18 104 16"/>
-      <path pathLength="1" d="M14 60C66 60 60 102 104 104"/>
-    </g>
-  </svg>
-  <p class="loader__word">The Voice of Space</p>
+  <svg class="loader__mark"><use href="#kh"/></svg>
+  <div class="loader__bar"><span></span></div>
+  <p class="loader__word">Gute Räume — The Voice of Space</p>
 </div>
 
 <div class="cursor" aria-hidden="true"><span class="cursor__label"></span></div>
 
-<!-- ───────── Fixed mark (their signature, kept) ───────── -->
-<a href="#top" class="mark" aria-label="Konzept Haus Collective — Start">
-  <svg viewBox="0 0 120 120"><use href="#kh"/></svg>
-</a>
-
-<!-- ───────── Header ───────── -->
+<!-- ───────── Header (their numbered navigation, kept) ───────── -->
 <header class="nav">
-  <a href="#top" class="nav__word">Konzept Haus Collective</a>
+  <a href="#start" class="nav__logo" aria-label="Konzept Haus Collective — Start"><svg><use href="#kh"/></svg></a>
   <nav class="nav__links" aria-label="Hauptnavigation">
-    <a href="#studio">Studio</a>
-    <a href="#raeume">Räume</a>
-    <a href="#modell">Modell</a>
-    <a href="#film">Film</a>
-    <a href="#team">Team</a>
+    <a href="#start"><i>1</i>Start</a>
+    <a href="#was-wir-tun"><i>2</i>Was wir tun</a>
+    <a href="#projekte"><i>3</i>Projekte</a>
+    <a href="#studio"><i>4</i>Studio</a>
+    <a href="#partner"><i>5</i>Partner</a>
+    <a href="#kontakt"><i>6</i>Kontakt</a>
+    <a href="#gute-raeume"><i>7</i>Gute Räume</a>
   </nav>
   <a href="#kontakt" class="nav__cta">Wollen wir sprechen?</a>
-  <button class="nav__burger" aria-label="Menü öffnen" aria-expanded="false"><span></span><span></span></button>
+  <button class="nav__burger" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
 </header>
 
-<div class="menu" aria-hidden="true">
-  <a href="#studio">Studio</a>
-  <a href="#raeume">Räume</a>
-  <a href="#modell">Modell</a>
-  <a href="#film">Film</a>
-  <a href="#team">Team</a>
-  <a href="#kontakt">Kontakt</a>
+<div class="menu" id="menu" hidden>
+  <a href="#start"><i>1</i>Start</a>
+  <a href="#was-wir-tun"><i>2</i>Was wir tun</a>
+  <a href="#projekte"><i>3</i>Projekte</a>
+  <a href="#studio"><i>4</i>Studio</a>
+  <a href="#partner"><i>5</i>Partner</a>
+  <a href="#kontakt"><i>6</i>Kontakt</a>
+  <a href="#gute-raeume"><i>7</i>Gute Räume</a>
 </div>
 
-<main id="top">
+<main>
 
-<!-- ───────── Hero ───────── -->
-<section class="hero" data-ink="#1C20FF">
-  <p class="hero__kicker">Wir geben Räumen eine Stimme.</p>
-  <h1 class="hero__title" aria-label="The Voice of Space">
-    <span class="row"><span class="t">The</span></span>
-    <span class="row row--r"><span class="t">Voice</span></span>
-    <span class="row"><span class="t">of</span> <span class="hero__glyph" aria-hidden="true"><svg viewBox="0 0 120 120"><use href="#kh"/></svg></span> <span class="t">Space</span></span>
+<!-- ═════════ 1 · START ═════════ -->
+<section class="hero" id="start" data-color="#8f30ff">
+  <canvas class="hero__gl" aria-hidden="true"></canvas>
+  <svg class="hero__fallback" aria-hidden="true"><use href="#kh"/></svg>
+
+  <figure class="hero__clip hero__clip--video" data-cursor="Play">
+    <video class="lazyvideo" muted loop playsinline preload="none" poster="media/video/start.webp" data-src="media/video/start.mp4" aria-label="Imagefilm Konzept Haus Collective"></video>
+  </figure>
+  <figure class="hero__clip hero__clip--img">
+    <img src="media/img/start-2.webp" alt="Blauer Stuhl vor violettem Grund" width="1023" height="1518">
+  </figure>
+
+  <h1 class="hero__title">
+    <span class="row"><span class="t">Gute Räume –</span></span>
+    <span class="row"><span class="t">The Voice</span></span>
+    <span class="row"><span class="t">of Space</span></span>
   </h1>
   <div class="hero__foot">
-    <p>Kreativ Studio für Raumkonzepte<br>und Circular Interior Design.</p>
-    <p>Potsdam</p>
-    <a href="#studio" class="hero__down" aria-label="Weiter scrollen">↓</a>
+    <p>Kreativ Studio für Raumkonzepte<br>und Circular Interior Design in Potsdam.</p>
+    <a href="#start-inhalt" class="hero__down" aria-label="Weiter scrollen">↓</a>
   </div>
 </section>
 
-<!-- ───────── Studio ───────── -->
-<section class="studio" id="studio" data-ink="#1C20FF">
-  <span class="tag">01 — Studio</span>
-  <p class="studio__lead" data-split>
-    Unser Team aus Architekten, Innenarchitekten, Möbelenthusiasten und Branding Experten entwickelt ein hochindividuelles, umsetzungsreifes Konzept. Synergetisch und interdisziplinär.
-  </p>
-  <div class="facts">
-    <div class="fact"><span class="fact__n">01</span><p>Jahrzehntelange Interior-Erfahrung in einer einzigen Company.</p></div>
-    <div class="fact"><span class="fact__n">02</span><p>Ein einmaliger Pool an Möbelherstellern und Handwerkern. Aus Europa.</p></div>
-    <div class="fact"><span class="fact__n">03</span><p>Ökologisch und sozial nachhaltig.</p></div>
-    <div class="fact"><span class="fact__n">04</span><p>Zu besten Konditionen.</p></div>
+<section class="intro" id="start-inhalt" data-color="#8f30ff">
+  <p class="lead" data-split><b class="num">1</b> Gute Räume sprechen die Sinne an – und berühren unsere Seele. Sie haben Charakter. Sie schaffen Atmosphäre.</p>
+  <div class="cols">
+    <p>Konzept Haus Collective ist ein Kreativ Studio für Raumkonzepte und Circular Interior Design in Potsdam.</p>
+    <p>Unser Prinzip ist eigentlich nicht neu. Wir arbeiten zusammen. Unser Planungsteam aus Architekten, Innenarchitekten, Möbel-Enthusiasten und Branding Experten entwickelt ein hochindividuelles, umsetzungsreifes Konzept. Synergetisch und interdisziplinär.</p>
+    <p>Wir bündeln jahrzehntelange Interior-Erfahrung in einer einzigen Company und bedienen uns dabei aus einem einmaligen Pool an Möbelherstellern und Handwerkern. Aus Europa. Ökologisch und sozial nachhaltig. Zu besten Konditionen.</p>
+    <p>Unser innovatives Modell löst die Gegensätze zwischen Low Budget und Einzigartigkeit in Idee, Atmosphäre und höchster Produktqualität vollständig auf. Wir denken in allen Budgetebenen. Für Ihr Projekt bedeutet das: exklusive, identitätsstiftende Räume.</p>
   </div>
+  <p class="voice">Wir geben Räumen eine Stimme. <em>The Voice of Space.</em> Wollen wir sprechen? <a href="https://wa.me/4917672008125" target="_blank" rel="noopener noreferrer">WhatsApp</a>, <a href="mailto:connect@kh-collective.com">Email</a> oder Old School <a href="tel:+4917672008125">Telefon</a>?</p>
 </section>
 
-<!-- ───────── Big number ───────── -->
-<section class="count" data-ink="#7A2FE6">
-  <div class="count__num"><span class="count__val" data-to="700">0</span><span class="count__plus">+</span></div>
-  <p class="count__cap">Einrichtungsprojekte. Diverse Headquarter und Agenturen, ganze Hotels, halbe Kreuzfahrtschiffe, Fussballstadionlounges, jede Menge möblierte Apartments — und sogar eine Tropfsteinhöhle.</p>
-</section>
+<!-- ═════════ 2 · WAS WIR TUN ═════════ -->
+<section class="sec" id="was-wir-tun" data-color="#d48e88">
+  <header class="sec__head">
+    <p class="claim">Worum es uns geht? Gute Räume.</p>
+    <h2 class="sec__title"><span class="row"><span class="t">Was wir tun</span></span></h2>
+  </header>
+  <p class="lead" data-split>Jeder <b class="num">2</b> gute Raum ist einzigartig und erzählt eine eigene Geschichte. Zum Ausdruck gebracht durch seine Form, Funktion und Stärke. Durch Materialien und Farbe, Licht und Schatten, Duft und Klang. Durch seine Nachhaltigkeit und Identität.</p>
 
-<!-- ───────── Places ───────── -->
-<section class="places" data-ink="#7A2FE6" aria-label="Wo wir schon eingerichtet haben">
-  <ul class="places__list">
-    <li><span>Headquarter</span><i>&amp; Agenturen</i></li>
-    <li><span>Ganze Hotels</span></li>
-    <li><span>Halbe</span><i>Kreuzfahrtschiffe</i></li>
-    <li><span>Stadionlounges</span></li>
-    <li><span>Apartments</span></li>
-    <li><span>Eine</span><i>Tropfsteinhöhle</i></li>
-  </ul>
-</section>
-
-<!-- ───────── Räume (photo slots) ───────── -->
-<section class="rooms" id="raeume" data-ink="#7A2FE6">
-  <div class="rooms__head">
-    <span class="tag">Räume</span>
-    <p class="rooms__intro">Ein bereits bestehendes Konzept in einen innovativen Kontext gestellt.</p>
-  </div>
-  <div class="rooms__grid">
-    <figure class="slot rooms__a" data-cursor="Foto" data-n="R1" data-label="Raum — Hotel / Lobby" data-ratio="4:5"></figure>
-    <figure class="slot rooms__b" data-cursor="Foto" data-n="R2" data-label="Raum — Headquarter" data-ratio="16:10"></figure>
-    <figure class="slot rooms__c" data-cursor="Foto" data-n="R3" data-label="Detail — Material" data-ratio="1:1"></figure>
-    <figure class="slot rooms__d" data-cursor="Foto" data-n="R4" data-label="Raum — Apartment" data-ratio="3:4"></figure>
-    <figure class="slot rooms__e" data-cursor="Foto" data-n="R5" data-label="Detail — Möbel" data-ratio="4:3"></figure>
-  </div>
-</section>
-
-<!-- ───────── Modell (interactive) ───────── -->
-<section class="model" id="modell" data-ink="#CC4F78">
-  <span class="tag">02 — Unser Modell</span>
-  <h2 class="model__title">Low Budget <span class="model__vs">oder</span> Einzigartigkeit?</h2>
-  <p class="model__text">Unser innovatives Modell löst die Gegensätze zwischen Low Budget und Einzigartigkeit in Idee, Atmosphäre und höchster Produktqualität vollständig auf. Wir denken in allen Budgetebenen.</p>
-
-  <div class="slider">
-    <div class="slider__labels"><span>Low Budget</span><span>Einzigartigkeit</span></div>
-    <input class="slider__input" type="range" min="0" max="100" value="20" aria-label="Budget wählen">
-    <div class="slider__out" aria-live="polite">
-      <span class="slider__pre">Für Ihr Projekt bedeutet das:</span>
-      <strong>exklusive, identitäts&shy;stiftende Räume.</strong>
+  <div class="duo">
+    <figure class="frame frame--tall" data-cursor="Play">
+      <video class="lazyvideo" muted loop playsinline preload="none" poster="media/video/leisten.webp" data-src="media/video/leisten.mp4" aria-label="Visualisierung eines Interior-Projekts"></video>
+    </figure>
+    <div class="duo__text">
+      <p class="big">Was wir tun? Ganz einfach. Wir entwickeln Räume, die etwas mit uns machen. Vom Raum zum Produkt. Und anschließend vom Produkt in Ihren Raum – Alles aus einer Hand.</p>
+      <figure class="frame frame--small"><img src="media/img/leisten-2.webp" alt="Axonometrie eines geplanten Grundrisses" loading="lazy" width="1600" height="900"></figure>
     </div>
   </div>
+
+  <ol class="services" aria-label="Leistungen">
+    <li data-img="media/img/leisten-1.webp"><span>01</span>Concept Design</li>
+    <li data-img="media/img/projekte-floorplan.webp"><span>02</span>Interior Design</li>
+    <li data-img="media/img/projekte-lecoeur-plan.webp"><span>03</span>Planning Support</li>
+    <li data-img="media/img/lc-00.webp"><span>04</span>Visualisierung</li>
+    <li data-img="media/img/gr-hh-10.webp"><span>05</span>Furniture Consulting</li>
+    <li data-img="media/img/gr-hh-06.webp"><span>06</span>Sales</li>
+    <li data-img="media/img/projekte-bu.webp"><span>07</span>Branding</li>
+    <li data-img="media/img/projekte-00.webp"><span>08</span>Art Direction</li>
+    <li data-img="media/img/gr-hh-12.webp"><span>09</span>Styling</li>
+    <li data-img="media/img/bu-02.webp"><span>10</span>Projektmanagement</li>
+    <li data-img="media/img/leisten-3.webp"><span>11</span>Logistik</li>
+    <li data-img="media/img/bu-05.webp"><span>12</span>Installation</li>
+  </ol>
+  <figure class="peek" aria-hidden="true"><img alt="" src="media/img/leisten-1.webp"></figure>
 </section>
 
-<!-- ───────── Brands ───────── -->
-<section class="brands" data-ink="#1C20FF" aria-label="Erfahrung bei">
-  <p class="tag brands__tag">Erfahrung aus dem Who is Who der Möbelherstellerwelt</p>
-  <div class="brands__track">
-    <div class="brands__row">
-      <span>Knoll</span><svg viewBox="0 0 120 120"><use href="#kh"/></svg>
-      <span>de Sede</span><svg viewBox="0 0 120 120"><use href="#kh"/></svg>
-      <span>Walter Knoll</span><svg viewBox="0 0 120 120"><use href="#kh"/></svg>
-      <span>Dedon</span><svg viewBox="0 0 120 120"><use href="#kh"/></svg>
-      <span>BoConcept</span><svg viewBox="0 0 120 120"><use href="#kh"/></svg>
+<!-- ═════════ 3 · PROJEKTE ═════════ -->
+<section class="sec sec--projects" id="projekte" data-color="#38d398">
+  <header class="sec__head">
+    <p class="claim">Worum es uns geht? Gute Räume.</p>
+    <h2 class="sec__title"><span class="row"><span class="t">Und gute Projekte.</span></span></h2>
+  </header>
+  <p class="lead" data-split>Um einen <b class="num">3</b> guten Raum zu schaffen, müssen wir zuerst sein Potenzial erkennen. Also wissen, was möglich und was machbar ist. Und uns darauf verlassen können, dass aus den Plänen Wirklichkeit wird.</p>
+</section>
+
+<!-- 3D ring gallery (CSS 3D, works offline) -->
+<section class="ring" aria-label="Eine Auswahl unserer Referenzen" data-color="#38d398">
+  <div class="ring__pin" tabindex="0" aria-label="3D-Galerie: mit Pfeiltasten drehen, Bild mit Enter öffnen">
+    <p class="ring__label">Eine Auswahl unserer Referenzen</p>
+    <div class="ring__stage">
+      <div class="ring__spin"></div>
     </div>
-    <div class="brands__row" aria-hidden="true">
-      <span>Knoll</span><svg viewBox="0 0 120 120"><use href="#kh"/></svg>
-      <span>de Sede</span><svg viewBox="0 0 120 120"><use href="#kh"/></svg>
-      <span>Walter Knoll</span><svg viewBox="0 0 120 120"><use href="#kh"/></svg>
-      <span>Dedon</span><svg viewBox="0 0 120 120"><use href="#kh"/></svg>
-      <span>BoConcept</span><svg viewBox="0 0 120 120"><use href="#kh"/></svg>
-    </div>
+    <p class="ring__hint">Scrollen oder ziehen</p>
+    <p class="ring__now" aria-live="polite"></p>
   </div>
 </section>
 
-<!-- ───────── Film ───────── -->
-<section class="film" id="film" data-ink="#1C20FF">
-  <div class="film__frame slot" data-cursor="Play" data-n="F1" data-label="Imagefilm — The Voice of Space" data-ratio="16:9">
-    <!-- Put the studio's own film at video/kh-collective.mp4 -->
-    <video class="film__video" playsinline preload="none">
-      <source src="video/kh-collective.mp4" type="video/mp4">
-    </video>
-    <button class="film__play" aria-label="Film abspielen">
-      <svg viewBox="0 0 120 120"><use href="#kh"/></svg>
-      <span>Play</span>
-    </button>
-    <span class="film__cap" hidden></span>
-  </div>
-</section>
-
-<!-- ───────── Team ───────── -->
-<section class="team" id="team" data-ink="#1C20FF">
-  <span class="tag">03 — Team</span>
-  <h2 class="team__title">Unser Team hätte nicht besser gecastet werden können.</h2>
-
-  <article class="person person--wide">
-    <figure class="person__img slot" data-cursor="Foto" data-n="T1" data-label="Portrait — Christian Hiller" data-ratio="3:2"></figure>
-    <div class="person__body">
-      <h3>Christian Hiller</h3>
-      <p class="person__role">CEO &amp; Founder</p>
-      <p>Er hat in Sales Management Positionen erfolgreich für das Who is Who der Möbelherstellerwelt gearbeitet. Knoll, de Sede, Walter Knoll, Dedon und BoConcept. Immer Premium, Contemporary Lifestyle und immer etwas mehr, als der Kunde erwartet.</p>
-      <p>Christian ist ein Möglichmacher. Er leitet, inspiriert und schafft „gute Räume“ für intrinsische Motivation.</p>
-      <blockquote>„Be water my friend.“</blockquote>
+<section class="projects" data-color="#38d398">
+  <article class="project" id="p-gute-raeume" data-images="gr-hh-00,gr-hh-01,gr-hh-02,gr-hh-03,gr-hh-04,gr-hh-05,gr-hh-06,gr-hh-07,gr-hh-08,gr-hh-09,gr-hh-10,gr-hh-11,gr-hh-12,gr-hh-13">
+    <div class="project__head">
+      <span class="project__n">01</span>
+      <h3>Gute Räume Hamburg, <em>der Concept Store Nr.&nbsp;01</em></h3>
     </div>
+    <div class="strip" tabindex="0" aria-label="Bilder Gute Räume Hamburg"></div>
+    <details class="project__text">
+      <summary>Über das Projekt</summary>
+      <p>Er sollte äußerst ansprechend sein. Willkommenheißend. Mit offenen Armen. Professionelle Design Beratung sollte man hier aber auch wirklich in jeder Ecke spüren. Eine tolle Bühne für unsere sympathischen Interior Experten. Mit Liebe zum Detail. So dass die Kunden sich vertrauensvoll in erstmal fremde Hände geben. Durchdacht und irgendwie ehrlich, und total authentisch auch noch. Die Kollektion sollte selbstverständlich sorgfältig ausgewählt sein. Am liebsten crossover. Sie sollte Spaß und Komfort in das Zuhause der Kunden bringen können. Inspirierend verständlich und so richtig nachhaltig. Fair enough, das klingt nach viel Arbeit und das alles in nur 7 Monaten, von der Idee bis zur Eröffnung. Am Ende ist es dann nur der vielleicht schönste Möbelladen geworden. Und die Musik ist auch ziemlich gut.</p>
+      <p>Wollen Sie auch einen Gute Räume Store eröffnen? Oder einen anderen Laden? Dann lassen Sie uns gerne sprechen: <a href="tel:+4917672008125">+49 176 720 081 25</a></p>
+    </details>
   </article>
 
-  <div class="team__pair">
+  <article class="project" id="p-bu" data-images="bu-00,bu-01,bu-02,bu-03,bu-04,bu-05,bu-06,bu-07,bu-08,bu-09,bu-10,bu-11,bu-12">
+    <div class="project__head">
+      <span class="project__n">02</span>
+      <h3>BU Düsseldorf, <em>Business Unit für Co-Working</em></h3>
+    </div>
+    <div class="strip" tabindex="0" aria-label="Bilder BU Düsseldorf"></div>
+    <details class="project__text">
+      <summary>Über das Projekt</summary>
+      <p>Be You. Sei ganz Du selbst. So die Idee. Das BU-Konzept der Covivio ist eine innovative Umsetzung der Prinzipien von New Work. Ein lichtdurchfluteter Raum, der verschiedene Arbeitsstile unterstützt. Durch die sorgfältige Gestaltung der Flächen werden die Bedürfnisse aller Mitarbeiter berücksichtigt. Hier kann agiler und effizienter gearbeitet werden. Und motivierter. Ein zentraler Fokus des Konzepts liegt auf der Förderung von Gemeinschaft und Co-Kreation. Einrichtungen wie eine Lounge, eine Kantine und individuelle Besprechungsräume schaffen Möglichkeiten für spontane Interaktionen. Zudem wurde besonderer Wert auf hochwertige Möbel und nachhaltige Ausstattung gelegt, um Flexibilität und Komfort zu gewährleisten.</p>
+    </details>
+  </article>
+
+  <article class="project" id="p-le-coeur" data-images="lc-00,lc-01,lc-02,lc-03,lc-04,lc-05,lc-06,lc-07,lc-08,lc-09,lc-10,lc-11,lc-12,lc-13,lc-14,lc-15">
+    <div class="project__head">
+      <span class="project__n">03</span>
+      <h3>Le Coeur Düsseldorf, <em>eine Herzensangelegenheit</em></h3>
+    </div>
+    <div class="strip" tabindex="0" aria-label="Bilder Le Coeur Düsseldorf"></div>
+    <details class="project__text">
+      <summary>Über das Projekt</summary>
+      <p>Boing boom tschak, Boing boom tschak. Das schreibt Kraftwerk. Kraftwerk, die Düsseldorfer Band oder besser „die Beatles der elektronischen Tanzmusik“ (New York Times) haben uns inspiriert. Wir durften Interior Design für eine Bank machen. In Düsseldorf. Da kam uns der Dresscode von Kraftwerk gerade recht: dunkler Anzug, aber eben mit Kajal und Lippenstift. Wir haben die Architektur dieses Meisterwerks so belassen, wie sie ist. Zuerst ein Farb- und Materialkonzept erstellt, welches dieses noch mehr strahlen lässt. Danach Licht, Küche und Möblierung geplant. Wir haben dem Herzog das Herz gestohlen und daraus eine Sprache des Herzens entwickelt. Dazu einen individuellen Raumduft kreiert. Einen für morgens, mittags und abends. Eine typische Sound Installation designt. Etwas zwischen Geräusch und Lärm, das durchdringt. Organisch und eher flüchtig. Ein Merchandise Konzept gab´s obendrauf, die Le Coeur Kollektion.</p>
+    </details>
+  </article>
+</section>
+
+<!-- ═════════ 4 · STUDIO ═════════ -->
+<section class="sec" id="studio" data-color="#1c20ff">
+  <header class="sec__head">
+    <p class="claim">Worum es uns geht? Gute Räume.</p>
+    <h2 class="sec__title"><span class="row"><span class="t">Und gute Menschen.</span></span></h2>
+  </header>
+  <p class="lead" data-split>Allzu einseitige Vorgaben lassen <b class="num">4</b> solche Räume nicht entstehen. Hauptsache funktional? Möglichst günstig? Oder vor allem hübsch? So begrenzt man Räume und macht sie kleiner statt größer. Selten übertrifft das, was dort entsteht, dann die Normalität.</p>
+
+  <div class="duo duo--rev">
+    <figure class="frame frame--tall" data-cursor="Play">
+      <video class="lazyvideo" muted loop playsinline preload="none" poster="media/video/studio.webp" data-src="media/video/studio.mp4" aria-label="Studio-Film"></video>
+    </figure>
+    <div class="duo__text">
+      <p class="big">Was man über heterogene Teams sagt: diese Teams sind deutlich kreativer, schlagkräftiger, erfolgreicher und schwer zu führen. Das kann sein. Was wir bislang wissen: unser Team hätte nicht besser gecastet werden können. Vielleicht möchten Sie uns kennenlernen - wir freuen uns darauf.</p>
+    </div>
+  </div>
+
+  <div class="team">
+    <article class="person person--wide">
+      <figure class="frame"><img src="media/img/christian.webp" alt="Christian Hiller sitzt auf einer Holzbank vor einer Betonwand" loading="lazy" width="1600" height="1200"></figure>
+      <div class="person__body">
+        <h3>Christian Hiller</h3>
+        <p class="person__role">CEO &amp; Founder</p>
+        <p>Er hat in Sales Management Positionen erfolgreich für das Who is Who der Möbelherstellerwelt gearbeitet. Knoll, de Sede, Walter Knoll, Dedon und BoConcept. In über 700 Einrichtungsprojekten: diverse Headquarter und Agenturen, ganze Hotels, halbe Kreuzfahrtschiffe, Fussballstadionlounges, jede Menge möblierte Apartments und sogar eine Tropfsteinhöhle.</p>
+        <details><summary>Weiterlesen</summary>
+          <p>Immer Premium, Contemporary Lifestyle und immer etwas mehr, als der Kunde erwartet. Das ist sein und jetzt unser Motto. Das schafft oft Leiden, aber eben auch die besten Resultate. Christian ist ein Möglichmacher. Er leitet, inspiriert und schafft „gute Räume“ für intrinsische Motivation. Er schickt andauernd Impulse und hat immer einen Plan. Häufig formlos und pragmatisch, aber solide. Ein bereits bestehendes Konzept in einen innovativen Kontext gestellt. Oft sehr überraschend und wie er behauptet intuitiv. So ermutigt er uns, - wie er und Bruce Lee sagen - wie Wasser zu sein. Immer unter Spannung, im Flow, mit der Fähigkeit, Hindernisse zu umfließen.</p>
+        </details>
+        <blockquote>In diesem Sinne: „Be water my friend“.</blockquote>
+      </div>
+    </article>
+
     <article class="person">
-      <figure class="person__img slot" data-cursor="Foto" data-n="T2" data-label="Portrait — Milica Mésterovic" data-ratio="2:3"></figure>
+      <figure class="frame"><img src="media/img/milica.webp" alt="Milica Mésterovic sitzt vor einem Lkw mit roter Beschriftung" loading="lazy" width="1500" height="2000"></figure>
       <div class="person__body">
         <h3>Milica Mésterovic</h3>
         <p class="person__role">Creative Direction &amp; Concepts</p>
-        <p>Sie kann auf Alpha-Wellen surfen. Mit ihren gleichnamigen Festivals hat sie als Founder und Art Director wichtige, zukunftsweisende Zeichen gesetzt. Wenn Sie unser Kunde sind, spricht sie mit hoher Wahrscheinlichkeit auch Ihre Sprache. Und bald auch Deutsch.</p>
+        <p>Sie kann auf Alpha-Wellen surfen. In diesem Zustand der totalen Konzentration, Aufmerksamkeit und Entspannung ist Milica möglichweise eine der besten Interior Designerinnen. Das glauben wir jedenfalls. Und unsere Kunden.</p>
+        <details><summary>Weiterlesen</summary>
+          <p>Milica probiert. Sie probiert aus - alles. Wenn wir eine Collective Idee spinnen, hat Milica diese meist schon gehabt und verworfen oder verfeinert. Sie visualisiert gute Räume. Sie wirkt durch und durch inspirativ. Die Tatsache, dass sie relevante Abschlüsse in Industrial Design, Furniture Design und Interior Design an internationalen Hochschulen hat, macht Sie zu einem Allrounder und Spezialisten gleichermaßen. Das ist selten und irgendwie unbezahlbar. Sie teilt ihr fundiertes Wissen gerne und gibt es auch an die nächste Design Generation weiter. Ihr Faible für Altes, Existierendes, Verwertbares und Nachhaltiges ist allgegenwärtig. Sie nennt es RE-MAKE und hat mit ihren gleichnamigen Festivals als Founder und Art Director wichtige, zukunftsweisende Zeichen gesetzt. Wenn Sie unser Kunde sind, spricht sie mit hoher Wahrscheinlichkeit auch Ihre Sprache. Und bald auch Deutsch.</p>
+        </details>
       </div>
     </article>
+
     <article class="person person--offset">
-      <figure class="person__img slot" data-cursor="Foto" data-n="T3" data-label="Portrait — David Salcin" data-ratio="2:3"></figure>
+      <figure class="frame"><img src="media/img/david.webp" alt="David Salcin steht lachend vor einer Betonwand neben einem Holzstuhl" loading="lazy" width="1500" height="2000"></figure>
       <div class="person__body">
         <h3>David Salcin</h3>
         <p class="person__role">Sales &amp; Customer Experience</p>
-        <p>Gäbe es den Beruf des Besorgers, David wäre es.</p>
+        <p>Gäbe es den Beruf des Besorgers, David wäre der beste seines Faches. Er besorgt einfach alles und jeden. Ein Sach- und Menschenfänger im besten Sinne.</p>
+        <details><summary>Weiterlesen</summary>
+          <p>Vielleicht war er mal Pfadfinder, wir wissen es nicht. Jedenfalls kann er Pfade finden, Wege ebnen, tiefe Beziehungen aufbauen und führen. Die Fähigkeit, dass er als Besorger eben auch besorgt ist, hilft, unsere Kunden glücklich zu machen. Er kann in verschiedenen Budgets denken und verliert dabei nie den Anspruch an das bestmögliche Ergebnis. Mit Geschick, Vertrauen und viel Zuversicht. Das ist es, was er im Überfluss hat und von dem er im Überfluss verschenkt. David managt unsere Projekte von A-Z und alles darüber und darunter auch. David brennt für gute Räume, Räume, die etwas mit uns „machen“. Da hilft ihm sein breites Möbel-Designwissen und seine Stationen als Architekturstudent, Visual Merchandiser und Furniture Store Manager. Er ist vielseitig engagiert, seine Klaviatur reicht vom Verlegen queerer Medien bis zur Unterstützung heimatloser Hunde in Thailand. Viele bunte Interessen – auch wenn er nur schwarz trägt. Das haben wir dem Architekturstudium zu verdanken.</p>
+        </details>
       </div>
     </article>
   </div>
-
-  <p class="team__outro">Vielleicht möchten Sie uns kennenlernen — wir freuen uns darauf.</p>
 </section>
 
-<!-- ───────── Contact ───────── -->
-<section class="contact" id="kontakt" data-ink="#1C20FF">
-  <h2 class="contact__title"><span class="row"><span class="t">Wollen wir</span></span><span class="row"><span class="t">sprechen?</span></span></h2>
-  <div class="contact__ways">
-    <a href="#" class="way" data-cursor="Chat"><span class="way__n">A</span><span class="way__t">WhatsApp</span><span class="way__a">↗</span></a>
-    <a href="#" class="way" data-cursor="Mail"><span class="way__n">B</span><span class="way__t">Email</span><span class="way__a">↗</span></a>
-    <a href="#" class="way" data-cursor="Anrufen"><span class="way__n">C</span><span class="way__t">Old School Telefon</span><span class="way__a">↗</span></a>
+<!-- ═════════ 5 · PARTNER ═════════ -->
+<section class="sec" id="partner" data-color="#fc691a">
+  <header class="sec__head">
+    <p class="claim">Worum es uns geht? Gute Räume.</p>
+    <h2 class="sec__title"><span class="row"><span class="t">Und gute Partner.</span></span></h2>
+  </header>
+  <p class="lead" data-split>Niemand kann all das mehr allein leisten. Dazu braucht es kluge Köpfe aus <b class="num">5</b> verteilten Welten. Mit Zugang zu Produkten und Objekten unterschiedlichster Herkunft. Mit dem entsprechenden Know-what – und dem erforderlichen Know-how.</p>
+
+  <div class="duo">
+    <figure class="frame frame--tall" data-cursor="Play">
+      <video class="lazyvideo" muted loop playsinline preload="none" poster="media/video/partner.webp" data-src="media/video/partner.mp4" aria-label="Partner-Film"></video>
+    </figure>
+    <div class="duo__text">
+      <p class="big">Na klar, sind starke Marken wichtig. Aber uns interessieren auch die Menschen dahinter. Sie sind uns wichtiger, denn Sie sind nicht austauschbar. Menschen, die sagen, was sie denken und halten, was sie versprechen. Auf die ehrlich Verlass ist. Ein paar Freunde des Hauses. Unseres Konzept Hauses.</p>
+    </div>
+  </div>
+
+  <ul class="partners" aria-label="Partner">
+    <li><a href="https://www.haworth.com" target="_blank" rel="noopener noreferrer">haworth.com</a></li>
+    <li><a href="https://www.prostoria.eu" target="_blank" rel="noopener noreferrer">prostoria.eu</a></li>
+    <li><a href="https://objekteunserertage.com" target="_blank" rel="noopener noreferrer">objekteunserertage.com</a></li>
+    <li><a href="https://www.hay.com" target="_blank" rel="noopener noreferrer">hay.com</a></li>
+    <li><a href="https://www.kvadrat.dk" target="_blank" rel="noopener noreferrer">kvadrat.dk</a></li>
+    <li><a href="https://lehni.ch" target="_blank" rel="noopener noreferrer">lehni.ch</a></li>
+    <li><a href="https://www.arrmet.it" target="_blank" rel="noopener noreferrer">arrmet.it</a></li>
+    <li><a href="https://www.marset.com" target="_blank" rel="noopener noreferrer">marset.com</a></li>
+    <li><a href="https://espattiobrand.com" target="_blank" rel="noopener noreferrer">espattiobrand.com</a></li>
+    <li><a href="https://www.grupa.com" target="_blank" rel="noopener noreferrer">grupa.com</a></li>
+    <li><a href="https://vibia.com" target="_blank" rel="noopener noreferrer">vibia.com</a></li>
+    <li><a href="https://mizetto.se" target="_blank" rel="noopener noreferrer">mizetto.se</a></li>
+    <li><a href="https://nanimarquina.com" target="_blank" rel="noopener noreferrer">nanimarquina.com</a></li>
+    <li><a href="https://www.ondarreta.com" target="_blank" rel="noopener noreferrer">ondarreta.com</a></li>
+    <li><a href="https://artisan.ba" target="_blank" rel="noopener noreferrer">artisan.ba</a></li>
+    <li><a href="https://www.pedestal.com" target="_blank" rel="noopener noreferrer">pedestal.com</a></li>
+    <li><a href="https://www.s-cab.it" target="_blank" rel="noopener noreferrer">s-cab.it</a></li>
+    <li><a href="https://www.schoenbuch.com" target="_blank" rel="noopener noreferrer">schoenbuch.com</a></li>
+    <li><a href="https://variand.furniture" target="_blank" rel="noopener noreferrer">variand.furniture</a></li>
+    <li><a href="https://wendelbo.com" target="_blank" rel="noopener noreferrer">wendelbo.com</a></li>
+    <li><a href="https://liniedesign.com" target="_blank" rel="noopener noreferrer">liniedesign.com</a></li>
+    <li><a href="https://impactacoustic.com" target="_blank" rel="noopener noreferrer">impactacoustic.com</a></li>
+    <li><a href="https://www.analogue.nl" target="_blank" rel="noopener noreferrer">analogue.nl</a></li>
+    <li><a href="https://andreuworld.com" target="_blank" rel="noopener noreferrer">andreuworld.com</a></li>
+    <li><a href="https://www.arper.com" target="_blank" rel="noopener noreferrer">arper.com</a></li>
+    <li><a href="https://www.varierfurniture.com" target="_blank" rel="noopener noreferrer">varierfurniture.com</a></li>
+    <li><a href="https://www.cappellini.com" target="_blank" rel="noopener noreferrer">cappellini.com</a></li>
+    <li><a href="https://deltalight.com" target="_blank" rel="noopener noreferrer">deltalight.com</a></li>
+    <li><a href="https://kolor.de" target="_blank" rel="noopener noreferrer">kolor.de</a></li>
+    <li><a href="https://midgard.com" target="_blank" rel="noopener noreferrer">midgard.com</a></li>
+  </ul>
+</section>
+
+<!-- ═════════ 6 · KONTAKT ═════════ -->
+<section class="sec sec--contact" id="kontakt" data-color="#ff3fca">
+  <header class="sec__head">
+    <p class="claim">Worum es uns geht? Gute Räume.</p>
+    <h2 class="sec__title"><span class="row"><span class="t">Und gute Kommunikation.</span></span></h2>
+  </header>
+  <p class="lead" data-split>Wollen wir sprechen? <b class="num">6</b> Ein Kollektiv, das all das zusammenführt. Unabhängig von üblichen Marktmechanismen und herkömmlichen Angeboten. Ein Kollektiv, mit einem einzigen Ziel: Gute Räume.</p>
+
+  <div class="contact">
+    <figure class="frame frame--tall" data-cursor="Play">
+      <video class="lazyvideo" muted loop playsinline preload="none" poster="media/video/kontakt.webp" data-src="media/video/kontakt.mp4" aria-label="Kontakt-Film"></video>
+    </figure>
+    <div class="contact__body">
+      <p class="quote">„So zusammen war noch keiner“</p>
+      <p class="big">Unser Fundament ist die Zusammenarbeit. Das Co in Co-Kreation ist uns wichtig. Die Bereicherung Ihres Projektes durch unsere Partner und die Inspiration durch unsere wertvollen Kunden. Durch Sie.</p>
+      <div class="ways">
+        <a class="way" href="https://wa.me/4917672008125" target="_blank" rel="noopener noreferrer" data-cursor="Chat"><span>WhatsApp</span><i>↗</i></a>
+        <a class="way" href="mailto:connect@kh-collective.com" data-cursor="Mail"><span>connect@kh-collective.com</span><i>↗</i></a>
+        <a class="way" href="tel:+4917672008125" data-cursor="Anrufen"><span>+49 176 720 081 25 <small>Christian</small></span><i>↗</i></a>
+        <a class="way" href="tel:+4915785322293" data-cursor="Anrufen"><span>+49 157 853 222 93 <small>David</small></span><i>↗</i></a>
+      </div>
+      <address>Konzept Haus Collective GmbH<br>Langer Stall<br>Neue Plantage 6<br>14467 Potsdam</address>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ 7 · GUTE RÄUME — MANIFEST ═════════ -->
+<section class="manifest" id="gute-raeume" data-color="#000000">
+  <video class="manifest__bg lazyvideo" muted loop playsinline preload="none" poster="media/video/manifest.webp" data-src="media/video/manifest.mp4" aria-hidden="true"></video>
+  <div class="manifest__inner">
+    <p class="claim">Worum es uns geht? Gute Räume.</p>
+    <h2 class="sec__title"><span class="row"><span class="t">Und um Liebe und Poesie.</span></span><span class="row"><span class="t">Unser Manifest.</span></span></h2>
+    <div class="manifest__text">
+      <p><a href="#start">Gute Räume <b class="num">1</b></a> sprechen die Sinne an – und berühren unsere Seele. Sie haben Charakter. Sie schaffen Atmosphäre. Gute Räume laden uns ein, genau das zu tun, wofür sie geschaffen wurden. Sie umrahmen uns, sie schenken uns Flow.</p>
+      <p>Jeder <a href="#was-wir-tun">gute Raum <b class="num">2</b></a> ist einzigartig und erzählt eine eigene Geschichte. Zum Ausdruck gebracht durch seine Form, Funktion und Stärke. Durch Materialien und Farbe, Licht und Schatten, Duft und Klang. Durch seine Nachhaltigkeit und Identität.</p>
+      <p>Um einen <a href="#projekte">guten Raum <b class="num">3</b></a> zu schaffen, müssen wir zuerst sein Potenzial erkennen. Also wissen, was möglich und was machbar ist. Und uns darauf verlassen können, dass aus den Plänen Wirklichkeit wird.</p>
+      <p>Allzu einseitige Vorgaben lassen <a href="#studio">solche Räume <b class="num">4</b></a> nicht entstehen. Hauptsache funktional? Möglichst günstig? Oder vor allem hübsch? So begrenzt man Räume und macht sie kleiner statt größer. Selten übertrifft das, was dort entsteht, dann die Normalität.</p>
+      <p>Niemand kann all das mehr alleine leisten. Dazu braucht es kluge Köpfe aus <a href="#partner">verteilten Welten <b class="num">5</b></a>. Mit Zugang zu Produkten und Objekten unterschiedlichster Herkunft. Mit dem entsprechenden Know-what – und dem erforderlichen Know-how.</p>
+      <p><a href="#kontakt">Ein Kollektiv <b class="num">6</b></a>, das all das zusammenführt. Unabhängig von üblichen Marktmechanismen und herkömmlichen Angeboten. Ein Kollektiv, mit einem einzigen Ziel: Gute Räume.</p>
+    </div>
+    <p class="manifest__sign" aria-label="Konzept Haus Collective"><span>Konzept</span><span>Haus</span><span>Collective</span></p>
   </div>
 </section>
 
 </main>
 
 <footer class="foot">
-  <div class="foot__big" aria-hidden="true">
-    <svg viewBox="0 0 120 120"><use href="#kh"/></svg>
+  <div class="foot__grid">
+    <address>Konzept Haus Collective GmbH<br>Langer Stall, Neue Plantage 6<br>14467 Potsdam</address>
+    <p><a href="mailto:connect@kh-collective.com">connect@kh-collective.com</a><br><a href="https://www.kh-collective.com" target="_blank" rel="noopener noreferrer">kh-collective.com</a></p>
+    <p><a href="https://www.kh-collective.com/impressum" target="_blank" rel="noopener noreferrer">Impressum</a><br><a href="https://www.kh-collective.com/datenschutz" target="_blank" rel="noopener noreferrer">Datenschutz</a></p>
+    <p><a href="https://www.instagram.com/konzepthauscollective/" target="_blank" rel="noopener noreferrer">Instagram</a><br><a href="https://www.linkedin.com/company/98301354" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
   </div>
-  <div class="foot__row">
-    <span>Konzept Haus Collective GmbH<br>Langer Stall, Neue Plantage 6, 14467 Potsdam</span>
-    <span><a href="#">Impressum</a> &nbsp; <a href="#">Datenschutz</a></span>
-    <a href="#top">Nach oben ↑</a>
-  </div>
+  <svg class="foot__mark" aria-hidden="true"><use href="#kh"/></svg>
+  <p class="foot__note">Redesign-Konzept · Inhalte, Fotos und Filme: Konzept Haus Collective</p>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<!-- Lightbox for project images -->
+<div class="lightbox" hidden role="dialog" aria-modal="true" aria-label="Bildansicht">
+  <button class="lightbox__close" type="button" aria-label="Schließen">×</button>
+  <button class="lightbox__prev" type="button" aria-label="Vorheriges Bild">←</button>
+  <img class="lightbox__img" alt="">
+  <button class="lightbox__next" type="button" aria-label="Nächstes Bild">→</button>
+  <p class="lightbox__count"></p>
+</div>
+
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script src="vendor/lenis.min.js"></script>
+<script src="vendor/kh3d.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
