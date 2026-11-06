@@ -1194,3 +1194,19 @@ body:has(.offer__bar) .foot > .rv { margin-bottom: 0; }
   .ctab svg { display: none; }
 }
 @media (max-width: 370px) { .ctab { font-size: .8125rem; padding: 0 .15rem; } }
+
+/* wide screens with the opening-state chip: WhatsApp as an icon, and the chip gives way (shortens) instead of
+   pushing the call button out of the header, whatever its text ("Geschlossen · öffnet Mo 10:00" etc.) */
+@media (min-width: 1440px) {
+  .nav__wa { padding: 0; }
+  .nav__wa svg { width: 22px; height: 22px; }
+  .nav__wa-text { display: none; }
+  .nav__in { gap: .6rem; padding-inline: min(var(--gutter), 3.5rem); }
+  .nav__links a { padding-inline: .4rem; }
+  .nav__call { padding: 0 .95rem; }
+  .nav__in > .nav__state { gap: .4rem; padding: 0 .65rem 0 .6rem; font-size: .75rem; }
+  .nav__links a[aria-current="page"]::after { left: .4rem; right: .4rem; }
+  .nav__in > .nav__state { flex: 0 1 auto; min-width: 0; max-width: 220px; overflow: hidden; }   /* gives way on very wide screens (wider page margin) */
+  .nav__in > .nav__state .nav__state-time { overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+  .nav__in > .nav__state .nav__state-label { flex: none; }
+}
