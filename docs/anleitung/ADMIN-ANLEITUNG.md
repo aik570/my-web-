@@ -2,7 +2,7 @@
 
 Diese Anleitung zeigt Schritt für Schritt, wie Sie Preise, Geräte, Fotos, Öffnungszeiten und Texte Ihrer Website selbst ändern. Sie brauchen dafür keine technischen Kenntnisse – nur einen Internet-Browser (Chrome, Safari, Firefox oder Edge) am Computer.
 
-> **Stand 04.11.2026:** Die Website läuft unter **https://handychirurg.netlify.app**, die Bearbeitung unter **https://handychirurg.netlify.app/admin/**. Anmeldung nur mit Passwort. Sobald Ihre Domain umgestellt ist, gilt dieselbe Adresse mit Ihrer Domain, z. B. **https://www.handychirurg.de/admin/**.
+> **Stand 04.11.2026:** Die Website läuft unter **https://handychirurg.netlify.app**, die Bearbeitung unter **https://handychirurg.netlify.app/admin/**. Anmeldung nur mit Passwort. Sobald Ihre Domain umgestellt ist, gilt dieselbe Adresse mit Ihrer Domain, z. B. **https://www.handy-chirurg.de/admin/**.
 
 Die Bilder in dieser Anleitung sind Aufnahmen der echten Bearbeitungsseite. Rote Rahmen zeigen, wo Sie klicken oder etwas eintragen.
 
@@ -11,7 +11,7 @@ Die Bilder in dieser Anleitung sind Aufnahmen der echten Bearbeitungsseite. Rote
 ## 1. Bearbeitungsseite öffnen
 
 Geben Sie im Browser ein: **https://handychirurg.netlify.app/admin/**
-(nach der Domain-Umstellung: **https://www.handychirurg.de/admin/**). Tipp: Lesezeichen anlegen.
+(nach der Domain-Umstellung: **https://www.handy-chirurg.de/admin/**). Tipp: Lesezeichen anlegen.
 
 ## 2. Anmelden
 

@@ -295,9 +295,10 @@
   to = "/impressum/"
   status = 301
 
-# Second domain → canonical domain (enable after the client confirms which is canonical)
+# Canonical domain: www.handy-chirurg.de (confirmed 06.11.2026). handy-chirurg.de → www is done by Netlify
+# (primary domain). Enable this only if handychirurg.de (no hyphen, IONOS) is also pointed at Netlify.
 # [[redirects]]
-#   from = "https://handy-chirurg.de/*"
-#   to = "https://www.handychirurg.de/:splat"
+#   from = "https://handychirurg.de/*"
+#   to = "https://www.handy-chirurg.de/:splat"
 #   status = 301
 #   force = true

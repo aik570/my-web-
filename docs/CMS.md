@@ -2,7 +2,7 @@
 
 ## Für den Inhaber: so ändern Sie die Website
 
-1. Öffnen Sie **https://www.handychirurg.de/admin/** und melden Sie sich mit Ihrem GitHub-Konto an.
+1. Öffnen Sie **https://www.handy-chirurg.de/admin/** und melden Sie sich mit Ihrem GitHub-Konto an.
 2. Links wählen Sie den Bereich:
    - **Preise** – ein Eintrag pro Hersteller, darin Modelle und Reparaturen.
    - **Laden & Kontakt** – Telefon, WhatsApp, E-Mail, Adresse, Öffnungszeiten, Schließtage, Fehleranalyse (Befund), Garantie, Social-Media-Links, Texte der Öffnungsanzeige, Reparaturarten, Status der Preisliste, Produktfotos, Link zu den Google-Bewertungen.

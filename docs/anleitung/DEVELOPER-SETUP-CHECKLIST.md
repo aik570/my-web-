@@ -1,6 +1,6 @@
 # Developer setup checklist – CMS hosting (Handy Chirurg)
 
-Status 03.11.2026. "Verified" = checked in this repository or by a test run on 03.11. Nothing here was tested on a hosted site: **no Netlify site of the new website exists yet** (`https://www.handychirurg.de/admin/config.yml` → 404; www.handychirurg.de is still the old site). Step details: `docs/DEPLOY.md` (C1–C4, D).
+Status 03.11.2026. "Verified" = checked in this repository or by a test run on 03.11. Nothing here was tested on a hosted site: **no Netlify site of the new website exists yet** (`https://www.handy-chirurg.de/admin/config.yml` → 404; www.handy-chirurg.de is still the old site). Step details: `docs/DEPLOY.md` (C1–C4, D).
 
 ## A. Already in place (verified)
 
@@ -25,7 +25,7 @@ Status 03.11.2026. "Verified" = checked in this repository or by a test run on 0
 | 6 | **Hosted test** on `https://preview--<site>.netlify.app/admin/`: "Mit GitHub einloggen" → change one price → Veröffentlichen → commit „CMS: preise … geändert" on `preview` → branch deploy → new price on `/preise/<marke>/` → revert. Record URL and result in `project-audit/IMPLEMENTATION-STATUS.md` | Developer | **not tested** |
 | 7 | Deploy notifications (failed deploys) to the maintainer | Developer | **open** |
 | 8 | Production: `backend.branch: main`, push `preview:main`; `npm run check` must pass | Developer, after written approval | **open** |
-| 9 | Domain/DNS `www.handychirurg.de` → Netlify, HTTPS; OAuth App homepage → final domain | Client approval required | **open – do not change without approval** |
+| 9 | Domain/DNS `www.handy-chirurg.de` → Netlify, HTTPS; OAuth App homepage → final domain | Client approval required | **open – do not change without approval** |
 | 10 | Google reviews: `GOOGLE_PLACE_ID` + `GOOGLE_PLACES_API_KEY` (run `scripts/fetch-reviews.mjs`), or an approved review widget | Client | **open** – site shows the honest empty strip |
 
 ## C. Content blockers (`npm run check`, 03.11.2026: 5 blockers)

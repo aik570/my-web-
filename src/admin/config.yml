@@ -20,8 +20,8 @@ backend:
 local_backend: true       # only used on localhost together with `npm run cms`
 publish_mode: simple      # Speichern = Veröffentlichen
 locale: de
-site_url: https://www.handychirurg.de
-display_url: https://www.handychirurg.de
+site_url: https://www.handy-chirurg.de
+display_url: https://www.handy-chirurg.de
 logo_url: /assets/img/favicon.svg
 
 media_folder: src/assets/img/uploads

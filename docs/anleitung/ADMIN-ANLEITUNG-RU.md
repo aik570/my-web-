@@ -1,7 +1,7 @@
 # Админка сайта Handy Chirurg — коротко
 
 **Адрес:** https://handychirurg.netlify.app/admin/
-После переноса домена: `https://www.handychirurg.de/admin/`.
+После переноса домена: `https://www.handy-chirurg.de/admin/`.
 **Пароль:** в файле `ADMIN-PASSWORT.txt`. Никому, кроме владельца, не давать.
 
 ## 1. Вход
