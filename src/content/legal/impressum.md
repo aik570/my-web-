@@ -2,8 +2,6 @@
 title: Impressum
 description: Impressum von Handy Chirurg Potsdam.
 ---
-[[KLÄREN: Angaben übernommen von der bisherigen Website handychirurg.de/impressum (Stand 28.10.2026). Vor Veröffentlichung bestätigen, dass sie aktuell und vollständig sind (z. B. Handelsregister, falls eingetragen).]]
-
 Malake Mansour
 Dortustraße 23
 14467 Potsdam

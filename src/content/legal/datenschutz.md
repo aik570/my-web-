@@ -2,8 +2,6 @@
 title: Datenschutzerklärung
 description: Datenschutzerklärung von Handy Chirurg Potsdam.
 ---
-[[KLÄREN: Text übernommen von der bisherigen Website handychirurg.de/datenschutz (Stand 28.10.2026) und an die neue Website angepasst: Hosting jetzt Netlify statt Lovable; Abschnitte Kontaktformular, Supabase und Resend entfallen (kein Formular mehr); in Abschnitt 1 und bei den Bewerberdaten Verweise auf ein Kontaktformular sowie in Abschnitt 1 der Satz zur Analyse des Nutzerverhaltens entfernt (keine Analyse-Werkzeuge). Vor Veröffentlichung rechtlich prüfen lassen.]]
-
 ## 1. Datenschutz auf einen Blick
 
 ### Allgemeine Hinweise
@@ -46,7 +44,7 @@ Netlify, Inc. ist nach dem EU-US Data Privacy Framework (DPF) zertifiziert. Sowe
 
 Auftragsverarbeitung: Netlify stellt eine Vereinbarung zur Auftragsverarbeitung (Data Processing Agreement) bereit, die Bestandteil der Nutzungsbedingungen ist. Eine Liste der Unterauftragsverarbeiter stellt Netlify unter https://www.netlify.com/legal/subprocessors/ bereit.
 
-[[KLÄREN: Speicherdauer der Server-Logfiles bei Netlify (in den öffentlichen Netlify-Seiten nicht angegeben) und Bestätigung, dass die Website im Netlify-Konto des Inhabers betrieben wird]]
+Wie lange Netlify die Server-Logfiles speichert, legt Netlify fest; Einzelheiten enthält die Datenschutzerklärung von Netlify: https://www.netlify.com/privacy/. Das Netlify-Konto, über das die Website betrieben wird, verwaltet unser Webentwickler in unserem Auftrag.
 
 Diese Website setzt keine Cookies und keine Analyse- oder Tracking-Werkzeuge ein. Schriften, Bilder und Skripte werden vom Server dieser Website geladen.
 

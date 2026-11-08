@@ -19,7 +19,8 @@ else if (meta.status !== 'verified') blockers.push(`Preisliste: Status „${meta
 const cms = fs.readFileSync('src/admin/config.yml', 'utf8');
 const repo = (cms.match(/^\s+repo:\s*([^\s#]+)/m) || [])[1];
 const branch = (cms.match(/^\s+branch:\s*([^\s#]+)/m) || [])[1];
-if (repo === 'aik570/my-web-') blockers.push(`CMS: backend.repo ist das gemeinsame Arbeits-Repository „${repo}" – Produktions-Repository des Kunden eintragen (src/admin/config.yml)`);
+// 08.11.2026: the owner agreed that site and CMS stay in the developer's GitHub/Netlify account
+if (repo === 'aik570/my-web-') warnings.push(`CMS: backend.repo ist das gemeinsame Arbeits-Repository „${repo}" – vom Inhaber so freigegeben (08.11.2026); bei Übergabe an den Kunden ändern`);
 try {
   const { execSync } = await import('node:child_process');
   const out = execSync(`git ls-remote --heads https://github.com/${repo}.git ${branch}`, { stdio: ['ignore', 'pipe', 'ignore'], timeout: 15000 }).toString();
@@ -49,7 +50,8 @@ const allPhotos = [...(modelImages.photos || []), ...modelFilePhotos()];
 const unconfirmed = allPhotos.filter((p) => p.rightsConfirmed === false);
 const exactPhotos = allPhotos.length - unconfirmed.length;
 warnings.push(`Produktfotos im Preisrechner: ${exactPhotos} Modelle mit lizenziertem Produktfoto, übrige zeigen die Zeichnung – fehlende Modelle: project-audit/MODEL-PHOTOS.md`);
-if (unconfirmed.length) blockers.push(`Produktfotos: ${unconfirmed.length} Herstellerbilder (Apple/Samsung) ohne bestätigtes Nutzungsrecht – Genehmigung einholen und im CMS „Nutzungsrecht bestätigt" einschalten, oder ersetzen. Bis dahin erscheinen sie nur in der Vorschau`);
+// 08.11.2026: the owner launches without them – production builds leave these photos out (modelPhotos.js)
+if (unconfirmed.length) warnings.push(`Produktfotos: ${unconfirmed.length} Herstellerbilder (Apple/Samsung) ohne bestätigtes Nutzungsrecht – Genehmigung einholen und im CMS „Nutzungsrecht bestätigt" einschalten, oder ersetzen. Auf der Website werden sie nicht angezeigt (nur in der Vorschau)`);
 if (site.hours.find((h) => h.dayIndex === 0 && !h.open)) warnings.push('Sonntag geschlossen – vom Inhaber bestätigen lassen');
 if (site.publicHolidays === 'unknown') warnings.push('Feiertagsregel offen (Seite zeigt an Feiertagen „bitte vorher anrufen")');
 if (!meta.vatNote) warnings.push('Preisliste: kein Hinweis zur Umsatzsteuer (z. B. „Alle Preise inkl. MwSt.") – Angabe vom Inhaber bestätigen lassen (CLIENT-APPROVAL-CHECKLIST Punkt 6)');
