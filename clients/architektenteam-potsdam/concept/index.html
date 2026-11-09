@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Architektenteam Potsdam</title>
+<meta name="description" content="Redesign-Konzept für das Architektenteam Potsdam: Architekt und Beratender Ingenieur, Leistungsphasen 1 bis 9, seit 1998.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --kalk:#ECEBE6; --papier:#F6F5F1; --weiss:#FFFFFF;
+  --graphit:#1E2326; --text:#33393C; --grau:#5A6064; --linie:#C9C8C1;
+  --ziegel:#A2412A; --ziegel-hell:#E9A48E;
+  --pad:20px; --max:1320px;
+}
+@media (min-width:760px){:root{--pad:40px}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--kalk);color:var(--graphit);font-family:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--ziegel);outline-offset:3px}
+.wrap{max-width:var(--max);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+h1,h2,h3{margin:0;font-weight:720;font-stretch:116%;letter-spacing:-.015em;text-wrap:balance}
+h2{font-size:clamp(32px,6.4vw,58px);line-height:1.02}
+h3{font-size:22px;line-height:1.15;font-stretch:108%}
+p{margin:0}
+.lead{font-size:clamp(18px,2vw,20px);line-height:1.55;color:var(--text);max-width:34em}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:14px 26px;font:inherit;font-weight:620;font-size:17px;text-decoration:none;border:2px solid var(--graphit);cursor:pointer}
+.btn-voll{background:var(--ziegel);border-color:var(--ziegel);color:#fff}
+.btn-voll:hover{background:#8A3522;border-color:#8A3522}
+.btn-linie{background:transparent;color:var(--graphit)}
+.btn-linie:hover{background:var(--graphit);color:#fff}
+
+/* Kopf */
+.kopf{position:sticky;top:0;z-index:20;background:rgba(236,235,230,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--linie)}
+.kopf .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:64px}
+.marke{display:flex;align-items:center;gap:12px;text-decoration:none;min-width:0}
+.marke svg{flex:none}
+.marke b{display:block;font-size:17px;font-weight:720;font-stretch:112%;line-height:1.1;white-space:nowrap}
+.marke .unter{display:block;font-size:13px;color:var(--grau);line-height:1.2;white-space:nowrap}
+.nav{display:none;gap:30px;font-size:16px}
+.nav a{text-decoration:none;padding:10px 0}
+.nav a:hover{color:var(--ziegel)}
+.kopf .btn{min-height:44px;padding:10px 16px;font-size:15px}
+@media (min-width:980px){.nav{display:flex}}
+@media (max-width:420px){.marke .unter{display:none}.marke b{font-size:15px;white-space:normal;font-stretch:104%;line-height:1.1}.marke svg{width:32px;height:32px}}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:1fr}
+.hero-bild{position:relative;aspect-ratio:1/1;overflow:hidden;background:#cfcdc6}
+.hero-bild img{object-position:72% 50%}
+.hero-bild img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-bild .vorher{clip-path:inset(0 0 0 100%)}
+.hero-bild .naht{position:absolute;top:0;bottom:0;left:100%;width:2px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.15);opacity:0}
+.marker{position:absolute;bottom:14px;padding:5px 10px;font-size:13px;font-weight:600;background:rgba(255,255,255,.92);color:var(--graphit)}
+.marker.l{left:14px}.marker.r{right:14px}
+.hero-text{padding:28px var(--pad) 44px;display:flex;flex-direction:column;gap:20px}
+.hero-text .ort{font-size:16px;color:var(--grau)}
+.hero h1{font-size:clamp(40px,11vw,92px);line-height:.96;font-weight:760;font-stretch:120%;letter-spacing:-.025em}
+.hero .knoepfe{display:flex;flex-wrap:wrap;gap:12px;padding-top:4px}
+.hero .knoepfe .btn{flex:1 1 200px}
+.hero-unter{font-size:14px;color:var(--grau)}
+@media (min-width:980px){
+  .hero{grid-template-columns:minmax(0,5fr) minmax(0,7fr);align-items:center}
+  .hero-bild{order:2;aspect-ratio:4/3;width:100%;align-self:start}
+  .hero-text{order:1;justify-content:center;padding:48px 48px 56px max(var(--pad),calc((100vw - var(--max))/2 + var(--pad)))}
+  .hero h1{font-size:clamp(44px,4.6vw,72px);font-stretch:112%}
+  .hero .knoepfe .btn{flex:0 0 auto}
+}
+@media (prefers-reduced-motion:no-preference){
+  .hero-bild .vorher{animation:wisch 2.2s cubic-bezier(.65,0,.25,1) .5s both}
+  .hero-bild .naht{animation:naht 2.2s cubic-bezier(.65,0,.25,1) .5s both}
+}
+@keyframes wisch{from{clip-path:inset(0 0 0 0)}to{clip-path:inset(0 0 0 100%)}}
+@keyframes naht{0%{left:0;opacity:1}92%{opacity:1}100%{left:100%;opacity:0}}
+
+/* Fakten */
+.fakten{background:var(--graphit);color:#F1F0EB}
+.fakten ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.fakten li{padding:22px 14px 24px 0;display:flex;flex-direction:column;gap:4px;border-top:1px solid #3A4044;min-width:0}
+.fakten li:nth-child(even){padding-left:14px;border-left:1px solid #3A4044}
+.fakten b{font-size:clamp(24px,5vw,40px);font-weight:720;font-stretch:104%;line-height:1;color:#fff;white-space:nowrap}
+@media (min-width:860px){.fakten b{font-stretch:118%}}
+.fakten span{font-size:14px;line-height:1.4;color:#C4C6C1}
+@media (min-width:860px){
+  .fakten ul{grid-template-columns:repeat(4,1fr)}
+  .fakten li{border-top:0;padding:32px 24px 34px;border-left:1px solid #3A4044}
+  .fakten li:first-child{border-left:0;padding-left:0}
+}
+
+/* Vorher / Nachher */
+.vn{padding:88px 0 96px}
+.vn-kopf{display:grid;gap:18px;margin-bottom:36px}
+@media (min-width:900px){.vn-kopf{grid-template-columns:1fr 1fr;align-items:end;gap:56px}}
+.vergleich{position:relative;aspect-ratio:4/3;overflow:hidden;background:#cfcdc6;touch-action:pan-y;user-select:none;-webkit-user-select:none;--pos:50%}
+.vergleich img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.vergleich .vorher{clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
+.griff{position:absolute;top:0;bottom:0;left:var(--pos);width:2px;margin-left:-1px;background:#fff;pointer-events:none}
+.griff::after{content:"";position:absolute;top:50%;left:50%;width:48px;height:48px;margin:-24px 0 0 -24px;border-radius:50%;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.25)}
+.griff svg{position:absolute;top:50%;left:50%;width:26px;height:26px;margin:-13px 0 0 -13px;z-index:1}
+.vergleich input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize;-webkit-appearance:none;appearance:none}
+.vn-leiste{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+@media (min-width:700px){.vn-leiste{grid-template-columns:repeat(6,1fr)}}
+.vn-leiste button{padding:0;border:2px solid transparent;background:none;cursor:pointer;display:flex;flex-direction:column;gap:6px;text-align:left;font:inherit;color:var(--grau);font-size:13px;line-height:1.3;min-height:44px}
+.vn-leiste button img{aspect-ratio:4/3;object-fit:cover;width:100%;filter:grayscale(1);opacity:.75}
+.vn-leiste button[aria-pressed="true"]{color:var(--graphit);font-weight:600}
+.vn-leiste button[aria-pressed="true"] img{filter:none;opacity:1;outline:2px solid var(--ziegel);outline-offset:2px}
+.vn-titel{margin-top:18px;font-size:15px;color:var(--grau)}
+@media (min-width:900px){.vn-buehne{max-width:920px;margin:0 auto}}
+
+/* Leistungen */
+.leist{background:var(--papier);border-top:1px solid var(--linie);border-bottom:1px solid var(--linie);padding:88px 0}
+.leist h2{margin-bottom:12px}
+.leist .lead{margin-bottom:40px}
+.zeile{display:grid;gap:18px;padding:28px 0;border-top:1px solid var(--linie)}
+.zeile:last-child{border-bottom:1px solid var(--linie)}
+.zeile img{aspect-ratio:3/2;object-fit:cover;width:100%}
+.zeile .txt{display:flex;flex-direction:column;gap:10px}
+.zeile .bsp{font-size:15px;color:var(--grau)}
+.zeile .zahl{font-size:clamp(44px,9vw,72px);font-weight:760;font-stretch:120%;line-height:1;color:var(--ziegel)}
+@media (min-width:860px){
+  .zeile{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:48px;align-items:center;padding:36px 0}
+  .zeile img,.zeile .zahl{max-width:520px}
+}
+
+/* Galerie */
+.gal{padding:88px 0}
+.gal h2{margin-bottom:12px}
+.gal .lead{margin-bottom:36px}
+.raster{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.raster figure{margin:0;position:relative;overflow:hidden;background:#cfcdc6}
+.raster img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3}
+.raster figcaption{position:absolute;left:0;bottom:0;padding:4px 8px;font-size:12px;background:rgba(255,255,255,.9)}
+.raster .gross{grid-column:1/-1}
+@media (min-width:860px){
+  .raster{grid-template-columns:repeat(4,1fr);gap:12px}
+  .raster .gross{grid-column:span 2;grid-row:span 2}
+  .raster .gross img{aspect-ratio:auto}
+  .raster .breit{grid-column:span 2}
+  .raster .breit img{aspect-ratio:2/1}
+  .raster figcaption{font-size:13px}
+}
+
+/* Ablauf */
+.ablauf{background:var(--graphit);color:#F1F0EB;padding:88px 0}
+.ablauf .wrap{display:grid;gap:44px}
+@media (min-width:900px){.ablauf .wrap{grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:72px;align-items:start}}
+.ablauf h2{color:#fff}
+.ablauf .lead{color:#C9CBC6;margin-top:18px}
+.ablauf .btn{margin-top:28px;background:#fff;color:var(--graphit);border-color:#fff}
+.haus svg{display:block;width:100%;height:auto}
+.haus ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column-reverse;border-left:2px solid #F1F0EB;border-right:2px solid #F1F0EB}
+.haus li{display:grid;grid-template-columns:56px minmax(0,1fr);gap:12px;padding:12px 16px;border-top:1px solid #444B4F;align-items:baseline}
+.haus li span:first-child{font-size:14px;font-weight:700;color:var(--ziegel-hell)}
+.haus li b{display:block;font-weight:640;color:#fff}
+.haus li small{display:block;font-size:14px;color:#B9BCB7;line-height:1.4}
+.haus .sockel{height:12px;background:#F1F0EB}
+.haus p{margin-top:10px;font-size:13px;color:#B9BCB7}
+
+/* Erfahrung */
+.erf{padding:88px 0}
+.erf .wrap{display:grid;gap:40px}
+@media (min-width:900px){.erf .wrap{grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:72px}}
+.erf .lead{margin-top:18px}
+.tab{width:100%;border-collapse:collapse}
+.tab th{text-align:left;font-size:13px;font-weight:600;color:var(--grau);padding:0 0 10px;border-bottom:2px solid var(--graphit)}
+.tab th:last-child,.tab td:last-child{text-align:right}
+.tab td{padding:15px 0;border-bottom:1px solid var(--linie);vertical-align:baseline;font-size:16px;line-height:1.35}
+.tab td:last-child{font-size:clamp(19px,3vw,24px);font-weight:700;font-stretch:112%;white-space:nowrap;padding-left:16px}
+.tab small{display:block;color:var(--grau);font-size:14px}
+
+/* Partner */
+.partner{background:var(--papier);border-top:1px solid var(--linie);padding:88px 0}
+.partner h2{margin-bottom:40px}
+.duo{display:grid;gap:0}
+@media (min-width:860px){.duo{grid-template-columns:1fr 1fr;gap:56px}}
+.person{padding:28px 0;border-top:2px solid var(--graphit);display:flex;flex-direction:column;gap:10px}
+.person .rolle{color:var(--ziegel);font-weight:600}
+.person .kammer{font-size:14px;color:var(--grau)}
+
+/* Kontakt */
+.kontakt{padding:88px 0 96px;border-top:1px solid var(--linie)}
+.kontakt .wrap{display:grid;gap:44px}
+@media (min-width:900px){.kontakt .wrap{grid-template-columns:1fr 1fr;gap:72px;align-items:start}}
+.kontakt .lead{margin-top:18px}
+.adr{margin-top:28px;display:flex;flex-direction:column;gap:2px;font-size:18px}
+.adr a{text-decoration:none;padding:8px 0;font-weight:600}
+.adr a:hover{color:var(--ziegel)}
+form{background:#fff;border:2px solid var(--graphit);padding:24px;display:flex;flex-direction:column;gap:16px}
+@media (min-width:760px){form{padding:32px}}
+.zwei{display:grid;gap:16px}
+@media (min-width:560px){.zwei{grid-template-columns:1fr 1fr}}
+label{display:flex;flex-direction:column;gap:7px;font-size:15px;font-weight:600}
+input,select,textarea{font:inherit;font-weight:400;font-size:17px;padding:12px 14px;border:1px solid #6B7276;border-radius:0;background:#fff;color:var(--graphit);width:100%}
+textarea{resize:vertical;min-height:120px}
+form .btn{align-self:flex-start}
+.hinweis{font-size:14px;color:var(--grau)}
+.gesendet{display:none;padding:14px;background:var(--kalk);font-size:15px}
+
+/* Fuß */
+.fuss{background:var(--graphit);color:#C9CBC6;padding:36px 0 calc(36px + env(safe-area-inset-bottom))}
+.fuss .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 32px;font-size:15px}
+.fuss a{color:#fff;text-decoration:none;padding:4px 0}
+.konzept{width:100%;font-size:12px;color:#8F9490;padding-top:12px;border-top:1px solid #3A4044}
+</style>
+</head>
+<body>
+
+<header class="kopf">
+  <div class="wrap">
+    <a class="marke" href="#start" aria-label="Architektenteam Potsdam, zum Seitenanfang">
+      <svg width="38" height="38" viewBox="0 0 40 40" aria-hidden="true"><rect x="1" y="1" width="38" height="38" fill="none" stroke="#1E2326" stroke-width="2"/><path d="M8 32V18L20 9l12 9v14" fill="none" stroke="#1E2326" stroke-width="2"/><rect x="17" y="23" width="6" height="9" fill="#A2412A"/></svg>
+      <span class="mt"><b>Architektenteam Potsdam</b><span class="unter">Dittrich &amp; Rudolph, seit 1998</span></span>
+    </a>
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a href="#vorher-nachher">Sanierung</a>
+      <a href="#leistungen">Leistungen</a>
+      <a href="#ablauf">Ablauf</a>
+      <a href="#buero">Büro</a>
+    </nav>
+    <a class="btn btn-voll" href="#kontakt">Anfrage</a>
+  </div>
+</header>
+
+<main id="start">
+
+<section class="hero" aria-labelledby="hero-titel">
+  <div class="hero-bild">
+    <img src="../assets/hero-nachher.jpg" width="1200" height="900" alt="Saniertes Eckhaus mit roter Klinkerfassade und hellen Erkern" fetchpriority="high">
+    <img class="vorher" src="../assets/hero-vorher.jpg" width="1200" height="900" alt="" aria-hidden="true">
+    <span class="naht" aria-hidden="true"></span>
+    <span class="marker r">Nach der Sanierung</span>
+  </div>
+  <div class="hero-text">
+    <p class="ort">Architekt und Beratender Ingenieur in Potsdam</p>
+    <h1 id="hero-titel">Vom ersten Strich bis zur Schlüssel&shy;übergabe.</h1>
+    <p class="lead">Neubau, Sanierung und Gewerbebau in Potsdam, Berlin und Brandenburg. Zwei Partner führen Ihr Projekt durch alle neun Leistungsphasen der HOAI.</p>
+    <div class="knoepfe">
+      <a class="btn btn-voll" href="#kontakt">Erstgespräch vereinbaren</a>
+      <a class="btn btn-linie" href="#vorher-nachher">Vorher und nachher</a>
+    </div>
+  </div>
+</section>
+
+<section class="fakten" aria-label="Das Büro in Zahlen">
+  <div class="wrap">
+    <ul>
+      <li><b>1998</b><span>Gründung des Büros in Potsdam</span></li>
+      <li><b>LP 1–9</b><span>Alle Leistungsphasen der HOAI aus einer Hand</span></li>
+      <li><b>2 Kammern</b><span>Architekten- und Ingenieurkammer Brandenburg</span></li>
+      <li><b>23,5 Mio. €</b><span>Größte Bausumme in früherer Projektleitung</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="vn" id="vorher-nachher" aria-labelledby="vn-titel">
+  <div class="wrap">
+    <div class="vn-kopf">
+      <h2 id="vn-titel">Ziehen Sie den Regler.</h2>
+      <p class="lead">Neunzehn Sanierungen zeigen wir mit Fotos vom Zustand davor. Sechs davon hier: links der Bestand, wie wir ihn übernommen haben, rechts das fertige Haus.</p>
+    </div>
+    <div class="vn-buehne">
+    <div class="vergleich" id="vergleich">
+      <img id="vn-nach" src="../assets/stuck-nachher.jpg" width="1200" height="900" alt="Nach der Sanierung" loading="lazy">
+      <img id="vn-vor" class="vorher" src="../assets/stuck-vorher.jpg" width="1200" height="900" alt="Vor der Sanierung" loading="lazy">
+      <span class="marker l">Vorher</span><span class="marker r">Nachher</span>
+      <span class="griff" aria-hidden="true"><svg viewBox="0 0 26 26"><path d="M9 7l-6 6 6 6M17 7l6 6-6 6" fill="none" stroke="#1E2326" stroke-width="2"/></svg></span>
+      <input type="range" min="0" max="100" value="50" aria-label="Vergleich vorher und nachher verschieben" id="vn-regler">
+    </div>
+    <p class="vn-titel" id="vn-beschr" aria-live="polite">Stuckfassade, Mehrfamilienhaus</p>
+    <div class="vn-leiste" role="group" aria-label="Projekt wählen">
+      <button type="button" aria-pressed="true" data-p="stuck" data-t="Stuckfassade, Mehrfamilienhaus"><img src="../assets/stuck-nachher.jpg" alt="" loading="lazy" width="1200" height="900">Stuckfassade</button>
+      <button type="button" aria-pressed="false" data-p="hero" data-t="Eckhaus mit Klinkerfassade"><img src="../assets/hero-nachher.jpg" alt="" loading="lazy" width="1200" height="900">Eckhaus</button>
+      <button type="button" aria-pressed="false" data-p="fachwerk" data-t="Fachwerkhaus, Dach und Gefache erneuert"><img src="../assets/fachwerk-nachher.jpg" alt="" loading="lazy" width="1200" height="900">Fachwerkhaus</button>
+      <button type="button" aria-pressed="false" data-p="backstein" data-t="Backsteinhaus mit neuem Dach und Gauben"><img src="../assets/backstein-nachher.jpg" alt="" loading="lazy" width="1200" height="900">Backsteinhaus</button>
+      <button type="button" aria-pressed="false" data-p="villa" data-t="Wohnhaus mit Mansarddach"><img src="../assets/villa-nachher.jpg" alt="" loading="lazy" width="1200" height="900">Wohnhaus</button>
+      <button type="button" aria-pressed="false" data-p="hof" data-t="Hofgebäude mit neuen Balkonen"><img src="../assets/hof-nachher.jpg" alt="" loading="lazy" width="1200" height="900">Hofgebäude</button>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section class="leist" id="leistungen" aria-labelledby="leist-titel">
+  <div class="wrap">
+    <h2 id="leist-titel">Was wir planen und bauen</h2>
+    <p class="lead">Vier Schwerpunkte seit 1998. Vom ersten Gespräch bis zur Abnahme haben Sie dieselben zwei Ansprechpartner.</p>
+
+    <article class="zeile">
+      <img src="../assets/efh-gaube.jpg" width="1200" height="900" alt="Einfamilienhaus mit Gauben und Balkon über dem Eingang" loading="lazy">
+      <div class="txt">
+        <h3>Einfamilienhäuser</h3>
+        <p>Neubau nach Ihren Vorstellungen. Entwurf, Bauantrag, Ausschreibung und Bauleitung bleiben in einer Hand.</p>
+        <p class="bsp">Eine Auswahl von 36 Häusern zeigen wir in unseren Referenzen.</p>
+      </div>
+    </article>
+
+    <article class="zeile">
+      <img src="../assets/mfh-terrassen.jpg" width="1200" height="900" alt="Mehrfamilienhaus mit Terrassen und Solaranlage auf dem Dach" loading="lazy">
+      <div class="txt">
+        <h3>Mehrfamilienhäuser</h3>
+        <p>Wohnbauten, auch mit Laden- und Geschäftsflächen, von der Planung bis zur Übergabe.</p>
+        <p class="bsp">Merkurstraße 2 und Hegelallee 46 in Potsdam. In Teltow-Mühlendorf 136 Wohneinheiten, 1999 bis 2000.</p>
+      </div>
+    </article>
+
+    <article class="zeile">
+      <img src="../assets/stuck-nachher.jpg" width="1200" height="900" alt="Sanierte Stuckfassade eines Mehrfamilienhauses" loading="lazy">
+      <div class="txt">
+        <h3>Sanierung und Modernisierung</h3>
+        <p>Instandsetzung von Bestandsgebäuden. Was erhalten werden kann, bleibt erhalten.</p>
+        <p class="bsp">Feuerbachstraße 1, Charlottenstraße 103, Hegelallee 46 und Stahnsdorfer Straße 110 in Potsdam.</p>
+      </div>
+    </article>
+
+    <article class="zeile">
+      <p class="zahl" aria-hidden="true">1.600 m²</p>
+      <div class="txt">
+        <h3>Gewerbe- und Industriebau</h3>
+        <p>Betriebsgebäude, Hallen und Erweiterungen bestehender Standorte.</p>
+        <p class="bsp">Erweiterung der Bohn GmbH in Berlin um 1.600 m² Produktionsfläche. Neubau für die Duwe Kapazitätsbörse in Potsdam.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="gal" aria-labelledby="gal-titel">
+  <div class="wrap">
+    <h2 id="gal-titel">Neubauten aus unseren Referenzen</h2>
+    <p class="lead">Vom Haus mit Walmdach bis zum klaren Kubus.</p>
+    <div class="raster">
+      <figure class="gross"><img src="../assets/efh-wasser.jpg" width="1200" height="900" alt="Weißes Wohnhaus mit großen Fenstern am Wasser" loading="lazy"><figcaption>Wohnhaus am Wasser</figcaption></figure>
+      <figure><img src="../assets/efh-villa.jpg" width="1200" height="900" alt="Weiße Villa mit Balustraden" loading="lazy"><figcaption>Villa</figcaption></figure>
+      <figure><img src="../assets/efh-kubus.jpg" width="1200" height="900" alt="Weißes Haus mit bodentiefen Fenstern" loading="lazy"><figcaption>Einfamilienhaus</figcaption></figure>
+      <figure><img src="../assets/efh-giebel.jpg" width="1200" height="900" alt="Helles Haus mit hohem Giebel und Balkon" loading="lazy"><figcaption>Einfamilienhaus</figcaption></figure>
+      <figure><img src="../assets/efh-holz.jpg" width="1200" height="900" alt="Weißes Haus mit dunkler Holzverkleidung" loading="lazy"><figcaption>Einfamilienhaus</figcaption></figure>
+      <figure class="breit"><img src="../assets/mfh-gelb.jpg" width="1200" height="900" alt="Gelbes Mehrfamilienhaus mit rotem Ziegeldach" loading="lazy"><figcaption>Mehrfamilienhaus</figcaption></figure>
+      <figure class="breit"><img src="../assets/innen-dach.jpg" width="1200" height="900" alt="Ausgebautes Dachgeschoss mit Holzboden" loading="lazy"><figcaption>Dachausbau</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="ablauf" id="ablauf" aria-labelledby="ablauf-titel">
+  <div class="wrap">
+    <div>
+      <h2 id="ablauf-titel">Ihr Projekt, Geschoss für Geschoss</h2>
+      <p class="lead">Die HOAI teilt jedes Bauvorhaben in neun Leistungsphasen. Wir übernehmen alle neun, von der Grundlagenermittlung bis zur Objektbetreuung.</p>
+      <p class="lead">Wer den Entwurf gezeichnet hat, überwacht auch die Baustelle. Nichts geht zwischen zwei Büros verloren.</p>
+      <a class="btn" href="#kontakt">Vorhaben schildern</a>
+    </div>
+    <div class="haus">
+      <svg viewBox="0 0 600 70" aria-hidden="true"><path d="M2 68L300 4l298 64" fill="none" stroke="#F1F0EB" stroke-width="2"/></svg>
+      <ol>
+        <li><span>LP 1</span><span><b>Grundlagenermittlung</b><small>Wünsche, Grundstück, Budget</small></span></li>
+        <li><span>LP 2</span><span><b>Vorplanung</b><small>Erste Entwürfe und Kostenschätzung</small></span></li>
+        <li><span>LP 3</span><span><b>Entwurfsplanung</b><small>Ausgearbeiteter Entwurf, Kostenberechnung</small></span></li>
+        <li><span>LP 4</span><span><b>Genehmigungsplanung</b><small>Bauantrag und Verfahren</small></span></li>
+        <li><span>LP 5</span><span><b>Ausführungsplanung</b><small>Detailpläne für die Gewerke</small></span></li>
+        <li><span>LP 6</span><span><b>Vorbereitung der Vergabe</b><small>Leistungsverzeichnisse</small></span></li>
+        <li><span>LP 7</span><span><b>Mitwirkung bei der Vergabe</b><small>Angebote prüfen, Firmen empfehlen</small></span></li>
+        <li><span>LP 8</span><span><b>Objektüberwachung</b><small>Bauleitung, Termine, Kosten, Qualität</small></span></li>
+        <li><span>LP 9</span><span><b>Objektbetreuung</b><small>Mängelverfolgung nach der Übergabe</small></span></li>
+      </ol>
+      <div class="sockel"></div>
+      <p>Von unten nach oben: die neun Leistungsphasen der HOAI</p>
+    </div>
+  </div>
+</section>
+
+<section class="erf" aria-labelledby="erf-titel">
+  <div class="wrap">
+    <div>
+      <h2 id="erf-titel">Erfahrung aus der Großbaustelle</h2>
+      <p class="lead">Vor 1998 leiteten wir Projekte für ein mittelständisches Bauunternehmen in Berlin: Herr Dittrich als Niederlassungsleiter Berlin, Herr Rudolph als Leiter für schlüsselfertiges Bauen in ganz Deutschland.</p>
+    </div>
+    <table class="tab">
+      <caption class="hinweis" style="caption-side:bottom;text-align:left;padding-top:12px">Auswahl der Objekte in unserer damaligen Projektleitung</caption>
+      <thead><tr><th scope="col">Objekt</th><th scope="col">Bausumme</th></tr></thead>
+      <tbody>
+        <tr><td>Dresdner Bank, Pariser Platz<small>Berlin</small></td><td>23,5 Mio. €</td></tr>
+        <tr><td>Rohbau Max-Planck-Institut<small>Potsdam-Golm</small></td><td>12,0 Mio. €</td></tr>
+        <tr><td>Kaiser-Kaffee, Verwaltung und Logistikzentrum<small>Berlin-Lankow</small></td><td>10,0 Mio. €</td></tr>
+        <tr><td>Rohbau Bundespräsidialamt<small>Berlin</small></td><td>9,5 Mio. €</td></tr>
+        <tr><td>Aus- und Umbau von 10 Bankgebäuden<small>Berlin und Potsdam</small></td><td>6,0 Mio. €</td></tr>
+        <tr><td>Komplettsanierung Mendelssohn-Bau<small>Berlin-Kreuzberg</small></td><td>5,0 Mio. €</td></tr>
+        <tr><td>Tiefgarage Bundeskanzleramt<small>Berlin</small></td><td>3,4 Mio. €</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="partner" id="buero" aria-labelledby="partner-titel">
+  <div class="wrap">
+    <h2 id="partner-titel">Zwei Partner, ein Büro in der Lindenstraße</h2>
+    <div class="duo">
+      <article class="person">
+        <h3>Rainer Rudolph</h3>
+        <p class="rolle">Dipl. Architekt</p>
+        <p>Bis Mitte der 90er Jahre Architekt und Projektleiter im Raum Frankfurt am Main, danach Leiter für schlüsselfertiges Bauen in ganz Deutschland.</p>
+        <p class="kammer">Brandenburgische Architektenkammer, Nr. BA 1756-96-1-a</p>
+      </article>
+      <article class="person">
+        <h3>Hans-Peter Dittrich</h3>
+        <p class="rolle">Dipl.-Ing., Beratender Ingenieur</p>
+        <p>Zuvor Niederlassungsleiter Berlin eines mittelständischen Bauunternehmens.</p>
+        <p class="kammer">Brandenburgische Ingenieurkammer, Nr. 11411/99</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="kontakt" id="kontakt" aria-labelledby="kontakt-titel">
+  <div class="wrap">
+    <div>
+      <h2 id="kontakt-titel">Erzählen Sie uns von Ihrem Vorhaben</h2>
+      <p class="lead">Im Erstgespräch klären wir, was Ihr Projekt braucht, welche Genehmigungen anstehen und mit welchem Zeitrahmen Sie rechnen sollten.</p>
+      <div class="adr">
+        <span>Lindenstraße 62, 14467 Potsdam</span>
+        <a href="tel:+493312010891">0331 201 08 91</a>
+        <a href="mailto:info@architektenteam-potsdam.de">info@architektenteam-potsdam.de</a>
+      </div>
+    </div>
+    <form id="anfrage" novalidate>
+      <div class="zwei">
+        <label>Name<input type="text" name="name" autocomplete="name"></label>
+        <label>Telefon<input type="tel" name="tel" autocomplete="tel"></label>
+      </div>
+      <label>E-Mail<input type="email" name="mail" autocomplete="email"></label>
+      <label>Art des Vorhabens
+        <select name="art">
+          <option>Neubau Einfamilienhaus</option>
+          <option>Neubau Mehrfamilienhaus</option>
+          <option>Sanierung oder Modernisierung</option>
+          <option>Gewerbe- oder Industriebau</option>
+          <option>Noch unklar</option>
+        </select>
+      </label>
+      <label>Ihre Nachricht<textarea name="text" rows="4"></textarea></label>
+      <button class="btn btn-voll" type="submit">Anfrage senden</button>
+      <p class="gesendet" id="gesendet" role="status">Dies ist ein Konzept. In der fertigen Website geht Ihre Anfrage hier direkt an das Büro.</p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer class="fuss">
+  <div class="wrap">
+    <span>Architektenteam Potsdam, Bürogemeinschaft Dittrich-Rudolph</span>
+    <span><a href="#start">Impressum</a> &nbsp; <a href="#start">Datenschutz</a></span>
+    <p class="konzept">Redesign-Konzept von AIK Studio. Keine offizielle Website.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var box=document.getElementById('vergleich'),r=document.getElementById('vn-regler'),
+      vor=document.getElementById('vn-vor'),nach=document.getElementById('vn-nach'),
+      t=document.getElementById('vn-beschr');
+  function set(v){box.style.setProperty('--pos',v+'%')}
+  r.addEventListener('input',function(){set(r.value)});
+  document.querySelectorAll('.vn-leiste button').forEach(function(b){
+    b.addEventListener('click',function(){
+      document.querySelectorAll('.vn-leiste button').forEach(function(x){x.setAttribute('aria-pressed','false')});
+      b.setAttribute('aria-pressed','true');
+      nach.src='../assets/'+b.dataset.p+'-nachher.jpg';
+      vor.src='../assets/'+b.dataset.p+'-vorher.jpg';
+      t.textContent=b.dataset.t;r.value=50;set(50);
+    });
+  });
+  document.getElementById('anfrage').addEventListener('submit',function(e){
+    e.preventDefault();document.getElementById('gesendet').style.display='block';
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+slug,name,website,city,phone,email,owner,score,reason,status
+architektenteam-potsdam,Architektenteam Potsdam,http://www.architektenteam-potsdam.de,Potsdam,+49 331 2010891,info@architektenteam-potsdam.de,Rainer Rudolph / Hans-Peter Dittrich,9,"Нет https и мобильной версии (нет viewport, таблицы 780px, jQuery 1.6/Cufon, © 2019); 19 пар фото до/после санаций спрятаны в миниатюры 104px",concept
