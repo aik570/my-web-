@@ -8,7 +8,7 @@
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
 <style>
 :root{
   --kalk:#ECEBE6; --papier:#F6F5F1; --weiss:#FFFFFF;
@@ -26,7 +26,8 @@ a{color:inherit}
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--ziegel);outline-offset:3px}
 .wrap{max-width:var(--max);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
 h1,h2,h3{margin:0;font-weight:720;font-stretch:116%;letter-spacing:-.015em;text-wrap:balance}
-h2{font-size:clamp(32px,6.4vw,58px);line-height:1.02}
+h1,h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-stretch:100%;letter-spacing:-.01em}
+h2{font-size:clamp(38px,7vw,68px);line-height:1}
 h3{font-size:22px;line-height:1.15;font-stretch:108%}
 p{margin:0}
 .lead{font-size:clamp(18px,2vw,20px);line-height:1.55;color:var(--text);max-width:34em}
@@ -37,41 +38,63 @@ p{margin:0}
 .btn-linie:hover{background:var(--graphit);color:#fff}
 
 /* Kopf */
-.kopf{position:sticky;top:0;z-index:20;background:rgba(236,235,230,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--linie)}
-.kopf .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:64px}
-.marke{display:flex;align-items:center;gap:12px;text-decoration:none;min-width:0}
+.kopf{position:sticky;top:0;z-index:20;height:65px;background:rgba(236,235,230,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--linie);color:var(--graphit);transition:background-color .4s ease,border-color .4s ease,color .4s ease,box-shadow .3s ease}
+.kopf .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
+.kopf.ueber{background:transparent;border-color:rgba(255,255,255,.22);color:#fff;backdrop-filter:none;-webkit-backdrop-filter:none}
+.marke{display:flex;align-items:center;gap:12px;text-decoration:none;min-width:0;color:inherit}
 .marke svg{flex:none}
 .marke b{display:block;font-size:17px;font-weight:720;font-stretch:112%;line-height:1.1;white-space:nowrap}
-.marke .unter{display:block;font-size:13px;color:var(--grau);line-height:1.2;white-space:nowrap}
+.marke .unter{display:block;font-size:13px;opacity:.75;line-height:1.2;white-space:nowrap}
 .nav{display:none;gap:30px;font-size:16px}
-.nav a{text-decoration:none;padding:10px 0}
+.nav a{text-decoration:none;padding:10px 0;color:inherit}
 .nav a:hover{color:var(--ziegel)}
+.kopf.ueber .nav a:hover{color:#fff;text-decoration:underline;text-underline-offset:6px}
 .kopf .btn{min-height:44px;padding:10px 16px;font-size:15px}
 @media (min-width:980px){.nav{display:flex}}
 @media (max-width:420px){.marke .unter{display:none}.marke b{font-size:15px;white-space:normal;font-stretch:104%;line-height:1.1}.marke svg{width:32px;height:32px}}
 
-/* Hero */
-.hero{display:grid;grid-template-columns:1fr}
-.hero-bild{position:relative;aspect-ratio:1/1;overflow:hidden;background:#cfcdc6}
-.hero-bild img{object-position:72% 50%}
-.hero-bild img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* Hero: vollflächig, wie ein Exposé */
+.hero{position:relative;margin-top:-65px;height:100vh;height:100svh;min-height:640px;max-height:1040px;overflow:hidden;background:#2a2f31;color:#fff;isolation:isolate}
+.hero-bild{position:absolute;inset:0;z-index:-2}
+.hero-bild img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:88% 40%}
 .hero-bild .vorher{clip-path:inset(0 0 0 100%)}
-.hero-bild .marker{transition:opacity .4s ease}
-.hero-bild .naht{position:absolute;top:0;bottom:0;left:100%;width:2px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.15);opacity:0}
-.marker{position:absolute;bottom:14px;padding:5px 10px;font-size:13px;font-weight:600;background:rgba(255,255,255,.92);color:var(--graphit)}
-.marker.l{left:14px}.marker.r{right:14px}
-.hero-text{padding:28px var(--pad) 44px;display:flex;flex-direction:column;gap:20px}
-.hero-text .ort{font-size:16px;color:var(--grau)}
-.hero h1{font-size:clamp(40px,11vw,92px);line-height:.96;font-weight:760;font-stretch:120%;letter-spacing:-.025em}
-.hero .knoepfe{display:flex;flex-wrap:wrap;gap:12px;padding-top:4px}
+.hero-bild .naht{position:absolute;top:0;bottom:0;left:100%;width:1px;background:rgba(255,255,255,.9);opacity:0}
+.hero-schleier{position:absolute;inset:0;z-index:-1;background:
+  linear-gradient(180deg,rgba(12,15,17,.6) 0%,rgba(12,15,17,0) 20%),
+  linear-gradient(0deg,rgba(12,15,17,.94) 0%,rgba(12,15,17,.82) 42%,rgba(12,15,17,.45) 70%,rgba(12,15,17,0) 84%)}
+.wasserzeichen{position:absolute;z-index:-1;left:50%;top:27%;transform:translate(-50%,-50%);margin:0;font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-weight:500;font-size:34vw;line-height:.8;letter-spacing:-.03em;white-space:nowrap;color:rgba(255,255,255,.2);pointer-events:none;user-select:none}
+.hero-inhalt{position:absolute;left:0;right:0;bottom:0;padding-bottom:36px;display:flex;flex-direction:column;gap:18px}
+.hero .ort{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.82)}
+.hero .ort span+span::before{content:"·";margin-right:12px;color:rgba(255,255,255,.6)}
+.hero h1{font-size:clamp(46px,12.5vw,112px);line-height:.95;letter-spacing:-.02em;color:#fff;max-width:11ch}
+.hero h1 em{font-style:italic;color:#F3D2C4}
+.hero .lead{color:rgba(255,255,255,.86);max-width:36em;font-size:17px}
+.hero .knoepfe{display:flex;flex-wrap:wrap;gap:10px;padding-top:6px}
 .hero .knoepfe .btn{flex:1 1 200px}
-.hero-unter{font-size:14px;color:var(--grau)}
+.btn-hell{background:transparent;border-color:rgba(255,255,255,.8);color:#fff}
+.btn-hell:hover{background:#fff;color:var(--graphit)}
+.objekt{display:none}
 @media (min-width:980px){
-  .hero{grid-template-columns:minmax(0,5fr) minmax(0,7fr);align-items:center}
-  .hero-bild{order:2;aspect-ratio:4/3;width:100%;align-self:start}
-  .hero-text{order:1;justify-content:center;padding:48px 48px 56px max(var(--pad),calc((100vw - var(--max))/2 + var(--pad)))}
-  .hero h1{font-size:clamp(44px,4.6vw,72px);font-stretch:112%}
+  .hero-bild img{object-position:center 42%}
+  .hero-schleier{background:
+    linear-gradient(180deg,rgba(12,15,17,.55) 0%,rgba(12,15,17,0) 18%),
+    linear-gradient(90deg,rgba(12,15,17,.86) 0%,rgba(12,15,17,.72) 34%,rgba(12,15,17,.25) 60%,rgba(12,15,17,0) 76%),
+    linear-gradient(0deg,rgba(12,15,17,.5) 0%,rgba(12,15,17,0) 30%)}
+  .wasserzeichen{top:14%;bottom:auto;left:auto;right:-2vw;transform:none;font-size:19vw;color:rgba(255,255,255,.17)}
+  .hero .ort{font-size:13px}
+  .hero-inhalt{bottom:56px;padding-bottom:0;gap:22px}
+  .hero h1{font-size:min(112px,7.6vw,11.6vh)}
+  .hero .lead{font-size:19px}
   .hero .knoepfe .btn{flex:0 0 auto}
+  .objekt{display:flex;position:absolute;right:max(var(--pad),calc((100vw - var(--max))/2 + var(--pad)));bottom:56px;flex-direction:column;gap:6px;width:300px;padding:20px 22px;background:rgba(18,21,23,.5);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.18);color:#fff;text-decoration:none}
+  .objekt small{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+  .objekt b{font-family:"Cormorant Garamond",Georgia,serif;font-size:26px;font-weight:500;line-height:1.1}
+  .objekt>span{font-size:15px;color:rgba(255,255,255,.85);display:flex;justify-content:space-between;padding-top:10px;margin-top:6px;border-top:1px solid rgba(255,255,255,.2)}
+  .objekt:hover>span{color:#fff}
+}
+.scroll-hinweis{display:none}
+@media (min-width:980px) and (min-height:760px){
+  .scroll-hinweis{display:block;position:absolute;left:50%;bottom:22px;width:1px;height:44px;background:linear-gradient(rgba(255,255,255,0),rgba(255,255,255,.7))}
 }
 @media (prefers-reduced-motion:no-preference){
   .hero-bild .vorher{animation:wisch 2.6s cubic-bezier(.65,0,.25,1) .4s both}
@@ -210,7 +233,6 @@ form .btn{align-self:flex-start}
 .vergleich.wechsel img{opacity:0}
 .vergleich{cursor:ew-resize}
 .vergleich input{pointer-events:none}
-.kopf{transition:box-shadow .3s ease}
 .kopf.unten{box-shadow:0 1px 12px rgba(30,35,38,.08)}
 .btn{transition:background-color .2s ease,color .2s ease,border-color .2s ease}
 .raster img,.zeile img{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
@@ -229,10 +251,10 @@ form .btn{align-self:flex-start}
 </head>
 <body>
 
-<header class="kopf">
+<header class="kopf ueber">
   <div class="wrap">
     <a class="marke" href="#start" aria-label="Architektenteam Potsdam, zum Seitenanfang">
-      <svg width="38" height="38" viewBox="0 0 40 40" aria-hidden="true"><rect x="1" y="1" width="38" height="38" fill="none" stroke="#1E2326" stroke-width="2"/><path d="M8 32V18L20 9l12 9v14" fill="none" stroke="#1E2326" stroke-width="2"/><rect x="17" y="23" width="6" height="9" fill="#A2412A"/></svg>
+      <svg width="38" height="38" viewBox="0 0 40 40" aria-hidden="true"><rect x="1" y="1" width="38" height="38" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 32V18L20 9l12 9v14" fill="none" stroke="currentColor" stroke-width="2"/><rect x="17" y="23" width="6" height="9" fill="#A2412A"/></svg>
       <span class="mt"><b>Architektenteam Potsdam</b><span class="unter">Dittrich &amp; Rudolph, seit 1998</span></span>
     </a>
     <nav class="nav" aria-label="Hauptnavigation">
@@ -249,20 +271,27 @@ form .btn{align-self:flex-start}
 
 <section class="hero" aria-labelledby="hero-titel">
   <div class="hero-bild">
-    <img src="../assets/hero-nachher.jpg" width="1200" height="900" alt="Saniertes Eckhaus mit roter Klinkerfassade und hellen Erkern" fetchpriority="high">
-    <img class="vorher" src="../assets/hero-vorher.jpg" width="1200" height="900" alt="" aria-hidden="true">
+    <img src="../assets/hero-nachher.jpg" width="2000" height="1500" alt="Saniertes Eckhaus mit roter Klinkerfassade und hellen Erkern" fetchpriority="high">
+    <img class="vorher" src="../assets/hero-vorher.jpg" width="2000" height="1500" alt="" aria-hidden="true">
     <span class="naht" aria-hidden="true"></span>
-    <span class="marker r">Nach der Sanierung</span>
   </div>
-  <div class="hero-text">
-    <p class="ort">Architekt und Beratender Ingenieur in Potsdam</p>
-    <h1 id="hero-titel">Vom ersten Strich bis zur Schlüssel&shy;übergabe.</h1>
-    <p class="lead">Seit 1998 planen und bauen wir in Potsdam, Berlin und Brandenburg: Wohnhäuser, Sanierungen und Gewerbebauten. Ein Architekt und ein Beratender Ingenieur begleiten Ihr Projekt selbst, vom Entwurf bis zur Bauüberwachung.</p>
+  <div class="hero-schleier" aria-hidden="true"></div>
+  <p class="wasserzeichen" aria-hidden="true">Potsdam</p>
+  <div class="hero-inhalt wrap">
+    <p class="ort"><span>Architekten &amp; Ingenieure</span><span>Seit 1998</span></p>
+    <h1 id="hero-titel">Vom ersten Strich bis zur <em>Schlüssel&shy;übergabe.</em></h1>
+    <p class="lead">Wohnhäuser, Sanierungen und Gewerbebauten in Potsdam, Berlin und Brandenburg. Ein Architekt und ein Beratender Ingenieur begleiten Ihr Projekt selbst, vom Entwurf bis zur Bauüberwachung.</p>
     <div class="knoepfe">
       <a class="btn btn-voll" href="#kontakt">Erstgespräch vereinbaren</a>
-      <a class="btn btn-linie" href="#vorher-nachher">Vorher und nachher</a>
+      <a class="btn btn-hell" href="#vorher-nachher">Vorher und nachher</a>
     </div>
   </div>
+  <a class="objekt" href="#vorher-nachher">
+    <small>Referenz · Sanierung</small>
+    <b>Eckhaus mit Klinkerfassade</b>
+    <span>Zustand vorher ansehen <span aria-hidden="true">→</span></span>
+  </a>
+  <span class="scroll-hinweis" aria-hidden="true"></span>
 </section>
 
 <section class="fakten" aria-label="Das Büro in Zahlen">
@@ -490,7 +519,9 @@ document.documentElement.classList.add('js');
 
   /* Kopfzeile: Schatten beim Scrollen */
   var kopf=document.querySelector('.kopf');
-  window.addEventListener('scroll',function(){kopf.classList.toggle('unten',window.scrollY>8)},{passive:true});
+  var held=document.querySelector('.hero');
+  function kopfZustand(){var y=window.scrollY;kopf.classList.toggle('ueber',y<held.offsetHeight-70);kopf.classList.toggle('unten',y>8&&y>=held.offsetHeight-70)}
+  window.addEventListener('scroll',kopfZustand,{passive:true});kopfZustand();
 
   /* Vorher / Nachher */
   var box=document.getElementById('vergleich'),r=document.getElementById('vn-regler'),
