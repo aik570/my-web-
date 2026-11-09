@@ -56,6 +56,7 @@ p{margin:0}
 .hero-bild img{object-position:72% 50%}
 .hero-bild img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .hero-bild .vorher{clip-path:inset(0 0 0 100%)}
+.hero-bild .marker{transition:opacity .4s ease}
 .hero-bild .naht{position:absolute;top:0;bottom:0;left:100%;width:2px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.15);opacity:0}
 .marker{position:absolute;bottom:14px;padding:5px 10px;font-size:13px;font-weight:600;background:rgba(255,255,255,.92);color:var(--graphit)}
 .marker.l{left:14px}.marker.r{right:14px}
@@ -73,11 +74,11 @@ p{margin:0}
   .hero .knoepfe .btn{flex:0 0 auto}
 }
 @media (prefers-reduced-motion:no-preference){
-  .hero-bild .vorher{animation:wisch 2.2s cubic-bezier(.65,0,.25,1) .5s both}
-  .hero-bild .naht{animation:naht 2.2s cubic-bezier(.65,0,.25,1) .5s both}
+  .hero-bild .vorher{animation:wisch 2.6s cubic-bezier(.65,0,.25,1) .4s both}
+  .hero-bild .naht{animation:naht 2.6s cubic-bezier(.65,0,.25,1) .4s both}
 }
-@keyframes wisch{from{clip-path:inset(0 0 0 0)}to{clip-path:inset(0 0 0 100%)}}
-@keyframes naht{0%{left:0;opacity:1}92%{opacity:1}100%{left:100%;opacity:0}}
+@keyframes wisch{0%{clip-path:inset(0 0 0 0)}15%{clip-path:inset(0 0 0 0)}100%{clip-path:inset(0 0 0 100%)}}
+@keyframes naht{0%{left:0;opacity:0}15%{left:0;opacity:1}90%{opacity:1}100%{left:100%;opacity:0}}
 
 /* Fakten */
 .fakten{background:var(--graphit);color:#F1F0EB}
@@ -202,6 +203,23 @@ form .btn{align-self:flex-start}
 .hinweis{font-size:14px;color:var(--grau)}
 .gesendet{display:none;padding:14px;background:var(--kalk);font-size:15px}
 
+/* Bewegung */
+.js img.weich{opacity:0;transition:opacity .6s ease}
+.js img.weich.da{opacity:1}
+.vergleich img{transition:opacity .35s ease}
+.vergleich.wechsel img{opacity:0}
+.vergleich{cursor:ew-resize}
+.vergleich input{pointer-events:none}
+.kopf{transition:box-shadow .3s ease}
+.kopf.unten{box-shadow:0 1px 12px rgba(30,35,38,.08)}
+.btn{transition:background-color .2s ease,color .2s ease,border-color .2s ease}
+.raster img,.zeile img{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+@media (hover:hover){.raster figure:hover img{transform:scale(1.03)}}
+@media (prefers-reduced-motion:reduce){
+  .js img.weich{opacity:1;transition:none}
+  .vergleich img,.kopf,.btn,.raster img,.zeile img{transition:none}
+}
+
 /* Fuß */
 .fuss{background:var(--graphit);color:#C9CBC6;padding:36px 0 calc(36px + env(safe-area-inset-bottom))}
 .fuss .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 32px;font-size:15px}
@@ -239,7 +257,7 @@ form .btn{align-self:flex-start}
   <div class="hero-text">
     <p class="ort">Architekt und Beratender Ingenieur in Potsdam</p>
     <h1 id="hero-titel">Vom ersten Strich bis zur Schlüssel&shy;übergabe.</h1>
-    <p class="lead">Neubau, Sanierung und Gewerbebau in Potsdam, Berlin und Brandenburg. Zwei Partner führen Ihr Projekt durch alle neun Leistungsphasen der HOAI.</p>
+    <p class="lead">Seit 1998 planen und bauen wir in Potsdam, Berlin und Brandenburg: Wohnhäuser, Sanierungen und Gewerbebauten. Ein Architekt und ein Beratender Ingenieur begleiten Ihr Projekt selbst, vom Entwurf bis zur Bauüberwachung.</p>
     <div class="knoepfe">
       <a class="btn btn-voll" href="#kontakt">Erstgespräch vereinbaren</a>
       <a class="btn btn-linie" href="#vorher-nachher">Vorher und nachher</a>
@@ -261,8 +279,8 @@ form .btn{align-self:flex-start}
 <section class="vn" id="vorher-nachher" aria-labelledby="vn-titel">
   <div class="wrap">
     <div class="vn-kopf">
-      <h2 id="vn-titel">Ziehen Sie den Regler.</h2>
-      <p class="lead">Neunzehn Sanierungen zeigen wir mit Fotos vom Zustand davor. Sechs davon hier: links der Bestand, wie wir ihn übernommen haben, rechts das fertige Haus.</p>
+      <h2 id="vn-titel">Was aus einem Altbau werden kann.</h2>
+      <p class="lead">Neunzehn Sanierungen zeigen wir mit Fotos vom Zustand davor. Ziehen Sie den Regler: links der Bestand, rechts das fertige Haus.</p>
     </div>
     <div class="vn-buehne">
     <div class="vergleich" id="vergleich">
@@ -274,12 +292,12 @@ form .btn{align-self:flex-start}
     </div>
     <p class="vn-titel" id="vn-beschr" aria-live="polite">Stuckfassade, Mehrfamilienhaus</p>
     <div class="vn-leiste" role="group" aria-label="Projekt wählen">
-      <button type="button" aria-pressed="true" data-p="stuck" data-t="Stuckfassade, Mehrfamilienhaus"><img src="../assets/stuck-nachher.jpg" alt="" loading="lazy" width="1200" height="900">Stuckfassade</button>
-      <button type="button" aria-pressed="false" data-p="hero" data-t="Eckhaus mit Klinkerfassade"><img src="../assets/hero-nachher.jpg" alt="" loading="lazy" width="1200" height="900">Eckhaus</button>
-      <button type="button" aria-pressed="false" data-p="fachwerk" data-t="Fachwerkhaus, Dach und Gefache erneuert"><img src="../assets/fachwerk-nachher.jpg" alt="" loading="lazy" width="1200" height="900">Fachwerkhaus</button>
-      <button type="button" aria-pressed="false" data-p="backstein" data-t="Backsteinhaus mit neuem Dach und Gauben"><img src="../assets/backstein-nachher.jpg" alt="" loading="lazy" width="1200" height="900">Backsteinhaus</button>
-      <button type="button" aria-pressed="false" data-p="villa" data-t="Wohnhaus mit Mansarddach"><img src="../assets/villa-nachher.jpg" alt="" loading="lazy" width="1200" height="900">Wohnhaus</button>
-      <button type="button" aria-pressed="false" data-p="hof" data-t="Hofgebäude mit neuen Balkonen"><img src="../assets/hof-nachher.jpg" alt="" loading="lazy" width="1200" height="900">Hofgebäude</button>
+      <button type="button" aria-pressed="true" data-p="stuck" data-t="Stuckfassade, Mehrfamilienhaus"><img src="../assets/thumb-stuck.jpg" alt="" loading="lazy" width="400" height="300">Stuckfassade</button>
+      <button type="button" aria-pressed="false" data-p="hero" data-t="Eckhaus mit Klinkerfassade"><img src="../assets/thumb-hero.jpg" alt="" loading="lazy" width="400" height="300">Eckhaus</button>
+      <button type="button" aria-pressed="false" data-p="fachwerk" data-t="Fachwerkhaus, Dach und Gefache erneuert"><img src="../assets/thumb-fachwerk.jpg" alt="" loading="lazy" width="400" height="300">Fachwerkhaus</button>
+      <button type="button" aria-pressed="false" data-p="backstein" data-t="Backsteinhaus mit neuem Dach und Gauben"><img src="../assets/thumb-backstein.jpg" alt="" loading="lazy" width="400" height="300">Backsteinhaus</button>
+      <button type="button" aria-pressed="false" data-p="villa" data-t="Wohnhaus mit Mansarddach"><img src="../assets/thumb-villa.jpg" alt="" loading="lazy" width="400" height="300">Wohnhaus</button>
+      <button type="button" aria-pressed="false" data-p="hof" data-t="Hofgebäude mit neuen Balkonen"><img src="../assets/thumb-hof.jpg" alt="" loading="lazy" width="400" height="300">Hofgebäude</button>
     </div>
     </div>
   </div>
@@ -288,13 +306,13 @@ form .btn{align-self:flex-start}
 <section class="leist" id="leistungen" aria-labelledby="leist-titel">
   <div class="wrap">
     <h2 id="leist-titel">Was wir planen und bauen</h2>
-    <p class="lead">Vier Schwerpunkte seit 1998. Vom ersten Gespräch bis zur Abnahme haben Sie dieselben zwei Ansprechpartner.</p>
+    <p class="lead">Vier Schwerpunkte, ein Prinzip: Vom ersten Gespräch bis zur Abnahme sprechen Sie mit denselben zwei Partnern, nicht mit wechselnden Projektleitern.</p>
 
     <article class="zeile">
       <img src="../assets/efh-gaube.jpg" width="1200" height="900" alt="Einfamilienhaus mit Gauben und Balkon über dem Eingang" loading="lazy">
       <div class="txt">
         <h3>Einfamilienhäuser</h3>
-        <p>Neubau nach Ihren Vorstellungen. Entwurf, Bauantrag, Ausschreibung und Bauleitung bleiben in einer Hand.</p>
+        <p>Ihr Haus nach Ihren Vorstellungen, vom Bungalow bis zur Stadtvilla. Entwurf, Bauantrag, Ausschreibung und Bauleitung bleiben in einer Hand.</p>
         <p class="bsp">Eine Auswahl von 36 Häusern zeigen wir in unseren Referenzen.</p>
       </div>
     </article>
@@ -303,7 +321,7 @@ form .btn{align-self:flex-start}
       <img src="../assets/mfh-terrassen.jpg" width="1200" height="900" alt="Mehrfamilienhaus mit Terrassen und Solaranlage auf dem Dach" loading="lazy">
       <div class="txt">
         <h3>Mehrfamilienhäuser</h3>
-        <p>Wohnbauten, auch mit Laden- und Geschäftsflächen, von der Planung bis zur Übergabe.</p>
+        <p>Wohnbauten, auch mit Laden- und Geschäftsflächen. Wir planen, schreiben aus und überwachen den Bau bis zur Übergabe.</p>
         <p class="bsp">Merkurstraße 2 und Hegelallee 46 in Potsdam. In Teltow-Mühlendorf 136 Wohneinheiten, 1999 bis 2000.</p>
       </div>
     </article>
@@ -312,7 +330,7 @@ form .btn{align-self:flex-start}
       <img src="../assets/stuck-nachher.jpg" width="1200" height="900" alt="Sanierte Stuckfassade eines Mehrfamilienhauses" loading="lazy">
       <div class="txt">
         <h3>Sanierung und Modernisierung</h3>
-        <p>Instandsetzung von Bestandsgebäuden. Was erhalten werden kann, bleibt erhalten.</p>
+        <p>Modernisierung und Instandsetzung von Bestandsgebäuden, vom Mehrfamilienhaus in der Innenstadt bis zum alten Fachwerkhaus.</p>
         <p class="bsp">Feuerbachstraße 1, Charlottenstraße 103, Hegelallee 46 und Stahnsdorfer Straße 110 in Potsdam.</p>
       </div>
     </article>
@@ -330,8 +348,8 @@ form .btn{align-self:flex-start}
 
 <section class="gal" aria-labelledby="gal-titel">
   <div class="wrap">
-    <h2 id="gal-titel">Neubauten aus unseren Referenzen</h2>
-    <p class="lead">Vom Haus mit Walmdach bis zum klaren Kubus.</p>
+    <h2 id="gal-titel">Häuser, die wir geplant und betreut haben</h2>
+    <p class="lead">Eine Auswahl aus unseren Referenzen, vom klassischen Walmdach bis zum klaren Kubus.</p>
     <div class="raster">
       <figure class="gross"><img src="../assets/efh-wasser.jpg" width="1200" height="900" alt="Weißes Wohnhaus mit großen Fenstern am Wasser" loading="lazy"><figcaption>Wohnhaus am Wasser</figcaption></figure>
       <figure><img src="../assets/efh-villa.jpg" width="1200" height="900" alt="Weiße Villa mit Balustraden" loading="lazy"><figcaption>Villa</figcaption></figure>
@@ -417,7 +435,7 @@ form .btn{align-self:flex-start}
   <div class="wrap">
     <div>
       <h2 id="kontakt-titel">Erzählen Sie uns von Ihrem Vorhaben</h2>
-      <p class="lead">Im Erstgespräch klären wir, was Ihr Projekt braucht, welche Genehmigungen anstehen und mit welchem Zeitrahmen Sie rechnen sollten.</p>
+      <p class="lead">Rufen Sie an oder schreiben Sie uns. Im Erstgespräch klären wir, was Ihr Grundstück oder Ihr Bestand erlaubt, welche Genehmigungen anstehen und mit welchem Zeitrahmen Sie rechnen sollten.</p>
       <div class="adr">
         <span>Lindenstraße 62, 14467 Potsdam</span>
         <a href="tel:+493312010891">0331 201 08 91</a>
@@ -457,21 +475,76 @@ form .btn{align-self:flex-start}
 </footer>
 
 <script>
+document.documentElement.classList.add('js');
 (function(){
+  var A=window.IMG?function(n){return IMG[n]}:function(n){return '../assets/'+n};
+  var ruhig=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Bilder weich einblenden */
+  document.querySelectorAll('main img').forEach(function(i){
+    if(i.closest('.hero-bild')||i.closest('.vergleich')) return;
+    i.classList.add('weich');
+    if(i.complete&&i.naturalWidth) i.classList.add('da');
+    else i.addEventListener('load',function(){i.classList.add('da')},{once:true});
+  });
+
+  /* Kopfzeile: Schatten beim Scrollen */
+  var kopf=document.querySelector('.kopf');
+  window.addEventListener('scroll',function(){kopf.classList.toggle('unten',window.scrollY>8)},{passive:true});
+
+  /* Vorher / Nachher */
   var box=document.getElementById('vergleich'),r=document.getElementById('vn-regler'),
       vor=document.getElementById('vn-vor'),nach=document.getElementById('vn-nach'),
-      t=document.getElementById('vn-beschr');
-  function set(v){box.style.setProperty('--pos',v+'%')}
-  r.addEventListener('input',function(){set(r.value)});
+      t=document.getElementById('vn-beschr'),pos=50,ziel=50,lauf=false;
+  function set(v){pos=v;box.style.setProperty('--pos',v+'%');r.value=Math.round(v)}
+  function gleite(){ /* weiches Nachziehen statt Springen */
+    var d=ziel-pos;
+    if(Math.abs(d)<.1){set(ziel);lauf=false;return}
+    set(pos+d*.28);requestAnimationFrame(gleite);
+  }
+  function hin(v){ziel=Math.max(0,Math.min(100,v));if(ruhig){set(ziel);return}if(!lauf){lauf=true;requestAnimationFrame(gleite)}}
+  function ausZeiger(e){var b=box.getBoundingClientRect();hin((e.clientX-b.left)/b.width*100)}
+  var zieht=false;
+  box.addEventListener('pointerdown',function(e){zieht=true;box.setPointerCapture(e.pointerId);ausZeiger(e)});
+  box.addEventListener('pointermove',function(e){if(zieht)ausZeiger(e)});
+  box.addEventListener('pointerup',function(){zieht=false});
+  box.addEventListener('pointercancel',function(){zieht=false});
+  r.addEventListener('input',function(){ziel=+r.value;set(ziel)});
+
+  /* einmaliger Hinweis, dass man ziehen kann */
+  if(!ruhig&&'IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      if(!es[0].isIntersecting) return; io.disconnect();
+      var t0=null;
+      function hint(ts){
+        if(zieht) return;
+        if(!t0) t0=ts; var k=Math.min((ts-t0)/1800,1);
+        set(50+Math.sin(k*Math.PI*2)*16*(1-k));
+        if(k<1) requestAnimationFrame(hint); else set(50);
+      }
+      setTimeout(function(){requestAnimationFrame(hint)},350);
+    },{threshold:.6});
+    io.observe(box);
+  }
+
   document.querySelectorAll('.vn-leiste button').forEach(function(b){
     b.addEventListener('click',function(){
+      if(b.getAttribute('aria-pressed')==='true') return;
       document.querySelectorAll('.vn-leiste button').forEach(function(x){x.setAttribute('aria-pressed','false')});
       b.setAttribute('aria-pressed','true');
-      nach.src='../assets/'+b.dataset.p+'-nachher.jpg';
-      vor.src='../assets/'+b.dataset.p+'-vorher.jpg';
-      t.textContent=b.dataset.t;r.value=50;set(50);
+      var p=b.dataset.p,n=new Image(),v=new Image(),fertig=0;
+      function tausch(){
+        if(++fertig<2) return;
+        function setze(){nach.src=n.src;vor.src=v.src;t.textContent=b.dataset.t;ziel=50;set(50);
+          requestAnimationFrame(function(){box.classList.remove('wechsel')})}
+        if(ruhig){setze();return}
+        box.classList.add('wechsel');setTimeout(setze,350);
+      }
+      n.onload=v.onload=n.onerror=v.onerror=tausch;
+      n.src=A(p+'-nachher.jpg');v.src=A(p+'-vorher.jpg');
     });
   });
+
   document.getElementById('anfrage').addEventListener('submit',function(e){
     e.preventDefault();document.getElementById('gesendet').style.display='block';
   });
