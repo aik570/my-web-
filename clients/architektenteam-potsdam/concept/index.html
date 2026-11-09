@@ -262,6 +262,67 @@ form .btn{align-self:flex-start}
 .hinweis{font-size:14px;color:var(--grau)}
 .gesendet{display:none;padding:14px;background:var(--kalk);font-size:15px}
 
+/* Vertrauensleiste (Maestro) */
+.leiste{border-bottom:1px solid var(--linie);background:var(--papier);padding:26px 0}
+.leiste .wrap{display:flex;flex-direction:column;gap:12px}
+.leiste small{font-size:13px;color:var(--grau)}
+.leiste ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 28px;font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(19px,2.4vw,24px);color:#4A5054}
+@media (min-width:980px){.leiste .wrap{flex-direction:row;align-items:baseline;gap:40px}.leiste small{flex:none}}
+
+/* Was planen Sie? (Reflections) */
+.wahl{padding:0 0 104px}
+.wahl h2{font-size:clamp(30px,5vw,44px);text-align:center;margin-bottom:28px}
+.kacheln{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--linie);border:1px solid var(--linie);max-width:1040px;margin:0 auto}
+@media (min-width:860px){.kacheln{grid-template-columns:repeat(4,1fr)}}
+.kachel{display:flex;flex-direction:column;align-items:center;gap:12px;padding:28px 12px 24px;background:var(--kalk);border:0;font:inherit;font-size:15px;font-weight:500;color:var(--graphit);cursor:pointer;text-align:center;min-height:44px;transition:background-color .25s ease}
+.kachel svg{width:44px;height:44px;stroke:var(--ziegel);fill:none;stroke-width:1.4}
+.kachel:hover{background:#fff}
+.kachel small{font-size:13px;font-weight:400;color:var(--grau)}
+
+/* Vergleich (Maestro) */
+.gegen{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#3A4044;border:1px solid #3A4044;margin-top:28px}
+.gegen div{background:var(--graphit);padding:18px 16px;display:flex;flex-direction:column;gap:6px}
+.gegen small{font-size:12px;color:#9EA39F}
+.gegen b{font-weight:500;font-size:15px;line-height:1.4;color:#D9DBD7}
+.gegen div:last-child{background:#272D30}
+.gegen div:last-child small{color:var(--ziegel-hell)}
+.gegen div:last-child b{color:#fff}
+
+/* Anfrage in Schritten (OH Architecture) */
+.assi{background:#fff;color:var(--graphit);padding:24px;display:flex;flex-direction:column;gap:20px}
+@media (min-width:760px){.assi{padding:36px}}
+.assi-kopf{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:13px;color:var(--grau)}
+.assi-kopf b{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:22px;color:var(--graphit)}
+.balken{height:2px;background:var(--linie)}
+.balken i{display:block;height:100%;width:25%;background:var(--ziegel);transition:width .5s cubic-bezier(.2,.7,.2,1)}
+.schritt{display:none;border:0;margin:0;padding:0;min-width:0}
+.schritt.aktiv{display:flex;flex-direction:column;gap:16px;animation:auf .45s ease both}
+@keyframes auf{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.schritt legend{font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(26px,4vw,32px);line-height:1.1;padding:0;margin-bottom:6px}
+.chips{display:grid;gap:8px}
+@media (min-width:560px){.chips{grid-template-columns:1fr 1fr}}
+.chip{position:relative;display:flex;flex-direction:row;align-items:center;min-height:56px;padding:12px 16px;border:1px solid #B9BCB7;cursor:pointer;font-size:16px;font-weight:500;transition:border-color .2s ease,background-color .2s ease}
+.chip input{position:absolute;opacity:0;width:1px;height:1px}
+.chip:hover{border-color:var(--graphit)}
+.chip:has(input:checked){border-color:var(--ziegel);background:#FBF3F0;box-shadow:inset 0 0 0 1px var(--ziegel)}
+.chip:has(input:focus-visible){outline:3px solid var(--ziegel);outline-offset:2px}
+.assi label.feld{display:flex;flex-direction:column;gap:7px;font-size:15px;font-weight:500}
+.assi-fuss{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-top:4px}
+.zurueck{background:none;border:0;font:inherit;font-size:15px;color:var(--grau);cursor:pointer;min-height:44px;padding:0 4px}
+.zurueck[hidden]{display:none}
+.assi .hinweis{font-size:13px}
+.danke{display:none;flex-direction:column;gap:12px}
+.danke.aktiv{display:flex}
+.danke b{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:30px}
+
+/* Mobile Anfrageleiste (DVF) */
+.schnell{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(22,25,27,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transform:translateY(110%);transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.schnell.zeigen{transform:none}
+.schnell .btn{flex:1;min-height:48px}
+.schnell .tel{flex:0 0 48px;padding:0;border-color:rgba(255,255,255,.5);color:#fff;background:transparent}
+.schnell .tel svg{width:20px;height:20px;stroke:#fff;fill:none;stroke-width:1.6}
+@media (min-width:860px){.schnell{display:none}}
+
 /* Bewegung */
 .js img.weich{opacity:0;transition:opacity .6s ease}
 .js img.weich.da{opacity:1}
@@ -337,6 +398,20 @@ form .btn{align-self:flex-start}
   <span class="scroll-hinweis" aria-hidden="true"></span>
 </section>
 
+<section class="leiste" aria-label="Frühere Projektleitung">
+  <div class="wrap">
+    <small>Vor 1998 in unserer Projektleitung realisiert:</small>
+    <ul>
+      <li>Dresdner Bank, Pariser Platz</li>
+      <li>Max-Planck-Institut Golm</li>
+      <li>Bundespräsidialamt</li>
+      <li>Bundeskanzleramt</li>
+      <li>Kaiser-Kaffee</li>
+      <li>Logistikzentrum Fiege</li>
+    </ul>
+  </div>
+</section>
+
 <section class="zahlen" aria-label="Das Büro in Zahlen">
   <div class="wrap">
     <ul>
@@ -353,6 +428,18 @@ form .btn{align-self:flex-start}
     <span class="trenner" aria-hidden="true"></span>
     <p class="satz">Ein Architekt und ein Beratender Ingenieur, seit 1998 gemeinsam in der Potsdamer Lindenstraße. Wer bei uns <em>den Entwurf zeichnet,</em> steht später auch auf der Baustelle.</p>
     <a class="pfeil" href="#buero">Das Büro kennenlernen <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<section class="wahl" aria-labelledby="wahl-titel">
+  <div class="wrap">
+    <h2 id="wahl-titel">Was planen Sie?</h2>
+    <div class="kacheln">
+      <button class="kachel" type="button" data-art="Neubau Einfamilienhaus"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 22L24 9l16 13M12 19v20h24V19M20 39V28h8v11"/></svg>Einfamilienhaus<small>Neubau</small></button>
+      <button class="kachel" type="button" data-art="Neubau Mehrfamilienhaus"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 40V12h28v28M6 40h36M16 18h4M28 18h4M16 26h4M28 26h4M21 40v-7h6v7"/></svg>Mehrfamilienhaus<small>Neubau</small></button>
+      <button class="kachel" type="button" data-art="Sanierung oder Modernisierung"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 40V18l12-8 12 8v22M8 40h32M14 24h4M22 24h4M14 32h4M30 12l8-4 2 4-8 4M32 16l6 24"/></svg>Sanierung<small>Altbau und Bestand</small></button>
+      <button class="kachel" type="button" data-art="Gewerbe- oder Industriebau"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 40V22l10 6v-6l10 6v-6l10 6V10h6v30zM6 40h36M14 34h4M24 34h4"/></svg>Gewerbebau<small>Halle und Betrieb</small></button>
+    </div>
   </div>
 </section>
 
@@ -398,7 +485,7 @@ form .btn{align-self:flex-start}
         <h3>Einfamilienhäuser</h3>
         <p>Ihr Haus nach Ihren Vorstellungen, vom Bungalow bis zur Stadtvilla. Entwurf, Bauantrag, Ausschreibung und Bauleitung bleiben in einer Hand.</p>
         <p class="bsp">36 Häuser zeigen wir in unseren Referenzen.</p>
-        <a class="pfeil" href="#kontakt">Haus besprechen <span aria-hidden="true">→</span></a>
+        <a class="pfeil" href="#kontakt" data-art="Neubau Einfamilienhaus">Haus besprechen <span aria-hidden="true">→</span></a>
       </div>
     </article>
 
@@ -409,7 +496,7 @@ form .btn{align-self:flex-start}
         <h3>Mehrfamilienhäuser</h3>
         <p>Wohnbauten, auch mit Laden- und Geschäftsflächen. Wir planen, schreiben aus und überwachen den Bau bis zur Übergabe.</p>
         <p class="bsp">Merkurstraße 2 und Hegelallee 46 in Potsdam. Teltow-Mühlendorf: 136 Wohneinheiten, 1999 bis 2000.</p>
-        <a class="pfeil" href="#kontakt">Projekt besprechen <span aria-hidden="true">→</span></a>
+        <a class="pfeil" href="#kontakt" data-art="Neubau Mehrfamilienhaus">Projekt besprechen <span aria-hidden="true">→</span></a>
       </div>
     </article>
 
@@ -431,7 +518,7 @@ form .btn{align-self:flex-start}
         <h3>Gewerbe- und Industriebau</h3>
         <p>Betriebsgebäude, Hallen und Erweiterungen bestehender Standorte.</p>
         <p class="bsp">Erweiterung der Bohn GmbH in Berlin um 1.600 m² Produktionsfläche. Neubau für die Duwe Kapazitätsbörse in Potsdam.</p>
-        <a class="pfeil" href="#kontakt">Vorhaben besprechen <span aria-hidden="true">→</span></a>
+        <a class="pfeil" href="#kontakt" data-art="Gewerbe- oder Industriebau">Vorhaben besprechen <span aria-hidden="true">→</span></a>
       </div>
     </article>
   </div>
@@ -461,8 +548,11 @@ form .btn{align-self:flex-start}
       <span class="etikett" style="color:var(--ziegel-hell)">Ablauf</span>
       <h2 id="ablauf-titel">Ihr Projekt, Geschoss für Geschoss</h2>
       <p class="lead">Die HOAI teilt jedes Bauvorhaben in neun Leistungsphasen. Wir übernehmen alle neun, von der Grundlagenermittlung bis zur Objektbetreuung.</p>
-      <p class="lead">Wer den Entwurf gezeichnet hat, überwacht auch die Baustelle. Nichts geht zwischen zwei Büros verloren.</p>
-      <a class="btn" href="#kontakt">Vorhaben schildern</a>
+      <div class="gegen">
+        <div><small>Häufig</small><b>Ein Büro entwirft, ein anderes überwacht den Bau. Wissen geht bei der Übergabe verloren.</b></div>
+        <div><small>Bei uns</small><b>Dieselben zwei Partner von der ersten Skizze bis zur Mängelverfolgung.</b></div>
+      </div>
+      <a class="btn" href="#kontakt" data-art="" style="margin-top:28px">Vorhaben schildern</a>
     </div>
     <div class="haus">
       <svg viewBox="0 0 600 70" aria-hidden="true"><path d="M2 68L300 4l298 64" fill="none" stroke="#F1F0EB" stroke-width="2"/></svg>
@@ -541,24 +631,61 @@ form .btn{align-self:flex-start}
         <a href="mailto:info@architektenteam-potsdam.de">info@architektenteam-potsdam.de</a>
       </div>
     </div>
-    <form id="anfrage" novalidate>
-      <div class="zwei">
-        <label>Name<input type="text" name="name" autocomplete="name"></label>
-        <label>Telefon<input type="tel" name="tel" autocomplete="tel"></label>
+    <form id="anfrage" class="assi" novalidate aria-label="Projektanfrage">
+      <div class="assi-kopf"><b>Projektanfrage</b><span id="zaehler" aria-live="polite">Schritt 1 von 4</span></div>
+      <div class="balken" aria-hidden="true"><i id="fortschritt"></i></div>
+
+      <fieldset class="schritt aktiv" data-s="1">
+        <legend>Was möchten Sie bauen?</legend>
+        <div class="chips">
+          <label class="chip"><input type="radio" name="art" value="Neubau Einfamilienhaus">Neubau Einfamilienhaus</label>
+          <label class="chip"><input type="radio" name="art" value="Neubau Mehrfamilienhaus">Neubau Mehrfamilienhaus</label>
+          <label class="chip"><input type="radio" name="art" value="Sanierung oder Modernisierung">Sanierung oder Modernisierung</label>
+          <label class="chip"><input type="radio" name="art" value="Gewerbe- oder Industriebau">Gewerbe- oder Industriebau</label>
+        </div>
+      </fieldset>
+
+      <fieldset class="schritt" data-s="2">
+        <legend>Wo stehen Sie gerade?</legend>
+        <div class="chips">
+          <label class="chip"><input type="radio" name="stand" value="Grundstück vorhanden">Grundstück vorhanden</label>
+          <label class="chip"><input type="radio" name="stand" value="Bestandsgebäude vorhanden">Bestandsgebäude vorhanden</label>
+          <label class="chip"><input type="radio" name="stand" value="Noch auf der Suche">Noch auf der Suche</label>
+          <label class="chip"><input type="radio" name="stand" value="Erst eine Idee">Erst eine Idee</label>
+        </div>
+        <label class="feld">Ort des Vorhabens<input type="text" name="ort" placeholder="z. B. Potsdam-Babelsberg" autocomplete="address-level2"></label>
+      </fieldset>
+
+      <fieldset class="schritt" data-s="3">
+        <legend>Wann soll es losgehen?</legend>
+        <div class="chips">
+          <label class="chip"><input type="radio" name="zeit" value="In den nächsten 6 Monaten">In den nächsten 6 Monaten</label>
+          <label class="chip"><input type="radio" name="zeit" value="In 6 bis 12 Monaten">In 6 bis 12 Monaten</label>
+          <label class="chip"><input type="radio" name="zeit" value="Später">Später</label>
+          <label class="chip"><input type="radio" name="zeit" value="Noch offen">Noch offen</label>
+        </div>
+      </fieldset>
+
+      <fieldset class="schritt" data-s="4">
+        <legend>Wie erreichen wir Sie?</legend>
+        <label class="feld">Name<input type="text" name="name" autocomplete="name"></label>
+        <div class="zwei">
+          <label class="feld">Telefon<input type="tel" name="tel" autocomplete="tel"></label>
+          <label class="feld">E-Mail<input type="email" name="mail" autocomplete="email"></label>
+        </div>
+        <label class="feld">Möchten Sie noch etwas ergänzen?<textarea name="text" rows="3"></textarea></label>
+      </fieldset>
+
+      <div class="danke" id="danke" role="status">
+        <b>Vielen Dank.</b>
+        <p>Dies ist ein Konzept. In der fertigen Website landet Ihre Anfrage mit allen Angaben direkt beim Büro.</p>
       </div>
-      <label>E-Mail<input type="email" name="mail" autocomplete="email"></label>
-      <label>Art des Vorhabens
-        <select name="art">
-          <option>Neubau Einfamilienhaus</option>
-          <option>Neubau Mehrfamilienhaus</option>
-          <option>Sanierung oder Modernisierung</option>
-          <option>Gewerbe- oder Industriebau</option>
-          <option>Noch unklar</option>
-        </select>
-      </label>
-      <label>Ihre Nachricht<textarea name="text" rows="4"></textarea></label>
-      <button class="btn btn-voll" type="submit">Anfrage senden</button>
-      <p class="gesendet" id="gesendet" role="status">Dies ist ein Konzept. In der fertigen Website geht Ihre Anfrage hier direkt an das Büro.</p>
+
+      <div class="assi-fuss" id="assi-fuss">
+        <button type="button" class="zurueck" id="zurueck" hidden>← Zurück</button>
+        <button type="button" class="btn btn-voll" id="weiter">Weiter</button>
+      </div>
+      <p class="hinweis">Ihre Angaben helfen uns, das Erstgespräch gezielt vorzubereiten.</p>
     </form>
   </div>
 </section>
@@ -592,6 +719,11 @@ form .btn{align-self:flex-start}
   </div>
 </footer>
 
+<div class="schnell" id="schnell" aria-hidden="true">
+  <a class="btn btn-voll" href="#kontakt" tabindex="-1">Projekt anfragen</a>
+  <a class="btn tel" href="tel:+493312010891" tabindex="-1" aria-label="Anrufen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 005 5L15 12l5 2v4a2 2 0 01-2 2A16 16 0 013 5a2 2 0 012-2"/></svg></a>
+</div>
+
 <script>
 document.documentElement.classList.add('js');
 (function(){
@@ -609,7 +741,7 @@ document.documentElement.classList.add('js');
   /* Kopfzeile: Schatten beim Scrollen */
   var kopf=document.querySelector('.kopf');
   var held=document.querySelector('.hero');
-  function kopfZustand(){var y=window.scrollY;kopf.classList.toggle('ueber',y<held.offsetHeight-70);kopf.classList.toggle('unten',y>8&&y>=held.offsetHeight-70)}
+  function kopfZustand(){var y=window.scrollY;kopf.classList.toggle('ueber',y<40);kopf.classList.toggle('unten',y>=40)}
   window.addEventListener('scroll',kopfZustand,{passive:true});kopfZustand();
 
   /* Vorher / Nachher */
@@ -665,9 +797,50 @@ document.documentElement.classList.add('js');
     });
   });
 
-  document.getElementById('anfrage').addEventListener('submit',function(e){
-    e.preventDefault();document.getElementById('gesendet').style.display='block';
+  /* Anfrage in Schritten */
+  var f=document.getElementById('anfrage'),schritte=[].slice.call(f.querySelectorAll('.schritt')),
+      weiter=document.getElementById('weiter'),zurueck=document.getElementById('zurueck'),
+      zaehler=document.getElementById('zaehler'),balken=document.getElementById('fortschritt'),jetzt=1;
+  function zeige(n){
+    jetzt=n;schritte.forEach(function(x){x.classList.toggle('aktiv',+x.dataset.s===n)});
+    zaehler.textContent='Schritt '+n+' von 4';balken.style.width=(n*25)+'%';
+    zurueck.hidden=n===1;weiter.textContent=n===4?'Anfrage senden':'Weiter';
+  }
+  function auswahl(name){var r=f.querySelector('input[name='+name+']:checked');return r&&r.value}
+  weiter.addEventListener('click',function(){
+    if(jetzt<4){zeige(jetzt+1);var x=f.querySelector('.schritt.aktiv input');if(x&&window.innerWidth>860)x.focus({preventScroll:true});return}
+    schritte.forEach(function(x){x.classList.remove('aktiv')});
+    document.getElementById('assi-fuss').style.display='none';
+    document.getElementById('danke').classList.add('aktiv');balken.style.width='100%';zaehler.textContent='Gesendet';
   });
+  zurueck.addEventListener('click',function(){if(jetzt>1)zeige(jetzt-1)});
+  /* Radio-Auswahl führt automatisch weiter (wie ein Quick Shop) */
+  f.querySelectorAll('.chip input').forEach(function(r){
+    r.addEventListener('change',function(){var sn=+r.closest('.schritt').dataset.s;if((sn===1||sn===3)&&sn===jetzt)setTimeout(function(){zeige(jetzt+1)},260)});
+  });
+  /* Vorbelegung aus Kacheln und Leistungs-Links */
+  function vorbelegen(art){
+    if(!art) {zeige(1);return}
+    var r=f.querySelector('input[name=art][value="'+art+'"]');if(r){r.checked=true;zeige(2)}
+  }
+  document.querySelectorAll('[data-art]').forEach(function(el){
+    el.addEventListener('click',function(e){
+      vorbelegen(el.dataset.art);
+      if(el.tagName==='BUTTON'){e.preventDefault();document.getElementById('kontakt').scrollIntoView({behavior:ruhig?'auto':'smooth'})}
+    });
+  });
+  f.addEventListener('submit',function(e){e.preventDefault()});
+
+  /* Mobile Anfrageleiste */
+  var schnell=document.getElementById('schnell'),kontakt=document.getElementById('kontakt');
+  function leiste(){
+    var y=window.scrollY,k=kontakt.getBoundingClientRect().top;
+    var an=y>held.offsetHeight*.8&&k>window.innerHeight*.6;
+    schnell.classList.toggle('zeigen',an);
+    schnell.setAttribute('aria-hidden',an?'false':'true');
+    schnell.querySelectorAll('a').forEach(function(a){a.tabIndex=an?0:-1});
+  }
+  window.addEventListener('scroll',leiste,{passive:true});leiste();
 })();
 </script>
 </body>
