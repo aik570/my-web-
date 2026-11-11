@@ -1,0 +1,635 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Architekturcontor Schagemann Schulte</title>
+<meta name="description" content="Redesign-Konzept für das Architekturcontor Schagemann Schulte, Potsdam: Architekten und Generalplaner für Bildungsbauten seit 1997.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --grund:#F4F3EF; --papier:#FFFFFF; --tinte:#17191A; --text:#3B3E3F; --grau:#6F7270; --linie:#D9D8D2;
+  --orange:#E2551C; --ziegel:#8F3A28;
+  --pad:20px; --max:1360px;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (min-width:760px){:root{--pad:40px}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--grund);color:var(--tinte);font-family:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+p{margin:0}
+h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.025em;text-wrap:balance}
+:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+.wrap{max-width:var(--max);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+.mono{font-family:var(--mono);font-size:13px;letter-spacing:0;line-height:1.45}
+.lead{font-size:clamp(18px,1.9vw,21px);line-height:1.5;color:var(--text);max-width:34em}
+.h2{font-size:clamp(34px,5.6vw,68px);line-height:1}
+.knopf{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:12px 20px;border-radius:2px;border:1px solid var(--tinte);background:var(--tinte);color:#fff;font:inherit;font-size:15px;font-weight:600;text-decoration:none;cursor:pointer;transition:background-color .2s ease,color .2s ease,border-color .2s ease}
+.knopf:hover{background:var(--orange);border-color:var(--orange)}
+.knopf.leer{background:transparent;color:inherit;border-color:currentColor}
+.knopf.leer:hover{background:#fff;color:var(--tinte);border-color:#fff}
+.abschnitt{padding:96px 0}
+@media (min-width:980px){.abschnitt{padding:136px 0}}
+.kopfreihe{display:grid;gap:20px;margin-bottom:48px}
+@media (min-width:980px){.kopfreihe{grid-template-columns:minmax(0,7fr) minmax(0,5fr);align-items:end;gap:48px;margin-bottom:64px}}
+.marke-o{color:var(--orange)}
+
+/* Kopf */
+.kopf{position:sticky;top:0;z-index:20;height:64px;background:rgba(244,243,239,.95);border-bottom:1px solid var(--linie);color:var(--tinte);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:background-color .35s ease,color .35s ease,border-color .35s ease}
+.kopf.ueber{background:transparent;color:#fff;border-color:rgba(255,255,255,.18);backdrop-filter:none;-webkit-backdrop-filter:none}
+.kopf .wrap{height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;flex-direction:column;line-height:1.05;text-decoration:none}
+.logo b{font-size:18px;font-weight:700;letter-spacing:-.02em}
+.logo span{font-family:var(--mono);font-size:11px;opacity:.75}
+.nav{display:none;gap:28px;font-size:15px;font-weight:500}
+.nav a{text-decoration:none;padding:10px 0}
+.nav a:hover{color:var(--orange)}
+@media (min-width:980px){.nav{display:flex}}
+.kopf .knopf{min-height:42px;padding:8px 16px;font-size:14px}
+.kopf.ueber .knopf{background:#fff;color:var(--tinte);border-color:#fff}
+
+/* Hero */
+.hero{position:relative;margin-top:-64px;height:100vh;height:100svh;min-height:660px;max-height:1060px;overflow:hidden;color:#fff;background:#1d2224;isolation:isolate}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:30% 50%;z-index:-2}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(12,14,15,.55) 0%,rgba(12,14,15,0) 22%),linear-gradient(0deg,rgba(12,14,15,.9) 0%,rgba(12,14,15,.7) 38%,rgba(12,14,15,.15) 66%,rgba(12,14,15,0) 80%)}
+.hero-inhalt{position:absolute;left:0;right:0;bottom:32px;display:flex;flex-direction:column;gap:18px}
+.hero .mono{color:rgba(255,255,255,.78)}
+.hero h1{font-size:clamp(42px,10.5vw,104px);line-height:.95;letter-spacing:-.035em;max-width:12ch}
+.hero h1 i{font-style:normal;color:#FFB089}
+.hero .lead{color:rgba(255,255,255,.86);font-size:17px}
+.hero .knoepfe{display:flex;flex-wrap:wrap;gap:10px}
+.hero .knopf{background:#fff;color:var(--tinte);border-color:#fff}
+.hero .knopf:hover{background:var(--orange);color:#fff;border-color:var(--orange)}
+.hero .knopf.leer{background:transparent;color:#fff;border-color:rgba(255,255,255,.7)}
+.daten{display:none}
+@media (min-width:980px){
+  .hero img{object-position:center 46%}
+  .hero::after{background:linear-gradient(180deg,rgba(12,14,15,.5) 0%,rgba(12,14,15,0) 20%),linear-gradient(90deg,rgba(12,14,15,.82) 0%,rgba(12,14,15,.6) 34%,rgba(12,14,15,.1) 62%,rgba(12,14,15,0) 76%),linear-gradient(0deg,rgba(12,14,15,.5) 0%,rgba(12,14,15,0) 30%)}
+  .hero-inhalt{bottom:72px}
+  .hero h1{font-size:min(104px,7.4vw,11vh)}
+  .daten{display:grid;position:absolute;right:max(var(--pad),calc((100vw - var(--max))/2 + var(--pad)));bottom:72px;gap:6px;width:320px;padding:18px 20px;border-left:2px solid var(--orange);background:rgba(12,14,15,.42);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+  .daten b{font-size:17px;font-weight:600}
+}
+@media (prefers-reduced-motion:no-preference){
+  .hero img{animation:ruhig 2.4s cubic-bezier(.2,.7,.2,1) both}
+  .hero-inhalt>*{animation:auf .9s cubic-bezier(.2,.7,.2,1) both}
+  .hero-inhalt>*:nth-child(2){animation-delay:.12s}.hero-inhalt>*:nth-child(3){animation-delay:.24s}.hero-inhalt>*:nth-child(4){animation-delay:.36s}
+}
+@keyframes ruhig{from{transform:scale(1.06)}to{transform:none}}
+@keyframes auf{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+/* Auftraggeber */
+.auftrag{border-bottom:1px solid var(--linie)}
+.auftrag .wrap{display:grid;gap:8px;padding-top:20px;padding-bottom:20px}
+.auftrag .mono{color:var(--grau)}
+.auftrag p:last-child{font-size:15px;font-weight:500}
+@media (min-width:980px){.auftrag .wrap{grid-template-columns:220px 1fr;gap:32px;align-items:baseline}}
+
+/* Fakten */
+.fakten ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--tinte)}
+.fakten li{padding:22px 16px 26px 0;border-bottom:1px solid var(--linie);display:flex;flex-direction:column;gap:10px}
+.fakten li:nth-child(even){padding-left:16px;border-left:1px solid var(--linie)}
+.fakten b{font-family:var(--mono);font-weight:500;font-size:clamp(28px,4.6vw,48px);letter-spacing:-.04em;line-height:1}
+.fakten span{font-size:14px;color:var(--grau);line-height:1.4}
+@media (min-width:980px){
+  .fakten ul{grid-template-columns:repeat(4,1fr)}
+  .fakten li{padding:28px 24px 32px;border-left:1px solid var(--linie)}
+  .fakten li:first-child{border-left:0;padding-left:0}
+  .fakten li:nth-child(even){padding-left:24px}
+}
+
+/* Bei laufendem Betrieb */
+.betrieb{background:var(--papier);border-top:1px solid var(--linie);border-bottom:1px solid var(--linie)}
+.band{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 var(--pad) 12px;margin:0 calc(-1 * var(--pad));scrollbar-width:thin}
+.band::-webkit-scrollbar{height:4px}.band::-webkit-scrollbar-thumb{background:var(--linie)}
+.karte{flex:0 0 82%;scroll-snap-align:start;display:flex;flex-direction:column;gap:12px}
+@media (min-width:760px){.karte{flex-basis:46%}}
+@media (min-width:1180px){.band{overflow:visible;display:grid;grid-template-columns:repeat(5,1fr);margin:0;padding:0}.karte{flex:none}}
+.karte figure{margin:0;overflow:hidden;background:#ddd}
+.karte img{width:100%;aspect-ratio:4/5;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+@media (hover:hover){.karte:hover img{transform:scale(1.04)}}
+.karte .mono{color:var(--orange)}
+.karte h3{font-size:20px;line-height:1.15}
+.karte p{font-size:14px;color:var(--grau);line-height:1.45}
+.zitat{margin-top:56px;padding-top:24px;border-top:1px solid var(--linie);display:grid;gap:12px}
+.zitat p:first-child{font-size:clamp(22px,2.6vw,30px);line-height:1.25;font-weight:500;letter-spacing:-.015em;max-width:30em}
+.zitat .mono{color:var(--grau)}
+
+/* Werkverzeichnis */
+.werk{position:relative}
+.filter{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.filter button{font:inherit;font-size:14px;font-weight:500;min-height:40px;padding:6px 14px;border:1px solid var(--linie);border-radius:999px;background:transparent;color:var(--tinte);cursor:pointer;transition:background-color .2s ease,color .2s ease,border-color .2s ease}
+.filter button span{font-family:var(--mono);font-size:12px;color:var(--grau);margin-left:6px}
+.filter button[aria-pressed="true"]{background:var(--tinte);color:#fff;border-color:var(--tinte)}
+.filter button[aria-pressed="true"] span{color:rgba(255,255,255,.6)}
+.liste{list-style:none;margin:0;padding:0;border-top:1px solid var(--tinte)}
+.liste li{border-bottom:1px solid var(--linie)}
+.liste li[hidden]{display:none}
+.zeile{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:4px 14px;align-items:baseline;width:100%;padding:16px 0;background:none;border:0;font:inherit;color:inherit;text-align:left;cursor:pointer}
+.zeile .jahr{font-family:var(--mono);font-size:14px;color:var(--grau)}
+.zeile .titel{font-size:clamp(17px,1.9vw,22px);font-weight:600;letter-spacing:-.015em;line-height:1.2;min-width:0;overflow-wrap:anywhere;hyphens:auto}
+.zeile .ort{grid-column:2;font-size:14px;color:var(--grau)}
+.zeile .wert{grid-row:1/3;grid-column:3;font-family:var(--mono);font-size:13px;color:var(--text);text-align:right;white-space:nowrap}
+.zeile .wert.preis{color:var(--orange)}
+.zeile .punkt{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--orange);margin-left:8px;vertical-align:middle}
+@media (min-width:980px){
+  .zeile{grid-template-columns:72px minmax(0,1.4fr) minmax(0,1fr) 170px;padding:18px 0;transition:padding-left .25s ease}
+  .zeile .ort{grid-column:3;grid-row:1}
+  .zeile .wert{grid-column:4;grid-row:1}
+  @media (hover:hover){.zeile:hover{padding-left:10px}.zeile:hover .titel{color:var(--orange)}}
+}
+.mehr{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease}
+.mehr>div{overflow:hidden}
+li.offen .mehr{grid-template-rows:1fr}
+.mehr .innen{display:grid;gap:12px;padding:0 0 20px}
+.mehr img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.mehr p{font-size:15px;color:var(--text);max-width:36em}
+@media (min-width:980px){.mehr .innen{grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:32px;padding:4px 0 28px 72px}}
+.vorschau{display:none}
+@media (min-width:980px) and (hover:hover){
+  .vorschau{display:block;position:fixed;z-index:15;left:0;top:0;width:340px;aspect-ratio:4/3;pointer-events:none;opacity:0;transform:translate(-50%,-50%) scale(.94);transition:opacity .25s ease,transform .25s ease;background:#ddd;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.18)}
+  .vorschau.an{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  .vorschau img{width:100%;height:100%;object-fit:cover}
+}
+
+/* Potsdam */
+.potsdam{background:var(--tinte);color:#EDEDE8}
+.potsdam .lead{color:#B9BBB8}
+.ps-raster{display:grid;gap:28px}
+.ps-raster figure{margin:0;display:flex;flex-direction:column;gap:10px}
+.ps-raster img{width:100%;object-fit:cover}
+.ps-raster figcaption{display:flex;flex-direction:column;gap:2px}
+.ps-raster figcaption b{font-size:18px;font-weight:600}
+.ps-raster .mono{color:#9EA19E}
+.ps-gross img{aspect-ratio:4/3}
+.ps-klein img{aspect-ratio:4/3}
+.ps-text{border-top:1px solid #33383A;padding-top:16px;display:flex;flex-direction:column;gap:6px}
+@media (min-width:980px){
+  .ps-raster{grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;align-items:start}
+  .ps-gross{grid-column:1/8;grid-row:1/3}
+  .ps-raster .ps-klein:nth-of-type(2){grid-column:9/13}
+  .ps-raster .ps-klein:nth-of-type(3){grid-column:9/13}
+  .ps-text{grid-column:1/8}
+}
+
+/* Kompetenzen */
+.komp{list-style:none;margin:0;padding:0;display:grid;border-top:1px solid var(--tinte)}
+.komp li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:6px 12px;padding:18px 0;border-bottom:1px solid var(--linie)}
+.komp li .mono{color:var(--orange);padding-top:3px}
+.komp b{font-size:19px;font-weight:600;letter-spacing:-.01em}
+.komp p{grid-column:2;font-size:15px;color:var(--grau);max-width:32em}
+@media (min-width:980px){.komp{grid-template-columns:1fr 1fr;column-gap:48px}}
+
+/* Büro */
+.buero{background:var(--papier);border-top:1px solid var(--linie)}
+.partner{display:grid;gap:48px}
+@media (min-width:980px){.partner{grid-template-columns:1fr 1fr;gap:48px}}
+.partner article{display:flex;flex-direction:column;gap:14px}
+.partner h3{font-size:clamp(28px,3vw,38px);line-height:1}
+.partner .rolle{color:var(--grau);font-size:15px}
+.vita{list-style:none;margin:6px 0 0;padding:0;border-top:1px solid var(--linie)}
+.vita li{display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px;padding:10px 0;border-bottom:1px solid var(--linie);font-size:15px}
+.vita li .mono{color:var(--grau);padding-top:2px}
+.team{margin-top:56px;padding-top:20px;border-top:1px solid var(--tinte);display:grid;gap:10px}
+.team p:last-child{font-size:18px;font-weight:500}
+.team .mono{color:var(--grau)}
+
+/* Anfrage */
+.anfrage-raster{display:grid;gap:48px}
+@media (min-width:980px){.anfrage-raster{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:64px}}
+.adr{margin-top:28px;display:flex;flex-direction:column;gap:2px;font-size:16px}
+.adr a{text-decoration:none;padding:6px 0;font-weight:600}
+.adr a:hover{color:var(--orange)}
+.assi{background:var(--papier);border:1px solid var(--linie);padding:24px;display:flex;flex-direction:column;gap:20px;margin:0}
+@media (min-width:760px){.assi{padding:36px}}
+.assi-kopf{display:flex;justify-content:space-between;color:var(--grau)}
+.balken{height:3px;background:var(--grund)}
+.balken i{display:block;height:100%;width:25%;background:var(--orange);transition:width .5s cubic-bezier(.2,.7,.2,1)}
+.schritt{display:none;border:0;margin:0;padding:0;min-width:0}
+.schritt.aktiv{display:flex;flex-direction:column;gap:12px;animation:auf .4s ease both}
+@media (prefers-reduced-motion:reduce){.schritt.aktiv{animation:none}}
+.schritt legend{font-size:clamp(24px,2.6vw,30px);font-weight:600;letter-spacing:-.02em;line-height:1.1;padding:0;margin-bottom:8px}
+.wahl{display:grid;gap:8px}
+.wahl label{position:relative;display:flex;align-items:center;gap:12px;min-height:54px;padding:10px 14px;border:1px solid var(--linie);cursor:pointer;font-size:16px;font-weight:500;transition:border-color .2s ease,background-color .2s ease}
+.wahl label::before{content:"";flex:none;width:16px;height:16px;border:1.5px solid var(--tinte);border-radius:50%;transition:background-color .2s ease,box-shadow .2s ease}
+.wahl label:hover{border-color:var(--tinte)}
+.wahl label:has(input:checked){border-color:var(--orange);background:#FFF6F1}
+.wahl label:has(input:checked)::before{background:var(--orange);border-color:var(--orange);box-shadow:inset 0 0 0 3px #FFF6F1}
+.wahl input{position:absolute;opacity:0;width:1px;height:1px}
+.wahl label:has(input:focus-visible){outline:2px solid var(--orange);outline-offset:2px}
+.feld{display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:500}
+.feld input,.feld textarea{font:inherit;font-size:17px;font-weight:400;padding:12px 14px;border:1px solid #9C9F9D;border-radius:0;background:#fff;color:var(--tinte);width:100%}
+.feld textarea{resize:vertical;min-height:100px}
+.zwei{display:grid;gap:12px}
+@media (min-width:560px){.zwei{grid-template-columns:1fr 1fr}}
+.assi-fuss{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.zurueck{background:none;border:0;font:inherit;font-size:15px;color:var(--grau);cursor:pointer;min-height:44px;padding:0}
+.zurueck[hidden]{visibility:hidden;display:block}
+.danke{display:none;flex-direction:column;gap:10px}
+.danke.aktiv{display:flex}
+.danke b{font-size:28px;letter-spacing:-.02em}
+
+/* Fuß */
+.fuss{background:var(--tinte);color:#A8AAA7;padding:64px 0 calc(28px + env(safe-area-inset-bottom));font-size:15px}
+.fuss-raster{display:grid;grid-template-columns:1fr 1fr;gap:32px 24px;padding-bottom:40px;border-bottom:1px solid #2E3233}
+.fuss-raster>div:first-child{grid-column:1/-1}
+@media (min-width:980px){.fuss-raster{grid-template-columns:2fr 1fr 1fr 1fr}.fuss-raster>div:first-child{grid-column:auto}}
+.fuss .logo b{color:#fff;font-size:22px}
+.fuss h4{margin:0 0 10px;color:#fff;font-size:14px;font-weight:600}
+.fuss ul{list-style:none;margin:0;padding:0}
+.fuss a{text-decoration:none;display:inline-block;padding:4px 0}
+.fuss a:hover{color:#fff}
+.fuss-unten{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;padding-top:20px}
+
+/* Mobile Leiste */
+.schnell{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(244,243,239,.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--linie);transform:translateY(110%);transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.schnell.zeigen{transform:none}
+.schnell .knopf{flex:1}
+.schnell .knopf.leer{flex:0 0 auto;color:var(--tinte)}
+@media (min-width:980px){.schnell{display:none}}
+
+.js img.weich{opacity:0;transition:opacity .7s ease}
+.js img.weich.da{opacity:1}
+@media (prefers-reduced-motion:reduce){.js img.weich{opacity:1;transition:none}.mehr{transition:none}.karte img,.knopf,.kopf{transition:none}}
+</style>
+</head>
+<body>
+
+<header class="kopf ueber">
+  <div class="wrap">
+    <a class="logo" href="#start"><b>Architekturcontor</b><span>Schagemann Schulte · Potsdam</span></a>
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a href="#betrieb">Bildungsbau</a>
+      <a href="#werk">Werkverzeichnis</a>
+      <a href="#potsdam">Potsdam</a>
+      <a href="#buero">Büro</a>
+    </nav>
+    <a class="knopf" href="#anfrage">Anfrage</a>
+  </div>
+</header>
+
+<main id="start">
+
+<section class="hero" aria-labelledby="hero-titel">
+  <img src="../assets/ewg-abend.jpg" width="1754" height="1772" alt="Erweiterungsbau des Emilie-Wüstenfeld-Gymnasiums in Hamburg in der Abenddämmerung, Fenster beleuchtet" fetchpriority="high">
+  <div class="hero-inhalt wrap">
+    <p class="mono">Architekten und Generalplaner · Potsdam · seit 1997</p>
+    <h1 id="hero-titel">Schulen bauen, während <i>unterrichtet wird.</i></h1>
+    <p class="lead">Wir planen Bildungsbauten für die öffentliche Hand, vom Entwurf bis zur Bauleitung. Viele davon bei laufendem Schulbetrieb.</p>
+    <div class="knoepfe">
+      <a class="knopf" href="#anfrage">Projekt anfragen</a>
+      <a class="knopf leer" href="#werk">Werkverzeichnis</a>
+    </div>
+  </div>
+  <div class="daten mono">
+    <span>2019 · Hamburg</span>
+    <b>Emilie-Wüstenfeld-Gymnasium</b>
+    <span>Erweiterung bei laufendem Schulbetrieb</span>
+    <span>BGF 1.734 m² · BRI 7.324 m³</span>
+  </div>
+</section>
+
+<section class="auftrag" aria-label="Auftraggeber">
+  <div class="wrap">
+    <p class="mono">Auftraggeber (Auswahl)</p>
+    <p>Freie und Hansestadt Hamburg · Landkreis Oberhavel · Universität Potsdam · Humboldt-Universität zu Berlin · Deutscher Bundestag · Bundeswehr · Studentenwerk Mannheim · Westfälische Provinzial</p>
+  </div>
+</section>
+
+<section class="abschnitt fakten" aria-labelledby="fakten-titel">
+  <div class="wrap">
+    <div class="kopfreihe">
+      <h2 class="h2" id="fakten-titel">Ein Büro, alle Leistungen aus einer Hand.</h2>
+      <p class="lead">Mit durchschnittlich sechs Mitarbeitern arbeiten wir als Architekten oder als Generalplaner im Team mit Fachingenieuren. Die Verfahren der öffentlichen Hand kennen wir von ES-Bau bis AFU-Bau.</p>
+    </div>
+    <ul>
+      <li><b>1997</b><span>Gründung in Potsdam</span></li>
+      <li><b>§ 15</b><span>Alle Architektenleistungen nach HOAI, auch als Generalplaner</span></li>
+      <li><b>5</b><span>Schulprojekte bei laufendem Betrieb</span></li>
+      <li><b>2.930 m²</b><span>BGF, Regenbogenschule Hennigsdorf, 2018</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="abschnitt betrieb" id="betrieb" aria-labelledby="betrieb-titel">
+  <div class="wrap">
+    <div class="kopfreihe">
+      <h2 class="h2" id="betrieb-titel">Der Unterricht läuft weiter.</h2>
+      <p class="lead">Erweitern, sanieren, umbauen, während Schülerinnen und Schüler im Haus sind. Fünf unserer Schulprojekte haben wir bei laufendem Betrieb ausgeführt.</p>
+    </div>
+    <div class="band">
+      <article class="karte">
+        <figure><img src="../assets/ewg-bibliothek.jpg" width="1338" height="1772" alt="Bibliothek im Erweiterungsbau des Emilie-Wüstenfeld-Gymnasiums" loading="lazy"></figure>
+        <span class="mono">2019 · Hamburg</span>
+        <h3>Emilie-Wüstenfeld-Gymnasium</h3>
+        <p>Erweiterungsbau, ausgeführt bei laufendem Schulbetrieb.</p>
+      </article>
+      <article class="karte">
+        <figure><img src="../assets/schulzendorf-aussen.jpg" width="1600" height="1086" alt="Holzverkleideter Hort-Erweiterungsbau in Schulzendorf" loading="lazy"></figure>
+        <span class="mono">2018 · Schulzendorf</span>
+        <h3>Hort Schulzendorf</h3>
+        <p>Erweiterung auf dem Schulcampus bei laufendem Schul- und Hortbetrieb.</p>
+      </article>
+      <article class="karte">
+        <figure><img src="../assets/lise-aula.jpg" width="1600" height="1120" alt="Aula der Lise-Meitner-Oberschule in Strausberg" loading="lazy"></figure>
+        <span class="mono">2014 · Strausberg</span>
+        <h3>Lise-Meitner-Oberschule</h3>
+        <p>Plattenbau von 1989 zur Ganztagsschule umgebaut, in drei Bauabschnitten.</p>
+      </article>
+      <article class="karte">
+        <figure><img src="../assets/belzig-eingang.jpg" width="1382" height="778" alt="Eingang des Neubaus am Fläming-Gymnasium Bad Belzig" loading="lazy"></figure>
+        <span class="mono">2013–2014 · Bad Belzig</span>
+        <h3>Fläming-Gymnasium</h3>
+        <p>Neubau mit Mensa und Aula, Sanierung von vier Bestandsbauten, teils unter Denkmalschutz.</p>
+      </article>
+      <article class="karte">
+        <figure><img src="../assets/aws-verbinder.jpg" width="1306" height="979" alt="Verbindungsbau zwischen Alt- und Neubau der Alfred-Wegener-Schule" loading="lazy"></figure>
+        <span class="mono">2011 · Berlin</span>
+        <h3>Alfred-Wegener-Oberschule</h3>
+        <p>Neubau für die Naturwissenschaften am denkmalgeschützten Bestand, neue Mensa.</p>
+      </article>
+    </div>
+    <div class="zitat">
+      <p>„In der Durchführung auch von großen Bauvorhaben bei laufendem Betrieb sind wir sehr erfahren.“</p>
+      <p class="mono">Aus unserem Büroprofil</p>
+    </div>
+  </div>
+</section>
+
+<section class="abschnitt werk" id="werk" aria-labelledby="werk-titel">
+  <div class="wrap">
+    <div class="kopfreihe">
+      <h2 class="h2" id="werk-titel">Werkverzeichnis 1998–2019</h2>
+      <p class="lead">Realisierte Bauten, Wettbewerbe und Studien. Projekte mit Punkt haben Fotos: antippen oder darüberfahren.</p>
+    </div>
+    <div class="filter" role="group" aria-label="Kategorie filtern">
+      <button type="button" aria-pressed="true" data-f="alle">Alle<span></span></button>
+      <button type="button" aria-pressed="false" data-f="lernen">Lernen<span></span></button>
+      <button type="button" aria-pressed="false" data-f="arbeiten">Arbeiten<span></span></button>
+      <button type="button" aria-pressed="false" data-f="wohnen">Wohnen<span></span></button>
+      <button type="button" aria-pressed="false" data-f="sonder">Sonderbauten<span></span></button>
+    </div>
+    <ul class="liste" id="liste">
+      <li data-k="lernen" data-bild="ewg-fassade"><button class="zeile" type="button" aria-expanded="false"><span class="jahr">2019</span><span class="titel">Emilie-Wüstenfeld-Gymnasium<span class="punkt" aria-hidden="true"></span></span><span class="ort">Hamburg</span><span class="wert">BGF 1.734 m²</span></button><div class="mehr"><div><div class="innen"><img src="../assets/ewg-fassade.jpg" width="1600" height="1576" alt="Fassade des Erweiterungsbaus, Metall und rote Türen" loading="lazy"><p>Erweiterungsbau in der Gustav-Falke-Straße. Ausführung bei laufendem Schulbetrieb. BRI 7.324 m³, NUF 1.106 m².</p></div></div></div></li>
+      <li data-k="lernen" data-bild="regenbogen-bewegung"><button class="zeile" type="button" aria-expanded="false"><span class="jahr">2018</span><span class="titel">Regenbogenschule<span class="punkt" aria-hidden="true"></span></span><span class="ort">Hennigsdorf</span><span class="wert">BGF 2.930 m²</span></button><div class="mehr"><div><div class="innen"><img src="../assets/regenbogen-bewegung.jpg" width="1134" height="716" alt="Bewegungsraum der Regenbogenschule" loading="lazy"><p>Neubau einer Förderschule für 100 geistig und körperlich behinderte Schülerinnen und Schüler. Bauherr: Landkreis Oberhavel.</p></div></div></div></li>
+      <li data-k="lernen" data-bild="schulzendorf-halle"><button class="zeile" type="button" aria-expanded="false"><span class="jahr">2018</span><span class="titel">Hort Schulzendorf<span class="punkt" aria-hidden="true"></span></span><span class="ort">Schulzendorf</span><span class="wert">BGF 1.380 m²</span></button><div class="mehr"><div><div class="innen"><img src="../assets/schulzendorf-halle.jpg" width="1600" height="1083" alt="Eingangshalle des Horts Schulzendorf" loading="lazy"><p>Erweiterung des Hortgebäudes Illgenstraße auf dem Schulcampus, bei laufendem Schul- und Hortbetrieb.</p></div></div></div></li>
+      <li data-k="arbeiten" data-bild="vissio-aussen"><button class="zeile" type="button" aria-expanded="false"><span class="jahr">2018</span><span class="titel">Bürohaus VISSIO<span class="punkt" aria-hidden="true"></span></span><span class="ort">Berlin-Adlershof</span><span class="wert">BGF 2.210 m²</span></button><div class="mehr"><div><div class="innen"><img src="../assets/vissio-aussen.jpg" width="1134" height="794" alt="Weißes Bürohaus VISSIO in Adlershof" loading="lazy"><p>Neubau eines Bürogebäudes in der Wagner-Régeny-Straße 12.</p></div></div></div></li>
+      <li data-k="lernen" data-bild="lise-aussen"><button class="zeile" type="button" aria-expanded="false"><span class="jahr">2014</span><span class="titel">Lise-Meitner-Oberschule<span class="punkt" aria-hidden="true"></span></span><span class="ort">Strausberg</span><span class="wert">3 Bauabschnitte</span></button><div class="mehr"><div><div class="innen"><img src="../assets/lise-aussen.jpg" width="1600" height="1046" alt="Lise-Meitner-Oberschule mit Aula" loading="lazy"><p>Erweiterung und Umbau eines Plattenbaus von 1989 zur Ganztags- und Oberschule, bei laufendem Schulbetrieb.</p></div></div></div></li>
+      <li data-k="wohnen" data-bild="kaethe25"><button class="zeile" type="button" aria-expanded="false"><span class="jahr">2014</span><span class="titel">Wohnhaus Käthe-Kollwitz-Straße 25<span class="punkt" aria-hidden="true"></span></span><span class="ort">Potsdam</span><span class="wert">Neubau</span></button><div class="mehr"><div><div class="innen"><img src="../assets/kaethe25.jpg" width="1600" height="900" alt="Wohngebäude mit Laubengängen in der Käthe-Kollwitz-Straße" loading="lazy"><p>Neubau eines Wohngebäudes, nach dem 1. Preis im Wettbewerb zur Nachverdichtung des Quartiers 2008.</p></div></div></div></li>
+      <li data-k="sonder" data-bild="mannheim-mensa"><button class="zeile" type="button" aria-expanded="false"><span class="jahr">2014</span><span class="titel">Mensa am Schloss<span class="punkt" aria-hidden="true"></span></span><span class="ort">Mannheim</span><span class="wert">Großküche</span></button><div class="mehr"><div><div class="innen"><img src="../assets/mannheim-mensa.jpg" width="2000" height="1481" alt="Mensa am Schloss des Studentenwerks Mannheim" loading="lazy"><p>Umbau und Sanierung einer Großküche für das Studentenwerk Mannheim.</p></div></div></div></li>
+      <li data-k="lernen" data-bild="belzig-villa"><button class="zeile" type="button" aria-expanded="false"><span class="jahr">2013</span><span class="titel">Fläming-Gymnasium<span class="punkt" aria-hidden="true"></span></span><span class="ort">Bad Belzig</span><span class="wert">Campus, 5 Häuser</span></button><div class="mehr"><div><div class="innen"><img src="../assets/belzig-villa.jpg" width="2000" height="1210" alt="Sanierte Villa des Fläming-Gymnasiums" loading="lazy"><p>Neubau mit Klassenräumen, Mensa und Aula. Vier von fünf Bestandsbauten saniert, teils unter Denkmalschutz.</p></div></div></div></li>
+      <li data-k="sonder" data-bild="golm-kammermusiksaal"><button class="zeile" type="button" aria-expanded="false"><span class="jahr">2012</span><span class="titel">Kammermusiksaal Universität Potsdam<span class="punkt" aria-hidden="true"></span></span><span class="ort">Potsdam-Golm</span><span class="wert">Raumakustik</span></button><div class="mehr"><div><div class="innen"><img src="../assets/golm-kammermusiksaal.jpg" width="1400" height="1156" alt="Decke des Kammermusiksaals in Golm" loading="lazy"><p>Raumakustische Ertüchtigung und Neugestaltung.</p></div></div></div></li>
+      <li data-k="lernen" data-bild="oberlin-hof"><button class="zeile" type="button" aria-expanded="false"><span class="jahr">2011</span><span class="titel">Oberlin-Förderschule<span class="punkt" aria-hidden="true"></span></span><span class="ort">Potsdam-Babelsberg</span><span class="wert">Denkmal + Neubau</span></button><div class="mehr"><div><div class="innen"><img src="../assets/oberlin-hof.jpg" width="1600" height="1193" alt="Farbige Fassade der Oberlin-Förderschule" loading="lazy"><p>L-förmiger Erweiterungsbau, der die Nutzfläche des denkmalgeschützten Altbaus verdoppelt. 2013 folgte die Sanierung des Altbaus.</p></div></div></div></li>
+      <li data-k="lernen" data-bild="aws-mensa"><button class="zeile" type="button" aria-expanded="false"><span class="jahr">2011</span><span class="titel">Alfred-Wegener-Oberschule<span class="punkt" aria-hidden="true"></span></span><span class="ort">Berlin</span><span class="wert">Denkmal + Mensa</span></button><div class="mehr"><div><div class="innen"><img src="../assets/aws-mensa.jpg" width="1600" height="1200" alt="Mensa der Alfred-Wegener-Schule im Bestandsbau" loading="lazy"><p>Erweiterungsneubau am denkmalgeschützten Bestand, Umbau zur Ganztagsschule mit Mensa, bei laufendem Betrieb.</p></div></div></div></li>
+      <li data-k="sonder" data-bild="stralsund"><button class="zeile" type="button" aria-expanded="false"><span class="jahr">2011</span><span class="titel">Parkhaus Fährwall<span class="punkt" aria-hidden="true"></span></span><span class="ort">Stralsund</span><span class="wert">Altstadt</span></button><div class="mehr"><div><div class="innen"><img src="../assets/stralsund.jpg" width="1600" height="1200" alt="Parkhaus Fährwall mit transluzenter Glasfassade" loading="lazy"><p>Parkhaus mit Kopfbau im denkmalgeschützten Altstadtkern, transluzente Glasfassade zum Fährwall.</p></div></div></div></li>
+      <li data-k="arbeiten"><button class="zeile" type="button" aria-expanded="false"><span class="jahr">2010</span><span class="titel">Justizzentrum, Wettbewerb</span><span class="ort">Gelsenkirchen</span><span class="wert preis">Anerkennung</span></button></li>
+      <li data-k="lernen"><button class="zeile" type="button" aria-expanded="false"><span class="jahr">2009</span><span class="titel">Käthe-Kollwitz-Gymnasium, Wettbewerb</span><span class="ort">Wilhelmshaven</span><span class="wert preis">1. Preis</span></button></li>
+      <li data-k="arbeiten"><button class="zeile" type="button" aria-expanded="false"><span class="jahr">2009</span><span class="titel">Verwaltungsgebäude Deutscher Bundestag</span><span class="ort">Berlin-Mitte</span><span class="wert">Vorentwurf</span></button></li>
+      <li data-k="wohnen"><button class="zeile" type="button" aria-expanded="false"><span class="jahr">2009</span><span class="titel">Weserufer, Wettbewerb</span><span class="ort">Bremen</span><span class="wert preis">3. Preis</span></button></li>
+      <li data-k="wohnen"><button class="zeile" type="button" aria-expanded="false"><span class="jahr">2008</span><span class="titel">Nachverdichtung Käthe-Kollwitz-Straße, Wettbewerb</span><span class="ort">Potsdam</span><span class="wert preis">1. Preis</span></button></li>
+      <li data-k="sonder"><button class="zeile" type="button" aria-expanded="false"><span class="jahr">2008</span><span class="titel">Eiskeller, Alte Brauerei Babelsberg</span><span class="ort">Potsdam</span><span class="wert">Denkmal</span></button></li>
+      <li data-k="wohnen"><button class="zeile" type="button" aria-expanded="false"><span class="jahr">2005</span><span class="titel">Seilerei Schagemann, Fachwerkhaus</span><span class="ort">Quakenbrück</span><span class="wert preis">Denkmalpreis</span></button></li>
+      <li data-k="wohnen"><button class="zeile" type="button" aria-expanded="false"><span class="jahr">1998</span><span class="titel">Bundesbedienstetenwohnen, Wettbewerb</span><span class="ort">Berlin-Pankow</span><span class="wert preis">1. Preis</span></button></li>
+    </ul>
+    <div class="vorschau" id="vorschau" aria-hidden="true"><img alt="" id="vorschau-bild"></div>
+  </div>
+</section>
+
+<section class="abschnitt potsdam" id="potsdam" aria-labelledby="potsdam-titel">
+  <div class="wrap">
+    <div class="kopfreihe">
+      <h2 class="h2" id="potsdam-titel">Zu Hause in Potsdam.</h2>
+      <p class="lead">Unser Büro liegt an der Alten Brauerei in Babelsberg. Einige unserer Bauten stehen ganz in der Nähe.</p>
+    </div>
+    <div class="ps-raster">
+      <figure class="ps-gross"><img src="../assets/oberlin-hof.jpg" width="1600" height="1193" alt="Erweiterungsbau der Oberlin-Förderschule mit orangen und gelben Fassadenbändern" loading="lazy"><figcaption><b>Oberlin-Förderschule, Babelsberg</b><span class="mono">2008 · 2011 · 2013</span></figcaption></figure>
+      <figure class="ps-klein"><img src="../assets/kaethe25.jpg" width="1600" height="900" alt="Wohnhaus Käthe-Kollwitz-Straße 25" loading="lazy"><figcaption><b>Käthe-Kollwitz-Straße 25</b><span class="mono">2014 · nach 1. Preis</span></figcaption></figure>
+      <figure class="ps-klein"><img src="../assets/golm-kammermusiksaal.jpg" width="1400" height="1156" alt="Kammermusiksaal der Universität Potsdam in Golm" loading="lazy"><figcaption><b>Kammermusiksaal, Golm</b><span class="mono">2012 · Universität Potsdam</span></figcaption></figure>
+      <div class="ps-text">
+        <span class="mono">Außerdem in Potsdam</span>
+        <p>Eiskeller der Alten Brauerei Babelsberg, Generalsanierung eines Denkmals (2008) · Machbarkeitsstudie Siedlung am Brunnen, Waldstadt (2011) · Coffee Point in der Mensa Griebnitzsee (2008)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="abschnitt" aria-labelledby="komp-titel">
+  <div class="wrap">
+    <div class="kopfreihe">
+      <h2 class="h2" id="komp-titel">Was wir zusätzlich mitbringen.</h2>
+      <p class="lead">Neben Entwurf und Bauleitung bieten wir Expertisen aus dem eigenen Team.</p>
+    </div>
+    <ul class="komp">
+      <li><span class="mono">01</span><b>Energieberatung</b><p>Nach EnEV, mit dem Einsatz erneuerbarer Energien wie Geothermie.</p></li>
+      <li><span class="mono">02</span><b>SiGeKo</b><p>Sicherheits- und Gesundheitsschutzkoordination auf der Baustelle.</p></li>
+      <li><span class="mono">03</span><b>Brand- und Denkmalschutz</b><p>Brandschutzertüchtigung und Bauen im denkmalgeschützten Bestand.</p></li>
+      <li><span class="mono">04</span><b>Gutachten</b><p>Sachverständigengutachten bei Schäden an Gebäuden.</p></li>
+      <li><span class="mono">05</span><b>ÖPP-Verfahren</b><p>Vorbereitung und Durchführung öffentlich-privater Partnerschaften.</p></li>
+      <li><span class="mono">06</span><b>Wettbewerbe und Workshops</b><p>Architektenwettbewerbe nach GRW/RPW und moderierte Workshops mit Nutzern, Bauherren und Planern.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="abschnitt buero" id="buero" aria-labelledby="buero-titel">
+  <div class="wrap">
+    <div class="kopfreihe">
+      <h2 class="h2" id="buero-titel">Zwei Partner, ein Team.</h2>
+      <p class="lead">Beide kommen aus dem Büro von Prof. Harald Deilmann und gründeten 1997 gemeinsam das Architekturcontor in Potsdam.</p>
+    </div>
+    <div class="partner">
+      <article>
+        <h3>Carl Schagemann</h3>
+        <p class="rolle">Dipl.-Ing. Architekt BDA · AK Brandenburg</p>
+        <ul class="vita">
+          <li><span class="mono">1956–1962</span><span>Schreinerlehre</span></li>
+          <li><span class="mono">1969–1997</span><span>Leitender Mitarbeiter bei Prof. Harald Deilmann, Münster und Potsdam</span></li>
+          <li><span class="mono">seit 2005</span><span>Expertenkreis ÖPP-Verfahren der Bundesarchitektenkammer</span></li>
+          <li><span class="mono">seit 2006</span><span>Vorsitzender des Ausschusses „Architektur und Schule“ der Architektenkammer Brandenburg</span></li>
+        </ul>
+      </article>
+      <article>
+        <h3>Prof. Claudia Schulte</h3>
+        <p class="rolle">Dipl.-Ing. MArch, Architektin BDA · AK Nordrhein-Westfalen</p>
+        <ul class="vita">
+          <li><span class="mono">1982–1986</span><span>ETH Zürich, Master of Architecture an der University of Kansas</span></li>
+          <li><span class="mono">1988–1997</span><span>Architektin bei Prof. Harald Deilmann, Münster</span></li>
+          <li><span class="mono">seit 2004</span><span>Professorin an der Hochschule Neubrandenburg</span></li>
+          <li><span class="mono">seit 2011</span><span>Prüfsachverständige „Energetische Gebäudeplanung“ Berlin/Brandenburg</span></li>
+        </ul>
+      </article>
+    </div>
+    <div class="team">
+      <p class="mono">Team</p>
+      <p>Martina Schaaf, Anne Hoffmann, Frauke Röth, Josephine Graap, Isabel Vatter, Susann Peinelt</p>
+    </div>
+  </div>
+</section>
+
+<section class="abschnitt" id="anfrage" aria-labelledby="anfrage-titel">
+  <div class="wrap anfrage-raster">
+    <div>
+      <h2 class="h2" id="anfrage-titel">Ihr Vorhaben.</h2>
+      <p class="lead" style="margin-top:20px">Vier kurze Fragen, damit wir das erste Gespräch gezielt vorbereiten können. Für Schulträger, Kommunen, Unternehmen und private Bauherren.</p>
+      <div class="adr">
+        <span>An der Alten Brauerei 5, 14482 Potsdam</span>
+        <a href="tel:+4933174331">0331 74331-0</a>
+        <a href="mailto:potsdam@architekturcontor-ass.de">potsdam@architekturcontor-ass.de</a>
+      </div>
+    </div>
+    <form id="formular" class="assi" novalidate aria-label="Projektanfrage">
+      <div class="assi-kopf mono"><span>Anfrage</span><span id="zaehler" aria-live="polite">1 / 4</span></div>
+      <div class="balken" aria-hidden="true"><i id="fortschritt"></i></div>
+      <fieldset class="schritt aktiv" data-s="1">
+        <legend>Wer fragt an?</legend>
+        <div class="wahl">
+          <label><input type="radio" name="wer" value="Schulträger oder Kommune">Schulträger oder Kommune</label>
+          <label><input type="radio" name="wer" value="Landkreis oder Land">Landkreis, Land oder Bund</label>
+          <label><input type="radio" name="wer" value="Unternehmen">Unternehmen</label>
+          <label><input type="radio" name="wer" value="Privat">Privater Bauherr</label>
+        </div>
+      </fieldset>
+      <fieldset class="schritt" data-s="2">
+        <legend>Was ist geplant?</legend>
+        <div class="wahl">
+          <label><input type="radio" name="was" value="Neubau Schule oder Kita">Neubau Schule, Hort oder Kita</label>
+          <label><input type="radio" name="was" value="Erweiterung bei laufendem Betrieb">Erweiterung oder Sanierung bei laufendem Betrieb</label>
+          <label><input type="radio" name="was" value="Büro- oder Gewerbebau">Büro- oder Gewerbebau</label>
+          <label><input type="radio" name="was" value="Wohnungsbau">Wohnungsbau</label>
+          <label><input type="radio" name="was" value="Wettbewerb oder ÖPP">Wettbewerb, ÖPP oder Gutachten</label>
+        </div>
+      </fieldset>
+      <fieldset class="schritt" data-s="3">
+        <legend>Wo und wann?</legend>
+        <label class="feld">Ort<input type="text" name="ort" placeholder="z. B. Potsdam" autocomplete="address-level2"></label>
+        <div class="wahl">
+          <label><input type="radio" name="wann" value="2026">Baubeginn 2026</label>
+          <label><input type="radio" name="wann" value="2027">Baubeginn 2027</label>
+          <label><input type="radio" name="wann" value="später">Später oder noch offen</label>
+        </div>
+      </fieldset>
+      <fieldset class="schritt" data-s="4">
+        <legend>Wie erreichen wir Sie?</legend>
+        <label class="feld">Name und Institution<input type="text" name="name" autocomplete="name"></label>
+        <div class="zwei">
+          <label class="feld">Telefon<input type="tel" name="tel" autocomplete="tel"></label>
+          <label class="feld">E-Mail<input type="email" name="mail" autocomplete="email"></label>
+        </div>
+        <label class="feld">Nachricht<textarea name="text" rows="3"></textarea></label>
+      </fieldset>
+      <div class="danke" id="danke" role="status"><b>Vielen Dank.</b><p>Dies ist ein Konzept. In der fertigen Website geht Ihre Anfrage mit allen Angaben direkt an das Büro.</p></div>
+      <div class="assi-fuss" id="assi-fuss">
+        <button type="button" class="zurueck" id="zurueck" hidden>← Zurück</button>
+        <button type="button" class="knopf" id="weiter">Weiter</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer class="fuss">
+  <div class="wrap">
+    <div class="fuss-raster">
+      <div><span class="logo"><b>Architekturcontor</b><span>Schagemann Schulte GmbH</span></span><p style="margin-top:14px">An der Alten Brauerei 5<br>14482 Potsdam</p></div>
+      <div><h4>Kontakt</h4><ul><li><a href="tel:+4933174331">0331 74331-0</a></li><li><a href="mailto:potsdam@architekturcontor-ass.de">E-Mail</a></li></ul></div>
+      <div><h4>Projekte</h4><ul><li><a href="#betrieb">Bildungsbau</a></li><li><a href="#werk">Werkverzeichnis</a></li><li><a href="#potsdam">Potsdam</a></li></ul></div>
+      <div><h4>Büro</h4><ul><li><a href="#buero">Partner</a></li><li><a href="#start">Impressum</a></li><li><a href="#start">Datenschutz</a></li></ul></div>
+    </div>
+    <div class="fuss-unten mono">
+      <span>Fotografien: Werner Huthmacher, Sarah Eick</span>
+      <span>Redesign-Konzept von AIK Studio. Keine offizielle Website.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="schnell" id="schnell" aria-hidden="true">
+  <a class="knopf" href="#anfrage" tabindex="-1">Projekt anfragen</a>
+  <a class="knopf leer" href="tel:+4933174331" tabindex="-1">Anrufen</a>
+</div>
+
+<script>
+document.documentElement.classList.add('js');
+(function(){
+  var A=window.IMG?function(n){return IMG[n]}:function(n){return '../assets/'+n};
+  var ruhig=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelectorAll('main img').forEach(function(i){
+    if(i.closest('.hero')) return;
+    i.classList.add('weich');
+    if(i.complete&&i.naturalWidth) i.classList.add('da');
+    else i.addEventListener('load',function(){i.classList.add('da')},{once:true});
+  });
+
+  var kopf=document.querySelector('.kopf'),held=document.querySelector('.hero');
+  function kopfZustand(){kopf.classList.toggle('ueber',window.scrollY<40)}
+  window.addEventListener('scroll',kopfZustand,{passive:true});kopfZustand();
+
+  /* Werkverzeichnis: Filter */
+  var zeilen=[].slice.call(document.querySelectorAll('#liste>li')),knoepfe=[].slice.call(document.querySelectorAll('.filter button'));
+  knoepfe.forEach(function(b){
+    var f=b.dataset.f,n=f==='alle'?zeilen.length:zeilen.filter(function(z){return z.dataset.k===f}).length;
+    b.querySelector('span').textContent=n;
+    b.addEventListener('click',function(){
+      knoepfe.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+      zeilen.forEach(function(z){z.hidden=!(f==='alle'||z.dataset.k===f)});
+    });
+  });
+  /* Werkverzeichnis: aufklappen */
+  zeilen.forEach(function(z){
+    var b=z.querySelector('.zeile');if(!z.querySelector('.mehr')){b.removeAttribute('aria-expanded');b.style.cursor='default';return}
+    b.addEventListener('click',function(){var o=z.classList.toggle('offen');b.setAttribute('aria-expanded',o?'true':'false')});
+  });
+  /* Werkverzeichnis: Vorschau am Zeiger (Desktop) */
+  var vs=document.getElementById('vorschau'),vb=document.getElementById('vorschau-bild');
+  if(window.matchMedia('(hover:hover) and (min-width:980px)').matches){
+    var x=0,y=0,tx=0,ty=0,laeuft=false;
+    function folge(){x+=(tx-x)*.2;y+=(ty-y)*.2;vs.style.left=x+'px';vs.style.top=y+'px';if(Math.abs(tx-x)+Math.abs(ty-y)>.5)requestAnimationFrame(folge);else laeuft=false}
+    zeilen.forEach(function(z){
+      if(!z.dataset.bild) return;
+      var b=z.querySelector('.zeile');
+      b.addEventListener('mouseenter',function(e){if(z.classList.contains('offen'))return;vb.src=A(z.dataset.bild+'.jpg');tx=x=e.clientX+200;ty=y=e.clientY;vs.style.left=x+'px';vs.style.top=y+'px';vs.classList.add('an')});
+      b.addEventListener('mousemove',function(e){tx=e.clientX+200;ty=e.clientY;if(ruhig){x=tx;y=ty;vs.style.left=x+'px';vs.style.top=y+'px';return}if(!laeuft){laeuft=true;requestAnimationFrame(folge)}});
+      b.addEventListener('mouseleave',function(){vs.classList.remove('an')});
+      b.addEventListener('click',function(){vs.classList.remove('an')});
+    });
+  }
+
+  /* Anfrage */
+  var f=document.getElementById('formular'),schritte=[].slice.call(f.querySelectorAll('.schritt')),
+      weiter=document.getElementById('weiter'),zurueck=document.getElementById('zurueck'),
+      zaehler=document.getElementById('zaehler'),balken=document.getElementById('fortschritt'),jetzt=1;
+  function zeige(n){
+    jetzt=n;schritte.forEach(function(s){s.classList.toggle('aktiv',+s.dataset.s===n)});
+    zaehler.textContent=n+' / 4';balken.style.width=(n*25)+'%';
+    zurueck.hidden=n===1;weiter.textContent=n===4?'Anfrage senden':'Weiter';
+  }
+  weiter.addEventListener('click',function(){
+    if(jetzt<4){zeige(jetzt+1);return}
+    schritte.forEach(function(s){s.classList.remove('aktiv')});
+    document.getElementById('assi-fuss').style.display='none';
+    document.getElementById('danke').classList.add('aktiv');balken.style.width='100%';zaehler.textContent='gesendet';
+  });
+  zurueck.addEventListener('click',function(){if(jetzt>1)zeige(jetzt-1)});
+  f.querySelectorAll('.wahl input').forEach(function(r){
+    r.addEventListener('change',function(){var sn=+r.closest('.schritt').dataset.s;if((sn===1||sn===2)&&sn===jetzt)setTimeout(function(){zeige(jetzt+1)},280)});
+  });
+  f.addEventListener('submit',function(e){e.preventDefault()});
+
+  /* Mobile Leiste */
+  var schnell=document.getElementById('schnell'),anfrage=document.getElementById('anfrage');
+  function leiste(){
+    var an=window.scrollY>held.offsetHeight*.8&&anfrage.getBoundingClientRect().top>window.innerHeight*.6;
+    schnell.classList.toggle('zeigen',an);schnell.setAttribute('aria-hidden',an?'false':'true');
+    schnell.querySelectorAll('a').forEach(function(a){a.tabIndex=an?0:-1});
+  }
+  window.addEventListener('scroll',leiste,{passive:true});leiste();
+})();
+</script>
+</body>
+</html>
