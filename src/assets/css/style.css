@@ -1138,7 +1138,7 @@ mark.todo { background: #fff1c2; color: #6b4b00; padding: .1rem .35rem; border-r
 .rv__track { display: flex; gap: .75rem; width: max-content; margin: 0; padding: 0; list-style: none; animation: rv-run var(--rv-dur, 60s) linear infinite; }
 .rv__viewport:is(:hover, :focus-within) .rv__track, .rv.is-paused .rv__track { animation-play-state: paused; }
 @keyframes rv-run { to { transform: translateX(calc(-50% - .375rem)); } }
-.rv__card { display: grid; grid-template-columns: 1fr; gap: .3rem; width: 17.5rem; padding: .6rem .8rem; border-radius: 10px; background: var(--white); color: var(--ink); box-shadow: 0 1px 0 rgba(0, 0, 0, .08); }
+.rv__card { display: grid; grid-template-columns: 1fr; align-content: start; gap: .45rem; width: 19rem; min-height: 10.5rem; padding: .9rem 1rem; border-radius: 10px; background: var(--white); color: var(--ink); box-shadow: 0 1px 0 rgba(0, 0, 0, .08); }
 .rv__head { display: flex; align-items: center; gap: .5rem; }
 .rv__avatar { display: grid; place-items: center; width: 1.75rem; height: 1.75rem; border-radius: 50%; flex: none; background: var(--rv-blue); color: var(--white); font-weight: 700; font-size: .8125rem; }
 .rv__who { display: flex; align-items: baseline; gap: .4rem; min-width: 0; flex: 1; }
@@ -1146,12 +1146,12 @@ mark.todo { background: #fff1c2; color: #6b4b00; padding: .1rem .35rem; border-r
 .rv__who a { color: inherit; text-decoration: none; }
 .rv__who small { font: 500 .6875rem var(--mono); color: var(--grey); white-space: nowrap; }
 .rv__card .stars svg { width: .8rem; height: .8rem; }
-.rv__text { margin: 0; font-size: .8125rem; line-height: 1.4; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; }
+.rv__text { margin: 0; font-size: .875rem; line-height: 1.45; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 5; line-clamp: 5; overflow: hidden; }
 .rv--empty .rv__in { padding-block: .55rem; }
 @media (max-width: 760px) {
   .rv__in { flex-wrap: wrap; gap: .5rem .75rem; }
   .rv__viewport { order: 3; flex-basis: 100%; margin-inline: calc(-1 * var(--gutter)); }
-  .rv__card { width: 15.5rem; }
+  .rv__card { width: 16.5rem; min-height: 10rem; }
   .rv__label { flex-wrap: wrap; white-space: normal; row-gap: .25rem; min-width: 0; flex: 1; }
   .rv__label small:not(.rv__sample) { display: none; }
 }

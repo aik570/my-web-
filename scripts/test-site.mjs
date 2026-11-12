@@ -150,7 +150,7 @@ console.log('\nGoogle-Bewertungen');
       link: s?.querySelector('.rv__link')?.href || '', sample: !!s?.querySelector('.rv__sample'), head: !!s?.querySelector('.rv__label .gmark') };
   });
   ok(st.exists && st.count === 1 && st.placed && st.head, 'Google reviews: one moving strip at the very bottom, under the logo');
-  ok(st.height > 0 && st.height <= (st.cards ? 230 : 80), `reviews block compact on a phone (${Math.round(st.height)} px)`);
+  ok(st.height > 0 && st.height <= (st.cards ? 320 : 80), `reviews block compact on a phone (${Math.round(st.height)} px)`);
   ok(st.cards === rv.items.length && !st.sample, `review cards = reviews.json (${rv.items.length})${rv.items.length ? '' : ' → no quotes, nothing invented'}`);
   ok(/^https:\/\/(www\.)?google\.[a-z.]+\/maps/.test(st.link), 'link to the reviews on Google');
   await page.close();
