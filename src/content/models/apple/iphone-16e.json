@@ -6,7 +6,7 @@
     {
       "service": "display",
       "label": "Display – Standardqualität",
-      "price": null,
+      "price": 239,
       "from": false,
       "onRequest": false,
       "note": ""
@@ -14,7 +14,7 @@
     {
       "service": "display",
       "label": "Display – Originalqualität",
-      "price": null,
+      "price": 479,
       "from": false,
       "onRequest": false,
       "note": ""
@@ -22,7 +22,7 @@
     {
       "service": "akku",
       "label": "",
-      "price": null,
+      "price": 149,
       "from": false,
       "onRequest": false,
       "note": ""
@@ -30,7 +30,7 @@
     {
       "service": "backcover",
       "label": "",
-      "price": null,
+      "price": 249,
       "from": false,
       "onRequest": false,
       "note": ""
@@ -38,7 +38,7 @@
     {
       "service": "ladebuchse",
       "label": "",
-      "price": null,
+      "price": 239,
       "from": false,
       "onRequest": false,
       "note": ""
@@ -46,7 +46,7 @@
     {
       "service": "hauptkamera",
       "label": "",
-      "price": null,
+      "price": 229,
       "from": false,
       "onRequest": false,
       "note": ""
@@ -78,7 +78,7 @@
     {
       "service": "wasserschaden",
       "label": "",
-      "price": null,
+      "price": 60,
       "from": false,
       "onRequest": false,
       "note": ""
