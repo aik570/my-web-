@@ -295,10 +295,10 @@
   to = "/impressum/"
   status = 301
 
-# Canonical domain: www.handy-chirurg.de (confirmed 06.11.2026). handy-chirurg.de → www is done by Netlify
-# (primary domain). Enable this only if handychirurg.de (no hyphen, IONOS) is also pointed at Netlify.
+# Canonical domain: www.handychirurg.de (IONOS, the shop's existing domain, 13.11.2026). handychirurg.de,
+# handy-chirurg.de and www.handy-chirurg.de are domain aliases in Netlify and redirect to it automatically.
 # [[redirects]]
-#   from = "https://handychirurg.de/*"
-#   to = "https://www.handy-chirurg.de/:splat"
+#   from = "https://handy-chirurg.de/*"
+#   to = "https://www.handychirurg.de/:splat"
 #   status = 301
 #   force = true

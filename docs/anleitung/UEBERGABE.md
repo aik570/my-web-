@@ -46,7 +46,7 @@ Gespeichert wird sofort mit „Veröffentlichen → Jetzt veröffentlichen". Die
 
 ## 5. Domain-Umstellung (nach Ihrer Freigabe)
 
-Ihr Betreuer trägt Ihre Domain bei Netlify ein; bei Ihrem Domain-Anbieter werden 1–2 Einträge geändert. Nach einigen Stunden zeigt **www.handy-chirurg.de** die neue Website, die Bearbeitung ist dann unter **www.handy-chirurg.de/admin/** – mit demselben Passwort. Die alte Website bleibt bis dahin unverändert online. Ihren bisherigen Hosting-Vertrag bitte erst nach einigen Wochen kündigen.
+Ihr Betreuer trägt Ihre Domain bei Netlify ein; bei Ihrem Domain-Anbieter werden 1–2 Einträge geändert. Nach einigen Stunden zeigt **www.handychirurg.de** die neue Website, die Bearbeitung ist dann unter **www.handychirurg.de/admin/** – mit demselben Passwort. Die alte Website bleibt bis dahin unverändert online. Ihren bisherigen Hosting-Vertrag bitte erst nach einigen Wochen kündigen.
 
 ## 6. Kontakt
 

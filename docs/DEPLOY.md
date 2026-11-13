@@ -75,9 +75,9 @@ How it works (checked in the Decap source): the login popup opens `https://api.n
 1. Set `backend.branch: main` in `src/admin/config.yml`; `git push client preview:main`.
 2. Netlify builds `main` as production; `npm run check` must pass, otherwise the deploy fails and nothing changes.
 3. Deploy notifications (failed deploys) to the maintainer's e-mail.
-4. Domain — **only after written approval**: add `www.handy-chirurg.de` in Netlify, change DNS at the registrar, enable HTTPS, then activate the second-domain redirect in `netlify.toml` once the canonical domain is confirmed.
+4. Domain — **only after written approval**: add `www.handychirurg.de` in Netlify, change DNS at the registrar, enable HTTPS, then activate the second-domain redirect in `netlify.toml` once the canonical domain is confirmed.
 5. Update the GitHub OAuth App homepage to the final domain.
-6. After the switch: submit `https://www.handy-chirurg.de/sitemap.xml` in Google Search Console; update website and phone in the Google Business Profile.
+6. After the switch: submit `https://www.handychirurg.de/sitemap.xml` in Google Search Console; update website and phone in the Google Business Profile.
 7. If `main` gets branch protection, it must allow the editors to push (or switch the CMS to `publish_mode: editorial_workflow`).
 
 ## E. Alternative: temporary preview from the work repository
