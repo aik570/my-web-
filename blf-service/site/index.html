@@ -1,0 +1,1302 @@
+<!doctype html>
+<html lang="de" class="js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BLF Service · Baumarbeiten, Grünpflege & Winterdienst · Seddiner See</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="img/logo-384.webp" type="image/webp">
+<meta name="theme-color" content="#070907">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="ext/px-4500037.webp">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300..800;1,300..600&display=swap">
+<style>
+:root {
+  /* after the hero the page stays in the night of the forest: one warm charcoal, colour comes from the photographs */
+  --bg: #08110a;        /* deep emblem green */
+  --bg-2: #131512;      /* raised, used for image wells only */
+  --hero-end: #0a2a1e;  /* the fog colour the approved hero ends on */
+  --text: #ece9e1;
+  --text-2: rgba(236,233,225,.62);
+  --text-3: rgba(236,233,225,.4);
+  --line: rgba(236,233,225,.13);
+  --line-2: rgba(236,233,225,.28);
+  --signal: #dd9e09;
+  --lime: #8bbb23;
+  --green: #32642a;
+  --sans: "Montserrat", -apple-system, "Helvetica Neue", sans-serif;
+  --serif: "Montserrat", -apple-system, sans-serif;
+  --cond: "Montserrat", -apple-system, sans-serif;
+  --mono: "Montserrat", -apple-system, sans-serif;
+  --m: clamp(18px, 4vw, 64px);
+  --hdr: 78px;
+  --out: cubic-bezier(.16,1,.3,1);
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; background: #060c07; overflow-x: clip; }
+html.rm { scroll-behavior: auto; }
+body { margin: 0; background: transparent; color: var(--text); font: 400 17px/1.55 var(--sans); letter-spacing: -.005em; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+/* atmosphere: a night forest behind everything, very dark, with depth from light pools and a vignette */
+.atmo { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; background:
+  radial-gradient(70% 55% at 18% 8%, rgba(50,100,42,.24), transparent 62%),
+  radial-gradient(60% 50% at 88% 92%, rgba(32,72,58,.2), transparent 60%),
+  radial-gradient(40% 35% at 70% 40%, rgba(200,140,60,.05), transparent 70%),
+  linear-gradient(180deg, #0b1a0d, #060c07 70%); }
+.atmo > i { position: absolute; inset: -8% 0; background-position: center 30%; background-size: cover; background-repeat: no-repeat; opacity: 0; filter: grayscale(.3) contrast(1.1) brightness(.55); transform: translateY(var(--ay, 0px)) scale(1.04); transition: opacity 2.2s var(--out); will-change: opacity, transform; }
+.atmo .l1 { background-image: url("ext/px-31708346-2400.webp"); }
+.atmo .l2 { background-image: url("ext/px-35001488.webp"); background-position: center; }
+.atmo .l3 { background-image: url("ext/px-4500037.webp"); }
+.atmo[data-tone="1"] .l1, .atmo[data-tone="2"] .l2, .atmo[data-tone="3"] .l3 { opacity: .16; }
+@property --gx { syntax: "<percentage>"; inherits: true; initial-value: 20%; }
+@property --gy { syntax: "<percentage>"; inherits: true; initial-value: 15%; }
+@property --gc { syntax: "<color>"; inherits: true; initial-value: rgba(50,100,42,.28); }
+.atmo .glow { inset: 0; opacity: 1; filter: none; transform: none; background: radial-gradient(45% 40% at var(--gx, 20%) var(--gy, 15%), var(--gc, rgba(50,100,42,.28)), transparent 70%); transition: --gx 2.4s cubic-bezier(.19,1,.22,1), --gy 2.4s cubic-bezier(.19,1,.22,1), --gc 2.4s; }
+.atmo[data-tone="2"] .glow { --gx: 82%; --gy: 30%; }
+.atmo[data-tone="3"] .glow { --gx: 50%; --gy: 85%; }
+.atmo[data-tone="4"] .glow { --gx: 75%; --gy: 20%; --gc: rgba(200,130,40,.16); }
+.atmo[data-tone="4"] .l1 { opacity: .1; }
+.atmo::after { content: ""; position: absolute; inset: 0; background: radial-gradient(120% 95% at 50% 45%, transparent 35%, rgba(2,3,2,.78) 100%); }
+body::after { content: ""; position: fixed; inset: 0; z-index: 70; pointer-events: none; background-image: var(--grain); opacity: .045; mix-blend-mode: overlay; }
+a { color: inherit; } button { font: inherit; color: inherit; }
+img { display: block; max-width: 100%; }
+.mono { font-family: var(--mono); font-size: 11px; line-height: 1.5; letter-spacing: .09em; text-transform: uppercase; }
+.disp { font-family: var(--cond); font-weight: 800; text-transform: uppercase; line-height: .86; margin: 0; letter-spacing: .01em; }
+.head { font-family: var(--serif); font-weight: 600; line-height: 1.04; letter-spacing: -.035em; margin: 0; text-wrap: balance; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.k { color: var(--text-3); display: flex; align-items: center; gap: 12px; }
+.k b { color: var(--signal); font-weight: 400; }
+
+/* ---------- buttons: hairline and solid, a fill that rises on hover, an arrow that turns ---------- */
+.btn { position: relative; isolation: isolate; overflow: hidden; display: inline-flex; align-items: center; gap: 16px; height: 54px; padding: 0 7px 0 26px; border: 0; border-radius: 999px; font: 500 15px/1 var(--sans); letter-spacing: .005em; text-decoration: none; white-space: nowrap; cursor: pointer; color: var(--text); background: transparent; box-shadow: inset 0 0 0 1px var(--line-2); transition: color .55s var(--out), box-shadow .55s var(--out); }
+.btn::before { content: ""; position: absolute; z-index: -1; left: -10%; right: -10%; top: 0; height: 100%; border-radius: 50% 50% 0 0 / 30% 30% 0 0; background: var(--text); transform: translateY(102%); transition: transform .6s var(--out), border-radius .6s var(--out); }
+.btn:hover::before, .btn:focus-visible::before { transform: translateY(0); border-radius: 0; }
+.btn:hover, .btn:focus-visible { color: var(--bg); box-shadow: inset 0 0 0 1px var(--text); }
+.btn .ic { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--text); color: var(--bg); transition: background .55s var(--out), color .55s var(--out); }
+.btn .ic svg { width: 15px; height: 15px; transform: rotate(-45deg); transition: transform .55s var(--out); }
+.btn:hover .ic svg, .btn:focus-visible .ic svg { transform: rotate(0); }
+.btn:hover .ic, .btn:focus-visible .ic { background: var(--bg); color: var(--text); }
+.btn.solid { background: var(--signal); color: #142208; box-shadow: none; font-weight: 600; }
+.btn.solid::before { background: var(--lime); }
+.btn.solid .ic { background: #142208; color: var(--signal); }
+.btn.solid:hover, .btn.solid:focus-visible { color: #142208; box-shadow: none; }
+.btn.solid:hover .ic, .btn.solid:focus-visible .ic { background: #142208; color: var(--lime); }
+.btn.plain { padding: 0 26px; }
+.btn.sm { height: 40px; padding: 0 18px; font-size: 14px; }
+.btn:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
+.btn.on-light { color: #0d0e0c; box-shadow: inset 0 0 0 1px rgba(13,14,12,.35); }
+.tlink { position: relative; display: inline-flex; align-items: center; gap: 8px; color: var(--text); text-decoration: none; font: 500 15px/1 var(--sans); padding: 6px 0; }
+.tlink::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: currentColor; transform-origin: right; transition: transform .5s var(--out); }
+.tlink:hover::after { transform: scaleX(0); }
+.tlink svg { width: 13px; height: 13px; transition: transform .5s var(--out); }
+.tlink:hover svg { transform: translateX(4px); }
+.round { position: relative; isolation: isolate; overflow: hidden; width: 54px; height: 54px; border-radius: 50%; border: 0; display: grid; place-items: center; cursor: pointer; color: var(--text); background: transparent; box-shadow: inset 0 0 0 1px var(--line-2); transition: color .5s var(--out); }
+.round::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: 50%; background: var(--text); transform: scale(0); transition: transform .5s var(--out); }
+.round:hover::before { transform: scale(1); }
+.round:hover { color: var(--bg); }
+.round:disabled { opacity: .28; cursor: default; }
+.round:disabled::before { display: none; }
+.round svg { width: 17px; height: 17px; }
+.hire { display: inline-flex; align-items: center; gap: 12px; height: 36px; padding: 0 16px 0 14px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--line-2); text-decoration: none; font: 500 13px/1 var(--sans); letter-spacing: .01em; color: var(--text); transition: box-shadow .4s; }
+.hire:hover { box-shadow: inset 0 0 0 1px var(--text); }
+.hire i { position: relative; width: 7px; height: 7px; border-radius: 50%; background: var(--lime); }
+.hire i::after { content: ""; position: absolute; inset: -5px; border-radius: 50%; border: 1px solid var(--lime); opacity: 0; animation: ping 2.4s var(--out) infinite; }
+@keyframes ping { 0% { transform: scale(.4); opacity: .9; } 100% { transform: scale(1.6); opacity: 0; } }
+html.rm .hire i::after { animation: none; }
+.hire span { color: var(--text-2); }
+
+/* ---------- header ---------- */
+.hdr { position: fixed; inset: 0 0 auto; z-index: 50; height: var(--hdr); display: flex; align-items: center; gap: 30px; padding-inline: var(--m); color: var(--text); background: transparent; transition: background-color .5s, color .5s, border-color .5s; border-bottom: 1px solid transparent; }
+.hdr.solid { background: rgba(6,8,7,.62); -webkit-backdrop-filter: saturate(140%) blur(16px); backdrop-filter: saturate(140%) blur(16px); border-color: var(--line); }
+.hdr.clear { color: #0d1a14; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; margin-right: auto; }
+.brand .slot { width: 48px; height: 48px; flex: none; }
+.brand b { white-space: nowrap; font: 700 17px/1 var(--cond); text-transform: uppercase; letter-spacing: .08em; }
+.nav { display: flex; gap: 36px; align-items: center; }
+.nav a { position: relative; text-decoration: none; font-size: 16px; opacity: .82; transition: opacity .3s; display: inline-flex; align-items: center; gap: 7px; }
+.nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .5s var(--out); }
+.nav a:hover, .nav a.on { opacity: 1; }
+.nav a:hover::after, .nav a.on::after { transform: scaleX(1); }
+.nav a .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--lime); }
+.hdr .tel { text-decoration: none; font-size: 16px; opacity: .82; }
+.nav .jobs { padding: 9px 16px 9px 13px; border-radius: 999px; box-shadow: inset 0 0 0 1px rgba(221,158,9,.6); opacity: 1; }
+.nav .jobs::after { display: none; }
+.nav .jobs:hover { background: rgba(221,158,9,.12); }
+.hdr.clear .btn { color: #0d1a14; box-shadow: inset 0 0 0 1px rgba(13,26,20,.4); }
+.hdr.clear .btn::before { background: #0d1a14; }
+.hdr.clear .btn:hover { color: var(--text); }
+.burger { display: none; height: 46px; padding: 0 22px; font-weight: 500; border-radius: 999px; border: 0; background: transparent; box-shadow: inset 0 0 0 1px currentColor; cursor: pointer; font-size: 16px; }
+
+#seal { position: fixed; z-index: 51; left: 0; top: 0; pointer-events: none; will-change: transform; }
+#seal .disc { position: absolute; inset: 0; border-radius: 50%; background: #efece4; }
+#seal img { position: absolute; inset: 7%; width: 86%; height: 86%; }
+
+/* ---------- immersions (hero approved; only the colour of the karriere fog changed) ---------- */
+.imm { position: relative; background: transparent; color: var(--text); }
+.imm .stick { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+.imm canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.imm .vig { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(120% 90% at 50% 50%, transparent 55%, rgba(4,8,6,.55) 100%); }
+.ov { position: absolute; z-index: 2; opacity: 0; visibility: hidden; }
+.ov.vis { visibility: visible; }
+.skip { position: absolute; z-index: 3; right: var(--m); top: calc(var(--hdr) + 14px); }
+.skip.btn { background: rgba(13,14,12,.35); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.legend { position: absolute; z-index: 3; visibility: visible; left: var(--m); bottom: 18px; display: flex; gap: 16px; color: var(--text-2); font-size: 10px; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 9px; height: 9px; }
+.legend .b i { background: var(--signal); } .legend .r i { box-shadow: inset 0 0 0 1px var(--text-2); }
+.cap-ov { left: var(--m); bottom: 54px; max-width: 440px; }
+.cap-ov .mono { color: var(--signal); }
+.cap-ov b { display: block; margin-top: 6px; font: 600 clamp(24px, 1rem + 1vw, 34px)/1.05 var(--serif); letter-spacing: -.015em; }
+.cap-ov span { display: block; margin-top: 6px; color: var(--text-2); font-size: 15px; }
+#i-start { left: 0; right: 0; bottom: 64px; text-align: center; color: var(--text); }
+#i-start .mono { opacity: .72; }
+#i-start i { display: block; margin: 12px auto 0; width: 1px; height: 46px; background: linear-gradient(currentColor, transparent); animation: cue 2.2s var(--out) infinite; transform-origin: top; }
+@keyframes cue { 0% { transform: scaleY(0); } 60% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+html.rm #i-start i { animation: none; }
+#i-hero { inset: 0; display: grid; place-content: center; justify-items: center; text-align: center; padding: calc(var(--hdr) + 20px) var(--m) 60px; }
+#i-hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(60% 55% at 50% 52%, rgba(3,24,16,.6), transparent 75%); }
+#i-hero .eyebrow { color: var(--text-2); margin-top: 26px; }
+#i-hero h1 { margin-top: 14px; font-size: clamp(40px, 1.4rem + 4.4vw, 100px); }
+#i-hero .sub { margin: 20px 0 0; max-width: 46ch; font-size: clamp(17px, .95rem + .35vw, 21px); color: var(--text-2); }
+#i-hero .ctas, #k-end .ctas { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 14px 22px; justify-content: center; align-items: center; }
+/* the hero's emerald night dissolves into the charcoal of the page */
+
+#leistungen::before { display: none; content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 50vh; pointer-events: none; background: linear-gradient(180deg, #0a2219, rgba(10,34,25,0)); }
+#k-end { inset: 0; display: grid; place-content: center; justify-items: center; text-align: center; padding: 0 var(--m); }
+#k-end::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(60% 55% at 50% 50%, rgba(8,9,8,.72), transparent 75%); }
+#k-end h2 { margin-top: 20px; font-size: clamp(38px, 1.4rem + 3.6vw, 84px); max-width: 15ch; }
+#k-end p { margin: 18px 0 0; color: var(--text-2); max-width: 40ch; }
+
+/* ---------- sections: one ground, hairlines, space ---------- */
+.sec { position: relative; padding: clamp(100px, 12vw, 190px) var(--m); }
+.shead { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 20px; align-items: end; margin-bottom: clamp(56px, 7vw, 110px); }
+.shead .k { grid-column: 1 / 4; align-self: start; padding-top: 14px; }
+.shead h2 { grid-column: 4 / 11; font-size: clamp(44px, 1.4rem + 4.6vw, 112px); }
+.shead p { grid-column: 4 / 10; margin: 26px 0 0; color: var(--text-2); font-size: clamp(17px, .95rem + .3vw, 21px); max-width: 48ch; }
+.shead .side { grid-column: 11 / 13; justify-self: end; display: flex; gap: 10px; }
+
+/* Leistungen: an index on the left, one large photograph that changes on the right */
+.idx { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 20px; }
+.idx .list { grid-column: 1 / 7; border-top: 1px solid var(--line); }
+.idx .media { grid-column: 8 / 13; position: sticky; top: calc(var(--hdr) + 6vh); height: calc(100vh - var(--hdr) - 12vh); align-self: start; overflow: hidden; border-radius: 4px; background: var(--bg-2); }
+.idx .media figure { position: absolute; inset: 0; margin: 0; z-index: 0; clip-path: inset(100% 0 0 0); transition: clip-path .7s cubic-bezier(.77,0,.18,1); cursor: zoom-in; }
+.idx .media figure img { transform: scale(1.18); transition: transform 1.8s cubic-bezier(.19,1,.22,1); }
+.idx .media figure.on { z-index: 2; clip-path: inset(0 0 0 0); }
+.idx .media figure.on img { transform: none; }
+.idx .media figure.prev { z-index: 1; clip-path: inset(0 0 0 0); }
+.idx .media figure.ph { cursor: default; }
+.wait { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 14px; text-align: center; overflow: hidden; background: radial-gradient(70% 60% at 50% 40%, rgba(50,100,42,.28), transparent 70%), linear-gradient(160deg, #0f1c15, #080b09); box-shadow: inset 0 0 0 1px var(--line); }
+.wait::before { content: ""; position: absolute; inset: 14px; border: 1px dashed rgba(236,233,225,.12); border-radius: 2px; }
+.wait .wm { position: absolute; width: 70%; max-width: 420px; opacity: .05; filter: grayscale(1) brightness(2); left: 50%; top: 50%; transform: translate(-50%, -50%); }
+.wait .mono { color: var(--signal); position: relative; }
+.wait .mono.dim { color: var(--text-3); }
+.wait b { position: relative; font: 600 clamp(40px, 1.2rem + 2.6vw, 72px)/1 var(--serif); letter-spacing: -.035em; }
+.wait b em { font-style: normal; color: var(--signal); }
+.it .mph.ph { position: relative; aspect-ratio: 4 / 5; }
+.idx .media img { width: 100%; height: 100%; object-fit: cover; }
+.idx .media .tag, .tag { position: absolute; left: 16px; bottom: 16px; display: inline-flex; align-items: center; gap: 8px; padding: 7px 11px; border-radius: 999px; background: rgba(13,14,12,.6); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); color: var(--text); font-size: 10px; }
+.tag i { width: 7px; height: 7px; }
+.tag.b i { background: var(--signal); } .tag.r i { box-shadow: inset 0 0 0 1px var(--text-2); }
+.idx .media .count { position: absolute; right: 16px; top: 16px; color: var(--text); font-size: 11px; mix-blend-mode: difference; }
+.it { border-bottom: 1px solid var(--line); padding: clamp(28px, 3vw, 44px) 0; min-height: 62vh; display: grid; align-content: start; opacity: .34; transition: opacity .7s var(--out); }
+.it.on { opacity: 1; }
+.it .row { display: flex; align-items: baseline; gap: 22px; }
+.it .row .mono { color: var(--signal); }
+.it h3 { font-size: clamp(48px, 1.6rem + 4vw, 104px); }
+.it p { margin: 22px 0 0; color: var(--text-2); max-width: 44ch; font-size: 18px; }
+.it ul { list-style: none; margin: 28px 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: 28px; max-width: 560px; }
+.it li { padding: 12px 0; border-top: 1px solid var(--line); font-size: 16px; display: flex; justify-content: space-between; gap: 10px; }
+.it li span { color: var(--text-3); font-size: 14px; }
+.it .acts { margin-top: 30px; display: flex; gap: 22px; align-items: center; flex-wrap: wrap; }
+.it .mph { display: none; }
+.also { margin-top: clamp(50px, 6vw, 90px); display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 20px; align-items: center; border-top: 1px solid var(--line); padding-top: 26px; }
+.also .k { grid-column: 1 / 4; }
+.also ul { grid-column: 4 / 13; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+.also li { cursor: zoom-in; }
+.also li img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 3px; filter: saturate(.92); transition: filter .5s; }
+.also li:hover img { filter: none; }
+.also li span { display: block; margin-top: 10px; font-size: 15px; }
+.also li span small { display: block; color: var(--text-3); font-family: var(--mono); font-size: 10px; letter-spacing: .08em; margin-top: 3px; }
+
+/* interlude: one wide photograph opening with the scroll */
+.inter { position: relative; height: 140vh; }
+.inter .stk { position: sticky; top: 0; height: 100vh; overflow: hidden; display: grid; place-items: end start; }
+.inter figure { position: absolute; inset: 0; margin: 0; clip-path: inset(var(--ci, 14%) var(--ci, 14%) var(--ci, 14%) var(--ci, 14%) round 4px); }
+.inter img { width: 100%; height: 100%; object-fit: cover; transform: scale(calc(1.12 - var(--cp, 0) * .12)); }
+.inter figure::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(13,14,12,.15), rgba(13,14,12,.1) 40%, rgba(13,14,12,.82)); }
+.inter blockquote { position: relative; z-index: 1; margin: 0; padding: 0 var(--m) clamp(56px, 9vh, 96px); max-width: 1100px; font: 600 clamp(30px, 1rem + 3vw, 68px)/1.06 var(--serif); letter-spacing: -.016em; text-wrap: balance; opacity: var(--qo, 0); transform: translateY(calc((1 - var(--qo, 0)) * 24px)); }
+.inter blockquote > span.by { display: block; margin-top: 20px; font: 400 11px/1.5 var(--mono); letter-spacing: .09em; text-transform: uppercase; color: var(--text-2); }
+.inter .tag { left: auto; right: var(--m); bottom: 24px; z-index: 1; opacity: var(--qo, 0); }
+
+/* Galerie */
+.gtop { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; }
+.tabs { display: flex; gap: 28px; flex-wrap: wrap; }
+.tabs button { position: relative; border: 0; background: none; padding: 6px 0; cursor: pointer; font-size: 15px; color: var(--text-3); transition: color .3s; }
+.tabs button sup { font-family: var(--mono); font-size: 9px; margin-left: 4px; }
+.tabs button::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--text); transform: scaleX(0); transform-origin: left; transition: transform .5s var(--out); }
+.tabs button[aria-pressed="true"] { color: var(--text); }
+.tabs button[aria-pressed="true"]::after { transform: scaleX(1); }
+.tabs button:hover { color: var(--text); }
+.arrows { display: flex; gap: 10px; }
+.track { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--m); padding: 0 var(--m) 6px; margin-inline: calc(-1 * var(--m)); scrollbar-width: none; cursor: grab; }
+.track::-webkit-scrollbar { display: none; }
+.track figure { margin: 0; flex: none; scroll-snap-align: start; }
+.track img { height: clamp(380px, 62vh, 640px); width: auto; border-radius: 3px; cursor: zoom-in; background: var(--bg-2); }
+.track figcaption { margin-top: 14px; display: flex; gap: 12px; align-items: baseline; }
+.track figcaption .mono { color: var(--signal); }
+.track figcaption span { color: var(--text-2); font-size: 15px; }
+.gprog { margin-top: 30px; height: 1px; background: var(--line); position: relative; }
+.gprog i { position: absolute; left: 0; top: 0; height: 1px; background: var(--text); width: 20%; transform-origin: left; }
+
+/* Stellen */
+.jobs { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 20px; align-items: start; }
+.offer { grid-column: 1 / 7; list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); counter-reset: o; }
+.offer li { counter-increment: o; display: grid; grid-template-columns: 70px 1fr; align-items: baseline; padding: 24px 0; border-bottom: 1px solid var(--line); font: 600 clamp(26px, 1rem + 1.6vw, 44px)/1.08 var(--serif); letter-spacing: -.012em; }
+.offer li::before { content: "0" counter(o); font: 400 11px/1 var(--mono); letter-spacing: .09em; color: var(--signal); }
+.offer + .src { grid-column: 1 / 7; margin-top: 16px; color: var(--text-3); }
+.role { grid-column: 8 / 13; grid-row: 1 / span 2; position: sticky; top: calc(var(--hdr) + 40px); border-radius: 4px; box-shadow: inset 0 0 0 1px var(--line-2), 0 40px 80px -40px rgba(0,0,0,.8); background: rgba(10,14,11,.55); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); padding: clamp(28px, 3vw, 44px); }
+.role .k { justify-content: space-between; }
+.role h3 { margin-top: 26px; font-size: clamp(34px, 1rem + 2vw, 52px); }
+.role dl { margin: 28px 0 0; display: grid; grid-template-columns: auto 1fr; gap: 0 24px; border-top: 1px solid var(--line); }
+.role dt, .role dd { margin: 0; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+.role dt { color: var(--text-3); font-family: var(--mono); font-size: 10.5px; letter-spacing: .09em; text-transform: uppercase; padding-top: 15px; }
+.role p { margin: 22px 0 0; color: var(--text-2); }
+.role .ctas { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; }
+.role .note { margin-top: 26px; color: var(--text-3); }
+
+/* Kontakt */
+.cgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; border-top: 1px solid var(--line); }
+.cgrid > * { display: block; padding: 26px 0 0; text-decoration: none; }
+.cgrid .mono { color: var(--text-3); }
+.cgrid b { display: block; margin-top: 14px; font: 600 clamp(26px, 1rem + 1.6vw, 42px)/1.08 var(--serif); letter-spacing: -.012em; transition: color .3s; }
+.cgrid a:hover b { color: var(--signal); }
+.cgrid .tlink { margin-top: 16px; }
+.cfine { margin-top: 40px; color: var(--text-3); font-size: 14px; }
+
+/* footer: the three words, once more, very large */
+.foot { position: relative; padding: 60px var(--m) 0; border-top: 1px solid var(--line); overflow: hidden; }
+.foot .row { display: flex; justify-content: space-between; gap: 20px 40px; flex-wrap: wrap; align-items: center; color: var(--text-2); font-size: 14px; }
+.foot nav { display: flex; gap: 26px; flex-wrap: wrap; }
+.foot a { text-decoration: none; } .foot a:hover { color: var(--text); }
+.foot .seal { width: 48px; height: 48px; border-radius: 50%; background: #efece4; padding: 4px; }
+.foot .word { display: inline-block; margin: 50px 0 0; font-size: 12vw; color: var(--text); opacity: .9; white-space: nowrap; line-height: .78; transform: translateY(8%); }
+.foot .fine { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 20px 0 22px; color: var(--text-3); font-size: 11px; border-top: 1px solid var(--line); position: relative; z-index: 1; }
+
+
+
+/* ---------- splash + hero ---------- */
+.splash { position: fixed; inset: 0; z-index: 90; background: radial-gradient(60% 50% at 50% 50%, #0c1a12, #050605 70%); transition: opacity 1s var(--out), visibility 1s; }
+.sp-meta { position: absolute; left: 50%; top: calc(50% + min(15vh, 120px)); transform: translateX(-50%); width: min(280px, 70vw); display: flex; justify-content: space-between; color: var(--text-2); }
+.sp-bar { position: absolute; left: 50%; top: calc(50% + min(15vh, 120px) + 26px); transform: translateX(-50%); width: min(280px, 70vw); height: 1px; background: var(--line); }
+.sp-bar b { position: absolute; inset: 0; background: var(--signal); transform-origin: left; transform: scaleX(0); transition: transform .4s var(--out); }
+html.s2 .sp-meta, html.s2 .sp-bar { opacity: 0; transition: opacity .4s; }
+html.done .splash { opacity: 0; visibility: hidden; }
+#seal { z-index: 95; }
+#seal .ring { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+#seal .ring circle { fill: none; stroke: var(--lime); stroke-width: .9; stroke-dasharray: 305; stroke-dashoffset: 305; transform: rotate(-90deg); transform-origin: 50% 50%; }
+html.s1 #seal .ring circle { transition: stroke-dashoffset 1.3s cubic-bezier(.65,0,.35,1); stroke-dashoffset: 0; }
+html.s2 #seal .ring { transition: opacity .6s; opacity: 0; }
+#seal img { clip-path: inset(100% 0 0 0); transform: scale(.94); }
+html.s1 #seal img { transition: clip-path 1.5s cubic-bezier(.65,0,.35,1) .25s, transform 1.8s var(--out) .25s; clip-path: inset(0 0 0 0); transform: none; }
+html.s2 #seal { transition: transform 1.1s cubic-bezier(.7,0,.2,1), width 1.1s cubic-bezier(.7,0,.2,1), height 1.1s cubic-bezier(.7,0,.2,1); }
+#seal .disc { opacity: 0; transition: opacity .8s .4s; }
+html.s2 #seal .disc { opacity: 1; }
+.hero { position: relative; min-height: 100vh; min-height: 100svh; display: grid; place-items: center; overflow: hidden; isolation: isolate; }
+.hbg { position: absolute; inset: 0; margin: 0; z-index: -1; cursor: zoom-in; }
+.hbg img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.12); transition: transform 3.2s var(--out); }
+html.s2 .hbg img { transform: scale(1.02); }
+.hbg::after { content: ""; position: absolute; inset: 0; background: radial-gradient(70% 60% at 50% 48%, rgba(5,10,7,.55), rgba(5,10,7,.25) 70%), linear-gradient(180deg, rgba(5,8,6,.55), rgba(5,8,6,.2) 30%, rgba(5,8,6,.35) 70%, #070907); }
+.hin { display: grid; justify-items: center; text-align: center; padding: calc(var(--hdr) + 30px) var(--m) 110px; max-width: 1100px; }
+.hin .eyebrow { color: var(--text-2); margin: 26px 0 0; }
+.hin h1 { margin-top: 18px; font-size: clamp(40px, 1.2rem + 4.6vw, 104px); line-height: 1.02; }
+.hin .sub { margin: 22px 0 0; max-width: 46ch; font-size: clamp(17px, .95rem + .35vw, 21px); color: rgba(236,233,225,.78); }
+.hin .ctas { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 12px 14px; justify-content: center; }
+.hin .btn:not(.solid) { background: rgba(7,9,7,.3); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.tel3 { margin-top: 22px; color: var(--text-2); }
+.htag { left: var(--m); bottom: 22px; }
+.cue { position: absolute; right: var(--m); bottom: 22px; color: var(--text-2); text-decoration: none; display: flex; align-items: center; gap: 12px; }
+.cue i { width: 1px; height: 40px; background: linear-gradient(currentColor, transparent); animation: cue 2.2s var(--out) infinite; transform-origin: top; }
+@keyframes cue { 0% { transform: scaleY(0); } 60% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+html.js:not(.rm) .hs { opacity: 0; transform: translateY(22px); }
+html.js.s3 .hs { opacity: 1; transform: none; transition: opacity 1s var(--out), transform 1.1s var(--out); }
+html.s3 .hs:nth-child(2) { transition-delay: .08s; } html.s3 .hs:nth-child(3) { transition-delay: .16s; } html.s3 .hs:nth-child(4) { transition-delay: .26s; } html.s3 .hs:nth-child(5) { transition-delay: .36s; } html.s3 .hs:nth-child(6) { transition-delay: .44s; }
+html.js:not(.s3):not(.rm) .hdr .nav, html.js:not(.s3):not(.rm) .hdr .tel, html.js:not(.s3):not(.rm) .hdr > .btn, html.js:not(.s3):not(.rm) .hdr .burger, html.js:not(.s3):not(.rm) .hdr .call, html.js:not(.s3):not(.rm) .brand b { opacity: 0; }
+.hdr .nav, .hdr .tel, .hdr > .btn, .hdr .burger, .hdr .call, .brand b { transition: opacity .8s var(--out); }
+
+/* two doors */
+.ways { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: clamp(60px, 7vw, 100px) var(--m) 0; }
+.way { position: relative; display: block; overflow: hidden; border-radius: 4px; aspect-ratio: 4 / 3.4; text-decoration: none; isolation: isolate; }
+.way img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform 1.4s var(--out); }
+.way::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(5,8,6,.1), rgba(5,8,6,.25) 40%, rgba(5,8,6,.88)); }
+.way:hover img { transform: scale(1.04); }
+.way .tag { left: 16px; top: 16px; bottom: auto; }
+.wt { position: absolute; left: clamp(20px, 2.6vw, 36px); right: clamp(20px, 2.6vw, 36px); bottom: clamp(20px, 2.6vw, 36px); display: grid; justify-items: start; gap: 14px; }
+.wt > .mono { color: var(--text-2); }
+.wt b { font: 600 clamp(28px, 1rem + 1.8vw, 48px)/1.04 var(--serif); letter-spacing: -.015em; max-width: 16ch; }
+.way.job { box-shadow: inset 0 0 0 1px rgba(221,158,9,.55); }
+.way.job .hire { background: rgba(7,9,7,.45); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.way .btn { pointer-events: none; }
+.way:hover .btn::before { transform: translateY(0); border-radius: 0; }
+.way:hover .btn.solid { color: #142208; }
+
+
+/* ---------- type refinement ---------- */
+.head em, h1 em { font-style: normal; color: var(--signal); }
+.hin h1 { text-shadow: 0 2px 40px rgba(0,0,0,.35); }
+.hin .eyebrow, .shead .k { letter-spacing: .22em; }
+.shead h2 { letter-spacing: -.04em; }
+.mono { font-size: 10.5px; letter-spacing: .18em; font-weight: 600; }
+
+/* ---------- text reveal: words rise out of a mask ---------- */
+.sp .w { display: inline-block; overflow: hidden; vertical-align: top; padding: .06em .02em .12em; margin: -.06em -.02em -.12em; }
+.sp .w > span { display: inline-block; will-change: transform; }
+html.js:not(.rm) .sp .w > span { transform: translateY(108%) rotate(2deg); transition: transform 1.15s cubic-bezier(.19,1,.22,1); transition-delay: calc(var(--i) * 55ms); }
+html.js:not(.rm) .sp.in .w > span { transform: none; }
+html.js:not(.rm) .rv.sp { opacity: 1; transform: none; filter: none; }
+html.js:not(.rm) .rv { filter: blur(6px); transition: opacity 1.1s var(--out), transform 1.1s var(--out), filter 1.1s var(--out); }
+html.js:not(.rm) .rv.in { filter: none; }
+html.js:not(.rm) .hin h1.hs { opacity: 1; transform: none; }
+html.js:not(.rm):not(.s3) .hin h1 .w > span { transform: translateY(108%) rotate(2deg); }
+html.js.s3 .hin h1 .w > span { transform: none; transition-delay: calc(.1s + var(--i) * 70ms); }
+
+/* ---------- soft seams: nothing ends with a hard edge ---------- */
+.hbg { -webkit-mask-image: linear-gradient(#000 70%, transparent); mask-image: linear-gradient(#000 70%, transparent); }
+
+.imm#karriere canvas, .imm#karriere .vig { -webkit-mask-image: linear-gradient(transparent, #000 18%, #000 82%, transparent); mask-image: linear-gradient(transparent, #000 18%, #000 82%, transparent); }
+.shead { position: relative; }
+.shead::before { content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 1px; background: linear-gradient(90deg, transparent, var(--line-2) 20%, var(--line-2) 80%, transparent); transform: scaleX(var(--ln, 0)); transition: transform 1.6s cubic-bezier(.19,1,.22,1); }
+.shead.in::before { --ln: 1; }
+.shead { padding-top: 34px; }
+
+/* ---------- gallery: pinned horizontal film, staggered frames ---------- */
+.gal { position: relative; }
+.gpin { position: relative; }
+.ghead { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 20px; align-items: end; padding: 0 var(--m); }
+.ghead .k { grid-column: 1 / -1; margin-bottom: 18px; }
+.ghead h2 { grid-column: 1 / 8; font-size: clamp(44px, 1.2rem + 4vw, 96px); }
+.ghead .gside { grid-column: 9 / 13; display: grid; gap: 18px; justify-items: end; text-align: right; }
+.ghead .gside p { margin: 0; color: var(--text-2); max-width: 34ch; }
+.gcount { font: 600 clamp(54px, 2rem + 3vw, 96px)/.85 var(--serif); letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+.gcount small { font-size: .32em; color: var(--text-3); letter-spacing: 0; }
+.gal .track { margin: clamp(30px, 4vh, 50px) 0 0; padding: 0 var(--m); align-items: flex-start; gap: clamp(16px, 2vw, 34px); }
+.gal .track figure:nth-child(3n+2) { margin-top: 7vh; }
+.gal .track figure:nth-child(3n) { margin-top: 3vh; }
+.gal .track figure:nth-child(3n+2) img { height: clamp(260px, 38vh, 460px); }
+.gal .track img { height: clamp(300px, 46vh, 560px); border-radius: 3px; transition: transform 1.2s var(--out), filter 1s var(--out); }
+.gal .track figure { overflow: visible; }
+.gal .track figure:hover img { transform: scale(1.025); }
+.gal .gfoot { display: flex; align-items: center; gap: 24px; padding: 26px var(--m) 0; }
+.gal .gfoot .gprog { flex: 1; margin: 0; }
+html.gpinned .gpin { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1fr); align-content: center; padding-top: var(--hdr); }
+html.gpinned .gal .track { overflow: visible; scroll-snap-type: none; cursor: default; will-change: transform; margin-inline: 0; }
+@media (max-width: 980px) {
+  .ghead h2, .ghead .gside { grid-column: 1 / -1; }
+  .ghead .gside { justify-items: start; text-align: left; margin-top: 18px; }
+  .gcount { display: none; }
+  .gal .track figure:nth-child(3n+2), .gal .track figure:nth-child(3n) { margin-top: 0; }
+  .gal .track figure:nth-child(3n+2) img, .gal .track img { height: 58vh; }
+  .gal .track { padding: 0 var(--m); margin-inline: 0; }
+}
+
+
+/* ---------- image curtain on entry ---------- */
+html.js:not(.rm) .cur { clip-path: inset(18% 8% 18% 8% round 6px); transition: clip-path 1.5s cubic-bezier(.77,0,.18,1); }
+html.js:not(.rm) .cur img { transform: scale(1.25); transition: transform 2.2s cubic-bezier(.19,1,.22,1); }
+html.js:not(.rm) .cur.in { clip-path: inset(0 0 0 0 round 4px); }
+html.js:not(.rm) .cur.in img { transform: none; }
+html.js:not(.rm) .way.cur.in:hover img { transform: scale(1.04); }
+
+
+/* ---------- Karriere: deep photograph ---------- */
+.kdeep { position: relative; height: 190vh; }
+.kstick { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: center; padding: var(--hdr) var(--m) 0; }
+.kbg { position: absolute; inset: 0; margin: 0; z-index: -1; overflow: hidden; clip-path: inset(calc(var(--kc, 0) * 1%) calc(var(--kc, 0) * 1.6%) round calc(var(--kc, 0) * 1.4px)); }
+
+.kbg img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; filter: contrast(1.12) saturate(1.1) brightness(.9); transform: scale(calc(1.28 - var(--kz, 0) * .28)) translate3d(calc(var(--kz, 0) * 1.5%), 0, 0); will-change: transform; }
+.kbg::after { content: ""; position: absolute; inset: 0; background:
+  linear-gradient(270deg, rgba(4,7,5,.15) 0%, rgba(4,7,5,.25) 40%, rgba(4,7,5,.86) 66%, rgba(4,7,5,.94) 100%),
+  radial-gradient(120% 90% at 70% 45%, transparent 40%, rgba(2,4,3,.75) 100%),
+  linear-gradient(180deg, rgba(4,7,5,.45), transparent 22%, transparent 75%, rgba(4,7,5,.7)); }
+.kcopy { grid-column: 1 / 7; display: grid; justify-items: start; text-align: left; transform: translateY(calc((1 - var(--kz, 0)) * 40px)); }
+.kcopy h2 { margin-top: 24px; font-size: clamp(38px, 1.2rem + 3.4vw, 88px); line-height: 1.02; letter-spacing: -.04em; text-shadow: 0 4px 60px rgba(0,0,0,.6); }
+.kcopy p { margin: 22px 0 0; color: rgba(236,233,225,.8); max-width: 40ch; font-size: clamp(16px, .9rem + .35vw, 20px); }
+.kchips { list-style: none; margin: 26px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.kchips li { padding: 9px 15px; border-radius: 999px; box-shadow: inset 0 0 0 1px rgba(236,233,225,.3); font-size: 14px; background: rgba(4,7,5,.45); }
+.kcopy .ctas { margin-top: 32px; display: flex; gap: 12px; flex-wrap: wrap; }
+.ktag { left: auto; right: var(--m); bottom: 30px; }
+@media (max-width: 980px) {
+  .kdeep { height: auto; }
+  .kstick { position: relative; height: auto; min-height: 100svh; align-items: end; padding: calc(var(--hdr) + 70px) var(--m) 110px; overflow: hidden; }
+  .kcopy { transform: none; }
+  .kbg img { object-position: 42% 40%; }
+  .kbg::after { background: linear-gradient(180deg, rgba(4,7,5,.45) 0%, rgba(4,7,5,.55) 20%, rgba(4,7,5,.88) 48%, rgba(4,7,5,.97) 100%); }
+  .kcopy h2 { font-size: clamp(38px, 10.5vw, 52px); }
+  .kcopy { grid-column: 1 / -1; }
+  .kcopy .ctas { flex-direction: column; width: 100%; }
+  .kcopy .ctas .btn { justify-content: space-between; }
+  .kchips li { font-size: 13px; padding: 7px 12px; }
+  .ktag { top: calc(var(--hdr) + 14px); bottom: auto; left: auto; right: var(--m); }
+}
+
+/* ---------- conversion layer ---------- */
+.facts { position: relative; z-index: 0; padding: clamp(50px, 6vw, 80px) var(--m) 0; }
+.facts ul { list-style: none; margin: 0; padding: 26px 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.facts li b { display: block; font: 600 clamp(30px, 1rem + 2vw, 52px)/1 var(--serif); letter-spacing: -.015em; }
+.facts li b .st { color: var(--signal); font-size: .7em; letter-spacing: .05em; }
+.facts li span { display: block; margin-top: 8px; color: var(--text-2); font-size: 14px; }
+.facts .src { margin: 10px 0 0; color: var(--text-3); font-size: 10px; }
+.sos { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; justify-content: space-between; margin: 26px var(--m) 0; padding: 18px 22px; border-radius: 4px; box-shadow: inset 0 0 0 1px rgba(221,158,9,.45); background: linear-gradient(90deg, rgba(221,158,9,.12), rgba(221,158,9,.02)); }
+.sos p { margin: 0; display: flex; align-items: center; gap: 14px; font-size: 17px; }
+.sos p b { font-weight: 600; }
+.sos p span { color: var(--text-2); }
+.hdr .call { display: none; width: 40px; height: 40px; border-radius: 50%; box-shadow: inset 0 0 0 1px currentColor; place-items: center; color: inherit; }
+.hdr .call svg { width: 16px; height: 16px; }
+
+.steps { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; counter-reset: st; }
+.steps::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: linear-gradient(90deg, var(--signal), rgba(221,158,9,.2) 70%, transparent); transform-origin: left; transform: scaleX(0); transition: transform 2s cubic-bezier(.19,1,.22,1); }
+.steps-wrap.in .steps::before { transform: scaleX(1); }
+.steps li { counter-increment: st; position: relative; }
+.steps li::before { content: "0" counter(st); display: block; font: 700 clamp(80px, 2rem + 6vw, 150px)/.8 var(--serif); letter-spacing: -.06em; color: transparent; -webkit-text-stroke: 1px rgba(236,233,225,.3); margin: 26px 0 -10px; }
+.steps li::after { content: ""; position: absolute; left: 0; top: -4px; width: 9px; height: 9px; border-radius: 50%; background: var(--signal); box-shadow: 0 0 0 6px rgba(221,158,9,.15); transform: scale(0); transition: transform .8s var(--out); }
+.steps-wrap.in .steps li::after { transform: scale(1); }
+.steps-wrap.in .steps li:nth-child(2)::after { transition-delay: .5s; } .steps-wrap.in .steps li:nth-child(3)::after { transition-delay: 1s; }
+html.js:not(.rm) .steps li > * { opacity: 0; transform: translateY(20px); transition: opacity 1s var(--out), transform 1s var(--out); }
+html.js:not(.rm) .steps-wrap.in .steps li > * { opacity: 1; transform: none; }
+.steps-wrap.in .steps li:nth-child(2) > * { transition-delay: .35s; } .steps-wrap.in .steps li:nth-child(3) > * { transition-delay: .7s; }
+.steps li { list-style: none; padding: 0; }
+.steps .mono { display: none; }
+.steps h3 { margin-top: 18px; font-size: clamp(28px, 1rem + 1.4vw, 40px); }
+.steps p { margin: 12px 0 0; color: var(--text-2); max-width: 32ch; }
+.steps-wrap { margin-top: clamp(70px, 8vw, 120px); }
+.steps-wrap .k { margin-bottom: 22px; }
+
+.rev { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 20px; align-items: center; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: clamp(40px, 5vw, 70px) 0; }
+.rev .score { grid-column: 1 / 5; display: flex; align-items: baseline; gap: 18px; }
+.rev .score b { font: 600 clamp(80px, 2rem + 6vw, 150px)/.85 var(--serif); letter-spacing: -.03em; }
+.rev .score .stars { color: var(--signal); font-size: 22px; letter-spacing: 4px; }
+.rev .score small { display: block; color: var(--text-3); font-family: var(--mono); font-size: 10.5px; letter-spacing: .09em; text-transform: uppercase; margin-top: 8px; }
+.rev .txt { grid-column: 6 / 13; }
+.rev .txt h3 { font-size: clamp(30px, 1rem + 1.8vw, 48px); }
+.rev .txt p { color: var(--text-2); margin: 14px 0 0; max-width: 48ch; }
+.rev .txt .ctas { margin-top: 24px; display: flex; gap: 14px 22px; flex-wrap: wrap; align-items: center; }
+
+.form { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form label { display: grid; gap: 8px; font-size: 13px; color: var(--text-2); }
+.form .full { grid-column: 1 / -1; }
+.form input, .form select, .form textarea { font: 400 16px/1.4 var(--sans); color: var(--text); background: rgba(255,255,255,.035); border: 0; box-shadow: inset 0 0 0 1px var(--line-2); border-radius: 4px; padding: 14px 14px; outline: none; transition: box-shadow .3s; width: 100%; }
+.form select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--text-2) 50%), linear-gradient(-45deg, transparent 50%, var(--text-2) 50%); background-position: calc(100% - 20px) 50%, calc(100% - 15px) 50%; background-size: 5px 5px; background-repeat: no-repeat; }
+.form select option { background: #101310; }
+.form textarea { min-height: 110px; resize: vertical; }
+.form input:focus, .form select:focus, .form textarea:focus { box-shadow: inset 0 0 0 1px var(--text); }
+.form .file { display: flex; align-items: center; gap: 12px; padding: 14px; border-radius: 4px; box-shadow: inset 0 0 0 1px var(--line-2); border: 0; cursor: pointer; color: var(--text-2); }
+.form .file input { display: none; }
+.form .file b { color: var(--text); font-weight: 500; }
+.form .row-b { grid-column: 1 / -1; display: flex; align-items: center; gap: 14px 22px; flex-wrap: wrap; margin-top: 6px; }
+.form .hint { color: var(--text-3); font-size: 12px; }
+.form .ok { grid-column: 1 / -1; margin: 0; padding: 14px 16px; border-radius: 4px; box-shadow: inset 0 0 0 1px rgba(221,158,9,.5); color: var(--text); font-size: 15px; }
+.kon2 { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 20px; margin-top: clamp(60px, 7vw, 100px); align-items: start; }
+.kon2 .lead { grid-column: 1 / 5; }
+.kon2 .lead h3 { font-size: clamp(30px, 1rem + 1.6vw, 44px); }
+.kon2 .lead p { color: var(--text-2); margin: 14px 0 0; }
+.kon2 .form { grid-column: 6 / 13; }
+.wa { display: inline-flex; align-items: center; gap: 10px; }
+.wa svg { width: 18px; height: 18px; }
+.quick { margin-top: 30px; padding-top: 26px; border-top: 1px solid var(--line); }
+.quick > .mono { color: var(--text-3); display: block; margin-bottom: 14px; }
+.role dd.tbd { color: var(--text-3); font-style: italic; }
+
+@media (max-width: 980px) {
+  .ways { grid-template-columns: 1fr; gap: 12px; padding-top: 50px; }
+  .hbg::after { background: linear-gradient(180deg, rgba(5,8,6,.6), rgba(5,8,6,.5) 40%, rgba(5,8,6,.55) 75%, #070907); }
+  .way { aspect-ratio: 4 / 4.6; }
+  .hin { padding-bottom: 120px; }
+  .hin .ctas { width: 100%; max-width: 360px; flex-direction: column; }
+  .hin .ctas .btn { justify-content: space-between; }
+  .cue { display: none; }
+  .htag { bottom: 84px; }
+  .menu .links a { font-size: 48px; padding: 16px 0; }
+  .facts ul { grid-template-columns: 1fr 1fr; row-gap: 26px; }
+  .facts li b { font-size: clamp(24px, 7vw, 32px); overflow-wrap: anywhere; }
+  .hdr .call { display: grid; }
+  .sos p { display: block; }
+  .sos p > span:first-child { display: none; }
+  .sos p b { display: block; }
+  .steps { grid-template-columns: 1fr; gap: 0; }
+  .steps li { padding-bottom: 24px; border-bottom: 1px solid var(--line); }
+  .rev .score, .rev .txt { grid-column: 1 / -1; }
+  .rev .txt { margin-top: 26px; }
+  .kon2 .lead, .kon2 .form { grid-column: 1 / -1; }
+  .kon2 .form { margin-top: 26px; }
+  .form { grid-template-columns: 1fr; }
+}
+
+/* reveal */
+html.js:not(.rm) .rv { opacity: 0; transform: translateY(26px); transition: opacity 1s var(--out), transform 1s var(--out); }
+html.js:not(.rm) .rv.in { opacity: 1; transform: none; }
+
+#tip { position: fixed; z-index: 60; pointer-events: none; padding: 9px 12px 10px; border-radius: 4px; background: rgba(13,14,12,.86); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); box-shadow: inset 0 0 0 1px var(--line); color: var(--text); max-width: 290px; opacity: 0; transition: opacity .2s; }
+#tip.on { opacity: 1; }
+#tip b { display: block; font-weight: 500; font-size: 14px; }
+#tip .mono { color: var(--text-3); font-size: 9.5px; }
+#tip .mono.b { color: var(--signal); }
+.lb { position: fixed; inset: 0; z-index: 80; background: rgba(8,9,8,.97); color: var(--text); display: grid; grid-template-rows: 1fr auto; padding: 18px; }
+.lb img { max-width: 100%; max-height: calc(100vh - 120px); margin: auto; object-fit: contain; border-radius: 3px; }
+.lb .bar { display: flex; gap: 14px; align-items: end; padding-top: 12px; }
+.lb .t { margin-right: auto; }
+.lb .t b { display: block; font-weight: 500; }
+.lb .t .mono { color: var(--text-3); }
+.lb .t .mono.b { color: var(--signal); }
+
+.abar { display: none; }
+.menu { position: fixed; inset: var(--hdr) 0 0; z-index: 49; background: rgba(7,9,7,.97); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); color: var(--text); padding: 18px var(--m) calc(24px + env(safe-area-inset-bottom)); display: grid; grid-template-rows: auto 1fr auto; overflow: auto; }
+.menu .links { display: grid; align-content: start; }
+.menu .cta { display: grid; gap: 10px; padding-top: 24px; }
+.menu .cta .btn { justify-content: space-between; height: 58px; font-size: 17px; }
+.menu .cta .tel2 { color: var(--text-2); text-align: center; text-decoration: none; padding: 10px; font-size: 16px; }
+.menu .links a { text-decoration: none; padding: 18px 0; border-bottom: 1px solid var(--line); font: 700 38px/1 var(--cond); letter-spacing: .02em; text-transform: uppercase; display: flex; justify-content: space-between; align-items: center; }
+.menu .links a .hire { font-stretch: 100%; text-transform: none; }
+.toast { position: fixed; left: 50%; bottom: 96px; transform: translateX(-50%); z-index: 90; padding: 12px 18px; border-radius: 4px; background: var(--text); color: var(--bg); font-size: 15px; max-width: calc(100vw - 32px); opacity: 0; pointer-events: none; transition: opacity .25s; }
+.toast.on { opacity: 1; }
+
+html.nogl .imm { height: auto !important; }
+html.nogl .imm .stick { position: relative; height: auto; min-height: 100vh; }
+html.nogl .imm canvas, html.nogl .imm .vig, html.nogl .cap-ov, html.nogl #i-start, html.nogl .legend, html.nogl .skip { display: none; }
+html.nogl .ov { position: relative; opacity: 1 !important; visibility: visible; min-height: 100vh; }
+html.rm .inter { height: auto; } html.rm .inter .stk { position: relative; }
+
+@media (max-width: 980px) {
+  :root { --hdr: 66px; }
+  .brand .slot { width: 42px; height: 42px; }
+  .brand b { font-size: 14px; letter-spacing: .05em; }
+  .hdr { gap: 12px; }
+  .hdr .call { flex: none; }
+  .burger { flex: none; }
+  html.menu-open .hdr { background: rgba(7,9,7,.97); }
+  html.menu-open .hdr .call { display: none; }
+  .nav, .hdr .tel, .hdr > .btn { display: none; }
+  .burger { display: block; }
+  .shead .k, .shead h2, .shead p, .shead .side { grid-column: 1 / -1; }
+  .shead h2 { margin-top: 18px; }
+  .shead .side { justify-self: start; margin-top: 24px; }
+  .idx .list { grid-column: 1 / -1; }
+  .idx .media { display: none; }
+  .it { opacity: 1; min-height: 0; }
+  .it .mph { display: block; position: relative; margin-top: 24px; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 3px; cursor: zoom-in; }
+  .it .mph img { width: 100%; height: 100%; object-fit: cover; }
+  .it ul { grid-template-columns: 1fr; }
+  .it h3 { font-size: clamp(30px, 9.6vw, 48px); overflow-wrap: anywhere; hyphens: auto; }
+  .shead h2, .ghead h2 { font-size: clamp(32px, 10vw, 52px); overflow-wrap: break-word; hyphens: auto; }
+  .also .k, .also ul { grid-column: 1 / -1; }
+  .also ul { grid-template-columns: 1fr 1fr; margin-top: 18px; }
+  .inter { height: 120vh; }
+  .offer, .offer + .src, .role { grid-column: 1 / -1; }
+  .role { position: relative; top: auto; grid-row: auto; margin-top: 40px; }
+  .offer li { grid-template-columns: 50px 1fr; }
+  .cgrid { grid-template-columns: 1fr; gap: 0; }
+  .cgrid > * { padding-bottom: 26px; border-bottom: 1px solid var(--line); }
+  .legend { bottom: auto; top: calc(var(--hdr) + 58px); }
+  .skip { top: calc(var(--hdr) + 8px); }
+  .cap-ov { bottom: 100px; right: var(--m); }
+  #i-start { bottom: 104px; }
+  .abar { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; position: fixed; inset: auto 0 0; z-index: 48; padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); background: rgba(13,14,12,.8); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); border-top: 1px solid var(--line); }
+  .abar .btn { height: 48px; justify-content: center; padding: 0 16px; }
+  .foot { padding-bottom: 76px; }
+}
+</style>
+</head>
+<body>
+<div class="atmo" id="atmo" aria-hidden="true"><i class="l1"></i><i class="l2"></i><i class="l3"></i><i class="glow"></i></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="ar" viewBox="0 0 16 16"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol></svg>
+
+<header class="hdr" id="hdr">
+  <a class="brand" href="#top" aria-label="BLF Service, zum Anfang"><span class="slot" id="slot"></span><b>BLF Service</b></a>
+  <nav class="nav" aria-label="Hauptnavigation">
+    <a href="#leistungen">Leistungen</a>
+    <a href="#galerie">Galerie</a>
+    <a href="#bewertungen">Bewertungen</a>
+    <a href="#karriere" class="jobs"><span class="dot" aria-hidden="true"></span>Jobs · Wir stellen ein</a>
+    <a href="#kontakt">Kontakt</a>
+  </nav>
+  <a class="tel" href="tel:+491723841620">0172 3841620</a>
+  <a class="btn sm" href="#kontakt">Anfrage</a>
+  <a class="call" href="tel:+491723841620" aria-label="Anrufen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></a>
+  <button class="burger" id="burger" aria-expanded="false" aria-controls="menu">Menü</button>
+</header>
+<nav class="menu" id="menu" hidden aria-label="Menü">
+  <div class="links"><a href="#leistungen">Leistungen</a><a href="#galerie">Galerie</a><a href="#bewertungen">Bewertungen</a><a href="#karriere">Jobs <span class="hire"><i></i>Wir stellen ein</span></a><a href="#kontakt">Kontakt</a></div>
+  <span></span>
+  <div class="cta"><a class="btn solid" href="#kontakt">Anfrage stellen<span class="ic"><svg><use href="#ar"/></svg></span></a><a class="btn" href="#karriere">Jetzt bewerben<span class="ic"><svg><use href="#ar"/></svg></span></a><a class="tel2" href="tel:+491723841620">Anrufen · 0172 3841620</a></div>
+</nav>
+<div class="splash" id="splash" aria-hidden="true"><div class="sp-meta"><span class="mono">Baum · Land · Forst</span><span class="mono" id="sp-n">00</span></div><i class="sp-bar"><b id="sp-bar"></b></i></div>
+<div id="seal" aria-hidden="true"><span class="disc" id="seal-disc"></span><svg class="ring" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48.5"/></svg><img src="img/logo-1200.webp" alt=""></div>
+
+<main>
+<!-- ===== HERO ===== -->
+<section class="hero" id="top" aria-label="Start">
+  <figure class="hbg" data-lb="r|px-4500037|Nebelwald am Morgen|Pexels-Lizenz · pexels.com/photo/4500037"><img src="ext/px-4500037.webp" alt=""></figure>
+  <div class="hin">
+    <a class="hire hs" href="#karriere"><i></i>Wir stellen ein <span>· Jetzt bewerben</span></a>
+    <p class="mono eyebrow hs">Baum-Land-Forst Service · Seddiner See</p>
+    <h1 class="head hs">Bäume, Flächen, Wege.<br>Das ganze <em>Jahr.</em></h1>
+    <p class="sub hs">Wir bieten Ihnen Baumfällung, Baumpflege, Baumkontrolle, Winterdienst, Pflasterarbeiten, Neuanpflanzung, Grünflächenpflege und mehr. Egal ob heißer Sommer-, nasser Herbst- oder kalter Wintertag: Wir sind tagtäglich für Sie im Einsatz!</p>
+    <div class="ctas hs">
+      <a class="btn solid" href="#kontakt">Anfrage stellen<span class="ic"><svg><use href="#ar"/></svg></span></a>
+      <a class="btn" href="#karriere">Jetzt bewerben<span class="ic"><svg><use href="#ar"/></svg></span></a>
+    </div>
+    <a class="tlink hs tel3" href="tel:+491723841620">Oder anrufen: 0172 3841620<svg><use href="#ar"/></svg></a>
+  </div>
+  <span class="tag r mono htag"><i></i>Symbolbild</span>
+  <a class="cue mono hs" href="#wege" aria-label="Weiter">Scrollen<i></i></a>
+</section>
+
+<!-- ===== ZWEI WEGE: Kunde oder Bewerber ===== -->
+<section class="ways" id="wege" aria-label="Wofür sind Sie hier?">
+  <a class="way rv" href="#kontakt">
+    <img src="img/GAL-06-full.webp" alt="" loading="lazy">
+    <span class="tag b mono"><i></i>BLF · GAL-06</span>
+    <span class="wt"><span class="mono">Für Kunden</span><b>Sie brauchen Hilfe am Baum oder auf der Fläche?</b><span class="btn solid">Anfrage stellen<span class="ic"><svg><use href="#ar"/></svg></span></span></span>
+  </a>
+  <a class="way job rv" href="#karriere">
+    <img src="img/GAL-02-full.webp" alt="" loading="lazy">
+    <span class="tag b mono"><i></i>BLF · GAL-02</span>
+    <span class="wt"><span class="hire"><i></i>Wir stellen ein</span><b>Sie suchen eine abwechslungsreiche Arbeit draußen?</b><span class="btn solid">Jetzt bewerben<span class="ic"><svg><use href="#ar"/></svg></span></span></span>
+  </a>
+</section>
+
+<!-- ===== FAKTEN + NOTFALL ===== -->
+<section class="facts" aria-label="Auf einen Blick">
+  <ul class="rv">
+    <li><b>Seit 2001</b><span>in Baum, Land und Forst tätig</span></li>
+    <li><b>European<br>Treeworker</b><span>qualifizierte Fachkräfte im Team</span></li>
+    <li><b>24 / 7</b><span>bei Sturmschäden und Notfällen</span></li>
+    <li><b>5,0 <span class="st">★★★★★</span></b><span>Bewertung bei Google</span></li>
+  </ul>
+</section>
+<div class="sos rv" role="note">
+  <p><span class="hire" style="height:auto;padding:0;box-shadow:none"><i></i></span><b>Sturmschaden oder umgestürzter Baum?</b><span>Notfällung rund um die Uhr.</span></p>
+  <a class="btn solid" href="tel:+491723841620">0172 3841620<span class="ic"><svg><use href="#ar"/></svg></span></a>
+</div>
+
+<!-- ===== LEISTUNGEN ===== -->
+<section class="sec" id="leistungen" aria-labelledby="l-title">
+  <div class="shead">
+    <p class="mono k rv"><b>01</b> Leistungen</p>
+    <h2 class="head rv" id="l-title">Vier Bereiche. Ein <em>Team.</em></h2>
+    <p class="rv">Vom Baum bis zur Straße: was BLF Service macht, an echten Einsätzen gezeigt.</p>
+  </div>
+  <div class="idx">
+    <div class="list" id="idx-list">
+      <article class="it" data-i="0">
+        <div class="row"><span class="mono">01 · Baum</span></div>
+        <h3 class="head">Baumarbeiten</h3>
+        <p>Fällung, Pflege und Sicherung von Bäumen, auch wo wenig Platz ist.</p>
+        <div class="mph" data-lb="b|GAL-01|Kletterer im zweistämmigen Baum|Baumfällung"><img src="img/GAL-01-full.webp" alt="" loading="lazy" style="object-position:50% 25%"><span class="tag b mono"><i></i>BLF · GAL-01</span></div>
+        <ul><li>Baumfällung<span>einzeln oder Fläche</span></li><li>Stubbenentfernung<span>nach der Fällung</span></li><li>Notfällung<span>Sturmschäden</span></li><li>Baumpflege<span>Krone, Totholz</span></li><li>Kronensicherung<span>Einbau</span></li><li>Baumkontrolle<span>Zustand, Risiken</span></li></ul>
+        <div class="acts"><a class="btn" href="#kontakt">Anfragen<span class="ic"><svg><use href="#ar"/></svg></span></a></div>
+      </article>
+      <article class="it" data-i="1">
+        <div class="row"><span class="mono">02 · Land</span></div>
+        <h3 class="head">Bau &amp; Fläche</h3>
+        <p>Baufelder räumen, Böschungen sichern, Flächen pflastern, Spielgeräte aufbauen.</p>
+        <div class="mph" data-lb="b|GAL-07|Kompaktlader mit Stammholz|Baufeldberäumung"><img src="img/GAL-07-full.webp" alt="" loading="lazy"><span class="tag b mono"><i></i>BLF · GAL-07</span></div>
+        <ul><li>Baufeldberäumung<span>Gelände vorbereiten</span></li><li>Pflasterarbeiten<span>Wege, Einfahrten</span></li><li>Hangbefestigung<span>aus der Galerie</span></li><li>Spielgeräteaufbau<span>aus der Galerie</span></li></ul>
+        <div class="acts"><a class="btn" href="#kontakt">Anfragen<span class="ic"><svg><use href="#ar"/></svg></span></a></div>
+      </article>
+      <article class="it" data-i="2">
+        <div class="row"><span class="mono">03 · Forst</span></div>
+        <h3 class="head">Grün &amp; Forst</h3>
+        <p>Neue Pflanzungen anlegen und freistellen, öffentliches Grün pflegen, Wald bewirtschaften.</p>
+        <div class="mph" data-lb="b|GAL-30|Neu gepflanzter Baum mit Dreibock und Verbissschutz|Neuanpflanzung"><img src="img/GAL-30-full.webp" alt="" loading="lazy"><span class="tag b mono"><i></i>BLF · Neuanpflanzung</span></div>
+        <ul><li>Neuanpflanzung &amp; Freistellen<span>Planung, Pflanzung</span></li><li>Grünflächenpflege<span>für Kommunen</span></li><li>Forstwirtschaftliche Pflege<span>Auslichten</span></li></ul>
+        <div class="acts"><a class="btn" href="#kontakt">Anfragen<span class="ic"><svg><use href="#ar"/></svg></span></a></div>
+      </article>
+      <article class="it" data-i="3">
+        <div class="row"><span class="mono">04 · Winter &amp; Herbst</span></div>
+        <h3 class="head">Winter- und Herbstarbeiten</h3>
+        <p>Räumen und streuen im Winter, Laub abholen im Herbst. Für Gewerbe, Kommunen und Privat: Straßen und Plätze sauber halten.</p>
+        <div class="mph" data-lb="b|GAL-20|Räumfahrzeug mit Schneeschild bei Nacht|Winterdienst"><img src="img/GAL-20-full.webp" alt="" loading="lazy"><span class="tag b mono"><i></i>BLF · Winterdienst</span></div>
+        <ul><li>Winterdienst<span>Räumen, Streuen</span></li><li>Laubabholung<span>Herbst</span></li><li>Straßen- und Flächenreinigung<span>Kehren</span></li></ul>
+        <div class="acts"><a class="btn" href="#kontakt">Anfragen<span class="ic"><svg><use href="#ar"/></svg></span></a></div>
+      </article>
+    </div>
+    <div class="media" id="idx-media" aria-hidden="true">
+      <figure class="on" data-lb="b|GAL-01|Kletterer im zweistämmigen Baum|Baumfällung"><img src="img/GAL-01-full.webp" alt="" style="object-position:50% 25%"><span class="tag b mono"><i></i>BLF-Einsatzfoto · GAL-01</span></figure>
+      <figure data-lb="b|GAL-07|Kompaktlader mit Stammholz|Baufeldberäumung"><img src="img/GAL-07-full.webp" alt="" loading="lazy"><span class="tag b mono"><i></i>BLF-Einsatzfoto · GAL-07</span></figure>
+      <figure data-lb="b|GAL-30|Neu gepflanzter Baum mit Dreibock und Verbissschutz|Neuanpflanzung"><img src="img/GAL-30-full.webp" alt="" loading="lazy"><span class="tag b mono"><i></i>BLF-Einsatzfoto · Neuanpflanzung</span></figure>
+      <figure data-lb="b|GAL-20|Räumfahrzeug mit Schneeschild bei Nacht|Winterdienst"><img src="img/GAL-20-full.webp" alt="" loading="lazy"><span class="tag b mono"><i></i>BLF-Einsatzfoto · Winterdienst</span></figure>
+      <span class="count mono" id="idx-count">01 / 04</span>
+    </div>
+  </div>
+  <div class="also rv">
+    <p class="mono k">Außerdem aus unserer Galerie</p>
+    <ul>
+      <li data-lb="b|GAL-18|Profilierte Böschung|Hangbefestigung"><img src="img/GAL-18-640.webp" alt="" loading="lazy"><span>Hangbefestigung<small>GAL-18</small></span></li>
+      <li data-lb="b|GAL-10|Aufgebautes Spielgerät auf Sand|Spielgeräteaufbau"><img src="img/GAL-10-640.webp" alt="" loading="lazy"><span>Spielgeräteaufbau<small>GAL-10</small></span></li>
+      <li data-lb="b|GAL-11|Stubbenfräse am Wurzelstock|Stubbenfräsen"><img src="img/GAL-11-640.webp" alt="" loading="lazy"><span>Stubbenfräsen<small>GAL-11</small></span></li>
+      <li data-lb="b|GAL-19|Neue Pflasterfläche am Straßenrand|Pflasterarbeiten"><img src="img/GAL-19-640.webp" alt="" loading="lazy"><span>Pflasterarbeiten<small>GAL-19</small></span></li>
+    </ul>
+  </div>
+
+  <div class="steps-wrap rv">
+    <p class="mono k"><b>→</b> So läuft es ab</p>
+    <ol class="steps" style="margin:0;padding:0">
+      <li><span class="mono">Schritt 01</span><h3 class="head">Anrufen oder anfragen</h3><p>Telefon, E-Mail oder Formular, gern mit Foto vom Baum oder der Fläche.</p></li>
+      <li><span class="mono">Schritt 02</span><h3 class="head">Wir sehen es uns an</h3><p>Wir klären mit Ihnen, was zu tun ist und welche Technik gebraucht wird.</p></li>
+      <li><span class="mono">Schritt 03</span><h3 class="head">Unverbindliches Angebot</h3><p>Sie bekommen ein klares Angebot. Danach entscheiden Sie.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===== INTERLUDE ===== -->
+<section class="inter" id="inter" aria-label="Sicherheit">
+  <div class="stk">
+    <figure data-lb="r|px-31708346-2400|Kiefern im Nebel|Pexels-Lizenz · pexels.com/photo/31708346"><img src="ext/px-31708346-2400.webp" alt="" loading="lazy"></figure>
+    <blockquote>Wir legen großen Wert auf Sicherheit – sowohl für unsere Mitarbeiter als auch für Ihre Umgebung.<span class="by">Baum-Land-Forst Service</span></blockquote>
+    <span class="tag r mono"><i></i>Symbolbild</span>
+  </div>
+</section>
+
+<!-- ===== GALERIE ===== -->
+<section class="sec gal" id="galerie" aria-labelledby="g-title" style="padding-inline:0">
+  <div class="gpin">
+    <div class="ghead">
+      <p class="mono k rv"><b>02</b> Galerie</p>
+      <h2 class="head rv" id="g-title">Einblicke in unsere <em>Arbeit.</em></h2>
+      <div class="gside rv">
+        <span class="gcount" id="gcount">01<small> / 30</small></span>
+        <p>30 echte Einsatzfotos von BLF Service. Ungeschönt, vollständig, mit Nummer.</p>
+        <div class="tabs" id="tabs" role="group" aria-label="Kategorie"><button aria-pressed="true" data-f="all">Alle<sup>30</sup></button><button aria-pressed="false" data-f="baum">Baum<sup>8</sup></button><button aria-pressed="false" data-f="land">Fläche<sup>13</sup></button><button aria-pressed="false" data-f="gruen">Grün<sup>4</sup></button><button aria-pressed="false" data-f="winter">Winter<sup>5</sup></button></div>
+      </div>
+    </div>
+    <div class="track" id="track"></div>
+    <div class="gfoot"><div class="gprog"><i id="gbar"></i></div><div class="arrows"><button class="round" id="prev" aria-label="Zurück"><svg viewBox="0 0 16 16" style="transform:scaleX(-1)"><use href="#ar"/></svg></button><button class="round" id="next" aria-label="Weiter"><svg viewBox="0 0 16 16"><use href="#ar"/></svg></button></div></div>
+  </div>
+</section>
+
+
+<!-- ===== BEWERTUNGEN ===== -->
+<section class="sec" id="bewertungen" style="padding-top:0" aria-labelledby="r-title">
+  <div class="rev rv">
+    <div class="score"><b>5,0</b><div><span class="stars">★★★★★</span><small>Google-Bewertung</small></div></div>
+    <div class="txt">
+      <h3 class="head" id="r-title">Was Kunden über uns <em>sagen.</em></h3>
+      <p>Lesen Sie die Rezensionen direkt bei Google, oder schreiben Sie nach Ihrem Auftrag selbst eine.</p>
+      <div class="ctas">
+        <a class="btn" href="https://www.google.com/maps/place/?q=place_id:ChIJldeTCm2KqEcR8fmv6g2etaY" target="_blank" rel="noopener">Rezensionen lesen<span class="ic"><svg><use href="#ar"/></svg></span></a>
+        <a class="tlink" href="https://search.google.com/local/writereview?placeid=ChIJldeTCm2KqEcR8fmv6g2etaY" target="_blank" rel="noopener">Bewertung schreiben<svg><use href="#ar"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== KARRIERE ===== -->
+<section class="kdeep" id="karriere" aria-labelledby="k-title">
+  <div class="kstick">
+    <figure class="kbg"><img src="ext/px-880675.webp" alt="Dunkler Wald, Licht fällt zwischen die Stämme" loading="lazy"></figure>
+    <div class="kcopy">
+      <span class="hire rv"><i></i>Offene Stellen</span>
+      <h2 class="head" id="k-title">Wir suchen motivierte und engagierte <em>Mitarbeiter.</em></h2>
+      <p class="rv">Sind Sie auf der Suche nach einer abwechslungsreichen Tätigkeit im Bereich der Baum-Land-Forstwirtschaft?</p>
+      <ul class="kchips rv"><li>Feste Anstellung</li><li>Arbeitsmittel und Kleidung</li><li>Fort- und Weiterbildung</li><li>Abwechslungsreiche Tätigkeiten</li><li>Angenehmes Arbeitsklima</li></ul>
+      <div class="ctas rv"><a class="btn solid" href="#stellen">Jetzt bewerben<span class="ic"><svg><use href="#ar"/></svg></span></a><a class="btn" href="tel:+491723841620">Anrufen<span class="ic"><svg><use href="#ar"/></svg></span></a></div>
+    </div>
+    <span class="tag r mono ktag"><i></i>Symbolbild</span>
+  </div>
+</section>
+
+<!-- ===== STELLEN ===== -->
+<section class="sec" id="stellen" aria-labelledby="s-title">
+  <div class="shead">
+    <p class="mono k rv"><b>03</b> Karriere</p>
+    <h2 class="head rv" id="s-title">Verstärken Sie unser <em>Team.</em></h2>
+    <p class="rv">Interessiert? Dann rufen Sie uns gerne an oder senden uns Ihre Bewerbungsunterlagen.</p>
+  </div>
+  <div class="jobs">
+    <ol class="offer rv">
+      <li>Abwechslungsreiche Tätigkeiten</li>
+      <li>Feste Anstellung</li>
+      <li>Arbeitsmittel und Kleidung</li>
+      <li>Fort- und Weiterbildung</li>
+      <li>Angenehmes Arbeitsklima</li>
+    </ol>
+    <aside class="role rv">
+      <p class="mono k"><span><b style="color:var(--signal)">●</b>&nbsp; Offene Stelle</span><span>Seddiner See</span></p>
+      <h3 class="head">Mitarbeiter (m/w/d) Baum · Land · Forst</h3>
+      <dl><dt>Anstellung</dt><dd>Fest</dd><dt>Bereiche</dt><dd>Baum, Fläche, Grün, Winter</dd><dt>Einsatzort</dt><dd>Seddiner See, Potsdam-Mittelmark</dd></dl>
+      <div class="ctas"><a class="btn solid" href="mailto:info@blfservice.de?subject=Bewerbung">Jetzt bewerben<span class="ic"><svg><use href="#ar"/></svg></span></a><a class="tlink" href="tel:+491723841620">0172 3841620<svg><use href="#ar"/></svg></a></div>
+      <form class="form quick" name="bewerbung" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-proto="Bewerbung"><input type="hidden" name="form-name" value="bewerbung"><p hidden><label>Nicht ausfüllen<input name="bot-field"></label></p>
+        <span class="mono full">Kurzbewerbung · 30 Sekunden, ohne Lebenslauf</span>
+        <label>Name<input name="name" required autocomplete="name"></label>
+        <label>Telefon<input name="telefon" type="tel" required autocomplete="tel"></label>
+        <label class="full">Erfahrung<select name="erfahrung"><option>Quereinsteiger</option><option>Baumarbeiten / Klettern</option><option>Maschinen, Bagger, Lader</option><option>Garten- und Landschaftsbau</option><option>Winterdienst</option></select></label>
+        <div class="row-b"><button class="btn solid" type="submit">Abschicken<span class="ic"><svg><use href="#ar"/></svg></span></button><a class="tlink wa" href="https://wa.me/491723841620?text=Hallo%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20Stelle." target="_blank" rel="noopener">Per WhatsApp<svg><use href="#ar"/></svg></a></div>
+        <span class="hint full">Wir rufen Sie zurück.</span>
+      </form>
+    </aside>
+  </div>
+</section>
+
+<!-- ===== KONTAKT ===== -->
+<section class="sec" id="kontakt" aria-labelledby="c-title">
+  <div class="shead">
+    <p class="mono k rv"><b>04</b> Kontakt</p>
+    <h2 class="head rv" id="c-title">Haben Sie Fragen oder benötigen Sie ein unverbindliches <em>Angebot?</em></h2>
+  </div>
+  <div class="cgrid rv">
+    <a href="tel:+491723841620"><span class="mono">Telefon</span><b>0172 3841620</b><span class="tlink">Anrufen<svg><use href="#ar"/></svg></span></a>
+    <a href="mailto:info@blfservice.de"><span class="mono">E-Mail</span><b>info@blfservice.de</b><span class="tlink">Schreiben<svg><use href="#ar"/></svg></span></a>
+    <div><span class="mono">Adresse · Festnetz</span><b>Am Seehügel 1c<br>14554 Seddiner See</b><a class="tlink" href="tel:+493320563650">033205 63650<svg><use href="#ar"/></svg></a></div>
+  </div>
+  <div class="kon2">
+    <div class="lead rv"><p class="mono k"><b>→</b> Anfrage</p><h3 class="head" style="margin-top:16px">Schicken Sie uns ein Foto.</h3><p>Ein Bild vom Baum oder der Fläche reicht oft für eine erste Einschätzung. Wir melden uns mit einem unverbindlichen Angebot.</p></div>
+    <form class="form rv" name="anfrage" method="POST" enctype="multipart/form-data" data-netlify="true" netlify-honeypot="bot-field" data-proto="Anfrage"><input type="hidden" name="form-name" value="anfrage"><p hidden><label>Nicht ausfüllen<input name="bot-field"></label></p>
+      <label>Name<input name="name" required autocomplete="name"></label>
+      <label>Telefon<input name="telefon" type="tel" required autocomplete="tel"></label>
+      <label class="full">Leistung<select name="leistung"><option>Baumfällung / Baumpflege</option><option>Notfällung / Sturmschaden</option><option>Baufeld, Hang, Pflaster</option><option>Grünpflege / Forst</option><option>Winterdienst / Reinigung</option><option>Sonstiges</option></select></label>
+      <label class="full">Ort und kurze Beschreibung<textarea name="beschreibung" placeholder="z. B. Kiefer, ca. 20 m, steht nah am Haus, Michendorf"></textarea></label>
+      <label class="file full"><input type="file" name="foto" accept="image/*"><b>Foto hinzufügen</b><span>optional</span></label>
+      <div class="row-b"><button class="btn solid" type="submit">Anfrage senden<span class="ic"><svg><use href="#ar"/></svg></span></button><a class="tlink wa" href="https://wa.me/491723841620" target="_blank" rel="noopener">Lieber per WhatsApp<svg><use href="#ar"/></svg></a></div>
+      <span class="hint full">Wir melden uns in der Regel am selben oder nächsten Werktag.</span>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="row">
+    <img class="seal" src="img/logo-384.webp" alt="Emblem Baum-Land-Forst Service">
+    <nav><a href="#leistungen">Leistungen</a><a href="#galerie">Galerie</a><a href="#karriere">Karriere</a><a href="#kontakt">Kontakt</a><a href="https://www.blfservice.de/impressum" target="_blank" rel="noopener">Impressum</a><a href="https://www.blfservice.de/datenschutz" target="_blank" rel="noopener">Datenschutz</a></nav>
+  </div>
+  <p class="disp word" aria-hidden="true">Baum · Land · Forst</p>
+  <div class="fine mono"><span>Baum-Land-Forst Service · Am Seehügel 1c, 14554 Seddiner See</span><span>Symbolbilder: Pexels</span></div>
+</footer>
+
+<div class="abar"><a class="btn" href="#karriere"><span class="hire" style="height:auto;padding:0;box-shadow:none;background:none"><i></i></span>Jobs</a><a class="btn solid" href="#kontakt">Anfrage</a></div>
+<div id="tip"><span class="mono" id="tip-k"></span><b id="tip-t"></b></div>
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Foto">
+  <img id="lb-img" alt="">
+  <div class="bar"><div class="t"><span class="mono" id="lb-k"></span><b id="lb-t"></b><span class="mono" id="lb-s"></span></div><button class="round" id="lb-x" aria-label="Schließen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function () {
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var html = document.documentElement, q = new URLSearchParams(location.search);
+  var RM = q.get("rm") === "1" || matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (RM) html.classList.add("rm");
+  var MOB = matchMedia("(max-width: 980px)").matches;
+  var IMG = "img/", EXT = "ext/", PX = "Pexels-Lizenz · pexels.com/photo/";
+  function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function sstep(a, b, v) { var t = clamp((v - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); }
+
+  /* lightbox */
+  var lb = $("#lb");
+  function openLb(k, f, t, c) {
+    $("#lb-img").src = k === "b" ? IMG + f + "-full.webp" : EXT + f + (/-\d{4}$/.test(f) ? "" : "") + ".webp"; $("#lb-img").alt = t;
+    $("#lb-k").textContent = k === "b" ? "BLF-Einsatzfoto · " + f + " · " + c : "Symbolbild";
+    $("#lb-k").className = "mono" + (k === "b" ? " b" : "");
+    $("#lb-t").textContent = t; $("#lb-s").textContent = k === "b" ? "Quelle: blfservice.de/galerie" : "Foto: " + c;
+    lb.hidden = false; $("#lb-x").focus();
+  }
+  $("#lb-x").onclick = function () { lb.hidden = true; };
+  lb.addEventListener("click", function (e) { if (e.target === lb) lb.hidden = true; });
+  addEventListener("keydown", function (e) { if (e.key === "Escape") lb.hidden = true; });
+  document.addEventListener("click", function (e) {
+    var el = e.target.closest("[data-lb]"); if (!el || e.target.closest("a")) return;
+    if (dragged) return;
+    var d = el.getAttribute("data-lb").split("|"); openLb(d[0], d[1], d[2], d[3]);
+  });
+
+  /* Leistungen index: the item in the middle of the screen drives the large photograph */
+  var items = $$(".it"), figs = $$("#idx-media figure"), cnt = $("#idx-count");
+  function setIdx(i) {
+    var was = figs.findIndex(function (f) { return f.classList.contains("on"); });
+    if (was === i) return;
+    items.forEach(function (it, j) { it.classList.toggle("on", j === i); });
+    figs.forEach(function (f, j) { f.classList.toggle("prev", j === was); f.classList.toggle("on", j === i); });
+    cnt.textContent = "0" + (i + 1) + " / 04";
+  }
+  setIdx(0);
+  function leistFrame() {
+    var line = innerHeight * .78, k = 0;
+    for (var j = 0; j < items.length; j++) if (items[j].getBoundingClientRect().top < line) k = j;
+    setIdx(k);
+  }
+
+  /* gallery reel */
+  var G = [["21","Unser Fuhrpark","Technik","land"],["29","Winterdienst auf dem Feldweg","Winterdienst","winter"],["31","Neu angelegte Rasenfläche mit Beetrand","Grünflächenpflege","gruen"],["34","Arbeiten in der Krone mit Hubarbeitsbühne","Baumpflege","baum"],
+    ["24","Neue Terrasse mit Pflaster und Geländer","Pflasterarbeiten","land"],["30","Neu gepflanzter Baum mit Dreibock","Neuanpflanzung","gruen"],["20","Winterdienst bei Nacht","Winterdienst","winter"],["27","Kehrmaschine bei der Platzreinigung","Flächenreinigung","winter"],
+    ["32","Rollrasen wird verlegt","Grünflächenpflege","gruen"],["25","Pflasterterrasse am See","Pflasterarbeiten","land"],["33","Hubarbeitsbühne im Einsatz","Baumpflege","baum"],["28","Winterdienst auf dem Parkplatz","Winterdienst","winter"],
+    ["26","Terrasse fertig gepflastert","Pflasterarbeiten","land"],["23","Rasenfläche mit Beregnung","Grünflächenpflege","gruen"],
+    ["01","Kletterer im zweistämmigen Baum","Baumfällung","baum"],["06","Minibagger auf geräumtem Grundstück","Baufeldberäumung","land"],["13","Kiefernkronen, mit Seilen gesichert","Kronensicherung","baum"],["19","Neue Pflasterfläche am Straßenrand","Pflasterarbeiten","land"],
+    ["11","Stubbenfräse am Wurzelstock","Stubbenfräsen","baum"],["07","Kompaktlader mit Stammholz","Baufeldberäumung","land"],["14","Räumfahrzeug mit Schneeschild bei Nacht","Winterdienst","winter"],["17","Böschung mit Erosionsschutzmatte","Hangbefestigung","land"],
+    ["02","Kletterer mit Motorsäge am Kiefernstamm","Baumfällung","baum"],["10","Aufgebautes Spielgerät auf Sand","Spielgeräteaufbau","land"],["04","Hubarbeitsbühne an einem eingekürzten Baum","Baumfällung","baum"],["12","Minibagger im Häckselgut","Stubbenfräsen","baum"],
+    ["18","Profilierte Böschung","Hangbefestigung","land"],["09","Kompaktlader beim Räumen","Baufeldberäumung","land"],["05","Geräumte Fläche vor einem Haus","Baufeldberäumung","land"],["08","Geräumte Fläche am Bauzaun","Baufeldberäumung","land"]];
+  var track = $("#track"), gbar = $("#gbar");
+  track.innerHTML = G.map(function (g) {
+    return '<figure data-f="' + g[3] + '"><img src="' + IMG + 'GAL-' + g[0] + '-full.webp" alt="' + g[1] + '" loading="lazy" draggable="false" data-lb="b|GAL-' + g[0] + '|' + g[1] + '|' + g[2] + '"><figcaption><span class="mono">GAL-' + g[0] + '</span><span>' + g[1] + '</span></figcaption></figure>';
+  }).join("");
+  $$("#tabs button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      $$("#tabs button").forEach(function (x) { x.setAttribute("aria-pressed", x === b); });
+      $$("figure", track).forEach(function (f) { f.hidden = !(b.dataset.f === "all" || f.dataset.f === b.dataset.f); });
+      if (PIN) { gsize(); scrollTo({ top: gal.offsetTop, behavior: "smooth" }); } else track.scrollTo({ left: 0, behavior: RM ? "auto" : "smooth" });
+      greel();
+    });
+  });
+  var gal = $("#galerie"), gcount = $("#gcount"), PIN = !MOB && !RM, gmax = 0;
+  if (PIN) html.classList.add("gpinned");
+  function gsize() {
+    if (!PIN) return;
+    track.style.transform = "none";
+    gmax = Math.max(0, track.scrollWidth - innerWidth + parseFloat(getComputedStyle(track).paddingLeft));
+    gal.style.height = (innerHeight + gmax) + "px";
+  }
+  function gframe() {
+    if (!PIN) return;
+    var r = gal.getBoundingClientRect(), p = clamp(-r.top / Math.max(1, gmax), 0, 1);
+    track.style.transform = "translate3d(" + (-p * gmax).toFixed(1) + "px,0,0)";
+    var vis = $$("figure", track).filter(function (f) { return !f.hidden; }), n = vis.length;
+    var i = Math.min(n, 1 + Math.floor(p * (n - .001)));
+    gcount.innerHTML = String(i).padStart(2, "0") + "<small> / " + String(n).padStart(2, "0") + "</small>";
+    gbar.style.width = "100%"; gbar.style.transform = "scaleX(" + Math.max(.04, p).toFixed(3) + ")";
+    $("#prev").disabled = p < .01; $("#next").disabled = p > .99;
+  }
+  addEventListener("resize", function () { gsize(); });
+  function greel() {
+    if (PIN) { gframe(); return; }
+    var max = track.scrollWidth - track.clientWidth;
+    $("#prev").disabled = track.scrollLeft < 8; $("#next").disabled = track.scrollLeft > max - 8;
+    var w = clamp(track.clientWidth / Math.max(1, track.scrollWidth), .08, 1);
+    gbar.style.width = (w * 100) + "%"; gbar.style.transform = "translateX(" + ((max > 0 ? track.scrollLeft / max : 0) * (1 / w - 1) * 100) + "%)";
+  }
+  $("#prev").onclick = function () { if (PIN) scrollBy({ top: -innerWidth * .6, behavior: "smooth" }); else track.scrollBy({ left: -track.clientWidth * .8, behavior: RM ? "auto" : "smooth" }); };
+  $("#next").onclick = function () { if (PIN) scrollBy({ top: innerWidth * .6, behavior: "smooth" }); else track.scrollBy({ left: track.clientWidth * .8, behavior: RM ? "auto" : "smooth" }); };
+  track.addEventListener("scroll", greel, { passive: true });
+  addEventListener("resize", greel); setTimeout(greel, 300);
+  // drag to scroll with the mouse
+  var dragged = false, down = false, sx = 0, sl = 0;
+  track.addEventListener("pointerdown", function (e) { if (e.pointerType !== "mouse" || PIN) return; down = true; dragged = false; sx = e.clientX; sl = track.scrollLeft; track.style.scrollSnapType = "none"; });
+  addEventListener("pointermove", function (e) { if (!down) return; var d = e.clientX - sx; if (Math.abs(d) > 5) dragged = true; track.scrollLeft = sl - d; });
+  addEventListener("pointerup", function () { if (!down) return; down = false; track.style.scrollSnapType = ""; setTimeout(function () { dragged = false; }, 50); });
+
+  /* interlude: the photograph opens from a frame to full bleed */
+  var inter = $("#inter");
+  function interFrame() {
+    var r = inter.getBoundingClientRect(), p = clamp((innerHeight - r.top) / (innerHeight + r.height * .45), 0, 1);
+    if (RM) p = 1;
+    var o = sstep(.1, .62, p);
+    inter.style.setProperty("--ci", ((1 - o) * (MOB ? 8 : 14)).toFixed(2) + "%");
+    inter.style.setProperty("--cp", o.toFixed(3));
+    inter.style.setProperty("--qo", sstep(.5, .78, p).toFixed(3));
+  }
+
+  /* menu, header, reveals */
+  var bg = $("#burger"), menu = $("#menu");
+  bg.onclick = function () { var o = menu.hidden; menu.hidden = !o; html.classList.toggle("menu-open", o); bg.setAttribute("aria-expanded", o); bg.textContent = o ? "Schließen" : "Menü"; };
+  $$("a", menu).forEach(function (a) { a.addEventListener("click", function () { menu.hidden = true; html.classList.remove("menu-open"); bg.setAttribute("aria-expanded", false); bg.textContent = "Menü"; }); });
+  var hdr = $("#hdr"), atmo = $("#atmo");
+  var TONES = [[$("#top"), "1"], [$("#wege"), "1"], [$(".facts"), "1"], [$("#leistungen"), "2"], [$("#inter"), "2"], [$("#galerie"), "3"], [$("#bewertungen"), "3"], [$("#karriere"), "4"], [$("#stellen"), "4"], [$("#kontakt"), "2"], [$(".foot"), "2"]];
+  function headerTheme() {
+    hdr.classList.remove("clear");
+    hdr.classList.toggle("solid", scrollY > 40);
+    $$(".nav a").forEach(function (a) { var s = $(a.getAttribute("href")), r = s.getBoundingClientRect(); a.classList.toggle("on", r.top <= 90 && r.bottom > 90); });
+    interFrame(); gframe(); leistFrame(); ringFrame();
+    var mid = innerHeight * .5, tone = "1";
+    for (var ti = 0; ti < TONES.length; ti++) { var te = TONES[ti][0], tr = te && te.getBoundingClientRect(); if (tr && tr.top < mid && tr.bottom > mid) { tone = TONES[ti][1]; break; } }
+    if (atmo.dataset.tone !== tone) atmo.dataset.tone = tone;
+    if (!RM) atmo.style.setProperty("--ay", (-(scrollY / Math.max(1, document.documentElement.scrollHeight)) * innerHeight * .1).toFixed(1) + "px");
+  }
+  function split(el) {
+    var i = 0;
+    (function walk(node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (c) {
+        if (c.nodeType === 3) {
+          var f = document.createDocumentFragment();
+          c.textContent.split(/(\s+)/).forEach(function (t) {
+            if (!t) return;
+            if (/^\s+$/.test(t)) { f.appendChild(document.createTextNode(t)); return; }
+            var w = document.createElement("span"); w.className = "w";
+            var inn = document.createElement("span"); inn.textContent = t; inn.style.setProperty("--i", i++);
+            w.appendChild(inn); f.appendChild(w);
+          });
+          node.replaceChild(f, c);
+        } else if (c.nodeType === 1 && c.tagName !== "BR") walk(c);
+      });
+    })(el);
+    el.classList.add("sp");
+  }
+  $$(".shead h2, .ghead h2, .it h3, .hin h1, .rev h3, .kon2 h3, .steps h3, .inter blockquote").forEach(split);
+  $$(".shead").forEach(function (h) { h.classList.add("rv"); });
+  $$(".way, .idx .media, .it .mph, .also li").forEach(function (el) { el.classList.add("cur"); });
+  $(".steps-wrap").classList.add("rv");
+  gsize();
+  if ("IntersectionObserver" in window && !RM) {
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }); }, { rootMargin: "0px 0px -8% 0px" });
+    $$(".rv, .sp, .cur").forEach(function (el) { io.observe(el); });
+  } else $$(".rv, .sp, .cur").forEach(function (el) { el.classList.add("in"); });
+  var toast = $("#toast"), tt;
+  function say(t) { toast.textContent = t; toast.classList.add("on"); clearTimeout(tt); tt = setTimeout(function () { toast.classList.remove("on"); }, 2600); }
+  $$("[data-legal]").forEach(function (a) { a.addEventListener("click", function (e) { e.preventDefault(); say("Impressum und Datenschutz folgen nach Klärung."); }); });
+
+  /* forms: sent to Netlify Forms */
+  $$("form[data-proto]").forEach(function (f) {
+    var fi = $(".file input", f); if (fi) fi.addEventListener("change", function () { $(".file span", f).textContent = fi.files.length ? fi.files[0].name : "optional"; });
+    f.addEventListener("submit", function (e) {
+      e.preventDefault(); var old = $(".ok", f); if (old) old.remove();
+      var m = document.createElement("p"); m.className = "ok"; var btn = $("button[type=submit]", f);
+      btn.disabled = true; m.textContent = "Wird gesendet …"; f.appendChild(m);
+      fetch("/", { method: "POST", body: new FormData(f) }).then(function (r) {
+        if (!r.ok) throw new Error(r.status);
+        m.textContent = f.dataset.proto === "Bewerbung" ? "Danke! Wir rufen Sie zurück." : "Danke! Wir melden uns bei Ihnen.";
+        f.reset(); var sp = $(".file span", f); if (sp) sp.textContent = "optional";
+      }).catch(function () {
+        m.textContent = "Das hat leider nicht geklappt. Bitte rufen Sie uns an: 0172 3841620.";
+      }).then(function () { btn.disabled = false; });
+    });
+  });
+
+  /* Karriere: the camera settles into the photograph */
+  var kdeep = $("#karriere");
+  function ringFrame() {
+    var r = kdeep.getBoundingClientRect();
+    if (r.bottom < -100 || r.top > innerHeight + 100) return;
+    var pr = clamp((innerHeight - r.top) / (r.height), 0, 1);
+    kdeep.style.setProperty("--kz", RM ? 1 : sstep(0, .75, pr).toFixed(3));
+    var e = clamp((innerHeight - r.top) / innerHeight, 0, 1);
+    kdeep.style.setProperty("--kc", RM ? 0 : ((1 - sstep(.15, 1, e)) * 9).toFixed(2));
+  }
+
+  /* footer word: fitted to the full width */
+  var word = $(".foot .word");
+  function fitWord() { word.style.fontSize = "100px"; var w = word.getBoundingClientRect().width, avail = word.parentNode.clientWidth - 2 * parseFloat(getComputedStyle(word.parentNode).paddingLeft); word.style.fontSize = (100 * avail / w * .995).toFixed(2) + "px"; }
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(fitWord); addEventListener("resize", fitWord);
+
+  /* seal: grows in the centre, then settles into the header */
+  var seal = $("#seal"), slot = $("#slot"), settled = false;
+  function sealTo(big) {
+    var r = slot.getBoundingClientRect(), s = big ? Math.min(MOB ? 150 : 200, innerHeight * .26) : r.width;
+    var x = big ? innerWidth / 2 - s / 2 : r.left, y = big ? innerHeight / 2 - s / 2 : r.top;
+    seal.style.width = seal.style.height = s.toFixed(1) + "px";
+    seal.style.transform = "translate(" + x.toFixed(1) + "px," + y.toFixed(1) + "px)";
+  }
+  function placeSeal() { if (settled) sealTo(false); }
+  function intro() {
+    if (RM) { settled = true; html.classList.add("s1", "s2", "s3", "done"); sealTo(false); return; }
+    sealTo(true);
+    requestAnimationFrame(function () { requestAnimationFrame(function () { html.classList.add("s1"); }); });
+    var t0 = performance.now(), ready = false, nEl = $("#sp-n"), bar = $("#sp-bar"), shown = 0;
+    var img = new Image(); img.src = $(".hbg img").currentSrc || $(".hbg img").src;
+    var loaded = new Promise(function (r) { if (img.complete) r(); img.onload = img.onerror = r; setTimeout(r, 7000); });
+    var fontsOk = document.fonts ? document.fonts.ready : Promise.resolve();
+    Promise.all([loaded, fontsOk]).then(function () { ready = true; });
+    (function tick() {
+      var el = performance.now() - t0, target = ready ? 100 : Math.min(88, el / 25);
+      shown += (target - shown) * .12; if (ready && shown > 99) shown = 100;
+      nEl.textContent = String(Math.round(shown)).padStart(2, "0"); bar.style.transform = "scaleX(" + (shown / 100).toFixed(3) + ")";
+      if (shown >= 100 && el > 2300) {
+        html.classList.add("s2", "done"); sealTo(false);
+        setTimeout(function () { settled = true; html.classList.add("s3"); }, 800);
+        return;
+      }
+      requestAnimationFrame(tick);
+    })();
+  }
+  intro();
+  addEventListener("resize", function () { if (settled) sealTo(false); });
+
+  /* ================= WebGL immersions ================= */
+  var INTRO = {
+    fog: [[10, 0x2c4235], [-14, 0x0f3627], [-60, 0x0c3022], [-100, 0x0a2a1e]],
+    open: "px-4500037",
+    st: [[0, 10], [.07, 4], [.33, -24], [.57, -52], [.8, -80], [.9, -96], [1, -98]],
+    words: [{ t: "Baum", z: -14, dark: 1 }, { t: "Land", z: -42 }, { t: "Forst", z: -70 }],
+    pics: [
+      { k: "r", f: "px-2310483", a: 1.5, x: -5.4, y: .8, z: -22, h: 4.2, t: "Seilklettertechnik mit Motorsäge", s: "Jimmy Chan · " + PX + "2310483" },
+      { k: "b", f: "GAL-02", a: .563, x: 4.4, y: -.2, z: -29, h: 5.8, t: "Kletterer mit Motorsäge am Kiefernstamm", c: "Baumfällung" },
+      { k: "b", f: "GAL-06", a: .75, x: -4.8, y: -.4, z: -50, h: 5, t: "Minibagger auf geräumtem Grundstück", c: "Baufeldberäumung" },
+      { k: "r", f: "px-6245621", a: 1.504, x: 5.4, y: 1, z: -56, h: 3.8, t: "Bagger auf einer Baustelle im Kiefernwald", s: PX + "6245621" },
+      { k: "r", f: "px-8543577", a: .667, x: -4.6, y: .2, z: -78, h: 5, t: "Junger Baum wird gepflanzt", s: "Mikhail Nilov · " + PX + "8543577" },
+      { k: "b", f: "GAL-14", a: .75, x: 4.8, y: -.4, z: -84, h: 4.6, t: "Räumfahrzeug mit Schneeschild bei Nacht", c: "Winterdienst" },
+      // hero frame: small, far, around the centred text
+      { k: "b", f: "GAL-13", a: .75, x: -12.4, y: 3.2, z: -122, h: 4.2, t: "Kiefernkronen, mit Seilen gesichert", c: "Kronensicherung", far: 1 },
+      { k: "r", f: "px-35001488", a: .75, x: 12.6, y: 2.8, z: -126, h: 4.6, t: "Hochwald im Nebel", s: PX + "35001488", far: 1 },
+      { k: "b", f: "GAL-19", a: .75, x: -13, y: -3.6, z: -130, h: 3.8, t: "Neue Pflasterfläche am Straßenrand", c: "Pflasterarbeiten", far: 1 },
+      { k: "r", f: "px-12546415", a: 1.5, x: 13.4, y: -3.4, z: -132, h: 3, t: "Kommunale Mäharbeiten am Wegrand", s: PX + "12546415", far: 1 }
+    ]
+  };
+  var KAR = {
+    fog: [[10, 0x101a14], [-50, 0x0b120e], [-90, 0x070907]],
+    st: [[0, 10], [.3, -16], [.56, -42], [.8, -68], [.9, -86], [1, -88]],
+    words: [{ t: "Wir", z: -10 }, { t: "suchen", z: -36 }, { t: "Verstärkung", z: -62 }],
+    pics: [
+      { k: "b", f: "GAL-09", a: .75, x: -4.6, y: -.2, z: -20, h: 5.4, t: "Kompaktlader beim Räumen", c: "Baufeldberäumung" },
+      { k: "r", f: "px-35606516", a: .821, x: 4.6, y: .6, z: -27, h: 5.6, t: "Baumpfleger in Schutzausrüstung", s: "Margo Evardson · " + PX + "35606516" },
+      { k: "b", f: "GAL-04", a: .75, x: -5, y: .4, z: -46, h: 5, t: "Hubarbeitsbühne an einem eingekürzten Baum", c: "Baumfällung" },
+      { k: "r", f: "px-2902892", a: 1.333, x: 5.2, y: -.6, z: -52, h: 3.8, t: "Kletterer am Stamm", s: PX + "2902892" },
+      { k: "b", f: "GAL-12", a: .75, x: -4.4, y: -.6, z: -72, h: 4.6, t: "Minibagger im Häckselgut", c: "Stubbenfräsen" },
+      { k: "r", f: "px-4079768", a: 1.5, x: 5.4, y: .8, z: -78, h: 3.6, t: "Grünpflege mit Freischneider", s: "Nam Phong Bùi · " + PX + "4079768" }
+    ]
+  };
+
+
+  var imms = [];
+  function Imm(root, C) {
+    var cv = $("canvas", root), R;
+    try { R = new THREE.WebGLRenderer({ canvas: cv, antialias: true }); } catch (e) { R = null; }
+    if (!R) { html.classList.add("nogl"); return null; }
+    R.setPixelRatio(Math.min(devicePixelRatio || 1, 1.75));
+    if (THREE.sRGBEncoding) R.outputEncoding = THREE.sRGBEncoding;
+    var scene = new THREE.Scene(); scene.fog = new THREE.Fog(C.fog[0][1], 5, MOB ? 34 : 44);
+    var cam = new THREE.PerspectiveCamera(MOB ? 58 : 48, 1, .1, 300);
+    var L = new THREE.TextureLoader(), aniso = R.capabilities.getMaxAnisotropy();
+    var XS = MOB ? .5 : 1, HS = MOB ? .72 : 1;
+    var planes = [], words = [], back = null, ovs = $$(".ov", root).map(function (el) { return { el: el, a: +el.dataset.a, b: +el.dataset.b }; });
+    function tex(u, cb) { return L.load(u, function (t) { t.anisotropy = aniso; if (THREE.sRGBEncoding) t.encoding = THREE.sRGBEncoding; cb(t); }); }
+    function capTex(k, s) {
+      var c = document.createElement("canvas"); c.width = 1024; c.height = 56; var g = c.getContext("2d");
+      g.font = "500 26px 'Geist Mono', monospace"; g.textBaseline = "middle";
+      if (k === "b") { g.fillStyle = "#dd9e09"; g.fillRect(2, 18, 20, 20); } else { g.strokeStyle = "rgba(238,242,239,.8)"; g.lineWidth = 2; g.strokeRect(3, 19, 18, 18); }
+      g.fillStyle = k === "b" ? "#eef2ef" : "rgba(238,242,239,.72)"; g.fillText(s.toUpperCase(), 36, 29);
+      var t = new THREE.CanvasTexture(c); t.anisotropy = aniso; return t;
+    }
+    C.pics.forEach(function (P) {
+      var h = P.h * HS, w = h * P.a, x = P.x * XS * (MOB && P.far ? 1.15 : 1);
+      var grp = new THREE.Group(); grp.position.set(x, P.y * HS, P.z); grp.rotation.y = -Math.sign(x) * (P.far ? .08 : .16);
+      var mat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0 });
+      var m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), mat); grp.add(m);
+      tex(P.k === "b" ? IMG + P.f + (MOB ? "-640" : "-full") + ".webp" : EXT + P.f + (MOB ? "-800" : "") + ".webp", function (t) { mat.map = t; mat.needsUpdate = true; m.userData.ready = 1; });
+      var cs = MOB ? .8 : 1, cm = new THREE.Mesh(new THREE.PlaneGeometry(.34 * 1024 / 56 * cs, .34 * cs), new THREE.MeshBasicMaterial({ map: capTex(P.k, P.k === "b" ? "BLF · " + P.f + " · " + P.c : "Symbolbild"), transparent: true, opacity: 0, depthWrite: false }));
+      cm.position.set(-w / 2 + cm.geometry.parameters.width / 2, -h / 2 - .32, 0); grp.add(cm);
+      m.userData = { P: P, cap: cm, base: 1 }; scene.add(grp); planes.push(m);
+    });
+    C.words.forEach(function (W) {
+      var c = document.createElement("canvas"), g = c.getContext("2d"), fs = 400, txt = W.t.toUpperCase();
+      g.font = "760 extra-condensed " + fs + "px Archivo"; try { g.fontStretch = "extra-condensed"; } catch (e) {}
+      c.width = Math.ceil(g.measureText(txt).width) + 40; c.height = Math.round(fs * .98);
+      g = c.getContext("2d"); try { g.fontStretch = "extra-condensed"; } catch (e) {}
+      g.font = "760 extra-condensed " + fs + "px Archivo"; g.fillStyle = W.dark ? "#0b2123" : "#eef2ef"; g.fillText(txt, 20, fs * .86);
+      var t = new THREE.CanvasTexture(c); t.anisotropy = aniso; if (THREE.sRGBEncoding) t.encoding = THREE.sRGBEncoding;
+      var m = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.MeshBasicMaterial({ map: t, transparent: true, opacity: 0, depthWrite: false, fog: false }));
+      m.userData = { W: W, asp: c.width / c.height }; m.position.z = W.z; scene.add(m); words.push(m);
+    });
+    if (C.open) {
+      var bm = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0, fog: false, depthWrite: false });
+      back = new THREE.Mesh(new THREE.PlaneGeometry(96, 64), bm); back.position.z = -46; back.renderOrder = -1; scene.add(back);
+      tex(EXT + C.open + (MOB ? "-800" : "") + ".webp", function (t) { bm.map = t; bm.needsUpdate = true; back.userData.ready = 1; });
+    }
+    function size() {
+      var w = root.querySelector(".stick").clientWidth, h = root.querySelector(".stick").clientHeight;
+      R.setSize(w, h, false); cam.aspect = w / h; cam.updateProjectionMatrix();
+      words.forEach(function (m) {
+        var W = m.userData.W, d = W.dark ? 24 : 20, vh = 2 * d * Math.tan(cam.fov * Math.PI / 360), vw = vh * cam.aspect;
+        var hh = Math.min(vh * .3, vw * .84 / m.userData.asp); m.scale.set(hh * m.userData.asp, hh, 1);
+        m.position.y = W.dark ? (MOB ? vh * .06 : -vh * .03) : vh * .05;
+      });
+    }
+    function path(p) {
+      var S = C.st;
+      for (var i = 1; i < S.length; i++) if (p <= S[i][0]) { var A = S[i - 1], B = S[i], t = (p - A[0]) / Math.max(1e-6, B[0] - A[0]); t = t * t * (3 - 2 * t) * .35 + t * .65; return lerp(A[1], B[1], t); }
+      return S[S.length - 1][1];
+    }
+    function fogAt(z) {
+      var F = C.fog;
+      for (var i = 1; i < F.length; i++) if (z >= F[i][0]) return new THREE.Color(F[i - 1][1]).lerp(new THREE.Color(F[i][1]), clamp((F[i - 1][0] - z) / (F[i - 1][0] - F[i][0]), 0, 1));
+      return new THREE.Color(F[F.length - 1][1]);
+    }
+    var self = { root: root, cz: 10, active: false, planes: planes, cam: cam, cv: cv };
+    self.prog = function () { var r = root.getBoundingClientRect(); return clamp(-r.top / Math.max(1, r.height - innerHeight), 0, 1); };
+    self.size = size;
+    self.frame = function (mx, my) {
+      var p = self.prog(), tz = path(p);
+      self.cz += (tz - self.cz) * (RM ? 1 : .09);
+      var cz = self.cz;
+      cam.position.set(mx * .7, -my * .35, cz); cam.rotation.set(-my * .035, -mx * .06, 0);
+      var fc = fogAt(cz); scene.fog.color.copy(fc); R.setClearColor(fc, 1);
+      var openO = 0;
+      if (back) { openO = back.userData.ready ? 1 - sstep(-2, -24, cz) : 0; back.material.opacity = openO; back.material.color.setScalar(lerp(1, .55, sstep(6, -16, cz))); back.visible = openO > .005; }
+      words.forEach(function (w) {
+        var d = cz - w.position.z, o = w.userData.W.dark ? sstep(8, 16, d) : sstep(56, 32, d) * sstep(9, 17, d);
+        w.material.opacity = o; w.visible = o > .005;
+      });
+      var near = MOB ? 34 : 44;
+      planes.forEach(function (m) {
+        var d = cz - m.parent.position.z, o = m.userData.ready ? sstep(near + 6, near - 8, d) * sstep(-1.5, 2.5, d) : 0;
+        if (m.userData.P.far) o = m.userData.ready ? sstep(-80, -92, cz) * (MOB ? .45 : .9) : 0; else o *= 1 - openO;
+        m.userData.base += ((m === hov ? 1.03 : 1) - m.userData.base) * .15; m.scale.setScalar(m.userData.base);
+        m.material.opacity = o; m.userData.cap.material.opacity = o * .95; m.parent.visible = o > .005;
+      });
+      ovs.forEach(function (o) {
+        var f = .03, op = o.a <= 0 ? 1 - sstep(o.b - f, o.b, p) : Math.min(sstep(o.a - f, o.a + f * .5, p), 1 - sstep(o.b - f * .5, o.b + f, p));
+        o.el.style.opacity = op.toFixed(3); o.el.classList.toggle("vis", op > .02); o.el.style.translate = "0 " + ((1 - op) * 14).toFixed(1) + "px";
+      });
+      R.render(scene, cam);
+      return p;
+    };
+    var io = new IntersectionObserver(function (es) { self.active = es[0].isIntersecting; }, { rootMargin: "100px" });
+    io.observe(root);
+    size();
+    return self;
+  }
+
+  /* pointer: hover captions on 3D photos (mouse only), click opens lightbox */
+  var mx = 0, my = 0, smx = 0, smy = 0, hasPtr = false, hov = null, ray = window.THREE ? new THREE.Raycaster() : null, ptr = window.THREE ? new THREE.Vector2() : null, tip = $("#tip");
+  addEventListener("pointermove", function (e) {
+    hasPtr = e.pointerType === "mouse"; mx = e.clientX / innerWidth * 2 - 1; my = e.clientY / innerHeight * 2 - 1;
+    ptr && ptr.set(mx, -my);
+    tip.style.left = Math.min(innerWidth - 300, e.clientX + 16) + "px"; tip.style.top = (e.clientY + 18) + "px";
+  }, { passive: true });
+  function pickIn(I) {
+    ray.setFromCamera(ptr, I.cam);
+    var hs = ray.intersectObjects(I.planes.filter(function (m) { return m.material.opacity > .4; }), false);
+    return hs.length ? hs[0].object : null;
+  }
+  function setHover(o, cv) {
+    if (o === hov) return; hov = o; $$(".imm canvas").forEach(function (c) { c.style.cursor = ""; });
+    if (!o) { tip.classList.remove("on"); return; }
+    cv.style.cursor = "zoom-in";
+    var P = o.userData.P;
+    $("#tip-k").textContent = P.k === "b" ? "BLF-Einsatzfoto · " + P.f + " · " + P.c : "Symbolbild";
+    $("#tip-k").className = "mono" + (P.k === "b" ? " b" : ""); $("#tip-t").textContent = P.t; tip.classList.add("on");
+  }
+
+  function start() {
+    if (window.THREE) {
+      var b = Imm($('[data-imm="kar"]'), KAR);
+      if (b) imms.push(b);
+      imms.forEach(function (I) {
+        I.cv.addEventListener("click", function (e) {
+          var r = I.cv.getBoundingClientRect(); ptr.set((e.clientX - r.left) / r.width * 2 - 1, -((e.clientY - r.top) / r.height * 2 - 1));
+          var o = pickIn(I); if (o) { var P = o.userData.P; openLb(P.k, P.f, P.t, P.k === "b" ? P.c : P.s); }
+        });
+      });
+    }
+    addEventListener("resize", function () { imms.forEach(function (I) { I.size(); }); });
+    requestAnimationFrame(loop);
+  }
+  function loop() {
+    smx += ((RM ? 0 : mx) - smx) * .05; smy += ((RM ? 0 : my) - smy) * .05;
+    var h = null, hcv = null;
+    imms.forEach(function (I, i) {
+      if (!I.active) return;
+      I.frame(smx, smy);
+      if (hasPtr && lb.hidden && !h) { var r = I.cv.getBoundingClientRect(); if (r.top < innerHeight && r.bottom > 0) { var o = pickIn(I); if (o) { h = o; hcv = I.cv; } } }
+    });
+    setHover(h, hcv);
+    placeSeal();
+    headerTheme();
+    requestAnimationFrame(loop);
+  }
+  var fl = document.fonts && document.fonts.load ? Promise.all([document.fonts.load("760 extra-condensed 100px Archivo"), document.fonts.load("500 26px 'Geist Mono'")]) : Promise.resolve();
+  fl.then(start, start);
+  window.BLF = { top: function () { return $("#top"); } };
+})();
+</script>
+</body>
+</html>
