@@ -397,7 +397,8 @@ html.gpinned .gal .track { overflow: visible; scroll-snap-type: none; cursor: de
   .ghead .gside { justify-items: start; text-align: left; margin-top: 18px; }
   .gcount { display: none; }
   .gal .track figure:nth-child(3n+2), .gal .track figure:nth-child(3n) { margin-top: 0; }
-  .gal .track figure:nth-child(3n+2) img, .gal .track img { height: 58vh; }
+  .gal .track figure { width: 84vw; }
+  .gal .track figure:nth-child(3n+2) img, .gal .track img { width: 100%; height: auto; max-height: 64vh; max-width: none; object-fit: cover; }
   .gal .track { padding: 0 var(--m); margin-inline: 0; }
 }
 
@@ -930,7 +931,7 @@ html.rm .inter { height: auto; } html.rm .inter .stk { position: relative; }
   }
 
   /* gallery reel */
-  var G = [["21","Unser Fuhrpark","Technik","land"],["29","Winterdienst auf dem Feldweg","Winterdienst","winter"],["31","Neu angelegte Rasenfläche mit Beetrand","Grünflächenpflege","gruen"],["34","Arbeiten in der Krone mit Hubarbeitsbühne","Baumpflege","baum"],
+  var G = [["29","Winterdienst auf dem Feldweg","Winterdienst","winter"],["21","Unser Fuhrpark","Technik","land"],["31","Neu angelegte Rasenfläche mit Beetrand","Grünflächenpflege","gruen"],["34","Arbeiten in der Krone mit Hubarbeitsbühne","Baumpflege","baum"],
     ["24","Neue Terrasse mit Pflaster und Geländer","Pflasterarbeiten","land"],["30","Neu gepflanzter Baum mit Dreibock","Neuanpflanzung","gruen"],["20","Winterdienst bei Nacht","Winterdienst","winter"],["27","Kehrmaschine bei der Platzreinigung","Flächenreinigung","winter"],
     ["32","Rollrasen wird verlegt","Grünflächenpflege","gruen"],["25","Pflasterterrasse am See","Pflasterarbeiten","land"],["33","Hubarbeitsbühne im Einsatz","Baumpflege","baum"],["28","Winterdienst auf dem Parkplatz","Winterdienst","winter"],
     ["26","Terrasse fertig gepflastert","Pflasterarbeiten","land"],["23","Rasenfläche mit Beregnung","Grünflächenpflege","gruen"],
