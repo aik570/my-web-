@@ -86,7 +86,7 @@
     {
       "service": "fehleranalyse",
       "label": "",
-      "price": 25,
+      "price": 40,
       "from": false,
       "onRequest": false,
       "note": ""
@@ -94,7 +94,7 @@
     {
       "service": "panzerglas",
       "label": "",
-      "price": 32,
+      "price": 25,
       "from": false,
       "onRequest": false,
       "note": ""
