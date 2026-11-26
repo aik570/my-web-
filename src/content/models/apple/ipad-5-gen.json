@@ -78,7 +78,7 @@
     {
       "service": "fehleranalyse",
       "label": "",
-      "price": 25,
+      "price": 60,
       "from": false,
       "onRequest": false,
       "note": ""
