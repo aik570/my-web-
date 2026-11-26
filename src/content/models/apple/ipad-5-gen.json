@@ -86,7 +86,7 @@
     {
       "service": "panzerglas",
       "label": "",
-      "price": 22,
+      "price": 30,
       "from": false,
       "onRequest": false,
       "note": ""
