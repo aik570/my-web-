@@ -70,7 +70,7 @@
     {
       "service": "wasserschaden",
       "label": "",
-      "price": 35,
+      "price": 80,
       "from": false,
       "onRequest": false,
       "note": ""
