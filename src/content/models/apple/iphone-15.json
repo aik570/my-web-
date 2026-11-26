@@ -5,8 +5,8 @@
   "repairs": [
     {
       "service": "display",
-      "label": "Display – Standardqualität",
-      "price": 179,
+      "label": "Display – Standardqualität-OLED",
+      "price": 199,
       "from": false,
       "onRequest": false,
       "note": ""
